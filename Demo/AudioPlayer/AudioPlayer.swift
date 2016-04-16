@@ -423,11 +423,13 @@ public class AudioPlayer: NSObject {
 
                 if reachability.isReachable() || URLInfo.URL.isOfflineURL {
                     state = .Buffering
+                    beginBackgroundTask()
                 }
                 else {
                     connectionLossDate = NSDate()
                     stateWhenConnectionLost = .Buffering
                     state = .WaitingForConnection
+                    beginBackgroundTask()
                     return
                 }
 
@@ -714,8 +716,6 @@ public class AudioPlayer: NSObject {
         }
         return false
     }
-    
-    
 
     /**
     Plays previous item in the queue.
@@ -804,7 +804,6 @@ public class AudioPlayer: NSObject {
      - parameter event: The event received.
      */
     public func remoteControlReceivedWithEvent(event: UIEvent) {
-        print("remoteControlReceivedWithEvent called")
         if event.type == .RemoteControl {
             //ControlCenter Or Lock screen
             switch event.subtype {
@@ -880,8 +879,6 @@ public class AudioPlayer: NSObject {
                 info[MPNowPlayingInfoPropertyPlaybackRate] = player?.rate ?? 0
 
                 MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo = info
-                
-                
             }
             else {
                 MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo = nil
@@ -1080,7 +1077,7 @@ public class AudioPlayer: NSObject {
     - parameter time: The current time.
     */
     private func currentProgressionUpdated(time: CMTime) {
-        if let currentItemProgression = currentItemProgression, currentItemDuration = currentItemDuration where currentItemDuration > 0 {
+        if let currentItemProgression = currentItemProgression, currentItemDuration = currentItemDuration, currentItem = player?.currentItem where currentItemDuration > 0 && currentItem.playbackLikelyToKeepUp {
             //This fixes the behavior where sometimes the `playbackLikelyToKeepUp`
             //isn't changed even though it's playing (happens mostly at the first play though).
             if state == .Buffering || state == .Paused {

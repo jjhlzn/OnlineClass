@@ -8,14 +8,18 @@
 
 import UIKit
 
-class AlbumListController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class AlbumListController: BaseUIViewController, UITableViewDataSource, UITableViewDelegate {
+    
+    @IBOutlet weak var playingButton: UIButton!
     
     @IBOutlet var tableView: UITableView!
     var albums: [Album] = []
     
     override func viewWillAppear(animated: Bool) {
+        addPlayingButton(playingButton)
         tableView.dataSource = self
         tableView.delegate = self
+        
         AlbumService().getAlbums() { response -> Void in
             dispatch_async(dispatch_get_main_queue()) {
                 if response.status != 0 {
@@ -29,7 +33,10 @@ class AlbumListController: UIViewController, UITableViewDataSource, UITableViewD
             }
             
         }
+        updatePlayingButton(playingButton)
+        
     }
+    
     
     
     
@@ -59,6 +66,11 @@ class AlbumListController: UIViewController, UITableViewDataSource, UITableViewD
             dest.album = albums[row]
             dest.albumImageData = (tableView.cellForRowAtIndexPath(tableView.indexPathForSelectedRow!)! as! AlbumCell).albumImage.image!
         }
+    }
+    
+    override func audioPlayer(audioPlayer: AudioPlayer, didChangeStateFrom from: AudioPlayerState, toState to: AudioPlayerState) {
+        super.audioPlayer(audioPlayer, didChangeStateFrom: from, toState: to)
+        updatePlayingButton(playingButton)
     }
 
 }

@@ -10,9 +10,38 @@ import UIKit
 
 class BaseUIViewController: UIViewController, AudioPlayerDelegate {
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        getAudioPlayer().delegate = self
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        getAudioPlayer().delegate = nil
+        if self.navigationController?.viewControllers.indexOf(self) == nil {
+            getAudioPlayer().delegate = (self.parentViewController as! UINavigationController).topViewController as! AudioPlayerDelegate
+            
+        }
+
+    }
+    
     func getAudioPlayer() -> AudioPlayer {
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         return appDelegate.audioPlayer
+    }
+    
+    func addPlayingButton(button: UIButton) {
+        button.addTarget(self, action: #selector(playingButtonPressed), forControlEvents: .TouchUpInside)
+    }
+    
+    func playingButtonPressed(sender: UIButton) {
+        if hasCurrentItem() {
+            performSegueWithIdentifier("songSegue", sender: false)
+        }
+    }
+    
+    private func hasCurrentItem() -> Bool {
+        return getAudioPlayer().currentItem != nil
     }
     
     func updatePlayingButton(button: UIButton) {

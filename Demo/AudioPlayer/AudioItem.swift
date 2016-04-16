@@ -51,8 +51,6 @@ public struct AudioItemURL {
 }
 
 
-
-
 // MARK: - AudioItem
 
 /**
@@ -76,7 +74,7 @@ public class AudioItem: NSObject {
 
     - returns: An initialized `AudioItem` if there is at least a non-null URL.
     */
-    public convenience init?(highQualitySoundURL: NSURL? = nil, mediumQualitySoundURL: NSURL? = nil, lowQualitySoundURL: NSURL? = nil)  {
+    public convenience init?(highQualitySoundURL: NSURL? = nil, mediumQualitySoundURL: NSURL? = nil, lowQualitySoundURL: NSURL? = nil) {
         var URLs = [AudioQuality: NSURL]()
         if let highURL = highQualitySoundURL {
             URLs[.High] = highURL
@@ -88,14 +86,6 @@ public class AudioItem: NSObject {
             URLs[.Low] = lowURL
         }
         self.init(soundURLs: URLs)
-    }
-    
-    public convenience init?(fileName: String)  {
-        let fixedFileName = fileName.stringByTrimmingCharactersInSet(.whitespaceAndNewlineCharacterSet())
-        var soundFileComponents = fixedFileName.componentsSeparatedByString(".")
-        
-        let path = NSBundle.mainBundle().pathForResource(soundFileComponents[0], ofType: soundFileComponents[1])
-        self.init(highQualitySoundURL: NSURL(fileURLWithPath: path!))
     }
 
     /**

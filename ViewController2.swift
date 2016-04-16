@@ -41,6 +41,7 @@ class ViewController2: UIViewController, AudioPlayerDelegate {
     // MARK: IBAction
     
     @IBAction func playSound1Pressed(sender: AnyObject) {
+        /*
         do {
             var audioItem = try AudioItem(fileName: "test.mp3")
         
@@ -55,7 +56,7 @@ class ViewController2: UIViewController, AudioPlayerDelegate {
         sound1?.playItem(audioItem!)
         } catch {
             print("playSound1Pressed failed")
-        }
+        }*/
     }
     
     

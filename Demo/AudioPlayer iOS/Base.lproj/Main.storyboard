@@ -70,15 +70,25 @@
                             </tableViewCell>
                         </prototypes>
                     </tableView>
-                    <navigationItem key="navigationItem" title="课程" id="4yR-yP-jdw"/>
+                    <navigationItem key="navigationItem" title="课程" id="4yR-yP-jdw">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="kKG-0K-eFf">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="9cB-VU-DfW">
+                                <rect key="frame" x="264" y="2" width="40" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="wave1"/>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
+                        <outlet property="playingButton" destination="9cB-VU-DfW" id="b6y-02-190"/>
                         <outlet property="tableView" destination="TYt-sS-iBT" id="qUg-8z-f8L"/>
                         <segue destination="3ur-uT-JCP" kind="push" identifier="albumDetailSegue" id="VNd-S5-Rjk"/>
+                        <segue destination="h9L-2v-gh5" kind="push" identifier="songSegue" id="AF3-hq-Hgc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="870" y="202"/>
+            <point key="canvasLocation" x="785" y="191"/>
         </scene>
         <!--Album Detail Controller-->
         <scene sceneID="URI-7O-Zhf">
@@ -255,7 +265,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="w8L-T0-aQQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1785" y="298"/>
+            <point key="canvasLocation" x="1808" y="-61"/>
         </scene>
         <!--musicPlayer-->
         <scene sceneID="v3f-7H-qhE">
@@ -467,7 +477,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kmC-6k-uPI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-13" y="109"/>
+            <point key="canvasLocation" x="66" y="122"/>
         </scene>
         <!--我-->
         <scene sceneID="oct-0p-3hq">
@@ -501,4 +511,7 @@
         <image name="sample" width="290" height="290"/>
         <image name="wave1" width="40" height="40"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="AF3-hq-Hgc"/>
+    </inferredMetricsTieBreakers>
 </document>

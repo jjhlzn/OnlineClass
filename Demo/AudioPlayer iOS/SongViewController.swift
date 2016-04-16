@@ -28,7 +28,7 @@ class SongViewController: BaseUIViewController, UIGestureRecognizerDelegate {
         self.navigationController?.interactivePopGestureRecognizer!.delegate = self
         
         audioPlayer = getAudioPlayer()
-        audioPlayer.delegate = self
+        //audioPlayer.delegate = self
         
         
         if !audioPlayer.hasNext() {
@@ -56,10 +56,6 @@ class SongViewController: BaseUIViewController, UIGestureRecognizerDelegate {
         inited = true
     }
     
-    override func viewWillDisappear(animated: Bool) {
-        super.viewWillDisappear(animated)
-        audioPlayer.delegate = nil
-    }
     
     func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer) -> Bool {
         return false

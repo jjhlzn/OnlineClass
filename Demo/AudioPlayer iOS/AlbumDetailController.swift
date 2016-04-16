@@ -33,7 +33,8 @@ class AlbumDetailController: BaseUIViewController, UITableViewDataSource, UITabl
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         print("\(tag): viewWillAppear called")
-        getAudioPlayer().delegate = self
+        addPlayingButton(playingButton)
+        //getAudioPlayer().delegate = self
         if songs == nil {
             tableView.dataSource = self
             tableView.delegate = self
@@ -55,12 +56,12 @@ class AlbumDetailController: BaseUIViewController, UITableViewDataSource, UITabl
         }
         
         super.updatePlayingButton(playingButton)
+        updateCellPlayingButtons()
+        
     }
     
 
-    @IBAction func playingButtonPressed(sender: UIButton) {
-        performSegueWithIdentifier("songSegue", sender: false)
-    }
+    
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if songs == nil {
@@ -136,28 +137,71 @@ class AlbumDetailController: BaseUIViewController, UITableViewDataSource, UITabl
     }
     
     
+    /*  首先把所有所有的按钮都设置成可以播放的图片，然后根据当前选中的行的播放情况，设置当前行的播放状态。如果在播放的状态，如果选择的行是
+         播放的歌曲，则暂停播放即可；否则设置选中行为暂停图片，并开始播放当前的歌曲。如果不是播放的状态，如果选中的行是当前的歌曲，则恢复播放,并设置图片为暂停；否则，就将当前的行设置为播放的歌曲，开始播放*/
     @IBAction func playButtonPressed(sender: UIButton) {
         let audioPlayer = getAudioPlayer()
+        
+        //找到按钮所在的行
         let view = sender.superview!
         let cell = view.superview as! SongCell
+        let row = (tableView.indexPathForCell(cell)?.row)!
+        let song = songs[row]
+
         
-        let indexPath = tableView.indexPathForCell(cell)
-        
-        if audioPlayer.state != AudioPlayerState.Playing {
-            var audioItem = audioPlayer.currentItem
-            let row = indexPath!.row
-            let song = songs[row]
-            if audioItem != nil && audioItem?.highestQualityURL.URL.absoluteString == ServiceConfiguration.GetSongUrl(song.url) {
-                audioPlayer.resume()
-                return
+        if audioPlayer.state == AudioPlayerState.Buffering || audioPlayer.state == AudioPlayerState.Playing || audioPlayer.state == AudioPlayerState.WaitingForConnection {
+            if audioPlayer.isPlayThisSong(song) {
+                audioPlayer.pause()
+            } else {
+                audioPlayer.playUsingUrl(song.wholeUrl)
             }
-            let url = NSURL(string: ServiceConfiguration.GetSongUrl(song.url))
-            audioItem = AudioItem(highQualitySoundURL: url)
-            audioPlayer.playItems([audioItem!], startAtIndex: 0)
         } else {
-            audioPlayer.pause()
+            if audioPlayer.isPlayThisSong(song) {
+                audioPlayer.resume()
+            } else {
+                audioPlayer.playUsingUrl(song.wholeUrl)
+            }
         }
     }
+    
+     func updateCellPlayingButtons() {
+        if songs == nil {
+            return
+        }
+        let audioPlayer = getAudioPlayer()
+        
+        //找到按钮所在的行
+        var cell: SongCell = SongCell()
+        var founded: Bool = false
+        
+        
+        var idx = 0
+        for song in songs {
+            let item = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: idx, inSection: 0)) as! SongCell
+            item.playImage.image = UIImage(named: "play")
+            idx = idx + 1
+            if audioPlayer.isPlayThisSong(song) {
+                cell = item
+                founded = true
+            }
+        }
+        
+        if !founded {
+            print("not found")
+            return
+        }
+        
+        if audioPlayer.state == AudioPlayerState.Buffering || audioPlayer.state == AudioPlayerState.Playing || audioPlayer.state == AudioPlayerState.WaitingForConnection {
+            idx = 0
+            for song in songs {
+                if audioPlayer.isPlayThisSong(song) {
+                    cell.playImage.image = UIImage(named: "pause")
+                }
+                idx = idx + 1
+            }
+        }
+    }
+
     
     
     
@@ -167,22 +211,7 @@ class AlbumDetailController: BaseUIViewController, UITableViewDataSource, UITabl
             print("audioItem is nil")
             return
         }
-        
-        var idx = 0
-        for item in songs {
-            let cell = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: idx, inSection: 0)) as! SongCell
-            cell.playImage.image = UIImage(named: "play")
-            idx = idx + 1
-            
-            if to == AudioPlayerState.Playing || to == AudioPlayerState.WaitingForConnection || to == AudioPlayerState.Buffering {
-                if audioItem?.highestQualityURL.URL.absoluteString == ServiceConfiguration.GetSongUrl(item.url) {
-                    cell.playImage.image = UIImage(named: "pause")
-                }
-                
-            } else if to == AudioPlayerState.Paused || to == AudioPlayerState.Stopped {
-                
-            }
-        }
-        super.updatePlayingButton(playingButton)
+        updateCellPlayingButtons()
+        updatePlayingButton(playingButton)
     }
 }
