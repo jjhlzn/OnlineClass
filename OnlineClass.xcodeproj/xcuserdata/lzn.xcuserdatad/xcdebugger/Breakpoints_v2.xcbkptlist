@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../Source/AudioPlayer2.swift"
+            timestampString = "482219676.745117"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "111"
+            endingLineNumber = "111"
+            landmarkName = "init(fileName:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../AudioPlayer-master/AudioPlayer/AudioPlayer/AudioPlayer&#x526f;&#x672c;.swift"
+            timestampString = "482239603.511919"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "395"
+            endingLineNumber = "395"
+            landmarkName = "AudioPlayer"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../AudioPlayer-master/AudioPlayer/AudioPlayer/AudioPlayer&#x526f;&#x672c;.swift"
+            timestampString = "482239603.511919"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "417"
+            endingLineNumber = "417"
+            landmarkName = "AudioPlayer"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../AudioPlayer-master/AudioPlayer/AudioPlayer/AudioPlayer&#x526f;&#x672c;.swift"
+            timestampString = "482239720.514319"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "891"
+            endingLineNumber = "891"
+            landmarkName = "observeValueForKeyPath(_:ofObject:change:context:)"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "AudioPlayer.AudioPlayer.observeValueForKeyPath (Swift.Optional&lt;Swift.String&gt;, ofObject : Swift.Optional&lt;Swift.AnyObject&gt;, change : Swift.Optional&lt;Swift.Dictionary&lt;Swift.String, Swift.AnyObject&gt;&gt;, context : Swift.UnsafeMutablePointer&lt;()&gt;) -&gt; ()"
+                  moduleName = "AudioPlayer"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/lzn/Downloads/AudioPlayer-master/AudioPlayer/AudioPlayer/AudioPlayer%E5%89%AF%E6%9C%AC.swift"
+                  timestampString = "482241726.67687"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "891"
+                  endingLineNumber = "891"
+                  offsetFromSymbolStart = "809">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "AudioPlayer.AudioPlayer.observeValueForKeyPath (Swift.Optional&lt;Swift.String&gt;, ofObject : Swift.Optional&lt;Swift.AnyObject&gt;, change : Swift.Optional&lt;Swift.Dictionary&lt;Swift.String, Swift.AnyObject&gt;&gt;, context : Swift.UnsafeMutablePointer&lt;()&gt;) -&gt; ()"
+                  moduleName = "AudioPlayer"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/lzn/Downloads/AudioPlayer-master/AudioPlayer/AudioPlayer/AudioPlayer%E5%89%AF%E6%9C%AC.swift"
+                  timestampString = "482241726.677102"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "891"
+                  endingLineNumber = "891"
+                  offsetFromSymbolStart = "890">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BasicService.swift"
+            timestampString = "482329410.135382"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "14"
+            endingLineNumber = "14"
+            landmarkName = "sendRequest(_:completion:responseHandler:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AlbumService.swift"
+            timestampString = "482401640.067504"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "29"
+            endingLineNumber = "29"
+            landmarkName = "getAlbums(_:)"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "AudioPlayer.AlbumService.getAlbums ((resp : AudioPlayer.GetAlbumsResponse) -&gt; ()) -&gt; AudioPlayer.GetAlbumsResponse"
+                  moduleName = "AudioPlayer"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/lzn/Downloads/AudioPlayerSwift-master/Demo/AlbumService.swift"
+                  timestampString = "482331646.722512"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "26"
+                  endingLineNumber = "26"
+                  offsetFromSymbolStart = "95">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "AudioPlayer.AlbumService.(getAlbums ((resp : AudioPlayer.GetAlbumsResponse) -&gt; ()) -&gt; AudioPlayer.GetAlbumsResponse).(closure #1)"
+                  moduleName = "AudioPlayer"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/lzn/Downloads/AudioPlayerSwift-master/Demo/AlbumService.swift"
+                  timestampString = "482331646.722874"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "26"
+                  endingLineNumber = "26"
+                  offsetFromSymbolStart = "1859">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AlbumService.swift"
+            timestampString = "482401640.067504"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "27"
+            endingLineNumber = "27"
+            landmarkName = "getAlbums(_:)"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "AudioPlayer.AlbumService.getAlbums ((resp : AudioPlayer.GetAlbumsResponse) -&gt; ()) -&gt; AudioPlayer.GetAlbumsResponse"
+                  moduleName = "AudioPlayer"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/lzn/Downloads/AudioPlayerSwift-master/Demo/AlbumService.swift"
+                  timestampString = "482331820.942748"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "26"
+                  endingLineNumber = "26"
+                  offsetFromSymbolStart = "95">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "AudioPlayer.AlbumService.(getAlbums ((resp : AudioPlayer.GetAlbumsResponse) -&gt; ()) -&gt; AudioPlayer.GetAlbumsResponse).(closure #1)"
+                  moduleName = "AudioPlayer"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/lzn/Downloads/AudioPlayerSwift-master/Demo/AlbumService.swift"
+                  timestampString = "482331820.943131"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "26"
+                  endingLineNumber = "26"
+                  offsetFromSymbolStart = "1859">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ServerResponse.swift"
+            timestampString = "482400516.571856"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "25"
+            endingLineNumber = "25"
+            landmarkName = "GetAlbumSongsResponse"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Demo/AudioPlayer iOS/AlbumDetailController.swift"
+            timestampString = "482466672.399274"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "80"
+            endingLineNumber = "80"
+            landmarkName = "prepareForSegue(_:sender:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Demo/AudioPlayer iOS/AlbumDetailController.swift"
+            timestampString = "482466672.399274"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "68"
+            endingLineNumber = "68"
+            landmarkName = "tableView(_:cellForRowAtIndexPath:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>
