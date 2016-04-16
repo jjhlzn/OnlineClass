@@ -54,6 +54,8 @@ class SongViewController: BaseUIViewController, UIGestureRecognizerDelegate {
         }
         
         inited = true
+        
+        updatePrevAndNextButtonStatus()
     }
     
     
@@ -68,13 +70,32 @@ class SongViewController: BaseUIViewController, UIGestureRecognizerDelegate {
         } else {
             audioPlayer.resume()
         }
+        
+    
     }
     
     
     @IBAction func prevButtonPressed(sender: UIButton) {
+        audioPlayer.previous()
     }
     
     @IBAction func nextButtonPressed(sender: UIButton) {
+        audioPlayer.next()
+    }
+    
+    func updatePrevAndNextButtonStatus() {
+        if audioPlayer.hasNext() {
+            nextButton.enabled = true
+        } else {
+            nextButton.enabled = false
+        }
+        
+        if audioPlayer.hasPrevious() {
+            preButton.enabled = true
+            
+        } else {
+            preButton.enabled = false
+        }
     }
     
     
@@ -84,6 +105,7 @@ class SongViewController: BaseUIViewController, UIGestureRecognizerDelegate {
         } else {
             playButton.setImage(UIImage(named: "play"), forState: .Normal)
         }
+        updatePrevAndNextButtonStatus()
         
     }
     

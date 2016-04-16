@@ -50,13 +50,14 @@ class AlbumDetailController: BaseUIViewController, UITableViewDataSource, UITabl
                     } else {
                         self.songs = resp.songs
                         self.tableView.reloadData()
+                        self.updateCellPlayingButtons()
                     }
                 }
             }
         }
         
         super.updatePlayingButton(playingButton)
-        updateCellPlayingButtons()
+        
         
     }
     
@@ -153,13 +154,13 @@ class AlbumDetailController: BaseUIViewController, UITableViewDataSource, UITabl
             if audioPlayer.isPlayThisSong(song) {
                 audioPlayer.pause()
             } else {
-                audioPlayer.playUsingUrl(song.wholeUrl)
+                audioPlayer.playThisSong(song)
             }
         } else {
             if audioPlayer.isPlayThisSong(song) {
                 audioPlayer.resume()
             } else {
-                audioPlayer.playUsingUrl(song.wholeUrl)
+                audioPlayer.playThisSong(song)
             }
         }
     }

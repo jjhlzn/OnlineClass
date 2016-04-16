@@ -25,6 +25,7 @@ class Album {
 }
 
 class Song {
+    var id: String = ""
     var name: String = ""
     var desc: String = ""
     var date: String = ""
