@@ -10,8 +10,11 @@ import UIKit
 
 class SongCell: UITableViewCell {
 
-    @IBOutlet weak var albumImage: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var descLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var playImage: UIImageView!
+    
+    @IBOutlet weak var playBigImage: UIButton!
+    
 }

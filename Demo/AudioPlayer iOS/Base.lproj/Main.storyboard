@@ -125,10 +125,6 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="69"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sample" id="iGD-WR-ArK">
-                                                    <rect key="frame" x="14" y="9" width="50" height="50"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="may-zf-RDG">
                                                     <rect key="frame" x="72" y="-2" width="158" height="41"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -150,13 +146,26 @@
                                                     <color key="textColor" white="0.86031879190000005" alpha="1" colorSpace="calibratedWhite"/>
                                                     <color key="highlightedColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="XIV-Yp-amN">
+                                                    <rect key="frame" x="14" y="9" width="50" height="50"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal" title="Button" image="sample"/>
+                                                    <connections>
+                                                        <action selector="playButtonPressed:" destination="3ur-uT-JCP" eventType="touchUpInside" id="lYd-wO-D04"/>
+                                                    </connections>
+                                                </button>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="play" id="Aol-OS-91n">
+                                                    <rect key="frame" x="29" y="25" width="20" height="20"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="albumImage" destination="iGD-WR-ArK" id="Of7-81-cg1"/>
                                             <outlet property="dateLabel" destination="zQb-wC-fEX" id="Tl1-Ph-eDx"/>
                                             <outlet property="descLabel" destination="1Ma-pU-yVh" id="q2N-dx-kB6"/>
                                             <outlet property="nameLabel" destination="may-zf-RDG" id="jjh-Fe-dt2"/>
+                                            <outlet property="playBigImage" destination="XIV-Yp-amN" id="9fD-Kp-WQO"/>
+                                            <outlet property="playImage" destination="Aol-OS-91n" id="zYj-UJ-SNr"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -164,18 +173,30 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="qbT-cq-NrN"/>
+                    <navigationItem key="navigationItem" id="qbT-cq-NrN">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="Mnj-tR-gsn">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="ftc-IC-7Vr">
+                                <rect key="frame" x="254" y="4" width="50" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="wave1"/>
+                                <connections>
+                                    <action selector="playingButtonPressed:" destination="3ur-uT-JCP" eventType="touchUpInside" id="voR-P5-Mhv"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="albumImage" destination="AUv-A1-u5F" id="pOY-JY-L0R"/>
                         <outlet property="descLabel" destination="J7c-YY-70N" id="FWE-WZ-EGz"/>
                         <outlet property="nameLabel" destination="g7o-DL-uKN" id="KFF-cF-hji"/>
+                        <outlet property="playingButton" destination="ftc-IC-7Vr" id="SkW-DW-61N"/>
                         <outlet property="tableView" destination="gYA-rn-Gd4" id="qij-FT-kV3"/>
                         <segue destination="h9L-2v-gh5" kind="push" identifier="songSegue" id="XCP-gu-6Ue"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aAv-dc-Ce6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1276" y="298"/>
+            <point key="canvasLocation" x="1239" y="214"/>
         </scene>
         <!--Song View Controller-->
         <scene sceneID="viy-Zg-ZFq">
@@ -478,5 +499,6 @@
         <image name="play" width="50" height="50"/>
         <image name="prevPlay" width="50" height="50"/>
         <image name="sample" width="290" height="290"/>
+        <image name="wave1" width="40" height="40"/>
     </resources>
 </document>

@@ -24,6 +24,8 @@
 		1CEFF7961CC0C4C9000DEFF7 /* SongCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CEFF7951CC0C4C9000DEFF7 /* SongCell.swift */; };
 		1CEFF7981CC0D63B000DEFF7 /* LoadingOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CEFF7971CC0D63B000DEFF7 /* LoadingOverlay.swift */; };
 		1CEFF79A1CC1153A000DEFF7 /* SongViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CEFF7991CC1153A000DEFF7 /* SongViewController.swift */; };
+		1CEFF79C1CC20171000DEFF7 /* AudioPlayerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CEFF79B1CC20171000DEFF7 /* AudioPlayerExtension.swift */; };
+		1CEFF79E1CC21E98000DEFF7 /* BaseUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CEFF79D1CC21E98000DEFF7 /* BaseUIViewController.swift */; };
 		E2A9AFA01C498E2900FE943A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A9AF9F1C498E2900FE943A /* AppDelegate.swift */; };
 		E2A9AFA51C498E2900FE943A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E2A9AFA31C498E2900FE943A /* Main.storyboard */; };
 		E2A9AFA71C498E2900FE943A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2A9AFA61C498E2900FE943A /* Assets.xcassets */; };
@@ -54,6 +56,8 @@
 		1CEFF7951CC0C4C9000DEFF7 /* SongCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongCell.swift; sourceTree = "<group>"; };
 		1CEFF7971CC0D63B000DEFF7 /* LoadingOverlay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingOverlay.swift; sourceTree = "<group>"; };
 		1CEFF7991CC1153A000DEFF7 /* SongViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongViewController.swift; sourceTree = "<group>"; };
+		1CEFF79B1CC20171000DEFF7 /* AudioPlayerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioPlayerExtension.swift; sourceTree = "<group>"; };
+		1CEFF79D1CC21E98000DEFF7 /* BaseUIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUIViewController.swift; sourceTree = "<group>"; };
 		E2A9AF9C1C498E2900FE943A /* AudioPlayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AudioPlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2A9AF9F1C498E2900FE943A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E2A9AFA41C498E2900FE943A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -153,6 +157,8 @@
 				1CEFF7951CC0C4C9000DEFF7 /* SongCell.swift */,
 				1CEFF7971CC0D63B000DEFF7 /* LoadingOverlay.swift */,
 				1CEFF7991CC1153A000DEFF7 /* SongViewController.swift */,
+				1CEFF79B1CC20171000DEFF7 /* AudioPlayerExtension.swift */,
+				1CEFF79D1CC21E98000DEFF7 /* BaseUIViewController.swift */,
 			);
 			name = "AudioPlayer iOS";
 			path = "Demo/AudioPlayer iOS";
@@ -241,6 +247,11 @@
 				TargetAttributes = {
 					E2A9AF9B1C498E2900FE943A = {
 						CreatedOnToolsVersion = 7.2;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 					E2B2F9E71C4BB57F00ABF3C5 = {
 						CreatedOnToolsVersion = 7.2;
@@ -313,8 +324,10 @@
 				1CEFF7831CBFB809000DEFF7 /* Model.swift in Sources */,
 				1CEFF7921CC07838000DEFF7 /* UIImageView.swift in Sources */,
 				1C7E9E561CBE13F9002A60E4 /* ViewController2.swift in Sources */,
+				1CEFF79E1CC21E98000DEFF7 /* BaseUIViewController.swift in Sources */,
 				1C7E9E741CBF4993002A60E4 /* Reachability.swift in Sources */,
 				1CEFF78C1CBFBAD4000DEFF7 /* AlbumService.swift in Sources */,
+				1CEFF79C1CC20171000DEFF7 /* AudioPlayerExtension.swift in Sources */,
 				1CEFF7901CC077D0000DEFF7 /* Utils.swift in Sources */,
 				1C7E9E731CBF4993002A60E4 /* AudioPlayer.swift in Sources */,
 				1CEFF7981CC0D63B000DEFF7 /* LoadingOverlay.swift in Sources */,

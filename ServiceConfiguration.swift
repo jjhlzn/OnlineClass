@@ -10,10 +10,25 @@ import Foundation
 
 class ServiceConfiguration {
     //static let serverName = "localhost"
-    static let serverName2 = "www.jinjunhang.com"
-    static let serverName = "localhost"
-    static let port2 = 3001
-    static let port = 3000
+    
+    static let serverName2 = "localhost"
+    static let port2 = 3000
+    
+    static let serverName3 = "www.jinjunhang.com"
+    static let port3 = 3001
+    
+    
+    static var serverName: String {
+        get {
+            return serverName2
+        }
+    }
+    
+    static var port: Int {
+        get {
+            return port2
+        }
+    }
     
     static let GetAlbumsUrl = "http://\(serverName):\(port)/albums"
     

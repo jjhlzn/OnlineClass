@@ -7,12 +7,13 @@
 //
 
 import UIKit
+import MediaPlayer
 
-class SongViewController: UIViewController, AudioPlayerDelegate {
+class SongViewController: BaseUIViewController, UIGestureRecognizerDelegate {
 
-    var song: Song!
+    //var song: Song!
     var audioPlayer: AudioPlayer!
-    var paused: Bool = false
+
     @IBOutlet weak var imageView: UIImageView!
     
     @IBOutlet weak var progressBar: UISlider!
@@ -20,44 +21,57 @@ class SongViewController: UIViewController, AudioPlayerDelegate {
     @IBOutlet weak var nextButton: UIButton!
     @IBOutlet weak var preButton: UIButton!
     @IBOutlet weak var playButton: UIButton!
+    var inited = false
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        audioPlayer = AudioPlayer()
+
+        self.navigationController?.interactivePopGestureRecognizer!.delegate = self
+        
+        audioPlayer = getAudioPlayer()
         audioPlayer.delegate = self
         
-        let album = song.album
-        var audioItems = [AudioItem]()
-        var startIndex = 0
-        var index = 0
-        for item in album.songs {
-            let url = NSURL(string: ServiceConfiguration.GetSongUrl(item.url))
-            let audioItem = AudioItem(highQualitySoundURL: url)
-            audioItems.append(audioItem!)
-            if item.url == song.url {
-                startIndex = index
-            }
-            index = index + 1
-        }
         
-        audioPlayer.playItems(audioItems, startAtIndex: startIndex)
         if !audioPlayer.hasNext() {
             nextButton.enabled = false
         }
-        playButton.setImage(UIImage(named: "pause"), forState: .Normal)
+        
+        if audioPlayer.isPlaying {
+            playButton.setImage(UIImage(named: "pause"), forState: .Normal)
+        }
+        else {
+            playButton.setImage(UIImage(named: "play"), forState: .Normal)
+
+        }
+        
+        print("audioPlayer.sate ")
+        if audioPlayer.isPlaying || audioPlayer.state == AudioPlayerState.Paused {
+            print(audioPlayer.currentItemProgression)
+            if audioPlayer.currentItemProgression != nil && audioPlayer.currentItemDuration != nil {
+                
+                progressBar.value = Float(audioPlayer.currentItemProgression! / audioPlayer.currentItemDuration!)
+                print("set progress bar to \(progressBar.value)")
+            }
+        }
+        
+        inited = true
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        audioPlayer.delegate = nil
+    }
+    
+    func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer) -> Bool {
+        return false
     }
     
     
     @IBAction func playButtonPressed(sender: UIButton) {
-        if !paused {
+        if audioPlayer.state == AudioPlayerState.Playing {
             audioPlayer.pause()
-            //sender.setTitle("播放", forState: .Normal)
-            sender.setImage(UIImage(named: "play"), forState: .Normal)
-        }else {
-            
+        } else {
             audioPlayer.resume()
-            sender.setImage(UIImage(named: "pause"), forState: .Normal)
         }
-        paused = !paused
     }
     
     
@@ -68,34 +82,39 @@ class SongViewController: UIViewController, AudioPlayerDelegate {
     }
     
     
-    func audioPlayer(audioPlayer: AudioPlayer, didChangeStateFrom from: AudioPlayerState, toState to: AudioPlayerState) {
+    override func audioPlayer(audioPlayer: AudioPlayer, didChangeStateFrom from: AudioPlayerState, toState to: AudioPlayerState) {
+        if to == AudioPlayerState.Playing {
+            playButton.setImage(UIImage(named: "pause"), forState: .Normal)
+        } else {
+            playButton.setImage(UIImage(named: "play"), forState: .Normal)
+        }
         
     }
     
-    func audioPlayer(audioPlayer: AudioPlayer, willStartPlayingItem item: AudioItem) {
-        
-    }
     
-    func audioPlayer(audioPlayer: AudioPlayer, didUpdateProgressionToTime time: NSTimeInterval, percentageRead: Float) {
-        print("audioPlayer didUpdateProgressionToTime called \(percentageRead)");
+    override func audioPlayer(audioPlayer: AudioPlayer, didUpdateProgressionToTime time: NSTimeInterval, percentageRead: Float) {
+        //print("audioPlayer didUpdateProgressionToTime called \(percentageRead)");
         progressBar.value = percentageRead / 100
         
     }
     
-    func audioPlayer(audioPlayer: AudioPlayer, didFindDuration duration: NSTimeInterval, forItem item: AudioItem) {
+    override func audioPlayer(audioPlayer: AudioPlayer, didFindDuration duration: NSTimeInterval, forItem item: AudioItem) {
         print("duration = \(duration)")
     }
     
-    func audioPlayer(audioPlayer: AudioPlayer, didUpdateEmptyMetadataOnItem item: AudioItem, withData data: Metadata) {
+    override func audioPlayer(audioPlayer: AudioPlayer, didUpdateEmptyMetadataOnItem item: AudioItem, withData data: Metadata) {
         print("data = \(data)")
         
     }
     
-    func audioPlayer(audioPlayer: AudioPlayer, didLoadRange range: AudioPlayer.TimeRange, forItem item: AudioItem){
+    override func audioPlayer(audioPlayer: AudioPlayer, didLoadRange range: AudioPlayer.TimeRange, forItem item: AudioItem){
         print("range = \(range)")
     }
 
     @IBAction func progressChanged(sender: UISlider) {
+        if !inited {
+            return
+        }
         audioPlayer.seekToTime((audioPlayer.currentItemDuration)! * Double(sender.value))
     }
     

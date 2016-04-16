@@ -20,6 +20,8 @@ class Album {
             return !image.isEmpty
         }
     }
+    
+    
 }
 
 class Song {
@@ -28,4 +30,7 @@ class Song {
     var date: String = ""
     var url: String = ""
     var album: Album!
+    var wholeUrl : String {
+        return ServiceConfiguration.GetSongUrl(url)
+    }
 }
