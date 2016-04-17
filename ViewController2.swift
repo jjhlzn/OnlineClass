@@ -9,7 +9,7 @@
 import UIKit
 import MediaPlayer
 
-class ViewController2: UIViewController, AudioPlayerDelegate {
+class ViewController2: BaseUIViewController {
 
     // MARK: Properties
     
@@ -32,31 +32,27 @@ class ViewController2: UIViewController, AudioPlayerDelegate {
         progressLabel.text = "0%"
 
             
+        // sound1 = getAudioPlayer()
         sound1 = AudioPlayer()
         sound1?.delegate = self
-        
         print("ViewController2")
     }
     
     // MARK: IBAction
     
     @IBAction func playSound1Pressed(sender: AnyObject) {
-        /*
-        do {
-            var audioItem = try AudioItem(fileName: "test.mp3")
         
-        let url = NSURL(string: "https://ia802205.us.archive.org/27/items/RepublicKnightIntroSamplemp3///RepublicKnightIntroSamplemp3_64kb.m3u")
+
+        
+        let url = NSURL(string: "https://ia802205.us.archive.org/27/items/RepublicKnightIntroSamplemp3/RepublicKnightIntroSamplemp3_64kb.m3u")
             let url2 = NSURL(string: "https://dl.dropboxusercontent.com/u/995250/FreeStreamer/As%20long%20as%20the%20stars%20shine.mp3")
             
-            let url3 = NSURL(string: "http://localhost:3000/test.mp3")
-            let url4 = NSURL(string: "http://www.jinjunhang.com:3000/test.mp3")
-            audioItem = AudioItem(highQualitySoundURL: url4)
+            let url3 = NSURL(string: "http://v38.yunpan.cn/Download.outputAudio/350592516/46a97077afac032f342e4468c4ad45503a067d7c/38_36.2dbe9ef90a758dd90cae6e83e211570e/1.0.1/web/14609040083236/0/52a7a7de7ea49d512c96d765dc6097ee/Kalimba.mp3")
+            let url4 = NSURL(string: "http://jjhaudio.hengdianworld.com/songs/houlai.mp3")
+        let audioItem = AudioItem(highQualitySoundURL: url3)
 
             //print(audioItem?.highestQualityURL.URL.absoluteString)
         sound1?.playItem(audioItem!)
-        } catch {
-            print("playSound1Pressed failed")
-        }*/
     }
     
     
@@ -72,15 +68,15 @@ class ViewController2: UIViewController, AudioPlayerDelegate {
         //sound1?.volume = sender.value
     }
     
-    func audioPlayer(audioPlayer: AudioPlayer, didChangeStateFrom from: AudioPlayerState, toState to: AudioPlayerState) {
+    override func audioPlayer(audioPlayer: AudioPlayer, didChangeStateFrom from: AudioPlayerState, toState to: AudioPlayerState) {
         
     }
     
-    func audioPlayer(audioPlayer: AudioPlayer, willStartPlayingItem item: AudioItem) {
+    override func audioPlayer(audioPlayer: AudioPlayer, willStartPlayingItem item: AudioItem) {
         
     }
     
-    func audioPlayer(audioPlayer: AudioPlayer, didUpdateProgressionToTime time: NSTimeInterval, percentageRead: Float) {
+    override func audioPlayer(audioPlayer: AudioPlayer, didUpdateProgressionToTime time: NSTimeInterval, percentageRead: Float) {
         print("audioPlayer didUpdateProgressionToTime called \(percentageRead)");
         progressLabel.text = "\(percentageRead)%"
         progressBar.progress = percentageRead / 100
@@ -88,19 +84,21 @@ class ViewController2: UIViewController, AudioPlayerDelegate {
         
     }
     
-    func audioPlayer(audioPlayer: AudioPlayer, didFindDuration duration: NSTimeInterval, forItem item: AudioItem) {
+    override func audioPlayer(audioPlayer: AudioPlayer, didFindDuration duration: NSTimeInterval, forItem item: AudioItem) {
         print("duration = \(duration)")
     }
     
-    func audioPlayer(audioPlayer: AudioPlayer, didUpdateEmptyMetadataOnItem item: AudioItem, withData data: Metadata) {
+    override func audioPlayer(audioPlayer: AudioPlayer, didUpdateEmptyMetadataOnItem item: AudioItem, withData data: Metadata) {
         print("data = \(data)")
         
     }
     
-    func audioPlayer(audioPlayer: AudioPlayer, didLoadRange range: AudioPlayer.TimeRange, forItem item: AudioItem){
+    override func audioPlayer(audioPlayer: AudioPlayer, didLoadRange range: AudioPlayer.TimeRange, forItem item: AudioItem){
         print("range = \(range)")
         let duration = sound1?.currentItemDuration
-        loadProgressLabel.text = "\(range.latest / duration! * 100)%"
+        if duration != nil {
+            loadProgressLabel.text = "\(range.latest / duration! * 100)%"
+        }
     }
     
     @IBAction func middlePressed(sender: AnyObject) {

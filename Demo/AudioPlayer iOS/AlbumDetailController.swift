@@ -165,40 +165,47 @@ class AlbumDetailController: BaseUIViewController, UITableViewDataSource, UITabl
         }
     }
     
-     func updateCellPlayingButtons() {
+    func scrollViewDidScroll(scrollView: UIScrollView){
+    
+        updateCellPlayingButtons()
+        
+    }
+    
+    func updateCellPlayingButtons() {
         if songs == nil {
             return
         }
+        
+        let cells = tableView.visibleCells as! [SongCell]
         let audioPlayer = getAudioPlayer()
         
         //找到按钮所在的行
-        var cell: SongCell = SongCell()
         var founded: Bool = false
         
-        
         var idx = 0
-        for song in songs {
-            let item = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: idx, inSection: 0)) as! SongCell
-            item.playImage.image = UIImage(named: "play")
-            idx = idx + 1
+        for cell in cells {
+            idx = (tableView.indexPathForCell(cell)?.row)!
+            cell.playImage.image = UIImage(named: "play")
+            let song = songs[idx]
             if audioPlayer.isPlayThisSong(song) {
-                cell = item
                 founded = true
             }
         }
         
         if !founded {
-            print("not found")
             return
         }
         
         if audioPlayer.state == AudioPlayerState.Buffering || audioPlayer.state == AudioPlayerState.Playing || audioPlayer.state == AudioPlayerState.WaitingForConnection {
             idx = 0
-            for song in songs {
+
+            
+            for cell in cells {
+                idx = (tableView.indexPathForCell(cell)?.row)!
+                let song = songs[idx]
                 if audioPlayer.isPlayThisSong(song) {
                     cell.playImage.image = UIImage(named: "pause")
                 }
-                idx = idx + 1
             }
         }
     }

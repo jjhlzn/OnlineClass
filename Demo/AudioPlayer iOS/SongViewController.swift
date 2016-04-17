@@ -22,8 +22,8 @@ class SongViewController: BaseUIViewController, UIGestureRecognizerDelegate {
     @IBOutlet weak var preButton: UIButton!
     @IBOutlet weak var playButton: UIButton!
     var inited = false
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
+    override func viewDidLoad() {
+        super.viewDidLoad()
 
         self.navigationController?.interactivePopGestureRecognizer!.delegate = self
         
@@ -111,7 +111,7 @@ class SongViewController: BaseUIViewController, UIGestureRecognizerDelegate {
     
     
     override func audioPlayer(audioPlayer: AudioPlayer, didUpdateProgressionToTime time: NSTimeInterval, percentageRead: Float) {
-        //print("audioPlayer didUpdateProgressionToTime called \(percentageRead)");
+        print("audioPlayer:didUpdateProgressionToTime called, progressPercentage = \(percentageRead)");
         progressBar.value = percentageRead / 100
         
     }
@@ -126,7 +126,7 @@ class SongViewController: BaseUIViewController, UIGestureRecognizerDelegate {
     }
     
     override func audioPlayer(audioPlayer: AudioPlayer, didLoadRange range: AudioPlayer.TimeRange, forItem item: AudioItem){
-        print("range = \(range)")
+        print("audioPlayer:didLoadRange, loadRange = \(range)")
     }
 
     @IBAction func progressChanged(sender: UISlider) {

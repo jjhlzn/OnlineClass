@@ -14,8 +14,11 @@ class ServiceConfiguration {
     static let serverName2 = "localhost"
     static let port2 = 3000
     
-    static let serverName3 = "www.jinjunhang.com"
-    static let port3 = 3001
+    static let serverName3 = "jjhaudio.hengdianworld.com"
+    static let port3 = 80
+    
+    static let serverName4 = "www.jinjunhang.com"
+    static let port4 = 3001
     
     
     static var serverName: String {
