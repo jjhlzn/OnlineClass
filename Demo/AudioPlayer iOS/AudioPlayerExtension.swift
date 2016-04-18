@@ -9,11 +9,7 @@
 import Foundation
 
 extension AudioPlayer {
-    var isPlaying : Bool {
-        get {
-           return state == AudioPlayerState.Playing || state == AudioPlayerState.Buffering || state == AudioPlayerState.WaitingForConnection
-        }
-    }
+    
     
     func playThisSong(song: Song) {
         let album = song.album
