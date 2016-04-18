@@ -74,7 +74,7 @@ class BaseUIViewController: UIViewController, AudioPlayerDelegate {
     }
     
     func audioPlayer(audioPlayer: AudioPlayer, didUpdateEmptyMetadataOnItem item: AudioItem, withData data: Metadata) {
-        
+        print("audioPlayer:didUpdateEmptyMetadataOnItem called, metaData = \(data)")
     }
     
     func audioPlayer(audioPlayer: AudioPlayer, didLoadRange range: AudioPlayer.TimeRange, forItem item: AudioItem){

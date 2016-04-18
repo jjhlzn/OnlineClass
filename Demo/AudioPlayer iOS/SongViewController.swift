@@ -40,10 +40,15 @@ class SongViewController: BaseUIViewController, UIGestureRecognizerDelegate {
         }
         else {
             playButton.setImage(UIImage(named: "play"), forState: .Normal)
-
         }
         
-        print("audioPlayer.sate ")
+        if audioPlayer.state == AudioPlayerState.Playing || audioPlayer.state == AudioPlayerState.Paused || audioPlayer.state == AudioPlayerState.Buffering {
+            if audioPlayer.currentItem != nil && audioPlayer.currentItem?.artworkImage != nil {
+                imageView!.image = audioPlayer.currentItem?.artworkImage!
+            }
+        }
+        
+        print("audioPlayer.state = \(audioPlayer.state) ")
         if audioPlayer.isPlaying || audioPlayer.state == AudioPlayerState.Paused {
             print(audioPlayer.currentItemProgression)
             if audioPlayer.currentItemProgression != nil && audioPlayer.currentItemDuration != nil {
@@ -70,8 +75,6 @@ class SongViewController: BaseUIViewController, UIGestureRecognizerDelegate {
         } else {
             audioPlayer.resume()
         }
-        
-    
     }
     
     
@@ -111,7 +114,7 @@ class SongViewController: BaseUIViewController, UIGestureRecognizerDelegate {
     
     
     override func audioPlayer(audioPlayer: AudioPlayer, didUpdateProgressionToTime time: NSTimeInterval, percentageRead: Float) {
-        print("audioPlayer:didUpdateProgressionToTime called, progressPercentage = \(percentageRead)");
+        //print("audioPlayer:didUpdateProgressionToTime called, progressPercentage = \(percentageRead)");
         progressBar.value = percentageRead / 100
         
     }
@@ -119,14 +122,16 @@ class SongViewController: BaseUIViewController, UIGestureRecognizerDelegate {
     override func audioPlayer(audioPlayer: AudioPlayer, didFindDuration duration: NSTimeInterval, forItem item: AudioItem) {
         print("duration = \(duration)")
     }
-    
-    override func audioPlayer(audioPlayer: AudioPlayer, didUpdateEmptyMetadataOnItem item: AudioItem, withData data: Metadata) {
-        print("data = \(data)")
-        
-    }
+
     
     override func audioPlayer(audioPlayer: AudioPlayer, didLoadRange range: AudioPlayer.TimeRange, forItem item: AudioItem){
         print("audioPlayer:didLoadRange, loadRange = \(range)")
+    }
+    
+    override func audioPlayer(audioPlayer: AudioPlayer, didUpdateEmptyMetadataOnItem item: AudioItem, withData data: Metadata) {
+        if audioPlayer.currentItem != nil && audioPlayer.currentItem?.artworkImage != nil {
+            imageView!.image = audioPlayer.currentItem?.artworkImage!
+        }
     }
 
     @IBAction func progressChanged(sender: UISlider) {

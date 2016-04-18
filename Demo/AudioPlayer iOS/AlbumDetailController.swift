@@ -54,10 +54,11 @@ class AlbumDetailController: BaseUIViewController, UITableViewDataSource, UITabl
                     }
                 }
             }
+        } else {
+            updateCellPlayingButtons()
         }
         
         super.updatePlayingButton(playingButton)
-        
         
     }
     

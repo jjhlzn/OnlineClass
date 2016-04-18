@@ -330,11 +330,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Demo/AudioPlayer iOS/AlbumDetailController.swift"
-            timestampString = "482594262.20211"
+            timestampString = "482632864.401606"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "219"
-            endingLineNumber = "219"
+            startingLineNumber = "218"
+            endingLineNumber = "218"
             landmarkName = "audioPlayer(_:didChangeStateFrom:toState:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -416,6 +416,70 @@
             startingLineNumber = "157"
             endingLineNumber = "157"
             landmarkName = "playButtonPressed(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Demo/AudioPlayer/AudioPlayer.swift"
+            timestampString = "482638890.5564"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "900"
+            endingLineNumber = "900"
+            landmarkName = "observeValueForKeyPath(_:ofObject:change:context:)"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "AudioPlayer.AudioPlayer.observeValueForKeyPath (Swift.Optional&lt;Swift.String&gt;, ofObject : Swift.Optional&lt;Swift.AnyObject&gt;, change : Swift.Optional&lt;Swift.Dictionary&lt;Swift.String, Swift.AnyObject&gt;&gt;, context : Swift.UnsafeMutablePointer&lt;()&gt;) -&gt; ()"
+                  moduleName = "AudioPlayer"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/lzn/Desktop/OnlineClass/Demo/AudioPlayer/AudioPlayer.swift"
+                  timestampString = "482638890.737402"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "900"
+                  endingLineNumber = "900"
+                  offsetFromSymbolStart = "990">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "AudioPlayer.AudioPlayer.observeValueForKeyPath (Swift.Optional&lt;Swift.String&gt;, ofObject : Swift.Optional&lt;Swift.AnyObject&gt;, change : Swift.Optional&lt;Swift.Dictionary&lt;Swift.String, Swift.AnyObject&gt;&gt;, context : Swift.UnsafeMutablePointer&lt;()&gt;) -&gt; ()"
+                  moduleName = "AudioPlayer"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/lzn/Desktop/OnlineClass/Demo/AudioPlayer/AudioPlayer.swift"
+                  timestampString = "482638890.737633"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "900"
+                  endingLineNumber = "900"
+                  offsetFromSymbolStart = "1222">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Demo/AudioPlayer/AudioPlayer.swift"
+            timestampString = "482638895.609065"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "896"
+            endingLineNumber = "896"
+            landmarkName = "observeValueForKeyPath(_:ofObject:change:context:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
