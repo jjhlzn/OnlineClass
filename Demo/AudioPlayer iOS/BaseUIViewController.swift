@@ -17,7 +17,7 @@ class BaseUIViewController: UIViewController, AudioPlayerDelegate {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        hideKeyboardWhenTappedAround()
+        
     }
     
     override func viewWillDisappear(animated: Bool) {

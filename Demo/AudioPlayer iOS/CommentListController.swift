@@ -25,11 +25,15 @@ class CommentListController: BaseUIViewController, UITableViewDataSource, UITabl
     var overlay = UIView()
     var sendButton: UIButton?
     
-    var isKeyboardShow = false
     var keyboardHeight: CGFloat?
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        hideKeyboardWhenTappedAround()
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CommentListController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CommentListController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
+        
         tableView.dataSource = self
         tableView.delegate = self
         tableView.estimatedRowHeight = 260
@@ -105,15 +109,6 @@ class CommentListController: BaseUIViewController, UITableViewDataSource, UITabl
         return cell
         
     }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CommentListController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CommentListController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
-        
-    }
     
     
     func keyboardWillShow(notification: NSNotification) {
@@ -132,7 +127,6 @@ class CommentListController: BaseUIViewController, UITableViewDataSource, UITabl
             }
             keyboardHeight = keyboardSize.height
         }
-        
     }
     
 

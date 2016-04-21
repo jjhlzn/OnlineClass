@@ -13,6 +13,15 @@ class SongViewController: BaseUIViewController, UIGestureRecognizerDelegate {
 
     //var song: Song!
     var audioPlayer: AudioPlayer!
+    
+    @IBOutlet weak var bottomView2: UIView!
+    @IBOutlet weak var commentFiled2: UITextView!
+    
+    @IBOutlet weak var commentField: UITextField!
+    @IBOutlet weak var bottomView: UIView!
+     var keyboardHeight: CGFloat?
+
+    
 
     @IBOutlet weak var imageView: UIImageView!
     
@@ -33,7 +42,15 @@ class SongViewController: BaseUIViewController, UIGestureRecognizerDelegate {
     var startDragProgress: Float?
     override func viewDidLoad() {
         super.viewDidLoad()
+        hideKeyboardWhenTappedAround()
+        
 
+        
+        bottomView2.hidden = true
+        commentFiled2.editable = true
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CommentListController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CommentListController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
+        
         self.navigationController?.interactivePopGestureRecognizer!.delegate = self
         
         audioPlayer = getAudioPlayer()
@@ -75,6 +92,8 @@ class SongViewController: BaseUIViewController, UIGestureRecognizerDelegate {
         updatePrevAndNextButtonStatus()
         updatePlayAndPauseButton()
         updateBufferProgress()
+        
+
     }
     
     func resetButtonAndProgress () {
@@ -169,6 +188,15 @@ class SongViewController: BaseUIViewController, UIGestureRecognizerDelegate {
         playingLabel.text = stringFromTimeInterval((audioPlayer.currentItemDuration)! * Double(progressBar.value))
     }
     
+    
+    @IBAction func sendComment(sender: AnyObject) {
+    }
+    
+    @IBAction func closeComment(sender: AnyObject) {
+    }
+    
+    
+    
     func progressBarTouchUp() {
         
         if audioPlayer.currentItemDuration == nil {
@@ -193,9 +221,6 @@ class SongViewController: BaseUIViewController, UIGestureRecognizerDelegate {
         updateProgressBar = false
         startDragProgress = progressBar.value
     }
-    
-
-
     
     
     /*  AudioPlayerDelegate Implement functions   */
@@ -235,7 +260,45 @@ class SongViewController: BaseUIViewController, UIGestureRecognizerDelegate {
         return false
     }
     
+    var comments: [Comment]?
 }
 
+
+extension SongViewController {
+    
+
+
+   
+    func keyboardWillShow(notification: NSNotification) {
+        print("keyboardWillShow")
+        
+        commentFiled2.becomeFirstResponder()
+        //showOverlay()
+        bottomView2.hidden = false
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.CGRectValue() {
+            //print("keyboardSize = \(keyboardSize.height)")
+            if keyboardHeight != nil {
+                self.view.frame.origin.y += (keyboardHeight! - keyboardSize.height)
+                //print("diff = \(keyboardHeight! - keyboardSize.height)")
+            } else {
+                self.view.frame.origin.y -= keyboardSize.height
+            }
+            keyboardHeight = keyboardSize.height
+        }
+    }
+    
+    
+    
+    func keyboardWillHide(notification: NSNotification) {
+        
+        keyboardHeight = nil
+        bottomView2.hidden = true
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
+            self.view.frame.origin.y += keyboardSize.height
+        }
+        //hideOverlay()
+    }
+
+}
 
 
