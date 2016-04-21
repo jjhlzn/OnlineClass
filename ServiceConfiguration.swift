@@ -10,9 +10,10 @@ import Foundation
 
 class ServiceConfiguration {
     //static let serverName = "localhost"
+    static let PageSize = 20
     
     static let serverName2 = "localhost"
-    static let port2 = 3000
+    static let port2 =  3000 // 19540
     
     static let serverName3 = "jjhaudio.hengdianworld.com"
     static let port3 = 80
@@ -47,5 +48,9 @@ class ServiceConfiguration {
     
     static func GetAlbumImageUrl(urlSuffix: String) -> String {
         return "\(ServiceConfiguration.ImageUrlPrefix)/\(urlSuffix)"
+    }
+    
+    static func GetSongCommentsUrl(songId: String, pageNo: Int, pageSize: Int) -> String {
+        return "http://\(serverName):\(port)/song/\(songId)/comments?pageno=\(pageNo)&pagesize=\(pageSize)"
     }
 }

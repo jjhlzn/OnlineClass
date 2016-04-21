@@ -25,3 +25,7 @@ class GetAlbumsResponse : ServerResponse {
 class GetAlbumSongsResponse : ServerResponse {
     var songs = [Song]()
 }
+
+class GetSongCommentsResponse : ServerResponse {
+    var comments = [Comment]()
+}

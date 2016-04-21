@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 
 class Utils {
@@ -14,5 +15,16 @@ class Utils {
         NSURLSession.sharedSession().dataTaskWithURL(url) { (data, response, error) in
             completion(data: data, response: response, error: error)
             }.resume()
+    }
+}
+
+extension UIImageView {
+    func becomeCircle() {
+        self.layer.borderWidth = 0
+        self.layer.masksToBounds = false
+        self.layer.borderColor = UIColor.whiteColor().CGColor
+        self.layer.cornerRadius = self.frame.height/2
+        self.clipsToBounds = true
+
     }
 }

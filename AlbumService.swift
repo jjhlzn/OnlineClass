@@ -49,5 +49,24 @@ class AlbumService : BasicService {
         }
     }
     
+    func getSongComments(song: Song, pageNo: Int, pageSize: Int, completion: ((resp: GetSongCommentsResponse) -> Void)) -> GetSongCommentsResponse {
+        return sendRequest(ServiceConfiguration.GetSongCommentsUrl(song.id, pageNo: pageNo, pageSize: pageSize), completion: completion) { (resp, dict) -> Void in
+            
+            let jsonArray = dict["comments"] as! NSArray
+            var comments = [Comment]()
+            
+            for json in jsonArray {
+                let comment = Comment()
+                comment.song = song
+                comment.userId = json["userId"] as! String
+                comment.time = json["time"] as! String
+                comment.content = json["content"] as! String
+                comments.append(comment)
+            }
+            
+            resp.comments = comments
+        }
+    }
+    
     
 }

@@ -15,15 +15,22 @@ class BaseUIViewController: UIViewController, AudioPlayerDelegate {
         getAudioPlayer().delegate = self
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        hideKeyboardWhenTappedAround()
+    }
+    
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         getAudioPlayer().delegate = nil
+        
         if self.navigationController?.viewControllers.indexOf(self) == nil {
             getAudioPlayer().delegate = (self.parentViewController as! UINavigationController).topViewController as! AudioPlayerDelegate
             
         }
 
     }
+    
     
     func getAudioPlayer() -> AudioPlayer {
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
@@ -93,5 +100,37 @@ class BaseUIViewController: UIViewController, AudioPlayerDelegate {
     func audioPlayer(audioPlayer: AudioPlayer, didLoadRange range: AudioPlayer.TimeRange, forItem item: AudioItem){
 
     }
+    
+    
+   
 
+}
+
+extension BaseUIViewController {
+    func displayMessage(message : String) {
+        
+        let alertView = UIAlertView()
+        //alertView.title = "系统提示"
+        alertView.message = message
+        alertView.addButtonWithTitle("好的")
+        alertView.cancelButtonIndex=0
+        alertView.delegate=self
+        alertView.show()
+        
+    }
+    
+
+
+}
+
+extension UIViewController {
+    func hideKeyboardWhenTappedAround() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        view.addGestureRecognizer(tap)
+    }
+    
+    func dismissKeyboard() {
+        view.endEditing(true)
+    }
+    
 }

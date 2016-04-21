@@ -35,3 +35,10 @@ class Song {
         return ServiceConfiguration.GetSongUrl(url)
     }
 }
+
+class Comment {
+    var song: Song?
+    var userId: String!
+    var time: String!
+    var content: String! 
+}
