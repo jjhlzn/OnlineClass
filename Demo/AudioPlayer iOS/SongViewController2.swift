@@ -140,6 +140,7 @@ extension SongViewController2 {
             cell.contentLabel.text = comment.content
             cell.contentLabel.numberOfLines = 0
             cell.contentLabel.sizeToFit()
+            cell.userImage.becomeCircle()
             heightDict[indexPath.row] = cell.contentLabel.bounds.height
             print("computeHeight")
             return cell
