@@ -26,7 +26,7 @@ class SongViewController2: BaseUIViewController, UITableViewDataSource, UITableV
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        hideKeyboardWhenTappedAround()
+        //hideKeyboardWhenTappedAround()
         comments = [Comment]()
         
         tableView.dataSource = self
@@ -34,6 +34,11 @@ class SongViewController2: BaseUIViewController, UITableViewDataSource, UITableV
         
         bottomView2.hidden = true
         commentFiled2.editable = true
+        
+        var frame = bottomView2.frame
+        frame.origin.y = 409
+        bottomView2.frame = frame
+        
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CommentListController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CommentListController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
         
@@ -77,32 +82,35 @@ extension SongViewController2 {
     
     func keyboardWillShow(notification: NSNotification) {
         print("keyboardWillShow")
-        
-        commentFiled2.becomeFirstResponder()
         //showOverlay()
+        hideKeyboardWhenTappedAround()
+        commentField.resignFirstResponder()
+        commentFiled2.becomeFirstResponder()
         bottomView2.hidden = false
-        bottomView.hidden = true
+        var frame = bottomView2.frame
+        
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.CGRectValue() {
-            //print("keyboardSize = \(keyboardSize.height)")
             if keyboardHeight != nil {
-                self.view.frame.origin.y += (keyboardHeight! - keyboardSize.height)
-                //print("diff = \(keyboardHeight! - keyboardSize.height)")
+                frame.origin.y += (keyboardHeight! - keyboardSize.height)
             } else {
-                self.view.frame.origin.y -= keyboardSize.height
+                frame.origin.y -= keyboardSize.height
             }
             keyboardHeight = keyboardSize.height
+            bottomView2.frame = frame
         }
     }
     
     
     
     func keyboardWillHide(notification: NSNotification) {
-        
+        commentFiled2.resignFirstResponder()
+        cancleHideKeybaordWhenTappedAround()
         keyboardHeight = nil
         bottomView2.hidden = true
-        bottomView.hidden = false
+        var frame = bottomView2.frame
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
-            self.view.frame.origin.y += keyboardSize.height
+            frame.origin.y += keyboardSize.height
+            bottomView2.frame = frame
         }
         //hideOverlay()
     }
@@ -117,7 +125,8 @@ extension SongViewController2 {
             return 1
         case 1:
             print("comments.count = \((comments?.count)!)")
-            return (comments?.count)!
+            let count = (comments?.count)!
+            return count == 0 ? 2 : count + 2
         default:
             return 0
         }
@@ -132,21 +141,39 @@ extension SongViewController2 {
             
             return cell
         case 1:
-            let cell = tableView.dequeueReusableCellWithIdentifier("commentCell") as! CommentCell
             let row = indexPath.row
-            let comment = comments![row]
-            cell.userIdLabel.text = comment.userId
-            cell.timeLabel.text = comment.time
-            cell.contentLabel.text = comment.content
-            cell.contentLabel.numberOfLines = 0
-            cell.contentLabel.sizeToFit()
-            cell.userImage.becomeCircle()
-            heightDict[indexPath.row] = cell.contentLabel.bounds.height
-            print("computeHeight")
-            return cell
+            let rowCount = (comments?.count)!
+            if row == 0 {
+                let cell = tableView.dequeueReusableCellWithIdentifier("commentHeaderCell") as! CommentHeaderCell
+                return cell
+                
+            } else   {
+                if rowCount == 0 {  
+                    let cell = tableView.dequeueReusableCellWithIdentifier("noCommentCell")
+                    return cell!
+                } else if row == rowCount + 1 {  //最后一行
+                    let cell = tableView.dequeueReusableCellWithIdentifier("moreCommentCell")
+                    return cell!
+                } else {
+                    let cell = tableView.dequeueReusableCellWithIdentifier("commentCell") as! CommentCell
+                    
+                    let comment = comments![row - 1]
+                    cell.userIdLabel.text = comment.userId
+                    cell.timeLabel.text = comment.time
+                    cell.contentLabel.text = comment.content
+                    cell.contentLabel.numberOfLines = 0
+                    cell.contentLabel.sizeToFit()
+                    cell.userImage.becomeCircle()
+                    heightDict[indexPath.row] = cell.contentLabel.bounds.height
+                    print("computeHeight")
+                    return cell
+                }
+            }
         default:
-            return tableView.dequeueReusableCellWithIdentifier("playerCell")!
+            break
         }
+        return tableView.dequeueReusableCellWithIdentifier("playerCell")!
+        
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -155,20 +182,52 @@ extension SongViewController2 {
         case 0:
             return 415
         case 1:
-            print("getHeigth")
-            let cell = tableView.dequeueReusableCellWithIdentifier("commentCell") as! CommentCell
             let row = indexPath.row
-            let comment = comments![row]
-            cell.userIdLabel.text = comment.userId
-            cell.timeLabel.text = comment.time
-            cell.contentLabel.text = comment.content
-            cell.contentLabel.numberOfLines = 0
-            cell.contentLabel.sizeToFit()
-            heightDict[indexPath.row] = cell.contentLabel.bounds.height
-            print("getHeigth end")
-            return 25 + heightDict[indexPath.row]! + 10
+            let rowCount = (comments?.count)!
+            if row == 0 { //点评头
+                return 40
+            } else {
+                if rowCount == 0 { //没有点评的情况
+                    return 70
+                } else if row == rowCount + 1 { //最后一行
+                    return 44
+                } else {   //评论行
+                    print("getHeigth")
+                    let cell = tableView.dequeueReusableCellWithIdentifier("commentCell") as! CommentCell
+                    let row = indexPath.row
+                    let comment = comments![row - 1]
+                    cell.userIdLabel.text = comment.userId
+                    cell.timeLabel.text = comment.time
+                    cell.contentLabel.text = comment.content
+                    cell.contentLabel.numberOfLines = 0
+                    cell.contentLabel.sizeToFit()
+                    let height = cell.contentLabel.bounds.height
+                    print("getHeigth end")
+                    return 25 + height + 10
+
+                }
+            }
         default:
             return 1
+        }
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let section = indexPath.section
+        let row = indexPath.row
+        
+        switch section {
+        case 1:
+            let rowCount = (comments?.count)!
+            if rowCount > 0 {
+                if row == rowCount + 1 {
+                    tableView.cellForRowAtIndexPath(indexPath)?.selected = false
+                    performSegueWithIdentifier("commentListSegue", sender: nil)
+                }
+            }
+            break
+        default:
+            break
         }
     }
     

@@ -17,7 +17,7 @@ class BaseUIViewController: UIViewController, AudioPlayerDelegate {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
+        tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -100,10 +100,8 @@ class BaseUIViewController: UIViewController, AudioPlayerDelegate {
     func audioPlayer(audioPlayer: AudioPlayer, didLoadRange range: AudioPlayer.TimeRange, forItem item: AudioItem){
 
     }
-    
-    
    
-
+    var tap: UITapGestureRecognizer!
 }
 
 extension BaseUIViewController {
@@ -119,18 +117,18 @@ extension BaseUIViewController {
         
     }
     
-
-
-}
-
-extension UIViewController {
     func hideKeyboardWhenTappedAround() {
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        
         view.addGestureRecognizer(tap)
+    }
+    
+    func cancleHideKeybaordWhenTappedAround() {
+        view.removeGestureRecognizer(tap)
     }
     
     func dismissKeyboard() {
         view.endEditing(true)
     }
-    
+
+
 }

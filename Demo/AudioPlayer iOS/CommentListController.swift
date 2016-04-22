@@ -29,7 +29,6 @@ class CommentListController: BaseUIViewController, UITableViewDataSource, UITabl
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        hideKeyboardWhenTappedAround()
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CommentListController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CommentListController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
@@ -109,47 +108,50 @@ class CommentListController: BaseUIViewController, UITableViewDataSource, UITabl
         
     }
     
-    
     func keyboardWillShow(notification: NSNotification) {
         print("keyboardWillShow")
-
-        commentFiled2.becomeFirstResponder()
-        //showOverlay()
-        bottomView2.hidden = false
+        
+        
+        var frame = bottomView2.frame
+        
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.CGRectValue() {
-            //print("keyboardSize = \(keyboardSize.height)")
             if keyboardHeight != nil {
-                self.view.frame.origin.y += (keyboardHeight! - keyboardSize.height)
-                //print("diff = \(keyboardHeight! - keyboardSize.height)")
+                frame.origin.y += (keyboardHeight! - keyboardSize.height)
             } else {
-                self.view.frame.origin.y -= keyboardSize.height
+                frame.origin.y -= keyboardSize.height
+                showOverlay()
+                hideKeyboardWhenTappedAround()
+                commentField.resignFirstResponder()
+                commentFiled2.becomeFirstResponder()
+                bottomView2.hidden = false
+
             }
             keyboardHeight = keyboardSize.height
+            bottomView2.frame = frame
         }
     }
     
-
+    
     
     func keyboardWillHide(notification: NSNotification) {
-        
+        commentFiled2.resignFirstResponder()
+        cancleHideKeybaordWhenTappedAround()
         keyboardHeight = nil
         bottomView2.hidden = true
+        var frame = bottomView2.frame
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
-            self.view.frame.origin.y += keyboardSize.height
+            frame.origin.y += keyboardSize.height
+            bottomView2.frame = frame
         }
-        //hideOverlay()
+         hideOverlay()
     }
-    
-    
-    //MARK: TODO: 一旦加入overlay，会使dismisskeyboard失效
+
     
     func showOverlay() {
         overlay = UIView(frame: UIScreen.mainScreen().bounds)
-        overlay.backgroundColor = UIColor(white: 0.6, alpha: 0.5)
+        overlay.backgroundColor = UIColor(white: 0.8, alpha: 0.5)
         view.addSubview(overlay)
         
-        bottomView.removeFromSuperview()
-        overlay.addSubview(bottomView)
         bottomView2.removeFromSuperview()
         overlay.addSubview(bottomView2)
         
@@ -157,15 +159,10 @@ class CommentListController: BaseUIViewController, UITableViewDataSource, UITabl
     
     func hideOverlay() {
         
-        
-        bottomView.removeFromSuperview()
-        view.addSubview(bottomView)
         bottomView2.removeFromSuperview()
         view.addSubview(bottomView2)
         
         overlay.removeFromSuperview()
-        commentField.resignFirstResponder()
-    
     }
     
 }
