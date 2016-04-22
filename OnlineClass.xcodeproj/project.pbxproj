@@ -14,6 +14,8 @@
 		1C1E69211CCA05E500CEA029 /* MoreLinkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C1E69201CCA05E500CEA029 /* MoreLinkCell.swift */; };
 		1C1E69231CCA0F1700CEA029 /* CommentHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C1E69221CCA0F1700CEA029 /* CommentHeaderCell.swift */; };
 		1C1E69251CCA0F3E00CEA029 /* NoCommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C1E69241CCA0F3E00CEA029 /* NoCommentCell.swift */; };
+		1C2684741CCA62F40032C014 /* MyInfoVieController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C2684731CCA62F40032C014 /* MyInfoVieController.swift */; };
+		1C2684761CCA66040032C014 /* MyInfoMainCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C2684751CCA66040032C014 /* MyInfoMainCell.swift */; };
 		1C7E9E721CBF4993002A60E4 /* AudioItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C7E9E6F1CBF4993002A60E4 /* AudioItem.swift */; };
 		1C7E9E731CBF4993002A60E4 /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C7E9E701CBF4993002A60E4 /* AudioPlayer.swift */; };
 		1C7E9E741CBF4993002A60E4 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C7E9E711CBF4993002A60E4 /* Reachability.swift */; };
@@ -52,6 +54,8 @@
 		1C1E69201CCA05E500CEA029 /* MoreLinkCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreLinkCell.swift; sourceTree = "<group>"; };
 		1C1E69221CCA0F1700CEA029 /* CommentHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentHeaderCell.swift; sourceTree = "<group>"; };
 		1C1E69241CCA0F3E00CEA029 /* NoCommentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoCommentCell.swift; sourceTree = "<group>"; };
+		1C2684731CCA62F40032C014 /* MyInfoVieController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyInfoVieController.swift; sourceTree = "<group>"; };
+		1C2684751CCA66040032C014 /* MyInfoMainCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyInfoMainCell.swift; sourceTree = "<group>"; };
 		1C7E9E6F1CBF4993002A60E4 /* AudioItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AudioItem.swift; path = Demo/AudioPlayer/AudioItem.swift; sourceTree = "<group>"; };
 		1C7E9E701CBF4993002A60E4 /* AudioPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AudioPlayer.swift; path = Demo/AudioPlayer/AudioPlayer.swift; sourceTree = "<group>"; };
 		1C7E9E711CBF4993002A60E4 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Reachability.swift; path = Demo/AudioPlayer/Reachability.swift; sourceTree = "<group>"; };
@@ -128,6 +132,7 @@
 				1C1E69221CCA0F1700CEA029 /* CommentHeaderCell.swift */,
 				1C1E69241CCA0F3E00CEA029 /* NoCommentCell.swift */,
 				1CEFF7951CC0C4C9000DEFF7 /* SongCell.swift */,
+				1C2684751CCA66040032C014 /* MyInfoMainCell.swift */,
 			);
 			name = customCell;
 			sourceTree = "<group>";
@@ -201,6 +206,7 @@
 				1CEFF79D1CC21E98000DEFF7 /* BaseUIViewController.swift */,
 				1C1E68EE1CC65DF600CEA029 /* CommentListController.swift */,
 				1C1E69181CC9079100CEA029 /* SongViewController2.swift */,
+				1C2684731CCA62F40032C014 /* MyInfoVieController.swift */,
 			);
 			name = "AudioPlayer iOS";
 			path = "Demo/AudioPlayer iOS";
@@ -363,6 +369,7 @@
 			files = (
 				1C1E69251CCA0F3E00CEA029 /* NoCommentCell.swift in Sources */,
 				1C1E691B1CC90A6500CEA029 /* PlayerCell.swift in Sources */,
+				1C2684741CCA62F40032C014 /* MyInfoVieController.swift in Sources */,
 				1CEFF7961CC0C4C9000DEFF7 /* SongCell.swift in Sources */,
 				1C1E69231CCA0F1700CEA029 /* CommentHeaderCell.swift in Sources */,
 				1CEFF7861CBFB9FD000DEFF7 /* BasicService.swift in Sources */,
@@ -382,6 +389,7 @@
 				1CEFF7941CC0BBBF000DEFF7 /* AlbumDetailController.swift in Sources */,
 				1CEFF7881CBFBA1B000DEFF7 /* ServiceConfiguration.swift in Sources */,
 				E2A9AFA01C498E2900FE943A /* AppDelegate.swift in Sources */,
+				1C2684761CCA66040032C014 /* MyInfoMainCell.swift in Sources */,
 				1C7E9E721CBF4993002A60E4 /* AudioItem.swift in Sources */,
 				1CEFF7811CBFB73D000DEFF7 /* AlbumListController.swift in Sources */,
 				1CEFF79A1CC1153A000DEFF7 /* SongViewController.swift in Sources */,
