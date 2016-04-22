@@ -101,18 +101,18 @@ class AlbumDetailController: BaseUIViewController, UITableViewDataSource, UITabl
         
         if audioPlayer.currentItem != nil {
             if song.wholeUrl == audioPlayer.currentItem!.highestQualityURL.URL.absoluteString {
-                performSegueWithIdentifier("songSegue", sender: false)
+                performSegueWithIdentifier("songSegue2", sender: false)
                 return
             }
         }
-        performSegueWithIdentifier("songSegue", sender: true)
+        performSegueWithIdentifier("songSegue2", sender: true)
     }
     
     
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
-        if segue.identifier == "songSegue" {
+        if segue.identifier == "songSegue2" {
             if sender as! Bool {
                 //let dest = segue.destinationViewController as! SongViewController
                 let song = songs[(tableView.indexPathForSelectedRow?.row)!]

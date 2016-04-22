@@ -103,8 +103,7 @@ class CommentListController: BaseUIViewController, UITableViewDataSource, UITabl
         cell.contentLabel.sizeToFit()
         
         print("conentLabel.height = \(cell.contentLabel.bounds.height)")
-        cell.contentLabelHeight = cell.contentLabel.bounds.height
-        heightDict[indexPath.row] = cell.contentLabel.bounds.height
+              heightDict[indexPath.row] = cell.contentLabel.bounds.height
         cell.userImage.becomeCircle()
         return cell
         

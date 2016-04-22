@@ -17,5 +17,7 @@ class CommentCell: UITableViewCell {
     @IBOutlet weak var timeLabel: UILabel!
     
     @IBOutlet weak var contentLabel: UILabel!
-    var contentLabelHeight: CGFloat?
+
 }
+
+
