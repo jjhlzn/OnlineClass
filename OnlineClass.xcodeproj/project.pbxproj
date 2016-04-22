@@ -485,7 +485,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/Demo/AudioPlayer iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.tbaranes.AudioPlayer-Sample";
+				PRODUCT_BUNDLE_IDENTIFIER = com.jinjunhang.onlineclass;
 				PRODUCT_NAME = AudioPlayer;
 			};
 			name = Debug;
@@ -498,7 +498,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/Demo/AudioPlayer iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.tbaranes.AudioPlayer-Sample";
+				PRODUCT_BUNDLE_IDENTIFIER = com.jinjunhang.onlineclass;
 				PRODUCT_NAME = AudioPlayer;
 			};
 			name = Release;
