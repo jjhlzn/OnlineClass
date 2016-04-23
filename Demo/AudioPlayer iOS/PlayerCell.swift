@@ -46,7 +46,6 @@ class PlayerCell: UITableViewCell, AudioPlayerDelegate {
         progressBar.addTarget(self, action: #selector(progressBarTouchUp), forControlEvents: .TouchUpOutside)
         progressBar.addTarget(self, action: #selector(progressBarTouchDown), forControlEvents: .TouchDown)
         
-        
         if audioPlayer.currentItemDuration != nil {
             durationLabel.text = Utils.stringFromTimeInterval(audioPlayer.currentItemDuration!)
         }

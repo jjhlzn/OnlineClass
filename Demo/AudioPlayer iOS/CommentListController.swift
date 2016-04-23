@@ -149,7 +149,7 @@ class CommentListController: BaseUIViewController, UITableViewDataSource, UITabl
     
     func showOverlay() {
         overlay = UIView(frame: UIScreen.mainScreen().bounds)
-        overlay.backgroundColor = UIColor(white: 0.8, alpha: 0.5)
+        overlay.backgroundColor = UIColor(white: 0.2, alpha: 0.4)
         view.addSubview(overlay)
         
         bottomView2.removeFromSuperview()

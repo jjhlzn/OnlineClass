@@ -39,6 +39,7 @@ class SongViewController2: BaseUIViewController, UITableViewDataSource, UITableV
         frame.origin.y = 409
         bottomView2.frame = frame
         
+        
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CommentListController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CommentListController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
         

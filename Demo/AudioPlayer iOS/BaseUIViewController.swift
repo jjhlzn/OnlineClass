@@ -13,12 +13,11 @@ class BaseUIViewController: UIViewController, AudioPlayerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         getAudioPlayer().delegate = self
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
         tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
     }
+    
+    
+    
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
