@@ -23,25 +23,23 @@ class SongViewController2: BaseUIViewController, UITableViewDataSource, UITableV
     var keyboardHeight: CGFloat?
     var comments: [Comment]?
     
+    var overlay = UIView()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        initCommentWindow()
         //hideKeyboardWhenTappedAround()
         comments = [Comment]()
         
         tableView.dataSource = self
         tableView.delegate = self
         
-        bottomView2.hidden = true
-        commentFiled2.editable = true
-        
-        var frame = bottomView2.frame
-        frame.origin.y = 409
-        bottomView2.frame = frame
+    
         
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CommentListController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CommentListController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
         
         self.navigationController?.interactivePopGestureRecognizer!.delegate = self
         
@@ -67,6 +65,7 @@ class SongViewController2: BaseUIViewController, UITableViewDataSource, UITableV
     }
     
     
+    
     /* UIGestureRecognizerDelegate functions   */
     func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer) -> Bool {
         return false
@@ -80,28 +79,29 @@ class SongViewController2: BaseUIViewController, UITableViewDataSource, UITableV
 
 extension SongViewController2 {
     
-    
     func keyboardWillShow(notification: NSNotification) {
         print("keyboardWillShow")
-        //showOverlay()
-        hideKeyboardWhenTappedAround()
-        commentField.resignFirstResponder()
-        commentFiled2.becomeFirstResponder()
-        bottomView2.hidden = false
+        
+        
         var frame = bottomView2.frame
         
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.CGRectValue() {
             if keyboardHeight != nil {
                 frame.origin.y += (keyboardHeight! - keyboardSize.height)
             } else {
+                showOverlay()
                 frame.origin.y -= keyboardSize.height
+                hideKeyboardWhenTappedAround()
+                commentField.resignFirstResponder()
+                commentFiled2.becomeFirstResponder()
+                bottomView2.hidden = false
+                
             }
             keyboardHeight = keyboardSize.height
             bottomView2.frame = frame
         }
     }
-    
-    
+
     
     func keyboardWillHide(notification: NSNotification) {
         commentFiled2.resignFirstResponder()
@@ -113,7 +113,40 @@ extension SongViewController2 {
             frame.origin.y += keyboardSize.height
             bottomView2.frame = frame
         }
-        //hideOverlay()
+        hideOverlay()
+    }
+    
+    
+    private func initCommentWindow() {
+        bottomView2.hidden = true
+        commentFiled2.editable = true
+        
+        //设置评论窗口的origin
+        var frame = bottomView2.frame
+        frame.origin.x = 0
+        let screenSize: CGRect = UIScreen.mainScreen().bounds
+        let screenHeight = screenSize.height
+        frame.origin.y = screenHeight - bottomView2.frame.height
+        print("x = \(frame.origin.x), y = \(frame.origin.y)")
+        bottomView2.frame = frame
+        
+    }
+    
+    
+    func showOverlay() {
+        overlay = UIView(frame: UIScreen.mainScreen().bounds)
+        overlay.backgroundColor = UIColor(white: 0.2, alpha: 0.4)
+        view.addSubview(overlay)
+        
+        bottomView2.removeFromSuperview()
+        overlay.addSubview(bottomView2)
+    }
+    
+    func hideOverlay() {
+        
+        bottomView2.removeFromSuperview()
+        view.addSubview(bottomView2)
+        overlay.removeFromSuperview()
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {

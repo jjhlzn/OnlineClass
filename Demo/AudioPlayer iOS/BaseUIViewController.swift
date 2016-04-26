@@ -18,12 +18,15 @@ class BaseUIViewController: UIViewController, AudioPlayerDelegate {
     
     
     
+    func isNeedResetAudioPlayerDelegate() -> Bool {
+        return true
+    }
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         getAudioPlayer().delegate = nil
         
-        if self.navigationController?.viewControllers.indexOf(self) == nil {
+        if isNeedResetAudioPlayerDelegate() && self.navigationController?.viewControllers.indexOf(self) == nil {
             getAudioPlayer().delegate = (self.parentViewController as! UINavigationController).topViewController as! AudioPlayerDelegate
             
         }
@@ -99,6 +102,21 @@ class BaseUIViewController: UIViewController, AudioPlayerDelegate {
     func audioPlayer(audioPlayer: AudioPlayer, didLoadRange range: AudioPlayer.TimeRange, forItem item: AudioItem){
 
     }
+    
+    func becomeLineBorder(field: UITextField) {
+        field.borderStyle = .None
+        let bottomBorder = CALayer()
+        bottomBorder.frame = CGRectMake(0.0, field.frame.size.height - 1, field.frame.size.width, 1.0);
+        bottomBorder.backgroundColor = UIColor.lightGrayColor().CGColor
+        field.layer.addSublayer(bottomBorder)
+    }
+    
+    func setTextFieldHeight(field: UITextField, height: CGFloat) {
+        var frameRect = field.frame
+        frameRect.size.height = height
+        field.frame = frameRect
+    }
+
    
     var tap: UITapGestureRecognizer!
 }

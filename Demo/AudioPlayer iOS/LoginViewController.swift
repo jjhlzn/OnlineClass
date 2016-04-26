@@ -26,14 +26,9 @@ class LoginViewController: BaseUIViewController {
         super.viewDidLoad()
         super.hideKeyboardWhenTappedAround()
         
-        var frameRect = userNameField.frame
-        frameRect.size.height = 45
-        userNameField.frame = frameRect
+        setTextFieldHeight(userNameField, height: 45)
+        setTextFieldHeight(passwordField, height: 45)
         
-        var frameRect1 = passwordField.frame
-        frameRect1.size.height = 45
-        passwordField.frame = frameRect1
-
         
         becomeLineBorder(userNameField)
         becomeLineBorder(passwordField)
@@ -47,20 +42,19 @@ class LoginViewController: BaseUIViewController {
         let screenHeight = screenSize.height
         print("width = \(screenWidth), height = \(screenHeight)")
         if screenHeight < 667 {
-        
-            NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CommentListController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
-            NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CommentListController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
+            
+            NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
+            NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
         }
+        
         
     }
     
-    func becomeLineBorder(field: UITextField) {
-        field.borderStyle = .None
-        let bottomBorder = CALayer()
-        bottomBorder.frame = CGRectMake(0.0, field.frame.size.height - 1, field.frame.size.width, 1.0);
-        bottomBorder.backgroundColor = UIColor.lightGrayColor().CGColor
-        field.layer.addSublayer(bottomBorder)
+    override func isNeedResetAudioPlayerDelegate() -> Bool {
+        return false
     }
+    
+    
     
     func addIconToField(field: UITextField, imageName: String) {
         let imageView = UIImageView();
@@ -68,8 +62,13 @@ class LoginViewController: BaseUIViewController {
         imageView.frame = CGRect(x: 0, y: 0, width: 25, height: 25)
         view.addSubview(imageView)
         imageView.image = image;
-        field.leftView = imageView
+        //field.leftView = imageView
         
+        //field.leftViewMode = UITextFieldViewMode.Always
+        
+        let paddingView = UIView(frame: CGRectMake(0, 0, 40, 25))
+        paddingView.addSubview(imageView)
+        field.leftView = paddingView;
         field.leftViewMode = UITextFieldViewMode.Always
     }
     
@@ -98,11 +97,14 @@ class LoginViewController: BaseUIViewController {
     
     func keyboardWillHide(notification: NSNotification) {
         isKeyboardShow = false
-
+        
         view.frame.origin.y += 65
         logImage.frame = originFrame!
         logImage.center = originCenter!
     }
-
+    
+    @IBAction func loginButtonPressed(sender: UIButton) {
+        performSegueWithIdentifier("loginSuccessSegue", sender: self)
+    }
     
 }

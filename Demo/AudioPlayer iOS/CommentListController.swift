@@ -29,9 +29,10 @@ class CommentListController: BaseUIViewController, UITableViewDataSource, UITabl
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        initCommentWindow()
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CommentListController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CommentListController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
         
         tableView.dataSource = self
         tableView.delegate = self
@@ -39,8 +40,7 @@ class CommentListController: BaseUIViewController, UITableViewDataSource, UITabl
         let song = Song()
         song.id = "1"
         
-        bottomView2.hidden = true
-        commentFiled2.editable = true
+        
 
      
         loadingOverlay.showOverlay(view)
@@ -118,8 +118,8 @@ class CommentListController: BaseUIViewController, UITableViewDataSource, UITabl
             if keyboardHeight != nil {
                 frame.origin.y += (keyboardHeight! - keyboardSize.height)
             } else {
-                frame.origin.y -= keyboardSize.height
                 showOverlay()
+                frame.origin.y -= keyboardSize.height
                 hideKeyboardWhenTappedAround()
                 commentField.resignFirstResponder()
                 commentFiled2.becomeFirstResponder()
@@ -145,6 +145,22 @@ class CommentListController: BaseUIViewController, UITableViewDataSource, UITabl
         }
          hideOverlay()
     }
+    
+    
+    private func initCommentWindow() {
+        bottomView2.hidden = true
+        commentFiled2.editable = true
+        
+        //设置评论窗口的origin
+        var frame = bottomView2.frame
+        frame.origin.x = 0
+        let screenSize: CGRect = UIScreen.mainScreen().bounds
+        let screenHeight = screenSize.height
+        frame.origin.y = screenHeight - bottomView2.frame.height
+        print("x = \(frame.origin.x), y = \(frame.origin.y)")
+        bottomView2.frame = frame
+
+    }
 
     
     func showOverlay() {
@@ -154,14 +170,12 @@ class CommentListController: BaseUIViewController, UITableViewDataSource, UITabl
         
         bottomView2.removeFromSuperview()
         overlay.addSubview(bottomView2)
-        
     }
     
     func hideOverlay() {
         
         bottomView2.removeFromSuperview()
         view.addSubview(bottomView2)
-        
         overlay.removeFromSuperview()
     }
     
