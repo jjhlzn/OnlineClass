@@ -29,6 +29,7 @@ class CommentListController: BaseUIViewController, UITableViewDataSource, UITabl
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        print("viewWillAppear")
         initCommentWindow()
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
@@ -60,6 +61,19 @@ class CommentListController: BaseUIViewController, UITableViewDataSource, UITabl
             
         }
     }
+    
+    override func viewWillDisappear(animated: Bool) {
+        if self.navigationController!.viewControllers.indexOf(self) == nil {
+            if !bottomView2.hidden {
+                dismissKeyboard()
+            }
+        }
+        super.viewWillDisappear(animated)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillHideNotification, object: nil)
+        print("viewWillDisappear")
+    }
+    
     
 
     @IBAction func closeComment(sender: UIButton) {
@@ -109,8 +123,6 @@ class CommentListController: BaseUIViewController, UITableViewDataSource, UITabl
     }
     
     func keyboardWillShow(notification: NSNotification) {
-        print("keyboardWillShow")
-        
         
         var frame = bottomView2.frame
         
@@ -178,5 +190,7 @@ class CommentListController: BaseUIViewController, UITableViewDataSource, UITabl
         view.addSubview(bottomView2)
         overlay.removeFromSuperview()
     }
+    
+    
     
 }

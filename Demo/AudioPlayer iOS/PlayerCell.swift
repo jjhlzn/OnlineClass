@@ -10,6 +10,8 @@ import UIKit
 
 class PlayerCell: UITableViewCell, AudioPlayerDelegate {
     
+    var controller: UIViewController?
+    
     var audioPlayer: AudioPlayer!
     @IBOutlet weak var artImageView: UIImageView!
     
@@ -70,6 +72,8 @@ class PlayerCell: UITableViewCell, AudioPlayerDelegate {
         updatePlayAndPauseButton()
         updateBufferProgress()
     }
+    
+    
 
 
     func resetButtonAndProgress () {
@@ -131,8 +135,10 @@ class PlayerCell: UITableViewCell, AudioPlayerDelegate {
                 playingLabel.text = Utils.stringFromTimeInterval(audioPlayer.currentItemProgression!)
             }
         }
+        
     }
     
+
     func updateBufferProgress() {
         if audioPlayer.currentItemDuration != nil && audioPlayer.currentItemLoadedRange != nil {
             bufferProgress.progress = Float( audioPlayer.currentItemLoadedRange!.latest / audioPlayer.currentItemDuration!)
@@ -153,11 +159,13 @@ class PlayerCell: UITableViewCell, AudioPlayerDelegate {
     @IBAction func prevButtonPressed(sender: UIButton) {
         audioPlayer.previous()
         resetButtonAndProgress()
+        artImageView.image = UIImage(named: "sample")
     }
     
     @IBAction func nextButtonPressed(sender: UIButton) {
         audioPlayer.next()
         resetButtonAndProgress()
+        artImageView.image = UIImage(named: "sample")
     }
     
     func progressBarValueChanged() {
@@ -199,6 +207,10 @@ class PlayerCell: UITableViewCell, AudioPlayerDelegate {
     
     func audioPlayer(audioPlayer: AudioPlayer, willStartPlayingItem item: AudioItem) {
         print("audioPlayer:willStartPlayingItem called")
+        artImageView.image = item.artworkImage
+        controller?.title = item.song?.name
+        print("controller.title = \(controller?.title)")
+        print("url = \(item.song?.url)")
     }
     
     

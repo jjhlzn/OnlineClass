@@ -20,7 +20,11 @@ extension AudioPlayer {
             if eachSong.wholeUrl == song.wholeUrl {
                 startIndex = idx
             }
-            items.append(AudioItem(highQualitySoundURL: NSURL(string: eachSong.wholeUrl))!)
+            let audioItem = AudioItem(highQualitySoundURL: NSURL(string: eachSong.wholeUrl))!
+            audioItem.song = eachSong
+            print(audioItem.song?.name)
+            items.append(audioItem)
+            
             idx = idx + 1
         }
         playItems(items, startAtIndex: startIndex)
@@ -47,4 +51,30 @@ extension AudioPlayer {
         
     }
     
+}
+
+class MyAudioItem : AudioItem {
+    /*
+    var song: Song!
+    
+    convenience init?(song: Song, highQualitySoundURL: NSURL? = nil, mediumQualitySoundURL: NSURL? = nil, lowQualitySoundURL: NSURL? = nil) {
+        var URLs = [AudioQuality: NSURL]()
+        if let highURL = highQualitySoundURL {
+            URLs[.High] = highURL
+        }
+        if let mediumURL = mediumQualitySoundURL {
+            URLs[.Medium] = mediumURL
+        }
+        if let lowURL = lowQualitySoundURL {
+            URLs[.Low] = lowURL
+        }
+        self.init(song: song, soundURLs: URLs)
+    }
+    
+    
+    init?(song: Song, soundURLs: [AudioQuality: NSURL]) {
+        super.init(soundURLs: soundURLs)
+        self.song = song
+    } */
+
 }

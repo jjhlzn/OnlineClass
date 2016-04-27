@@ -12,9 +12,6 @@ import MediaPlayer
 class SongViewController2: BaseUIViewController, UITableViewDataSource, UITableViewDelegate ,UIGestureRecognizerDelegate {
     @IBOutlet weak var tableView: UITableView!
     
-    //var song: Song!
-    var audioPlayer: AudioPlayer!
-    
     @IBOutlet weak var bottomView2: UIView!
     @IBOutlet weak var commentFiled2: UITextView!
     
@@ -24,24 +21,43 @@ class SongViewController2: BaseUIViewController, UITableViewDataSource, UITableV
     var comments: [Comment]?
     
     var overlay = UIView()
-    
+    var audioPlayer: AudioPlayer!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("viewDidLoad")
         initCommentWindow()
-        //hideKeyboardWhenTappedAround()
+        audioPlayer = getAudioPlayer()
         comments = [Comment]()
         
         tableView.dataSource = self
         tableView.delegate = self
         
-    
         
-        
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
         
         self.navigationController?.interactivePopGestureRecognizer!.delegate = self
+        
+        if audioPlayer.currentItem != nil {
+            print(audioPlayer.currentItem!.song)
+            navigationItem.title = audioPlayer.currentItem!.song!.name
+            print("title = \( audioPlayer.currentItem!.song!.name)")
+        }
+        reload()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillAppear(animated)
+
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillHideNotification, object: nil)
+    }
+    private func reload() {
         
         let song = Song()
         song.id = "1"
@@ -65,14 +81,15 @@ class SongViewController2: BaseUIViewController, UITableViewDataSource, UITableV
     }
     
     
-    
     /* UIGestureRecognizerDelegate functions   */
     func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer) -> Bool {
         return false
     }
     
-    
-    var heightDict = Dictionary<Int, CGFloat>()
+    @IBAction func nextSongPressed(sender: UIButton) {
+        print("nextSongPressed")
+        reload()
+    }
 
 }
 
@@ -80,11 +97,8 @@ class SongViewController2: BaseUIViewController, UITableViewDataSource, UITableV
 extension SongViewController2 {
     
     func keyboardWillShow(notification: NSNotification) {
-        print("keyboardWillShow")
-        
-        
         var frame = bottomView2.frame
-        
+        print("(x = \(frame.origin.x), y = \(frame.origin.y)")
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.CGRectValue() {
             if keyboardHeight != nil {
                 frame.origin.y += (keyboardHeight! - keyboardSize.height)
@@ -127,7 +141,7 @@ extension SongViewController2 {
         let screenSize: CGRect = UIScreen.mainScreen().bounds
         let screenHeight = screenSize.height
         frame.origin.y = screenHeight - bottomView2.frame.height
-        print("x = \(frame.origin.x), y = \(frame.origin.y)")
+        //print("x = \(frame.origin.x), y = \(frame.origin.y)")
         bottomView2.frame = frame
         
     }
@@ -171,6 +185,7 @@ extension SongViewController2 {
         switch section {
         case 0:
             let cell = tableView.dequeueReusableCellWithIdentifier("playerCell") as! PlayerCell
+            cell.controller = self
             cell.initPalyer()
             
             return cell
@@ -198,8 +213,7 @@ extension SongViewController2 {
                     cell.contentLabel.numberOfLines = 0
                     cell.contentLabel.sizeToFit()
                     cell.userImage.becomeCircle()
-                    heightDict[indexPath.row] = cell.contentLabel.bounds.height
-                    print("computeHeight")
+                    //print("computeHeight")
                     return cell
                 }
             }
@@ -214,7 +228,9 @@ extension SongViewController2 {
         let section = indexPath.section
         switch section {
         case 0:
-            return 415
+            let screenSize: CGRect = UIScreen.mainScreen().bounds
+            let screenWidth = screenSize.width
+            return screenWidth + 95
         case 1:
             let row = indexPath.row
             let rowCount = (comments?.count)!
@@ -226,7 +242,7 @@ extension SongViewController2 {
                 } else if row == rowCount + 1 { //最后一行
                     return 44
                 } else {   //评论行
-                    print("getHeigth")
+                    //print("getHeigth")
                     let cell = tableView.dequeueReusableCellWithIdentifier("commentCell") as! CommentCell
                     let row = indexPath.row
                     let comment = comments![row - 1]
@@ -236,7 +252,7 @@ extension SongViewController2 {
                     cell.contentLabel.numberOfLines = 0
                     cell.contentLabel.sizeToFit()
                     let height = cell.contentLabel.bounds.height
-                    print("getHeigth end")
+                    //print("getHeigth end")
                     return 25 + height + 10
 
                 }
@@ -246,11 +262,16 @@ extension SongViewController2 {
         }
     }
     
+    
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let section = indexPath.section
         let row = indexPath.row
         
         switch section {
+        case 0:
+            let cell = tableView.cellForRowAtIndexPath(indexPath)
+            cell?.selectionStyle = .None
+            break;
         case 1:
             let rowCount = (comments?.count)!
             if rowCount > 0 {
@@ -265,6 +286,13 @@ extension SongViewController2 {
         }
     }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "commentListSegue" {
+            let backItem = UIBarButtonItem()
+            backItem.title = ""
+            navigationItem.backBarButtonItem = backItem
+        }
+    }
 }
 
 

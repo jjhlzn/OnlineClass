@@ -124,7 +124,9 @@ class AlbumDetailController: BaseUIViewController, UITableViewDataSource, UITabl
                 for item in album!.songs {
                     let url = NSURL(string: ServiceConfiguration.GetSongUrl(item.url))
                     let audioItem = AudioItem(highQualitySoundURL: url)
+                    audioItem?.song = item
                     audioItems.append(audioItem!)
+                    
                     if item.url == song.url {
                         startIndex = index
                     }
