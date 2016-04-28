@@ -37,8 +37,14 @@ class Song {
 }
 
 class Comment {
+    var id: String?
     var song: Song?
     var userId: String!
     var time: String!
     var content: String! 
+}
+
+class User {
+    var userName: String!
+    var name: String = ""
 }

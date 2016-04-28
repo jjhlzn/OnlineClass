@@ -9,7 +9,8 @@
 import UIKit
 import MediaPlayer
 
-class SongViewController2: BaseUIViewController, UITableViewDataSource, UITableViewDelegate ,UIGestureRecognizerDelegate {
+class SongViewController2: BaseUIViewController, UITableViewDataSource, UITableViewDelegate ,
+        UIGestureRecognizerDelegate, CommentDelegate {
     @IBOutlet weak var tableView: UITableView!
     
     @IBOutlet weak var bottomView2: UIView!
@@ -23,10 +24,26 @@ class SongViewController2: BaseUIViewController, UITableViewDataSource, UITableV
     var overlay = UIView()
     var audioPlayer: AudioPlayer!
     
+    @IBOutlet weak var sendButton: UIButton!
+
+    @IBOutlet weak var cancelButton: UIButton!
+    
+    var commentController = CommentController()
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        commentController.bottomView = bottomView
+        commentController.commentField = commentField
+        commentController.bottomView2 = bottomView2
+        commentController.commentFiled2 = commentFiled2
+        commentController.cancelButton = cancelButton
+        commentController.sendButton = sendButton
+        commentController.viewController = self
+        commentController.delegate = self
+        commentController.initView()
+
+        
         print("viewDidLoad")
-        initCommentWindow()
         audioPlayer = getAudioPlayer()
         comments = [Comment]()
         
@@ -47,15 +64,12 @@ class SongViewController2: BaseUIViewController, UITableViewDataSource, UITableV
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
+        commentController.addKeyboardNotify()
     }
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillAppear(animated)
-
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillHideNotification, object: nil)
+        commentController.removeKeyboardNotify()
     }
     private func reload() {
         
@@ -74,13 +88,6 @@ class SongViewController2: BaseUIViewController, UITableViewDataSource, UITableV
     }
     
     
-    @IBAction func sendComment(sender: AnyObject) {
-    }
-    
-    @IBAction func closeComment(sender: AnyObject) {
-    }
-    
-    
     /* UIGestureRecognizerDelegate functions   */
     func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer) -> Bool {
         return false
@@ -90,78 +97,28 @@ class SongViewController2: BaseUIViewController, UITableViewDataSource, UITableV
         print("nextSongPressed")
         reload()
     }
+    
+    func afterSendComment(comment: Comment) {
+        //情况1: 之前没有任何评论
+        //情况2: 之前已经有评论了
+        //comments?.insert(comment, atIndex: 0)
+        comments?.insert(comment, atIndex: 0)
+        /*
+        tableView.beginUpdates()
+        tableView.insertRowsAtIndexPaths([
+            NSIndexPath(forRow: (comments?.count)!, inSection: 1)
+            ], withRowAnimation: .Automatic)
+        tableView.endUpdates() */
+        tableView.reloadSections(NSIndexSet(index: 1), withRowAnimation: .None)
+        //tableView.reloadData()
+    }
+
+    var heightCache = [String: CGFloat]()
 
 }
 
 
 extension SongViewController2 {
-    
-    func keyboardWillShow(notification: NSNotification) {
-        var frame = bottomView2.frame
-        print("(x = \(frame.origin.x), y = \(frame.origin.y)")
-        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.CGRectValue() {
-            if keyboardHeight != nil {
-                frame.origin.y += (keyboardHeight! - keyboardSize.height)
-            } else {
-                showOverlay()
-                frame.origin.y -= keyboardSize.height
-                hideKeyboardWhenTappedAround()
-                commentField.resignFirstResponder()
-                commentFiled2.becomeFirstResponder()
-                bottomView2.hidden = false
-                
-            }
-            keyboardHeight = keyboardSize.height
-            bottomView2.frame = frame
-        }
-    }
-
-    
-    func keyboardWillHide(notification: NSNotification) {
-        commentFiled2.resignFirstResponder()
-        cancleHideKeybaordWhenTappedAround()
-        keyboardHeight = nil
-        bottomView2.hidden = true
-        var frame = bottomView2.frame
-        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
-            frame.origin.y += keyboardSize.height
-            bottomView2.frame = frame
-        }
-        hideOverlay()
-    }
-    
-    
-    private func initCommentWindow() {
-        bottomView2.hidden = true
-        commentFiled2.editable = true
-        
-        //设置评论窗口的origin
-        var frame = bottomView2.frame
-        frame.origin.x = 0
-        let screenSize: CGRect = UIScreen.mainScreen().bounds
-        let screenHeight = screenSize.height
-        frame.origin.y = screenHeight - bottomView2.frame.height
-        //print("x = \(frame.origin.x), y = \(frame.origin.y)")
-        bottomView2.frame = frame
-        
-    }
-    
-    
-    func showOverlay() {
-        overlay = UIView(frame: UIScreen.mainScreen().bounds)
-        overlay.backgroundColor = UIColor(white: 0.2, alpha: 0.4)
-        view.addSubview(overlay)
-        
-        bottomView2.removeFromSuperview()
-        overlay.addSubview(bottomView2)
-    }
-    
-    func hideOverlay() {
-        
-        bottomView2.removeFromSuperview()
-        view.addSubview(bottomView2)
-        overlay.removeFromSuperview()
-    }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 2
@@ -193,6 +150,7 @@ extension SongViewController2 {
             let row = indexPath.row
             let rowCount = (comments?.count)!
             if row == 0 {
+                
                 let cell = tableView.dequeueReusableCellWithIdentifier("commentHeaderCell") as! CommentHeaderCell
                 return cell
                 
@@ -204,14 +162,20 @@ extension SongViewController2 {
                     let cell = tableView.dequeueReusableCellWithIdentifier("moreCommentCell")
                     return cell!
                 } else {
-                    let cell = tableView.dequeueReusableCellWithIdentifier("commentCell") as! CommentCell
+                    let cell = tableView.dequeueReusableCellWithIdentifier("commentCell", forIndexPath: indexPath) as! CommentCell
                     
                     let comment = comments![row - 1]
                     cell.userIdLabel.text = comment.userId
                     cell.timeLabel.text = comment.time
                     cell.contentLabel.text = comment.content
+    
+                    var frame = cell.contentLabel.frame;
                     cell.contentLabel.numberOfLines = 0
                     cell.contentLabel.sizeToFit()
+                    frame.size.height = cell.contentLabel.frame.size.height;
+                    cell.contentLabel.frame = frame;
+                    
+                    
                     cell.userImage.becomeCircle()
                     //print("computeHeight")
                     return cell
@@ -221,6 +185,10 @@ extension SongViewController2 {
             break
         }
         return tableView.dequeueReusableCellWithIdentifier("playerCell")!
+        
+    }
+    
+    func addEnoughSpaceAtEnd() {
         
     }
     
@@ -242,19 +210,30 @@ extension SongViewController2 {
                 } else if row == rowCount + 1 { //最后一行
                     return 44
                 } else {   //评论行
-                    //print("getHeigth")
+                    
                     let cell = tableView.dequeueReusableCellWithIdentifier("commentCell") as! CommentCell
                     let row = indexPath.row
                     let comment = comments![row - 1]
-                    cell.userIdLabel.text = comment.userId
-                    cell.timeLabel.text = comment.time
-                    cell.contentLabel.text = comment.content
-                    cell.contentLabel.numberOfLines = 0
-                    cell.contentLabel.sizeToFit()
-                    let height = cell.contentLabel.bounds.height
-                    //print("getHeigth end")
-                    return 25 + height + 10
-
+                    if heightCache[comment.content] == nil {
+                        cell.userIdLabel.text = comment.userId
+                        cell.timeLabel.text = comment.time
+                        cell.contentLabel.text = comment.content
+                        var frame = cell.contentLabel.frame;
+                        cell.contentLabel.numberOfLines = 0
+                        cell.contentLabel.sizeToFit()
+                        frame.size.height = cell.contentLabel.frame.size.height;
+                        cell.contentLabel.frame = frame;
+                        var height = 25 + cell.contentLabel.bounds.height + 10
+                        
+                        if height < 55 {
+                            height = 55
+                        }
+                        heightCache[comment.content] = height
+                        
+                        
+                    }
+                    //NSLog("row = \(row), height = \(heightCache[comment.content])" )
+                    return  heightCache[comment.content]!
                 }
             }
         default:

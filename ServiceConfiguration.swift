@@ -53,4 +53,8 @@ class ServiceConfiguration {
     static func GetSongCommentsUrl(songId: String, pageNo: Int, pageSize: Int) -> String {
         return "http://\(serverName):\(port)/song/\(songId)/comments?pageno=\(pageNo)&pagesize=\(pageSize)"
     }
+    
+    static func GetSendCommentUrl(songId: String, userName: String) -> String {
+        return "http://\(serverName):\(port)/comments"
+    }
 }

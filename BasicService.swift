@@ -8,9 +8,22 @@
 
 import Foundation
 
+enum HttpMethod {
+    case Get
+    case Post
+}
 
 class BasicService {
     func sendRequest<T: ServerResponse>(url: String, completion: (resp: T) -> Void, responseHandler: (resp: T, dict: NSDictionary) -> Void) -> T {
+        return sendRequest0(HttpMethod.Get, url: url, postString: "", completion: completion, responseHandler: responseHandler);
+    }
+    
+    
+    func postRequest<T: ServerResponse>(url: String, postString: String, completion: (resp: T) -> Void, responseHandler: (resp: T, dict: NSDictionary) -> Void) -> T {
+        return sendRequest0(HttpMethod.Post, url: url, postString: postString, completion: completion, responseHandler: responseHandler);
+    }
+    
+    private func sendRequest0<T: ServerResponse>(method: HttpMethod, url: String, postString: String, completion: (resp: T) -> Void, responseHandler: (resp: T, dict: NSDictionary) -> Void) -> T {
         let serverResponse = T()
         // Setup the session to make REST GET call.  Notice the URL is https NOT http!!
         let postEndpoint: String = url
@@ -18,7 +31,14 @@ class BasicService {
         let url = NSURL(string: postEndpoint)!
         print("send url: \(url)")
         // Make the POST call and handle it in a completion handler
-        session.dataTaskWithURL(url, completionHandler: { ( data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
+        
+        let request = NSMutableURLRequest(URL: NSURL(string: postEndpoint)!)
+        if method == HttpMethod.Post {
+            request.HTTPMethod = "POST"
+            request.HTTPBody = postString.dataUsingEncoding(NSUTF8StringEncoding)
+        }
+        
+        session.dataTaskWithRequest(request, completionHandler: { ( data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
             // Make sure we get an OK response
             guard let realResponse = response as? NSHTTPURLResponse where
                 realResponse.statusCode == 200 else {
@@ -57,6 +77,7 @@ class BasicService {
         
         return serverResponse
     }
+
 }
 
 

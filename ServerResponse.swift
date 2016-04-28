@@ -8,6 +8,10 @@
 
 import Foundation
 
+enum ServerResponseStatus : Int {
+    case Success = 0
+}
+
 class ServerResponse  {
     var status : Int = 0
     var errorMessage : String?
@@ -28,4 +32,8 @@ class GetAlbumSongsResponse : ServerResponse {
 
 class GetSongCommentsResponse : ServerResponse {
     var comments = [Comment]()
+}
+
+class SendCommentResponse : ServerResponse {
+    
 }

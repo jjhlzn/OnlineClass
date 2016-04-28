@@ -17,32 +17,38 @@ class CommentListController: BaseUIViewController, UITableViewDataSource, UITabl
     var pageNo = 0
     var heightDict = Dictionary<Int, CGFloat>()
     
+    
+    @IBOutlet weak var sendButton: UIButton!
+    @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var bottomView2: UIView!
     @IBOutlet weak var commentFiled2: UITextView!
     
     @IBOutlet weak var commentField: UITextField!
     @IBOutlet weak var bottomView: UIView!
     var overlay = UIView()
-    var sendButton: UIButton?
     
     var keyboardHeight: CGFloat?
     
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        print("viewWillAppear")
-        initCommentWindow()
+    var commentController = CommentController()
+    override func viewDidLoad(){
+        super.viewDidLoad()
+        print("viewDidLoad")
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
-        
+        commentController.bottomView = bottomView
+        commentController.commentField = commentField
+        commentController.bottomView2 = bottomView2
+        commentController.commentFiled2 = commentFiled2
+        commentController.cancelButton = cancelButton
+        commentController.sendButton = sendButton
+        commentController.viewController = self
+        commentController.initView()
+      
         tableView.dataSource = self
         tableView.delegate = self
         tableView.estimatedRowHeight = 260
         let song = Song()
         song.id = "1"
-        
-        
-
+    
      
         loadingOverlay.showOverlay(view)
         albumService.getSongComments(song, pageNo: pageNo, pageSize: ServiceConfiguration.PageSize) {
@@ -62,6 +68,13 @@ class CommentListController: BaseUIViewController, UITableViewDataSource, UITabl
         }
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        commentController.addKeyboardNotify()
+    }
+    
+
+    
     override func viewWillDisappear(animated: Bool) {
         if self.navigationController!.viewControllers.indexOf(self) == nil {
             if !bottomView2.hidden {
@@ -69,9 +82,9 @@ class CommentListController: BaseUIViewController, UITableViewDataSource, UITabl
             }
         }
         super.viewWillDisappear(animated)
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillHideNotification, object: nil)
+        
         print("viewWillDisappear")
+        commentController.removeKeyboardNotify()
     }
     
     
@@ -120,75 +133,6 @@ class CommentListController: BaseUIViewController, UITableViewDataSource, UITabl
         cell.userImage.becomeCircle()
         return cell
         
-    }
-    
-    func keyboardWillShow(notification: NSNotification) {
-        
-        var frame = bottomView2.frame
-        
-        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.CGRectValue() {
-            if keyboardHeight != nil {
-                frame.origin.y += (keyboardHeight! - keyboardSize.height)
-            } else {
-                showOverlay()
-                frame.origin.y -= keyboardSize.height
-                hideKeyboardWhenTappedAround()
-                commentField.resignFirstResponder()
-                commentFiled2.becomeFirstResponder()
-                bottomView2.hidden = false
-
-            }
-            keyboardHeight = keyboardSize.height
-            bottomView2.frame = frame
-        }
-    }
-    
-    
-    
-    func keyboardWillHide(notification: NSNotification) {
-        commentFiled2.resignFirstResponder()
-        cancleHideKeybaordWhenTappedAround()
-        keyboardHeight = nil
-        bottomView2.hidden = true
-        var frame = bottomView2.frame
-        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
-            frame.origin.y += keyboardSize.height
-            bottomView2.frame = frame
-        }
-         hideOverlay()
-    }
-    
-    
-    private func initCommentWindow() {
-        bottomView2.hidden = true
-        commentFiled2.editable = true
-        
-        //设置评论窗口的origin
-        var frame = bottomView2.frame
-        frame.origin.x = 0
-        let screenSize: CGRect = UIScreen.mainScreen().bounds
-        let screenHeight = screenSize.height
-        frame.origin.y = screenHeight - bottomView2.frame.height
-        print("x = \(frame.origin.x), y = \(frame.origin.y)")
-        bottomView2.frame = frame
-
-    }
-
-    
-    func showOverlay() {
-        overlay = UIView(frame: UIScreen.mainScreen().bounds)
-        overlay.backgroundColor = UIColor(white: 0.2, alpha: 0.4)
-        view.addSubview(overlay)
-        
-        bottomView2.removeFromSuperview()
-        overlay.addSubview(bottomView2)
-    }
-    
-    func hideOverlay() {
-        
-        bottomView2.removeFromSuperview()
-        view.addSubview(bottomView2)
-        overlay.removeFromSuperview()
     }
     
     

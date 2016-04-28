@@ -40,6 +40,7 @@ class SongViewController: BaseUIViewController, UIGestureRecognizerDelegate {
     var isForward = true
     var oldProgress: Float?
     var startDragProgress: Float?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         hideKeyboardWhenTappedAround()
@@ -48,8 +49,6 @@ class SongViewController: BaseUIViewController, UIGestureRecognizerDelegate {
         
         bottomView2.hidden = true
         commentFiled2.editable = true
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CommentListController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CommentListController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
         
         self.navigationController?.interactivePopGestureRecognizer!.delegate = self
         
