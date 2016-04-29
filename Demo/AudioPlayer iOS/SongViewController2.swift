@@ -9,7 +9,7 @@
 import UIKit
 import MediaPlayer
 
-class SongViewController2: BaseUIViewController, UITableViewDataSource, UITableViewDelegate ,
+class SongViewController2: BaseUIViewController,
         UIGestureRecognizerDelegate, CommentDelegate {
     @IBOutlet weak var tableView: UITableView!
     
@@ -19,7 +19,11 @@ class SongViewController2: BaseUIViewController, UITableViewDataSource, UITableV
     @IBOutlet weak var commentField: UITextField!
     @IBOutlet weak var bottomView: UIView!
     var keyboardHeight: CGFloat?
-    var comments: [Comment]?
+    var comments : [Comment]?  {
+        didSet{
+            commentListDataSource.comments = comments
+        }
+    }
     
     var overlay = UIView()
     var audioPlayer: AudioPlayer!
@@ -27,6 +31,7 @@ class SongViewController2: BaseUIViewController, UITableViewDataSource, UITableV
     @IBOutlet weak var sendButton: UIButton!
 
     @IBOutlet weak var cancelButton: UIButton!
+    var commentListDataSource: CommentListDataSourceAndDelegate!
     
     var commentController = CommentController()
     override func viewDidLoad() {
@@ -44,13 +49,15 @@ class SongViewController2: BaseUIViewController, UITableViewDataSource, UITableV
 
         
         print("viewDidLoad")
+        commentListDataSource = CommentListDataSourceAndDelegate()
+        commentListDataSource.viewController = self
+        commentListDataSource.showHasMoreLink = true
+        
         audioPlayer = getAudioPlayer()
         comments = [Comment]()
         
-        tableView.dataSource = self
-        tableView.delegate = self
-        
-        
+        tableView.dataSource = commentListDataSource
+        tableView.delegate = commentListDataSource
         
         self.navigationController?.interactivePopGestureRecognizer!.delegate = self
         
@@ -114,156 +121,6 @@ class SongViewController2: BaseUIViewController, UITableViewDataSource, UITableV
     }
 
     var heightCache = [String: CGFloat]()
-
-}
-
-
-extension SongViewController2 {
-    
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 2
-    }
-    
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch section{
-        case 0:
-            return 1
-        case 1:
-            print("comments.count = \((comments?.count)!)")
-            let count = (comments?.count)!
-            return count == 0 ? 2 : count + 2
-        default:
-            return 0
-        }
-    }
-    
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let section = indexPath.section
-        switch section {
-        case 0:
-            let cell = tableView.dequeueReusableCellWithIdentifier("playerCell") as! PlayerCell
-            cell.controller = self
-            cell.initPalyer()
-            
-            return cell
-        case 1:
-            let row = indexPath.row
-            let rowCount = (comments?.count)!
-            if row == 0 {
-                
-                let cell = tableView.dequeueReusableCellWithIdentifier("commentHeaderCell") as! CommentHeaderCell
-                return cell
-                
-            } else   {
-                if rowCount == 0 {  
-                    let cell = tableView.dequeueReusableCellWithIdentifier("noCommentCell")
-                    return cell!
-                } else if row == rowCount + 1 {  //最后一行
-                    let cell = tableView.dequeueReusableCellWithIdentifier("moreCommentCell")
-                    return cell!
-                } else {
-                    let cell = tableView.dequeueReusableCellWithIdentifier("commentCell", forIndexPath: indexPath) as! CommentCell
-                    
-                    let comment = comments![row - 1]
-                    cell.userIdLabel.text = comment.userId
-                    cell.timeLabel.text = comment.time
-                    cell.contentLabel.text = comment.content
-    
-                    var frame = cell.contentLabel.frame;
-                    cell.contentLabel.numberOfLines = 0
-                    cell.contentLabel.sizeToFit()
-                    frame.size.height = cell.contentLabel.frame.size.height;
-                    cell.contentLabel.frame = frame;
-                    
-                    
-                    cell.userImage.becomeCircle()
-                    //print("computeHeight")
-                    return cell
-                }
-            }
-        default:
-            break
-        }
-        return tableView.dequeueReusableCellWithIdentifier("playerCell")!
-        
-    }
-    
-    func addEnoughSpaceAtEnd() {
-        
-    }
-    
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        let section = indexPath.section
-        switch section {
-        case 0:
-            let screenSize: CGRect = UIScreen.mainScreen().bounds
-            let screenWidth = screenSize.width
-            return screenWidth + 95
-        case 1:
-            let row = indexPath.row
-            let rowCount = (comments?.count)!
-            if row == 0 { //点评头
-                return 40
-            } else {
-                if rowCount == 0 { //没有点评的情况
-                    return 70
-                } else if row == rowCount + 1 { //最后一行
-                    return 44
-                } else {   //评论行
-                    
-                    let cell = tableView.dequeueReusableCellWithIdentifier("commentCell") as! CommentCell
-                    let row = indexPath.row
-                    let comment = comments![row - 1]
-                    if heightCache[comment.content] == nil {
-                        cell.userIdLabel.text = comment.userId
-                        cell.timeLabel.text = comment.time
-                        cell.contentLabel.text = comment.content
-                        var frame = cell.contentLabel.frame;
-                        cell.contentLabel.numberOfLines = 0
-                        cell.contentLabel.sizeToFit()
-                        frame.size.height = cell.contentLabel.frame.size.height;
-                        cell.contentLabel.frame = frame;
-                        var height = 25 + cell.contentLabel.bounds.height + 10
-                        
-                        if height < 55 {
-                            height = 55
-                        }
-                        heightCache[comment.content] = height
-                        
-                        
-                    }
-                    //NSLog("row = \(row), height = \(heightCache[comment.content])" )
-                    return  heightCache[comment.content]!
-                }
-            }
-        default:
-            return 1
-        }
-    }
-    
-    
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let section = indexPath.section
-        let row = indexPath.row
-        
-        switch section {
-        case 0:
-            let cell = tableView.cellForRowAtIndexPath(indexPath)
-            cell?.selectionStyle = .None
-            break;
-        case 1:
-            let rowCount = (comments?.count)!
-            if rowCount > 0 {
-                if row == rowCount + 1 {
-                    tableView.cellForRowAtIndexPath(indexPath)?.selected = false
-                    performSegueWithIdentifier("commentListSegue", sender: nil)
-                }
-            }
-            break
-        default:
-            break
-        }
-    }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "commentListSegue" {
@@ -272,6 +129,7 @@ extension SongViewController2 {
             navigationItem.backBarButtonItem = backItem
         }
     }
+
 }
 
 

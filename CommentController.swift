@@ -34,6 +34,7 @@ class CommentController : NSObject {
     
     func initView() {
         
+        
         bottomView2.hidden = true
         commentFiled2.editable = true
         

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CommentListController: BaseUIViewController, UITableViewDataSource, UITableViewDelegate{
+class CommentListController: BaseUIViewController, UITableViewDataSource, UITableViewDelegate, CommentDelegate{
     
     @IBOutlet weak var tableView: UITableView!
     var comments: [Comment]?
@@ -28,7 +28,7 @@ class CommentListController: BaseUIViewController, UITableViewDataSource, UITabl
     var overlay = UIView()
     
     var keyboardHeight: CGFloat?
-    
+    var heightCache = [String: CGFloat]()
     var commentController = CommentController()
     override func viewDidLoad(){
         super.viewDidLoad()
@@ -41,6 +41,7 @@ class CommentListController: BaseUIViewController, UITableViewDataSource, UITabl
         commentController.cancelButton = cancelButton
         commentController.sendButton = sendButton
         commentController.viewController = self
+        commentController.delegate = self
         commentController.initView()
       
         tableView.dataSource = self
@@ -87,25 +88,44 @@ class CommentListController: BaseUIViewController, UITableViewDataSource, UITabl
         commentController.removeKeyboardNotify()
     }
     
-    
-
-    @IBAction func closeComment(sender: UIButton) {
-        dismissKeyboard()
-        commentFiled2.endEditing(true)
-        commentField.endEditing(true)
-        
-        
+    func afterSendComment(comment: Comment) {
+        comments?.insert(comment, atIndex: 0)
+        tableView.reloadData()
     }
     
-    
-    @IBAction func sendComment(sender: UIButton) {
-        print(commentFiled2.text)
-    }
-
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        let row = indexPath.row
-        return 25 + heightDict[indexPath.row]! + 10
+        let rowCount = comments?.count
+        if rowCount == 0 { //没有点评的情况
+            return 70
+        }  else {   //评论行
+            
+            let cell = tableView.dequeueReusableCellWithIdentifier("commentCell") as! CommentCell
+            let row = indexPath.row
+            let comment = comments![row]
+            if heightCache[comment.content] == nil {
+                cell.userIdLabel.text = comment.userId
+                cell.timeLabel.text = comment.time
+                cell.contentLabel.text = comment.content
+                var frame = cell.contentLabel.frame;
+                cell.contentLabel.numberOfLines = 0
+                cell.contentLabel.sizeToFit()
+                frame.size.height = cell.contentLabel.frame.size.height;
+                cell.contentLabel.frame = frame;
+                var height = 25 + cell.contentLabel.bounds.height + 10
+                
+                if height < 55 {
+                    height = 55
+                }
+                heightCache[comment.content] = height
+                
+                
+            }
+            //NSLog("row = \(row), height = \(heightCache[comment.content])" )
+            return  heightCache[comment.content]!
+        }
+
+
     }
     
 
@@ -120,17 +140,22 @@ class CommentListController: BaseUIViewController, UITableViewDataSource, UITabl
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let row = indexPath.row
-        let comment = comments![row]
         let cell = tableView.dequeueReusableCellWithIdentifier("commentCell") as! CommentCell
+        
+        let comment = comments![row]
         cell.userIdLabel.text = comment.userId
         cell.timeLabel.text = comment.time
         cell.contentLabel.text = comment.content
+        
+        var frame = cell.contentLabel.frame;
         cell.contentLabel.numberOfLines = 0
         cell.contentLabel.sizeToFit()
+        frame.size.height = cell.contentLabel.frame.size.height;
+        cell.contentLabel.frame = frame;
         
-        print("conentLabel.height = \(cell.contentLabel.bounds.height)")
-              heightDict[indexPath.row] = cell.contentLabel.bounds.height
+        
         cell.userImage.becomeCircle()
+        //print("computeHeight")
         return cell
         
     }
