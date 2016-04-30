@@ -8,7 +8,12 @@
 
 import Foundation
 
-class Album {
+
+class BaseModelObject {
+    
+}
+
+class Album : BaseModelObject {
     var id: String = ""
     var name: String = ""
     var author: String = ""
@@ -20,11 +25,9 @@ class Album {
             return !image.isEmpty
         }
     }
-    
-    
 }
 
-class Song {
+class Song : BaseModelObject {
     var id: String = ""
     var name: String = ""
     var desc: String = ""
@@ -36,7 +39,7 @@ class Song {
     }
 }
 
-class Comment {
+class Comment : BaseModelObject {
     var id: String?
     var song: Song?
     var userId: String!
@@ -44,7 +47,7 @@ class Comment {
     var content: String! 
 }
 
-class User {
+class User : BaseModelObject{
     var userName: String!
     var name: String = ""
 }

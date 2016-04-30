@@ -18,20 +18,22 @@ class ServerResponse  {
     required init() {}
 }
 
-class PageServerResponse : ServerResponse{
+class PageServerResponse<T> : ServerResponse{
     var totalNumber : Int = 0
+    var resultSet: [T] = [T]()
+    required init() {}
 }
 
-class GetAlbumsResponse : ServerResponse {
-    var albums: [Album] = []
+class GetAlbumsResponse : PageServerResponse<Album> {
+    required init() {}
 }
 
-class GetAlbumSongsResponse : ServerResponse {
-    var songs = [Song]()
+class GetAlbumSongsResponse : PageServerResponse<Song> {
+    required init() {}
 }
 
-class GetSongCommentsResponse : ServerResponse {
-    var comments = [Comment]()
+class GetSongCommentsResponse : PageServerResponse<Comment> {
+    required init() {}
 }
 
 class SendCommentResponse : ServerResponse {

@@ -119,9 +119,13 @@ class CommentController : NSObject {
         var frame = bottomView2.frame
         print("\(self): x = \(frame.origin.x), y = \(frame.origin.y)")
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.CGRectValue() {
+
             if keyboardHeight != nil {
+                keyboardHeight = keyboardSize.height
                 frame.origin.y += (keyboardHeight! - keyboardSize.height)
+                
             } else {
+                keyboardHeight = keyboardSize.height
                 showOverlay()
                 frame.origin.y -= keyboardSize.height
                 //print("here")
@@ -133,7 +137,7 @@ class CommentController : NSObject {
                 //print("here3")
                 bottomView2.hidden = false
             }
-            keyboardHeight = keyboardSize.height
+            
             bottomView2.frame = frame
         }
         print("end keyboardWillShow")
@@ -143,18 +147,20 @@ class CommentController : NSObject {
     func keyboardWillHide(notification: NSNotification) {
         NSLog("%s: keyboardWillHide", TAG)
         commentFiled2.resignFirstResponder()
-        viewController.cancleHideKeybaordWhenTappedAround()
+        
         bottomView2.hidden = true
-        var frame = bottomView2.frame
-        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
-            if keyboardHeight != nil {
+        print ("keyboardHeight = \(keyboardHeight)")
+        if keyboardHeight != nil && keyboardHeight! != 0 {
+            var frame = bottomView2.frame
+            if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
                 frame.origin.y += keyboardSize.height
                 keyboardHeight = nil
+                bottomView2.frame = frame
             }
-            bottomView2.frame = frame
+            viewController.cancleHideKeybaordWhenTappedAround()
+            hideOverlay()
+            
         }
-        hideOverlay()
-        
         
     }
     
@@ -170,6 +176,7 @@ class CommentController : NSObject {
     }
     
     func showOverlay() {
+        print("showOverlay")
         overlay = UIView(frame: UIScreen.mainScreen().bounds)
         overlay.backgroundColor = UIColor(white: 0.2, alpha: 0.4)
         viewController.view.addSubview(overlay)
@@ -179,7 +186,7 @@ class CommentController : NSObject {
     }
     
     func hideOverlay() {
-        
+        print("hideOverlay")
         bottomView2.removeFromSuperview()
         viewController.view.addSubview(bottomView2)
         overlay.removeFromSuperview()

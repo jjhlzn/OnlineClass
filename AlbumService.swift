@@ -25,7 +25,8 @@ class AlbumService : BasicService {
                 album.image = albumJson["image"] as! String
                 albums.append(album)
             }
-            resp.albums = albums
+            resp.resultSet = albums
+            resp.totalNumber = dict["totalNumber"] as! Int
         }
     }
     
@@ -44,7 +45,7 @@ class AlbumService : BasicService {
                 songs.append(song)
             }
             album.songs = songs
-            resp.songs = songs
+            resp.resultSet = songs
             
         }
     }
@@ -64,7 +65,8 @@ class AlbumService : BasicService {
                 comments.append(comment)
             }
             
-            resp.comments = comments
+            resp.resultSet = comments
+            resp.totalNumber = dict["totalNumber"] as! Int
         }
     }
     

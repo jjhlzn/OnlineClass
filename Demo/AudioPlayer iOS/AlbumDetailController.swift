@@ -48,7 +48,7 @@ class AlbumDetailController: BaseUIViewController, UITableViewDataSource, UITabl
                     if resp.status != 0 {
                         print(resp.errorMessage)
                     } else {
-                        self.songs = resp.songs
+                        self.songs = resp.resultSet
                         self.tableView.reloadData()
                         self.updateCellPlayingButtons()
                     }

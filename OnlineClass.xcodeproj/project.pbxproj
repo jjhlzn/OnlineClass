@@ -24,6 +24,7 @@
 		1C7E9E721CBF4993002A60E4 /* AudioItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C7E9E6F1CBF4993002A60E4 /* AudioItem.swift */; };
 		1C7E9E731CBF4993002A60E4 /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C7E9E701CBF4993002A60E4 /* AudioPlayer.swift */; };
 		1C7E9E741CBF4993002A60E4 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C7E9E711CBF4993002A60E4 /* Reachability.swift */; };
+		1CEE8AF31CD4998A00865FB6 /* PagableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CEE8AF21CD4998A00865FB6 /* PagableController.swift */; };
 		1CEFF7811CBFB73D000DEFF7 /* AlbumListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CEFF7801CBFB73D000DEFF7 /* AlbumListController.swift */; };
 		1CEFF7831CBFB809000DEFF7 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CEFF7821CBFB809000DEFF7 /* Model.swift */; };
 		1CEFF7861CBFB9FD000DEFF7 /* BasicService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CEFF7851CBFB9FD000DEFF7 /* BasicService.swift */; };
@@ -69,6 +70,7 @@
 		1C7E9E6F1CBF4993002A60E4 /* AudioItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AudioItem.swift; path = Demo/AudioPlayer/AudioItem.swift; sourceTree = "<group>"; };
 		1C7E9E701CBF4993002A60E4 /* AudioPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AudioPlayer.swift; path = Demo/AudioPlayer/AudioPlayer.swift; sourceTree = "<group>"; };
 		1C7E9E711CBF4993002A60E4 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Reachability.swift; path = Demo/AudioPlayer/Reachability.swift; sourceTree = "<group>"; };
+		1CEE8AF21CD4998A00865FB6 /* PagableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PagableController.swift; sourceTree = "<group>"; };
 		1CEFF7801CBFB73D000DEFF7 /* AlbumListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumListController.swift; sourceTree = "<group>"; };
 		1CEFF7821CBFB809000DEFF7 /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Model.swift; path = "Demo/AudioPlayer iOS/Model.swift"; sourceTree = "<group>"; };
 		1CEFF7851CBFB9FD000DEFF7 /* BasicService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicService.swift; sourceTree = "<group>"; };
@@ -164,6 +166,7 @@
 				1C6420F51CD0605200119272 /* CommentController.swift */,
 				1C09D3BE1CD09FED004A8F9C /* ToastMessage.swift */,
 				1C09D3C01CD1D462004A8F9C /* CommentListDataSourceAndDelegate.swift */,
+				1CEE8AF21CD4998A00865FB6 /* PagableController.swift */,
 			);
 			name = lib;
 			sourceTree = "<group>";
@@ -408,6 +411,7 @@
 				1C1E68EF1CC65DF600CEA029 /* CommentListController.swift in Sources */,
 				1CEFF78C1CBFBAD4000DEFF7 /* AlbumService.swift in Sources */,
 				1CEFF79C1CC20171000DEFF7 /* AudioPlayerExtension.swift in Sources */,
+				1CEE8AF31CD4998A00865FB6 /* PagableController.swift in Sources */,
 				1CEFF7901CC077D0000DEFF7 /* Utils.swift in Sources */,
 				1C09D3BD1CD0942F004A8F9C /* CommentService.swift in Sources */,
 				1C7E9E731CBF4993002A60E4 /* AudioPlayer.swift in Sources */,

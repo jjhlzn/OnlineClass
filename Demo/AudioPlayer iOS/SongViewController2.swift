@@ -72,6 +72,7 @@ class SongViewController2: BaseUIViewController,
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         commentController.addKeyboardNotify()
+        
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -88,7 +89,7 @@ class SongViewController2: BaseUIViewController,
                     print(resp.errorMessage)
                     return
                 }
-                self.comments = resp.comments
+                self.comments = resp.resultSet
                 self.tableView.reloadSections(NSIndexSet(index: 1), withRowAnimation: .None)
             }
         }
