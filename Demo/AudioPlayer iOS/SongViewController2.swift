@@ -83,7 +83,9 @@ class SongViewController2: BaseUIViewController,
         
         let song = Song()
         song.id = "1"
-        AlbumService().getSongComments(song, pageNo: 0, pageSize: ServiceConfiguration.PageSize) { resp -> Void in
+        BasicService().sendRequest(ServiceConfiguration.GET_SONG_COMMENTS,
+                                   params: ["song": song]) {
+            (resp: GetSongCommentsResponse) -> Void in
             dispatch_async(dispatch_get_main_queue()) {
                 if resp.status != 0 {
                     print(resp.errorMessage)

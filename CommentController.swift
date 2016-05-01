@@ -27,7 +27,6 @@ class CommentController : NSObject {
     var sendButton: UIButton!
     
     var keyboardHeight: CGFloat?
-    var commentService = CommentService()
     
     var isSendPressed = false
     var isCommentSuccess = false
@@ -75,8 +74,9 @@ class CommentController : NSObject {
             NSLog("%s: song is null", TAG)
             return
         }
-        commentService.sendComment(song!, user: getLoginUser(), comment: commentConent) {
-            resp -> Void in
+        
+        BasicService().sendRequest(ServiceConfiguration.SEND_COMMENT, params: ["user": getLoginUser(), "comment": commentConent]) {
+            (resp: SendCommentResponse) -> Void in
             dispatch_async(dispatch_get_main_queue()) {
                 NSLog("%s: process send comment response", self.TAG)
                 self.viewController.dismissKeyboard()
@@ -95,7 +95,9 @@ class CommentController : NSObject {
                     self.isCommentSuccess = false
                 }
             }
+                                    
         }
+        
     }
     
     func addKeyboardNotify() {

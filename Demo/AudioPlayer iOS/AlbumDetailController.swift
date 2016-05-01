@@ -24,7 +24,6 @@ class AlbumDetailController: BaseUIViewController, UITableViewDataSource, UITabl
     var album: Album?
     var songs: [Song]!
     var loadingOverlay: LoadingOverlay = LoadingOverlay()
-    var albumService = AlbumService()
     
     var playingImageName = "wave1"
     var timer = NSTimer()
@@ -42,7 +41,9 @@ class AlbumDetailController: BaseUIViewController, UITableViewDataSource, UITabl
             nameLabel.text = album?.name
             descLabel.text = album?.author
             loadingOverlay.showOverlay(self.view)
-            albumService.getSongs(album!) { resp -> Void in
+            BasicService().sendRequest(ServiceConfiguration.GET_ALBUM_SONGS,
+                                       params: ["album": album!]) {
+                (resp: GetAlbumSongsResponse) -> Void in
                 dispatch_async(dispatch_get_main_queue()) {
                     self.loadingOverlay.hideOverlayView()
                     if resp.status != 0 {
@@ -123,6 +124,7 @@ class AlbumDetailController: BaseUIViewController, UITableViewDataSource, UITabl
                 var index = 0
                 for item in album!.songs {
                     let url = NSURL(string: ServiceConfiguration.GetSongUrl(item.url))
+                    print(url)
                     let audioItem = AudioItem(highQualitySoundURL: url)
                     audioItem?.song = item
                     audioItems.append(audioItem!)

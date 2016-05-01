@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1C09D3BD1CD0942F004A8F9C /* CommentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C09D3BC1CD0942F004A8F9C /* CommentService.swift */; };
 		1C09D3BF1CD09FED004A8F9C /* ToastMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C09D3BE1CD09FED004A8F9C /* ToastMessage.swift */; };
 		1C09D3C11CD1D462004A8F9C /* CommentListDataSourceAndDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C09D3C01CD1D462004A8F9C /* CommentListDataSourceAndDelegate.swift */; };
 		1C1E68EF1CC65DF600CEA029 /* CommentListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C1E68EE1CC65DF600CEA029 /* CommentListController.swift */; };
@@ -30,7 +29,6 @@
 		1CEFF7861CBFB9FD000DEFF7 /* BasicService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CEFF7851CBFB9FD000DEFF7 /* BasicService.swift */; };
 		1CEFF7881CBFBA1B000DEFF7 /* ServiceConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CEFF7871CBFBA1B000DEFF7 /* ServiceConfiguration.swift */; };
 		1CEFF78A1CBFBA70000DEFF7 /* ServerResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CEFF7891CBFBA70000DEFF7 /* ServerResponse.swift */; };
-		1CEFF78C1CBFBAD4000DEFF7 /* AlbumService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CEFF78B1CBFBAD4000DEFF7 /* AlbumService.swift */; };
 		1CEFF78E1CBFC9B7000DEFF7 /* AlbumCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CEFF78D1CBFC9B7000DEFF7 /* AlbumCell.swift */; };
 		1CEFF7901CC077D0000DEFF7 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CEFF78F1CC077D0000DEFF7 /* Utils.swift */; };
 		1CEFF7921CC07838000DEFF7 /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CEFF7911CC07838000DEFF7 /* UIImageView.swift */; };
@@ -50,10 +48,11 @@
 		E2B2FA0F1C4BB64F00ABF3C5 /* sound2.caf in Resources */ = {isa = PBXBuildFile; fileRef = E2C6FAE01C4B01D80055A1BF /* sound2.caf */; };
 		E2C6FAE11C4B01D80055A1BF /* sound1.caf in Resources */ = {isa = PBXBuildFile; fileRef = E2C6FADF1C4B01D80055A1BF /* sound1.caf */; };
 		E2C6FAE21C4B01D80055A1BF /* sound2.caf in Resources */ = {isa = PBXBuildFile; fileRef = E2C6FAE01C4B01D80055A1BF /* sound2.caf */; };
+		FA3E316405D0E516066B9BF9 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B40C9B43EEBF462EC0CB7139 /* Pods.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1C09D3BC1CD0942F004A8F9C /* CommentService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentService.swift; sourceTree = "<group>"; };
+		02D70124E7CDD20484FE889C /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		1C09D3BE1CD09FED004A8F9C /* ToastMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToastMessage.swift; sourceTree = "<group>"; };
 		1C09D3C01CD1D462004A8F9C /* CommentListDataSourceAndDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentListDataSourceAndDelegate.swift; sourceTree = "<group>"; };
 		1C1E68EE1CC65DF600CEA029 /* CommentListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentListController.swift; sourceTree = "<group>"; };
@@ -76,7 +75,6 @@
 		1CEFF7851CBFB9FD000DEFF7 /* BasicService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicService.swift; sourceTree = "<group>"; };
 		1CEFF7871CBFBA1B000DEFF7 /* ServiceConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceConfiguration.swift; sourceTree = "<group>"; };
 		1CEFF7891CBFBA70000DEFF7 /* ServerResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerResponse.swift; sourceTree = "<group>"; };
-		1CEFF78B1CBFBAD4000DEFF7 /* AlbumService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumService.swift; sourceTree = "<group>"; };
 		1CEFF78D1CBFC9B7000DEFF7 /* AlbumCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AlbumCell.swift; path = "Demo/AudioPlayer iOS/AlbumCell.swift"; sourceTree = "<group>"; };
 		1CEFF78F1CC077D0000DEFF7 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Utils.swift; path = "Demo/AudioPlayer iOS/Utils.swift"; sourceTree = "<group>"; };
 		1CEFF7911CC07838000DEFF7 /* UIImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIImageView.swift; path = "Demo/AudioPlayer iOS/UIImageView.swift"; sourceTree = "<group>"; };
@@ -86,6 +84,8 @@
 		1CEFF7991CC1153A000DEFF7 /* SongViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongViewController.swift; sourceTree = "<group>"; };
 		1CEFF79B1CC20171000DEFF7 /* AudioPlayerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AudioPlayerExtension.swift; path = "Demo/AudioPlayer iOS/AudioPlayerExtension.swift"; sourceTree = "<group>"; };
 		1CEFF79D1CC21E98000DEFF7 /* BaseUIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUIViewController.swift; sourceTree = "<group>"; };
+		2053000950BB24BA28E4B256 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		B40C9B43EEBF462EC0CB7139 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2A9AF9C1C498E2900FE943A /* AudioPlayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AudioPlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2A9AF9F1C498E2900FE943A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E2A9AFA41C498E2900FE943A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -104,6 +104,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA3E316405D0E516066B9BF9 /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -188,10 +189,25 @@
 				1CEFF7851CBFB9FD000DEFF7 /* BasicService.swift */,
 				1CEFF7871CBFBA1B000DEFF7 /* ServiceConfiguration.swift */,
 				1CEFF7891CBFBA70000DEFF7 /* ServerResponse.swift */,
-				1CEFF78B1CBFBAD4000DEFF7 /* AlbumService.swift */,
-				1C09D3BC1CD0942F004A8F9C /* CommentService.swift */,
 			);
 			name = Service;
+			sourceTree = "<group>";
+		};
+		BC2131FE74CE2B0C14249E3D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B40C9B43EEBF462EC0CB7139 /* Pods.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CAF125A82EA46A668E8B8C4C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				2053000950BB24BA28E4B256 /* Pods.debug.xcconfig */,
+				02D70124E7CDD20484FE889C /* Pods.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 		E2A9AF931C498E2900FE943A = {
@@ -207,6 +223,8 @@
 				E2A9AFB71C498F8800FE943A /* Sounds */,
 				E2A9AFB61C498F6D00FE943A /* framework */,
 				E2A9AF9D1C498E2900FE943A /* Products */,
+				CAF125A82EA46A668E8B8C4C /* Pods */,
+				BC2131FE74CE2B0C14249E3D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -262,9 +280,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E2A9AFAE1C498E2900FE943A /* Build configuration list for PBXNativeTarget "AudioPlayer iOS" */;
 			buildPhases = (
+				09940BA5FA3B3C3FE4BD7349 /* Check Pods Manifest.lock */,
 				E2A9AF981C498E2900FE943A /* Sources */,
 				E2A9AF991C498E2900FE943A /* Frameworks */,
 				E2A9AF9A1C498E2900FE943A /* Resources */,
+				6AE53E071858FD5815F0FFB2 /* Embed Pods Frameworks */,
+				240460A3D9D517AD0DDC4042 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -388,6 +409,54 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		09940BA5FA3B3C3FE4BD7349 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		240460A3D9D517AD0DDC4042 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6AE53E071858FD5815F0FFB2 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		E2A9AF981C498E2900FE943A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -409,11 +478,9 @@
 				1CEFF79E1CC21E98000DEFF7 /* BaseUIViewController.swift in Sources */,
 				1C7E9E741CBF4993002A60E4 /* Reachability.swift in Sources */,
 				1C1E68EF1CC65DF600CEA029 /* CommentListController.swift in Sources */,
-				1CEFF78C1CBFBAD4000DEFF7 /* AlbumService.swift in Sources */,
 				1CEFF79C1CC20171000DEFF7 /* AudioPlayerExtension.swift in Sources */,
 				1CEE8AF31CD4998A00865FB6 /* PagableController.swift in Sources */,
 				1CEFF7901CC077D0000DEFF7 /* Utils.swift in Sources */,
-				1C09D3BD1CD0942F004A8F9C /* CommentService.swift in Sources */,
 				1C7E9E731CBF4993002A60E4 /* AudioPlayer.swift in Sources */,
 				1C1E69211CCA05E500CEA029 /* MoreLinkCell.swift in Sources */,
 				1CEFF7981CC0D63B000DEFF7 /* LoadingOverlay.swift in Sources */,
@@ -553,11 +620,12 @@
 		};
 		E2A9AFAF1C498E2900FE943A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2053000950BB24BA28E4B256 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
 				INFOPLIST_FILE = "$(SRCROOT)/Demo/AudioPlayer iOS/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jinjunhang.onlineclass;
 				PRODUCT_NAME = AudioPlayer;
@@ -566,11 +634,12 @@
 		};
 		E2A9AFB01C498E2900FE943A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 02D70124E7CDD20484FE889C /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
 				INFOPLIST_FILE = "$(SRCROOT)/Demo/AudioPlayer iOS/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jinjunhang.onlineclass;
 				PRODUCT_NAME = AudioPlayer;

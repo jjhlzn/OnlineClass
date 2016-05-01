@@ -12,8 +12,6 @@ class CommentListController: BaseUIViewController, UITableViewDataSource, UITabl
     
     @IBOutlet weak var tableView: UITableView!
     var loadingOverlay = LoadingOverlay()
-    let albumService = AlbumService()
-    var pageNo = 0
     var heightDict = Dictionary<Int, CGFloat>()
     
     //comment评论窗口控制器
@@ -93,8 +91,9 @@ extension CommentListController {
     func searchHandler() {
         let song = Song()
         song.id = "1"
-        albumService.getSongComments(song, pageNo: pageNo, pageSize: ServiceConfiguration.PageSize) {
-            resp -> Void in
+        BasicService().sendRequest(ServiceConfiguration.GET_SONG_COMMENTS,
+                                   params: ["song": song, "pageno": pagableController.page, "pagesize": ServiceConfiguration.PageSize]) {
+            (resp: GetSongCommentsResponse) -> Void in
             dispatch_async(dispatch_get_main_queue()) {
                 self.pagableController.afterHandleResponse(resp)
             }

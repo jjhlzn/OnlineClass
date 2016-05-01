@@ -9,7 +9,7 @@
 import Foundation
 
 
-class BaseModelObject {
+class BaseModelObject : NSObject {
     
 }
 
@@ -25,6 +25,12 @@ class Album : BaseModelObject {
             return !image.isEmpty
         }
     }
+    
+    override var description: String {
+        get {
+            return "{'id': \(id)}"
+        }
+    }
 }
 
 class Song : BaseModelObject {
@@ -37,6 +43,11 @@ class Song : BaseModelObject {
     var wholeUrl : String {
         return ServiceConfiguration.GetSongUrl(url)
     }
+    override var description: String {
+        get {
+            return "{'id': \(id)}"
+        }
+    }
 }
 
 class Comment : BaseModelObject {
@@ -44,10 +55,16 @@ class Comment : BaseModelObject {
     var song: Song?
     var userId: String!
     var time: String!
-    var content: String! 
+    var content: String!
+    
 }
 
 class User : BaseModelObject{
     var userName: String!
     var name: String = ""
+    override var description: String {
+        get {
+            return "{'userName': \(userName)}"
+        }
+    }
 }

@@ -38,9 +38,10 @@ class AlbumListController: BaseUIViewController, UITableViewDataSource, UITableV
     
     //PageableControllerDelegate
     func searchHandler() {
-        AlbumService().getAlbums() { response -> Void in
+        BasicService().sendRequest(ServiceConfiguration.GET_ALBUMS) {
+            (resp: GetAlbumsResponse) -> Void in
             dispatch_async(dispatch_get_main_queue()) {
-                self.pagableController.afterHandleResponse(response)
+                self.pagableController.afterHandleResponse(resp)
             }
         }
     }
