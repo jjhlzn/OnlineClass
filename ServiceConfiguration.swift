@@ -72,4 +72,8 @@ class ServiceConfiguration {
     static func GetAlbumImageUrl(urlSuffix: String) -> String {
         return "\(ServiceConfiguration.ImageUrlPrefix)/\(urlSuffix)"
     }
+
+
+
+
 }
