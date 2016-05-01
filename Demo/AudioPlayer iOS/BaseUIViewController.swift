@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import KDEAudioPlayer
 
 class BaseUIViewController: UIViewController, AudioPlayerDelegate {
     

@@ -28,13 +28,13 @@ class ServiceConfiguration {
     
     static var serverName: String {
         get {
-            return serverName2
+            return serverName3
         }
     }
     
     static var port: Int {
         get {
-            return port2
+            return port3
         }
     }
     

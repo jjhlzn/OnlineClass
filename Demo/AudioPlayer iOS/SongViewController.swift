@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import MediaPlayer
+import KDEAudioPlayer
 
 class SongViewController: BaseUIViewController, UIGestureRecognizerDelegate {
 

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import KDEAudioPlayer
 
 class AlbumDetailController: BaseUIViewController, UITableViewDataSource, UITableViewDelegate {
     var tag = "AlbumDetailController"
@@ -125,8 +126,8 @@ class AlbumDetailController: BaseUIViewController, UITableViewDataSource, UITabl
                 for item in album!.songs {
                     let url = NSURL(string: ServiceConfiguration.GetSongUrl(item.url))
                     print(url)
-                    let audioItem = AudioItem(highQualitySoundURL: url)
-                    audioItem?.song = item
+                    let audioItem = MyAudioItem(song: item, highQualitySoundURL: url)
+                    //(audioItem as! MyAudioItem).song = item
                     audioItems.append(audioItem!)
                     
                     if item.url == song.url {

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import KDEAudioPlayer
 
 class PlayerCell: UITableViewCell, AudioPlayerDelegate {
     
@@ -208,9 +209,9 @@ class PlayerCell: UITableViewCell, AudioPlayerDelegate {
     func audioPlayer(audioPlayer: AudioPlayer, willStartPlayingItem item: AudioItem) {
         print("audioPlayer:willStartPlayingItem called")
         artImageView.image = item.artworkImage
-        controller?.title = item.song?.name
-        print("controller.title = \(controller?.title)")
-        print("url = \(item.song?.url)")
+        controller?.title = (item as! MyAudioItem).song?.name
+        //print("controller.title = \(controller?.title)")
+        //print("url = \(item.song?.url)")
     }
     
     

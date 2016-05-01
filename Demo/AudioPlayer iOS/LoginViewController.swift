@@ -50,6 +50,22 @@ class LoginViewController: BaseUIViewController {
         
     }
     
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        let screenSize: CGRect = UIScreen.mainScreen().bounds
+
+        let screenWidth = screenSize.width
+        let screenHeight = screenSize.height
+        print("width = \(screenWidth), height = \(screenHeight)")
+
+        if screenHeight < 667 {
+            
+            NSNotificationCenter.defaultCenter().removeObserver(self,  name: UIKeyboardWillShowNotification, object: nil)
+            NSNotificationCenter.defaultCenter().removeObserver(self,  name: UIKeyboardWillHideNotification, object: nil)
+        }
+    }
+    
+    
     override func isNeedResetAudioPlayerDelegate() -> Bool {
         return false
     }
@@ -88,19 +104,22 @@ class LoginViewController: BaseUIViewController {
             logImage.frame = frame
             logImage.center.x = originCenter!.x
             logImage.center.y = originCenter!.y + 10
+            isKeyboardShow = true
         }
-        isKeyboardShow = true
+        
         
     }
     
     
     
     func keyboardWillHide(notification: NSNotification) {
-        isKeyboardShow = false
+        if isKeyboardShow {
+            isKeyboardShow = false
         
-        view.frame.origin.y += 65
-        logImage.frame = originFrame!
-        logImage.center = originCenter!
+            view.frame.origin.y += 65
+            logImage.frame = originFrame!
+            logImage.center = originCenter!
+        }
     }
     
     @IBAction func loginButtonPressed(sender: UIButton) {

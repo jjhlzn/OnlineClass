@@ -2,10 +2,35 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="745e674d-10c8-4746-bcd6-772ad4860d33" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Demo/AudioPlayer/AudioItem.swift" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Demo/AudioPlayer/AudioPlayer.swift" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Demo/AudioPlayer/Reachability.swift" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/OnlineClass.xcworkspace/xcuserdata/lzn.xcuserdatad/UserInterfaceState.xcuserstate" afterPath="$PROJECT_DIR$/OnlineClass.xcworkspace/xcuserdata/lzn.xcuserdatad/UserInterfaceState.xcuserstate" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/lzn.xcuserdatad/xcschemes/Alamofire.xcscheme" afterPath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/lzn.xcuserdatad/xcschemes/Alamofire.xcscheme" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/OnlineClass.iml" afterPath="$PROJECT_DIR$/.idea/OnlineClass.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CommentController.swift" afterPath="$PROJECT_DIR$/CommentController.swift" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Demo/AudioPlayer iOS/AlbumDetailController.swift" afterPath="$PROJECT_DIR$/Demo/AudioPlayer iOS/AlbumDetailController.swift" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Demo/AudioPlayer iOS/AlbumListController.swift" afterPath="$PROJECT_DIR$/Demo/AudioPlayer iOS/AlbumListController.swift" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Demo/AudioPlayer iOS/AppDelegate.swift" afterPath="$PROJECT_DIR$/Demo/AudioPlayer iOS/AppDelegate.swift" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Demo/AudioPlayer iOS/AudioPlayerExtension.swift" afterPath="$PROJECT_DIR$/Demo/AudioPlayer iOS/AudioPlayerExtension.swift" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Demo/AudioPlayer iOS/BaseUIViewController.swift" afterPath="$PROJECT_DIR$/Demo/AudioPlayer iOS/BaseUIViewController.swift" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Demo/AudioPlayer iOS/PlayerCell.swift" afterPath="$PROJECT_DIR$/Demo/AudioPlayer iOS/PlayerCell.swift" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Demo/AudioPlayer iOS/SongViewController.swift" afterPath="$PROJECT_DIR$/Demo/AudioPlayer iOS/SongViewController.swift" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Demo/AudioPlayer iOS/SongViewController2.swift" afterPath="$PROJECT_DIR$/Demo/AudioPlayer iOS/SongViewController2.swift" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Demo/AudioPlayer iOS/Utils.swift" afterPath="$PROJECT_DIR$/Demo/AudioPlayer iOS/Utils.swift" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/OnlineClass.xcodeproj/project.pbxproj" afterPath="$PROJECT_DIR$/OnlineClass.xcodeproj/project.pbxproj" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/OnlineClass.xcodeproj/xcuserdata/lzn.xcuserdatad/xcdebugger/Breakpoints_v2.xcbkptlist" afterPath="$PROJECT_DIR$/OnlineClass.xcodeproj/xcuserdata/lzn.xcuserdatad/xcdebugger/Breakpoints_v2.xcbkptlist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Podfile" afterPath="$PROJECT_DIR$/Podfile" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Podfile.lock" afterPath="$PROJECT_DIR$/Podfile.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Manifest.lock" afterPath="$PROJECT_DIR$/Pods/Manifest.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Pods.xcodeproj/project.pbxproj" afterPath="$PROJECT_DIR$/Pods/Pods.xcodeproj/project.pbxproj" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/lzn.xcuserdatad/xcschemes/Pods.xcscheme" afterPath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/lzn.xcuserdatad/xcschemes/Pods.xcscheme" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ServiceConfiguration.swift" afterPath="$PROJECT_DIR$/ServiceConfiguration.swift" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/lzn.xcuserdatad/xcschemes/xcschememanagement.plist" afterPath="$PROJECT_DIR$/Pods/Pods.xcodeproj/xcuserdata/lzn.xcuserdatad/xcschemes/xcschememanagement.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Target Support Files/Pods/Pods-acknowledgements.markdown" afterPath="$PROJECT_DIR$/Pods/Target Support Files/Pods/Pods-acknowledgements.markdown" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Target Support Files/Pods/Pods-acknowledgements.plist" afterPath="$PROJECT_DIR$/Pods/Target Support Files/Pods/Pods-acknowledgements.plist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Target Support Files/Pods/Pods-frameworks.sh" afterPath="$PROJECT_DIR$/Pods/Target Support Files/Pods/Pods-frameworks.sh" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Target Support Files/Pods/Pods.debug.xcconfig" afterPath="$PROJECT_DIR$/Pods/Target Support Files/Pods/Pods.debug.xcconfig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Target Support Files/Pods/Pods.release.xcconfig" afterPath="$PROJECT_DIR$/Pods/Target Support Files/Pods/Pods.release.xcconfig" />
     </list>
     <ignored path="OnlineClass.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -30,17 +55,29 @@
         <entry file="file://$PROJECT_DIR$/Demo/AudioPlayer iOS/AppDelegate.swift">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="360">
-              <caret line="24" column="45" selection-start-line="24" selection-start-column="45" selection-end-line="24" selection-end-column="45" />
+              <caret line="25" column="45" selection-start-line="25" selection-start-column="45" selection-end-line="25" selection-end-column="45" />
+              <folding>
+                <marker date="1462112863000" expanded="true" signature="0:145" placeholder="//..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ServiceConfiguration.swift" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ServiceConfiguration.swift">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="855">
+              <caret line="57" column="5" selection-start-line="57" selection-start-column="5" selection-end-line="57" selection-end-column="5" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ServiceConfiguration.swift" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/ServiceConfiguration.swift">
+      <file leaf-file-name="Podfile" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Podfile">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="855">
-              <caret line="57" column="5" selection-start-line="57" selection-start-column="5" selection-end-line="57" selection-end-column="5" />
+            <state relative-caret-position="75">
+              <caret line="5" column="20" selection-start-line="5" selection-start-column="20" selection-end-line="5" selection-end-column="20" />
               <folding />
             </state>
           </provider>
@@ -55,6 +92,7 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/ServiceConfiguration.swift" />
+        <option value="$PROJECT_DIR$/Podfile" />
       </list>
     </option>
   </component>
@@ -148,6 +186,10 @@
       <pane id="Cidr.FilesView" />
     </panes>
   </component>
+  <component name="PropertiesComponent">
+    <property name="settings.editor.selected.configurable" value="CocoaPods" />
+    <property name="settings.editor.splitter.proportion" value="0.2" />
+  </component>
   <component name="RunManager" selected="Application.AudioPlayer iOS">
     <configuration default="true" type="AppleRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="OnlineClass" TARGET_NAME="AudioPlayer iOS" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="OnlineClass" RUN_TARGET_NAME="AudioPlayer iOS" MAKE_ACTIVE="TRUE" WAIT_FOR="FALSE">
       <envs />
@@ -170,12 +212,20 @@
       </EXTENSION>
       <method />
     </configuration>
-    <list size="5">
+    <configuration default="false" name="KDEAudioPlayer" type="AppleRunConfiguration" factoryName="Application" WORKING_DIR="" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Pods" TARGET_NAME="KDEAudioPlayer" CONFIG_NAME="Debug" SCHEME_NAME="KDEAudioPlayer" MAKE_ACTIVE="TRUE" WAIT_FOR="FALSE">
+      <envs />
+      <EXTENSION ID="org.jetbrains.appcode.reveal.RevealRunConfigurationExtension">
+        <REVEAL_SETTINGS autoInject="false" autoInstall="true" askToEnableAutoInstall="true" />
+      </EXTENSION>
+      <method />
+    </configuration>
+    <list size="6">
       <item index="0" class="java.lang.String" itemvalue="Application.AudioPlayer iOS" />
       <item index="1" class="java.lang.String" itemvalue="Application.AudioPlayer OS X" />
       <item index="2" class="java.lang.String" itemvalue="Application.AudioPlayer tvOS" />
       <item index="3" class="java.lang.String" itemvalue="Application.Alamofire" />
       <item index="4" class="java.lang.String" itemvalue="Application.Pods" />
+      <item index="5" class="java.lang.String" itemvalue="Application.KDEAudioPlayer" />
     </list>
   </component>
   <component name="ShelveChangesManager" show_recycled="false">
@@ -192,13 +242,13 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1440" height="824" extended-state="6" />
-    <editor active="true" />
+    <frame x="0" y="23" width="1440" height="824" extended-state="0" />
+    <editor active="false" />
     <layout>
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24305555" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32980132" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32980132" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
@@ -227,8 +277,10 @@
     <entry file="file://$PROJECT_DIR$/Demo/AudioPlayer iOS/AppDelegate.swift">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
-          <caret line="24" column="45" selection-start-line="24" selection-start-column="45" selection-end-line="24" selection-end-column="45" />
-          <folding />
+          <caret line="25" column="45" selection-start-line="25" selection-start-column="45" selection-end-line="25" selection-end-column="45" />
+          <folding>
+            <marker date="1462112863000" expanded="true" signature="0:145" placeholder="//..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -236,6 +288,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="855">
           <caret line="57" column="5" selection-start-line="57" selection-start-column="5" selection-end-line="57" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Podfile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="20" selection-start-line="5" selection-start-column="20" selection-end-line="5" selection-end-column="20" />
           <folding />
         </state>
       </provider>

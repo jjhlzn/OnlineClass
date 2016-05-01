@@ -8,7 +8,7 @@
 
 import Foundation
 import UIKit
-
+import KDEAudioPlayer
 
 class Utils {
     static func getDataFromUrl(url:NSURL, completion: ((data: NSData?, response: NSURLResponse?, error: NSError? ) -> Void)) {

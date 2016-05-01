@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import MediaPlayer
+import KDEAudioPlayer
 
 class SongViewController2: BaseUIViewController,
         UIGestureRecognizerDelegate, CommentDelegate {
@@ -62,9 +62,10 @@ class SongViewController2: BaseUIViewController,
         self.navigationController?.interactivePopGestureRecognizer!.delegate = self
         
         if audioPlayer.currentItem != nil {
-            print(audioPlayer.currentItem!.song)
-            navigationItem.title = audioPlayer.currentItem!.song!.name
-            print("title = \( audioPlayer.currentItem!.song!.name)")
+            let item = audioPlayer.currentItem as! MyAudioItem
+            print(item.song)
+            navigationItem.title = item.song!.name
+            print("title = \( item.song!.name)")
         }
         reload()
     }

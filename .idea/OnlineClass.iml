@@ -5,21 +5,16 @@
       <sourceFolder url="file://$MODULE_DIR$/Sounds/sound2.caf" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Sounds/sound1.caf" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Podfile" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Demo/AudioPlayer/AudioItem.swift" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Demo/AudioPlayer/Reachability.swift" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Demo/AudioPlayer/AudioPlayer.swift" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Demo/AudioPlayer iOS/AudioPlayerExtension.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Demo/AudioPlayer iOS/CommentListController.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Demo/AudioPlayer iOS/MyInfoVieController.swift" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Demo/AudioPlayer iOS/PlayerCell.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Demo/AudioPlayer iOS/Info.plist" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Demo/AudioPlayer iOS/SongViewController.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Demo/AudioPlayer iOS/SongCell.swift" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Demo/AudioPlayer iOS/Assets.xcassets" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Demo/AudioPlayer iOS/AlbumDetailController.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Demo/AudioPlayer iOS/AudioPlayerExtension.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Demo/AudioPlayer iOS/LoadingOverlay.swift" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Demo/AudioPlayer iOS/AlbumCell.swift" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Demo/AudioPlayer iOS/CommentCell.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Demo/AudioPlayer iOS/AppDelegate.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Demo/AudioPlayer iOS/CommentCell.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Demo/AudioPlayer iOS/AlbumDetailController.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Demo/AudioPlayer iOS/Utils.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Demo/AudioPlayer iOS/SongViewController2.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Demo/AudioPlayer iOS/Model.swift" isTestSource="false" />
@@ -27,8 +22,10 @@
       <sourceFolder url="file://$MODULE_DIR$/Demo/AudioPlayer iOS/Base.lproj/LaunchScreen.storyboard" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Demo/AudioPlayer iOS/Base.lproj/Main.storyboard" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Demo/AudioPlayer iOS/UIImageView.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Demo/AudioPlayer iOS/Assets.xcassets" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Demo/AudioPlayer iOS/AlbumCell.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Demo/AudioPlayer iOS/LoginViewController.swift" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Demo/AudioPlayer iOS/CommentListController.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Demo/AudioPlayer iOS/PlayerCell.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Demo/AudioPlayer iOS/AlbumListController.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/CommentHeaderCell.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/MoreLinkCell.swift" isTestSource="false" />
@@ -40,21 +37,21 @@
       <sourceFolder url="file://$MODULE_DIR$/MyInfoMainCell.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/CommentListDataSourceAndDelegate.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/Alamofire/Source/Validation.swift" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Pods/Alamofire/Source/Timeline.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Pods/Alamofire/Source/Response.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/Alamofire/Source/Error.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/Alamofire/Source/Stream.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/Alamofire/Source/MultipartFormData.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/Alamofire/Source/ServerTrustPolicy.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/Alamofire/Source/ParameterEncoding.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/Alamofire/Source/Result.swift" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Pods/Alamofire/Source/Upload.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/Alamofire/Source/Manager.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/Alamofire/Source/Download.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/Alamofire/Source/NetworkReachabilityManager.swift" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Pods/Alamofire/Source/ResponseSerialization.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Pods/Alamofire/Source/Timeline.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/Alamofire/Source/Request.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/Alamofire/Source/Notifications.swift" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Pods/Alamofire/Source/Response.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Pods/Alamofire/Source/ResponseSerialization.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Pods/Alamofire/Source/Upload.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/Alamofire/Source/Alamofire.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/Alamofire/Alamofire.modulemap" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/Alamofire/Alamofire-umbrella.h" isTestSource="false" />
@@ -62,19 +59,31 @@
       <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/Alamofire/Alamofire-prefix.pch" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/Alamofire/Alamofire.xcconfig" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/Alamofire/Alamofire-dummy.m" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/Pods/Pods-acknowledgements.plist" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/Pods/Pods.modulemap" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/KDEAudioPlayer/KDEAudioPlayer.xcconfig" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/KDEAudioPlayer/KDEAudioPlayer.modulemap" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/KDEAudioPlayer/Info.plist" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/KDEAudioPlayer/KDEAudioPlayer-prefix.pch" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/KDEAudioPlayer/KDEAudioPlayer-umbrella.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/KDEAudioPlayer/KDEAudioPlayer-dummy.m" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/Pods/Pods-acknowledgements.markdown" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/Pods/Pods-resources.sh" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/Pods/Pods-frameworks.sh" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/Pods/Pods.debug.xcconfig" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/Pods/Pods.modulemap" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/Pods/Pods.release.xcconfig" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/Pods/Info.plist" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/Pods/Pods-umbrella.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/Pods/Pods-dummy.m" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/Pods/Pods-acknowledgements.markdown" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/Pods/Pods-resources.sh" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/Pods/Pods.debug.xcconfig" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Pods/Target Support Files/Pods/Pods-acknowledgements.plist" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Pods/KDEAudioPlayer/AudioPlayer/AudioPlayer/AudioItem.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Pods/KDEAudioPlayer/AudioPlayer/AudioPlayer/Reachability.swift" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Pods/KDEAudioPlayer/AudioPlayer/AudioPlayer/AudioPlayer.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/ServerResponse.swift" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/NoCommentCell.swift" isTestSource="false" />
     </content>
+    <content url="file://$USER_HOME$/Library/Caches/AppCode2016.1/DerivedData/OnlineClass-fnxsnyazfkojyzgsctuytjqqhrhn/Build/Intermediates/OnlineClass.build/Debug-iphoneos/AudioPlayer iOS.build/DerivedSources" />
+    <content url="file://$USER_HOME$/Library/Caches/AppCode2016.1/DerivedData/OnlineClass-fnxsnyazfkojyzgsctuytjqqhrhn/Build/Intermediates/Pods.build/Debug-iphoneos/Alamofire.build/DerivedSources" />
+    <content url="file://$USER_HOME$/Library/Caches/AppCode2016.1/DerivedData/OnlineClass-fnxsnyazfkojyzgsctuytjqqhrhn/Build/Intermediates/Pods.build/Debug-iphoneos/Pods.build/DerivedSources" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module-library">
       <library name="Header Search Paths">

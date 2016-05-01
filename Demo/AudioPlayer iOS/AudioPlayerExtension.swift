@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import KDEAudioPlayer
 
 extension AudioPlayer {
     
@@ -20,7 +21,7 @@ extension AudioPlayer {
             if eachSong.wholeUrl == song.wholeUrl {
                 startIndex = idx
             }
-            let audioItem = AudioItem(highQualitySoundURL: NSURL(string: eachSong.wholeUrl))!
+            let audioItem = MyAudioItem(song: eachSong, highQualitySoundURL: NSURL(string: eachSong.wholeUrl))!
             audioItem.song = eachSong
             print(audioItem.song?.name)
             items.append(audioItem)
@@ -54,7 +55,7 @@ extension AudioPlayer {
 }
 
 class MyAudioItem : AudioItem {
-    /*
+    
     var song: Song!
     
     convenience init?(song: Song, highQualitySoundURL: NSURL? = nil, mediumQualitySoundURL: NSURL? = nil, lowQualitySoundURL: NSURL? = nil) {
@@ -75,6 +76,6 @@ class MyAudioItem : AudioItem {
     init?(song: Song, soundURLs: [AudioQuality: NSURL]) {
         super.init(soundURLs: soundURLs)
         self.song = song
-    } */
+    }
 
 }

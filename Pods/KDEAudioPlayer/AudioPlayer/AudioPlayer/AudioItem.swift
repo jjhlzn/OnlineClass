@@ -62,7 +62,6 @@ public class AudioItem: NSObject {
     /// Returns the available qualities
     public let soundURLs: [AudioQuality: NSURL]
 
-    var song: Song?
 
     // MARK: Initialization
 

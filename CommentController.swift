@@ -69,7 +69,7 @@ class CommentController : NSObject {
         NSLog("%s: sendComment", TAG)
         isSendPressed = true
         let commentConent = commentFiled2.text
-        let song = viewController.getAudioPlayer().currentItem?.song
+        let song = (viewController.getAudioPlayer().currentItem as! MyAudioItem).song
         if (song == nil) {
             NSLog("%s: song is null", TAG)
             return
