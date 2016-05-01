@@ -48,6 +48,7 @@ class PlayerCell: UITableViewCell, AudioPlayerDelegate {
         progressBar.addTarget(self, action: #selector(progressBarTouchUp), forControlEvents: .TouchUpInside)
         progressBar.addTarget(self, action: #selector(progressBarTouchUp), forControlEvents: .TouchUpOutside)
         progressBar.addTarget(self, action: #selector(progressBarTouchDown), forControlEvents: .TouchDown)
+        progressBar.enabled = false
         
         if audioPlayer.currentItemDuration != nil {
             durationLabel.text = Utils.stringFromTimeInterval(audioPlayer.currentItemDuration!)
@@ -82,6 +83,7 @@ class PlayerCell: UITableViewCell, AudioPlayerDelegate {
         durationLabel.text = "00:00"
         bufferProgress.progress = 0
         progressBar.value = 0
+        progressBar.enabled = false
         playButton.setImage(UIImage(named: "play"), forState: .Normal)
     }
     
@@ -102,7 +104,7 @@ class PlayerCell: UITableViewCell, AudioPlayerDelegate {
     }
     
     func updatePlayAndPauseButton() {
-        if audioPlayer.state == AudioPlayerState.Playing || audioPlayer.state == AudioPlayerState.Buffering || AudioPlayerState.WaitingForConnection == audioPlayer.state  {
+        if audioPlayer.state == AudioPlayerState.Playing  {
             playButton.setImage(UIImage(named: "pause"), forState: .Normal)
         } else {
             playButton.setImage(UIImage(named: "play"), forState: .Normal)
@@ -170,7 +172,9 @@ class PlayerCell: UITableViewCell, AudioPlayerDelegate {
     }
     
     func progressBarValueChanged() {
-        playingLabel.text = Utils.stringFromTimeInterval((audioPlayer.currentItemDuration)! * Double(progressBar.value))
+        if audioPlayer.currentItemDuration != nil {
+            playingLabel.text = Utils.stringFromTimeInterval((audioPlayer.currentItemDuration)! * Double(progressBar.value))
+        }
     }
 
     func progressBarTouchUp() {
@@ -187,10 +191,10 @@ class PlayerCell: UITableViewCell, AudioPlayerDelegate {
             oldProgress = startDragProgress
         }
         playingLabel.text = Utils.stringFromTimeInterval(newProgress)
+        
         audioPlayer.seekToTime(newProgress)
-        //print("seekToTime")
+
         updateProgressBar = true
-        //print("setupdateProgressBar to true")
     }
     
     func progressBarTouchDown() {
@@ -203,6 +207,15 @@ class PlayerCell: UITableViewCell, AudioPlayerDelegate {
         
         updatePrevAndNextButtonStatus()
         updatePlayAndPauseButton()
+        
+        
+        if to == AudioPlayerState.Stopped || to == AudioPlayerState.WaitingForConnection {
+            progressBar.enabled = false
+        }
+        
+        if to == AudioPlayerState.Buffering || to == AudioPlayerState.Playing {
+            progressBar.enabled = true
+        }
         
     }
     
