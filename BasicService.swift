@@ -20,12 +20,13 @@ class BasicService {
                      //controller中定义的处理函数
                      completion: (resp: T) -> Void) -> T {
         let serverResponse = T()
-        
+        print(url)
         Alamofire.request(method, url, parameters: params)
             .responseJSON { response in
                 //print("---------------------------------StartRequest---------------------------------")
                 //debugPrint(response)
                 //print("----------------------------------EndRequest----------------------------------")
+                
                 if response.result.isFailure {
                     serverResponse.status = -1
                     serverResponse.errorMessage = "服务器返回出错"

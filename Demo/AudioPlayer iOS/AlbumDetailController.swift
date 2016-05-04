@@ -124,8 +124,8 @@ class AlbumDetailController: BaseUIViewController, UITableViewDataSource, UITabl
                 var startIndex = 0
                 var index = 0
                 for item in album!.songs {
-                    let url = NSURL(string: ServiceConfiguration.GetSongUrl(item.url))
-                    print(url)
+                    //let url = NSURL(string: ServiceConfiguration.GetSongUrl(item.url))
+                    let url = NSURL(string: "http://192.168.0.109:88/broadwavehigh.mp3?src=1")
                     let audioItem = MyAudioItem(song: item, highQualitySoundURL: url)
                     //(audioItem as! MyAudioItem).song = item
                     audioItems.append(audioItem!)
