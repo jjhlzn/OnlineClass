@@ -13,11 +13,17 @@ class BaseModelObject : NSObject {
     
 }
 
+
+enum CourseType: String {
+    case Common, Vip, Live
+}
+
 class Album : BaseModelObject {
     var id: String = ""
     var name: String = ""
     var author: String = ""
     var image: String = ""
+    var courseType = CourseType.Common
     var songs = [Song]()
     
     var hasImage: Bool {

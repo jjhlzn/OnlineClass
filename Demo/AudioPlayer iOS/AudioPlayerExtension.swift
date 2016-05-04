@@ -21,7 +21,11 @@ extension AudioPlayer {
             if eachSong.wholeUrl == song.wholeUrl {
                 startIndex = idx
             }
-            let audioItem = MyAudioItem(song: eachSong, highQualitySoundURL: NSURL(string: eachSong.wholeUrl))!
+            var audioItem = MyAudioItem(song: eachSong, highQualitySoundURL: NSURL(string: eachSong.wholeUrl))!
+            if eachSong.album.courseType == CourseType.Live {
+                var url = NSURL(string: eachSong.wholeUrl)
+                audioItem = MyAudioItem(song: eachSong, highQualitySoundURL: url)!
+            }
             audioItem.song = eachSong
             print(audioItem.song?.name)
             items.append(audioItem)

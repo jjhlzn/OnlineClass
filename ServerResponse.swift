@@ -48,6 +48,7 @@ class GetAlbumsResponse : PageServerResponse<Album> {
             album.name = albumJson["name"] as! String
             album.author = albumJson["author"] as! String
             album.image = albumJson["image"] as! String
+            album.courseType = CourseType(rawValue: albumJson["type"] as! String)!
             albums.append(album)
         }
         self.resultSet = albums

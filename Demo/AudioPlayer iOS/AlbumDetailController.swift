@@ -13,7 +13,7 @@ class AlbumDetailController: BaseUIViewController, UITableViewDataSource, UITabl
     var tag = "AlbumDetailController"
 
     @IBOutlet weak var playingButton: UIButton!
-
+    
     
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var descLabel: UILabel!
@@ -124,8 +124,10 @@ class AlbumDetailController: BaseUIViewController, UITableViewDataSource, UITabl
                 var startIndex = 0
                 var index = 0
                 for item in album!.songs {
-                    //let url = NSURL(string: ServiceConfiguration.GetSongUrl(item.url))
-                    let url = NSURL(string: "http://192.168.0.109:88/broadwavehigh.mp3?src=1")
+                    var url = NSURL(string: ServiceConfiguration.GetSongUrl(item.url))
+                    if item.album.courseType == CourseType.Live {
+                        url = NSURL(string: item.url)
+                    }
                     let audioItem = MyAudioItem(song: item, highQualitySoundURL: url)
                     //(audioItem as! MyAudioItem).song = item
                     audioItems.append(audioItem!)

@@ -16,6 +16,7 @@ class AlbumListController: BaseUIViewController, UITableViewDataSource, UITableV
     @IBOutlet var tableView: UITableView!
     
     var pagableController = PagableController<Album>()
+    var courseType : CourseType = CourseType.Common
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,7 +31,6 @@ class AlbumListController: BaseUIViewController, UITableViewDataSource, UITableV
         pagableController.tableView = tableView
         
         //pagableController.loadMore()
-    
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -39,12 +39,28 @@ class AlbumListController: BaseUIViewController, UITableViewDataSource, UITableV
     
     //PageableControllerDelegate
     func searchHandler() {
-        BasicService().sendRequest(ServiceConfiguration.GET_ALBUMS) {
+        var params = [String: AnyObject]()
+        switch courseType {
+        case .Common:
+            params = ["type": "common"]
+            break
+        case .Live:
+            params = ["type": "live"]
+            break
+        case .Vip:
+            params = ["type": "vip"]
+            break
+            
+        default:
+            break
+        }
+        BasicService().sendRequest(ServiceConfiguration.GET_ALBUMS, params: params) {
             (resp: GetAlbumsResponse) -> Void in
             dispatch_async(dispatch_get_main_queue()) {
                 self.pagableController.afterHandleResponse(resp)
             }
         }
+
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

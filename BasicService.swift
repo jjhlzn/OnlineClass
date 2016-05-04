@@ -15,7 +15,7 @@ class BasicService {
     
     
     func sendRequest<T: ServerResponse>(url: String,
-                     method: Alamofire.Method = .GET,
+                     method: Alamofire.Method = .POST,
                      params: [String: AnyObject]? = [String: AnyObject](),
                      //controller中定义的处理函数
                      completion: (resp: T) -> Void) -> T {
@@ -26,6 +26,7 @@ class BasicService {
                 //print("---------------------------------StartRequest---------------------------------")
                 //debugPrint(response)
                 //print("----------------------------------EndRequest----------------------------------")
+                
                 
                 if response.result.isFailure {
                     serverResponse.status = -1

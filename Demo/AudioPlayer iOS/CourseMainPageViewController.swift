@@ -37,38 +37,37 @@ class CourseMainPageViewController: BaseUIViewController, UITableViewDataSource,
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         
-        
         let row = indexPath.row
         var imageName = ""
         
         if indexPath.section == 0 {
-        switch row {
-        case 0:
-            let cell = tableView.dequeueReusableCellWithIdentifier("courseTypeCell") as! CourseTypeCell
-            cell.courseTypeName.text = "直播信用卡秘诀！"
-            imageName = "liveAudio"
-            cell.courseTypeImageView.image = UIImage(named: imageName)
-            return cell
-            
-        case 1:
-            let cell = tableView.dequeueReusableCellWithIdentifier("courseTypeCell") as! CourseTypeCell
-            cell.courseTypeName.text  = "往期课程内容"
-            imageName = "beforeCourse"
-            cell.courseTypeImageView.image = UIImage(named: imageName)
-            return cell
-            
-        case 2:
-            let cell = tableView.dequeueReusableCellWithIdentifier("courseTypeCell") as! CourseTypeCell
-            cell.courseTypeName.text = "VIP课堂"
-            imageName = "vipCourse"
-            cell.courseTypeImageView.image = UIImage(named: imageName)
-            return cell
-            
-            
-            
-        default:
-            return tableView.dequeueReusableCellWithIdentifier("courseTypeCell") as! CourseTypeCell
-        }
+            switch row {
+            case 0:
+                let cell = tableView.dequeueReusableCellWithIdentifier("courseTypeCell") as! CourseTypeCell
+                cell.courseTypeName.text = "直播信用卡秘诀！"
+                imageName = "liveAudio"
+                cell.courseTypeImageView.image = UIImage(named: imageName)
+                return cell
+                
+            case 1:
+                let cell = tableView.dequeueReusableCellWithIdentifier("courseTypeCell") as! CourseTypeCell
+                cell.courseTypeName.text  = "往期课程内容"
+                imageName = "beforeCourse"
+                cell.courseTypeImageView.image = UIImage(named: imageName)
+                return cell
+                
+            case 2:
+                let cell = tableView.dequeueReusableCellWithIdentifier("courseTypeCell") as! CourseTypeCell
+                cell.courseTypeName.text = "VIP课堂"
+                imageName = "vipCourse"
+                cell.courseTypeImageView.image = UIImage(named: imageName)
+                return cell
+                
+                
+                
+            default:
+                return tableView.dequeueReusableCellWithIdentifier("courseTypeCell") as! CourseTypeCell
+            }
         } else {
             let cell = tableView.dequeueReusableCellWithIdentifier("functionCell") as! FunctionCell
             cell.firstImageView.image = UIImage(named: "up")
@@ -98,15 +97,25 @@ class CourseMainPageViewController: BaseUIViewController, UITableViewDataSource,
             let row = indexPath.row
             switch row {
             case 0:
+                performSegueWithIdentifier("beforeCourseSegue", sender: CourseType.Live.rawValue)
                 break
             case 1:
-                performSegueWithIdentifier("beforeCourseSegue", sender: nil)
+                performSegueWithIdentifier("beforeCourseSegue", sender: CourseType.Common.rawValue)
                 break
             case 2:
+                performSegueWithIdentifier("beforeCourseSegue", sender: CourseType.Vip.rawValue)
                 break
             default:
                 break
             }
+        }
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "beforeCourseSegue" {
+            let dest = segue.destinationViewController as! AlbumListController
+            
+            dest.courseType = CourseType(rawValue: sender as! String)!
         }
     }
 

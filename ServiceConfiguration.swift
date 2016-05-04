@@ -44,6 +44,8 @@ class ServiceConfiguration {
             return "\(http)://\(serverName):\(port)/albums"
         }
     }
+
+    
     static var GET_ALBUM_SONGS: String {
         get {
             return "\(http)://\(serverName):\(port)/album/songs"

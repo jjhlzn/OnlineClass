@@ -11,7 +11,7 @@
 		1C09D3C11CD1D462004A8F9C /* CommentListDataSourceAndDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C09D3C01CD1D462004A8F9C /* CommentListDataSourceAndDelegate.swift */; };
 		1C1E68EF1CC65DF600CEA029 /* CommentListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C1E68EE1CC65DF600CEA029 /* CommentListController.swift */; };
 		1C1E68F11CC65F7500CEA029 /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C1E68F01CC65F7500CEA029 /* CommentCell.swift */; };
-		1C1E69191CC9079100CEA029 /* SongViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C1E69181CC9079100CEA029 /* SongViewController2.swift */; };
+		1C1E69191CC9079100CEA029 /* SongViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C1E69181CC9079100CEA029 /* SongViewController.swift */; };
 		1C1E691B1CC90A6500CEA029 /* PlayerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C1E691A1CC90A6500CEA029 /* PlayerCell.swift */; };
 		1C1E69211CCA05E500CEA029 /* MoreLinkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C1E69201CCA05E500CEA029 /* MoreLinkCell.swift */; };
 		1C1E69231CCA0F1700CEA029 /* CommentHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C1E69221CCA0F1700CEA029 /* CommentHeaderCell.swift */; };
@@ -35,7 +35,6 @@
 		1CEFF7941CC0BBBF000DEFF7 /* AlbumDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CEFF7931CC0BBBF000DEFF7 /* AlbumDetailController.swift */; };
 		1CEFF7961CC0C4C9000DEFF7 /* SongCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CEFF7951CC0C4C9000DEFF7 /* SongCell.swift */; };
 		1CEFF7981CC0D63B000DEFF7 /* LoadingOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CEFF7971CC0D63B000DEFF7 /* LoadingOverlay.swift */; };
-		1CEFF79A1CC1153A000DEFF7 /* SongViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CEFF7991CC1153A000DEFF7 /* SongViewController.swift */; };
 		1CEFF79C1CC20171000DEFF7 /* AudioPlayerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CEFF79B1CC20171000DEFF7 /* AudioPlayerExtension.swift */; };
 		1CEFF79E1CC21E98000DEFF7 /* BaseUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CEFF79D1CC21E98000DEFF7 /* BaseUIViewController.swift */; };
 		E2A9AFA01C498E2900FE943A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A9AF9F1C498E2900FE943A /* AppDelegate.swift */; };
@@ -57,7 +56,7 @@
 		1C09D3C01CD1D462004A8F9C /* CommentListDataSourceAndDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentListDataSourceAndDelegate.swift; sourceTree = "<group>"; };
 		1C1E68EE1CC65DF600CEA029 /* CommentListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentListController.swift; sourceTree = "<group>"; };
 		1C1E68F01CC65F7500CEA029 /* CommentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CommentCell.swift; path = "Demo/AudioPlayer iOS/CommentCell.swift"; sourceTree = "<group>"; };
-		1C1E69181CC9079100CEA029 /* SongViewController2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongViewController2.swift; sourceTree = "<group>"; };
+		1C1E69181CC9079100CEA029 /* SongViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongViewController.swift; sourceTree = "<group>"; };
 		1C1E691A1CC90A6500CEA029 /* PlayerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlayerCell.swift; path = "Demo/AudioPlayer iOS/PlayerCell.swift"; sourceTree = "<group>"; };
 		1C1E69201CCA05E500CEA029 /* MoreLinkCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreLinkCell.swift; sourceTree = "<group>"; };
 		1C1E69221CCA0F1700CEA029 /* CommentHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentHeaderCell.swift; sourceTree = "<group>"; };
@@ -81,7 +80,6 @@
 		1CEFF7931CC0BBBF000DEFF7 /* AlbumDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumDetailController.swift; sourceTree = "<group>"; };
 		1CEFF7951CC0C4C9000DEFF7 /* SongCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SongCell.swift; path = "Demo/AudioPlayer iOS/SongCell.swift"; sourceTree = "<group>"; };
 		1CEFF7971CC0D63B000DEFF7 /* LoadingOverlay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoadingOverlay.swift; path = "Demo/AudioPlayer iOS/LoadingOverlay.swift"; sourceTree = "<group>"; };
-		1CEFF7991CC1153A000DEFF7 /* SongViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongViewController.swift; sourceTree = "<group>"; };
 		1CEFF79B1CC20171000DEFF7 /* AudioPlayerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AudioPlayerExtension.swift; path = "Demo/AudioPlayer iOS/AudioPlayerExtension.swift"; sourceTree = "<group>"; };
 		1CEFF79D1CC21E98000DEFF7 /* BaseUIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseUIViewController.swift; sourceTree = "<group>"; };
 		2053000950BB24BA28E4B256 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -236,10 +234,9 @@
 				E2A9AFAB1C498E2900FE943A /* Info.plist */,
 				1CEFF7801CBFB73D000DEFF7 /* AlbumListController.swift */,
 				1CEFF7931CC0BBBF000DEFF7 /* AlbumDetailController.swift */,
-				1CEFF7991CC1153A000DEFF7 /* SongViewController.swift */,
 				1CEFF79D1CC21E98000DEFF7 /* BaseUIViewController.swift */,
 				1C1E68EE1CC65DF600CEA029 /* CommentListController.swift */,
-				1C1E69181CC9079100CEA029 /* SongViewController2.swift */,
+				1C1E69181CC9079100CEA029 /* SongViewController.swift */,
 				1C2684731CCA62F40032C014 /* MyInfoVieController.swift */,
 				1C2684771CCB59200032C014 /* LoginViewController.swift */,
 				1CA3B20F1CD86B7800D0ABD8 /* CourseMainPageViewController.swift */,
@@ -464,7 +461,7 @@
 				1C2684781CCB59210032C014 /* LoginViewController.swift in Sources */,
 				1CEFF7861CBFB9FD000DEFF7 /* BasicService.swift in Sources */,
 				1CEFF7831CBFB809000DEFF7 /* Model.swift in Sources */,
-				1C1E69191CC9079100CEA029 /* SongViewController2.swift in Sources */,
+				1C1E69191CC9079100CEA029 /* SongViewController.swift in Sources */,
 				1C1E68F11CC65F7500CEA029 /* CommentCell.swift in Sources */,
 				1CEFF7921CC07838000DEFF7 /* UIImageView.swift in Sources */,
 				1C6420F61CD0605200119272 /* CommentController.swift in Sources */,
@@ -482,7 +479,6 @@
 				E2A9AFA01C498E2900FE943A /* AppDelegate.swift in Sources */,
 				1C2684761CCA66040032C014 /* MyInfoMainCell.swift in Sources */,
 				1CEFF7811CBFB73D000DEFF7 /* AlbumListController.swift in Sources */,
-				1CEFF79A1CC1153A000DEFF7 /* SongViewController.swift in Sources */,
 				1C09D3BF1CD09FED004A8F9C /* ToastMessage.swift in Sources */,
 				1CEFF78A1CBFBA70000DEFF7 /* ServerResponse.swift in Sources */,
 				1CEFF78E1CBFC9B7000DEFF7 /* AlbumCell.swift in Sources */,

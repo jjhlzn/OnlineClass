@@ -204,7 +204,7 @@ class PlayerCell: UITableViewCell, AudioPlayerDelegate {
     
     /*  AudioPlayerDelegate Implement functions   */
     func audioPlayer(audioPlayer: AudioPlayer, didChangeStateFrom from: AudioPlayerState, toState to: AudioPlayerState) {
-        
+        print("audioPlayer:didChangeStateFrom called，from = \(from), to = \(to)")
         updatePrevAndNextButtonStatus()
         updatePlayAndPauseButton()
         
@@ -230,6 +230,7 @@ class PlayerCell: UITableViewCell, AudioPlayerDelegate {
     
     func audioPlayer(audioPlayer: AudioPlayer, didUpdateProgressionToTime time: NSTimeInterval, percentageRead: Float) {
         //print("audioPlayer:didUpdateProgressionToTime called, progressPercentage = \(percentageRead)");
+        print("audioPlayer:didUpdateProgressionToTime called")
         updatePlayingProgress()
         
     }
@@ -241,11 +242,12 @@ class PlayerCell: UITableViewCell, AudioPlayerDelegate {
     
     
     func audioPlayer(audioPlayer: AudioPlayer, didLoadRange range: AudioPlayer.TimeRange, forItem item: AudioItem){
-        //print("audioPlayer:didLoadRange, loadRange = \(range)")
+        print("audioPlayer:didLoadRange, loadRange = \(range)")
         updateBufferProgress()
     }
     
     func audioPlayer(audioPlayer: AudioPlayer, didUpdateEmptyMetadataOnItem item: AudioItem, withData data: Metadata) {
+        print("audioPlayer:didUpdateEmptyMetadataOnItem called")
         if audioPlayer.currentItem != nil && audioPlayer.currentItem?.artworkImage != nil {
             artImageView.image = audioPlayer.currentItem?.artworkImage!
         }
