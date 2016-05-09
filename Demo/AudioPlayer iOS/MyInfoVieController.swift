@@ -8,12 +8,13 @@
 
 import UIKit
 
-class MyInfoVieController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class MyInfoVieController: BaseUIViewController, UITableViewDataSource, UITableViewDelegate {
     
     
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
+        super.viewDidLoad()
         tableView.dataSource = self
         tableView.delegate = self
     }

@@ -36,7 +36,7 @@ class SongViewController: BaseUIViewController,
     var commentController = CommentController()
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         commentController.bottomView = bottomView
         commentController.commentField = commentField
         commentController.bottomView2 = bottomView2

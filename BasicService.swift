@@ -12,8 +12,6 @@ import Alamofire
 
 class BasicService {
     
-    
-    
     func sendRequest<T: ServerResponse>(url: String,
                      method: Alamofire.Method = .POST,
                      params: [String: AnyObject]? = [String: AnyObject](),
@@ -21,12 +19,11 @@ class BasicService {
                      completion: (resp: T) -> Void) -> T {
         let serverResponse = T()
         print(url)
-        Alamofire.request(method, url, parameters: params)
+        Alamofire.request(method, url, parameters: addMoreRequestInfo(params))
             .responseJSON { response in
                 //print("---------------------------------StartRequest---------------------------------")
-                //debugPrint(response)
+                debugPrint(response)
                 //print("----------------------------------EndRequest----------------------------------")
-                
                 
                 if response.result.isFailure {
                     serverResponse.status = -1
@@ -41,7 +38,39 @@ class BasicService {
         }
         
         return serverResponse
-
+    }
+    
+    private func addMoreRequestInfo(params: [String: AnyObject]?) -> [String: AnyObject] {
+        var newParams = [String: AnyObject]()
+        newParams["request"] = params
+        newParams["client"] = getClientInfo()
+        newParams["userInfo"] = getUserInfo()
+        return newParams
+        
+    }
+    
+    private func getClientInfo() -> [String: AnyObject]{
+        var clientInfo = [String: AnyObject]()
+        clientInfo["platform"] = "iphone"
+        clientInfo["model"] = UIDevice.currentDevice().model
+        clientInfo["osversion"] = UIDevice.currentDevice().systemVersion
+        
+        let screensize = UIScreen.mainScreen().bounds
+        clientInfo["screensize"] = "\(screensize.width)*\(screensize.height)"
+        
+        let version = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleShortVersionString") as! String
+        let appBundle = NSBundle.mainBundle().objectForInfoDictionaryKey(kCFBundleVersionKey as String) as! String
+        clientInfo["appversion"] = "\(version).\(appBundle)"
+        
+        return clientInfo
+        
+    }
+    
+    private func getUserInfo() -> [String: AnyObject] {
+        var userInfo = [String: AnyObject]()
+        userInfo["userid"] = ""
+        userInfo["token"] = ""
+        return userInfo
     }
     
 }

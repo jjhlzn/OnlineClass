@@ -15,6 +15,15 @@ class BaseUIViewController: UIViewController, AudioPlayerDelegate {
         super.viewDidLoad()
         getAudioPlayer().delegate = self
         tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        
+        if self.navigationController != nil {
+            self.navigationController?.navigationBar.barTintColor =  UIColor(red: 0xF2/255, green: 0x61/255, blue: 0, alpha: 0.9)
+  
+            self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
+            self.navigationController?.navigationBar.barStyle = UIBarStyle.Black
+        }
+        
+        
     }
     
     
@@ -34,6 +43,7 @@ class BaseUIViewController: UIViewController, AudioPlayerDelegate {
 
     }
     
+        
     
     func getAudioPlayer() -> AudioPlayer {
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
@@ -73,7 +83,11 @@ class BaseUIViewController: UIViewController, AudioPlayerDelegate {
         if audioPlayer.state == AudioPlayerState.Playing || audioPlayer.state == AudioPlayerState.Buffering
             || audioPlayer.state == AudioPlayerState.WaitingForConnection{
             
-            let image = UIImage.animatedImageWithImages([UIImage(named: "wave1")!, UIImage(named: "wave2")!], duration: NSTimeInterval(0.8))
+            let image = UIImage.animatedImageWithImages([UIImage(named: "wave1")!,
+                UIImage(named: "wave2")!,
+                UIImage(named: "wave3")!,
+                UIImage(named: "wave4")!,
+                UIImage(named: "wave5")!], duration: NSTimeInterval(0.8))
             button.setImage(image, forState: .Normal)
         } else {
             button.setImage(UIImage(named: "wave1"), forState: .Normal)

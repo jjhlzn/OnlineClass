@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1C09D3BF1CD09FED004A8F9C /* ToastMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C09D3BE1CD09FED004A8F9C /* ToastMessage.swift */; };
 		1C09D3C11CD1D462004A8F9C /* CommentListDataSourceAndDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C09D3C01CD1D462004A8F9C /* CommentListDataSourceAndDelegate.swift */; };
+		1C154A501CDACCA6003B900C /* MyUISlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C154A4F1CDACCA6003B900C /* MyUISlider.swift */; };
 		1C1E68EF1CC65DF600CEA029 /* CommentListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C1E68EE1CC65DF600CEA029 /* CommentListController.swift */; };
 		1C1E68F11CC65F7500CEA029 /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C1E68F01CC65F7500CEA029 /* CommentCell.swift */; };
 		1C1E69191CC9079100CEA029 /* SongViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C1E69181CC9079100CEA029 /* SongViewController.swift */; };
@@ -54,6 +55,7 @@
 		02D70124E7CDD20484FE889C /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		1C09D3BE1CD09FED004A8F9C /* ToastMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToastMessage.swift; sourceTree = "<group>"; };
 		1C09D3C01CD1D462004A8F9C /* CommentListDataSourceAndDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentListDataSourceAndDelegate.swift; sourceTree = "<group>"; };
+		1C154A4F1CDACCA6003B900C /* MyUISlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyUISlider.swift; sourceTree = "<group>"; };
 		1C1E68EE1CC65DF600CEA029 /* CommentListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentListController.swift; sourceTree = "<group>"; };
 		1C1E68F01CC65F7500CEA029 /* CommentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CommentCell.swift; path = "Demo/AudioPlayer iOS/CommentCell.swift"; sourceTree = "<group>"; };
 		1C1E69181CC9079100CEA029 /* SongViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongViewController.swift; sourceTree = "<group>"; };
@@ -131,6 +133,14 @@
 			name = model;
 			sourceTree = "<group>";
 		};
+		1C154A4E1CDACC89003B900C /* ui */ = {
+			isa = PBXGroup;
+			children = (
+				1C154A4F1CDACCA6003B900C /* MyUISlider.swift */,
+			);
+			name = ui;
+			sourceTree = "<group>";
+		};
 		1C1E691E1CC9F97300CEA029 /* storyboard */ = {
 			isa = PBXGroup;
 			children = (
@@ -203,6 +213,7 @@
 		E2A9AF931C498E2900FE943A = {
 			isa = PBXGroup;
 			children = (
+				1C154A4E1CDACC89003B900C /* ui */,
 				1C2684721CCA5CA80032C014 /* lib */,
 				1C09D3BB1CD083A0004A8F9C /* model */,
 				1C1E691E1CC9F97300CEA029 /* storyboard */,
@@ -331,6 +342,7 @@
 				TargetAttributes = {
 					E2A9AF9B1C498E2900FE943A = {
 						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = KG295RN6U3;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -469,6 +481,7 @@
 				1C1E68EF1CC65DF600CEA029 /* CommentListController.swift in Sources */,
 				1CA3B2121CD86BD300D0ABD8 /* CourseTypeCell.swift in Sources */,
 				1CEFF79C1CC20171000DEFF7 /* AudioPlayerExtension.swift in Sources */,
+				1C154A501CDACCA6003B900C /* MyUISlider.swift in Sources */,
 				1CEE8AF31CD4998A00865FB6 /* PagableController.swift in Sources */,
 				1CA3B2141CD8E83B00D0ABD8 /* FunctionCell.swift in Sources */,
 				1CEFF7901CC077D0000DEFF7 /* Utils.swift in Sources */,
@@ -612,11 +625,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "$(SRCROOT)/Demo/AudioPlayer iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jinjunhang.onlineclass;
 				PRODUCT_NAME = AudioPlayer;
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -626,11 +642,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "$(SRCROOT)/Demo/AudioPlayer iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jinjunhang.onlineclass;
 				PRODUCT_NAME = AudioPlayer;
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

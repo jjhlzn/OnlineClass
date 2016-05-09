@@ -50,6 +50,10 @@ class PlayerCell: UITableViewCell, AudioPlayerDelegate {
         progressBar.addTarget(self, action: #selector(progressBarTouchDown), forControlEvents: .TouchDown)
         progressBar.enabled = false
         
+        if !inited {
+            bufferProgress.layer.transform = CATransform3DScale(bufferProgress.layer.transform, 1.0, 2.0, 1.5)
+        }
+        
         if audioPlayer.currentItemDuration != nil {
             durationLabel.text = Utils.stringFromTimeInterval(audioPlayer.currentItemDuration!)
         }
@@ -75,8 +79,6 @@ class PlayerCell: UITableViewCell, AudioPlayerDelegate {
         updateBufferProgress()
     }
     
-    
-
 
     func resetButtonAndProgress () {
         playingLabel.text = "00:00"
@@ -145,6 +147,8 @@ class PlayerCell: UITableViewCell, AudioPlayerDelegate {
     func updateBufferProgress() {
         if audioPlayer.currentItemDuration != nil && audioPlayer.currentItemLoadedRange != nil {
             bufferProgress.progress = Float( audioPlayer.currentItemLoadedRange!.latest / audioPlayer.currentItemDuration!)
+            self.progressBar.enabled = true
+            
         } else {
             bufferProgress.progress = 0
         }
