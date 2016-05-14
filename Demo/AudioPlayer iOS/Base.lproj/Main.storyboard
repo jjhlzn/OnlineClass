@@ -177,10 +177,10 @@
             </objects>
             <point key="canvasLocation" x="2336" y="-7"/>
         </scene>
-        <!--Album Detail Controller-->
+        <!--课列表-->
         <scene sceneID="URI-7O-Zhf">
             <objects>
-                <viewController hidesBottomBarWhenPushed="YES" id="3ur-uT-JCP" customClass="AlbumDetailController" customModule="AudioPlayer" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="课列表" hidesBottomBarWhenPushed="YES" id="3ur-uT-JCP" customClass="AlbumDetailController" customModule="AudioPlayer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="LQy-Y6-UBs">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
@@ -208,7 +208,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" red="0.60392156862745094" green="0.60392156862745094" blue="0.60392156862745094" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.50980392156862742" green="0.50196078431372548" blue="0.49411764705882355" alpha="0.77000000000000002" colorSpace="calibratedRGB"/>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="70" sectionHeaderHeight="28" sectionFooterHeight="28" id="gYA-rn-Gd4">
                                 <rect key="frame" x="0.0" y="157" width="320" height="411"/>
@@ -1212,7 +1212,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="xmL-0a-HxS"/>
-        <segue reference="SaH-Yu-nYI"/>
+        <segue reference="MPd-di-4DT"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.94901960784313721" green="0.38039215686274508" blue="0.0" alpha="0.90000000000000002" colorSpace="calibratedRGB"/>
 </document>
