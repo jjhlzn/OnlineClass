@@ -21,9 +21,13 @@
 		1C2684761CCA66040032C014 /* MyInfoMainCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C2684751CCA66040032C014 /* MyInfoMainCell.swift */; };
 		1C2684781CCB59210032C014 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C2684771CCB59200032C014 /* LoginViewController.swift */; };
 		1C6420F61CD0605200119272 /* CommentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C6420F51CD0605200119272 /* CommentController.swift */; };
+		1C8A2AD41CE4BEA60086C1B8 /* MallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C8A2AD31CE4BEA60086C1B8 /* MallViewController.swift */; };
+		1C8A2AD61CE5882A0086C1B8 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C8A2AD51CE5882A0086C1B8 /* SignupViewController.swift */; };
 		1CA3B2101CD86B7800D0ABD8 /* CourseMainPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA3B20F1CD86B7800D0ABD8 /* CourseMainPageViewController.swift */; };
 		1CA3B2121CD86BD300D0ABD8 /* CourseTypeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA3B2111CD86BD300D0ABD8 /* CourseTypeCell.swift */; };
 		1CA3B2141CD8E83B00D0ABD8 /* FunctionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA3B2131CD8E83B00D0ABD8 /* FunctionCell.swift */; };
+		1CDCC8ED1CE717F3001640CC /* ForgetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CDCC8EC1CE717F2001640CC /* ForgetPasswordViewController.swift */; };
+		1CDCC8EF1CE72203001640CC /* logoutCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CDCC8EE1CE72203001640CC /* logoutCell.swift */; };
 		1CEE8AF31CD4998A00865FB6 /* PagableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CEE8AF21CD4998A00865FB6 /* PagableController.swift */; };
 		1CEFF7811CBFB73D000DEFF7 /* AlbumListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CEFF7801CBFB73D000DEFF7 /* AlbumListController.swift */; };
 		1CEFF7831CBFB809000DEFF7 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CEFF7821CBFB809000DEFF7 /* Model.swift */; };
@@ -67,9 +71,13 @@
 		1C2684751CCA66040032C014 /* MyInfoMainCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyInfoMainCell.swift; sourceTree = "<group>"; };
 		1C2684771CCB59200032C014 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		1C6420F51CD0605200119272 /* CommentController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentController.swift; sourceTree = "<group>"; };
+		1C8A2AD31CE4BEA60086C1B8 /* MallViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MallViewController.swift; sourceTree = "<group>"; };
+		1C8A2AD51CE5882A0086C1B8 /* SignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		1CA3B20F1CD86B7800D0ABD8 /* CourseMainPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseMainPageViewController.swift; sourceTree = "<group>"; };
 		1CA3B2111CD86BD300D0ABD8 /* CourseTypeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseTypeCell.swift; sourceTree = "<group>"; };
 		1CA3B2131CD8E83B00D0ABD8 /* FunctionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FunctionCell.swift; sourceTree = "<group>"; };
+		1CDCC8EC1CE717F2001640CC /* ForgetPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgetPasswordViewController.swift; sourceTree = "<group>"; };
+		1CDCC8EE1CE72203001640CC /* logoutCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = logoutCell.swift; sourceTree = "<group>"; };
 		1CEE8AF21CD4998A00865FB6 /* PagableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PagableController.swift; sourceTree = "<group>"; };
 		1CEFF7801CBFB73D000DEFF7 /* AlbumListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumListController.swift; sourceTree = "<group>"; };
 		1CEFF7821CBFB809000DEFF7 /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Model.swift; path = "Demo/AudioPlayer iOS/Model.swift"; sourceTree = "<group>"; };
@@ -164,6 +172,7 @@
 				1C2684751CCA66040032C014 /* MyInfoMainCell.swift */,
 				1CA3B2111CD86BD300D0ABD8 /* CourseTypeCell.swift */,
 				1CA3B2131CD8E83B00D0ABD8 /* FunctionCell.swift */,
+				1CDCC8EE1CE72203001640CC /* logoutCell.swift */,
 			);
 			name = customCell;
 			sourceTree = "<group>";
@@ -251,6 +260,9 @@
 				1C2684731CCA62F40032C014 /* MyInfoVieController.swift */,
 				1C2684771CCB59200032C014 /* LoginViewController.swift */,
 				1CA3B20F1CD86B7800D0ABD8 /* CourseMainPageViewController.swift */,
+				1C8A2AD31CE4BEA60086C1B8 /* MallViewController.swift */,
+				1C8A2AD51CE5882A0086C1B8 /* SignupViewController.swift */,
+				1CDCC8EC1CE717F2001640CC /* ForgetPasswordViewController.swift */,
 			);
 			name = "AudioPlayer iOS";
 			path = "Demo/AudioPlayer iOS";
@@ -357,7 +369,7 @@
 					};
 				};
 			};
-			buildConfigurationList = E2A9AF971C498E2900FE943A /* Build configuration list for PBXProject "OnlineClass" */;
+			buildConfigurationList = E2A9AF971C498E2900FE943A /* Build configuration list for PBXProject "jufangzhushou" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -471,6 +483,7 @@
 				1CA3B2101CD86B7800D0ABD8 /* CourseMainPageViewController.swift in Sources */,
 				1C1E69231CCA0F1700CEA029 /* CommentHeaderCell.swift in Sources */,
 				1C2684781CCB59210032C014 /* LoginViewController.swift in Sources */,
+				1C8A2AD41CE4BEA60086C1B8 /* MallViewController.swift in Sources */,
 				1CEFF7861CBFB9FD000DEFF7 /* BasicService.swift in Sources */,
 				1CEFF7831CBFB809000DEFF7 /* Model.swift in Sources */,
 				1C1E69191CC9079100CEA029 /* SongViewController.swift in Sources */,
@@ -490,9 +503,12 @@
 				1CEFF7941CC0BBBF000DEFF7 /* AlbumDetailController.swift in Sources */,
 				1CEFF7881CBFBA1B000DEFF7 /* ServiceConfiguration.swift in Sources */,
 				E2A9AFA01C498E2900FE943A /* AppDelegate.swift in Sources */,
+				1C8A2AD61CE5882A0086C1B8 /* SignupViewController.swift in Sources */,
+				1CDCC8EF1CE72203001640CC /* logoutCell.swift in Sources */,
 				1C2684761CCA66040032C014 /* MyInfoMainCell.swift in Sources */,
 				1CEFF7811CBFB73D000DEFF7 /* AlbumListController.swift in Sources */,
 				1C09D3BF1CD09FED004A8F9C /* ToastMessage.swift in Sources */,
+				1CDCC8ED1CE717F3001640CC /* ForgetPasswordViewController.swift in Sources */,
 				1CEFF78A1CBFBA70000DEFF7 /* ServerResponse.swift in Sources */,
 				1CEFF78E1CBFC9B7000DEFF7 /* AlbumCell.swift in Sources */,
 			);
@@ -630,9 +646,10 @@
 				INFOPLIST_FILE = "$(SRCROOT)/Demo/AudioPlayer iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.jinjunhang.onlineclass;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jinjunhang.jufangzhushou;
 				PRODUCT_NAME = AudioPlayer;
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -647,9 +664,10 @@
 				INFOPLIST_FILE = "$(SRCROOT)/Demo/AudioPlayer iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.jinjunhang.onlineclass;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jinjunhang.jufangzhushou;
 				PRODUCT_NAME = AudioPlayer;
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -716,7 +734,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		E2A9AF971C498E2900FE943A /* Build configuration list for PBXProject "OnlineClass" */ = {
+		E2A9AF971C498E2900FE943A /* Build configuration list for PBXProject "jufangzhushou" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E2A9AFAC1C498E2900FE943A /* Debug */,

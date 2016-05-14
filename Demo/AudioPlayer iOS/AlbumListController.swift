@@ -101,7 +101,9 @@ extension AlbumListController {
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.cellForRowAtIndexPath(indexPath)?.selectionStyle = .None
         performSegueWithIdentifier("albumDetailSegue", sender: nil)
+        
     }
 
 }

@@ -193,7 +193,7 @@ class AlbumDetailController: BaseUIViewController, UITableViewDataSource, UITabl
         var idx = 0
         for cell in cells {
             idx = (tableView.indexPathForCell(cell)?.row)!
-            cell.playImage.image = UIImage(named: "play")
+            cell.playImage.image = UIImage(named: "smallPlayIcon")
             let song = songs[idx]
             if audioPlayer.isPlayThisSong(song) {
                 founded = true
@@ -212,7 +212,7 @@ class AlbumDetailController: BaseUIViewController, UITableViewDataSource, UITabl
                 idx = (tableView.indexPathForCell(cell)?.row)!
                 let song = songs[idx]
                 if audioPlayer.isPlayThisSong(song) {
-                    cell.playImage.image = UIImage(named: "pause")
+                    cell.playImage.image = UIImage(named: "smallPauseIcon")
                 }
             }
         }

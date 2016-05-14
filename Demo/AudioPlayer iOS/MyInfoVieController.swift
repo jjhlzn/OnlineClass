@@ -29,7 +29,7 @@ extension MyInfoVieController {
         case 1:
             return 5
         default:
-            return 0
+            return 1
         }
     }
     
@@ -40,6 +40,8 @@ extension MyInfoVieController {
             return 158
         case 1:
             return 48
+        case 2:
+            return 66
         default:
             return 1
         }
@@ -52,8 +54,10 @@ extension MyInfoVieController {
         case 0:
             let cell = tableView.dequeueReusableCellWithIdentifier("myInfoMainCell") as! MyInfoMainCell
             cell.userImage.becomeCircle()
+           // cell.backgroundColor =
+            //UIColor(red: 0xF2/255, green: 0x61/255, blue: 0, alpha: 0.9)
             return cell
-        default:
+        case 1:
             let cell = tableView.dequeueReusableCellWithIdentifier("myInfoOtherCell") as! MyInfoOtherCell
             var title = ""
             switch row {
@@ -77,11 +81,15 @@ extension MyInfoVieController {
             }
             cell.titleLabel.text = title
             return cell
+        default:
+            let cell = tableView.dequeueReusableCellWithIdentifier("logoutCell") as! logoutCell
+            cell.viewController = self
+            return cell
         }
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 2
+        return 3
     }
 
 }

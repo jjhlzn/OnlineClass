@@ -17,10 +17,12 @@ class BaseUIViewController: UIViewController, AudioPlayerDelegate {
         tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         
         if self.navigationController != nil {
-            self.navigationController?.navigationBar.barTintColor =  UIColor(red: 0xF2/255, green: 0x61/255, blue: 0, alpha: 0.9)
-  
+
+            self.navigationController?.navigationBar.barTintColor =
+   UIColor(red: 0xF2/255, green: 0x61/255, blue: 0, alpha: 0.9)
             self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
-            self.navigationController?.navigationBar.barStyle = UIBarStyle.Black
+
+           self.navigationController?.navigationBar.barStyle = UIBarStyle.Black
         }
         
         
@@ -37,7 +39,11 @@ class BaseUIViewController: UIViewController, AudioPlayerDelegate {
         getAudioPlayer().delegate = nil
         
         if isNeedResetAudioPlayerDelegate() && self.navigationController?.viewControllers.indexOf(self) == nil {
-            getAudioPlayer().delegate = (self.parentViewController as! UINavigationController).topViewController as! AudioPlayerDelegate
+            let topViewController = (self.parentViewController as! UINavigationController).topViewController
+            if let delegate = topViewController as? AudioPlayerDelegate {
+                getAudioPlayer().delegate = delegate
+            }
+            
             
         }
 

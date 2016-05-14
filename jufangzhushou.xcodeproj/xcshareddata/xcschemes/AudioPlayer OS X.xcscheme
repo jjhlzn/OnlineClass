@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E2A9AF9B1C498E2900FE943A"
+               BlueprintIdentifier = "E2B2F9E71C4BB57F00ABF3C5"
                BuildableName = "AudioPlayer.app"
-               BlueprintName = "AudioPlayer iOS"
-               ReferencedContainer = "container:OnlineClass.xcodeproj">
+               BlueprintName = "AudioPlayer OS X"
+               ReferencedContainer = "container:jufangzhushou.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -32,10 +32,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "E2A9AF9B1C498E2900FE943A"
+            BlueprintIdentifier = "E2B2F9E71C4BB57F00ABF3C5"
             BuildableName = "AudioPlayer.app"
-            BlueprintName = "AudioPlayer iOS"
-            ReferencedContainer = "container:OnlineClass.xcodeproj">
+            BlueprintName = "AudioPlayer OS X"
+            ReferencedContainer = "container:jufangzhushou.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -55,10 +55,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "E2A9AF9B1C498E2900FE943A"
+            BlueprintIdentifier = "E2B2F9E71C4BB57F00ABF3C5"
             BuildableName = "AudioPlayer.app"
-            BlueprintName = "AudioPlayer iOS"
-            ReferencedContainer = "container:OnlineClass.xcodeproj">
+            BlueprintName = "AudioPlayer OS X"
+            ReferencedContainer = "container:jufangzhushou.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -74,10 +74,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "E2A9AF9B1C498E2900FE943A"
+            BlueprintIdentifier = "E2B2F9E71C4BB57F00ABF3C5"
             BuildableName = "AudioPlayer.app"
-            BlueprintName = "AudioPlayer iOS"
-            ReferencedContainer = "container:OnlineClass.xcodeproj">
+            BlueprintName = "AudioPlayer OS X"
+            ReferencedContainer = "container:jufangzhushou.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

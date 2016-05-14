@@ -17,7 +17,7 @@
                BlueprintIdentifier = "E2B2F9FA1C4BB5DC00ABF3C5"
                BuildableName = "AudioPlayer.app"
                BlueprintName = "AudioPlayer tvOS"
-               ReferencedContainer = "container:OnlineClass.xcodeproj">
+               ReferencedContainer = "container:jufangzhushou.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -35,7 +35,7 @@
             BlueprintIdentifier = "E2B2F9FA1C4BB5DC00ABF3C5"
             BuildableName = "AudioPlayer.app"
             BlueprintName = "AudioPlayer tvOS"
-            ReferencedContainer = "container:OnlineClass.xcodeproj">
+            ReferencedContainer = "container:jufangzhushou.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -58,7 +58,7 @@
             BlueprintIdentifier = "E2B2F9FA1C4BB5DC00ABF3C5"
             BuildableName = "AudioPlayer.app"
             BlueprintName = "AudioPlayer tvOS"
-            ReferencedContainer = "container:OnlineClass.xcodeproj">
+            ReferencedContainer = "container:jufangzhushou.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -77,7 +77,7 @@
             BlueprintIdentifier = "E2B2F9FA1C4BB5DC00ABF3C5"
             BuildableName = "AudioPlayer.app"
             BlueprintName = "AudioPlayer tvOS"
-            ReferencedContainer = "container:OnlineClass.xcodeproj">
+            ReferencedContainer = "container:jufangzhushou.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
