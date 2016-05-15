@@ -32,7 +32,6 @@ class CourseMainPageViewController: BaseUIViewController, UITableViewDataSource,
         
     }
 
-    
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
@@ -89,6 +88,7 @@ class CourseMainPageViewController: BaseUIViewController, UITableViewDataSource,
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.cellForRowAtIndexPath(indexPath)?.selectionStyle = .None
         let section = indexPath.section
         if section == 1 {
            let cell = tableView.cellForRowAtIndexPath(indexPath)

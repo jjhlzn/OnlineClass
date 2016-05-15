@@ -19,9 +19,11 @@ class BasicService {
                      completion: (resp: T) -> Void) -> T {
         let serverResponse = T()
         print(url)
-        Alamofire.request(method, url, parameters: addMoreRequestInfo(params))
+        let finalParams = addMoreRequestInfo(params)
+        Alamofire.request(method, url, parameters: finalParams)
             .responseJSON { response in
                 //print("---------------------------------StartRequest---------------------------------")
+                debugPrint(finalParams)
                 debugPrint(response)
                 //print("----------------------------------EndRequest----------------------------------")
                 

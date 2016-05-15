@@ -23,7 +23,7 @@
 		1C6420F61CD0605200119272 /* CommentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C6420F51CD0605200119272 /* CommentController.swift */; };
 		1C8A2AD41CE4BEA60086C1B8 /* MallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C8A2AD31CE4BEA60086C1B8 /* MallViewController.swift */; };
 		1C8A2AD61CE5882A0086C1B8 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C8A2AD51CE5882A0086C1B8 /* SignupViewController.swift */; };
-		1CA3B2101CD86B7800D0ABD8 /* CourseMainPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA3B20F1CD86B7800D0ABD8 /* CourseMainPageViewController.swift */; };
+		1CA3B2101CD86B7800D0ABD8 /* MainPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA3B20F1CD86B7800D0ABD8 /* MainPageViewController.swift */; };
 		1CA3B2121CD86BD300D0ABD8 /* CourseTypeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA3B2111CD86BD300D0ABD8 /* CourseTypeCell.swift */; };
 		1CA3B2141CD8E83B00D0ABD8 /* FunctionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA3B2131CD8E83B00D0ABD8 /* FunctionCell.swift */; };
 		1CDCC8ED1CE717F3001640CC /* ForgetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CDCC8EC1CE717F2001640CC /* ForgetPasswordViewController.swift */; };
@@ -73,7 +73,7 @@
 		1C6420F51CD0605200119272 /* CommentController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentController.swift; sourceTree = "<group>"; };
 		1C8A2AD31CE4BEA60086C1B8 /* MallViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MallViewController.swift; sourceTree = "<group>"; };
 		1C8A2AD51CE5882A0086C1B8 /* SignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
-		1CA3B20F1CD86B7800D0ABD8 /* CourseMainPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseMainPageViewController.swift; sourceTree = "<group>"; };
+		1CA3B20F1CD86B7800D0ABD8 /* MainPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainPageViewController.swift; sourceTree = "<group>"; };
 		1CA3B2111CD86BD300D0ABD8 /* CourseTypeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseTypeCell.swift; sourceTree = "<group>"; };
 		1CA3B2131CD8E83B00D0ABD8 /* FunctionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FunctionCell.swift; sourceTree = "<group>"; };
 		1CDCC8EC1CE717F2001640CC /* ForgetPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgetPasswordViewController.swift; sourceTree = "<group>"; };
@@ -259,7 +259,7 @@
 				1C1E69181CC9079100CEA029 /* SongViewController.swift */,
 				1C2684731CCA62F40032C014 /* MyInfoVieController.swift */,
 				1C2684771CCB59200032C014 /* LoginViewController.swift */,
-				1CA3B20F1CD86B7800D0ABD8 /* CourseMainPageViewController.swift */,
+				1CA3B20F1CD86B7800D0ABD8 /* MainPageViewController.swift */,
 				1C8A2AD31CE4BEA60086C1B8 /* MallViewController.swift */,
 				1C8A2AD51CE5882A0086C1B8 /* SignupViewController.swift */,
 				1CDCC8EC1CE717F2001640CC /* ForgetPasswordViewController.swift */,
@@ -480,7 +480,7 @@
 				1C2684741CCA62F40032C014 /* MyInfoVieController.swift in Sources */,
 				1CEFF7961CC0C4C9000DEFF7 /* SongCell.swift in Sources */,
 				1C09D3C11CD1D462004A8F9C /* CommentListDataSourceAndDelegate.swift in Sources */,
-				1CA3B2101CD86B7800D0ABD8 /* CourseMainPageViewController.swift in Sources */,
+				1CA3B2101CD86B7800D0ABD8 /* MainPageViewController.swift in Sources */,
 				1C1E69231CCA0F1700CEA029 /* CommentHeaderCell.swift in Sources */,
 				1C2684781CCB59210032C014 /* LoginViewController.swift in Sources */,
 				1C8A2AD41CE4BEA60086C1B8 /* MallViewController.swift in Sources */,

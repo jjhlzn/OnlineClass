@@ -68,7 +68,7 @@ extension MyInfoVieController {
                 title = "我的订单  3单"
                 break
             case 2:
-                title = "我已推荐  50人"
+                title = "我已推荐  0人"
                 break
             case 3:
                 title = "账户安全"

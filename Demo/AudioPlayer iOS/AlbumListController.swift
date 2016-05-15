@@ -31,10 +31,28 @@ class AlbumListController: BaseUIViewController, UITableViewDataSource, UITableV
         pagableController.tableView = tableView
         
         //pagableController.loadMore()
+        setTitle()
     }
     
     override func viewWillAppear(animated: Bool) {
         updatePlayingButton(playingButton)
+    }
+    
+    private func setTitle() {
+        switch courseType {
+        case .Common:
+            
+            break
+        case .Live:
+            self.title = "直播课程"
+            break
+        case .Vip:
+            self.title = "VIP课程"
+            break
+            
+        default:
+            break
+        }
     }
     
     //PageableControllerDelegate
