@@ -532,7 +532,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="H2f-BP-R0Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="374" y="-31"/>
+            <point key="canvasLocation" x="-198" y="-422"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="DBt-Ms-qHP">
@@ -555,7 +555,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ByJ-xc-bHB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="744" y="-301"/>
+            <point key="canvasLocation" x="900" y="123"/>
         </scene>
         <!--课程-->
         <scene sceneID="HK8-uw-quO">
@@ -665,7 +665,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wwz-WH-HI4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="214" y="619"/>
+            <point key="canvasLocation" x="162" y="733"/>
         </scene>
         <!--播放页面-->
         <scene sceneID="0q5-Ra-Uzo">
@@ -1053,9 +1053,12 @@
                                 <state key="normal" title="《巨方助手软件许可及服务协议》"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="JHs-L0-mtN">
-                                <rect key="frame" x="217" y="139" width="83" height="30"/>
+                                <rect key="frame" x="219" y="142" width="87" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="获取验证码"/>
+                                <connections>
+                                    <action selector="getPhoneCodePressed:" destination="UXT-7U-nAQ" eventType="touchUpInside" id="dJw-26-qdo"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="3hc-62-qeb">
                                 <rect key="frame" x="20" y="325" width="280" height="47"/>
@@ -1066,7 +1069,17 @@
                                 <state key="normal" title="注    册">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="signupPressed:" destination="UXT-7U-nAQ" eventType="touchUpInside" id="KT8-nb-V2H"/>
+                                </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="59秒后重新获取" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ZXh-xP-uf6">
+                                <rect key="frame" x="180" y="144" width="120" height="25"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" red="0.87058823529999996" green="0.42352941179999998" blue="0.18039215689999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -1078,15 +1091,18 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="getPhoneCodeButton" destination="JHs-L0-mtN" id="hyV-q0-5eR"/>
                         <outlet property="otherPhoneField" destination="ju7-BH-gu7" id="ubn-Bp-sqT"/>
                         <outlet property="passwordField" destination="Tqu-Ro-0CT" id="10D-6Q-gje"/>
                         <outlet property="phoneCheckCode" destination="ePd-3i-LbB" id="STQ-I4-gQs"/>
+                        <outlet property="phoneCodeLabel" destination="ZXh-xP-uf6" id="3oB-DL-3mD"/>
                         <outlet property="phoneField" destination="S1r-9X-Qbf" id="KPw-Gx-PMt"/>
+                        <segue destination="59B-S3-xkA" kind="modal" identifier="signupSuccessSegue" modalPresentationStyle="pageSheet" id="6YY-4Q-Fzm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AAV-pC-GL4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-107" y="-935"/>
+            <point key="canvasLocation" x="678" y="-828"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="DfZ-8E-aqq">
@@ -1107,10 +1123,10 @@
             </objects>
             <point key="canvasLocation" x="-889" y="-56"/>
         </scene>
-        <!--注册-->
+        <!--忘记密码-->
         <scene sceneID="GUZ-XU-krF">
             <objects>
-                <viewController title="注册" id="gB1-HN-uiB" customClass="ForgetPasswordViewController" customModule="AudioPlayer" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="忘记密码" id="gB1-HN-uiB" customClass="ForgetPasswordViewController" customModule="AudioPlayer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" opaque="NO" contentMode="scaleToFill" id="dLp-hW-frO">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1137,9 +1153,12 @@
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="nqp-j4-gan">
-                                <rect key="frame" x="217" y="139" width="83" height="30"/>
+                                <rect key="frame" x="217" y="143" width="83" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="获取验证码"/>
+                                <connections>
+                                    <action selector="getPhoneCodePressed:" destination="gB1-HN-uiB" eventType="touchUpInside" id="IPu-Iz-bNw"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Y5L-3p-6mz">
                                 <rect key="frame" x="20" y="268" width="280" height="47"/>
@@ -1150,26 +1169,38 @@
                                 <state key="normal" title="确    认">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="confirmPressed:" destination="gB1-HN-uiB" eventType="touchUpInside" id="ZzE-7C-QWy"/>
+                                </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="59秒后重新获取" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jXq-sW-ZWz">
+                                <rect key="frame" x="171" y="147" width="123" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" red="0.87058823529999996" green="0.42352941179999998" blue="0.18039215689999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="忘记密码" id="OnC-f5-Rx0">
                         <barButtonItem key="leftBarButtonItem" image="backicon" id="UEi-5R-jtr">
                             <connections>
-                                <segue destination="59B-S3-xkA" kind="modal" id="wCU-pg-fxd"/>
+                                <segue destination="59B-S3-xkA" kind="modal" identifier="backToLoginPageSegue" id="wCU-pg-fxd"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="getPhoneCodeButton" destination="nqp-j4-gan" id="Xmd-5P-cWD"/>
                         <outlet property="passwordField" destination="NIz-j4-Jzk" id="xq2-pK-H7G"/>
                         <outlet property="phoneCheckCode" destination="3k9-xr-4Dy" id="OdN-0k-Pdh"/>
+                        <outlet property="phoneCodeLabel" destination="jXq-sW-ZWz" id="Pj1-ct-j5m"/>
                         <outlet property="phoneField" destination="Gxn-Vt-Dyh" id="DL4-ao-KSv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TKQ-dt-z7x" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-401" y="-877"/>
+            <point key="canvasLocation" x="409" y="-1052"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ta5-o8-ux4">
@@ -1187,7 +1218,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bVq-g1-8Qk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-252" y="-945"/>
+            <point key="canvasLocation" x="-252" y="-1263"/>
         </scene>
     </scenes>
     <resources>

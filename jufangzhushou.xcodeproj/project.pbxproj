@@ -17,6 +17,11 @@
 		1C1E69211CCA05E500CEA029 /* MoreLinkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C1E69201CCA05E500CEA029 /* MoreLinkCell.swift */; };
 		1C1E69231CCA0F1700CEA029 /* CommentHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C1E69221CCA0F1700CEA029 /* CommentHeaderCell.swift */; };
 		1C1E69251CCA0F3E00CEA029 /* NoCommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C1E69241CCA0F3E00CEA029 /* NoCommentCell.swift */; };
+		1C2451D11CE89EB800F350DA /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C2451D01CE89EB800F350DA /* CoreDataStack.swift */; };
+		1C2451D41CE8A0BD00F350DA /* jufangzhushou.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1C2451D21CE8A0BD00F350DA /* jufangzhushou.xcdatamodeld */; };
+		1C2451D61CE8A1CE00F350DA /* LoginUserStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C2451D51CE8A1CE00F350DA /* LoginUserStore.swift */; };
+		1C2451D91CE8A28B00F350DA /* LoginUserEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C2451D71CE8A28B00F350DA /* LoginUserEntity+CoreDataProperties.swift */; };
+		1C2451DA1CE8A28B00F350DA /* LoginUserEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C2451D81CE8A28B00F350DA /* LoginUserEntity.swift */; };
 		1C2684741CCA62F40032C014 /* MyInfoVieController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C2684731CCA62F40032C014 /* MyInfoVieController.swift */; };
 		1C2684761CCA66040032C014 /* MyInfoMainCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C2684751CCA66040032C014 /* MyInfoMainCell.swift */; };
 		1C2684781CCB59210032C014 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C2684771CCB59200032C014 /* LoginViewController.swift */; };
@@ -67,6 +72,11 @@
 		1C1E69201CCA05E500CEA029 /* MoreLinkCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreLinkCell.swift; sourceTree = "<group>"; };
 		1C1E69221CCA0F1700CEA029 /* CommentHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentHeaderCell.swift; sourceTree = "<group>"; };
 		1C1E69241CCA0F3E00CEA029 /* NoCommentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoCommentCell.swift; sourceTree = "<group>"; };
+		1C2451D01CE89EB800F350DA /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		1C2451D31CE8A0BD00F350DA /* jufangzhushou.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = jufangzhushou.xcdatamodel; sourceTree = "<group>"; };
+		1C2451D51CE8A1CE00F350DA /* LoginUserStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginUserStore.swift; sourceTree = "<group>"; };
+		1C2451D71CE8A28B00F350DA /* LoginUserEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LoginUserEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		1C2451D81CE8A28B00F350DA /* LoginUserEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginUserEntity.swift; sourceTree = "<group>"; };
 		1C2684731CCA62F40032C014 /* MyInfoVieController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyInfoVieController.swift; sourceTree = "<group>"; };
 		1C2684751CCA66040032C014 /* MyInfoMainCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyInfoMainCell.swift; sourceTree = "<group>"; };
 		1C2684771CCB59200032C014 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -137,6 +147,11 @@
 			isa = PBXGroup;
 			children = (
 				1CEFF7821CBFB809000DEFF7 /* Model.swift */,
+				1C2451D01CE89EB800F350DA /* CoreDataStack.swift */,
+				1C2451D21CE8A0BD00F350DA /* jufangzhushou.xcdatamodeld */,
+				1C2451D51CE8A1CE00F350DA /* LoginUserStore.swift */,
+				1C2451D71CE8A28B00F350DA /* LoginUserEntity+CoreDataProperties.swift */,
+				1C2451D81CE8A28B00F350DA /* LoginUserEntity.swift */,
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -491,8 +506,10 @@
 				1CEFF7921CC07838000DEFF7 /* UIImageView.swift in Sources */,
 				1C6420F61CD0605200119272 /* CommentController.swift in Sources */,
 				1CEFF79E1CC21E98000DEFF7 /* BaseUIViewController.swift in Sources */,
+				1C2451D11CE89EB800F350DA /* CoreDataStack.swift in Sources */,
 				1C1E68EF1CC65DF600CEA029 /* CommentListController.swift in Sources */,
 				1CA3B2121CD86BD300D0ABD8 /* CourseTypeCell.swift in Sources */,
+				1C2451D91CE8A28B00F350DA /* LoginUserEntity+CoreDataProperties.swift in Sources */,
 				1CEFF79C1CC20171000DEFF7 /* AudioPlayerExtension.swift in Sources */,
 				1C154A501CDACCA6003B900C /* MyUISlider.swift in Sources */,
 				1CEE8AF31CD4998A00865FB6 /* PagableController.swift in Sources */,
@@ -505,11 +522,14 @@
 				E2A9AFA01C498E2900FE943A /* AppDelegate.swift in Sources */,
 				1C8A2AD61CE5882A0086C1B8 /* SignupViewController.swift in Sources */,
 				1CDCC8EF1CE72203001640CC /* logoutCell.swift in Sources */,
+				1C2451D41CE8A0BD00F350DA /* jufangzhushou.xcdatamodeld in Sources */,
 				1C2684761CCA66040032C014 /* MyInfoMainCell.swift in Sources */,
 				1CEFF7811CBFB73D000DEFF7 /* AlbumListController.swift in Sources */,
 				1C09D3BF1CD09FED004A8F9C /* ToastMessage.swift in Sources */,
 				1CDCC8ED1CE717F3001640CC /* ForgetPasswordViewController.swift in Sources */,
+				1C2451DA1CE8A28B00F350DA /* LoginUserEntity.swift in Sources */,
 				1CEFF78A1CBFBA70000DEFF7 /* ServerResponse.swift in Sources */,
+				1C2451D61CE8A1CE00F350DA /* LoginUserStore.swift in Sources */,
 				1CEFF78E1CBFC9B7000DEFF7 /* AlbumCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -771,6 +791,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		1C2451D21CE8A0BD00F350DA /* jufangzhushou.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				1C2451D31CE8A0BD00F350DA /* jufangzhushou.xcdatamodel */,
+			);
+			currentVersion = 1C2451D31CE8A0BD00F350DA /* jufangzhushou.xcdatamodel */;
+			path = jufangzhushou.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = E2A9AF941C498E2900FE943A /* Project object */;
 }

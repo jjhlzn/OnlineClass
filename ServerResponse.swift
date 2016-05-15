@@ -100,3 +100,34 @@ class GetSongCommentsResponse : PageServerResponse<Comment> {
 class SendCommentResponse : ServerResponse {
     
 }
+
+class LoginResponse : ServerResponse {
+    var name : String?
+    var token : String?
+    
+    required init() {
+        
+    }
+    
+    override func parseJSON(request: [String: AnyObject], json: NSDictionary) {
+        super.parseJSON(request, json: json)
+
+        if status == 0 {
+            name = json["name"] as? String
+            token = json["token"] as? String
+        }
+    }
+
+}
+
+class GetPhoneCheckCodeResponse : ServerResponse {
+
+}
+
+class SignupResponse : ServerResponse {
+}
+
+class GetPasswordResponse : ServerResponse {
+
+
+}

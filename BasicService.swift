@@ -33,8 +33,14 @@ class BasicService {
                     completion(resp: serverResponse)
                     
                 } else {
-                    serverResponse.status = 0
-                    serverResponse.parseJSON(params!, json: response.result.value as! NSDictionary)
+                    let json = response.result.value as! NSDictionary
+                    serverResponse.status = json["status"] as! Int
+                    //TODO: 检查status是否是因为token过期，如果是，则需要重新验证token的值, 获得token的值后，重新发送一次请求
+                    if serverResponse.status == 0 {
+                        serverResponse.parseJSON(params!, json: response.result.value as! NSDictionary)
+                    } else {
+                        serverResponse.errorMessage = json["errorMessage"] as? String
+                    }
                     completion(resp: serverResponse)
                 }
         }

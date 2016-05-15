@@ -28,15 +28,41 @@ class ServiceConfiguration {
     
     static var serverName: String {
         get {
-            return serverName3
+            return serverName2
         }
     }
     
     static var port: Int {
         get {
-            return port3
+            return port2
         }
     }
+    
+    //User
+    static var LOGIN : String {
+        get {
+            return "\(http)://\(serverName):\(port)/user/login"
+        }
+    }
+    
+    static var GET_PHONE_CHECK_CODE : String {
+        get {
+            return "\(http)://\(serverName):\(port)/user/getPhoneCheckCode"
+        }
+    }
+    
+    static var SIGNUP : String {
+        get {
+            return "\(http)://\(serverName):\(port)/user/signup"
+        }
+    }
+    
+    static var GET_PASSWORD: String {
+        get {
+            return "\(http)://\(serverName):\(port)/user/getPassword"
+        }
+    }
+    
     
     //Albums
     static var GET_ALBUMS : String {

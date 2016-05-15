@@ -11,6 +11,8 @@ import UIKit
 import KDEAudioPlayer
 
 class Utils {
+    static let Model_Name = "jufangzhushou"
+    
     static func getDataFromUrl(url:NSURL, completion: ((data: NSData?, response: NSURLResponse?, error: NSError? ) -> Void)) {
         NSURLSession.sharedSession().dataTaskWithURL(url) { (data, response, error) in
             completion(data: data, response: response, error: error)

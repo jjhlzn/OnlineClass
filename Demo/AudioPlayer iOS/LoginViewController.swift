@@ -123,8 +123,44 @@ class LoginViewController: BaseUIViewController {
         }
     }
     
+    
+    var loadingOverlay = LoadingOverlay()
+    var loginUserStore = LoginUserStore()
     @IBAction func loginButtonPressed(sender: UIButton) {
-        performSegueWithIdentifier("loginSuccessSegue", sender: self)
+        
+        let userName = (userNameField.text)!
+        let password = (passwordField.text)!
+        
+        if userName.isEmpty || password.isEmpty {
+            displayMessage("用户名和密码不能为空")
+            return
+        }
+        
+        loadingOverlay.showOverlay(self.view)
+        
+        let params = ["username": userName, "password": password]
+        BasicService().sendRequest(ServiceConfiguration.LOGIN, params: params) { (response: LoginResponse) -> Void in
+            dispatch_async(dispatch_get_main_queue()) {
+                self.loadingOverlay.hideOverlayView()
+                if response.status == 0 {
+
+                        if self.loginUserStore.saveLoginUser(userName, password: password, name: response.name!, token: response.token!) {
+                            self.performSegueWithIdentifier("loginSuccessSegue", sender: self)
+                        } else {
+                            self.displayMessage("登录失败")
+                        }
+                        
+                } else {
+                    self.displayMessage(response.errorMessage!)
+                }
+
+            }
+            
+        }
+        
+
     }
+
+
     
 }
