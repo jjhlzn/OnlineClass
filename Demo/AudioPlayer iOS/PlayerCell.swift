@@ -33,11 +33,17 @@ class PlayerCell: UITableViewCell {
     var playerViewController: PlayerViewController!
     
     func initPalyer() {
-        playerViewController = PlayerViewController(playerCell: self)
+        audioPlayer = Utils.getAudioPlayer()
+       
+        if let liveSong = (audioPlayer.currentItem as! MyAudioItem).song as? LiveSong {
+            playerViewController = LivePlayerViewController(playerCell: self)
+        } else {
+            playerViewController = PlayerViewController(playerCell: self)
+        }
+        
         playerViewController.initPlayerController()
         
-        audioPlayer = Utils.getAudioPlayer()
-        audioPlayer.delegate = playerViewController
+         audioPlayer.delegate = playerViewController
         
         //setup progressbar
         progressBar.setThumbImage(UIImage(named: "sliderImage"), forState: .Normal)

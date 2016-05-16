@@ -64,8 +64,16 @@ class GetAlbumSongsResponse : ServerResponse {
         var songs = [Song]()
         
         for json in jsonArray {
-            let song = Song()
-            song.album = request["album"] as! Album
+            var song : Song!
+            let album = request["album"] as! Album
+            if album.courseType == CourseType.Live {
+                let liveSong = LiveSong()
+                liveSong.imageUrl = json["image"] as? String
+                song = liveSong
+            } else {
+                song = Song()
+            }
+            song.album = album
             song.name = json["name"] as! String
             song.desc = json["desc"] as! String
             song.date = json["date"] as! String

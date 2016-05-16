@@ -26,6 +26,7 @@
 		1C2684761CCA66040032C014 /* MyInfoMainCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C2684751CCA66040032C014 /* MyInfoMainCell.swift */; };
 		1C2684781CCB59210032C014 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C2684771CCB59200032C014 /* LoginViewController.swift */; };
 		1C5A6FC51CE99644000E7282 /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C5A6FC41CE99644000E7282 /* PlayerViewController.swift */; };
+		1C5A6FC71CE9A0D5000E7282 /* LivePlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C5A6FC61CE9A0D5000E7282 /* LivePlayerViewController.swift */; };
 		1C6420F61CD0605200119272 /* CommentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C6420F51CD0605200119272 /* CommentController.swift */; };
 		1C8A2AD41CE4BEA60086C1B8 /* MallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C8A2AD31CE4BEA60086C1B8 /* MallViewController.swift */; };
 		1C8A2AD61CE5882A0086C1B8 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C8A2AD51CE5882A0086C1B8 /* SignupViewController.swift */; };
@@ -83,6 +84,7 @@
 		1C2684751CCA66040032C014 /* MyInfoMainCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyInfoMainCell.swift; sourceTree = "<group>"; };
 		1C2684771CCB59200032C014 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		1C5A6FC41CE99644000E7282 /* PlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
+		1C5A6FC61CE9A0D5000E7282 /* LivePlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LivePlayerViewController.swift; sourceTree = "<group>"; };
 		1C6420F51CD0605200119272 /* CommentController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentController.swift; sourceTree = "<group>"; };
 		1C8A2AD31CE4BEA60086C1B8 /* MallViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MallViewController.swift; sourceTree = "<group>"; };
 		1C8A2AD51CE5882A0086C1B8 /* SignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
@@ -201,6 +203,7 @@
 				1CA3B2131CD8E83B00D0ABD8 /* FunctionCell.swift */,
 				1CDCC8EE1CE72203001640CC /* logoutCell.swift */,
 				1C5A6FC41CE99644000E7282 /* PlayerViewController.swift */,
+				1C5A6FC61CE9A0D5000E7282 /* LivePlayerViewController.swift */,
 			);
 			name = customCell;
 			sourceTree = "<group>";
@@ -508,6 +511,7 @@
 				1CEFF7831CBFB809000DEFF7 /* Model.swift in Sources */,
 				1C1E69191CC9079100CEA029 /* SongViewController.swift in Sources */,
 				1C1E68F11CC65F7500CEA029 /* CommentCell.swift in Sources */,
+				1C5A6FC71CE9A0D5000E7282 /* LivePlayerViewController.swift in Sources */,
 				1CEFF7921CC07838000DEFF7 /* UIImageView.swift in Sources */,
 				1C6420F61CD0605200119272 /* CommentController.swift in Sources */,
 				1CEFF79E1CC21E98000DEFF7 /* BaseUIViewController.swift in Sources */,

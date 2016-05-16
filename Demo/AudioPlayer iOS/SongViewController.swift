@@ -80,6 +80,7 @@ class SongViewController: BaseUIViewController,
         super.viewWillAppear(animated)
         commentController.removeKeyboardNotify()
     }
+    
     private func reload() {
         
         let song = Song()

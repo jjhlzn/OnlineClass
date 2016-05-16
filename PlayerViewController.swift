@@ -149,8 +149,5 @@ class PlayerViewController : NSObject, AudioPlayerDelegate {
 }
 
 
-class LivePlayerViewController : PlayerViewController {
-    
-}
 
 

@@ -56,6 +56,10 @@ class Song : BaseModelObject {
     }
 }
 
+class LiveSong : Song {
+    var imageUrl: String?
+}
+
 class Comment : BaseModelObject {
     var id: String?
     var song: Song?
