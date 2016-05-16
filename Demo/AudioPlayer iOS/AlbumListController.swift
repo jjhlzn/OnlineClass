@@ -49,9 +49,6 @@ class AlbumListController: BaseUIViewController, UITableViewDataSource, UITableV
         case .Vip:
             self.title = "VIP课程"
             break
-            
-        default:
-            break
         }
     }
     
@@ -69,8 +66,7 @@ class AlbumListController: BaseUIViewController, UITableViewDataSource, UITableV
             params = ["type": "vip"]
             break
             
-        default:
-            break
+     
         }
         BasicService().sendRequest(ServiceConfiguration.GET_ALBUMS, params: params) {
             (resp: GetAlbumsResponse) -> Void in
@@ -113,7 +109,7 @@ extension AlbumListController {
         cell.nameLabel.text = album.name
         cell.authorLabel.text = album.author
         if album.hasImage {
-            cell.albumImage.downloadedFrom(link: "\(ServiceConfiguration.ImageUrlPrefix)/\(album.image)", contentMode: UIViewContentMode.ScaleAspectFit)
+            cell.albumImage.downloadedFrom(link: album.image, contentMode: UIViewContentMode.ScaleAspectFit)
         }
         return cell
     }

@@ -37,6 +37,7 @@ class ServiceConfiguration {
             return port2
         }
     }
+
     
     //User
     static var LOGIN : String {
@@ -88,17 +89,17 @@ class ServiceConfiguration {
     //Comment
     static var SEND_COMMENT: String {
         get {
-            return "\(http)://\(serverName):\(port)/comments/"
+            return "\(http)://\(serverName):\(port)/comment/add"
         }
     }
     
     
     static let ImageUrlPrefix = "http://\(serverName):\(port)/"
     static func GetSongUrl(urlSuffix: String) -> String {
-        return "http://\(serverName):\(port)/\(urlSuffix)"
+        return urlSuffix
     }
     static func GetAlbumImageUrl(urlSuffix: String) -> String {
-        return "\(ServiceConfiguration.ImageUrlPrefix)/\(urlSuffix)"
+        return urlSuffix
     }
 
 

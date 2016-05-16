@@ -32,8 +32,8 @@ class SongViewController: BaseUIViewController,
 
     @IBOutlet weak var cancelButton: UIButton!
     var commentListDataSource: CommentListDataSourceAndDelegate!
-    
     var commentController = CommentController()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -123,8 +123,6 @@ class SongViewController: BaseUIViewController,
         tableView.reloadSections(NSIndexSet(index: 1), withRowAnimation: .None)
         //tableView.reloadData()
     }
-
-    var heightCache = [String: CGFloat]()
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "commentListSegue" {

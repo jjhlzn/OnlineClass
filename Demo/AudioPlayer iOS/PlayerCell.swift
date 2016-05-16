@@ -9,8 +9,7 @@
 import UIKit
 import KDEAudioPlayer
 
-class PlayerCell: UITableViewCell, AudioPlayerDelegate {
-    
+class PlayerCell: UITableViewCell {
     var controller: UIViewController?
     
     var audioPlayer: AudioPlayer!
@@ -31,10 +30,14 @@ class PlayerCell: UITableViewCell, AudioPlayerDelegate {
     var isForward = true
     var oldProgress: Float?
     var startDragProgress: Float?
+    var playerViewController: PlayerViewController!
     
     func initPalyer() {
+        playerViewController = PlayerViewController(playerCell: self)
+        playerViewController.initPlayerController()
+        
         audioPlayer = Utils.getAudioPlayer()
-        audioPlayer.delegate = self
+        audioPlayer.delegate = playerViewController
         
         //setup progressbar
         progressBar.setThumbImage(UIImage(named: "sliderImage"), forState: .Normal)
@@ -74,86 +77,13 @@ class PlayerCell: UITableViewCell, AudioPlayerDelegate {
         inited = true
         
         //update button status
-        updatePrevAndNextButtonStatus()
-        updatePlayAndPauseButton()
-        updateBufferProgress()
+        playerViewController.updatePrevAndNextButtonStatus()
+        playerViewController.updatePlayAndPauseButton()
+        playerViewController.updateBufferProgress()
     }
     
 
-    func resetButtonAndProgress () {
-        playingLabel.text = "00:00"
-        durationLabel.text = "00:00"
-        bufferProgress.progress = 0
-        progressBar.value = 0
-        progressBar.enabled = false
-        playButton.setImage(UIImage(named: "play"), forState: .Normal)
-    }
     
-    
-    func updatePrevAndNextButtonStatus() {
-        if audioPlayer.hasNext() {
-            nextButton.enabled = true
-        } else {
-            nextButton.enabled = false
-        }
-        
-        if audioPlayer.hasPrevious() {
-            preButton.enabled = true
-            
-        } else {
-            preButton.enabled = false
-        }
-    }
-    
-    func updatePlayAndPauseButton() {
-        if audioPlayer.state == AudioPlayerState.Playing  {
-            playButton.setImage(UIImage(named: "pause"), forState: .Normal)
-        } else {
-            playButton.setImage(UIImage(named: "play"), forState: .Normal)
-        }
-        
-    }
-    
-    func updatePlayingProgress() {
-        
-        if updateProgressBar && audioPlayer.currentItemProgression != nil && audioPlayer.currentItemDuration != nil{
-            let progress = Float(audioPlayer.currentItemProgression! / audioPlayer.currentItemDuration!)
-            if oldProgress != nil {
-                if isForward {
-                    if progress > oldProgress! {
-                        //print("current = \(audioPlayer.currentItemDuration!), oldProgress = \(oldProgress!)")
-                        progressBar.value = progress
-                        playingLabel.text = Utils.stringFromTimeInterval(audioPlayer.currentItemProgression!)
-                        oldProgress = nil
-                    }
-                } else {
-                    if progress < oldProgress! {
-                        //print("current = \(audioPlayer.currentItemDuration!), oldProgress = \(oldProgress!)")
-                        progressBar.value = progress
-                        playingLabel.text = Utils.stringFromTimeInterval(audioPlayer.currentItemProgression!)
-                        oldProgress = nil
-                    }
-                }
-                
-            } else {
-                progressBar.value = progress
-                playingLabel.text = Utils.stringFromTimeInterval(audioPlayer.currentItemProgression!)
-            }
-        }
-        
-    }
-    
-
-    func updateBufferProgress() {
-        if audioPlayer.currentItemDuration != nil && audioPlayer.currentItemLoadedRange != nil {
-            bufferProgress.progress = Float( audioPlayer.currentItemLoadedRange!.latest / audioPlayer.currentItemDuration!)
-            self.progressBar.enabled = true
-            
-        } else {
-            bufferProgress.progress = 0
-        }
-    }
-
     /*      Event Handler       */
     @IBAction func playButtonPressed(sender: UIButton) {
         if audioPlayer.state == AudioPlayerState.Playing {
@@ -165,14 +95,14 @@ class PlayerCell: UITableViewCell, AudioPlayerDelegate {
     
     @IBAction func prevButtonPressed(sender: UIButton) {
         audioPlayer.previous()
-        resetButtonAndProgress()
-        artImageView.image = UIImage(named: "sample")
+        playerViewController.resetButtonAndProgress()
+        artImageView.image = UIImage(named: "musicCover")
     }
     
     @IBAction func nextButtonPressed(sender: UIButton) {
         audioPlayer.next()
-        resetButtonAndProgress()
-        artImageView.image = UIImage(named: "sample")
+        playerViewController.resetButtonAndProgress()
+        artImageView.image = UIImage(named: "musicCover")
     }
     
     func progressBarValueChanged() {
@@ -206,56 +136,7 @@ class PlayerCell: UITableViewCell, AudioPlayerDelegate {
         startDragProgress = progressBar.value
     }
     
-    /*  AudioPlayerDelegate Implement functions   */
-    func audioPlayer(audioPlayer: AudioPlayer, didChangeStateFrom from: AudioPlayerState, toState to: AudioPlayerState) {
-        print("audioPlayer:didChangeStateFrom called，from = \(from), to = \(to)")
-        updatePrevAndNextButtonStatus()
-        updatePlayAndPauseButton()
-        
-        
-        if to == AudioPlayerState.Stopped || to == AudioPlayerState.WaitingForConnection {
-            progressBar.enabled = false
-        }
-        
-        if to == AudioPlayerState.Buffering || to == AudioPlayerState.Playing {
-            progressBar.enabled = true
-        }
-        
-    }
-    
-    func audioPlayer(audioPlayer: AudioPlayer, willStartPlayingItem item: AudioItem) {
-        print("audioPlayer:willStartPlayingItem called")
-        artImageView.image = item.artworkImage
-        controller?.title = (item as! MyAudioItem).song?.name
-        //print("controller.title = \(controller?.title)")
-        //print("url = \(item.song?.url)")
-    }
-    
-    
-    func audioPlayer(audioPlayer: AudioPlayer, didUpdateProgressionToTime time: NSTimeInterval, percentageRead: Float) {
-        //print("audioPlayer:didUpdateProgressionToTime called, progressPercentage = \(percentageRead)");
-        print("audioPlayer:didUpdateProgressionToTime called")
-        updatePlayingProgress()
-        
-    }
-    
-    func audioPlayer(audioPlayer: AudioPlayer, didFindDuration duration: NSTimeInterval, forItem item: AudioItem) {
-        print("duration = \(duration)")
-        durationLabel.text = Utils.stringFromTimeInterval(duration)
-    }
-    
-    
-    func audioPlayer(audioPlayer: AudioPlayer, didLoadRange range: AudioPlayer.TimeRange, forItem item: AudioItem){
-        print("audioPlayer:didLoadRange, loadRange = \(range)")
-        updateBufferProgress()
-    }
-    
-    func audioPlayer(audioPlayer: AudioPlayer, didUpdateEmptyMetadataOnItem item: AudioItem, withData data: Metadata) {
-        print("audioPlayer:didUpdateEmptyMetadataOnItem called")
-        if audioPlayer.currentItem != nil && audioPlayer.currentItem?.artworkImage != nil {
-            artImageView.image = audioPlayer.currentItem?.artworkImage!
-        }
-    }
+
 
    
 

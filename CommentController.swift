@@ -115,7 +115,7 @@ class CommentController : NSObject {
         NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardDidHideNotification, object: nil)
     }
     
-    
+    var isKeyboardShow = false
     func keyboardWillShow(notification: NSNotification) {
         print("start keyboardWillShow")
         var frame = bottomView2.frame
@@ -130,39 +130,38 @@ class CommentController : NSObject {
                 keyboardHeight = keyboardSize.height
                 showOverlay()
                 frame.origin.y -= keyboardSize.height
-                //print("here")
                 viewController.hideKeyboardWhenTappedAround()
-                //print("here1")
                 commentField.resignFirstResponder()
-                //print("here2")
                 commentFiled2.becomeFirstResponder()
-                //print("here3")
                 bottomView2.hidden = false
             }
             
             bottomView2.frame = frame
         }
         print("end keyboardWillShow")
+        isKeyboardShow = true
     }
     
     
     func keyboardWillHide(notification: NSNotification) {
-        NSLog("%s: keyboardWillHide", TAG)
-        commentFiled2.resignFirstResponder()
-        
-        bottomView2.hidden = true
-        print ("keyboardHeight = \(keyboardHeight)")
-        if keyboardHeight != nil && keyboardHeight! != 0 {
-            var frame = bottomView2.frame
-            if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
-                frame.origin.y += keyboardSize.height
-                keyboardHeight = nil
-                bottomView2.frame = frame
-            }
-            viewController.cancleHideKeybaordWhenTappedAround()
-            hideOverlay()
+        if isKeyboardShow {
+            NSLog("%s: keyboardWillHide", TAG)
+            commentFiled2.resignFirstResponder()
             
+            bottomView2.hidden = true
+            if keyboardHeight != nil && keyboardHeight! != 0 {
+                var frame = bottomView2.frame
+                if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
+                    frame.origin.y += keyboardSize.height
+                    keyboardHeight = nil
+                    bottomView2.frame = frame
+                }
+                viewController.cancleHideKeybaordWhenTappedAround()
+                hideOverlay()
+                
+            }
         }
+        isKeyboardShow = false
         
     }
     
