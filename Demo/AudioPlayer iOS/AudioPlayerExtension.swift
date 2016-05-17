@@ -23,7 +23,7 @@ extension AudioPlayer {
             }
             var audioItem = MyAudioItem(song: eachSong, highQualitySoundURL: NSURL(string: eachSong.wholeUrl))!
             if eachSong.album.courseType == CourseType.Live {
-                var url = NSURL(string: eachSong.wholeUrl)
+                let url = NSURL(string: eachSong.wholeUrl)
                 audioItem = MyAudioItem(song: eachSong, highQualitySoundURL: url)!
             }
             audioItem.song = eachSong
@@ -40,7 +40,7 @@ extension AudioPlayer {
             return false
         }
         
-        if currentItem!.highestQualityURL.URL.absoluteString == song.wholeUrl {
+        if (currentItem as! MyAudioItem).song.id == song.id {
             return true
         }
         

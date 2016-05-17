@@ -78,6 +78,7 @@ class GetAlbumSongsResponse : ServerResponse {
             song.desc = json["desc"] as! String
             song.date = json["date"] as! String
             song.url = json["url"] as! String
+            song.id = json["id"] as! String
             songs.append(song)
             
         }

@@ -9,7 +9,7 @@
 import UIKit
 import KDEAudioPlayer
 
-class AlbumDetailController: BaseUIViewController, UITableViewDataSource, UITableViewDelegate {
+class AlbumDetailController: BaseUIViewController {
     var tag = "AlbumDetailController"
 
     @IBOutlet weak var playingButton: UIButton!
@@ -63,54 +63,7 @@ class AlbumDetailController: BaseUIViewController, UITableViewDataSource, UITabl
         super.updatePlayingButton(playingButton)
         
     }
-    
 
-    
-    
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if songs == nil {
-            return 0
-        }
-        return songs.count
-    }
-    
-
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let song = songs[indexPath.row]
-        let cell = tableView.dequeueReusableCellWithIdentifier("songCell") as! SongCell
-        cell.nameLabel.text = song.name
-        cell.descLabel.text = song.desc
-        cell.dateLabel.text = song.date
-        //cell.playBigImage.imageView!.image = albumImageData
-        let playBigImage = cell.playBigImage
-        playBigImage.setImage(albumImageData, forState: .Normal)
-
-        playBigImage.layer.borderWidth = 0
-        playBigImage.layer.masksToBounds = false
-        playBigImage.layer.borderColor = UIColor.whiteColor().CGColor
-        playBigImage.layer.cornerRadius = playBigImage.frame.height/2
-        playBigImage.clipsToBounds = true
-        
-        return cell
-    }
-    
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let audioPlayer = getAudioPlayer()
-        
-        //检查在播放的歌曲是不是当前选中的歌曲
-        let row = indexPath.row
-        let song = songs[row]
-        
-        if audioPlayer.currentItem != nil {
-            if song.wholeUrl == audioPlayer.currentItem!.highestQualityURL.URL.absoluteString {
-                performSegueWithIdentifier("songSegue", sender: false)
-                return
-            }
-        }
-        performSegueWithIdentifier("songSegue", sender: true)
-    }
-    
-    
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
@@ -171,12 +124,11 @@ class AlbumDetailController: BaseUIViewController, UITableViewDataSource, UITabl
                 audioPlayer.playThisSong(song)
             }
         }
+        updateCellPlayingButtons()
     }
     
     func scrollViewDidScroll(scrollView: UIScrollView){
-    
         updateCellPlayingButtons()
-        
     }
     
     func updateCellPlayingButtons() {
@@ -204,10 +156,11 @@ class AlbumDetailController: BaseUIViewController, UITableViewDataSource, UITabl
             return
         }
         
-        if audioPlayer.state == AudioPlayerState.Buffering || audioPlayer.state == AudioPlayerState.Playing || audioPlayer.state == AudioPlayerState.WaitingForConnection {
-            idx = 0
-
+        if    audioPlayer.state == AudioPlayerState.Buffering
+           || audioPlayer.state == AudioPlayerState.Playing
+           || audioPlayer.state == AudioPlayerState.WaitingForConnection {
             
+            idx = 0
             for cell in cells {
                 idx = (tableView.indexPathForCell(cell)?.row)!
                 let song = songs[idx]
@@ -219,8 +172,6 @@ class AlbumDetailController: BaseUIViewController, UITableViewDataSource, UITabl
     }
 
     
-    
-    
     override func audioPlayer(audioPlayer: AudioPlayer, didChangeStateFrom from: AudioPlayerState, toState to: AudioPlayerState) {
         let audioItem = getAudioPlayer().currentItem
         if audioItem == nil {
@@ -230,4 +181,51 @@ class AlbumDetailController: BaseUIViewController, UITableViewDataSource, UITabl
         updateCellPlayingButtons()
         updatePlayingButton(playingButton)
     }
+}
+
+extension AlbumDetailController : UITableViewDataSource, UITableViewDelegate {
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if songs == nil {
+            return 0
+        }
+        return songs.count
+    }
+    
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let song = songs[indexPath.row]
+        let cell = tableView.dequeueReusableCellWithIdentifier("songCell") as! SongCell
+        cell.nameLabel.text = song.name
+        cell.descLabel.text = song.desc
+        cell.dateLabel.text = song.date
+        //cell.playBigImage.imageView!.image = albumImageData
+        let playBigImage = cell.playBigImage
+        playBigImage.setImage(albumImageData, forState: .Normal)
+        
+        playBigImage.layer.borderWidth = 0
+        playBigImage.layer.masksToBounds = false
+        playBigImage.layer.borderColor = UIColor.whiteColor().CGColor
+        playBigImage.layer.cornerRadius = playBigImage.frame.height/2
+        playBigImage.clipsToBounds = true
+        
+        return cell
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let audioPlayer = getAudioPlayer()
+        
+        //检查在播放的歌曲是不是当前选中的歌曲
+        let row = indexPath.row
+        let song = songs[row]
+        
+        if audioPlayer.currentItem != nil {
+            if song.wholeUrl == audioPlayer.currentItem!.highestQualityURL.URL.absoluteString {
+                performSegueWithIdentifier("songSegue", sender: false)
+                return
+            }
+        }
+        performSegueWithIdentifier("songSegue", sender: true)
+    }
+    
+
 }
