@@ -10,7 +10,7 @@ import UIKit
 import KDEAudioPlayer
 
 class PlayerCell: UITableViewCell {
-    var controller: UIViewController?
+    var controller: BaseUIViewController?
     
     var audioPlayer: AudioPlayer!
     @IBOutlet weak var artImageView: UIImageView!
@@ -43,7 +43,7 @@ class PlayerCell: UITableViewCell {
         
         playerViewController.initPlayerController()
         
-         audioPlayer.delegate = playerViewController
+        audioPlayer.delegate = playerViewController
         
         //setup progressbar
         progressBar.setThumbImage(UIImage(named: "sliderImage"), forState: .Normal)
@@ -92,11 +92,7 @@ class PlayerCell: UITableViewCell {
     
     /*      Event Handler       */
     @IBAction func playButtonPressed(sender: UIButton) {
-        if audioPlayer.state == AudioPlayerState.Playing {
-            audioPlayer.pause()
-        } else {
-            audioPlayer.resume()
-        }
+        playerViewController.playOrPause()
     }
     
     @IBAction func prevButtonPressed(sender: UIButton) {

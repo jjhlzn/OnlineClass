@@ -69,6 +69,10 @@ class GetAlbumSongsResponse : ServerResponse {
             if album.courseType == CourseType.Live {
                 let liveSong = LiveSong()
                 liveSong.imageUrl = json["image"] as? String
+                liveSong.startDateTime = json["startTime"] as? String
+                liveSong.endDateTime = json["endTime"] as? String
+                //liveSong.leftTime = json["leftTime"] as! Int
+                //liveSong.totalTime = json["totalTime"] as! Int
                 song = liveSong
             } else {
                 song = Song()

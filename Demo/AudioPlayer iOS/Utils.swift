@@ -45,6 +45,13 @@ class Utils {
             ),
             dispatch_get_main_queue(), closure)
     }
+    
+    static func getCurrentTime() -> String {
+        let currentDateTime = NSDate()
+        let formatter = NSDateFormatter()
+        formatter.dateFormat = "HH:mm:ss"
+        return formatter.stringFromDate(currentDateTime)
+    }
 
 
 }

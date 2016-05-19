@@ -57,7 +57,55 @@ class Song : BaseModelObject {
 }
 
 class LiveSong : Song {
+    let dateFormatter = NSDateFormatter()
+    let dateFormatter2 = NSDateFormatter()
+    override init() {
+        super.init()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        dateFormatter2.dateFormat = "yyyy-MM-dd"
+    }
+    
     var imageUrl: String?
+    var startDateTime: String?
+    var startTime: String? {
+        get {
+            if startDateTime == nil {
+                return ""
+            }
+            return (startDateTime! as NSString).substringFromIndex(10)
+        }
+    }
+    var endDateTime: String?
+    var endTime: String? {
+        get {
+            if startDateTime == nil {
+                return ""
+            }
+            return (endDateTime! as NSString).substringFromIndex(10)
+        }
+    }
+    
+    var totalTime: NSTimeInterval {
+        if startDateTime == nil || endDateTime == nil {
+            return NSTimeInterval(0)
+        }
+        return dateFormatter.dateFromString(endDateTime!)!.timeIntervalSinceDate(dateFormatter.dateFromString(startDateTime!)!)
+    }
+    
+    var leftTime : NSTimeInterval {
+        get {
+            if startDateTime == nil || endDateTime == nil {
+                return NSTimeInterval(0)
+            }
+            return dateFormatter.dateFromString(endDateTime!)!.timeIntervalSinceNow
+        }
+    }
+    
+    var progress : Float {
+        get {
+            return Float( (self.totalTime - self.leftTime) / self.totalTime )
+        }
+    }
 }
 
 class Comment : BaseModelObject {

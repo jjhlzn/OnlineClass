@@ -10,6 +10,7 @@ import UIKit
 import KDEAudioPlayer
 
 class BaseUIViewController: UIViewController, AudioPlayerDelegate {
+
     
     override func viewDidLoad() {
         super.viewDidLoad()

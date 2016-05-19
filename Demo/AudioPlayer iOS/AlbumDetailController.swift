@@ -27,7 +27,7 @@ class AlbumDetailController: BaseUIViewController {
     var loadingOverlay: LoadingOverlay = LoadingOverlay()
     
     var playingImageName = "wave1"
-    var timer = NSTimer()
+    
     
     
     override func viewWillAppear(animated: Bool) {

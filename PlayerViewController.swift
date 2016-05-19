@@ -11,8 +11,10 @@ import KDEAudioPlayer
 import UIKit
 
 class PlayerViewController : NSObject, AudioPlayerDelegate {
+    
     var cell : PlayerCell!
     var audioPlayer : AudioPlayer!
+    
     init(playerCell : PlayerCell) {
         self.cell = playerCell
     }
@@ -20,6 +22,15 @@ class PlayerViewController : NSObject, AudioPlayerDelegate {
     func initPlayerController() {
         audioPlayer = Utils.getAudioPlayer()
         audioPlayer.delegate = self
+    }
+    
+    func playOrPause() {
+        if audioPlayer.state == AudioPlayerState.Playing {
+            audioPlayer.pause()
+        } else {
+            audioPlayer.resume()
+        }
+
     }
     
     func resetButtonAndProgress () {

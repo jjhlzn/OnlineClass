@@ -18,6 +18,7 @@ class SongViewController: BaseUIViewController,
     
     @IBOutlet weak var commentField: UITextField!
     @IBOutlet weak var bottomView: UIView!
+
     var keyboardHeight: CGFloat?
     var comments : [Comment]?  {
         didSet{
@@ -74,11 +75,18 @@ class SongViewController: BaseUIViewController,
         super.viewWillAppear(animated)
         commentController.addKeyboardNotify()
         
+        
     }
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillAppear(animated)
         commentController.removeKeyboardNotify()
+        
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        if appDelegate.liveProgressTimer != nil {
+            appDelegate.liveProgressTimer?.invalidate()
+            appDelegate.liveProgressTimer = nil
+        }
     }
     
     private func reload() {
@@ -111,18 +119,9 @@ class SongViewController: BaseUIViewController,
     }
     
     func afterSendComment(comment: Comment) {
-        //情况1: 之前没有任何评论
-        //情况2: 之前已经有评论了
-        //comments?.insert(comment, atIndex: 0)
         comments?.insert(comment, atIndex: 0)
-        /*
-        tableView.beginUpdates()
-        tableView.insertRowsAtIndexPaths([
-            NSIndexPath(forRow: (comments?.count)!, inSection: 1)
-            ], withRowAnimation: .Automatic)
-        tableView.endUpdates() */
+
         tableView.reloadSections(NSIndexSet(index: 1), withRowAnimation: .None)
-        //tableView.reloadData()
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
