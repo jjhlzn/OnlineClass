@@ -25,7 +25,8 @@ class PlayerViewController : NSObject, AudioPlayerDelegate {
     }
     
     func playOrPause() {
-        if audioPlayer.state == AudioPlayerState.Playing {
+        if audioPlayer.state == AudioPlayerState.Playing || audioPlayer.state == AudioPlayerState.Buffering ||
+           audioPlayer.state == AudioPlayerState.WaitingForConnection {
             audioPlayer.pause()
         } else {
             audioPlayer.resume()
@@ -59,7 +60,7 @@ class PlayerViewController : NSObject, AudioPlayerDelegate {
     }
     
     func updatePlayAndPauseButton() {
-        if audioPlayer.state == AudioPlayerState.Playing  {
+        if audioPlayer.state == AudioPlayerState.Playing || audioPlayer.state == AudioPlayerState.WaitingForConnection || audioPlayer.state == AudioPlayerState.Buffering  {
             cell.playButton.setImage(UIImage(named: "pause"), forState: .Normal)
         } else {
             cell.playButton.setImage(UIImage(named: "play"), forState: .Normal)
@@ -106,6 +107,34 @@ class PlayerViewController : NSObject, AudioPlayerDelegate {
             cell.bufferProgress.progress = 0
         }
     }
+    
+    let kRotationAnimationKey = "com.myapplication.rotationanimationkey" // Any key
+    
+    func rotateView(view: UIView, duration: Double = 1) {
+        if view.layer.animationForKey(kRotationAnimationKey) == nil {
+            let rotationAnimation = CABasicAnimation(keyPath: "transform.rotation")
+            
+            rotationAnimation.fromValue = 0.0
+            rotationAnimation.toValue = Float(M_PI * 2.0)
+            rotationAnimation.duration = duration
+            rotationAnimation.repeatCount = Float.infinity
+            
+            view.layer.addAnimation(rotationAnimation, forKey: kRotationAnimationKey)
+        }
+    }
+    
+    func updateBufferCircle() {
+        let state = audioPlayer.state
+        if state == AudioPlayerState.Buffering || state == AudioPlayerState.WaitingForConnection {
+
+            cell.bufferCircle.hidden = false
+            rotateView(cell.bufferCircle, duration: 1.3)
+
+        } else {
+            cell.bufferCircle.hidden = true
+            
+        }
+    }
 
     
     /*  AudioPlayerDelegate Implement functions   */
@@ -123,6 +152,8 @@ class PlayerViewController : NSObject, AudioPlayerDelegate {
             cell.progressBar.enabled = true
         }
         
+        updateBufferCircle()
+        
     }
     
     func audioPlayer(audioPlayer: AudioPlayer, willStartPlayingItem item: AudioItem) {
@@ -134,7 +165,7 @@ class PlayerViewController : NSObject, AudioPlayerDelegate {
     
     func audioPlayer(audioPlayer: AudioPlayer, didUpdateProgressionToTime time: NSTimeInterval, percentageRead: Float) {
         //print("audioPlayer:didUpdateProgressionToTime called, progressPercentage = \(percentageRead)");
-        print("audioPlayer:didUpdateProgressionToTime called")
+        //print("audioPlayer:didUpdateProgressionToTime called")
         updatePlayingProgress()
         
     }

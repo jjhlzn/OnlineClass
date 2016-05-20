@@ -78,6 +78,7 @@ class AlbumListController: BaseUIViewController, UITableViewDataSource, UITableV
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        super.prepareForSegue(segue, sender: sender)
         if segue.identifier == "albumDetailSegue" {
             let dest = segue.destinationViewController as! AlbumDetailController
             let row = (tableView.indexPathForSelectedRow?.row)!

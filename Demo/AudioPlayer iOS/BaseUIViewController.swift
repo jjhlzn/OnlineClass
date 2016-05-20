@@ -24,8 +24,17 @@ class BaseUIViewController: UIViewController, AudioPlayerDelegate {
             self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
 
            self.navigationController?.navigationBar.barStyle = UIBarStyle.Black
+           
         }
         
+        
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        super.prepareForSegue(segue, sender: sender)
+        let backItem = UIBarButtonItem()
+        backItem.title = ""
+        navigationItem.backBarButtonItem = backItem
         
     }
     
@@ -87,8 +96,7 @@ class BaseUIViewController: UIViewController, AudioPlayerDelegate {
     func updatePlayingButton(button: UIButton) {
         let audioPlayer = getAudioPlayer()
         print("audioPlayer.state = \(audioPlayer.state)")
-        if audioPlayer.state == AudioPlayerState.Playing || audioPlayer.state == AudioPlayerState.Buffering
-            || audioPlayer.state == AudioPlayerState.WaitingForConnection{
+        if audioPlayer.state == AudioPlayerState.Playing {
             
             let image = UIImage.animatedImageWithImages([UIImage(named: "wave1")!,
                 UIImage(named: "wave2")!,

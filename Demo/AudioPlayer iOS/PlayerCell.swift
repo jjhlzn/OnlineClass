@@ -25,6 +25,8 @@ class PlayerCell: UITableViewCell {
     @IBOutlet weak var nextButton: UIButton!
     @IBOutlet weak var preButton: UIButton!
     @IBOutlet weak var playButton: UIButton!
+    @IBOutlet weak var bufferCircle: UIImageView!
+    
     var inited = false
     var updateProgressBar: Bool = true
     var isForward = true
@@ -59,6 +61,9 @@ class PlayerCell: UITableViewCell {
         progressBar.addTarget(self, action: #selector(progressBarTouchDown), forControlEvents: .TouchDown)
         progressBar.enabled = false
         
+        //hidden bufferCircle
+        bufferCircle.hidden = true
+        
         if !inited {
             bufferProgress.layer.transform = CATransform3DScale(bufferProgress.layer.transform, 1.0, 2.0, 1.5)
         }
@@ -86,9 +91,10 @@ class PlayerCell: UITableViewCell {
         playerViewController.updatePrevAndNextButtonStatus()
         playerViewController.updatePlayAndPauseButton()
         playerViewController.updateBufferProgress()
+        playerViewController.updateBufferCircle()
     }
     
-
+    
     
     /*      Event Handler       */
     @IBAction func playButtonPressed(sender: UIButton) {

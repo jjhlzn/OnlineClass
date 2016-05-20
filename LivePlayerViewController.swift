@@ -61,10 +61,7 @@ class LivePlayerViewController : PlayerViewController {
         updatePrevAndNextButtonStatus()
         updatePlayAndPauseButton()
         
-        //发生缓冲的时候，尽量快进到最后
-        if from == AudioPlayerState.Buffering && to == AudioPlayerState.Playing {
-            //audioPlayer.seekToSeekableRangeEnd((audioPlayer.currentItemLoadedRange?.latest)! - 3)
-        }
+        updateBufferCircle()
 
     }
     

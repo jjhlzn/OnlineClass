@@ -43,7 +43,7 @@ class CourseMainPageViewController: BaseUIViewController, UITableViewDataSource,
             switch row {
             case 0:
                 let cell = tableView.dequeueReusableCellWithIdentifier("courseTypeCell") as! CourseTypeCell
-                cell.courseTypeName.text = "直播信用卡秘诀！"
+                cell.courseTypeName.text = "直播课程！"
                 imageName = "liveAudio"
                 cell.courseTypeImageView.image = UIImage(named: imageName)
                 return cell
@@ -112,6 +112,7 @@ class CourseMainPageViewController: BaseUIViewController, UITableViewDataSource,
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        super.prepareForSegue(segue, sender: sender)
         if segue.identifier == "beforeCourseSegue" {
             let dest = segue.destinationViewController as! AlbumListController
             
