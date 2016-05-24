@@ -48,6 +48,14 @@ class BasicService {
         return serverResponse
     }
     
+    func sendRequest<T: ServerResponse>(url: String,
+                     method: Alamofire.Method = .POST,
+                     request: ServerRequest,
+                     //controller中定义的处理函数
+        completion: (resp: T) -> Void) -> T {
+        return sendRequest(url, method: method, params: request.params, completion: completion)
+    }
+    
     private func addMoreRequestInfo(params: [String: AnyObject]?) -> [String: AnyObject] {
         var newParams = [String: AnyObject]()
         newParams["request"] = params

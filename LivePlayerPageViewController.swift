@@ -1,49 +1,69 @@
 //
-//  CommentListController.swift
-//  OnlineClass
+//  LivePlayerPageViewController.swift
+//  jufangzhushou
 //
-//  Created by 刘兆娜 on 16/4/28.
+//  Created by 刘兆娜 on 16/5/24.
 //  Copyright © 2016年 tbaranes. All rights reserved.
 //
 
 import Foundation
 import UIKit
+import KDEAudioPlayer
 
-class CommentListDataSourceAndDelegate : NSObject, UITableViewDataSource, UITableViewDelegate {
+//1. 在线聊天最多显示100条
+//2. 控制聊天的自述
+//3. 每隔5s, 向服务器获取配置的信息，以及获取最新的聊天信息
+class LivePlayerPageViewController : CommonPlayerPageViewController {
     
-    var viewController: BaseUIViewController!
-    var comments: [Comment]!
-    var showHasMoreLink = true
+    //聊天刷新频率
+    let freshChatInterval: NSTimeInterval = 5
+    var audioPlayer: AudioPlayer!
     
-    var heightCache = [String: CGFloat]()
+    var timer: NSTimer!
     
-    
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 2
+    override func initController() {
+        super.initController()
+        audioPlayer = Utils.getAudioPlayer()
+        timer = NSTimer.scheduledTimerWithTimeInterval(freshChatInterval, target: self,
+                                                       selector: #selector(updateChat), userInfo: nil, repeats: true)
+        
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch section{
-        case 0:
-            return 1
-        case 1:
-            print("comments.count = \((comments?.count)!)")
-            let count = (comments?.count)!
-            if showHasMoreLink {
-                return count == 0 ? 2 : count + 2
-            } else {
-                return count == 0 ? 2 : count + 1
+    override func dispose() {
+        super.dispose()
+        timer.invalidate()
+    }
+    
+    
+    func updateChat() {
+        if audioPlayer.currentItem != nil {
+            let item = audioPlayer.currentItem as! MyAudioItem
+            let song = item.song
+            let request = GetSongCommentRequest(song: song)
+            BasicService().sendRequest(ServiceConfiguration.GET_SONG_COMMENTS, request: request) {
+                (resp: GetSongCommentsResponse) -> Void in
+                dispatch_async(dispatch_get_main_queue()) {
+                    if resp.status != 0 {
+                        print(resp.errorMessage)
+                        return
+                    }
+                    var newComments = resp.resultSet
+                    newComments = newComments.reverse()
+                    for comment in newComments {
+                        self.comments.insert(comment, atIndex: 0)
+                    }
+                    self.viewController.tableView.reloadSections(NSIndexSet(index: 1), withRowAnimation: .None)
+                }
             }
-        default:
-            return 0
         }
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let section = indexPath.section
         switch section {
         case 0:
-            let cell = tableView.dequeueReusableCellWithIdentifier("playerCell") as! PlayerCell
+            let cell = tableView.dequeueReusableCellWithIdentifier("livePlayerCell") as! LivePlayerCell
             cell.controller = viewController
             cell.initPalyer()
             
@@ -53,7 +73,7 @@ class CommentListDataSourceAndDelegate : NSObject, UITableViewDataSource, UITabl
             let rowCount = (comments?.count)!
             if row == 0 {
                 
-                let cell = tableView.dequeueReusableCellWithIdentifier("commentHeaderCell") as! CommentHeaderCell
+                let cell = tableView.dequeueReusableCellWithIdentifier("chatHeaderCell") as! CommentHeaderCell
                 return cell
                 
             } else   {
@@ -92,17 +112,17 @@ class CommentListDataSourceAndDelegate : NSObject, UITableViewDataSource, UITabl
         cell.userImage.becomeCircle()
         //print("computeHeight")
         return cell
-
+        
     }
-
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         let section = indexPath.section
         switch section {
         case 0:
             let screenSize: CGRect = UIScreen.mainScreen().bounds
             let screenWidth = screenSize.width
-            return screenWidth + 95
+            return screenWidth / 2 + 95
         case 1:
             let row = indexPath.row
             let rowCount = (comments?.count)!
@@ -146,7 +166,7 @@ class CommentListDataSourceAndDelegate : NSObject, UITableViewDataSource, UITabl
     }
     
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let section = indexPath.section
         let row = indexPath.row
         
@@ -168,4 +188,6 @@ class CommentListDataSourceAndDelegate : NSObject, UITableViewDataSource, UITabl
             break
         }
     }
+
+    
 }

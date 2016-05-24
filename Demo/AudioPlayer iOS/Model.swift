@@ -126,3 +126,10 @@ class User : BaseModelObject{
         }
     }
 }
+
+class ChatSetting : BaseModelObject {
+    var maxWordSize : Int = 50
+    var canComment: Bool = true
+    var lastCommenTime : NSDate?
+    
+}

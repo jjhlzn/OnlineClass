@@ -12,6 +12,28 @@ enum ServerResponseStatus : Int {
     case Success = 0
 }
 
+class ServerRequest {
+    var params: [String: AnyObject] {
+        get {
+            return [String: AnyObject]()
+        }
+    }
+}
+
+class PagedServerRequest: ServerRequest{
+    var pageNo = 0
+    var pageSize = 10
+    override var params: [String : AnyObject] {
+        get {
+            var parameters = super.params
+            parameters["pageno"] = pageNo
+            parameters["pagesize"] = pageSize
+            return parameters
+        }
+    }
+}
+
+
 class ServerResponse  {
     var status : Int = 0
     var errorMessage : String?
@@ -88,6 +110,20 @@ class GetAlbumSongsResponse : ServerResponse {
         }
         (request["album"] as! Album).songs = songs
         resultSet = songs
+    }
+}
+
+class GetSongCommentRequest : PagedServerRequest {
+    var song: Song!
+    init(song: Song) {
+        self.song = song
+    }
+    override var params: [String : AnyObject] {
+        get {
+            var parameters = super.params
+            parameters["song"] = song
+            return parameters
+        }
     }
 }
 

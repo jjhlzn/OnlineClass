@@ -31,7 +31,7 @@ class LivePlayerViewController : PlayerViewController {
         cell.durationLabel.text = song.endTime
         
         //- 获取直播的图片
-        cell.artImageView.downloadedFrom(link: song.imageUrl!, contentMode: .ScaleAspectFit)
+        //cell.artImageView.downloadedFrom(link: song.imageUrl!, contentMode: .ScaleAspectFit)
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         if appDelegate.liveProgressTimer == nil {
             appDelegate.liveProgressTimer  = NSTimer.scheduledTimerWithTimeInterval(0.4, target: self, selector: #selector(updatePlayingProgress), userInfo: nil, repeats: true)

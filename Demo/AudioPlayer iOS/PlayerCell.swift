@@ -1,4 +1,4 @@
-//
+ //
 //  PlayerCell.swift
 //  OnlineClass
 //
@@ -36,9 +36,13 @@ class PlayerCell: UITableViewCell {
     
     func initPalyer() {
         audioPlayer = Utils.getAudioPlayer()
+        
+        var  isLive = false
        
         if let liveSong = (audioPlayer.currentItem as! MyAudioItem).song as? LiveSong {
             playerViewController = LivePlayerViewController(playerCell: self)
+            isLive = true
+            
         } else {
             playerViewController = PlayerViewController(playerCell: self)
         }
@@ -73,9 +77,11 @@ class PlayerCell: UITableViewCell {
         }
         
         //update image
-        if audioPlayer.state == AudioPlayerState.Playing || audioPlayer.state == AudioPlayerState.Paused || audioPlayer.state == AudioPlayerState.Buffering {
-            if audioPlayer.currentItem != nil && audioPlayer.currentItem?.artworkImage != nil {
-                artImageView!.image = audioPlayer.currentItem?.artworkImage!
+        if !isLive {
+            if audioPlayer.state == AudioPlayerState.Playing || audioPlayer.state == AudioPlayerState.Paused || audioPlayer.state == AudioPlayerState.Buffering {
+                if audioPlayer.currentItem != nil && audioPlayer.currentItem?.artworkImage != nil {
+                    artImageView!.image = audioPlayer.currentItem?.artworkImage!
+                }
             }
         }
         
@@ -94,20 +100,26 @@ class PlayerCell: UITableViewCell {
         playerViewController.updateBufferCircle()
     }
     
-    
-    
     /*      Event Handler       */
     @IBAction func playButtonPressed(sender: UIButton) {
         playerViewController.playOrPause()
     }
     
     @IBAction func prevButtonPressed(sender: UIButton) {
+        handlePrevSong()
+    }
+    
+    func handlePrevSong() {
         audioPlayer.previous()
         playerViewController.resetButtonAndProgress()
         artImageView.image = UIImage(named: "musicCover")
     }
     
     @IBAction func nextButtonPressed(sender: UIButton) {
+        handleNextSong()
+    }
+    
+    func handleNextSong() {
         audioPlayer.next()
         playerViewController.resetButtonAndProgress()
         artImageView.image = UIImage(named: "musicCover")
