@@ -32,7 +32,6 @@ class AlbumDetailController: BaseUIViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        print("\(tag): viewWillAppear called")
         addPlayingButton(playingButton)
         //getAudioPlayer().delegate = self
         if songs == nil {
@@ -60,7 +59,7 @@ class AlbumDetailController: BaseUIViewController {
             updateCellPlayingButtons()
         }
         
-        super.updatePlayingButton(playingButton)
+        updatePlayingButton(playingButton)
         
     }
 

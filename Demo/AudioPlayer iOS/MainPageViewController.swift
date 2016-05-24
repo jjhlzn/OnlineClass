@@ -7,18 +7,54 @@
 //
 
 import UIKit
+import KDEAudioPlayer
 
-class CourseMainPageViewController: BaseUIViewController, UITableViewDataSource, UITableViewDelegate {
+class CourseMainPageViewController: BaseUIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
+    @IBOutlet weak var playingButton: UIButton!
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = self
         tableView.delegate = self
+        
+        addPlayingButton(playingButton)
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        updatePlayingButton(playingButton)
+    }
+    
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        super.prepareForSegue(segue, sender: sender)
+        if segue.identifier == "beforeCourseSegue" {
+            let dest = segue.destinationViewController as! AlbumListController
+            
+            dest.courseType = CourseType(rawValue: sender as! String)!
+        }
+    }
+    
+    override func audioPlayer(audioPlayer: AudioPlayer, didChangeStateFrom from: AudioPlayerState, toState to: AudioPlayerState) {
+        let audioItem = getAudioPlayer().currentItem
+        if audioItem == nil {
+            print("audioItem is nil")
+            return
+        }
+        updatePlayingButton(playingButton)
+    }
+
+
+    
+}
+
+
+extension CourseMainPageViewController : UITableViewDataSource, UITableViewDelegate {
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 2
     }
@@ -31,8 +67,8 @@ class CourseMainPageViewController: BaseUIViewController, UITableViewDataSource,
         }
         
     }
-
-
+    
+    
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         
@@ -75,7 +111,7 @@ class CourseMainPageViewController: BaseUIViewController, UITableViewDataSource,
             cell.secondLabel.text = "一键办卡"
             return cell
         }
-    
+        
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -91,7 +127,7 @@ class CourseMainPageViewController: BaseUIViewController, UITableViewDataSource,
         tableView.cellForRowAtIndexPath(indexPath)?.selectionStyle = .None
         let section = indexPath.section
         if section == 1 {
-           let cell = tableView.cellForRowAtIndexPath(indexPath)
+            let cell = tableView.cellForRowAtIndexPath(indexPath)
             cell?.selectionStyle = .None
         } else {
             let row = indexPath.row
@@ -110,15 +146,5 @@ class CourseMainPageViewController: BaseUIViewController, UITableViewDataSource,
             }
         }
     }
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        super.prepareForSegue(segue, sender: sender)
-        if segue.identifier == "beforeCourseSegue" {
-            let dest = segue.destinationViewController as! AlbumListController
-            
-            dest.courseType = CourseType(rawValue: sender as! String)!
-        }
-    }
 
-    
 }

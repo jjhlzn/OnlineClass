@@ -27,7 +27,7 @@ extension MyInfoVieController {
         case 0:
             return 1
         case 1:
-            return 5
+            return 3
         default:
             return 1
         }
@@ -65,16 +65,10 @@ extension MyInfoVieController {
                 title = "个人资料"
                 break
             case 1:
-                title = "我的订单  3单"
-                break
-            case 2:
                 title = "我已推荐  0人"
                 break
-            case 3:
+            case 2:
                 title = "账户安全"
-                break
-            case 4:
-                title = "会员充值"
                 break
             default:
                 break
