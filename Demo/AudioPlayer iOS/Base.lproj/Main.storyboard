@@ -612,6 +612,10 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="couseImage" destination="lFX-1Z-NIV" id="OKT-Mv-Pcp"/>
+                        <outlet property="couseLabel" destination="chL-eg-cBG" id="9W3-SD-622"/>
+                        <outlet property="getMoneyImage" destination="rdc-qI-yiu" id="jlw-lp-TuC"/>
+                        <outlet property="getMoneyLabel" destination="MYm-OK-rcZ" id="HRT-Za-hqT"/>
                         <outlet property="playingButton" destination="a3c-Bf-E3u" id="PtW-lb-I2t"/>
                         <segue destination="Xdz-Ta-yt3" kind="push" identifier="songSegue" id="wgg-JW-dPY"/>
                     </connections>
