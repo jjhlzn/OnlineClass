@@ -738,7 +738,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wwz-WH-HI4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="162" y="733"/>
+            <point key="canvasLocation" x="166" y="520"/>
         </scene>
         <!--播放页面-->
         <scene sceneID="0q5-Ra-Uzo">
@@ -806,7 +806,7 @@
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 </imageView>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="nSg-mE-Y2N">
-                                                    <rect key="frame" x="147" y="350" width="30" height="30"/>
+                                                    <rect key="frame" x="147" y="350" width="35" height="35"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <state key="normal" title="播放" image="play"/>
                                                     <connections>
@@ -833,7 +833,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="9KZ-ct-Pwm">
-                                                    <rect key="frame" x="215" y="350" width="30" height="30"/>
+                                                    <rect key="frame" x="215" y="350" width="35" height="35"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <state key="normal" title="&gt;&gt;" image="nextPlay"/>
                                                     <connections>
@@ -847,7 +847,7 @@
                                                     <color key="tintColor" red="0.94901960780000005" green="0.3803921569" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 </slider>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="pMj-nW-pUe">
-                                                    <rect key="frame" x="70" y="350" width="30" height="30"/>
+                                                    <rect key="frame" x="70" y="350" width="35" height="35"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <state key="normal" title="&lt;&lt;" image="prevPlay"/>
                                                     <connections>
@@ -855,7 +855,7 @@
                                                     </connections>
                                                 </button>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bufferCircle1" id="9lW-0F-dFq">
-                                                    <rect key="frame" x="136" y="340" width="50" height="50"/>
+                                                    <rect key="frame" x="139" y="342" width="50" height="50"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                 </imageView>
                                             </subviews>
@@ -874,100 +874,100 @@
                                             <outlet property="progressBar" destination="18F-qB-wBm" id="hUN-F3-4Gv"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="livePlayerCell" focusStyle="custom" rowHeight="250" id="tk5-cb-Z5Y" customClass="LivePlayerCell" customModule="AudioPlayer" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="465" width="320" height="250"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="livePlayerCell" focusStyle="custom" rowHeight="183" id="tk5-cb-Z5Y" customClass="LivePlayerCell" customModule="AudioPlayer" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="465" width="320" height="183"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tk5-cb-Z5Y" id="cA2-0H-HhZ">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="249"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="182"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="liveMusicCover" id="rrq-79-ZGn">
-                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="160"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="liveMusicCover" id="XTy-sw-Beu">
+                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="96"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 </imageView>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="PN8-x7-IcZ">
-                                                    <rect key="frame" x="147" y="191" width="30" height="30"/>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="txP-0L-fDd">
+                                                    <rect key="frame" x="144" y="125" width="35" height="35"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <state key="normal" title="播放" image="play"/>
                                                     <connections>
-                                                        <action selector="playButtonPressed:" destination="tk5-cb-Z5Y" eventType="touchUpInside" id="Mjw-IW-Itk"/>
+                                                        <action selector="playButtonPressed:" destination="tk5-cb-Z5Y" eventType="touchUpInside" id="Qbu-2i-PtS"/>
                                                     </connections>
                                                 </button>
-                                                <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="1" id="JuC-it-M2R">
-                                                    <rect key="frame" x="0.0" y="160" width="320" height="2"/>
+                                                <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="1" id="2ql-IU-1Q1">
+                                                    <rect key="frame" x="0.0" y="96" width="320" height="2"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <color key="tintColor" red="0.60000002379999995" green="0.60000002379999995" blue="0.60000002379999995" alpha="1" colorSpace="calibratedRGB"/>
                                                 </progressView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Jdk-Hr-Uat">
-                                                    <rect key="frame" x="253" y="170" width="65" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Wrw-Uh-OCW">
+                                                    <rect key="frame" x="253" y="104" width="65" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="HEJ-8U-hLa">
-                                                    <rect key="frame" x="3" y="170" width="82" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2i1-Up-r6k">
+                                                    <rect key="frame" x="3" y="104" width="82" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="0hR-Rf-Dpv">
-                                                    <rect key="frame" x="215" y="191" width="30" height="30"/>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="A27-0l-kzQ">
+                                                    <rect key="frame" x="215" y="125" width="35" height="35"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <state key="normal" title="&gt;&gt;" image="nextPlay"/>
                                                     <connections>
-                                                        <action selector="nextButtonPressed:" destination="tk5-cb-Z5Y" eventType="touchUpInside" id="5aA-UE-aE6"/>
-                                                        <action selector="nextSongPressed:" destination="Xdz-Ta-yt3" eventType="touchUpInside" id="Z4a-k6-vms"/>
+                                                        <action selector="nextButtonPressed:" destination="tk5-cb-Z5Y" eventType="touchUpInside" id="sZA-7M-9Vk"/>
+                                                        <action selector="nextSongPressed:" destination="Xdz-Ta-yt3" eventType="touchUpInside" id="mJR-c9-1Ta"/>
                                                     </connections>
                                                 </button>
-                                                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" id="EQC-UX-qwN" customClass="MyUISlider" customModule="AudioPlayer" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="147" width="324" height="31"/>
+                                                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" id="Xmu-PK-eHa" customClass="MyUISlider" customModule="AudioPlayer" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="82" width="324" height="31"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                     <color key="tintColor" red="0.94901960780000005" green="0.3803921569" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 </slider>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="lK9-ci-Bw4">
-                                                    <rect key="frame" x="70" y="191" width="30" height="30"/>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="SV4-F6-i0R">
+                                                    <rect key="frame" x="70" y="125" width="35" height="35"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <state key="normal" title="&lt;&lt;" image="prevPlay"/>
                                                     <connections>
-                                                        <action selector="prevButtonPressed:" destination="tk5-cb-Z5Y" eventType="touchUpInside" id="Vyg-Sj-U6i"/>
+                                                        <action selector="prevButtonPressed:" destination="tk5-cb-Z5Y" eventType="touchUpInside" id="DcO-kl-8au"/>
                                                     </connections>
                                                 </button>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bufferCircle1" id="Jlm-UA-RQ6">
-                                                    <rect key="frame" x="136" y="181" width="50" height="50"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                </imageView>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="me" id="85t-s9-dir">
-                                                    <rect key="frame" x="18" y="8" width="30" height="30"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="audioUserIcon" id="Pga-qg-t1m">
+                                                    <rect key="frame" x="17" y="8" width="20" height="20"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100人" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="EaT-O7-78b">
-                                                    <rect key="frame" x="2" y="41" width="63" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100人" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="cKm-ma-ptv">
+                                                    <rect key="frame" x="-4" y="26" width="63" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bufferCircle1" id="wpU-E0-GI7">
+                                                    <rect key="frame" x="136" y="117" width="50" height="50"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                </imageView>
                                             </subviews>
                                             <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="0.0"/>
                                         </tableViewCellContentView>
                                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <connections>
-                                            <outlet property="artImageView" destination="rrq-79-ZGn" id="bYR-fg-HF6"/>
-                                            <outlet property="bufferCircle" destination="Jlm-UA-RQ6" id="mfh-yN-FYI"/>
-                                            <outlet property="bufferProgress" destination="JuC-it-M2R" id="1OF-yN-4e4"/>
-                                            <outlet property="durationLabel" destination="Jdk-Hr-Uat" id="NiF-FJ-s74"/>
-                                            <outlet property="nextButton" destination="0hR-Rf-Dpv" id="dsH-c2-9tk"/>
-                                            <outlet property="peopleCountLabel" destination="EaT-O7-78b" id="HRj-Lx-UJR"/>
-                                            <outlet property="playButton" destination="PN8-x7-IcZ" id="Zh2-Vk-4bd"/>
-                                            <outlet property="playingLabel" destination="HEJ-8U-hLa" id="gWh-Ju-ght"/>
-                                            <outlet property="preButton" destination="lK9-ci-Bw4" id="ATj-wM-s3X"/>
-                                            <outlet property="progressBar" destination="EQC-UX-qwN" id="Uze-yA-82K"/>
+                                            <outlet property="artImageView" destination="XTy-sw-Beu" id="zg2-G3-SCE"/>
+                                            <outlet property="bufferCircle" destination="wpU-E0-GI7" id="LDE-7G-8Sn"/>
+                                            <outlet property="bufferProgress" destination="2ql-IU-1Q1" id="EYw-uL-dKb"/>
+                                            <outlet property="durationLabel" destination="Wrw-Uh-OCW" id="jYL-Hr-tXx"/>
+                                            <outlet property="nextButton" destination="A27-0l-kzQ" id="6no-Be-YlQ"/>
+                                            <outlet property="peopleCountLabel" destination="cKm-ma-ptv" id="VPg-XV-XfS"/>
+                                            <outlet property="playButton" destination="txP-0L-fDd" id="6Tj-L9-frq"/>
+                                            <outlet property="playingLabel" destination="2i1-Up-r6k" id="9Rf-Uv-ErX"/>
+                                            <outlet property="preButton" destination="SV4-F6-i0R" id="epA-aI-6oQ"/>
+                                            <outlet property="progressBar" destination="Xmu-PK-eHa" id="21D-JR-NAX"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="commentCell" rowHeight="55" id="MnR-Yt-eyT" customClass="CommentCell" customModule="AudioPlayer" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="715" width="320" height="55"/>
+                                        <rect key="frame" x="0.0" y="648" width="320" height="55"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="MnR-Yt-eyT" id="Ulr-mo-Gol">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="54"/>
@@ -1008,7 +1008,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="moreCommentCell" rowHeight="44" id="bio-9i-h38" customClass="MoreLinkCell" customModule="AudioPlayer" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="770" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="703" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bio-9i-h38" id="OcJ-bb-K3O">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -1029,7 +1029,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="commentHeaderCell" rowHeight="40" id="1NM-r3-hdX" customClass="CommentHeaderCell" customModule="AudioPlayer" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="814" width="320" height="40"/>
+                                        <rect key="frame" x="0.0" y="747" width="320" height="40"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1NM-r3-hdX" id="qpU-4g-sLT">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="39"/>
@@ -1054,7 +1054,7 @@
                                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="noCommentCell" rowHeight="70" id="xns-C0-OoK" customClass="NoCommentCell" customModule="AudioPlayer" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="854" width="320" height="70"/>
+                                        <rect key="frame" x="0.0" y="787" width="320" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xns-C0-OoK" id="Rob-eB-rpE">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="69"/>
@@ -1071,7 +1071,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="chatHeaderCell" rowHeight="40" id="Aew-rS-dMd" customClass="CommentHeaderCell" customModule="AudioPlayer" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="924" width="320" height="40"/>
+                                        <rect key="frame" x="0.0" y="857" width="320" height="40"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Aew-rS-dMd" id="vY0-9U-PSc">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="39"/>
@@ -1120,7 +1120,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RQo-og-278" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3576" y="-1164"/>
+            <point key="canvasLocation" x="3650" y="-1294"/>
         </scene>
         <!--商城-->
         <scene sceneID="UNh-gY-mlq">
@@ -1395,13 +1395,14 @@
     </scenes>
     <resources>
         <image name="audioIcon" width="150" height="150"/>
+        <image name="audioUserIcon" width="50" height="50"/>
         <image name="backicon" width="32" height="32"/>
         <image name="bufferCircle1" width="102" height="103"/>
         <image name="course" width="25" height="25"/>
         <image name="course-filled" width="25" height="25"/>
         <image name="creditCard" width="192" height="128"/>
         <image name="icon" width="150" height="150"/>
-        <image name="liveMusicCover" width="250" height="125"/>
+        <image name="liveMusicCover" width="250" height="75"/>
         <image name="mall" width="25" height="25"/>
         <image name="mall-filled" width="25" height="25"/>
         <image name="me" width="25" height="25"/>

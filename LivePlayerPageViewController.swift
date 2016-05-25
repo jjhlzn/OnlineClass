@@ -122,7 +122,7 @@ class LivePlayerPageViewController : CommonPlayerPageViewController {
         case 0:
             let screenSize: CGRect = UIScreen.mainScreen().bounds
             let screenWidth = screenSize.width
-            return screenWidth / 2 + 95
+            return screenWidth * 0.3 + 95
         case 1:
             let row = indexPath.row
             let rowCount = (comments?.count)!
