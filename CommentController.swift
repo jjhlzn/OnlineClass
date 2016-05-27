@@ -34,6 +34,8 @@ class CommentController : NSObject, UITextViewDelegate {
     
     var song: Song!
     
+    var lastCommentTime : NSDate?
+    
     func textViewDidChange(textView: UITextView) { //Handle the text changes here
         //print(textView.text); //the textView parameter is the textView where text was changed
         if textView.text.length > 0 {
@@ -128,6 +130,16 @@ class CommentController : NSObject, UITextViewDelegate {
             return false
         }
         
+        //检查上次评论的时间
+        if lastCommentTime != nil {
+            let elapsedTime = NSDate().timeIntervalSinceDate(lastCommentTime!)
+            let duration = Int(elapsedTime)
+            if duration < 2 {
+                viewController.displayMessage("您发的太频繁了")
+                return false
+            }
+        }
+        
         return true
     }
     
@@ -154,6 +166,7 @@ class CommentController : NSObject, UITextViewDelegate {
             dispatch_async(dispatch_get_main_queue()) {
                 NSLog("%s: process send comment response", self.TAG)
                 self.viewController.dismissKeyboard()
+                self.lastCommentTime = NSDate()
                 if ( resp.status == ServerResponseStatus.Success.rawValue) {
                     NSLog("%s: sucess", self.TAG)
                     self.commentFiled2.text = ""
