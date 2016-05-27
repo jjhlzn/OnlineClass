@@ -26,6 +26,14 @@ class CommonPlayerPageViewController : NSObject, UITableViewDataSource, UITableV
         
     }
     
+    func enterBackgound() {
+        print("CommonPlayerPageViewController: enterBackgound")
+    }
+    
+    func enterForhand() {
+        print("CommonPlayerPageViewController: enterForhand")
+    }
+    
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 2

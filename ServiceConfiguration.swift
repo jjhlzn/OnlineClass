@@ -28,13 +28,13 @@ class ServiceConfiguration {
     
     static var serverName: String {
         get {
-            return serverName3
+            return serverName2
         }
     }
     
     static var port: Int {
         get {
-            return port3
+            return port2
         }
     }
 
@@ -90,6 +90,13 @@ class ServiceConfiguration {
     static var SEND_COMMENT: String {
         get {
             return "\(http)://\(serverName):\(port)/comment/add"
+        }
+    }
+    
+    //获取直播在线人数
+    static var GET_LIVE_LISTERNER_COUNT : String {
+        get {
+            return "\(http)://\(serverName):\(port)/song/livelistener"
         }
     }
     

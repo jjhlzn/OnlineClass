@@ -58,6 +58,59 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             audioPlayer.remoteControlReceivedWithEvent(event)
         }
     }
+    
+    func applicationWillEnterForeground(application: UIApplication) {
+        let currentViewController = getVisibleViewController(nil)
+        
+        if currentViewController != nil {
+            if let navController = currentViewController as? UINavigationController {
+                if let topController = navController.topViewController as? SongViewController {
+                    topController.playerPageViewController.enterForhand()
+                }
+            }
+        }
+    }
+    
+    func applicationDidEnterBackground(application: UIApplication) {
+        let currentViewController = getVisibleViewController(nil)
+        
+        if currentViewController != nil {
+            if let navController = currentViewController as? UINavigationController {
+                if let topController = navController.topViewController as? SongViewController {
+                    topController.playerPageViewController.enterBackgound()
+                }
+            }
+        }
+
+    }
+    
+    private func getVisibleViewController(var rootViewController: UIViewController?) -> UIViewController? {
+        
+        if rootViewController == nil {
+            rootViewController = UIApplication.sharedApplication().keyWindow?.rootViewController
+        }
+        
+        if rootViewController?.presentedViewController == nil {
+            return rootViewController
+        }
+        
+        if let presented = rootViewController?.presentedViewController {
+            if presented.isKindOfClass(UINavigationController) {
+                let navigationController = presented as! UINavigationController
+                print(navigationController.viewControllers.last!)
+                return navigationController.viewControllers.last!
+            }
+            
+            if presented.isKindOfClass(UITabBarController) {
+                let tabBarController = presented as! UITabBarController
+                print(tabBarController.selectedViewController!)
+                return tabBarController.selectedViewController!
+            }
+            
+            return getVisibleViewController(presented)
+        }
+        return nil
+    }
 
 
 }

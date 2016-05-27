@@ -39,12 +39,18 @@ class Album : BaseModelObject {
     }
 }
 
+class SongSetting : BaseModelObject {
+    var maxCommentWord: Int = 30
+    var canComment: Bool = true
+}
+
 class Song : BaseModelObject {
     var id: String = ""
     var name: String = ""
     var desc: String = ""
     var date: String = ""
     var url: String = ""
+    var settings = SongSetting()
     var album: Album!
     var wholeUrl : String {
         return ServiceConfiguration.GetSongUrl(url)

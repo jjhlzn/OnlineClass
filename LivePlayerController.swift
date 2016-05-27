@@ -38,8 +38,6 @@ class LivePlayerViewController : PlayerViewController {
         }
         
         cell.progressBar.value =  Float(song.leftTime / song.totalTime)
-        
-    
     }
     
     var stopItem: AudioItem?
@@ -93,7 +91,7 @@ class LivePlayerViewController : PlayerViewController {
     
     
     override func updateBufferProgress() {
-        print("LivePlayerViewController:updateBufferProgress")
+        //print("LivePlayerViewController:updateBufferProgress")
         let beforeTime = NSTimeInterval( getCurrentSong().totalTime - getCurrentSong().leftTime )
         if audioPlayer.currentItemLoadedRange != nil {
             cell.bufferProgress.progress = Float( (beforeTime + audioPlayer.currentItemLoadedRange!.latest) / NSTimeInterval( getCurrentSong().totalTime) )

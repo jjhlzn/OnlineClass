@@ -35,7 +35,6 @@ class BaseUIViewController: UIViewController, AudioPlayerDelegate {
         let backItem = UIBarButtonItem()
         backItem.title = ""
         navigationItem.backBarButtonItem = backItem
-        
     }
     
     

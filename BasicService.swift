@@ -13,7 +13,7 @@ import Alamofire
 class BasicService {
     
     func sendRequest<T: ServerResponse>(url: String,
-                     method: Alamofire.Method = .POST,
+                     method: Alamofire.Method = .GET,
                      params: [String: AnyObject]? = [String: AnyObject](),
                      //controller中定义的处理函数
                      completion: (resp: T) -> Void) -> T {
@@ -24,7 +24,7 @@ class BasicService {
             .responseJSON { response in
                 //print("---------------------------------StartRequest---------------------------------")
                 //debugPrint(finalParams)
-               // debugPrint(response)
+                 // debugPrint(response)
                 //print("----------------------------------EndRequest----------------------------------")
                 
                 if response.result.isFailure {
@@ -49,7 +49,7 @@ class BasicService {
     }
     
     func sendRequest<T: ServerResponse>(url: String,
-                     method: Alamofire.Method = .POST,
+                     method: Alamofire.Method = .GET,
                      request: ServerRequest,
                      //controller中定义的处理函数
         completion: (resp: T) -> Void) -> T {

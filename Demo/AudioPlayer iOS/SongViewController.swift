@@ -26,9 +26,13 @@ class SongViewController: BaseUIViewController, UIGestureRecognizerDelegate, Com
     
     var overlay = UIView()
     var audioPlayer: AudioPlayer!
+    var song: Song!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        audioPlayer = getAudioPlayer()
+        song = (audioPlayer.currentItem as! MyAudioItem).song
 
         //设置评论controller
         commentController.bottomView = bottomView
@@ -39,12 +43,9 @@ class SongViewController: BaseUIViewController, UIGestureRecognizerDelegate, Com
         commentController.sendButton = sendButton
         commentController.viewController = self
         commentController.delegate = self
-        commentController.initView()
+        commentController.initView(song)
         
-        audioPlayer = getAudioPlayer()
-        
-       
-        
+
         self.navigationController?.interactivePopGestureRecognizer!.delegate = self
         
         if audioPlayer.currentItem != nil {
@@ -95,8 +96,7 @@ class SongViewController: BaseUIViewController, UIGestureRecognizerDelegate, Com
         }
     }
     
-    
-    
+        
     /* UIGestureRecognizerDelegate functions   */
     func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer) -> Bool {
         return false
@@ -113,6 +113,8 @@ class SongViewController: BaseUIViewController, UIGestureRecognizerDelegate, Com
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "commentListSegue" {
+            let dest = segue.destinationViewController as! CommentListController
+            dest.song = song
             let backItem = UIBarButtonItem()
             backItem.title = ""
             navigationItem.backBarButtonItem = backItem
@@ -128,7 +130,8 @@ class SongViewController: BaseUIViewController, UIGestureRecognizerDelegate, Com
             let item = audioPlayer.currentItem as! MyAudioItem
             
             
-            let song = item.song
+            song = item.song
+            commentController.song = song
             BasicService().sendRequest(ServiceConfiguration.GET_SONG_COMMENTS,
                                    params: ["song": song]) {
                                     (resp: GetSongCommentsResponse) -> Void in

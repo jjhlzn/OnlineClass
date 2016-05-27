@@ -26,6 +26,8 @@ class CommentListController: BaseUIViewController, UITableViewDataSource, UITabl
     var keyboardHeight: CGFloat?
     var heightCache = [String: CGFloat]()
     
+    var song: Song!
+    
     //分页控制器
     var pagableController = PagableController<Comment>()
     
@@ -46,7 +48,7 @@ class CommentListController: BaseUIViewController, UITableViewDataSource, UITabl
         commentController.sendButton = sendButton
         commentController.viewController = self
         commentController.delegate = self
-        commentController.initView()
+        commentController.initView(song)
       
         tableView.dataSource = self
         tableView.delegate = self
@@ -89,8 +91,6 @@ extension CommentListController {
     
     
     func searchHandler() {
-        let song = Song()
-        song.id = "1"
         BasicService().sendRequest(ServiceConfiguration.GET_SONG_COMMENTS,
                                    params: ["song": song, "pageno": pagableController.page, "pagesize": ServiceConfiguration.PageSize]) {
             (resp: GetSongCommentsResponse) -> Void in

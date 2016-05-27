@@ -963,7 +963,7 @@
                                             <outlet property="bufferProgress" destination="2ql-IU-1Q1" id="EYw-uL-dKb"/>
                                             <outlet property="durationLabel" destination="Wrw-Uh-OCW" id="jYL-Hr-tXx"/>
                                             <outlet property="nextButton" destination="A27-0l-kzQ" id="6no-Be-YlQ"/>
-                                            <outlet property="peopleCountLabel" destination="cKm-ma-ptv" id="VPg-XV-XfS"/>
+                                            <outlet property="peopleCountLabel" destination="cKm-ma-ptv" id="Ojc-Yn-j3p"/>
                                             <outlet property="playButton" destination="txP-0L-fDd" id="6Tj-L9-frq"/>
                                             <outlet property="playingLabel" destination="2i1-Up-r6k" id="9Rf-Uv-ErX"/>
                                             <outlet property="preButton" destination="SV4-F6-i0R" id="epA-aI-6oQ"/>
@@ -1125,6 +1125,30 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RQo-og-278" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3650" y="-1294"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="sUC-Ti-bcl">
+            <objects>
+                <viewController id="lsy-6H-40j" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="7iY-5g-kxj">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  我来说两句" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="cY3-zK-mUx">
+                                <rect key="frame" x="9" y="526" width="303" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.90528846149999997" green="0.90528846149999997" blue="0.90528846149999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PeA-zh-m4B" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4145" y="-1294"/>
         </scene>
         <!--商城-->
         <scene sceneID="UNh-gY-mlq">
@@ -1423,8 +1447,8 @@
         <image name="wave1" width="24" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="wCU-pg-fxd"/>
         <segue reference="wgg-JW-dPY"/>
-        <segue reference="xmL-0a-HxS"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.94901960784313721" green="0.38039215686274508" blue="0.0" alpha="0.90000000000000002" colorSpace="calibratedRGB"/>
 </document>

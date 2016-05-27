@@ -10,6 +10,12 @@ import Foundation
 import UIKit
 import KDEAudioPlayer
 
+extension String {
+    var length: Int {
+        return characters.count
+    }
+}
+
 class Utils {
     static let Model_Name = "jufangzhushou"
     

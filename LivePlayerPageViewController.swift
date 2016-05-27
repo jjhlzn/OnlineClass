@@ -16,33 +16,61 @@ import KDEAudioPlayer
 class LivePlayerPageViewController : CommonPlayerPageViewController {
     
     //聊天刷新频率
-    let freshChatInterval: NSTimeInterval = 5
+    let freshChatInterval: NSTimeInterval = 50
+    //人数更新频率
+    let freshListernCountInterval: NSTimeInterval = 30
     var audioPlayer: AudioPlayer!
     
-    var timer: NSTimer!
+    var freshChatTimer: NSTimer!
+    var updateListernerCountTimer: NSTimer!
+    var isUpdateChat = false
+    var livePlayerCell : LivePlayerCell?
     
     override func initController() {
         super.initController()
+        showHasMoreLink = false
         audioPlayer = Utils.getAudioPlayer()
-        timer = NSTimer.scheduledTimerWithTimeInterval(freshChatInterval, target: self,
-                                                       selector: #selector(updateChat), userInfo: nil, repeats: true)
-        
+        createTimer()
     }
     
     override func dispose() {
         super.dispose()
-        timer.invalidate()
+        freshChatTimer.invalidate()
+        updateListernerCountTimer.invalidate()
     }
     
+    override func enterBackgound() {
+        super.enterBackgound()
+        freshChatTimer.invalidate()
+        updateListernerCountTimer.invalidate()
+    }
+    
+    override func enterForhand() {
+        super.enterForhand()
+        createTimer()
+    }
+    
+    private func createTimer() {
+        freshChatTimer = NSTimer.scheduledTimerWithTimeInterval(freshChatInterval, target: self,
+                                                                selector: #selector(updateChat), userInfo: nil, repeats: true)
+        
+        updateListernerCountTimer = NSTimer.scheduledTimerWithTimeInterval(freshListernCountInterval, target: self,
+                                                                           selector: #selector(updateListernerCount), userInfo: nil, repeats: true)
+    }
     
     func updateChat() {
+        if isUpdateChat {
+            return
+        }
         if audioPlayer.currentItem != nil {
             let item = audioPlayer.currentItem as! MyAudioItem
             let song = item.song
             let request = GetSongCommentRequest(song: song)
+            isUpdateChat = true
             BasicService().sendRequest(ServiceConfiguration.GET_SONG_COMMENTS, request: request) {
                 (resp: GetSongCommentsResponse) -> Void in
                 dispatch_async(dispatch_get_main_queue()) {
+                    self.isUpdateChat = false
                     if resp.status != 0 {
                         print(resp.errorMessage)
                         return
@@ -58,16 +86,54 @@ class LivePlayerPageViewController : CommonPlayerPageViewController {
         }
     }
     
+    func updateListernerCount() {
+        if audioPlayer.currentItem != nil {
+            let item = audioPlayer.currentItem as! MyAudioItem
+            let song = item.song
+            let request = GetLiveListernerCountRequest(song: song)
+            BasicService().sendRequest(ServiceConfiguration.GET_LIVE_LISTERNER_COUNT, request: request) {
+                (resp: GetLiveListernerCountResponse) -> Void in
+                dispatch_async(dispatch_get_main_queue()) {
+                    if resp.status != 0 {
+                        print(resp.errorMessage)
+                        return
+                    }
+                    
+                    self.livePlayerCell?.peopleCountLabel.text = "\(resp.count)人"
+                    
+                }
+            }
+        }
+
+    }
+    
+   override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        switch section{
+        case 0:
+            return 1
+        case 1:
+            print("comments.count = \((comments?.count)!)")
+            let count = (comments?.count)!
+            if showHasMoreLink {
+                return count == 0 ? 2 : count + 2
+            } else {
+                return count == 0 ? 2 : count + 1
+            }
+        default:
+            return 0
+        }
+    }
+    
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let section = indexPath.section
         switch section {
         case 0:
-            let cell = tableView.dequeueReusableCellWithIdentifier("livePlayerCell") as! LivePlayerCell
-            cell.controller = viewController
-            cell.initPalyer()
+            livePlayerCell = tableView.dequeueReusableCellWithIdentifier("livePlayerCell") as? LivePlayerCell
+            livePlayerCell?.controller = viewController
+            livePlayerCell?.initPalyer()
             
-            return cell
+            return livePlayerCell!
         case 1:
             let row = indexPath.row
             let rowCount = (comments?.count)!
@@ -166,28 +232,6 @@ class LivePlayerPageViewController : CommonPlayerPageViewController {
     }
     
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let section = indexPath.section
-        let row = indexPath.row
-        
-        switch section {
-        case 0:
-            let cell = tableView.cellForRowAtIndexPath(indexPath)
-            cell?.selectionStyle = .None
-            break;
-        case 1:
-            let rowCount = (comments?.count)!
-            if rowCount > 0 {
-                if row == rowCount + 1 {
-                    tableView.cellForRowAtIndexPath(indexPath)?.selected = false
-                    viewController.performSegueWithIdentifier("commentListSegue", sender: nil)
-                }
-            }
-            break
-        default:
-            break
-        }
-    }
-
+    
     
 }

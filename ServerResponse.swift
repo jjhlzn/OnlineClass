@@ -57,6 +57,8 @@ class PageServerResponse<T> : ServerResponse{
     
 }
 
+
+
 class GetAlbumsResponse : PageServerResponse<Album> {
     required init() {}
     override func parseJSON(request: [String: AnyObject], json: NSDictionary)  {
@@ -93,8 +95,6 @@ class GetAlbumSongsResponse : ServerResponse {
                 liveSong.imageUrl = json["image"] as? String
                 liveSong.startDateTime = json["startTime"] as? String
                 liveSong.endDateTime = json["endTime"] as? String
-                //liveSong.leftTime = json["leftTime"] as! Int
-                //liveSong.totalTime = json["totalTime"] as! Int
                 song = liveSong
             } else {
                 song = Song()
@@ -105,6 +105,12 @@ class GetAlbumSongsResponse : ServerResponse {
             song.date = json["date"] as! String
             song.url = json["url"] as! String
             song.id = json["id"] as! String
+            let settings = SongSetting()
+            song.settings = settings
+            let settingsJson = json["settings"] as! NSDictionary
+            settings.canComment = settingsJson["canComment"] as! Bool
+            settings.maxCommentWord = settingsJson["maxCommentWord"] as! Int
+            
             songs.append(song)
             
         }
@@ -146,6 +152,20 @@ class GetSongCommentsResponse : PageServerResponse<Comment> {
     }
 }
 
+
+class SendCommentRequest : ServerRequest {
+    var song: Song!
+    var comment: String!
+    override var params: [String : AnyObject] {
+        get {
+            var parameters = super.params
+            parameters["song"] = song
+            parameters["comment"] = comment
+            return parameters
+        }
+    }
+}
+
 class SendCommentResponse : ServerResponse {
     
 }
@@ -178,5 +198,22 @@ class SignupResponse : ServerResponse {
 
 class GetPasswordResponse : ServerResponse {
 
+}
 
+class GetLiveListernerCountRequest : ServerRequest {
+    var song: Song!
+    init(song: Song) {
+        self.song = song
+    }
+}
+
+class GetLiveListernerCountResponse : ServerResponse {
+    var count = 0
+    
+    override func parseJSON(request: [String : AnyObject], json: NSDictionary) {
+        super.parseJSON(request, json: json)
+        if status == 0 {
+            count = json["count"] as! Int
+        }
+    }
 }

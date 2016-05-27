@@ -17,7 +17,7 @@ class ToastMessage {
         
         let label = UILabel(frame: CGRectMake(0, 0, 160, 60))
         label.layer.cornerRadius = 05
-        label.backgroundColor = UIColor(white: 0.5, alpha: 0.5)
+        label.backgroundColor = UIColor(white: 0.3, alpha: 0.5)
         label.textAlignment = NSTextAlignment.Center
         
         label.text = message
