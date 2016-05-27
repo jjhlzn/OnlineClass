@@ -37,6 +37,14 @@ class CourseMainPageViewController: BaseUIViewController {
             let dest = segue.destinationViewController as! AlbumListController
             
             dest.courseType = CourseType(rawValue: sender as! String)!
+        } else if segue.identifier == "loadWebPageSegue" {
+            let dest = segue.destinationViewController as! WebPageViewController
+            let params = sender as! [String: String]
+            dest.url = NSURL(string: params["url"]!)
+            let backItem = UIBarButtonItem()
+            backItem.title = "关闭"
+            navigationItem.backBarButtonItem = backItem
+            dest.title = params["title"]
         }
     }
     
@@ -48,8 +56,6 @@ class CourseMainPageViewController: BaseUIViewController {
         }
         updatePlayingButton(playingButton)
     }
-
-
     
 }
 
@@ -106,11 +112,31 @@ extension CourseMainPageViewController : UITableViewDataSource, UITableViewDeleg
         } else {
             let cell = tableView.dequeueReusableCellWithIdentifier("functionCell") as! FunctionCell
             cell.firstImageView.image = UIImage(named: "up")
-            cell.secondImageView.image = UIImage(named: "visa")
+            let upTap = UITapGestureRecognizer(target: self, action: #selector(upImageHandle))
+            cell.firstImageView.addGestureRecognizer(upTap)
+            cell.firstImageView.userInteractionEnabled = true
             cell.firstLabel.text = "一键提额"
+            
+            cell.secondImageView.image = UIImage(named: "visa")
+            let cardTap = UITapGestureRecognizer(target: self, action: #selector(cardImageHandle))
+            cell.secondImageView.addGestureRecognizer(cardTap)
+            cell.secondImageView.userInteractionEnabled = true
             cell.secondLabel.text = "一键办卡"
+            
             return cell
         }
+        
+    }
+    
+    func upImageHandle() {
+        let params : [String: String] = ["url": "http://www.baidu.com", "title": "一键提额"]
+        performSegueWithIdentifier("loadWebPageSegue", sender: params)
+    
+    }
+    
+    func cardImageHandle() {
+        let params : [String: String] = ["url": "http://www.weibo.com", "title": "一键办卡"]
+        performSegueWithIdentifier("loadWebPageSegue", sender: params)
         
     }
     

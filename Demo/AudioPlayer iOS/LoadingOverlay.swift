@@ -41,7 +41,30 @@ public class LoadingOverlay{
     
     public func hideOverlayView() {
         activityIndicator.stopAnimating()
-        //backgroundView.removeFromSuperview()
         overlayView.removeFromSuperview()
     }
+}
+
+public class LoadingCircle {
+    
+    var activityIndicator = UIActivityIndicatorView()
+    
+    public func show(view: UIView!) {
+
+        activityIndicator = UIActivityIndicatorView(frame: CGRectMake(0, 0, 40, 40))
+        activityIndicator.layer.cornerRadius = 05;
+        activityIndicator.backgroundColor = nil
+        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.WhiteLarge
+        activityIndicator.center = view.center
+        activityIndicator.color = UIColor.grayColor()
+        view.addSubview(activityIndicator)
+        activityIndicator.startAnimating()
+        
+    }
+    
+    public func hide() {
+        activityIndicator.stopAnimating()
+        activityIndicator.removeFromSuperview()
+    }
+
 }

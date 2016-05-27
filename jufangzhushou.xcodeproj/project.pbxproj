@@ -36,6 +36,7 @@
 		1CA3B2101CD86B7800D0ABD8 /* MainPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA3B20F1CD86B7800D0ABD8 /* MainPageViewController.swift */; };
 		1CA3B2121CD86BD300D0ABD8 /* CourseTypeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA3B2111CD86BD300D0ABD8 /* CourseTypeCell.swift */; };
 		1CA3B2141CD8E83B00D0ABD8 /* FunctionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA3B2131CD8E83B00D0ABD8 /* FunctionCell.swift */; };
+		1CD349641CF8167C00037F78 /* WebPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD349631CF8167C00037F78 /* WebPageViewController.swift */; };
 		1CDCC8ED1CE717F3001640CC /* ForgetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CDCC8EC1CE717F2001640CC /* ForgetPasswordViewController.swift */; };
 		1CDCC8EF1CE72203001640CC /* logoutCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CDCC8EE1CE72203001640CC /* logoutCell.swift */; };
 		1CEE8AF31CD4998A00865FB6 /* PagableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CEE8AF21CD4998A00865FB6 /* PagableController.swift */; };
@@ -97,6 +98,7 @@
 		1CA3B20F1CD86B7800D0ABD8 /* MainPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainPageViewController.swift; sourceTree = "<group>"; };
 		1CA3B2111CD86BD300D0ABD8 /* CourseTypeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseTypeCell.swift; sourceTree = "<group>"; };
 		1CA3B2131CD8E83B00D0ABD8 /* FunctionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FunctionCell.swift; sourceTree = "<group>"; };
+		1CD349631CF8167C00037F78 /* WebPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebPageViewController.swift; sourceTree = "<group>"; };
 		1CDCC8EC1CE717F2001640CC /* ForgetPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgetPasswordViewController.swift; sourceTree = "<group>"; };
 		1CDCC8EE1CE72203001640CC /* logoutCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = logoutCell.swift; sourceTree = "<group>"; };
 		1CEE8AF21CD4998A00865FB6 /* PagableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PagableController.swift; sourceTree = "<group>"; };
@@ -290,19 +292,20 @@
 			isa = PBXGroup;
 			children = (
 				E2A9AF9F1C498E2900FE943A /* AppDelegate.swift */,
+				1CEFF79D1CC21E98000DEFF7 /* BaseUIViewController.swift */,
 				E2A9AFAB1C498E2900FE943A /* Info.plist */,
+				1C3479BC1CF2F9BD003FEF05 /* FirstPageViewController.swift */,
+				1CA3B20F1CD86B7800D0ABD8 /* MainPageViewController.swift */,
 				1CEFF7801CBFB73D000DEFF7 /* AlbumListController.swift */,
 				1CEFF7931CC0BBBF000DEFF7 /* AlbumDetailController.swift */,
-				1CEFF79D1CC21E98000DEFF7 /* BaseUIViewController.swift */,
-				1C1E68EE1CC65DF600CEA029 /* CommentListController.swift */,
 				1C1E69181CC9079100CEA029 /* SongViewController.swift */,
+				1C1E68EE1CC65DF600CEA029 /* CommentListController.swift */,
 				1C2684731CCA62F40032C014 /* MyInfoVieController.swift */,
 				1C2684771CCB59200032C014 /* LoginViewController.swift */,
-				1CA3B20F1CD86B7800D0ABD8 /* MainPageViewController.swift */,
-				1C8A2AD31CE4BEA60086C1B8 /* MallViewController.swift */,
 				1C8A2AD51CE5882A0086C1B8 /* SignupViewController.swift */,
 				1CDCC8EC1CE717F2001640CC /* ForgetPasswordViewController.swift */,
-				1C3479BC1CF2F9BD003FEF05 /* FirstPageViewController.swift */,
+				1C8A2AD31CE4BEA60086C1B8 /* MallViewController.swift */,
+				1CD349631CF8167C00037F78 /* WebPageViewController.swift */,
 			);
 			name = "AudioPlayer iOS";
 			path = "Demo/AudioPlayer iOS";
@@ -519,6 +522,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1C1E69251CCA0F3E00CEA029 /* NoCommentCell.swift in Sources */,
+				1CD349641CF8167C00037F78 /* WebPageViewController.swift in Sources */,
 				1C1E691B1CC90A6500CEA029 /* PlayerCell.swift in Sources */,
 				1C2684741CCA62F40032C014 /* MyInfoVieController.swift in Sources */,
 				1CEFF7961CC0C4C9000DEFF7 /* SongCell.swift in Sources */,

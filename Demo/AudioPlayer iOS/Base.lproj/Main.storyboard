@@ -721,11 +721,37 @@
                         <outlet property="tableView" destination="7RG-7p-n8W" id="IDp-ZR-Waw"/>
                         <segue destination="BYZ-38-t0r" kind="push" identifier="beforeCourseSegue" id="nOG-yW-ELO"/>
                         <segue destination="Xdz-Ta-yt3" kind="push" identifier="songSegue" id="gK4-D6-0Uz"/>
+                        <segue destination="qTJ-UI-98H" kind="push" identifier="loadWebPageSegue" id="tVi-RP-0bn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="laU-XU-h4Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2319" y="712"/>
+            <point key="canvasLocation" x="2165" y="586"/>
+        </scene>
+        <!--Web Page View Controller-->
+        <scene sceneID="wge-sZ-oJ8">
+            <objects>
+                <viewController id="qTJ-UI-98H" customClass="WebPageViewController" customModule="AudioPlayer" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="nB4-cg-rGZ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" id="kya-yT-15b">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="QfZ-34-DEp"/>
+                    <connections>
+                        <outlet property="webView" destination="kya-yT-15b" id="dzb-NQ-MIh"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IHP-Mp-DaU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2658" y="956"/>
         </scene>
         <!--我-->
         <scene sceneID="oct-0p-3hq">
@@ -1467,7 +1493,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="xmL-0a-HxS"/>
-        <segue reference="wgg-JW-dPY"/>
+        <segue reference="gK4-D6-0Uz"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.94901960784313721" green="0.38039215686274508" blue="0.0" alpha="0.90000000000000002" colorSpace="calibratedRGB"/>
 </document>
