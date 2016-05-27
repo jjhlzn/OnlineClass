@@ -844,7 +844,6 @@
                                                     <state key="normal" title="&gt;&gt;" image="nextPlay"/>
                                                     <connections>
                                                         <action selector="nextButtonPressed:" destination="PWy-43-R2i" eventType="touchUpInside" id="BQY-yt-1Xo"/>
-                                                        <action selector="nextSongPressed:" destination="Xdz-Ta-yt3" eventType="touchUpInside" id="bGN-6B-e8X"/>
                                                     </connections>
                                                 </button>
                                                 <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" id="18F-qB-wBm" customClass="MyUISlider" customModule="AudioPlayer" customModuleProvider="target">

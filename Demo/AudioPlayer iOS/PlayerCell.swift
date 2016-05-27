@@ -10,7 +10,7 @@ import UIKit
 import KDEAudioPlayer
 
 class PlayerCell: UITableViewCell {
-    var controller: BaseUIViewController?
+    var controller: SongViewController?
     
     var audioPlayer: AudioPlayer!
     @IBOutlet weak var artImageView: UIImageView!
@@ -112,7 +112,9 @@ class PlayerCell: UITableViewCell {
     func handlePrevSong() {
         audioPlayer.previous()
         playerViewController.resetButtonAndProgress()
+        playButton.setImage(UIImage(named: "pause"), forState: .Normal)
         artImageView.image = UIImage(named: "musicCover")
+        controller?.reload()
     }
     
     @IBAction func nextButtonPressed(sender: UIButton) {
@@ -122,7 +124,9 @@ class PlayerCell: UITableViewCell {
     func handleNextSong() {
         audioPlayer.next()
         playerViewController.resetButtonAndProgress()
+        playButton.setImage(UIImage(named: "pause"), forState: .Normal)
         artImageView.image = UIImage(named: "musicCover")
+        controller?.reload()
     }
     
     func progressBarValueChanged() {

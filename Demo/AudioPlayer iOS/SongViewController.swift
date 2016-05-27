@@ -126,7 +126,7 @@ class SongViewController: BaseUIViewController, UIGestureRecognizerDelegate, Com
     
     /****************************private method************************************/
     
-    private func reload() {
+    func reload() {
         
         if audioPlayer.currentItem != nil {
             let item = audioPlayer.currentItem as! MyAudioItem
