@@ -23,6 +23,17 @@ class FirstPageViewController: BaseUIViewController {
         addPlayingButton(playingButton)
         getMoneyLabel.frame.origin.y = getMoneyImage.frame.origin.y + getMoneyImage.frame.size.height + 7
         couseLabel.frame.origin.y = couseImage.frame.origin.y + couseImage.frame.size.height + 7
+        
+        
+        //收款添加Tap Gesture
+        let getMoneyTap = UITapGestureRecognizer(target: self, action: #selector(tapGetMoneyImage))
+        getMoneyImage.addGestureRecognizer(getMoneyTap)
+        getMoneyImage.userInteractionEnabled = true
+    }
+    
+    func tapGetMoneyImage() {
+        UIApplication.sharedApplication().openURL(NSURL(string: "itms://itunes.apple.com/")!)
+        
     }
     
     override func audioPlayer(audioPlayer: AudioPlayer, didChangeStateFrom from: AudioPlayerState, toState to: AudioPlayerState) {
