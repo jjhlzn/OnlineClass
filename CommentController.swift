@@ -17,11 +17,12 @@ class CommentController : NSObject, UITextViewDelegate {
     var overlay = UIView()
     var viewController: BaseUIViewController!
     var delegate: CommentDelegate?
-    @IBOutlet weak var commentField: UITextField!
     @IBOutlet weak var bottomView: UIView!
     
     @IBOutlet weak var bottomView2: UIView!
     @IBOutlet weak var commentFiled2: UITextView!
+    
+    @IBOutlet weak var commentInputButton: UIButton!
     
     var cancelButton: UIButton!
     var sendButton: UIButton!
@@ -34,7 +35,7 @@ class CommentController : NSObject, UITextViewDelegate {
     var song: Song!
     
     func textViewDidChange(textView: UITextView) { //Handle the text changes here
-        print(textView.text); //the textView parameter is the textView where text was changed
+        //print(textView.text); //the textView parameter is the textView where text was changed
         if textView.text.length > 0 {
             enableSendButton()
         } else {
@@ -80,10 +81,19 @@ class CommentController : NSObject, UITextViewDelegate {
         if sendButton != nil {
             sendButton.addTarget(self, action: #selector(sendComment), forControlEvents: .TouchUpInside)
         }
+        
+        commentInputButton.addTarget(self, action: #selector(handleTap), forControlEvents: .TouchUpInside)
+    }
+    
+    func handleTap(gestureRecognizer: UIGestureRecognizer) {
+        viewController.hideKeyboardWhenTappedAround()
+        commentFiled2.becomeFirstResponder()
+        
     }
     
     func closeComment() {
         viewController.dismissKeyboard()
+        commentFiled2.resignFirstResponder()
     }
     
     private func getLoginUser() -> User {
@@ -186,29 +196,24 @@ class CommentController : NSObject, UITextViewDelegate {
     
     var isKeyboardShow = false
     func keyboardWillShow(notification: NSNotification) {
-        if isKeyboardShow {
-            return
-        }
+ 
         print("start keyboardWillShow")
         var frame = bottomView2.frame
         print("\(self): x = \(frame.origin.x), y = \(frame.origin.y)")
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.CGRectValue() {
-
+            
             if keyboardHeight != nil {
-                keyboardHeight = keyboardSize.height
                 frame.origin.y += (keyboardHeight! - keyboardSize.height)
+                keyboardHeight = keyboardSize.height
                 
             } else {
                 keyboardHeight = keyboardSize.height
                 showOverlay()
                 frame.origin.y -= keyboardSize.height
-                viewController.hideKeyboardWhenTappedAround()
-                commentField.resignFirstResponder()
-                commentFiled2.becomeFirstResponder()
                 bottomView2.hidden = false
             }
-            
             bottomView2.frame = frame
+            commentFiled2.becomeFirstResponder()
         }
         print("end keyboardWillShow")
         isKeyboardShow = true
@@ -219,7 +224,6 @@ class CommentController : NSObject, UITextViewDelegate {
         if isKeyboardShow {
             NSLog("%s: keyboardWillHide", TAG)
             commentFiled2.resignFirstResponder()
-            
             bottomView2.hidden = true
             if keyboardHeight != nil && keyboardHeight! != 0 {
                 var frame = bottomView2.frame
@@ -228,7 +232,6 @@ class CommentController : NSObject, UITextViewDelegate {
                     keyboardHeight = nil
                     bottomView2.frame = frame
                 }
-                viewController.cancleHideKeybaordWhenTappedAround()
                 hideOverlay()
                 
             }
@@ -256,6 +259,7 @@ class CommentController : NSObject, UITextViewDelegate {
         
         bottomView2.removeFromSuperview()
         overlay.addSubview(bottomView2)
+        viewController.hideKeyboardWhenTappedAround()
     }
     
     func hideOverlay() {
@@ -263,7 +267,8 @@ class CommentController : NSObject, UITextViewDelegate {
         bottomView2.removeFromSuperview()
         viewController.view.addSubview(bottomView2)
         overlay.removeFromSuperview()
+        viewController.cancleHideKeybaordWhenTappedAround()
     }
 
-
+    
 }

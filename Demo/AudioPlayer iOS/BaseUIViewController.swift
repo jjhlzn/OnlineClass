@@ -185,6 +185,7 @@ extension BaseUIViewController {
     }
     
     func dismissKeyboard() {
+        print("dismissKeyboard")
         view.endEditing(true)
     }
 

@@ -304,7 +304,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" id="WXx-bL-EW9">
-                                <rect key="frame" x="-1" y="62" width="320" height="462"/>
+                                <rect key="frame" x="0.0" y="62" width="320" height="462"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -427,16 +427,18 @@
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                             <view contentMode="scaleToFill" id="5Ia-tX-iAO">
-                                <rect key="frame" x="0.0" y="520" width="320" height="46"/>
+                                <rect key="frame" x="0.0" y="522" width="320" height="46"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="我也来说两句" textAlignment="natural" minimumFontSize="17" id="n1g-8s-694">
-                                        <rect key="frame" x="8" y="8" width="304" height="30"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="lxH-Lb-car" userLabel="我也来说两句">
+                                        <rect key="frame" x="8" y="7" width="303" height="35"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.92271861968896329" green="0.92271861968896329" blue="0.92271861968896329" alpha="1" colorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
+                                        <color key="backgroundColor" red="0.90528846149999997" green="0.90528846149999997" blue="0.90528846149999997" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <state key="normal" title="  我也来说两句                                                     ">
+                                            <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
@@ -444,18 +446,18 @@
                     </view>
                     <navigationItem key="navigationItem" title="评论" id="AWR-fd-RvS"/>
                     <connections>
-                        <outlet property="bottomView" destination="5Ia-tX-iAO" id="Dpt-qB-vaR"/>
+                        <outlet property="bottomView" destination="5Ia-tX-iAO" id="33u-bV-7Pp"/>
                         <outlet property="bottomView2" destination="2iV-0P-M6e" id="IFb-CA-sn1"/>
                         <outlet property="cancelButton" destination="ozi-P0-Qde" id="78U-6v-3PR"/>
-                        <outlet property="commentField" destination="n1g-8s-694" id="o50-eN-BjY"/>
                         <outlet property="commentFiled2" destination="DJr-CJ-Va2" id="0Yg-pw-ZQN"/>
+                        <outlet property="commentInputButton" destination="lxH-Lb-car" id="hba-eu-hze"/>
                         <outlet property="sendButton" destination="AYl-HM-evp" id="4WB-df-rzf"/>
                         <outlet property="tableView" destination="WXx-bL-EW9" id="uQg-b3-bVp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wi0-7J-rWV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4356" y="-56"/>
+            <point key="canvasLocation" x="4053" y="-73"/>
         </scene>
         <!--登录-->
         <scene sceneID="in9-II-L7U">
@@ -1097,13 +1099,15 @@
                                 <rect key="frame" x="0.0" y="520" width="320" height="46"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="我也来说两句" textAlignment="natural" minimumFontSize="17" id="bay-mc-bXt">
-                                        <rect key="frame" x="8" y="9" width="304" height="30"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="MyE-zG-AmH" userLabel="我也来说两句">
+                                        <rect key="frame" x="8" y="7" width="303" height="35"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.92271861970000002" green="0.92271861970000002" blue="0.92271861970000002" alpha="1" colorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
+                                        <color key="backgroundColor" red="0.90528846149999997" green="0.90528846149999997" blue="0.90528846149999997" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <state key="normal" title="  我也来说两句                                                     ">
+                                            <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
@@ -1115,8 +1119,8 @@
                         <outlet property="bottomView" destination="kHZ-oF-wd2" id="Flr-pw-xuo"/>
                         <outlet property="bottomView2" destination="vZo-j3-B8w" id="A8p-Nq-rUq"/>
                         <outlet property="cancelButton" destination="xG9-aM-mvF" id="YGj-P8-Ulf"/>
-                        <outlet property="commentField" destination="bay-mc-bXt" id="bd3-sX-bDU"/>
                         <outlet property="commentFiled2" destination="gfO-eb-2J5" id="3Op-xb-He5"/>
+                        <outlet property="commentInputButton" destination="MyE-zG-AmH" id="fkT-QG-gBO"/>
                         <outlet property="sendButton" destination="PcH-Ec-lFO" id="7tY-Ve-lyD"/>
                         <outlet property="tableView" destination="b2u-qz-OaA" id="mdQ-7N-kv0"/>
                         <segue destination="bGb-jo-ify" kind="push" identifier="commentListSegue" id="4Eg-EE-cDN"/>
@@ -1124,7 +1128,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RQo-og-278" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3650" y="-1294"/>
+            <point key="canvasLocation" x="3754" y="-1294"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="sUC-Ti-bcl">
@@ -1142,13 +1146,29 @@
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="WYM-SE-SbF">
+                                <rect key="frame" x="141" y="473" width="42" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="P9H-nM-Rlj">
+                                <rect key="frame" x="9" y="405" width="303" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.90528846149999997" green="0.90528846149999997" blue="0.90528846149999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <state key="normal" title="  我也来说两句                                                     ">
+                                    <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PeA-zh-m4B" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4145" y="-1294"/>
+            <point key="canvasLocation" x="4175" y="-1294"/>
         </scene>
         <!--商城-->
         <scene sceneID="UNh-gY-mlq">
@@ -1447,7 +1467,7 @@
         <image name="wave1" width="24" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="wCU-pg-fxd"/>
+        <segue reference="xmL-0a-HxS"/>
         <segue reference="wgg-JW-dPY"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.94901960784313721" green="0.38039215686274508" blue="0.0" alpha="0.90000000000000002" colorSpace="calibratedRGB"/>

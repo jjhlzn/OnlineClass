@@ -20,8 +20,9 @@ class CommentListController: BaseUIViewController, UITableViewDataSource, UITabl
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var bottomView2: UIView!
     @IBOutlet weak var commentFiled2: UITextView!
-    @IBOutlet weak var commentField: UITextField!
     @IBOutlet weak var bottomView: UIView!
+    
+    @IBOutlet weak var commentInputButton: UIButton!
     
     var keyboardHeight: CGFloat?
     var heightCache = [String: CGFloat]()
@@ -41,7 +42,7 @@ class CommentListController: BaseUIViewController, UITableViewDataSource, UITabl
         
         //设置评论窗口的视图
         commentController.bottomView = bottomView
-        commentController.commentField = commentField
+        commentController.commentInputButton = commentInputButton
         commentController.bottomView2 = bottomView2
         commentController.commentFiled2 = commentFiled2
         commentController.cancelButton = cancelButton

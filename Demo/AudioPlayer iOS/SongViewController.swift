@@ -16,9 +16,10 @@ class SongViewController: BaseUIViewController, UIGestureRecognizerDelegate, Com
     @IBOutlet weak var tableView: UITableView!
     
     //评论控件
+    @IBOutlet weak var commentInputButton: UIButton!
+    @IBOutlet weak var commentInputTip: UILabel!
     @IBOutlet weak var bottomView2: UIView!
     @IBOutlet weak var commentFiled2: UITextView!
-    @IBOutlet weak var commentField: UITextField!
     @IBOutlet weak var bottomView: UIView!
     @IBOutlet weak var sendButton: UIButton!
     @IBOutlet weak var cancelButton: UIButton!
@@ -36,7 +37,7 @@ class SongViewController: BaseUIViewController, UIGestureRecognizerDelegate, Com
 
         //设置评论controller
         commentController.bottomView = bottomView
-        commentController.commentField = commentField
+        commentController.commentInputButton = commentInputButton
         commentController.bottomView2 = bottomView2
         commentController.commentFiled2 = commentFiled2
         commentController.cancelButton = cancelButton
@@ -46,7 +47,8 @@ class SongViewController: BaseUIViewController, UIGestureRecognizerDelegate, Com
         commentController.initView(song)
         
 
-        self.navigationController?.interactivePopGestureRecognizer!.delegate = self
+        //用来阻止向右滑的手势
+       self.navigationController?.interactivePopGestureRecognizer!.delegate = self
         
         if audioPlayer.currentItem != nil {
             let item = audioPlayer.currentItem as! MyAudioItem
