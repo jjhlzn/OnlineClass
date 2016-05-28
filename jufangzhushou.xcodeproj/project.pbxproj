@@ -39,6 +39,8 @@
 		1CD349641CF8167C00037F78 /* WebPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD349631CF8167C00037F78 /* WebPageViewController.swift */; };
 		1CD349661CF83A4700037F78 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD349651CF83A4700037F78 /* SettingsViewController.swift */; };
 		1CD349681CF9703700037F78 /* KeyValueCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD349671CF9703700037F78 /* KeyValueCell.swift */; };
+		1CD3496A1CF9802C00037F78 /* FormCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD349691CF9802C00037F78 /* FormCell.swift */; };
+		1CD3496C1CF980D400037F78 /* ResetPasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD3496B1CF980D400037F78 /* ResetPasswordController.swift */; };
 		1CDCC8ED1CE717F3001640CC /* ForgetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CDCC8EC1CE717F2001640CC /* ForgetPasswordViewController.swift */; };
 		1CDCC8EF1CE72203001640CC /* logoutCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CDCC8EE1CE72203001640CC /* logoutCell.swift */; };
 		1CEE8AF31CD4998A00865FB6 /* PagableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CEE8AF21CD4998A00865FB6 /* PagableController.swift */; };
@@ -103,6 +105,8 @@
 		1CD349631CF8167C00037F78 /* WebPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebPageViewController.swift; sourceTree = "<group>"; };
 		1CD349651CF83A4700037F78 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		1CD349671CF9703700037F78 /* KeyValueCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyValueCell.swift; sourceTree = "<group>"; };
+		1CD349691CF9802C00037F78 /* FormCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormCell.swift; sourceTree = "<group>"; };
+		1CD3496B1CF980D400037F78 /* ResetPasswordController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResetPasswordController.swift; sourceTree = "<group>"; };
 		1CDCC8EC1CE717F2001640CC /* ForgetPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgetPasswordViewController.swift; sourceTree = "<group>"; };
 		1CDCC8EE1CE72203001640CC /* logoutCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = logoutCell.swift; sourceTree = "<group>"; };
 		1CEE8AF21CD4998A00865FB6 /* PagableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PagableController.swift; sourceTree = "<group>"; };
@@ -216,6 +220,7 @@
 				1CDCC8EE1CE72203001640CC /* logoutCell.swift */,
 				1C3479BF1CF3EBEF003FEF05 /* LivePlayerCell.swift */,
 				1CD349671CF9703700037F78 /* KeyValueCell.swift */,
+				1CD349691CF9802C00037F78 /* FormCell.swift */,
 			);
 			name = customCell;
 			sourceTree = "<group>";
@@ -312,6 +317,7 @@
 				1C8A2AD31CE4BEA60086C1B8 /* MallViewController.swift */,
 				1CD349631CF8167C00037F78 /* WebPageViewController.swift */,
 				1CD349651CF83A4700037F78 /* SettingsViewController.swift */,
+				1CD3496B1CF980D400037F78 /* ResetPasswordController.swift */,
 			);
 			name = "AudioPlayer iOS";
 			path = "Demo/AudioPlayer iOS";
@@ -530,6 +536,7 @@
 				1C1E69251CCA0F3E00CEA029 /* NoCommentCell.swift in Sources */,
 				1CD349641CF8167C00037F78 /* WebPageViewController.swift in Sources */,
 				1C1E691B1CC90A6500CEA029 /* PlayerCell.swift in Sources */,
+				1CD3496A1CF9802C00037F78 /* FormCell.swift in Sources */,
 				1C2684741CCA62F40032C014 /* MyInfoVieController.swift in Sources */,
 				1CEFF7961CC0C4C9000DEFF7 /* SongCell.swift in Sources */,
 				1C09D3C11CD1D462004A8F9C /* CommonPlayerPageViewController.swift in Sources */,
@@ -540,6 +547,7 @@
 				1CEFF7861CBFB9FD000DEFF7 /* BasicService.swift in Sources */,
 				1CEFF7831CBFB809000DEFF7 /* Model.swift in Sources */,
 				1C1E69191CC9079100CEA029 /* SongViewController.swift in Sources */,
+				1CD3496C1CF980D400037F78 /* ResetPasswordController.swift in Sources */,
 				1C1E68F11CC65F7500CEA029 /* CommentCell.swift in Sources */,
 				1C5A6FC71CE9A0D5000E7282 /* LivePlayerController.swift in Sources */,
 				1C3479C21CF4236A003FEF05 /* LivePlayerPageViewController.swift in Sources */,

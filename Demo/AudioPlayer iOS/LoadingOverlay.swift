@@ -29,10 +29,10 @@ public class LoadingOverlay{
         
         activityIndicator = UIActivityIndicatorView(frame: CGRectMake(0, 0, 80, 80))
         activityIndicator.layer.cornerRadius = 05;
-        activityIndicator.backgroundColor = UIColor(white: 0, alpha: 0.6)
+        activityIndicator.backgroundColor = UIColor(white: 0, alpha: 0.5)
         activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.WhiteLarge
         activityIndicator.center = overlayView.center
-        activityIndicator.color = UIColor(red: 0.6, green: 0.8, blue: 1, alpha: 1)
+        activityIndicator.color = UIColor.whiteColor()
         overlayView.addSubview(activityIndicator)
         activityIndicator.startAnimating()
         

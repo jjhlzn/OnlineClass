@@ -19,7 +19,7 @@ class SettingsViewController: BaseUIViewController, UITableViewDataSource, UITab
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 2
+        return 3
     }
     
     
@@ -36,6 +36,8 @@ class SettingsViewController: BaseUIViewController, UITableViewDataSource, UITab
         case 0:
             return 48
         case 1:
+            return 48
+        case 2:
             return 66
         default:
             return 0
@@ -47,6 +49,10 @@ class SettingsViewController: BaseUIViewController, UITableViewDataSource, UITab
         let row = indexPath.row
         switch section {
         case 0:
+            let cell = tableView.dequeueReusableCellWithIdentifier("accountSecurityCell")!
+            cell.textLabel?.text = "重设密码"
+            return cell
+        case 1:
             let cell = tableView.dequeueReusableCellWithIdentifier("keyValueCell") as! KeyValueCell
             cell.nameLabel.text = "版本号"
             let version = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleShortVersionString") as! String
@@ -54,14 +60,22 @@ class SettingsViewController: BaseUIViewController, UITableViewDataSource, UITab
             
             cell.valueLabel.text = "\(version) (\(appBundle))"
             return cell
-        case 1:
+        case 2:
             return tableView.dequeueReusableCellWithIdentifier("logoutCell")!
         default:
             return tableView.dequeueReusableCellWithIdentifier("keyValueCell")!
         }
-        
-
     }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let section = indexPath.section
+        let row = indexPath.row
+        
+        if section == 0 && row == 0 {
+            performSegueWithIdentifier("resetPasswordSegue", sender: nil)
+        }
+    }
+    
 
     @IBAction func logoutPressed(sender: UIButton) {
         performSegueWithIdentifier("logoutSegue", sender: nil)

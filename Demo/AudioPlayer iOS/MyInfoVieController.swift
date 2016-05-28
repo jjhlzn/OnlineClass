@@ -17,7 +17,19 @@ class MyInfoVieController: BaseUIViewController, UITableViewDataSource, UITableV
         super.viewDidLoad()
         tableView.dataSource = self
         tableView.delegate = self
+        
+        BasicService().sendRequest(ServiceConfiguration.GET_CLIENT_NUBMER, request: GetClientNumberRequest()) {
+            (resp: GetClientNumberResponse) -> Void in
+            
+            if resp.status == 0 {
+                let cell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 1, inSection: 1)) as! MyInfoOtherCell
+                cell.titleLabel.text = "我已推荐  \(resp.peopleCount)人"
+            }
+        }
+        
     }
+    
+    
 
 }
 
@@ -68,7 +80,7 @@ extension MyInfoVieController {
                 title = "我已推荐  0人"
                 break
             case 2:
-                title = "账户安全"
+                title = "消息中心"
                 break
             case 3:
                 title = "设置"

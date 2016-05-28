@@ -217,3 +217,42 @@ class GetLiveListernerCountResponse : ServerResponse {
         }
     }
 }
+
+class ResetPasswordRequest : ServerRequest {
+    var oldPassword: String!
+    var newPassword: String!
+    
+    required init(oldPassword: String, newPassword: String) {
+        self.oldPassword = oldPassword
+        self.newPassword = newPassword
+    }
+    
+    override var params: [String : AnyObject] {
+        get {
+            var parameters = super.params
+            parameters["oldPassword"] = oldPassword
+            parameters["newPassword"] = newPassword
+            return parameters
+        }
+    }
+}
+
+class ResetPasswordResponse : ServerResponse {
+    
+}
+
+class GetClientNumberRequest : ServerRequest {
+    
+}
+
+class GetClientNumberResponse : ServerResponse {
+    var peopleCount = 0
+    override func parseJSON(request: [String : AnyObject], json: NSDictionary) {
+        super.parseJSON(request, json: json)
+        if status == 0 {
+            peopleCount = json["peopleCount"] as! Int
+        }
+    }
+
+    
+}

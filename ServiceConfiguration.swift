@@ -28,13 +28,13 @@ class ServiceConfiguration {
     
     static var serverName: String {
         get {
-            return serverName3
+            return serverName2
         }
     }
     
     static var port: Int {
         get {
-            return port3
+            return port2
         }
     }
 
@@ -61,6 +61,18 @@ class ServiceConfiguration {
     static var GET_PASSWORD: String {
         get {
             return "\(http)://\(serverName):\(port)/user/getPassword"
+        }
+    }
+    
+    static var RESET_PASSWORD : String {
+        get {
+            return "\(http)://\(serverName):\(port)/user/resetPassword"
+        }
+    }
+    
+    static var GET_CLIENT_NUBMER : String {
+        get {
+            return "\(http)://\(serverName):\(port)/user/getClientNumber"
         }
     }
     
