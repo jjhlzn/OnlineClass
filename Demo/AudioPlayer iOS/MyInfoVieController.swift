@@ -82,6 +82,7 @@ extension MyInfoVieController {
                 break
             case 1:
                 title = "我已推荐  0人"
+                cell.accessoryType = .None
                 break
             case 2:
                 title = "消息中心"
