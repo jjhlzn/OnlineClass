@@ -29,7 +29,11 @@ class MyInfoVieController: BaseUIViewController, UITableViewDataSource, UITableV
         
     }
     
-    
+
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+    }
 
 }
 
@@ -98,15 +102,20 @@ extension MyInfoVieController {
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.cellForRowAtIndexPath(indexPath)?.selectionStyle = .None
+        tableView.deselectRowAtIndexPath(indexPath, animated: false)
+
         let section = indexPath.section
         let row = indexPath.row
         switch section {
+            
         case 1:
             switch row {
+            case 0:
+                performSegueWithIdentifier("personalInfoSegue", sender: nil)
+                break
             case 3:
                 performSegueWithIdentifier("settingSegue", sender: nil)
-                break;
+                break
             default:
                 break
             }

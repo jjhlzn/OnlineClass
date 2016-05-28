@@ -166,7 +166,7 @@ class CommonPlayerPageViewController : NSObject, UITableViewDataSource, UITableV
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let section = indexPath.section
         let row = indexPath.row
-        
+        tableView.deselectRowAtIndexPath(indexPath, animated: false)
         switch section {
         case 0:
             let cell = tableView.cellForRowAtIndexPath(indexPath)

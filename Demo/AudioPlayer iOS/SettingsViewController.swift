@@ -70,7 +70,7 @@ class SettingsViewController: BaseUIViewController, UITableViewDataSource, UITab
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let section = indexPath.section
         let row = indexPath.row
-        
+        tableView.deselectRowAtIndexPath(indexPath, animated: false)
         if section == 0 && row == 0 {
             performSegueWithIdentifier("resetPasswordSegue", sender: nil)
         }

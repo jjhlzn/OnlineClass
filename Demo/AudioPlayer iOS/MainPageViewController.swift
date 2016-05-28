@@ -150,7 +150,7 @@ extension CourseMainPageViewController : UITableViewDataSource, UITableViewDeleg
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.cellForRowAtIndexPath(indexPath)?.selectionStyle = .None
+        tableView.deselectRowAtIndexPath(indexPath, animated: false)
         let section = indexPath.section
         if section == 1 {
             let cell = tableView.cellForRowAtIndexPath(indexPath)

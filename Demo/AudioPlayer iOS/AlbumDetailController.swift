@@ -212,7 +212,7 @@ extension AlbumDetailController : UITableViewDataSource, UITableViewDelegate {
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let audioPlayer = getAudioPlayer()
-        tableView.cellForRowAtIndexPath(indexPath)?.selectionStyle = .None
+        
         //检查在播放的歌曲是不是当前选中的歌曲
         let row = indexPath.row
         let song = songs[row]
@@ -224,6 +224,7 @@ extension AlbumDetailController : UITableViewDataSource, UITableViewDelegate {
             }
         }
         performSegueWithIdentifier("songSegue", sender: true)
+        tableView.deselectRowAtIndexPath(indexPath, animated: false)
     }
     
 
