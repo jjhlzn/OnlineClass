@@ -37,6 +37,8 @@
 		1CA3B2121CD86BD300D0ABD8 /* CourseTypeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA3B2111CD86BD300D0ABD8 /* CourseTypeCell.swift */; };
 		1CA3B2141CD8E83B00D0ABD8 /* FunctionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA3B2131CD8E83B00D0ABD8 /* FunctionCell.swift */; };
 		1CD349641CF8167C00037F78 /* WebPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD349631CF8167C00037F78 /* WebPageViewController.swift */; };
+		1CD349661CF83A4700037F78 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD349651CF83A4700037F78 /* SettingsViewController.swift */; };
+		1CD349681CF9703700037F78 /* KeyValueCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD349671CF9703700037F78 /* KeyValueCell.swift */; };
 		1CDCC8ED1CE717F3001640CC /* ForgetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CDCC8EC1CE717F2001640CC /* ForgetPasswordViewController.swift */; };
 		1CDCC8EF1CE72203001640CC /* logoutCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CDCC8EE1CE72203001640CC /* logoutCell.swift */; };
 		1CEE8AF31CD4998A00865FB6 /* PagableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CEE8AF21CD4998A00865FB6 /* PagableController.swift */; };
@@ -99,6 +101,8 @@
 		1CA3B2111CD86BD300D0ABD8 /* CourseTypeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseTypeCell.swift; sourceTree = "<group>"; };
 		1CA3B2131CD8E83B00D0ABD8 /* FunctionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FunctionCell.swift; sourceTree = "<group>"; };
 		1CD349631CF8167C00037F78 /* WebPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebPageViewController.swift; sourceTree = "<group>"; };
+		1CD349651CF83A4700037F78 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		1CD349671CF9703700037F78 /* KeyValueCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyValueCell.swift; sourceTree = "<group>"; };
 		1CDCC8EC1CE717F2001640CC /* ForgetPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgetPasswordViewController.swift; sourceTree = "<group>"; };
 		1CDCC8EE1CE72203001640CC /* logoutCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = logoutCell.swift; sourceTree = "<group>"; };
 		1CEE8AF21CD4998A00865FB6 /* PagableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PagableController.swift; sourceTree = "<group>"; };
@@ -211,6 +215,7 @@
 				1CA3B2131CD8E83B00D0ABD8 /* FunctionCell.swift */,
 				1CDCC8EE1CE72203001640CC /* logoutCell.swift */,
 				1C3479BF1CF3EBEF003FEF05 /* LivePlayerCell.swift */,
+				1CD349671CF9703700037F78 /* KeyValueCell.swift */,
 			);
 			name = customCell;
 			sourceTree = "<group>";
@@ -306,6 +311,7 @@
 				1CDCC8EC1CE717F2001640CC /* ForgetPasswordViewController.swift */,
 				1C8A2AD31CE4BEA60086C1B8 /* MallViewController.swift */,
 				1CD349631CF8167C00037F78 /* WebPageViewController.swift */,
+				1CD349651CF83A4700037F78 /* SettingsViewController.swift */,
 			);
 			name = "AudioPlayer iOS";
 			path = "Demo/AudioPlayer iOS";
@@ -544,9 +550,11 @@
 				1C5A6FC51CE99644000E7282 /* PlayerController.swift in Sources */,
 				1C1E68EF1CC65DF600CEA029 /* CommentListController.swift in Sources */,
 				1CA3B2121CD86BD300D0ABD8 /* CourseTypeCell.swift in Sources */,
+				1CD349661CF83A4700037F78 /* SettingsViewController.swift in Sources */,
 				1C2451D91CE8A28B00F350DA /* LoginUserEntity+CoreDataProperties.swift in Sources */,
 				1CEFF79C1CC20171000DEFF7 /* AudioPlayerExtension.swift in Sources */,
 				1C154A501CDACCA6003B900C /* MyUISlider.swift in Sources */,
+				1CD349681CF9703700037F78 /* KeyValueCell.swift in Sources */,
 				1C3479BD1CF2F9BD003FEF05 /* FirstPageViewController.swift in Sources */,
 				1C3479C01CF3EBEF003FEF05 /* LivePlayerCell.swift in Sources */,
 				1CEE8AF31CD4998A00865FB6 /* PagableController.swift in Sources */,

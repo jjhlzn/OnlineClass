@@ -27,7 +27,7 @@ extension MyInfoVieController {
         case 0:
             return 1
         case 1:
-            return 3
+            return 4
         default:
             return 1
         }
@@ -70,6 +70,9 @@ extension MyInfoVieController {
             case 2:
                 title = "账户安全"
                 break
+            case 3:
+                title = "设置"
+                break
             default:
                 break
             }
@@ -82,8 +85,27 @@ extension MyInfoVieController {
         }
     }
     
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.cellForRowAtIndexPath(indexPath)?.selectionStyle = .None
+        let section = indexPath.section
+        let row = indexPath.row
+        switch section {
+        case 1:
+            switch row {
+            case 3:
+                performSegueWithIdentifier("settingSegue", sender: nil)
+                break;
+            default:
+                break
+            }
+            break
+        default:
+            break
+        }
+    }
+    
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 3
+        return 2
     }
 
 }
