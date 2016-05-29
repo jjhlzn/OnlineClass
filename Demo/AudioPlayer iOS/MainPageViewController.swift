@@ -42,9 +42,7 @@ class CourseMainPageViewController: BaseUIViewController {
             let dest = segue.destinationViewController as! WebPageViewController
             let params = sender as! [String: String]
             dest.url = NSURL(string: params["url"]!)
-            let backItem = UIBarButtonItem()
-            backItem.title = "关闭"
-            navigationItem.backBarButtonItem = backItem
+            
             dest.title = params["title"]
         }
     }
