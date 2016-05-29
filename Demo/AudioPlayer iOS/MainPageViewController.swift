@@ -22,6 +22,7 @@ class CourseMainPageViewController: BaseUIViewController {
         tableView.delegate = self
         
         addPlayingButton(playingButton)
+  
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -57,6 +58,9 @@ class CourseMainPageViewController: BaseUIViewController {
         updatePlayingButton(playingButton)
     }
     
+    @IBAction func searchPressed(sender: AnyObject) {
+        performSegueWithIdentifier("searchSegue", sender: nil)
+    }
 }
 
 

@@ -256,3 +256,18 @@ class GetClientNumberResponse : ServerResponse {
 
     
 }
+
+class SearchRequest : PagedServerRequest {
+    var keyword = ""
+    override var params: [String : AnyObject] {
+        get {
+            var parameters = super.params
+            parameters["keyword"] = keyword
+            return parameters
+        }
+    }
+}
+
+class SearchResponse : GetAlbumsResponse {
+    
+}

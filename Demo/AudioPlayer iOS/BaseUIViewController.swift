@@ -17,7 +17,7 @@ class BaseUIViewController: UIViewController, AudioPlayerDelegate {
         getAudioPlayer().delegate = self
         tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         
-        if self.navigationController != nil {
+        if  self.navigationController != nil {
 
             self.navigationController?.navigationBar.barTintColor =
    UIColor(red: 0xF2/255, green: 0x61/255, blue: 0, alpha: 0.9)

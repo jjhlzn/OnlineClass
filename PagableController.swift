@@ -25,6 +25,11 @@ class PagableController<T> {
     var data = [T]()
     
     
+    func reset() {
+        data = [T]()
+        tableView.reloadData()
+    }
+    
     func scrollViewDidScroll(scrollView: UIScrollView){
         if quering {
             return

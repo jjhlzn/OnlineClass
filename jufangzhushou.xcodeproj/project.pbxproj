@@ -44,6 +44,7 @@
 		1CD3496E1CF9A97D00037F78 /* PersonalInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD3496D1CF9A97D00037F78 /* PersonalInfoCell.swift */; };
 		1CD349701CF9AB1000037F78 /* PersonalInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD3496F1CF9AB1000037F78 /* PersonalInfoViewController.swift */; };
 		1CD349721CF9AC7D00037F78 /* PersonalInfoCell2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD349711CF9AC7D00037F78 /* PersonalInfoCell2.swift */; };
+		1CD349741CFA8DD700037F78 /* SearchCourseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD349731CFA8DD700037F78 /* SearchCourseViewController.swift */; };
 		1CDCC8ED1CE717F3001640CC /* ForgetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CDCC8EC1CE717F2001640CC /* ForgetPasswordViewController.swift */; };
 		1CDCC8EF1CE72203001640CC /* logoutCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CDCC8EE1CE72203001640CC /* logoutCell.swift */; };
 		1CEE8AF31CD4998A00865FB6 /* PagableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CEE8AF21CD4998A00865FB6 /* PagableController.swift */; };
@@ -113,6 +114,7 @@
 		1CD3496D1CF9A97D00037F78 /* PersonalInfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonalInfoCell.swift; sourceTree = "<group>"; };
 		1CD3496F1CF9AB1000037F78 /* PersonalInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonalInfoViewController.swift; sourceTree = "<group>"; };
 		1CD349711CF9AC7D00037F78 /* PersonalInfoCell2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonalInfoCell2.swift; sourceTree = "<group>"; };
+		1CD349731CFA8DD700037F78 /* SearchCourseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchCourseViewController.swift; sourceTree = "<group>"; };
 		1CDCC8EC1CE717F2001640CC /* ForgetPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgetPasswordViewController.swift; sourceTree = "<group>"; };
 		1CDCC8EE1CE72203001640CC /* logoutCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = logoutCell.swift; sourceTree = "<group>"; };
 		1CEE8AF21CD4998A00865FB6 /* PagableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PagableController.swift; sourceTree = "<group>"; };
@@ -327,6 +329,7 @@
 				1CD349651CF83A4700037F78 /* SettingsViewController.swift */,
 				1CD3496B1CF980D400037F78 /* ResetPasswordController.swift */,
 				1CD3496F1CF9AB1000037F78 /* PersonalInfoViewController.swift */,
+				1CD349731CFA8DD700037F78 /* SearchCourseViewController.swift */,
 			);
 			name = "AudioPlayer iOS";
 			path = "Demo/AudioPlayer iOS";
@@ -582,6 +585,7 @@
 				1CEFF7981CC0D63B000DEFF7 /* LoadingOverlay.swift in Sources */,
 				1CD3496E1CF9A97D00037F78 /* PersonalInfoCell.swift in Sources */,
 				1CEFF7941CC0BBBF000DEFF7 /* AlbumDetailController.swift in Sources */,
+				1CD349741CFA8DD700037F78 /* SearchCourseViewController.swift in Sources */,
 				1CEFF7881CBFBA1B000DEFF7 /* ServiceConfiguration.swift in Sources */,
 				E2A9AFA01C498E2900FE943A /* AppDelegate.swift in Sources */,
 				1C8A2AD61CE5882A0086C1B8 /* SignupViewController.swift in Sources */,
