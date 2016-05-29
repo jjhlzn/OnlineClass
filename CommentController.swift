@@ -88,7 +88,7 @@ class CommentController : NSObject, UITextViewDelegate {
     }
     
     func handleTap(gestureRecognizer: UIGestureRecognizer) {
-        viewController.hideKeyboardWhenTappedAround()
+        //viewController.hideKeyboardWhenTappedAround()
         commentFiled2.becomeFirstResponder()
         
     }
@@ -272,7 +272,7 @@ class CommentController : NSObject, UITextViewDelegate {
         
         bottomView2.removeFromSuperview()
         overlay.addSubview(bottomView2)
-        viewController.hideKeyboardWhenTappedAround()
+        //viewController.hideKeyboardWhenTappedAround()
     }
     
     func hideOverlay() {
@@ -280,7 +280,7 @@ class CommentController : NSObject, UITextViewDelegate {
         bottomView2.removeFromSuperview()
         viewController.view.addSubview(bottomView2)
         overlay.removeFromSuperview()
-        viewController.cancleHideKeybaordWhenTappedAround()
+        //viewController.cancleHideKeybaordWhenTappedAround()
     }
 
     

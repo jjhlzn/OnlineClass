@@ -176,11 +176,12 @@ extension BaseUIViewController {
 
     
     func hideKeyboardWhenTappedAround() {
-        
+        print("hideKeyboardWhenTappedAround")
         view.addGestureRecognizer(tap)
     }
     
     func cancleHideKeybaordWhenTappedAround() {
+        print("cancleHideKeybaordWhenTappedAround")
         view.removeGestureRecognizer(tap)
     }
     
