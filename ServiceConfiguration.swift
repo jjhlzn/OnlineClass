@@ -17,7 +17,7 @@ class ServiceConfiguration {
     static let serverName3 = "jjhaudio.hengdianworld.com"
     static let port3 = 80
     
-    static let serverName4 = "www.jinjunhang.com"
+    static let serverName4 = "www.jinjunhang.com" 
     static let port4 = 3001
     
     static var http: String {
@@ -28,13 +28,13 @@ class ServiceConfiguration {
     
     static var serverName: String {
         get {
-            return serverName2
+            return serverName3
         }
     }
     
     static var port: Int {
         get {
-            return port2
+            return port3
         }
     }
 
