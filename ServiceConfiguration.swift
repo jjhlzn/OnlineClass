@@ -28,13 +28,13 @@ class ServiceConfiguration {
     
     static var serverName: String {
         get {
-            return serverName3
+            return serverName2
         }
     }
     
     static var port: Int {
         get {
-            return port3
+            return port2
         }
     }
 
@@ -98,6 +98,12 @@ class ServiceConfiguration {
     }
     
     //Songs
+    static var GET_SONG_LIVE_COMMENTS: String {
+        get {
+            return "\(http)://\(serverName):\(port)/song/livecomments"
+        }
+    }
+    
     static var GET_SONG_COMMENTS: String {
         get {
             return "\(http)://\(serverName):\(port)/song/comments"

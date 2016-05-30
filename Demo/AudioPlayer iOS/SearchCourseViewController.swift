@@ -35,6 +35,9 @@ class SearchCourseViewController: BaseUIViewController, UITextFieldDelegate , Pa
         pagableController.delegate = self
         pagableController.tableView = tableView
         pagableController.hasMore = false
+        pagableController.isNeedRefresh = false
+        pagableController.initController()
+    
         
         addTopLayer()
         
@@ -60,6 +63,7 @@ class SearchCourseViewController: BaseUIViewController, UITextFieldDelegate , Pa
         topView.removeFromSuperview()
     }
     
+    /*
     //PageableControllerDelegate
     func searchHandler() {
         if request == nil {
@@ -75,6 +79,35 @@ class SearchCourseViewController: BaseUIViewController, UITextFieldDelegate , Pa
         }
         
     }
+    
+    func refreshHandler() {
+        
+    }*/
+    
+    func searchHandler(respHandler: ((resp: ServerResponse) -> Void)) {
+        
+        if request == nil {
+            return
+        }
+    
+        BasicService().sendRequest(ServiceConfiguration.SEARCH,
+                                   request: request!) {
+                                    (resp: SearchResponse) -> Void in
+                                    dispatch_async(dispatch_get_main_queue()) {
+                                        self.removeTopLayer()
+                                        self.pagableController.afterHandleResponse(resp)
+                                    }
+        }
+
+    }
+    
+    
+    func refreshHandler(respHandler: ((resp: ServerResponse) -> Void)) {
+        
+    }
+    
+    
+    
     //开始上拉到特定位置后改变列表底部的提示
     func scrollViewDidScroll(scrollView: UIScrollView){
         pagableController.scrollViewDidScroll(scrollView)
@@ -107,7 +140,14 @@ class SearchCourseViewController: BaseUIViewController, UITextFieldDelegate , Pa
         //reset tableView
         pagableController.reset()
 
-        searchHandler()
+        searchHandler() {
+            (resp: ServerResponse) -> Void in
+            
+            dispatch_async(dispatch_get_main_queue()) {
+                self.pagableController.afterHandleResponse(resp as! GetAlbumsResponse)
+            }
+        }
+        
         return false
     }
 }

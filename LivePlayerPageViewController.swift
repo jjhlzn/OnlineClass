@@ -16,7 +16,7 @@ import KDEAudioPlayer
 class LivePlayerPageViewController : CommonPlayerPageViewController {
     
     //聊天刷新频率
-    let freshChatInterval: NSTimeInterval = 50
+    let freshChatInterval: NSTimeInterval = 5
     //人数更新频率
     let freshListernCountInterval: NSTimeInterval = 30
     var audioPlayer: AudioPlayer!
@@ -25,6 +25,7 @@ class LivePlayerPageViewController : CommonPlayerPageViewController {
     var updateListernerCountTimer: NSTimer!
     var isUpdateChat = false
     var livePlayerCell : LivePlayerCell?
+    var lastId = "-1"
     
     override func initController() {
         super.initController()
@@ -65,9 +66,9 @@ class LivePlayerPageViewController : CommonPlayerPageViewController {
         if audioPlayer.currentItem != nil {
             let item = audioPlayer.currentItem as! MyAudioItem
             let song = item.song
-            let request = GetSongCommentRequest(song: song)
+            let request = GetSongLiveCommentsRequest(song: song, lastId: lastId)
             isUpdateChat = true
-            BasicService().sendRequest(ServiceConfiguration.GET_SONG_COMMENTS, request: request) {
+            BasicService().sendRequest(ServiceConfiguration.GET_SONG_LIVE_COMMENTS, request: request) {
                 (resp: GetSongCommentsResponse) -> Void in
                 dispatch_async(dispatch_get_main_queue()) {
                     self.isUpdateChat = false
@@ -75,8 +76,10 @@ class LivePlayerPageViewController : CommonPlayerPageViewController {
                         print(resp.errorMessage)
                         return
                     }
-                    var newComments = resp.resultSet
-                    newComments = newComments.reverse()
+                    let newComments = resp.resultSet
+                    if newComments.count > 0 {
+                        self.lastId = newComments[0].id!
+                    }
                     for comment in newComments {
                         self.comments.insert(comment, atIndex: 0)
                     }
@@ -231,7 +234,29 @@ class LivePlayerPageViewController : CommonPlayerPageViewController {
         }
     }
     
-    
+    override func reload() {
+        let audioPlayer = Utils.getAudioPlayer()
+        if audioPlayer.currentItem != nil {
+            let item = audioPlayer.currentItem as! MyAudioItem
+            
+            
+            let song = item.song
+            viewController.commentController.song = song
+            let request = GetLiveListernerCountRequest(song: song)
+            BasicService().sendRequest(ServiceConfiguration.GET_SONG_LIVE_COMMENTS,
+                                       request: request) {
+                                        (resp: GetSongLiveCommentsResponse) -> Void in
+                                        dispatch_async(dispatch_get_main_queue()) {
+                                            if resp.status != 0 {
+                                                print(resp.errorMessage)
+                                                return
+                                            }
+                                            self.viewController.playerPageViewController.comments = resp.comments
+                                            self.viewController.tableView.reloadSections(NSIndexSet(index: 1), withRowAnimation: .None)
+                                        }
+            }
+        }
+    }
     
     
 }

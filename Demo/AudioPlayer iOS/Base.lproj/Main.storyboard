@@ -1216,7 +1216,7 @@
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 </imageView>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="nSg-mE-Y2N">
-                                                    <rect key="frame" x="147" y="350" width="35" height="35"/>
+                                                    <rect key="frame" x="143" y="357" width="35" height="35"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <state key="normal" title="播放" image="play"/>
                                                     <connections>
@@ -1243,7 +1243,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="9KZ-ct-Pwm">
-                                                    <rect key="frame" x="215" y="350" width="35" height="35"/>
+                                                    <rect key="frame" x="212" y="357" width="35" height="35"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <state key="normal" title="&gt;&gt;" image="nextPlay"/>
                                                     <connections>
@@ -1256,7 +1256,7 @@
                                                     <color key="tintColor" red="0.94901960780000005" green="0.3803921569" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 </slider>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="pMj-nW-pUe">
-                                                    <rect key="frame" x="70" y="350" width="35" height="35"/>
+                                                    <rect key="frame" x="67" y="357" width="35" height="35"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <state key="normal" title="&lt;&lt;" image="prevPlay"/>
                                                     <connections>
@@ -1264,11 +1264,11 @@
                                                     </connections>
                                                 </button>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bufferCircle1" id="9lW-0F-dFq">
-                                                    <rect key="frame" x="139" y="342" width="50" height="50"/>
+                                                    <rect key="frame" x="135" y="349" width="50" height="50"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                 </imageView>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="P8D-XJ-ySz">
-                                                    <rect key="frame" x="9" y="369" width="54" height="24"/>
+                                                    <rect key="frame" x="6" y="376" width="54" height="24"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" weight="thin" pointSize="9"/>
                                                     <state key="normal" title="播放列表">
@@ -1279,7 +1279,7 @@
                                                     </connections>
                                                 </button>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="playlist" id="RXR-6j-A8H">
-                                                    <rect key="frame" x="25" y="355" width="20" height="15"/>
+                                                    <rect key="frame" x="22" y="362" width="20" height="15"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                 </imageView>
                                             </subviews>
@@ -1312,7 +1312,7 @@
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 </imageView>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="txP-0L-fDd">
-                                                    <rect key="frame" x="144" y="125" width="35" height="35"/>
+                                                    <rect key="frame" x="143" y="131" width="35" height="35"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <state key="normal" title="播放" image="play"/>
                                                     <connections>
@@ -1339,7 +1339,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="A27-0l-kzQ">
-                                                    <rect key="frame" x="215" y="125" width="35" height="35"/>
+                                                    <rect key="frame" x="215" y="131" width="35" height="35"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <state key="normal" title="&gt;&gt;" image="nextPlay"/>
                                                     <connections>
@@ -1353,7 +1353,7 @@
                                                     <color key="tintColor" red="0.94901960780000005" green="0.3803921569" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 </slider>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="SV4-F6-i0R">
-                                                    <rect key="frame" x="70" y="125" width="35" height="35"/>
+                                                    <rect key="frame" x="70" y="131" width="35" height="35"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <state key="normal" title="&lt;&lt;" image="prevPlay"/>
                                                     <connections>
@@ -1372,7 +1372,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bufferCircle1" id="wpU-E0-GI7">
-                                                    <rect key="frame" x="136" y="117" width="50" height="50"/>
+                                                    <rect key="frame" x="135" y="123" width="50" height="50"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                 </imageView>
                                             </subviews>

@@ -125,7 +125,7 @@ class PlayerCell: UITableViewCell {
         playerViewController.resetButtonAndProgress()
         playButton.setImage(UIImage(named: "pause"), forState: .Normal)
         artImageView.image = UIImage(named: "musicCover")
-        controller?.reload()
+        controller?.playerPageViewController.reload()
     }
     
     @IBAction func nextButtonPressed(sender: UIButton) {
@@ -137,7 +137,7 @@ class PlayerCell: UITableViewCell {
         playerViewController.resetButtonAndProgress()
         playButton.setImage(UIImage(named: "pause"), forState: .Normal)
         artImageView.image = UIImage(named: "musicCover")
-        controller?.reload()
+        controller?.playerPageViewController.reload()
     }
     
     

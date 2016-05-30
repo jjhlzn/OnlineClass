@@ -185,4 +185,27 @@ class CommonPlayerPageViewController : NSObject, UITableViewDataSource, UITableV
             break
         }
     }
+    
+    func reload() {
+        let audioPlayer = Utils.getAudioPlayer()
+        if audioPlayer.currentItem != nil {
+            let item = audioPlayer.currentItem as! MyAudioItem
+            
+            
+            let song = item.song
+            viewController.commentController.song = song
+            BasicService().sendRequest(ServiceConfiguration.GET_SONG_COMMENTS,
+                                       params: ["song": song]) {
+                                        (resp: GetSongCommentsResponse) -> Void in
+                                        dispatch_async(dispatch_get_main_queue()) {
+                                            if resp.status != 0 {
+                                                print(resp.errorMessage)
+                                                return
+                                            }
+                                            self.viewController.playerPageViewController.comments = resp.resultSet
+                                            self.viewController.tableView.reloadSections(NSIndexSet(index: 1), withRowAnimation: .None)
+                                        }
+            }
+        }
+    }
 }

@@ -29,6 +29,8 @@ class AlbumListController: BaseUIViewController, UITableViewDataSource, UITableV
         pagableController.viewController = self
         pagableController.delegate = self
         pagableController.tableView = tableView
+        pagableController.isNeedRefresh = true
+        pagableController.initController()
         
         //pagableController.loadMore()
         setTitle()
@@ -53,29 +55,19 @@ class AlbumListController: BaseUIViewController, UITableViewDataSource, UITableV
     }
     
     //PageableControllerDelegate
-    func searchHandler() {
-        var params = [String: AnyObject]()
-        switch courseType {
-        case .Common:
-            params = ["type": "common"]
-            break
-        case .Live:
-            params = ["type": "live"]
-            break
-        case .Vip:
-            params = ["type": "vip"]
-            break
-            
-     
-        }
-        BasicService().sendRequest(ServiceConfiguration.GET_ALBUMS, params: params) {
-            (resp: GetAlbumsResponse) -> Void in
-            dispatch_async(dispatch_get_main_queue()) {
-                self.pagableController.afterHandleResponse(resp)
-            }
-        }
+    func searchHandler(respHandler: ((resp: ServerResponse) -> Void)) {
+        let request = GetAlbumsRequest(courseType: courseType)
+        BasicService().sendRequest(ServiceConfiguration.GET_ALBUMS, request: request,
+                                   completion: respHandler as ((resp: GetAlbumsResponse) -> Void))
 
     }
+    
+    
+    func refreshHandler(respHandler: ((resp: ServerResponse) -> Void)) {
+        let request = GetAlbumsRequest(courseType: courseType)
+        BasicService().sendRequest(ServiceConfiguration.GET_ALBUMS, request: request, completion: respHandler as ((resp: GetAlbumsResponse) -> Void))
+    }
+    
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         super.prepareForSegue(segue, sender: sender)

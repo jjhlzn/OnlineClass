@@ -9,11 +9,12 @@
 import Foundation
 import UIKit
 
-protocol PagableControllerDelegate {
-    func searchHandler()
+public protocol PagableControllerDelegate : NSObjectProtocol {
+    func searchHandler(respHandler: ((resp: ServerResponse) -> Void))
+    func refreshHandler(respHandler: ((resp: ServerResponse) -> Void))
 }
 
-class PagableController<T> {
+class PagableController<T> : NSObject {
     var viewController: BaseUIViewController!
     var tableView: UITableView!
     var tableFooterView = UIView()
@@ -21,9 +22,19 @@ class PagableController<T> {
     var hasMore = true
     var quering = false
     var page = 0
+    var isNeedRefresh = true
     var delegate :PagableControllerDelegate!
     var data = [T]()
     
+    var refreshControl: UIRefreshControl!
+    
+    func initController() {
+        if isNeedRefresh {
+            refreshControl = UIRefreshControl()
+            refreshControl.addTarget(self, action: #selector(refresh), forControlEvents: UIControlEvents.ValueChanged)
+            tableView.addSubview(refreshControl)
+        }
+    }
     
     func reset() {
         data = [T]()
@@ -48,31 +59,83 @@ class PagableController<T> {
         quering = true
         print("loading")
         setLoadingFooter()
-        delegate.searchHandler()
+        
+        delegate.searchHandler() {
+            (resp: ServerResponse) -> Void in
+            dispatch_async(dispatch_get_main_queue()) {
+                self.afterHandleResponse(resp as! PageServerResponse<T>)
+            }
+        }
     }
     
+    func refresh() {
+        if (quering) {
+            refreshControl.endRefreshing()
+            return
+        }
+        
+        quering = true
+        page = 0
+        
+        delegate.refreshHandler() {
+            (resp: ServerResponse) -> Void in
+            self.afterHandleRefreshRespones(resp as! PageServerResponse<T>)
+        }
+
+    }
     
-    
-    func afterHandleResponse(resp: PageServerResponse<T>) {
+    func afterHandleRefreshRespones(resp: PageServerResponse<T>) {
+        self.quering = false
+        refreshControl.endRefreshing()
+        
         if resp.status != 0 {
             print("Server Return Error")
             viewController.displayMessage(resp.errorMessage!)
             return
         }
         
-        page = page + 1
+        let newDataSet = resp.resultSet
+        self.data = newDataSet
+        
+        print("data.count = \(self.data.count)")
+        print("resp.totalNumber = \(resp.totalNumber)")
+        if self.data.count >= resp.totalNumber {
+            self.hasMore = false
+        } else {
+            self.hasMore = true
+        }
+        
+        self.page = self.page + 1
+        self.setNotLoadFooter()
+        self.tableView.reloadData()
+        self.setFootText()
+    }
+
+    
+    
+    func afterHandleResponse(resp: PageServerResponse<T>) {
+        self.quering = false
+        
+        if resp.status != 0 {
+            print("Server Return Error")
+            viewController.displayMessage(resp.errorMessage!)
+            return
+        }
+        
         let newDataSet = resp.resultSet
         for item in newDataSet {
             self.data.append(item)
         }
         if self.data.count >= resp.totalNumber {
             self.hasMore = false
+        } else {
+            self.hasMore = true
         }
         
         self.page = self.page + 1
         self.setNotLoadFooter()
         self.tableView.reloadData()
-        self.quering = false
+        
         self.setFootText()
     }
     

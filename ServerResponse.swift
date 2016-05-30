@@ -34,20 +34,20 @@ class PagedServerRequest: ServerRequest{
 }
 
 
-class ServerResponse  {
+public class ServerResponse  {
     var status : Int = 0
     var errorMessage : String?
-    required init() {}
+    required public init() {}
     func parseJSON(request: [String: AnyObject], json: NSDictionary) {
         status = json["status"] as! Int
         errorMessage = json["errorMessage"] as? String
     }
 }
 
-class PageServerResponse<T> : ServerResponse{
+public class PageServerResponse<T> : ServerResponse{
     var totalNumber : Int = 0
     var resultSet: [T] = [T]()
-    required init() {}
+    public required init() {}
     override func parseJSON(request: [String: AnyObject], json: NSDictionary) {
         super.parseJSON(request, json: json)
         if status == 0 {
@@ -55,6 +55,35 @@ class PageServerResponse<T> : ServerResponse{
         }
     }
     
+}
+
+
+class GetAlbumsRequest : ServerRequest {
+    var courseType : CourseType
+    
+    required init(courseType: CourseType) {
+        self.courseType = courseType
+    }
+    
+    override var params: [String : AnyObject] {
+        get {
+            var parameters = super.params
+            switch courseType {
+            case .Common:
+                parameters = ["type": "common"]
+                break
+            case .Live:
+                parameters = ["type": "live"]
+                break
+            case .Vip:
+                parameters = ["type": "vip"]
+                break
+                
+            }
+            return parameters
+
+        }
+    }
 }
 
 
@@ -119,8 +148,46 @@ class GetAlbumSongsResponse : ServerResponse {
     }
 }
 
-class GetSongCommentRequest : PagedServerRequest {
-    var song: Song!
+class GetSongLiveCommentsRequest : ServerRequest {
+    var song: Song
+    var lastId: String
+    init(song: Song, lastId: String) {
+        self.song = song
+        self.lastId = lastId
+    }
+    override var params: [String : AnyObject] {
+        get {
+            var parameters = super.params
+            parameters["song"] = song
+            parameters["lastId"] = lastId
+            return parameters
+        }
+    }
+}
+
+class GetSongLiveCommentsResponse : ServerResponse {
+    var comments = [Comment]()
+    required init() {}
+    override func parseJSON(request: [String: AnyObject], json: NSDictionary) {
+        super.parseJSON(request, json: json)
+        let jsonArray = json["comments"] as! NSArray
+        comments = [Comment]()
+        
+        for json in jsonArray {
+            let comment = Comment()
+            comment.id = "\(request["id"] as? Int)"
+            comment.song = request["song"] as? Song
+            comment.userId = json["userId"] as! String
+            comment.time = json["time"] as! String
+            comment.content = json["content"] as! String
+            comments.append(comment)
+        }
+    }
+}
+
+
+class GetSongCommentsRequest : PagedServerRequest {
+    var song: Song
     init(song: Song) {
         self.song = song
     }
@@ -131,6 +198,7 @@ class GetSongCommentRequest : PagedServerRequest {
             return parameters
         }
     }
+
 }
 
 class GetSongCommentsResponse : PageServerResponse<Comment> {
@@ -142,6 +210,7 @@ class GetSongCommentsResponse : PageServerResponse<Comment> {
         
         for json in jsonArray {
             let comment = Comment()
+            comment.id = "\(request["id"] as? Int)"
             comment.song = request["song"] as? Song
             comment.userId = json["userId"] as! String
             comment.time = json["time"] as! String

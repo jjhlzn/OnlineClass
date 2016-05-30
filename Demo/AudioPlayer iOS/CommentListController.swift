@@ -39,6 +39,7 @@ class CommentListController: BaseUIViewController, UITableViewDataSource, UITabl
         pagableController.viewController = self
         pagableController.delegate = self
         pagableController.tableView = tableView
+        pagableController.initController()
         
         //设置评论窗口的视图
         commentController.bottomView = bottomView
@@ -54,7 +55,6 @@ class CommentListController: BaseUIViewController, UITableViewDataSource, UITabl
         tableView.dataSource = self
         tableView.delegate = self
         tableView.estimatedRowHeight = 260
-        
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -91,6 +91,31 @@ extension CommentListController {
     }
     
     
+    func searchHandler(respHandler: ((resp: ServerResponse) -> Void)) {
+       
+        let request = GetSongCommentsRequest(song: song)
+        request.pageNo = pagableController.page
+        request.pageSize = ServiceConfiguration.PageSize
+        
+        BasicService().sendRequest(ServiceConfiguration.GET_SONG_COMMENTS,
+                                   request: request,
+                                   completion: respHandler as ((resp: GetSongCommentsResponse) -> Void))
+        
+    }
+    
+    
+    func refreshHandler(respHandler: ((resp: ServerResponse) -> Void)) {
+        let request = GetSongCommentsRequest(song: song)
+        request.pageNo = pagableController.page
+        request.pageSize = ServiceConfiguration.PageSize
+        
+        BasicService().sendRequest(ServiceConfiguration.GET_SONG_COMMENTS,
+                                   request: request,
+                                   completion: respHandler as ((resp: GetSongCommentsResponse) -> Void))
+    }
+    
+    /*
+    
     func searchHandler() {
         BasicService().sendRequest(ServiceConfiguration.GET_SONG_COMMENTS,
                                    params: ["song": song, "pageno": pagableController.page, "pagesize": ServiceConfiguration.PageSize]) {
@@ -100,6 +125,10 @@ extension CommentListController {
             }
         }
     }
+    
+    func refreshHandler() {
+        
+    } */
     
 }
 

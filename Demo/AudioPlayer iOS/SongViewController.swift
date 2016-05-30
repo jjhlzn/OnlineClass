@@ -85,7 +85,7 @@ class SongViewController: BaseUIViewController, UIGestureRecognizerDelegate, Com
         songListTableView.dataSource = songListDataSource
         songListTableView.delegate = songListDataSource
     
-        reload()
+        playerPageViewController.reload()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -118,7 +118,7 @@ class SongViewController: BaseUIViewController, UIGestureRecognizerDelegate, Com
     }
     
     @IBAction func nextSongPressed(sender: UIButton) {
-        reload()
+         playerPageViewController.reload()
     }
     
     func afterSendComment(comment: Comment) {
@@ -166,32 +166,7 @@ class SongViewController: BaseUIViewController, UIGestureRecognizerDelegate, Com
         hideSongList()
     }
     
-    /****************************private method************************************/
     
-    func reload() {
-        
-        if audioPlayer.currentItem != nil {
-            let item = audioPlayer.currentItem as! MyAudioItem
-            
-            
-            song = item.song
-            commentController.song = song
-            BasicService().sendRequest(ServiceConfiguration.GET_SONG_COMMENTS,
-                                   params: ["song": song]) {
-                                    (resp: GetSongCommentsResponse) -> Void in
-                                    dispatch_async(dispatch_get_main_queue()) {
-                                        if resp.status != 0 {
-                                            print(resp.errorMessage)
-                                            return
-                                        }
-                                        self.playerPageViewController.comments = resp.resultSet
-                                        self.tableView.reloadSections(NSIndexSet(index: 1), withRowAnimation: .None)
-                                    }
-          }
-        }
-    }
-    
-
 }
 
 
@@ -221,7 +196,7 @@ class SongListDataSource : NSObject, UITableViewDataSource, UITableViewDelegate 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let audioPlayer = Utils.getAudioPlayer()
         audioPlayer.playItems(audioPlayer.items!, startAtIndex: indexPath.row)
-        controller.reload()
+        controller.playerPageViewController.reload()
     }
 }
 
