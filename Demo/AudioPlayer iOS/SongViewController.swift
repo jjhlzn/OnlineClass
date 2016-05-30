@@ -81,7 +81,7 @@ class SongViewController: BaseUIViewController, UIGestureRecognizerDelegate, Com
         tableView.delegate = playerPageViewController
         
         songListView.hidden = true
-        songListDataSource = SongListDataSource()
+        songListDataSource = SongListDataSource(controller: self)
         songListTableView.dataSource = songListDataSource
         songListTableView.delegate = songListDataSource
     
@@ -198,8 +198,10 @@ class SongViewController: BaseUIViewController, UIGestureRecognizerDelegate, Com
 class SongListDataSource : NSObject, UITableViewDataSource, UITableViewDelegate {
     
     var songs : [Song]!
+    var controller : SongViewController!
     
-    override init() {
+    init(controller: SongViewController) {
+        self.controller = controller
         let audioPlayer = Utils.getAudioPlayer()
         songs = (audioPlayer.items)!.map {
             return ($0 as! MyAudioItem).song
@@ -214,6 +216,12 @@ class SongListDataSource : NSObject, UITableViewDataSource, UITableViewDelegate 
         let cell = tableView.dequeueReusableCellWithIdentifier("songListCell") as! SongListCell
         cell.nameLabel.text = songs[indexPath.row].name
         return cell
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let audioPlayer = Utils.getAudioPlayer()
+        audioPlayer.playItems(audioPlayer.items!, startAtIndex: indexPath.row)
+        controller.reload()
     }
 }
 
