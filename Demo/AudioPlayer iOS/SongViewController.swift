@@ -25,12 +25,20 @@ class SongViewController: BaseUIViewController, UIGestureRecognizerDelegate, Com
     @IBOutlet weak var cancelButton: UIButton!
     var commentController = CommentController()
     
+    
+    //播放列表视图
+    @IBOutlet weak var songListView: UIView!
+    var songListDataSource : SongListDataSource!
+    @IBOutlet weak var songListTableView: UITableView!
+    
     var overlay = UIView()
     var audioPlayer: AudioPlayer!
     var song: Song!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
         
         audioPlayer = getAudioPlayer()
         song = (audioPlayer.currentItem as! MyAudioItem).song
@@ -72,6 +80,11 @@ class SongViewController: BaseUIViewController, UIGestureRecognizerDelegate, Com
         tableView.dataSource = playerPageViewController
         tableView.delegate = playerPageViewController
         
+        songListView.hidden = true
+        songListDataSource = SongListDataSource()
+        songListTableView.dataSource = songListDataSource
+        songListTableView.delegate = songListDataSource
+    
         reload()
     }
     
@@ -123,6 +136,35 @@ class SongViewController: BaseUIViewController, UIGestureRecognizerDelegate, Com
         }
     }
     
+    var songListOverlay : UIView!
+    
+    func showSongList() {
+        print("showSongList")
+        
+       
+        
+        songListOverlay = UIView(frame: UIScreen.mainScreen().bounds)
+        songListOverlay.backgroundColor = UIColor(white: 0.2, alpha: 0.4)
+        
+        songListView.removeFromSuperview()
+        songListOverlay.addSubview(songListView)
+        
+        view.addSubview(songListOverlay)
+        
+        songListView.hidden = false
+    }
+    
+    func hideSongList() {
+        print("hideSongList")
+        songListView.hidden = true
+        songListView.removeFromSuperview()
+        view.addSubview(songListView)
+        songListOverlay.removeFromSuperview()
+    }
+    
+    @IBAction func closeSongListButtonPressed(sender: AnyObject) {
+        hideSongList()
+    }
     
     /****************************private method************************************/
     
@@ -150,6 +192,29 @@ class SongViewController: BaseUIViewController, UIGestureRecognizerDelegate, Com
     }
     
 
+}
+
+
+class SongListDataSource : NSObject, UITableViewDataSource, UITableViewDelegate {
+    
+    var songs : [Song]!
+    
+    override init() {
+        let audioPlayer = Utils.getAudioPlayer()
+        songs = (audioPlayer.items)!.map {
+            return ($0 as! MyAudioItem).song
+        }
+    }
+    
+     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return songs.count
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("songListCell") as! SongListCell
+        cell.nameLabel.text = songs[indexPath.row].name
+        return cell
+    }
 }
 
 

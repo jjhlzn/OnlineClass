@@ -27,6 +27,9 @@ class PlayerCell: UITableViewCell {
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var bufferCircle: UIImageView!
     
+    @IBOutlet weak var songListButton: UIButton!
+    @IBOutlet weak var songListImage: UIImageView!
+    
     var inited = false
     var updateProgressBar: Bool = true
     var isForward = true
@@ -98,6 +101,12 @@ class PlayerCell: UITableViewCell {
         playerViewController.updatePlayAndPauseButton()
         playerViewController.updateBufferProgress()
         playerViewController.updateBufferCircle()
+        
+        if songListImage != nil {
+            let songListTap = UITapGestureRecognizer(target: self, action: #selector(songListButtonPressed))
+            self.songListImage.addGestureRecognizer(songListTap)
+            self.songListImage.userInteractionEnabled = true
+        }
     }
     
     /*      Event Handler       */
@@ -108,6 +117,8 @@ class PlayerCell: UITableViewCell {
     @IBAction func prevButtonPressed(sender: UIButton) {
         handlePrevSong()
     }
+    
+    
     
     func handlePrevSong() {
         audioPlayer.previous()
@@ -128,6 +139,14 @@ class PlayerCell: UITableViewCell {
         artImageView.image = UIImage(named: "musicCover")
         controller?.reload()
     }
+    
+    
+    
+    @IBAction func songListButtonPressed(sender: UIButton) {
+        //显示歌单列表
+        controller?.showSongList()
+    }
+
     
     func progressBarValueChanged() {
         if audioPlayer.currentItemDuration != nil {
