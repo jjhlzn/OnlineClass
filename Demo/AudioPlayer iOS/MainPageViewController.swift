@@ -94,15 +94,17 @@ extension CourseMainPageViewController : UITableViewDataSource, UITableViewDeleg
                 
             case 1:
                 let cell = tableView.dequeueReusableCellWithIdentifier("courseTypeCell") as! CourseTypeCell
-                cell.courseTypeName.text  = "往期课程内容"
-                imageName = "beforeCourse"
-                cell.courseTypeImageView.image = UIImage(named: imageName)
-                return cell
-                
-            case 2:
-                let cell = tableView.dequeueReusableCellWithIdentifier("courseTypeCell") as! CourseTypeCell
                 cell.courseTypeName.text = "VIP课堂"
                 imageName = "vipCourse"
+                cell.courseTypeImageView.image = UIImage(named: imageName)
+                return cell
+
+                
+            case 2:
+                
+                let cell = tableView.dequeueReusableCellWithIdentifier("courseTypeCell") as! CourseTypeCell
+                cell.courseTypeName.text  = "往期课程内容"
+                imageName = "beforeCourse"
                 cell.courseTypeImageView.image = UIImage(named: imageName)
                 return cell
                 

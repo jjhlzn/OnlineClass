@@ -383,7 +383,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3461" y="-336"/>
+            <point key="canvasLocation" x="3519" y="-218"/>
         </scene>
         <!--课列表-->
         <scene sceneID="URI-7O-Zhf">
@@ -963,7 +963,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="laU-XU-h4Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2575" y="-153"/>
+            <point key="canvasLocation" x="2884" y="-306"/>
         </scene>
         <!--搜索-->
         <scene sceneID="kOi-ZK-PgG">
@@ -1918,8 +1918,8 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="HJR-zD-bje"/>
-        <segue reference="gK4-D6-0Uz"/>
         <segue reference="VNd-S5-Rjk"/>
+        <segue reference="SaH-Yu-nYI"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.94901960784313721" green="0.38039215686274508" blue="0.0" alpha="0.90000000000000002" colorSpace="calibratedRGB"/>
 </document>
