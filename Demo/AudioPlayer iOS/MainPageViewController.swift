@@ -14,13 +14,13 @@ class CourseMainPageViewController: BaseUIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     @IBOutlet weak var playingButton: UIButton!
-
+    var extendFunctionMananger : ExtendFunctionMananger!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = self
         tableView.delegate = self
-        
+        extendFunctionMananger = ExtendFunctionMananger(controller: self)
         addPlayingButton(playingButton)
   
     }
@@ -71,7 +71,7 @@ extension CourseMainPageViewController : UITableViewDataSource, UITableViewDeleg
         if section == 0 {
             return 3
         } else {
-            return 1
+            return extendFunctionMananger.getRowCount()
         }
         
     }
@@ -112,40 +112,17 @@ extension CourseMainPageViewController : UITableViewDataSource, UITableViewDeleg
                 return tableView.dequeueReusableCellWithIdentifier("courseTypeCell") as! CourseTypeCell
             }
         } else {
-            let cell = tableView.dequeueReusableCellWithIdentifier("functionCell") as! FunctionCell
-            cell.firstImageView.image = UIImage(named: "up")
-            let upTap = UITapGestureRecognizer(target: self, action: #selector(upImageHandle))
-            cell.firstImageView.addGestureRecognizer(upTap)
-            cell.firstImageView.userInteractionEnabled = true
-            cell.firstLabel.text = "一键提额"
-            
-            cell.secondImageView.image = UIImage(named: "visa")
-            let cardTap = UITapGestureRecognizer(target: self, action: #selector(cardImageHandle))
-            cell.secondImageView.addGestureRecognizer(cardTap)
-            cell.secondImageView.userInteractionEnabled = true
-            cell.secondLabel.text = "一键办卡"
-            
+            let cell = extendFunctionMananger.getFunctionCell(tableView, row: row)
+            cell.separatorInset = UIEdgeInsetsMake(0, cell.bounds.size.width, 0, 0);
             return cell
         }
-        
     }
     
-    func upImageHandle() {
-        let params : [String: String] = ["url": "http://www.baidu.com", "title": "一键提额"]
-        performSegueWithIdentifier("loadWebPageSegue", sender: params)
-    
-    }
-    
-    func cardImageHandle() {
-        let params : [String: String] = ["url": "http://www.weibo.com", "title": "一键办卡"]
-        performSegueWithIdentifier("loadWebPageSegue", sender: params)
-        
-    }
-    
+
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         let section = indexPath.section
         if section == 1 {
-            return 112
+            return 79
         } else {
             return 53
         }

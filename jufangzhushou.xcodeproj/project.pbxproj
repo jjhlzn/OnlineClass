@@ -317,7 +317,6 @@
 				E2A9AF9F1C498E2900FE943A /* AppDelegate.swift */,
 				1CEFF79D1CC21E98000DEFF7 /* BaseUIViewController.swift */,
 				E2A9AFAB1C498E2900FE943A /* Info.plist */,
-				1C3479BC1CF2F9BD003FEF05 /* FirstPageViewController.swift */,
 				1CA3B20F1CD86B7800D0ABD8 /* MainPageViewController.swift */,
 				1CEFF7801CBFB73D000DEFF7 /* AlbumListController.swift */,
 				1CEFF7931CC0BBBF000DEFF7 /* AlbumDetailController.swift */,
@@ -333,6 +332,7 @@
 				1CD3496B1CF980D400037F78 /* ResetPasswordController.swift */,
 				1CD3496F1CF9AB1000037F78 /* PersonalInfoViewController.swift */,
 				1CD349731CFA8DD700037F78 /* SearchCourseViewController.swift */,
+				1C3479BC1CF2F9BD003FEF05 /* FirstPageViewController.swift */,
 			);
 			name = "AudioPlayer iOS";
 			path = "Demo/AudioPlayer iOS";
