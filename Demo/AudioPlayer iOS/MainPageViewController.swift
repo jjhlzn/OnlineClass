@@ -38,7 +38,12 @@ class CourseMainPageViewController: BaseUIViewController {
             let dest = segue.destinationViewController as! AlbumListController
             
             dest.courseType = CourseType(rawValue: sender as! String)!
-        } else if segue.identifier == "loadWebPageSegue" {
+        } else if segue.identifier == "liveCourseSegue" {
+            let dest = segue.destinationViewController as! LiveAlbumListController
+            
+            dest.courseType = CourseType(rawValue: sender as! String)!
+        }
+        else if segue.identifier == "loadWebPageSegue" {
             let dest = segue.destinationViewController as! WebPageViewController
             let params = sender as! [String: String]
             dest.url = NSURL(string: params["url"]!)
@@ -115,7 +120,7 @@ extension CourseMainPageViewController : UITableViewDataSource, UITableViewDeleg
             }
         } else {
             let cell = extendFunctionMananger.getFunctionCell(tableView, row: row)
-            cell.separatorInset = UIEdgeInsetsMake(0, cell.bounds.size.width, 0, 0);
+            
             return cell
         }
     }
@@ -140,7 +145,7 @@ extension CourseMainPageViewController : UITableViewDataSource, UITableViewDeleg
             let row = indexPath.row
             switch row {
             case 0:
-                performSegueWithIdentifier("beforeCourseSegue", sender: CourseType.Live.rawValue)
+                performSegueWithIdentifier("liveCourseSegue", sender: CourseType.Live.rawValue)
                 break
             case 1:
                 performSegueWithIdentifier("beforeCourseSegue", sender: CourseType.Common.rawValue)

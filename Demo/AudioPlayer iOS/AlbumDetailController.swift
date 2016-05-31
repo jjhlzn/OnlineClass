@@ -135,7 +135,17 @@ class AlbumDetailController: BaseUIViewController {
             return
         }
         
-        let cells = tableView.visibleCells as! [SongCell]
+        //首先
+        let cells2 = tableView.visibleCells
+        var cells = [SongCell]()
+        
+        for cell in cells2 {
+            if let cell2 = cell as? SongCell {
+                cells.append(cell2)
+            }
+        }
+    
+        
         let audioPlayer = getAudioPlayer()
         
         //找到按钮所在的行

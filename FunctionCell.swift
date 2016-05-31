@@ -92,6 +92,7 @@ public class ExtendFunctionMananger : NSObject {
                 index = index + 1
             }
         }
+        cell.separatorInset = UIEdgeInsetsMake(0, cell.bounds.size.width, 0, 0);
         return cell
     }
     

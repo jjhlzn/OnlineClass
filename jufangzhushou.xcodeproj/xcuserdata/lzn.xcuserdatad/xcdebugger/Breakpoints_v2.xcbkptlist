@@ -170,11 +170,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Demo/AudioPlayer iOS/AlbumDetailController.swift"
-            timestampString = "485700869.561473"
+            timestampString = "486395360.367582"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "176"
-            endingLineNumber = "176"
+            startingLineNumber = "185"
+            endingLineNumber = "185"
             landmarkName = "audioPlayer(_:didChangeStateFrom:toState:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -490,11 +490,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Demo/AudioPlayer iOS/AlbumListController.swift"
-            timestampString = "486279802.639961"
+            timestampString = "486379417.671005"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "40"
-            endingLineNumber = "40"
+            startingLineNumber = "45"
+            endingLineNumber = "45"
             landmarkName = "viewWillAppear(_:)"
             landmarkType = "5">
          </BreakpointContent>

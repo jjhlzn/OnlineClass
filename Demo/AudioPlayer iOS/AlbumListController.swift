@@ -18,10 +18,15 @@ class AlbumListController: BaseUIViewController, UITableViewDataSource, UITableV
     var pagableController = PagableController<Album>()
     var courseType : CourseType = CourseType.Common
     
+    var extendFunctionManager : ExtendFunctionMananger!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         print("viewDidLoad")
         addPlayingButton(playingButton)
+        
+        extendFunctionManager = ExtendFunctionMananger(controller: self)
+        
         tableView.dataSource = self
         tableView.delegate = self
         
@@ -43,7 +48,7 @@ class AlbumListController: BaseUIViewController, UITableViewDataSource, UITableV
     private func setTitle() {
         switch courseType {
         case .Common:
-            
+            self.title = "往期课程"
             break
         case .Live:
             self.title = "直播课程"
@@ -76,7 +81,14 @@ class AlbumListController: BaseUIViewController, UITableViewDataSource, UITableV
             let row = (tableView.indexPathForSelectedRow?.row)!
             dest.album = pagableController.data[row]
             dest.albumImageData = (tableView.cellForRowAtIndexPath(tableView.indexPathForSelectedRow!)! as! AlbumCell).albumImage.image!
+        } else if segue.identifier == "loadWebPageSegue" {
+            let dest = segue.destinationViewController as! WebPageViewController
+            let params = sender as! [String: String]
+            dest.url = NSURL(string: params["url"]!)
+            
+            dest.title = params["title"]
         }
+
     }
     
     override func audioPlayer(audioPlayer: AudioPlayer, didChangeStateFrom from: AudioPlayerState, toState to: AudioPlayerState) {
@@ -93,18 +105,23 @@ class AlbumListController: BaseUIViewController, UITableViewDataSource, UITableV
 
 extension AlbumListController {
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
         return pagableController.data.count
+
+        
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("albumCell") as! AlbumCell
-        let album = pagableController.data[indexPath.row]
-        cell.nameLabel.text = album.name
-        cell.authorLabel.text = album.author
-        if album.hasImage {
-            cell.albumImage.downloadedFrom(link: album.image, contentMode: UIViewContentMode.ScaleAspectFit)
-        }
-        return cell
+
+            let cell = tableView.dequeueReusableCellWithIdentifier("albumCell") as! AlbumCell
+            let album = pagableController.data[indexPath.row]
+            cell.nameLabel.text = album.name
+            cell.authorLabel.text = album.author
+            if album.hasImage {
+                cell.albumImage.downloadedFrom(link: album.image, contentMode: UIViewContentMode.ScaleAspectFit)
+            }
+            return cell
+        
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {

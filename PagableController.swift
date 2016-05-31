@@ -15,6 +15,7 @@ public protocol PagableControllerDelegate : NSObjectProtocol {
 }
 
 class PagableController<T> : NSObject {
+    
     var viewController: BaseUIViewController!
     var tableView: UITableView!
     var tableFooterView = UIView()
@@ -25,6 +26,7 @@ class PagableController<T> : NSObject {
     var isNeedRefresh = true
     var delegate :PagableControllerDelegate!
     var data = [T]()
+    var isShowLoadCompleteText = true
     
     var refreshControl: UIRefreshControl!
     
@@ -140,10 +142,13 @@ class PagableController<T> : NSObject {
     }
     
     private func createTableFooter(){//初始化tv的footerView
+        
         setNotLoadFooter()
     }
     
     private func setNotLoadFooter() {
+        
+        
         self.tableView.tableFooterView = nil
         tableFooterView = UIView()
         tableFooterView.frame = CGRectMake(0, 0, tableView.bounds.size.width, 40)
@@ -159,6 +164,7 @@ class PagableController<T> : NSObject {
     }
     
     func setLoadingFooter() {
+        
         self.tableView.tableFooterView = nil
         tableFooterView = UIView()
         tableFooterView.frame = CGRectMake(0, 0, tableView.bounds.size.width, 40)
@@ -181,6 +187,8 @@ class PagableController<T> : NSObject {
     }
     
     private func setFootText() {
+        
+        
         loadMoreText.font = UIFont(name: "Helvetica Neue", size: 10)
         loadMoreText.textColor = UIColor.grayColor()
         if quering {
@@ -190,6 +198,13 @@ class PagableController<T> : NSObject {
             if self.hasMore {
                 self.loadMoreText.text = "上拉查看更多"
             } else {
+                
+                //不显示加载完成的文本
+                if !isShowLoadCompleteText {
+                    self.loadMoreText.text = ""
+                    return
+                }
+                
                 if self.data.count == 0 {
                     loadMoreText.font = UIFont(name: "Helvetica Neue", size: 14)
                     self.loadMoreText.text = "没找到任何数据"
