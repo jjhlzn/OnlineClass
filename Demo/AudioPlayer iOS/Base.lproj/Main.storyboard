@@ -32,7 +32,7 @@
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="myinfo_userImage" id="itY-PH-u1t">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="circleUser" id="itY-PH-u1t">
                                                     <rect key="frame" x="118" y="22" width="85" height="85"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="tintColor" red="0.94901960780000005" green="0.3803921569" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -1578,46 +1578,6 @@
             </objects>
             <point key="canvasLocation" x="4341" y="-350"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="sUC-Ti-bcl">
-            <objects>
-                <viewController id="lsy-6H-40j" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="7iY-5g-kxj">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  我来说两句" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="cY3-zK-mUx">
-                                <rect key="frame" x="9" y="526" width="303" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.90528846149999997" green="0.90528846149999997" blue="0.90528846149999997" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="WYM-SE-SbF">
-                                <rect key="frame" x="141" y="473" width="42" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="P9H-nM-Rlj">
-                                <rect key="frame" x="9" y="405" width="303" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.90528846149999997" green="0.90528846149999997" blue="0.90528846149999997" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <state key="normal" title="  我也来说两句                                                     ">
-                                    <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="PeA-zh-m4B" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4175" y="-1294"/>
-        </scene>
         <!--商城-->
         <scene sceneID="UNh-gY-mlq">
             <objects>
@@ -1690,14 +1650,14 @@
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="轻触上面的&quot;注册&quot;按钮，即表示你同意" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="9tn-AF-kWG">
                                 <rect key="frame" x="0.0" y="516" width="320" height="21"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="obI-4L-xEU">
                                 <rect key="frame" x="52" y="538" width="217" height="30"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <state key="normal" title="《巨方助手软件许可及服务协议》"/>
                             </button>
@@ -2363,6 +2323,7 @@
         <image name="backicon" width="32" height="32"/>
         <image name="barcode" width="50" height="50"/>
         <image name="bufferCircle1" width="102" height="103"/>
+        <image name="circleUser" width="50" height="50"/>
         <image name="course" width="25" height="25"/>
         <image name="course-filled" width="25" height="25"/>
         <image name="creditCard" width="192" height="128"/>
@@ -2374,7 +2335,6 @@
         <image name="me-filled" width="25" height="25"/>
         <image name="morethan" width="17" height="17"/>
         <image name="musicCover" width="250" height="250"/>
-        <image name="myinfo_userImage" width="250" height="250"/>
         <image name="nextPlay" width="50" height="50"/>
         <image name="play" width="50" height="50"/>
         <image name="playlist" width="141" height="90"/>
@@ -2387,10 +2347,10 @@
         <image name="wave1" width="24" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ybB-My-glY"/>
-        <segue reference="HJR-zD-bje"/>
-        <segue reference="VNd-S5-Rjk"/>
+        <segue reference="wgg-JW-dPY"/>
+        <segue reference="xmL-0a-HxS"/>
         <segue reference="G0l-Dl-hO0"/>
+        <segue reference="VNd-S5-Rjk"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.94901960784313721" green="0.38039215686274508" blue="0.0" alpha="0.90000000000000002" colorSpace="calibratedRGB"/>
 </document>
