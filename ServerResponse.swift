@@ -22,7 +22,7 @@ class ServerRequest {
 
 class PagedServerRequest: ServerRequest{
     var pageNo = 0
-    var pageSize = 10
+    var pageSize = 15
     override var params: [String : AnyObject] {
         get {
             var parameters = super.params

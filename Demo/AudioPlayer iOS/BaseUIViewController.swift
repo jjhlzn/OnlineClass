@@ -52,8 +52,6 @@ class BaseUIViewController: UIViewController, AudioPlayerDelegate {
             if let delegate = topViewController as? AudioPlayerDelegate {
                 getAudioPlayer().delegate = delegate
             }
-            
-            
         }
 
     }

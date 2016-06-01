@@ -13,6 +13,10 @@ class SearchCourseViewController: BaseUIViewController, UITextFieldDelegate , Pa
     @IBOutlet weak var tableView: UITableView!
 
     @IBOutlet weak var searchField: UITextField!
+
+    @IBOutlet weak var searchTipView: UIView!
+    
+    @IBOutlet weak var searchView: UIView!
     
     var loading = LoadingOverlay()
     
@@ -23,9 +27,11 @@ class SearchCourseViewController: BaseUIViewController, UITextFieldDelegate , Pa
     override func viewDidLoad() {
 
         //故意不掉用父类的viewDidLoad()
+        tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+
     
         searchField.delegate = self
-        searchField.becomeFirstResponder()
+        //searchField.becomeFirstResponder()
         
         tableView.dataSource = self
         tableView.delegate = self
@@ -38,9 +44,29 @@ class SearchCourseViewController: BaseUIViewController, UITextFieldDelegate , Pa
         pagableController.isNeedRefresh = false
         pagableController.initController()
     
+        self.searchTipView.removeFromSuperview()
+        view.addSubview(searchTipView)
+       
+        searchField.clearButtonMode = UITextFieldViewMode.Always
+        addIconToField(searchField, imageName: "search")
+        //addTopLayer()
         
-        addTopLayer()
+    }
+    
+    func addIconToField(field: UITextField, imageName: String) {
+        let imageView = UIImageView();
+        let image = UIImage(named: imageName);
+        imageView.frame = CGRect(x: 5, y: 4, width: 15, height: 15)
+        view.addSubview(imageView)
+        imageView.image = image;
+        //field.leftView = imageView
         
+        //field.leftViewMode = UITextFieldViewMode.Always
+        
+        let paddingView = UIView(frame: CGRectMake(0, 0, 20, 25))
+        paddingView.addSubview(imageView)
+        field.leftView = paddingView;
+        field.leftViewMode = UITextFieldViewMode.Always
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -51,22 +77,20 @@ class SearchCourseViewController: BaseUIViewController, UITextFieldDelegate , Pa
         }
         
         UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.LightContent
+        
     }
     
-    var topView: UIView!
-    private func addTopLayer() {
-        topView = UIView(frame: tableView.frame)
-        view.addSubview(topView)
+    override func viewWillDisappear(animated: Bool) {
+        
+        cancleHideKeybaordWhenTappedAround()
+        self.navigationController?.navigationBarHidden = false
     }
-    
-    private func removeTopLayer() {
-        topView.removeFromSuperview()
-    }
-    
+
+
 
     
     func searchHandler(respHandler: ((resp: ServerResponse) -> Void)) {
-        
+    
         if request == nil {
             return
         }
@@ -75,7 +99,10 @@ class SearchCourseViewController: BaseUIViewController, UITextFieldDelegate , Pa
                                    request: request!) {
                                     (resp: SearchResponse) -> Void in
                                     dispatch_async(dispatch_get_main_queue()) {
-                                        self.removeTopLayer()
+                                        //self.removeTopLayer()
+                                        if self.searchTipView != nil {
+                                            self.searchTipView.removeFromSuperview()
+                                        }
                                         self.pagableController.afterHandleResponse(resp)
                                     }
         }
@@ -94,20 +121,33 @@ class SearchCourseViewController: BaseUIViewController, UITextFieldDelegate , Pa
         pagableController.scrollViewDidScroll(scrollView)
     }
 
+    
+    var overlay : UIView!
+    private func addGraylayer() {
+        
+        var frame = UIScreen.mainScreen().bounds
+        frame.origin.y = 65
 
-
-    @IBAction func cancelPressed(sender: AnyObject) {
-       self.navigationController?.popViewControllerAnimated(true)
+        overlay = UIView(frame: frame)
+        overlay.backgroundColor = UIColor(white: 0, alpha: 0.3)
+        view.addSubview(overlay)
     }
     
-    override func viewWillDisappear(animated: Bool) {
-        super.viewWillDisappear(animated)
-        if self.navigationController != nil {
-            
-            self.navigationController?.navigationBarHidden = false
-            
-        }
+    private func removeGraylayer() {
+        overlay.removeFromSuperview()
     }
+    
+    func textFieldDidBeginEditing(textField: UITextField) {
+        hideKeyboardWhenTappedAround()
+        addGraylayer()
+    }
+    
+    func textFieldDidEndEditing(textField: UITextField) {
+        cancleHideKeybaordWhenTappedAround()
+        removeGraylayer()
+    }
+    
+    
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         self.view.endEditing(true)
@@ -160,6 +200,7 @@ extension  SearchCourseViewController :  UITableViewDataSource, UITableViewDeleg
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         super.prepareForSegue(segue, sender: sender)
         if segue.identifier == "albumDetailSegue" {
+            
             let dest = segue.destinationViewController as! AlbumDetailController
             let row = (tableView.indexPathForSelectedRow?.row)!
             dest.album = pagableController.data[row]
