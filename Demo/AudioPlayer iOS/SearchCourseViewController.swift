@@ -48,7 +48,7 @@ class SearchCourseViewController: BaseUIViewController, UITextFieldDelegate , Pa
         view.addSubview(searchTipView)
        
         searchField.clearButtonMode = UITextFieldViewMode.Always
-        addIconToField(searchField, imageName: "search")
+        addIconToField(searchField, imageName: "search-filled")
         //addTopLayer()
         
     }
