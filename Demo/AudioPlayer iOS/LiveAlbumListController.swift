@@ -13,6 +13,8 @@ class LiveAlbumListController: AlbumListController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //不显示加载完毕的字样
+        pagableController.isShowLoadCompleteText = false
         pagableController.loadMore()
     }
     

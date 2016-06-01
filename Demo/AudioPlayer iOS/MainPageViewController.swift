@@ -45,6 +45,8 @@ class CourseMainPageViewController: BaseUIViewController {
         }
         else if segue.identifier == "loadWebPageSegue" {
             let dest = segue.destinationViewController as! WebPageViewController
+            
+                       
             let params = sender as! [String: String]
             dest.url = NSURL(string: params["url"]!)
             

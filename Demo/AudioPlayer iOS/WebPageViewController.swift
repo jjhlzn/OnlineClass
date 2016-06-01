@@ -13,6 +13,7 @@ class WebPageViewController: BaseUIViewController, UIWebViewDelegate {
     var url : NSURL!
     @IBOutlet weak var closeButton: UIBarButtonItem!
     @IBOutlet weak var backButton: UIBarButtonItem!
+     //var backButton: UIBarButtonItem!
     
     var leftBarButtonItems: [UIBarButtonItem]?
     @IBOutlet weak var webView: UIWebView!
@@ -28,10 +29,11 @@ class WebPageViewController: BaseUIViewController, UIWebViewDelegate {
         
         closeButton.target = self
         closeButton.action = #selector(returnLastController)
+        
         backButton.target = self
         backButton.action = #selector(webViewBack)
         leftBarButtonItems = navigationItem.leftBarButtonItems
-        //leftBarButtonItems?.insert(navigationItem.backBarButtonItem!, atIndex: 0)
+
         navigationItem.leftBarButtonItems = [backButton]
         
     }

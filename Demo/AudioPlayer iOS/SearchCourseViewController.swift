@@ -63,26 +63,7 @@ class SearchCourseViewController: BaseUIViewController, UITextFieldDelegate , Pa
         topView.removeFromSuperview()
     }
     
-    /*
-    //PageableControllerDelegate
-    func searchHandler() {
-        if request == nil {
-            return
-        }
-        
-        BasicService().sendRequest(ServiceConfiguration.SEARCH, request: request!) {
-            (resp: SearchResponse) -> Void in
-            dispatch_async(dispatch_get_main_queue()) {
-                self.removeTopLayer()
-                self.pagableController.afterHandleResponse(resp)
-            }
-        }
-        
-    }
-    
-    func refreshHandler() {
-        
-    }*/
+
     
     func searchHandler(respHandler: ((resp: ServerResponse) -> Void)) {
         
