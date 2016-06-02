@@ -267,8 +267,8 @@ class CommentController : NSObject, UITextViewDelegate {
     func keyboardWillShow(notification: NSNotification) {
  
         print("start keyboardWillShow")
-        
-        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
+        //notification.userInfo?[UIKeyboardFrameEndUserInfoKey]
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.CGRectValue() {
             closeEmojiKeyboard()
             showOrAdjustCommentWindow(keyboardSize)
         }
@@ -279,6 +279,7 @@ class CommentController : NSObject, UITextViewDelegate {
     private func showOrAdjustCommentWindow(keyboardSize: CGRect) {
         
         let screenHeight = UIScreen.mainScreen().bounds.height
+        print("keyboardHeight = \(keyboardSize.height)")
         let commentWinY = screenHeight - keyboardSize.height - bottomView2.frame.height
         bottomView2.frame.origin.y = commentWinY
 
