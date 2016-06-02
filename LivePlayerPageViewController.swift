@@ -169,7 +169,7 @@ class LivePlayerPageViewController : CommonPlayerPageViewController {
         let comment = comments![row - 1]
         cell.userIdLabel.text = comment.userId
         cell.timeLabel.text = comment.time
-        cell.contentLabel.text = comment.content
+        cell.contentLabel.text = comment.content.emojiUnescapedString
         
         var frame = cell.contentLabel.frame;
         cell.contentLabel.numberOfLines = 0
@@ -210,7 +210,7 @@ class LivePlayerPageViewController : CommonPlayerPageViewController {
                     if heightCache[comment.content] == nil {
                         cell.userIdLabel.text = comment.userId
                         cell.timeLabel.text = comment.time
-                        cell.contentLabel.text = comment.content
+                        cell.contentLabel.text = comment.content.emojiEscapedString
                         var frame = cell.contentLabel.frame;
                         cell.contentLabel.numberOfLines = 0
                         cell.contentLabel.sizeToFit()
