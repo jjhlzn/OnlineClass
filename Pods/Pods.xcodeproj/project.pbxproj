@@ -7,167 +7,134 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0703C2D46FB27B2EF231A8D75EF99F42 /* KDEAudioPlayer-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A278A49E76DB849C8E059445547E281 /* KDEAudioPlayer-dummy.m */; };
-		095406039B4D371E48D08B38A2975AC8 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00CE49098B909703A6A2FAD7D0AE8F4 /* Error.swift */; };
-		0A135879E545A65E07D2954A111AD3F6 /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 988627598C111E36999342E8FD162303 /* AudioPlayer.swift */; };
-		15849626C654E18F547D6AFBFA647247 /* EmojiFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7EA70F2BD851E6F499ED9F813207A40 /* EmojiFetcher.swift */; };
-		16102E4E35FAA0FC4161282FECE56469 /* Timeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = E178F25B84230D3DDF8850506A29AB5E /* Timeline.swift */; };
-		2424F5F0B764C20C504F99DF5E867F10 /* EmojiKit-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF10A4D293F53B60B7E11B54CD5A242 /* EmojiKit-dummy.m */; };
-		2D3405986FC586FA6C0A5E0B6BA7E64E /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC5A985E1192B9EF81F861893E7586C /* Validation.swift */; };
-		330057D964C6C53D919F23C62AD4C629 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AB4AEA32413D754BB108EEDA41AEC2D /* Foundation.framework */; };
-		34CCDCA848A701466256BC2927DA8856 /* NetworkReachabilityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CFAB69278B3A43377B374567F53A8B /* NetworkReachabilityManager.swift */; };
-		3D042516DCF13F0F44727F9882AE93D0 /* DictionarySerialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5736268E43E896DF02481706102EF4 /* DictionarySerialization.swift */; };
-		3EA8F215C9C1432D74E5CCA4834AA8C0 /* ResponseSerialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05397A1B7858BD2FA38C311CE3FFD13C /* ResponseSerialization.swift */; };
-		4081EA628AF0B73AC51FFB9D7AB3B89E /* Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB3CCEEC2EB2656345DCE52D357B8EE /* Manager.swift */; };
+		0703C2D46FB27B2EF231A8D75EF99F42 /* KDEAudioPlayer-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 99171FF1DDD36C6EE774D8D5D61D2E30 /* KDEAudioPlayer-dummy.m */; };
+		095406039B4D371E48D08B38A2975AC8 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = FED622DE2F43E19815BDE404827C4AAF /* Error.swift */; };
+		0A135879E545A65E07D2954A111AD3F6 /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42E2C8C9BFBAB8740AAA4A0A891CD546 /* AudioPlayer.swift */; };
+		16102E4E35FAA0FC4161282FECE56469 /* Timeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 307375177DEB9B25BEF21AD714F6912B /* Timeline.swift */; };
+		2D3405986FC586FA6C0A5E0B6BA7E64E /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A490BEC2C5E5F06A0C1245F7C1EB6038 /* Validation.swift */; };
+		34CCDCA848A701466256BC2927DA8856 /* NetworkReachabilityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4567B4676546E7D0535D1878C6826E89 /* NetworkReachabilityManager.swift */; };
+		3EA8F215C9C1432D74E5CCA4834AA8C0 /* ResponseSerialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42137E3923859CA431BA4BD987F182F /* ResponseSerialization.swift */; };
+		4081EA628AF0B73AC51FFB9D7AB3B89E /* Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACF7D195B5D33395208AB69B8AC3EBD /* Manager.swift */; };
 		5A1BD9F76CC68466CF356E8E8A4B45DF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AB4AEA32413D754BB108EEDA41AEC2D /* Foundation.framework */; };
-		5BC19E6E0F199276003F0AF96838BCE5 /* Upload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7148C364649D69CD7CF8022F0FC55A95 /* Upload.swift */; };
-		5CB05FBCB32D21E194B5ECF680CB6AE0 /* Download.swift in Sources */ = {isa = PBXBuildFile; fileRef = 672200F820DCD5591F8AC9E5AE882800 /* Download.swift */; };
-		62E8346F03C03E7F4D631361F325689E /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8246F4FAFF46DD161F51932A53206B /* Response.swift */; };
-		7B48852C4D848FA2DA416A98F6425869 /* ServerTrustPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6DC5F9DA64FFEED61CA5340FA5B4289 /* ServerTrustPolicy.swift */; };
-		82EDACC2D2E340EEF8081F7FE239A3EB /* EmojiKit-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 7C9539A2138C2FFE825A13858E6C7915 /* EmojiKit-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		84C0ABB03B6A69C106C9363D1D6055FC /* Pods-AudioPlayer iOS-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 70F47E428A0CEF7AA9A4E8AAAEE1B20B /* Pods-AudioPlayer iOS-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5BC19E6E0F199276003F0AF96838BCE5 /* Upload.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84C95BE383B9D1D923046CC7542673A /* Upload.swift */; };
+		5CB05FBCB32D21E194B5ECF680CB6AE0 /* Download.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC4E1A4CE471EC994772B4B4CCD9F7A7 /* Download.swift */; };
+		62E8346F03C03E7F4D631361F325689E /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F01FC9E563E96C7F7B4E8527F6202F /* Response.swift */; };
+		68BD332A7986B19621277508ACF0C551 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AB4AEA32413D754BB108EEDA41AEC2D /* Foundation.framework */; };
+		7B48852C4D848FA2DA416A98F6425869 /* ServerTrustPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = B211C2661B33C66BF85E3FB7F8769C9E /* ServerTrustPolicy.swift */; };
 		895D845FF89ABE86E5FBEC2C77BBD354 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AB4AEA32413D754BB108EEDA41AEC2D /* Foundation.framework */; };
-		8EB11202167FCDDF1257AAAB1D1FB244 /* Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E773982C4A40F6F7222A52D4E4AD3B7 /* Alamofire.swift */; };
+		8EB11202167FCDDF1257AAAB1D1FB244 /* Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A561AB414F0B65B491AEC2CFE58F390 /* Alamofire.swift */; };
 		91C09AC2A52ED69A27C8D923139A006F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AB4AEA32413D754BB108EEDA41AEC2D /* Foundation.framework */; };
-		9469DF81ECB494E84675969B5E13374C /* Alamofire-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = B3016D03B396F15A0A02C0DA04681EB9 /* Alamofire-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9469DF81ECB494E84675969B5E13374C /* Alamofire-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = A330380C3ED86885AF9EAAF46E65C01C /* Alamofire-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		95BD9521E88C4241F13BD006C8FFABF8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B623FEAEE0ADDAD5B9C19ABAFB4EB5A4 /* UIKit.framework */; };
-		9F4D24D99C1E682C7935844F3BCBB171 /* Emoji-swift-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E39B901835083BB9F751093CFEF9DD5 /* Emoji-swift-dummy.m */; };
-		A4EBE84C260B69BC2D6848DBA273BA58 /* AudioItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5BEAC55CB6C84B1A3B5D3B87FCE623 /* AudioItem.swift */; };
-		A5539ADE7B32F70952C94C9DA3DD1B57 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AB4AEA32413D754BB108EEDA41AEC2D /* Foundation.framework */; };
-		A973D0336DCFA83E6D44E0D7E540BBB4 /* KDEAudioPlayer-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 01B18A42130686AF06F3CA1727200A22 /* KDEAudioPlayer-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		AA314156AC500125F4078EE968DB14C6 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B731F7E1CB6F2C7C5DD59EE93D3765B /* Result.swift */; };
-		ADF19C953CE2A7D0B72EC93A81FCCC26 /* Alamofire-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 20663E0C03FD5B43FEBA93451D133CB5 /* Alamofire-dummy.m */; };
-		AE4CF87C02C042DF13ED5B21C4FDC1E0 /* Stream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828F6F1BEB447E21B737CB7D137151AD /* Stream.swift */; };
-		B072412A9B39E773BFD13CF6B672FFBF /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29D9E9DBE274E5CF4E2FEFF099CAAD34 /* Reachability.swift */; };
-		B41B562D25C0FF30087B90FDE72CAACD /* AllEmoji.json in Resources */ = {isa = PBXBuildFile; fileRef = 476D49467B2E6A17E9B966B34837989D /* AllEmoji.json */; };
-		BB392048C0A40747A046C99B24820E5C /* Pods-AudioPlayer iOS-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 7243BE26432221C52B087D95AD050EB0 /* Pods-AudioPlayer iOS-dummy.m */; };
-		BE41196F6A3903E59C3306FE3F8B43FE /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCAF8714595C591E0524A6623FF9ED2 /* Notifications.swift */; };
-		C0DB70AB368765DC64BFB5FEA75E0696 /* ParameterEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A05D2DA63E5AD7281DF8851DD32392 /* ParameterEncoding.swift */; };
-		C356A4DDF0D4F3BE8054D57FC069D632 /* String+Emoji.swift in Sources */ = {isa = PBXBuildFile; fileRef = A778FA4543AFF1F011A6929A395F2300 /* String+Emoji.swift */; };
-		C7B6DD7C0456C50289A2C381DFE9FA3F /* MultipartFormData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9B373CA075F1C05337E9CD257EDA59 /* MultipartFormData.swift */; };
+		9F4D24D99C1E682C7935844F3BCBB171 /* Emoji-swift-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = F60C106B90BC1EF7B18F546CE2EEB180 /* Emoji-swift-dummy.m */; };
+		A4EBE84C260B69BC2D6848DBA273BA58 /* AudioItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228C6AFD27BABE3F522613BFD3ECFC8F /* AudioItem.swift */; };
+		A973D0336DCFA83E6D44E0D7E540BBB4 /* KDEAudioPlayer-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = B93CFC8619CC1D61AF5F6D11D2F9800C /* KDEAudioPlayer-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AA314156AC500125F4078EE968DB14C6 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5E89E752651B02036507E77E0874519 /* Result.swift */; };
+		ABE6F23091EF1FF54AC3CFEC0443F3B5 /* Pods-AudioPlayer iOS-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 70F47E428A0CEF7AA9A4E8AAAEE1B20B /* Pods-AudioPlayer iOS-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ADF19C953CE2A7D0B72EC93A81FCCC26 /* Alamofire-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 32E38FDECA4140D0B9E94A53D80C6C26 /* Alamofire-dummy.m */; };
+		AE4CF87C02C042DF13ED5B21C4FDC1E0 /* Stream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE9D09C419A2D8D6D0837A8C4A373EF /* Stream.swift */; };
+		B072412A9B39E773BFD13CF6B672FFBF /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DDB830A9A99232686CBCBA6425BDCA /* Reachability.swift */; };
+		BE41196F6A3903E59C3306FE3F8B43FE /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBE5CFC1EFE0166112E19E1F03ED4883 /* Notifications.swift */; };
+		C0DB70AB368765DC64BFB5FEA75E0696 /* ParameterEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D09163871D8A9EB7DEA3635DE11EA8C /* ParameterEncoding.swift */; };
+		C356A4DDF0D4F3BE8054D57FC069D632 /* String+Emoji.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B8FA3374B9C2D195F79AB19C85B8AC6 /* String+Emoji.swift */; };
+		C7B6DD7C0456C50289A2C381DFE9FA3F /* MultipartFormData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B97C3EDC0F2969AF831CABB15A4DFF8A /* MultipartFormData.swift */; };
 		C95E06611AC722D8BE33A4ACBE8F20B4 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28F381A732CE91912E8D139780348208 /* SystemConfiguration.framework */; };
 		CF78D5D8C1C6A8413691E500519EB88C /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98195F920F6C35D4CA754668B4C9A24A /* MediaPlayer.framework */; };
 		D4C89A5FD5B84AD0C41D0A1D72A72D8D /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10E0F2DB5D24BFBDBD1672E1A7634203 /* AVFoundation.framework */; };
-		DFF7D7148924236B019CB92BC050AE85 /* Emoji.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2017AEF151082067D2F98864A44C804C /* Emoji.swift */; };
-		EE6851AE96004C186D92C590C82C3140 /* Emoji-swift-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 20943209D9B4EB2DB6CCF5BF6AA109DD /* Emoji-swift-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EFE92E8D3813DD26E78E93EEAF6D7E7E /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC7518BAEDE6289B4DB8CDABE36610D6 /* Request.swift */; };
-		F31B19BEA4ADE902EA562F0F1986FAD0 /* Emoji.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784B4CD68D6C8CEAAEEE82BECF503DCB /* Emoji.swift */; };
+		E9BD09314DFD91CCC69664EF90C767A7 /* Pods-AudioPlayer iOS-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 7243BE26432221C52B087D95AD050EB0 /* Pods-AudioPlayer iOS-dummy.m */; };
+		EE6851AE96004C186D92C590C82C3140 /* Emoji-swift-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = C218B8C605B83E208B9D728DC533BFCC /* Emoji-swift-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EFE92E8D3813DD26E78E93EEAF6D7E7E /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B77BE6BF042D3822A44DBDAA07EDA0 /* Request.swift */; };
+		F31B19BEA4ADE902EA562F0F1986FAD0 /* Emoji.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15F04EF45CAF91F244F63A02F73A5BC /* Emoji.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		03AB575D945995EF9F4EB1F44046DD78 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 79C040AFDDCE1BCBF6D8B5EB0B85887F;
-			remoteInfo = Alamofire;
-		};
-		17521D132EBEC259E1DB0CE354AFCD78 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 06753847BA1A0980DC4BE596BD9AB8D8;
-			remoteInfo = EmojiKit;
-		};
-		6A1B80B9396F9B8A5B2E5F19D4EB6E01 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 40B0BF126308785D1027032FF80AB074;
-			remoteInfo = "Emoji-swift";
-		};
-		7B39B2DDEDE379FA436793605213CE36 /* PBXContainerItemProxy */ = {
+		31F662803D8F0EEFEEF86D1A34C42E33 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 541E9AD8F0209976F59A780F49A3F069;
 			remoteInfo = KDEAudioPlayer;
 		};
+		4D521CCC16EFC45DF692839129DBB3FB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 40B0BF126308785D1027032FF80AB074;
+			remoteInfo = "Emoji-swift";
+		};
+		7F387EDCE48982EC2AAC936A36FD3465 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 79C040AFDDCE1BCBF6D8B5EB0B85887F;
+			remoteInfo = Alamofire;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		01B18A42130686AF06F3CA1727200A22 /* KDEAudioPlayer-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "KDEAudioPlayer-umbrella.h"; sourceTree = "<group>"; };
-		05397A1B7858BD2FA38C311CE3FFD13C /* ResponseSerialization.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ResponseSerialization.swift; path = Source/ResponseSerialization.swift; sourceTree = "<group>"; };
-		05CFAB69278B3A43377B374567F53A8B /* NetworkReachabilityManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NetworkReachabilityManager.swift; path = Source/NetworkReachabilityManager.swift; sourceTree = "<group>"; };
-		0743D8BD6373B4291D8F9C288BC39B3B /* Emoji.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Emoji.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		0AC5A985E1192B9EF81F861893E7586C /* Validation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Validation.swift; path = Source/Validation.swift; sourceTree = "<group>"; };
+		05DDB830A9A99232686CBCBA6425BDCA /* Reachability.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Reachability.swift; path = AudioPlayer/AudioPlayer/Reachability.swift; sourceTree = "<group>"; };
+		0B8FA3374B9C2D195F79AB19C85B8AC6 /* String+Emoji.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "String+Emoji.swift"; path = "Emoji/String+Emoji.swift"; sourceTree = "<group>"; };
 		0CFC909A52819997BF5DCA71324D2369 /* Pods-AudioPlayer iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-AudioPlayer iOS.debug.xcconfig"; sourceTree = "<group>"; };
-		1010353901D3A24F86A9A6B4CC21CB03 /* EmojiKit-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "EmojiKit-prefix.pch"; sourceTree = "<group>"; };
 		10E0F2DB5D24BFBDBD1672E1A7634203 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/AVFoundation.framework; sourceTree = DEVELOPER_DIR; };
-		199EB15735B40FFEDE0AA99F40CE59A0 /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		1B0AA7BAC23B70861689A46B789E7002 /* KDEAudioPlayer-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "KDEAudioPlayer-prefix.pch"; sourceTree = "<group>"; };
-		1B5BEAC55CB6C84B1A3B5D3B87FCE623 /* AudioItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AudioItem.swift; path = AudioPlayer/AudioPlayer/AudioItem.swift; sourceTree = "<group>"; };
-		2017AEF151082067D2F98864A44C804C /* Emoji.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Emoji.swift; path = EmojiKit/Emoji.swift; sourceTree = "<group>"; };
-		20663E0C03FD5B43FEBA93451D133CB5 /* Alamofire-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Alamofire-dummy.m"; sourceTree = "<group>"; };
-		20943209D9B4EB2DB6CCF5BF6AA109DD /* Emoji-swift-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Emoji-swift-umbrella.h"; sourceTree = "<group>"; };
-		2152055B4DC2EB3E918BED64FB058CF6 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		14F01FC9E563E96C7F7B4E8527F6202F /* Response.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Response.swift; path = Source/Response.swift; sourceTree = "<group>"; };
+		19DFAD49B787851C94C3F6E199942E1B /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1D09163871D8A9EB7DEA3635DE11EA8C /* ParameterEncoding.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ParameterEncoding.swift; path = Source/ParameterEncoding.swift; sourceTree = "<group>"; };
+		228C6AFD27BABE3F522613BFD3ECFC8F /* AudioItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AudioItem.swift; path = AudioPlayer/AudioPlayer/AudioItem.swift; sourceTree = "<group>"; };
 		28F381A732CE91912E8D139780348208 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/SystemConfiguration.framework; sourceTree = DEVELOPER_DIR; };
-		29642B468C2809007FB15D0AFBC72955 /* Alamofire.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = Alamofire.modulemap; sourceTree = "<group>"; };
-		29D9E9DBE274E5CF4E2FEFF099CAAD34 /* Reachability.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Reachability.swift; path = AudioPlayer/AudioPlayer/Reachability.swift; sourceTree = "<group>"; };
-		2B731F7E1CB6F2C7C5DD59EE93D3765B /* Result.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Result.swift; path = Source/Result.swift; sourceTree = "<group>"; };
-		2DF10A4D293F53B60B7E11B54CD5A242 /* EmojiKit-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "EmojiKit-dummy.m"; sourceTree = "<group>"; };
-		2E39B901835083BB9F751093CFEF9DD5 /* Emoji-swift-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Emoji-swift-dummy.m"; sourceTree = "<group>"; };
-		3B5736268E43E896DF02481706102EF4 /* DictionarySerialization.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DictionarySerialization.swift; path = EmojiKit/DictionarySerialization.swift; sourceTree = "<group>"; };
-		3BC7A1EC33C0ED22B8D5136AB0E5E44B /* KDEAudioPlayer.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = KDEAudioPlayer.xcconfig; sourceTree = "<group>"; };
-		3D8246F4FAFF46DD161F51932A53206B /* Response.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Response.swift; path = Source/Response.swift; sourceTree = "<group>"; };
-		400C1A981F71206FB54A843C974A0E59 /* Emoji-swift-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Emoji-swift-prefix.pch"; sourceTree = "<group>"; };
-		40BC793E81B8444FE33D1BAA8D261996 /* EmojiKit.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = EmojiKit.xcconfig; sourceTree = "<group>"; };
+		2A561AB414F0B65B491AEC2CFE58F390 /* Alamofire.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Alamofire.swift; path = Source/Alamofire.swift; sourceTree = "<group>"; };
+		307375177DEB9B25BEF21AD714F6912B /* Timeline.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Timeline.swift; path = Source/Timeline.swift; sourceTree = "<group>"; };
+		32E38FDECA4140D0B9E94A53D80C6C26 /* Alamofire-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Alamofire-dummy.m"; sourceTree = "<group>"; };
+		3C5F56789E9C8C0757516786A711D4BC /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		41166368ABB56A544B8BE265D865D425 /* Pods-AudioPlayer iOS-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-AudioPlayer iOS-acknowledgements.markdown"; sourceTree = "<group>"; };
-		476D49467B2E6A17E9B966B34837989D /* AllEmoji.json */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.json; path = AllEmoji.json; sourceTree = "<group>"; };
-		496FF1FA4C0CA0CC3AC4116101479950 /* Alamofire.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Alamofire.xcconfig; sourceTree = "<group>"; };
-		4A278A49E76DB849C8E059445547E281 /* KDEAudioPlayer-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "KDEAudioPlayer-dummy.m"; sourceTree = "<group>"; };
-		50A05D2DA63E5AD7281DF8851DD32392 /* ParameterEncoding.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ParameterEncoding.swift; path = Source/ParameterEncoding.swift; sourceTree = "<group>"; };
-		5677D5B63A101D8CB17D99271756B56C /* EmojiKit.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = EmojiKit.modulemap; sourceTree = "<group>"; };
-		672200F820DCD5591F8AC9E5AE882800 /* Download.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Download.swift; path = Source/Download.swift; sourceTree = "<group>"; };
-		6A1AAAEE6B0D1C4A03500AA083F74D3E /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		6DB3CCEEC2EB2656345DCE52D357B8EE /* Manager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Manager.swift; path = Source/Manager.swift; sourceTree = "<group>"; };
+		42E2C8C9BFBAB8740AAA4A0A891CD546 /* AudioPlayer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AudioPlayer.swift; path = AudioPlayer/AudioPlayer/AudioPlayer.swift; sourceTree = "<group>"; };
+		4567B4676546E7D0535D1878C6826E89 /* NetworkReachabilityManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NetworkReachabilityManager.swift; path = Source/NetworkReachabilityManager.swift; sourceTree = "<group>"; };
+		54B77BE6BF042D3822A44DBDAA07EDA0 /* Request.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Request.swift; path = Source/Request.swift; sourceTree = "<group>"; };
+		59092A798CBE6ED6A262146210A5AFBF /* KDEAudioPlayer.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = KDEAudioPlayer.xcconfig; sourceTree = "<group>"; };
+		592448C39984D39458738CBD83A6053F /* Emoji.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Emoji.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		70F47E428A0CEF7AA9A4E8AAAEE1B20B /* Pods-AudioPlayer iOS-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-AudioPlayer iOS-umbrella.h"; sourceTree = "<group>"; };
-		7148C364649D69CD7CF8022F0FC55A95 /* Upload.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Upload.swift; path = Source/Upload.swift; sourceTree = "<group>"; };
 		7243BE26432221C52B087D95AD050EB0 /* Pods-AudioPlayer iOS-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-AudioPlayer iOS-dummy.m"; sourceTree = "<group>"; };
-		781384A4B83B45B76727A13322860ABF /* KDEAudioPlayer.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = KDEAudioPlayer.modulemap; sourceTree = "<group>"; };
-		784B4CD68D6C8CEAAEEE82BECF503DCB /* Emoji.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Emoji.swift; path = Emoji/Emoji.swift; sourceTree = "<group>"; };
+		7A9829CDDFFA3F259D02B158D41CC6B6 /* Pods_AudioPlayer_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AudioPlayer_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7AB4AEA32413D754BB108EEDA41AEC2D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		7C9539A2138C2FFE825A13858E6C7915 /* EmojiKit-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "EmojiKit-umbrella.h"; sourceTree = "<group>"; };
-		828F6F1BEB447E21B737CB7D137151AD /* Stream.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Stream.swift; path = Source/Stream.swift; sourceTree = "<group>"; };
-		8401C956DD23FA8A6B2AAF3230E227DB /* KDEAudioPlayer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KDEAudioPlayer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		85F85639E3EB7F7A1E547F3F57D42D16 /* Pods_AudioPlayer_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AudioPlayer_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8194BE21FFDA5ED0A0CA7F5B80C3993F /* Alamofire.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Alamofire.xcconfig; sourceTree = "<group>"; };
+		8456861F18EFBE2B0F4F5C5AE76FC9B4 /* KDEAudioPlayer.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = KDEAudioPlayer.modulemap; sourceTree = "<group>"; };
 		87E426FB62A6DA45BA9C3FBB8FD87298 /* Pods-AudioPlayer iOS-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-AudioPlayer iOS-frameworks.sh"; sourceTree = "<group>"; };
+		9297874D2FDFCC1DABD9FECE064D1F40 /* Alamofire-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Alamofire-prefix.pch"; sourceTree = "<group>"; };
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		98195F920F6C35D4CA754668B4C9A24A /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/MediaPlayer.framework; sourceTree = DEVELOPER_DIR; };
-		988627598C111E36999342E8FD162303 /* AudioPlayer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AudioPlayer.swift; path = AudioPlayer/AudioPlayer/AudioPlayer.swift; sourceTree = "<group>"; };
-		9E773982C4A40F6F7222A52D4E4AD3B7 /* Alamofire.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Alamofire.swift; path = Source/Alamofire.swift; sourceTree = "<group>"; };
-		9E9B373CA075F1C05337E9CD257EDA59 /* MultipartFormData.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MultipartFormData.swift; path = Source/MultipartFormData.swift; sourceTree = "<group>"; };
-		9FCAF8714595C591E0524A6623FF9ED2 /* Notifications.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Notifications.swift; path = Source/Notifications.swift; sourceTree = "<group>"; };
-		A033BFFB6EBDF8C5C7BA0C6F8CD25457 /* EmojiKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EmojiKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		A0E1C9A325818C1D56B51C155C8930C5 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A40847BCDF4CC2D0C524F344252904E7 /* Emoji-swift.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Emoji-swift.modulemap"; sourceTree = "<group>"; };
-		A6DC5F9DA64FFEED61CA5340FA5B4289 /* ServerTrustPolicy.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ServerTrustPolicy.swift; path = Source/ServerTrustPolicy.swift; sourceTree = "<group>"; };
-		A778FA4543AFF1F011A6929A395F2300 /* String+Emoji.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "String+Emoji.swift"; path = "Emoji/String+Emoji.swift"; sourceTree = "<group>"; };
-		A7EA70F2BD851E6F499ED9F813207A40 /* EmojiFetcher.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EmojiFetcher.swift; path = EmojiKit/EmojiFetcher.swift; sourceTree = "<group>"; };
+		99171FF1DDD36C6EE774D8D5D61D2E30 /* KDEAudioPlayer-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "KDEAudioPlayer-dummy.m"; sourceTree = "<group>"; };
+		9AE9D09C419A2D8D6D0837A8C4A373EF /* Stream.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Stream.swift; path = Source/Stream.swift; sourceTree = "<group>"; };
+		A330380C3ED86885AF9EAAF46E65C01C /* Alamofire-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Alamofire-umbrella.h"; sourceTree = "<group>"; };
+		A430B7137BFE088EE2240DE04A4FD516 /* Alamofire.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = Alamofire.modulemap; sourceTree = "<group>"; };
+		A490BEC2C5E5F06A0C1245F7C1EB6038 /* Validation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Validation.swift; path = Source/Validation.swift; sourceTree = "<group>"; };
+		A4DF308BA7CF81DC22F8F4CF0A878F89 /* KDEAudioPlayer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KDEAudioPlayer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9861F4A1A3A618835E1E70B1F7FC0DF /* Pods-AudioPlayer iOS-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-AudioPlayer iOS-acknowledgements.plist"; sourceTree = "<group>"; };
-		B00CE49098B909703A6A2FAD7D0AE8F4 /* Error.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Error.swift; path = Source/Error.swift; sourceTree = "<group>"; };
-		B3016D03B396F15A0A02C0DA04681EB9 /* Alamofire-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Alamofire-umbrella.h"; sourceTree = "<group>"; };
+		B15F04EF45CAF91F244F63A02F73A5BC /* Emoji.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Emoji.swift; path = Emoji/Emoji.swift; sourceTree = "<group>"; };
+		B211C2661B33C66BF85E3FB7F8769C9E /* ServerTrustPolicy.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ServerTrustPolicy.swift; path = Source/ServerTrustPolicy.swift; sourceTree = "<group>"; };
 		B623FEAEE0ADDAD5B9C19ABAFB4EB5A4 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		B93CFC8619CC1D61AF5F6D11D2F9800C /* KDEAudioPlayer-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "KDEAudioPlayer-umbrella.h"; sourceTree = "<group>"; };
+		B97C3EDC0F2969AF831CABB15A4DFF8A /* MultipartFormData.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MultipartFormData.swift; path = Source/MultipartFormData.swift; sourceTree = "<group>"; };
 		BC8B1F5754ADC219068830A0F89EA66C /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C80E87EEAE8F8E18BC42554A37E3E3A1 /* Alamofire-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Alamofire-prefix.pch"; sourceTree = "<group>"; };
-		C93177C9B8687D62E461CB8D45B9C98F /* Emoji-swift.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Emoji-swift.xcconfig"; sourceTree = "<group>"; };
+		BC912666663BF6A390B08CD0A9CBD028 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C218B8C605B83E208B9D728DC533BFCC /* Emoji-swift-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Emoji-swift-umbrella.h"; sourceTree = "<group>"; };
+		C4874B0544689523EB8E98FBD8BB8F21 /* KDEAudioPlayer-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "KDEAudioPlayer-prefix.pch"; sourceTree = "<group>"; };
 		CA26485FA26D73CDE62E503E637654AB /* Pods-AudioPlayer iOS-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-AudioPlayer iOS-resources.sh"; sourceTree = "<group>"; };
-		CC7518BAEDE6289B4DB8CDABE36610D6 /* Request.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Request.swift; path = Source/Request.swift; sourceTree = "<group>"; };
+		D42137E3923859CA431BA4BD987F182F /* ResponseSerialization.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ResponseSerialization.swift; path = Source/ResponseSerialization.swift; sourceTree = "<group>"; };
+		D5E89E752651B02036507E77E0874519 /* Result.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Result.swift; path = Source/Result.swift; sourceTree = "<group>"; };
+		DC4E1A4CE471EC994772B4B4CCD9F7A7 /* Download.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Download.swift; path = Source/Download.swift; sourceTree = "<group>"; };
 		DD626C342CE55C85D66CA74B2E1BDF1C /* Pods-AudioPlayer iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-AudioPlayer iOS.release.xcconfig"; sourceTree = "<group>"; };
-		E178F25B84230D3DDF8850506A29AB5E /* Timeline.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Timeline.swift; path = Source/Timeline.swift; sourceTree = "<group>"; };
+		DD8B66C74EC5C1CD6E45CD0B251EF9ED /* Emoji-swift.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Emoji-swift.xcconfig"; sourceTree = "<group>"; };
+		E1A06F6CCE007D99560B93DA891A1E7A /* Emoji-swift-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Emoji-swift-prefix.pch"; sourceTree = "<group>"; };
+		E5B9E276F4F0F13FBA10D57754BF1CFC /* Emoji-swift.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Emoji-swift.modulemap"; sourceTree = "<group>"; };
 		E97ABA770F1DFBA0EA9ACABC082B872A /* Pods-AudioPlayer iOS.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-AudioPlayer iOS.modulemap"; sourceTree = "<group>"; };
-		EB14E0B6C0DA3E1EA7C8E7CCEE63FCCA /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F60C106B90BC1EF7B18F546CE2EEB180 /* Emoji-swift-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Emoji-swift-dummy.m"; sourceTree = "<group>"; };
+		F84C95BE383B9D1D923046CC7542673A /* Upload.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Upload.swift; path = Source/Upload.swift; sourceTree = "<group>"; };
+		FA6458D10FFA86D7DEC6C273D1ACEA52 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FACF7D195B5D33395208AB69B8AC3EBD /* Manager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Manager.swift; path = Source/Manager.swift; sourceTree = "<group>"; };
+		FBE5CFC1EFE0166112E19E1F03ED4883 /* Notifications.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Notifications.swift; path = Source/Notifications.swift; sourceTree = "<group>"; };
+		FED622DE2F43E19815BDE404827C4AAF /* Error.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Error.swift; path = Source/Error.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		2EA1945FF7795E3236D9192749BD991D /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				330057D964C6C53D919F23C62AD4C629 /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		7D1D98EFCEC491E5E4E1FDE988BDC714 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -196,41 +163,17 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		CEAED25D7FF697DDFB6B595C01E2D433 /* Frameworks */ = {
+		FE93824EA73F32CB4B741E111334922C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A5539ADE7B32F70952C94C9DA3DD1B57 /* Foundation.framework in Frameworks */,
+				68BD332A7986B19621277508ACF0C551 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		00855BC8250D1AF9049E23009F08835C /* Emoji-swift */ = {
-			isa = PBXGroup;
-			children = (
-				784B4CD68D6C8CEAAEEE82BECF503DCB /* Emoji.swift */,
-				A778FA4543AFF1F011A6929A395F2300 /* String+Emoji.swift */,
-				CAC55C64E0B00A088C90AC6AB0B1F474 /* Support Files */,
-			);
-			path = "Emoji-swift";
-			sourceTree = "<group>";
-		};
-		0B5583A5BF6EA47655429A02BC1629C5 /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				29642B468C2809007FB15D0AFBC72955 /* Alamofire.modulemap */,
-				496FF1FA4C0CA0CC3AC4116101479950 /* Alamofire.xcconfig */,
-				20663E0C03FD5B43FEBA93451D133CB5 /* Alamofire-dummy.m */,
-				C80E87EEAE8F8E18BC42554A37E3E3A1 /* Alamofire-prefix.pch */,
-				B3016D03B396F15A0A02C0DA04681EB9 /* Alamofire-umbrella.h */,
-				EB14E0B6C0DA3E1EA7C8E7CCEE63FCCA /* Info.plist */,
-			);
-			name = "Support Files";
-			path = "../Target Support Files/Alamofire";
-			sourceTree = "<group>";
-		};
 		156133656C3A430CED39D81215F7EF6C /* Pods-AudioPlayer iOS */ = {
 			isa = PBXGroup;
 			children = (
@@ -249,17 +192,6 @@
 			path = "Target Support Files/Pods-AudioPlayer iOS";
 			sourceTree = "<group>";
 		};
-		1B503BB5B86E346A9FA199FFE57BE575 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				ECB3281ADCD80A0DFB525566221E5EE7 /* Alamofire */,
-				00855BC8250D1AF9049E23009F08835C /* Emoji-swift */,
-				EEF624E596C70C9F39B5A8A4A9FBB419 /* EmojiKit */,
-				B25B2D88DDC7076AC88B8E3B98CBF098 /* KDEAudioPlayer */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		20B56609144CE204DFA8221F742B2D76 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -268,18 +200,18 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		340BF54227BBDFDFD34DB11425CEAE05 /* Support Files */ = {
+		256DB2805E9B90F19BCA640F4B0CE82B /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				5677D5B63A101D8CB17D99271756B56C /* EmojiKit.modulemap */,
-				40BC793E81B8444FE33D1BAA8D261996 /* EmojiKit.xcconfig */,
-				2DF10A4D293F53B60B7E11B54CD5A242 /* EmojiKit-dummy.m */,
-				1010353901D3A24F86A9A6B4CC21CB03 /* EmojiKit-prefix.pch */,
-				7C9539A2138C2FFE825A13858E6C7915 /* EmojiKit-umbrella.h */,
-				6A1AAAEE6B0D1C4A03500AA083F74D3E /* Info.plist */,
+				E5B9E276F4F0F13FBA10D57754BF1CFC /* Emoji-swift.modulemap */,
+				DD8B66C74EC5C1CD6E45CD0B251EF9ED /* Emoji-swift.xcconfig */,
+				F60C106B90BC1EF7B18F546CE2EEB180 /* Emoji-swift-dummy.m */,
+				E1A06F6CCE007D99560B93DA891A1E7A /* Emoji-swift-prefix.pch */,
+				C218B8C605B83E208B9D728DC533BFCC /* Emoji-swift-umbrella.h */,
+				FA6458D10FFA86D7DEC6C273D1ACEA52 /* Info.plist */,
 			);
 			name = "Support Files";
-			path = "../Target Support Files/EmojiKit";
+			path = "../Target Support Files/Emoji-swift";
 			sourceTree = "<group>";
 		};
 		3B60E1EDC23C18A6B2DF2F42B296A9DB /* Targets Support Files */ = {
@@ -302,30 +234,54 @@
 			name = iOS;
 			sourceTree = "<group>";
 		};
-		6766C6E5AF03F9DF3AE40945CAA80241 /* Support Files */ = {
+		511BE0B17CAC01A00A82A1DD9B806A8B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				2152055B4DC2EB3E918BED64FB058CF6 /* Info.plist */,
-				781384A4B83B45B76727A13322860ABF /* KDEAudioPlayer.modulemap */,
-				3BC7A1EC33C0ED22B8D5136AB0E5E44B /* KDEAudioPlayer.xcconfig */,
-				4A278A49E76DB849C8E059445547E281 /* KDEAudioPlayer-dummy.m */,
-				1B0AA7BAC23B70861689A46B789E7002 /* KDEAudioPlayer-prefix.pch */,
-				01B18A42130686AF06F3CA1727200A22 /* KDEAudioPlayer-umbrella.h */,
+				3C5F56789E9C8C0757516786A711D4BC /* Alamofire.framework */,
+				592448C39984D39458738CBD83A6053F /* Emoji.framework */,
+				A4DF308BA7CF81DC22F8F4CF0A878F89 /* KDEAudioPlayer.framework */,
+				7A9829CDDFFA3F259D02B158D41CC6B6 /* Pods_AudioPlayer_iOS.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		5A5A5ECB4E448B65F9703BB068A68B37 /* Alamofire */ = {
+			isa = PBXGroup;
+			children = (
+				2A561AB414F0B65B491AEC2CFE58F390 /* Alamofire.swift */,
+				DC4E1A4CE471EC994772B4B4CCD9F7A7 /* Download.swift */,
+				FED622DE2F43E19815BDE404827C4AAF /* Error.swift */,
+				FACF7D195B5D33395208AB69B8AC3EBD /* Manager.swift */,
+				B97C3EDC0F2969AF831CABB15A4DFF8A /* MultipartFormData.swift */,
+				4567B4676546E7D0535D1878C6826E89 /* NetworkReachabilityManager.swift */,
+				FBE5CFC1EFE0166112E19E1F03ED4883 /* Notifications.swift */,
+				1D09163871D8A9EB7DEA3635DE11EA8C /* ParameterEncoding.swift */,
+				54B77BE6BF042D3822A44DBDAA07EDA0 /* Request.swift */,
+				14F01FC9E563E96C7F7B4E8527F6202F /* Response.swift */,
+				D42137E3923859CA431BA4BD987F182F /* ResponseSerialization.swift */,
+				D5E89E752651B02036507E77E0874519 /* Result.swift */,
+				B211C2661B33C66BF85E3FB7F8769C9E /* ServerTrustPolicy.swift */,
+				9AE9D09C419A2D8D6D0837A8C4A373EF /* Stream.swift */,
+				307375177DEB9B25BEF21AD714F6912B /* Timeline.swift */,
+				F84C95BE383B9D1D923046CC7542673A /* Upload.swift */,
+				A490BEC2C5E5F06A0C1245F7C1EB6038 /* Validation.swift */,
+				A5E26CAB9AC44EB38F22F508BF5C3BE1 /* Support Files */,
+			);
+			path = Alamofire;
+			sourceTree = "<group>";
+		};
+		65DD44AB02DE831C0DE711FD74E318AC /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				BC912666663BF6A390B08CD0A9CBD028 /* Info.plist */,
+				8456861F18EFBE2B0F4F5C5AE76FC9B4 /* KDEAudioPlayer.modulemap */,
+				59092A798CBE6ED6A262146210A5AFBF /* KDEAudioPlayer.xcconfig */,
+				99171FF1DDD36C6EE774D8D5D61D2E30 /* KDEAudioPlayer-dummy.m */,
+				C4874B0544689523EB8E98FBD8BB8F21 /* KDEAudioPlayer-prefix.pch */,
+				B93CFC8619CC1D61AF5F6D11D2F9800C /* KDEAudioPlayer-umbrella.h */,
 			);
 			name = "Support Files";
 			path = "../Target Support Files/KDEAudioPlayer";
-			sourceTree = "<group>";
-		};
-		70B56F66CB5A847FC1F3F58535A50A05 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				199EB15735B40FFEDE0AA99F40CE59A0 /* Alamofire.framework */,
-				0743D8BD6373B4291D8F9C288BC39B3B /* Emoji.framework */,
-				A033BFFB6EBDF8C5C7BA0C6F8CD25457 /* EmojiKit.framework */,
-				8401C956DD23FA8A6B2AAF3230E227DB /* KDEAudioPlayer.framework */,
-				85F85639E3EB7F7A1E547F3F57D42D16 /* Pods_AudioPlayer_iOS.framework */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		7DB346D0F39D3F0E887471402A8071AB = {
@@ -333,106 +289,73 @@
 			children = (
 				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
 				20B56609144CE204DFA8221F742B2D76 /* Frameworks */,
-				1B503BB5B86E346A9FA199FFE57BE575 /* Pods */,
-				70B56F66CB5A847FC1F3F58535A50A05 /* Products */,
+				C1FAB33DAA82385766C0ED79177F7A33 /* Pods */,
+				511BE0B17CAC01A00A82A1DD9B806A8B /* Products */,
 				3B60E1EDC23C18A6B2DF2F42B296A9DB /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
 		};
-		88F265A55E962F1A4F1F218BF8EA7EF7 /* Resources */ = {
+		8A661E1C74642198D85371306FFD97F8 /* Emoji-swift */ = {
 			isa = PBXGroup;
 			children = (
-				476D49467B2E6A17E9B966B34837989D /* AllEmoji.json */,
+				B15F04EF45CAF91F244F63A02F73A5BC /* Emoji.swift */,
+				0B8FA3374B9C2D195F79AB19C85B8AC6 /* String+Emoji.swift */,
+				256DB2805E9B90F19BCA640F4B0CE82B /* Support Files */,
 			);
-			name = Resources;
+			path = "Emoji-swift";
 			sourceTree = "<group>";
 		};
-		B25B2D88DDC7076AC88B8E3B98CBF098 /* KDEAudioPlayer */ = {
+		980B05ED4E7105D36A12849D79CBC05C /* KDEAudioPlayer */ = {
 			isa = PBXGroup;
 			children = (
-				1B5BEAC55CB6C84B1A3B5D3B87FCE623 /* AudioItem.swift */,
-				988627598C111E36999342E8FD162303 /* AudioPlayer.swift */,
-				29D9E9DBE274E5CF4E2FEFF099CAAD34 /* Reachability.swift */,
-				6766C6E5AF03F9DF3AE40945CAA80241 /* Support Files */,
+				228C6AFD27BABE3F522613BFD3ECFC8F /* AudioItem.swift */,
+				42E2C8C9BFBAB8740AAA4A0A891CD546 /* AudioPlayer.swift */,
+				05DDB830A9A99232686CBCBA6425BDCA /* Reachability.swift */,
+				65DD44AB02DE831C0DE711FD74E318AC /* Support Files */,
 			);
 			path = KDEAudioPlayer;
 			sourceTree = "<group>";
 		};
-		CAC55C64E0B00A088C90AC6AB0B1F474 /* Support Files */ = {
+		A5E26CAB9AC44EB38F22F508BF5C3BE1 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				A40847BCDF4CC2D0C524F344252904E7 /* Emoji-swift.modulemap */,
-				C93177C9B8687D62E461CB8D45B9C98F /* Emoji-swift.xcconfig */,
-				2E39B901835083BB9F751093CFEF9DD5 /* Emoji-swift-dummy.m */,
-				400C1A981F71206FB54A843C974A0E59 /* Emoji-swift-prefix.pch */,
-				20943209D9B4EB2DB6CCF5BF6AA109DD /* Emoji-swift-umbrella.h */,
-				A0E1C9A325818C1D56B51C155C8930C5 /* Info.plist */,
+				A430B7137BFE088EE2240DE04A4FD516 /* Alamofire.modulemap */,
+				8194BE21FFDA5ED0A0CA7F5B80C3993F /* Alamofire.xcconfig */,
+				32E38FDECA4140D0B9E94A53D80C6C26 /* Alamofire-dummy.m */,
+				9297874D2FDFCC1DABD9FECE064D1F40 /* Alamofire-prefix.pch */,
+				A330380C3ED86885AF9EAAF46E65C01C /* Alamofire-umbrella.h */,
+				19DFAD49B787851C94C3F6E199942E1B /* Info.plist */,
 			);
 			name = "Support Files";
-			path = "../Target Support Files/Emoji-swift";
+			path = "../Target Support Files/Alamofire";
 			sourceTree = "<group>";
 		};
-		ECB3281ADCD80A0DFB525566221E5EE7 /* Alamofire */ = {
+		C1FAB33DAA82385766C0ED79177F7A33 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				9E773982C4A40F6F7222A52D4E4AD3B7 /* Alamofire.swift */,
-				672200F820DCD5591F8AC9E5AE882800 /* Download.swift */,
-				B00CE49098B909703A6A2FAD7D0AE8F4 /* Error.swift */,
-				6DB3CCEEC2EB2656345DCE52D357B8EE /* Manager.swift */,
-				9E9B373CA075F1C05337E9CD257EDA59 /* MultipartFormData.swift */,
-				05CFAB69278B3A43377B374567F53A8B /* NetworkReachabilityManager.swift */,
-				9FCAF8714595C591E0524A6623FF9ED2 /* Notifications.swift */,
-				50A05D2DA63E5AD7281DF8851DD32392 /* ParameterEncoding.swift */,
-				CC7518BAEDE6289B4DB8CDABE36610D6 /* Request.swift */,
-				3D8246F4FAFF46DD161F51932A53206B /* Response.swift */,
-				05397A1B7858BD2FA38C311CE3FFD13C /* ResponseSerialization.swift */,
-				2B731F7E1CB6F2C7C5DD59EE93D3765B /* Result.swift */,
-				A6DC5F9DA64FFEED61CA5340FA5B4289 /* ServerTrustPolicy.swift */,
-				828F6F1BEB447E21B737CB7D137151AD /* Stream.swift */,
-				E178F25B84230D3DDF8850506A29AB5E /* Timeline.swift */,
-				7148C364649D69CD7CF8022F0FC55A95 /* Upload.swift */,
-				0AC5A985E1192B9EF81F861893E7586C /* Validation.swift */,
-				0B5583A5BF6EA47655429A02BC1629C5 /* Support Files */,
+				5A5A5ECB4E448B65F9703BB068A68B37 /* Alamofire */,
+				8A661E1C74642198D85371306FFD97F8 /* Emoji-swift */,
+				980B05ED4E7105D36A12849D79CBC05C /* KDEAudioPlayer */,
 			);
-			path = Alamofire;
-			sourceTree = "<group>";
-		};
-		EEF624E596C70C9F39B5A8A4A9FBB419 /* EmojiKit */ = {
-			isa = PBXGroup;
-			children = (
-				3B5736268E43E896DF02481706102EF4 /* DictionarySerialization.swift */,
-				2017AEF151082067D2F98864A44C804C /* Emoji.swift */,
-				A7EA70F2BD851E6F499ED9F813207A40 /* EmojiFetcher.swift */,
-				88F265A55E962F1A4F1F218BF8EA7EF7 /* Resources */,
-				340BF54227BBDFDFD34DB11425CEAE05 /* Support Files */,
-			);
-			path = EmojiKit;
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		20910732D98D41154008B94D289288C7 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ABE6F23091EF1FF54AC3CFEC0443F3B5 /* Pods-AudioPlayer iOS-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		A38A56FEE880EDDD0F86AA5344DE1976 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				EE6851AE96004C186D92C590C82C3140 /* Emoji-swift-umbrella.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		BD585672C79251D114F00087C232D36C /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				84C0ABB03B6A69C106C9363D1D6055FC /* Pods-AudioPlayer iOS-umbrella.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D65D6BAF368285673F2363342B7067EA /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				82EDACC2D2E340EEF8081F7FE239A3EB /* EmojiKit-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -455,45 +378,6 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		06753847BA1A0980DC4BE596BD9AB8D8 /* EmojiKit */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = BF024C3290DE9E216B47F67442B01B33 /* Build configuration list for PBXNativeTarget "EmojiKit" */;
-			buildPhases = (
-				ADFFE7E2F511555AB7DEFDDB228C5B84 /* Sources */,
-				2EA1945FF7795E3236D9192749BD991D /* Frameworks */,
-				15A0C659F807CCF150A3722B90773136 /* Resources */,
-				D65D6BAF368285673F2363342B7067EA /* Headers */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = EmojiKit;
-			productName = EmojiKit;
-			productReference = A033BFFB6EBDF8C5C7BA0C6F8CD25457 /* EmojiKit.framework */;
-			productType = "com.apple.product-type.framework";
-		};
-		092CF66AF4380F66EFBA1AA41152E944 /* Pods-AudioPlayer iOS */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = DD63AF90DA23D6FF993B6AD4AF46B3C2 /* Build configuration list for PBXNativeTarget "Pods-AudioPlayer iOS" */;
-			buildPhases = (
-				30C14E3C981429E4E9DC774EE943A062 /* Sources */,
-				CEAED25D7FF697DDFB6B595C01E2D433 /* Frameworks */,
-				BD585672C79251D114F00087C232D36C /* Headers */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				5F16914C69201B98E143E3533EB6D186 /* PBXTargetDependency */,
-				430E3B0C5F38A85F47B70B035227CBFC /* PBXTargetDependency */,
-				FEB3190273BE7A5C4348ACAC78E70EF6 /* PBXTargetDependency */,
-				756FD592C0DB36A7F7BD580235223FDA /* PBXTargetDependency */,
-			);
-			name = "Pods-AudioPlayer iOS";
-			productName = "Pods-AudioPlayer iOS";
-			productReference = 85F85639E3EB7F7A1E547F3F57D42D16 /* Pods_AudioPlayer_iOS.framework */;
-			productType = "com.apple.product-type.framework";
-		};
 		40B0BF126308785D1027032FF80AB074 /* Emoji-swift */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 78CC70F9BF8B48639171AA9BFBBA8AF0 /* Build configuration list for PBXNativeTarget "Emoji-swift" */;
@@ -508,7 +392,7 @@
 			);
 			name = "Emoji-swift";
 			productName = "Emoji-swift";
-			productReference = 0743D8BD6373B4291D8F9C288BC39B3B /* Emoji.framework */;
+			productReference = 592448C39984D39458738CBD83A6053F /* Emoji.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		541E9AD8F0209976F59A780F49A3F069 /* KDEAudioPlayer */ = {
@@ -525,7 +409,7 @@
 			);
 			name = KDEAudioPlayer;
 			productName = KDEAudioPlayer;
-			productReference = 8401C956DD23FA8A6B2AAF3230E227DB /* KDEAudioPlayer.framework */;
+			productReference = A4DF308BA7CF81DC22F8F4CF0A878F89 /* KDEAudioPlayer.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		79C040AFDDCE1BCBF6D8B5EB0B85887F /* Alamofire */ = {
@@ -542,7 +426,27 @@
 			);
 			name = Alamofire;
 			productName = Alamofire;
-			productReference = 199EB15735B40FFEDE0AA99F40CE59A0 /* Alamofire.framework */;
+			productReference = 3C5F56789E9C8C0757516786A711D4BC /* Alamofire.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		A618EBECADDB3E066BD4EFAE459085FD /* Pods-AudioPlayer iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5817047A10216B741F529CB04F155F78 /* Build configuration list for PBXNativeTarget "Pods-AudioPlayer iOS" */;
+			buildPhases = (
+				3FF952BA6F64F0251BB438CC9310671E /* Sources */,
+				FE93824EA73F32CB4B741E111334922C /* Frameworks */,
+				20910732D98D41154008B94D289288C7 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D0831149029BFB9B6402754BD1AAC9A1 /* PBXTargetDependency */,
+				8FF7C322FC63575A475796286A334F55 /* PBXTargetDependency */,
+				480BAE4ED4A86306FA1002154567D733 /* PBXTargetDependency */,
+			);
+			name = "Pods-AudioPlayer iOS";
+			productName = "Pods-AudioPlayer iOS";
+			productReference = 7A9829CDDFFA3F259D02B158D41CC6B6 /* Pods_AudioPlayer_iOS.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -562,29 +466,17 @@
 				en,
 			);
 			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
-			productRefGroup = 70B56F66CB5A847FC1F3F58535A50A05 /* Products */;
+			productRefGroup = 511BE0B17CAC01A00A82A1DD9B806A8B /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				79C040AFDDCE1BCBF6D8B5EB0B85887F /* Alamofire */,
 				40B0BF126308785D1027032FF80AB074 /* Emoji-swift */,
-				06753847BA1A0980DC4BE596BD9AB8D8 /* EmojiKit */,
 				541E9AD8F0209976F59A780F49A3F069 /* KDEAudioPlayer */,
-				092CF66AF4380F66EFBA1AA41152E944 /* Pods-AudioPlayer iOS */,
+				A618EBECADDB3E066BD4EFAE459085FD /* Pods-AudioPlayer iOS */,
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXResourcesBuildPhase section */
-		15A0C659F807CCF150A3722B90773136 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				B41B562D25C0FF30087B90FDE72CAACD /* AllEmoji.json in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		05D57B930F142B9BD1031DC14E10F8DF /* Sources */ = {
@@ -598,11 +490,11 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		30C14E3C981429E4E9DC774EE943A062 /* Sources */ = {
+		3FF952BA6F64F0251BB438CC9310671E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BB392048C0A40747A046C99B24820E5C /* Pods-AudioPlayer iOS-dummy.m in Sources */,
+				E9BD09314DFD91CCC69664EF90C767A7 /* Pods-AudioPlayer iOS-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -641,80 +533,33 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		ADFFE7E2F511555AB7DEFDDB228C5B84 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				3D042516DCF13F0F44727F9882AE93D0 /* DictionarySerialization.swift in Sources */,
-				DFF7D7148924236B019CB92BC050AE85 /* Emoji.swift in Sources */,
-				15849626C654E18F547D6AFBFA647247 /* EmojiFetcher.swift in Sources */,
-				2424F5F0B764C20C504F99DF5E867F10 /* EmojiKit-dummy.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		430E3B0C5F38A85F47B70B035227CBFC /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "Emoji-swift";
-			target = 40B0BF126308785D1027032FF80AB074 /* Emoji-swift */;
-			targetProxy = 6A1B80B9396F9B8A5B2E5F19D4EB6E01 /* PBXContainerItemProxy */;
-		};
-		5F16914C69201B98E143E3533EB6D186 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = Alamofire;
-			target = 79C040AFDDCE1BCBF6D8B5EB0B85887F /* Alamofire */;
-			targetProxy = 03AB575D945995EF9F4EB1F44046DD78 /* PBXContainerItemProxy */;
-		};
-		756FD592C0DB36A7F7BD580235223FDA /* PBXTargetDependency */ = {
+		480BAE4ED4A86306FA1002154567D733 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = KDEAudioPlayer;
 			target = 541E9AD8F0209976F59A780F49A3F069 /* KDEAudioPlayer */;
-			targetProxy = 7B39B2DDEDE379FA436793605213CE36 /* PBXContainerItemProxy */;
+			targetProxy = 31F662803D8F0EEFEEF86D1A34C42E33 /* PBXContainerItemProxy */;
 		};
-		FEB3190273BE7A5C4348ACAC78E70EF6 /* PBXTargetDependency */ = {
+		8FF7C322FC63575A475796286A334F55 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = EmojiKit;
-			target = 06753847BA1A0980DC4BE596BD9AB8D8 /* EmojiKit */;
-			targetProxy = 17521D132EBEC259E1DB0CE354AFCD78 /* PBXContainerItemProxy */;
+			name = "Emoji-swift";
+			target = 40B0BF126308785D1027032FF80AB074 /* Emoji-swift */;
+			targetProxy = 4D521CCC16EFC45DF692839129DBB3FB /* PBXContainerItemProxy */;
+		};
+		D0831149029BFB9B6402754BD1AAC9A1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Alamofire;
+			target = 79C040AFDDCE1BCBF6D8B5EB0B85887F /* Alamofire */;
+			targetProxy = 7F387EDCE48982EC2AAC936A36FD3465 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		144DF7903025D3518B75D8D45E989E69 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 40BC793E81B8444FE33D1BAA8D261996 /* EmojiKit.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/EmojiKit/EmojiKit-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/EmojiKit/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/EmojiKit/EmojiKit.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_NAME = EmojiKit;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
 		32AD5F8918CA8B349E4671410FA624C9 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 496FF1FA4C0CA0CC3AC4116101479950 /* Alamofire.xcconfig */;
+			baseConfigurationReference = 8194BE21FFDA5ED0A0CA7F5B80C3993F /* Alamofire.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
@@ -741,38 +586,9 @@
 			};
 			name = Release;
 		};
-		3C2EB04BF5A933D868853923B3510ACE /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 40BC793E81B8444FE33D1BAA8D261996 /* EmojiKit.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/EmojiKit/EmojiKit-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/EmojiKit/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/EmojiKit/EmojiKit.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = EmojiKit;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
 		3FE26010CBB4779CBF1FE7EE4325A00C /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3BC7A1EC33C0ED22B8D5136AB0E5E44B /* KDEAudioPlayer.xcconfig */;
+			baseConfigurationReference = 59092A798CBE6ED6A262146210A5AFBF /* KDEAudioPlayer.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
@@ -843,7 +659,7 @@
 		};
 		75218111E718FACE36F771E8ABECDB62 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 496FF1FA4C0CA0CC3AC4116101479950 /* Alamofire.xcconfig */;
+			baseConfigurationReference = 8194BE21FFDA5ED0A0CA7F5B80C3993F /* Alamofire.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
@@ -873,7 +689,7 @@
 		};
 		78312978A35603957D1B69D236211BBC /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C93177C9B8687D62E461CB8D45B9C98F /* Emoji-swift.xcconfig */;
+			baseConfigurationReference = DD8B66C74EC5C1CD6E45CD0B251EF9ED /* Emoji-swift.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
@@ -902,7 +718,7 @@
 		};
 		9F6EBF6805430682F7D878DFE8B99310 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C93177C9B8687D62E461CB8D45B9C98F /* Emoji-swift.xcconfig */;
+			baseConfigurationReference = DD8B66C74EC5C1CD6E45CD0B251EF9ED /* Emoji-swift.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
@@ -921,40 +737,6 @@
 				MODULEMAP_FILE = "Target Support Files/Emoji-swift/Emoji-swift.modulemap";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_NAME = Emoji;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		A5218F83FCE305D0CB16A99CCFBB4F5F /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0CFC909A52819997BF5DCA71324D2369 /* Pods-AudioPlayer iOS.debug.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "Target Support Files/Pods-AudioPlayer iOS/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-AudioPlayer iOS/Pods-AudioPlayer iOS.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = Pods_AudioPlayer_iOS;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1002,7 +784,71 @@
 			};
 			name = Release;
 		};
-		AD1F81FBC58F43E118E1CFA36AE45EBD /* Release */ = {
+		AF99775C00CEEA69A299043627E26E26 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 59092A798CBE6ED6A262146210A5AFBF /* KDEAudioPlayer.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/KDEAudioPlayer/KDEAudioPlayer-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/KDEAudioPlayer/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/KDEAudioPlayer/KDEAudioPlayer.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = KDEAudioPlayer;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		C87A9D3F1872986057D0456FB43C7F7F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0CFC909A52819997BF5DCA71324D2369 /* Pods-AudioPlayer iOS.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-AudioPlayer iOS/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-AudioPlayer iOS/Pods-AudioPlayer iOS.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_AudioPlayer_iOS;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		F3C2D342356964697ED5B30C285D8BA2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = DD626C342CE55C85D66CA74B2E1BDF1C /* Pods-AudioPlayer iOS.release.xcconfig */;
 			buildSettings = {
@@ -1035,36 +881,6 @@
 			};
 			name = Release;
 		};
-		AF99775C00CEEA69A299043627E26E26 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3BC7A1EC33C0ED22B8D5136AB0E5E44B /* KDEAudioPlayer.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/KDEAudioPlayer/KDEAudioPlayer-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/KDEAudioPlayer/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/KDEAudioPlayer/KDEAudioPlayer.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_NAME = KDEAudioPlayer;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1095,29 +911,20 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		5817047A10216B741F529CB04F155F78 /* Build configuration list for PBXNativeTarget "Pods-AudioPlayer iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C87A9D3F1872986057D0456FB43C7F7F /* Debug */,
+				F3C2D342356964697ED5B30C285D8BA2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		78CC70F9BF8B48639171AA9BFBBA8AF0 /* Build configuration list for PBXNativeTarget "Emoji-swift" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9F6EBF6805430682F7D878DFE8B99310 /* Debug */,
 				78312978A35603957D1B69D236211BBC /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		BF024C3290DE9E216B47F67442B01B33 /* Build configuration list for PBXNativeTarget "EmojiKit" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				144DF7903025D3518B75D8D45E989E69 /* Debug */,
-				3C2EB04BF5A933D868853923B3510ACE /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		DD63AF90DA23D6FF993B6AD4AF46B3C2 /* Build configuration list for PBXNativeTarget "Pods-AudioPlayer iOS" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				A5218F83FCE305D0CB16A99CCFBB4F5F /* Debug */,
-				AD1F81FBC58F43E118E1CFA36AE45EBD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

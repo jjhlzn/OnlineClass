@@ -35,7 +35,6 @@
 		1C5A6FC51CE99644000E7282 /* PlayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C5A6FC41CE99644000E7282 /* PlayerController.swift */; };
 		1C5A6FC71CE9A0D5000E7282 /* LivePlayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C5A6FC61CE9A0D5000E7282 /* LivePlayerController.swift */; };
 		1C6420F61CD0605200119272 /* CommentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C6420F51CD0605200119272 /* CommentController.swift */; };
-		1C69524A1CFEC03F0085DC8B /* TestController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C6952491CFEC03F0085DC8B /* TestController.swift */; };
 		1C8A2AD41CE4BEA60086C1B8 /* MallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C8A2AD31CE4BEA60086C1B8 /* MallViewController.swift */; };
 		1C8A2AD61CE5882A0086C1B8 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C8A2AD51CE5882A0086C1B8 /* SignupViewController.swift */; };
 		1CA3B2101CD86B7800D0ABD8 /* MainPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA3B20F1CD86B7800D0ABD8 /* MainPageViewController.swift */; };
@@ -110,7 +109,6 @@
 		1C5A6FC41CE99644000E7282 /* PlayerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerController.swift; sourceTree = "<group>"; };
 		1C5A6FC61CE9A0D5000E7282 /* LivePlayerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LivePlayerController.swift; sourceTree = "<group>"; };
 		1C6420F51CD0605200119272 /* CommentController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentController.swift; sourceTree = "<group>"; };
-		1C6952491CFEC03F0085DC8B /* TestController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestController.swift; sourceTree = "<group>"; };
 		1C8A2AD31CE4BEA60086C1B8 /* MallViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MallViewController.swift; sourceTree = "<group>"; };
 		1C8A2AD51CE5882A0086C1B8 /* SignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		1CA3B20F1CD86B7800D0ABD8 /* MainPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainPageViewController.swift; sourceTree = "<group>"; };
@@ -344,7 +342,6 @@
 				1CD3496F1CF9AB1000037F78 /* PersonalInfoViewController.swift */,
 				1CD349731CFA8DD700037F78 /* SearchCourseViewController.swift */,
 				1C3479BC1CF2F9BD003FEF05 /* FirstPageViewController.swift */,
-				1C6952491CFEC03F0085DC8B /* TestController.swift */,
 			);
 			name = "AudioPlayer iOS";
 			path = "Demo/AudioPlayer iOS";
@@ -560,7 +557,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1C69524A1CFEC03F0085DC8B /* TestController.swift in Sources */,
 				1C1E69251CCA0F3E00CEA029 /* NoCommentCell.swift in Sources */,
 				1CD349641CF8167C00037F78 /* WebPageViewController.swift in Sources */,
 				1CD349721CF9AC7D00037F78 /* PersonalInfoCell2.swift in Sources */,
