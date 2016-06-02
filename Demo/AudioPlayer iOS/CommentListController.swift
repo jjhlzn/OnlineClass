@@ -22,6 +22,7 @@ class CommentListController: BaseUIViewController, UITableViewDataSource, UITabl
     @IBOutlet weak var commentFiled2: UITextView!
     @IBOutlet weak var bottomView: UIView!
     
+    @IBOutlet weak var emojiSwithButton: UIButton!
     @IBOutlet weak var commentInputButton: UIButton!
     
     var keyboardHeight: CGFloat?
@@ -48,6 +49,7 @@ class CommentListController: BaseUIViewController, UITableViewDataSource, UITabl
         commentController.commentFiled2 = commentFiled2
         commentController.cancelButton = cancelButton
         commentController.sendButton = sendButton
+        commentController.emojiSwitchButton = emojiSwithButton
         commentController.viewController = self
         commentController.delegate = self
         commentController.initView(song)
@@ -145,7 +147,7 @@ extension CommentListController {
             if heightCache[comment.content] == nil {
                 cell.userIdLabel.text = comment.userId
                 cell.timeLabel.text = comment.time
-                cell.contentLabel.text = comment.content
+                cell.contentLabel.text = comment.content.emojiUnescapedString
                 var frame = cell.contentLabel.frame;
                 cell.contentLabel.numberOfLines = 0
                 cell.contentLabel.sizeToFit()
@@ -182,7 +184,7 @@ extension CommentListController {
         let comment = pagableController.data[row]
         cell.userIdLabel.text = comment.userId
         cell.timeLabel.text = comment.time
-        cell.contentLabel.text = comment.content
+        cell.contentLabel.text = comment.content.emojiUnescapedString
         
         var frame = cell.contentLabel.frame;
         cell.contentLabel.numberOfLines = 0

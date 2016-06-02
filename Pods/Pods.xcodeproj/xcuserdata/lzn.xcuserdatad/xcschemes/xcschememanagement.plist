@@ -9,6 +9,16 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Emoji-swift.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>EmojiKit.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>KDEAudioPlayer.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -22,17 +32,27 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>06753847BA1A0980DC4BE596BD9AB8D8</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>092CF66AF4380F66EFBA1AA41152E944</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>40B0BF126308785D1027032FF80AB074</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>541E9AD8F0209976F59A780F49A3F069</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>79C040AFDDCE1BCBF6D8B5EB0B85887F</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>80389A72401B9BBA8D433F3836DB4541</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -1,15 +1,21 @@
 PODS:
   - Alamofire (3.4.0)
+  - Emoji-swift (0.0.3)
+  - EmojiKit (0.0.1)
   - KDEAudioPlayer (0.9.0)
 
 DEPENDENCIES:
   - Alamofire (~> 3.3)
+  - Emoji-swift
+  - EmojiKit (~> 0.0.1)
   - KDEAudioPlayer
 
 SPEC CHECKSUMS:
   Alamofire: c19a627cefd6a95f840401c49ab1f124e07f54ee
+  Emoji-swift: 1f9bbabce9aebace9fd9824b0dbb0d9eb31a746c
+  EmojiKit: 5e544c85753b1027f7335a75168e5bfade705f06
   KDEAudioPlayer: 67c2de50af38d045638b15f246113594b22a7ec2
 
-PODFILE CHECKSUM: 261701e12b5711e08e5f1c1716d4e3860b5cddd7
+PODFILE CHECKSUM: 30c0cacb6682de50d7130a91a8a61f5cbd62d67d
 
 COCOAPODS: 1.0.0

@@ -97,7 +97,7 @@ class CommonPlayerPageViewController : NSObject, UITableViewDataSource, UITableV
         let comment = comments![row - 1]
         cell.userIdLabel.text = comment.userId
         cell.timeLabel.text = comment.time
-        cell.contentLabel.text = comment.content
+        cell.contentLabel.text = comment.content.emojiUnescapedString
         
         var frame = cell.contentLabel.frame;
         cell.contentLabel.numberOfLines = 0
@@ -138,7 +138,8 @@ class CommonPlayerPageViewController : NSObject, UITableViewDataSource, UITableV
                     if heightCache[comment.content] == nil {
                         cell.userIdLabel.text = comment.userId
                         cell.timeLabel.text = comment.time
-                        cell.contentLabel.text = comment.content
+                        cell.contentLabel.text = comment.content.emojiUnescapedString
+                        print(comment.content)
                         var frame = cell.contentLabel.frame;
                         cell.contentLabel.numberOfLines = 0
                         cell.contentLabel.sizeToFit()

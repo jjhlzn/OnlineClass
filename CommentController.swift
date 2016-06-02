@@ -17,12 +17,13 @@ class CommentController : NSObject, UITextViewDelegate {
     var overlay = UIView()
     var viewController: BaseUIViewController!
     var delegate: CommentDelegate?
-    @IBOutlet weak var bottomView: UIView!
+    var bottomView: UIView!
     
-    @IBOutlet weak var bottomView2: UIView!
-    @IBOutlet weak var commentFiled2: UITextView!
+    var bottomView2: UIView!
+    var commentFiled2: UITextView!
     
-    @IBOutlet weak var commentInputButton: UIButton!
+     var commentInputButton: UIButton!
+    var emojiSwitchButton : UIButton?
     
     var cancelButton: UIButton!
     var sendButton: UIButton!
@@ -36,6 +37,8 @@ class CommentController : NSObject, UITextViewDelegate {
     
     var lastCommentTime : NSDate?
     
+    var emojiKeyboard : EmojiKeyboard!
+    
     func textViewDidChange(textView: UITextView) { //Handle the text changes here
         //print(textView.text); //the textView parameter is the textView where text was changed
         if textView.text.length > 0 {
@@ -47,7 +50,7 @@ class CommentController : NSObject, UITextViewDelegate {
     
     private func enableSendButton() {
         sendButton.enabled = true
-        sendButton.setTitleColor(UIColor.blackColor(), forState: .Normal)
+        sendButton.setTitleColor(cancelButton.tintColor, forState: .Normal)
     }
     
     private func disableSendButton() {
@@ -85,6 +88,45 @@ class CommentController : NSObject, UITextViewDelegate {
         }
         
         commentInputButton.addTarget(self, action: #selector(handleTap), forControlEvents: .TouchUpInside)
+        
+        emojiKeyboard = EmojiKeyboard(editText: commentFiled2)
+        
+        if emojiSwitchButton != nil {
+            emojiSwitchButton?.addTarget(self, action: #selector(emojiSwitchButtonPressed), forControlEvents: .TouchUpInside)
+        }
+    }
+    
+    
+    var isEmojiKeyboardOpen = false
+    var emojiKeyboardView : UIView?
+    func emojiSwitchButtonPressed(sender: UIButton) {
+        //如果是键盘模式，则关闭键盘，打开emoji键盘
+        if !isEmojiKeyboardOpen {
+            openEmojiKeyboard()
+        } else {
+            closeEmojiKeyboard()
+            commentFiled2.becomeFirstResponder()
+        }
+    }
+    
+    
+    private func openEmojiKeyboard() {
+        emojiKeyboardView = emojiKeyboard.getView()
+        commentFiled2.resignFirstResponder()
+        viewController.view.addSubview(emojiKeyboardView!)
+        showOrAdjustCommentWindow((emojiKeyboardView?.frame)!)
+        emojiSwitchButton?.setImage(UIImage(named: "emojiSwitchButton2"), forState: .Normal)
+        isEmojiKeyboardOpen = true
+        //调整评论框的y坐标
+    }
+    
+    private func closeEmojiKeyboard() {
+        //如果是emoji键盘，则关闭emoji键盘，打开键盘
+        emojiKeyboardView?.removeFromSuperview()
+        
+        emojiSwitchButton?.setImage(UIImage(named: "emojiSwitchButton1"), forState: .Normal)
+        
+        isEmojiKeyboardOpen = false
     }
     
     func handleTap(gestureRecognizer: UIGestureRecognizer) {
@@ -94,6 +136,10 @@ class CommentController : NSObject, UITextViewDelegate {
     }
     
     func closeComment() {
+        closeCommentWindow()
+        if emojiKeyboardView != nil {
+            closeEmojiKeyboard()
+        }
         viewController.dismissKeyboard()
         commentFiled2.resignFirstResponder()
     }
@@ -105,7 +151,7 @@ class CommentController : NSObject, UITextViewDelegate {
     }
     
     private func getCommentContent() -> String {
-        let commentContent = commentFiled2.text
+        let commentContent = commentFiled2.text.emojiEscapedString
         return commentContent.stringByTrimmingCharactersInSet(
             NSCharacterSet.whitespaceAndNewlineCharacterSet()
         )
@@ -125,7 +171,7 @@ class CommentController : NSObject, UITextViewDelegate {
             return false
         }
         
-        if commentContent.length > song.settings.maxCommentWord {
+        if commentContent.emojiUnescapedString.length > song.settings.maxCommentWord {
             viewController.displayMessage("评论不能超过\(song.settings.maxCommentWord)字")
             return false
         }
@@ -157,9 +203,12 @@ class CommentController : NSObject, UITextViewDelegate {
             return
         }
         
+        //关闭评论窗口
+        closeCommentWindow()
+        
         let sendCommentRequest = SendCommentRequest()
         sendCommentRequest.song = song
-        sendCommentRequest.comment = commentConent
+        sendCommentRequest.comment = commentConent.emojiEscapedString
         
         BasicService().sendRequest(ServiceConfiguration.SEND_COMMENT, request: sendCommentRequest) {
             (resp: SendCommentResponse) -> Void in
@@ -179,6 +228,10 @@ class CommentController : NSObject, UITextViewDelegate {
                     comment.userId = self.getLoginUser().userName
                     comment.content = commentConent
                     self.delegate?.afterSendComment(comment)
+                    
+                    if !self.isKeyboardShow {
+                        self.showComentResultTip()
+                    }
                     
                 } else {
                     NSLog("%s: fail", self.TAG)
@@ -206,72 +259,90 @@ class CommentController : NSObject, UITextViewDelegate {
         NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillHideNotification, object: nil)
         NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardDidHideNotification, object: nil)
     }
+
     
     var isKeyboardShow = false
+    var isCommenting = false
+    
     func keyboardWillShow(notification: NSNotification) {
  
         print("start keyboardWillShow")
-        var frame = bottomView2.frame
-        print("\(self): x = \(frame.origin.x), y = \(frame.origin.y)")
-        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.CGRectValue() {
-            
-            if keyboardHeight != nil {
-                frame.origin.y += (keyboardHeight! - keyboardSize.height)
-                keyboardHeight = keyboardSize.height
-                
-            } else {
-                keyboardHeight = keyboardSize.height
-                showOverlay()
-                frame.origin.y -= keyboardSize.height
-                bottomView2.hidden = false
-            }
-            bottomView2.frame = frame
+        
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
+            closeEmojiKeyboard()
+            showOrAdjustCommentWindow(keyboardSize)
+        }
+    }
+    
+    
+    //显示评论窗口，如果键盘大小发生变化，也需要调整窗口的位置
+    private func showOrAdjustCommentWindow(keyboardSize: CGRect) {
+        
+        let screenHeight = UIScreen.mainScreen().bounds.height
+        let commentWinY = screenHeight - keyboardSize.height - bottomView2.frame.height
+        bottomView2.frame.origin.y = commentWinY
+
+        if !isKeyboardShow {
+            isKeyboardShow = true
+            showOverlay()
+            bottomView2.hidden = false
+            emojiSwitchButton?.setImage(UIImage(named: "emojiSwitchButton1"), forState: .Normal)
+            //这个要放在显示bottomView2之后才掉用
             commentFiled2.becomeFirstResponder()
         }
-        print("end keyboardWillShow")
-        isKeyboardShow = true
+
     }
     
     
     func keyboardWillHide(notification: NSNotification) {
+        
+        emojiSwitchButton?.setImage(UIImage(named: "emojiSwitchButton2"), forState: .Normal)
+    }
+    
+    
+    func closeCommentWindow() {
+        
         if isKeyboardShow {
-            NSLog("%s: keyboardWillHide", TAG)
             commentFiled2.resignFirstResponder()
             bottomView2.hidden = true
-            if keyboardHeight != nil && keyboardHeight! != 0 {
-                var frame = bottomView2.frame
-                if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
-                    frame.origin.y += keyboardSize.height
-                    keyboardHeight = nil
-                    bottomView2.frame = frame
-                }
-                hideOverlay()
-                
-            }
+            
+            let screenHeight = UIScreen.mainScreen().bounds.height
+            let commentWinY = screenHeight - bottomView2.frame.height
+            bottomView2.frame.origin.y = commentWinY
+
+            
+            hideOverlay()
+            isKeyboardShow = false
         }
-        isKeyboardShow = false
         
+        closeEmojiKeyboard()
     }
+    
     
     func keyboardDidHide(notification: NSNotification) {
         if isSendPressed {
-            isSendPressed = false
-            var message = "评论失败!"
-            if isCommentSuccess {
-                message = "评论成功！"
-            }
-            ToastMessage.showMessage(self.viewController.view, message: message)
+            showComentResultTip()
         }
+    }
+    
+    private func showComentResultTip() {
+        isSendPressed = false
+        var message = "评论失败!"
+        if isCommentSuccess {
+            message = "评论成功！"
+        }
+        ToastMessage.showMessage(self.viewController.view, message: message)
     }
     
     func showOverlay() {
         print("showOverlay")
         overlay = UIView(frame: UIScreen.mainScreen().bounds)
         overlay.backgroundColor = UIColor(white: 0.2, alpha: 0.4)
-        viewController.view.addSubview(overlay)
+        
         
         bottomView2.removeFromSuperview()
         overlay.addSubview(bottomView2)
+        viewController.view.addSubview(overlay)
         //viewController.hideKeyboardWhenTappedAround()
     }
     
@@ -279,9 +350,8 @@ class CommentController : NSObject, UITextViewDelegate {
         print("hideOverlay")
         bottomView2.removeFromSuperview()
         viewController.view.addSubview(bottomView2)
+        bottomView2.hidden = true
         overlay.removeFromSuperview()
         //viewController.cancleHideKeybaordWhenTappedAround()
     }
-
-    
 }
