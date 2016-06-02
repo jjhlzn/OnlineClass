@@ -17,12 +17,12 @@ class SongViewController: BaseUIViewController, UIGestureRecognizerDelegate, Com
     
     //评论控件
     @IBOutlet weak var commentInputButton: UIButton!
-    @IBOutlet weak var commentInputTip: UILabel!
     @IBOutlet weak var bottomView2: UIView!
     @IBOutlet weak var commentFiled2: UITextView!
     @IBOutlet weak var bottomView: UIView!
     @IBOutlet weak var sendButton: UIButton!
     @IBOutlet weak var cancelButton: UIButton!
+    @IBOutlet weak var emojiSwithButton: UIButton!
     var commentController = CommentController()
     
     
@@ -50,6 +50,7 @@ class SongViewController: BaseUIViewController, UIGestureRecognizerDelegate, Com
         commentController.commentFiled2 = commentFiled2
         commentController.cancelButton = cancelButton
         commentController.sendButton = sendButton
+        commentController.emojiSwitchButton = emojiSwithButton
         commentController.viewController = self
         commentController.delegate = self
         commentController.initView(song)

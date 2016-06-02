@@ -25,6 +25,7 @@
 		1C2684741CCA62F40032C014 /* MyInfoVieController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C2684731CCA62F40032C014 /* MyInfoVieController.swift */; };
 		1C2684761CCA66040032C014 /* MyInfoMainCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C2684751CCA66040032C014 /* MyInfoMainCell.swift */; };
 		1C2684781CCB59210032C014 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C2684771CCB59200032C014 /* LoginViewController.swift */; };
+		1C2FC9271CFEE5BA0057EB93 /* EmojiKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C2FC9261CFEE5BA0057EB93 /* EmojiKeyboard.swift */; };
 		1C3479BD1CF2F9BD003FEF05 /* FirstPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C3479BC1CF2F9BD003FEF05 /* FirstPageViewController.swift */; };
 		1C3479C01CF3EBEF003FEF05 /* LivePlayerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C3479BF1CF3EBEF003FEF05 /* LivePlayerCell.swift */; };
 		1C3479C21CF4236A003FEF05 /* LivePlayerPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C3479C11CF4236A003FEF05 /* LivePlayerPageViewController.swift */; };
@@ -34,6 +35,7 @@
 		1C5A6FC51CE99644000E7282 /* PlayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C5A6FC41CE99644000E7282 /* PlayerController.swift */; };
 		1C5A6FC71CE9A0D5000E7282 /* LivePlayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C5A6FC61CE9A0D5000E7282 /* LivePlayerController.swift */; };
 		1C6420F61CD0605200119272 /* CommentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C6420F51CD0605200119272 /* CommentController.swift */; };
+		1C69524A1CFEC03F0085DC8B /* TestController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C6952491CFEC03F0085DC8B /* TestController.swift */; };
 		1C8A2AD41CE4BEA60086C1B8 /* MallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C8A2AD31CE4BEA60086C1B8 /* MallViewController.swift */; };
 		1C8A2AD61CE5882A0086C1B8 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C8A2AD51CE5882A0086C1B8 /* SignupViewController.swift */; };
 		1CA3B2101CD86B7800D0ABD8 /* MainPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA3B20F1CD86B7800D0ABD8 /* MainPageViewController.swift */; };
@@ -98,6 +100,7 @@
 		1C2684731CCA62F40032C014 /* MyInfoVieController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyInfoVieController.swift; sourceTree = "<group>"; };
 		1C2684751CCA66040032C014 /* MyInfoMainCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyInfoMainCell.swift; sourceTree = "<group>"; };
 		1C2684771CCB59200032C014 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		1C2FC9261CFEE5BA0057EB93 /* EmojiKeyboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmojiKeyboard.swift; sourceTree = "<group>"; };
 		1C3479BC1CF2F9BD003FEF05 /* FirstPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstPageViewController.swift; sourceTree = "<group>"; };
 		1C3479BF1CF3EBEF003FEF05 /* LivePlayerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LivePlayerCell.swift; sourceTree = "<group>"; };
 		1C3479C11CF4236A003FEF05 /* LivePlayerPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LivePlayerPageViewController.swift; sourceTree = "<group>"; };
@@ -107,6 +110,7 @@
 		1C5A6FC41CE99644000E7282 /* PlayerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerController.swift; sourceTree = "<group>"; };
 		1C5A6FC61CE9A0D5000E7282 /* LivePlayerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LivePlayerController.swift; sourceTree = "<group>"; };
 		1C6420F51CD0605200119272 /* CommentController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentController.swift; sourceTree = "<group>"; };
+		1C6952491CFEC03F0085DC8B /* TestController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestController.swift; sourceTree = "<group>"; };
 		1C8A2AD31CE4BEA60086C1B8 /* MallViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MallViewController.swift; sourceTree = "<group>"; };
 		1C8A2AD51CE5882A0086C1B8 /* SignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		1CA3B20F1CD86B7800D0ABD8 /* MainPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainPageViewController.swift; sourceTree = "<group>"; };
@@ -250,6 +254,7 @@
 				1CEFF79B1CC20171000DEFF7 /* AudioPlayerExtension.swift */,
 				1CEFF7911CC07838000DEFF7 /* UIImageView.swift */,
 				1C09D3BE1CD09FED004A8F9C /* ToastMessage.swift */,
+				1C2FC9261CFEE5BA0057EB93 /* EmojiKeyboard.swift */,
 			);
 			name = lib;
 			sourceTree = "<group>";
@@ -339,6 +344,7 @@
 				1CD3496F1CF9AB1000037F78 /* PersonalInfoViewController.swift */,
 				1CD349731CFA8DD700037F78 /* SearchCourseViewController.swift */,
 				1C3479BC1CF2F9BD003FEF05 /* FirstPageViewController.swift */,
+				1C6952491CFEC03F0085DC8B /* TestController.swift */,
 			);
 			name = "AudioPlayer iOS";
 			path = "Demo/AudioPlayer iOS";
@@ -554,6 +560,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1C69524A1CFEC03F0085DC8B /* TestController.swift in Sources */,
 				1C1E69251CCA0F3E00CEA029 /* NoCommentCell.swift in Sources */,
 				1CD349641CF8167C00037F78 /* WebPageViewController.swift in Sources */,
 				1CD349721CF9AC7D00037F78 /* PersonalInfoCell2.swift in Sources */,
@@ -588,6 +595,7 @@
 				1C3479BD1CF2F9BD003FEF05 /* FirstPageViewController.swift in Sources */,
 				1C3479C01CF3EBEF003FEF05 /* LivePlayerCell.swift in Sources */,
 				1CEE8AF31CD4998A00865FB6 /* PagableController.swift in Sources */,
+				1C2FC9271CFEE5BA0057EB93 /* EmojiKeyboard.swift in Sources */,
 				1CA3B2141CD8E83B00D0ABD8 /* FunctionCell.swift in Sources */,
 				1CEFF7901CC077D0000DEFF7 /* Utils.swift in Sources */,
 				1C1E69211CCA05E500CEA029 /* MoreLinkCell.swift in Sources */,
