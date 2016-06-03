@@ -8,23 +8,42 @@
 
 import Foundation
 import Alamofire
+import SwiftyJSON
 
 
 class BasicService {
     
-    func sendRequest<T: ServerResponse>(url: String,
-                     method: Alamofire.Method = .GET,
+    private func sendRequest<T: ServerResponse>(url: String,
+                     method: Alamofire.Method = .POST,
+                     severRequest: ServerRequest,
                      params: [String: AnyObject]? = [String: AnyObject](),
                      //controller中定义的处理函数
                      completion: (resp: T) -> Void) -> T {
         let serverResponse = T()
         print(url)
         let finalParams = addMoreRequestInfo(params)
-        Alamofire.request(method, url, parameters: finalParams)
+        
+        let request = NSMutableURLRequest(URL: NSURL( string: url)!)
+        request.HTTPMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        
+        do {
+            request.HTTPBody = try JSON(finalParams).rawData()
+            
+            
+        } catch let error {
+            print("catchException, ex = \(error)")
+            serverResponse.status = -1
+            serverResponse.errorMessage = "客户端错误，解析Request出错"
+            return serverResponse
+        }
+        
+        Alamofire.request(request)
             .responseJSON { response in
                 //print("---------------------------------StartRequest---------------------------------")
-                //debugPrint(finalParams)
-                 // debugPrint(response)
+                debugPrint(finalParams)
+                debugPrint(response)
                 //print("----------------------------------EndRequest----------------------------------")
                 
                 if response.result.isFailure {
@@ -37,7 +56,7 @@ class BasicService {
                     serverResponse.status = json["status"] as! Int
                     //TODO: 检查status是否是因为token过期，如果是，则需要重新验证token的值, 获得token的值后，重新发送一次请求
                     if serverResponse.status == 0 {
-                        serverResponse.parseJSON(params!, json: response.result.value as! NSDictionary)
+                        serverResponse.parseJSON(severRequest, json: response.result.value as! NSDictionary)
                     } else {
                         serverResponse.errorMessage = json["errorMessage"] as? String
                     }
@@ -49,11 +68,11 @@ class BasicService {
     }
     
     func sendRequest<T: ServerResponse>(url: String,
-                     method: Alamofire.Method = .GET,
+                     method: Alamofire.Method = .POST,
                      request: ServerRequest,
                      //controller中定义的处理函数
         completion: (resp: T) -> Void) -> T {
-        return sendRequest(url, method: method, params: request.params, completion: completion)
+        return sendRequest(url, method: method, severRequest: request, params: request.params, completion: completion)
     }
     
     private func addMoreRequestInfo(params: [String: AnyObject]?) -> [String: AnyObject] {

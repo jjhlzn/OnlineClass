@@ -21,6 +21,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         application.beginReceivingRemoteControlEvents()
+        
+        let serviceLocatorStore = ServiceLocatorStore()
+        if serviceLocatorStore.GetServiceLocator() == nil {
+            let serviceLocator = ServiceLocator()
+            serviceLocator.http = "http"
+            serviceLocator.serverName = "jjhaudio.hengdianworld.com"
+            serviceLocator.port = 80
+            serviceLocatorStore.saveServiceLocator(serviceLocator)
+        }
+
+        
         registerForPushNotifications(application)
         return true
     }

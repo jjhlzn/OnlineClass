@@ -195,8 +195,10 @@ class CommonPlayerPageViewController : NSObject, UITableViewDataSource, UITableV
             
             let song = item.song
             viewController.commentController.song = song
+            
+            let request = GetSongCommentsRequest(song: song)
             BasicService().sendRequest(ServiceConfiguration.GET_SONG_COMMENTS,
-                                       params: ["song": song]) {
+                                       request: request) {
                                         (resp: GetSongCommentsResponse) -> Void in
                                         dispatch_async(dispatch_get_main_queue()) {
                                             if resp.status != 0 {

@@ -69,14 +69,14 @@ class LivePlayerPageViewController : CommonPlayerPageViewController {
             let request = GetSongLiveCommentsRequest(song: song, lastId: lastId)
             isUpdateChat = true
             BasicService().sendRequest(ServiceConfiguration.GET_SONG_LIVE_COMMENTS, request: request) {
-                (resp: GetSongCommentsResponse) -> Void in
+                (resp: GetSongLiveCommentsResponse) -> Void in
                 dispatch_async(dispatch_get_main_queue()) {
                     self.isUpdateChat = false
                     if resp.status != 0 {
                         print(resp.errorMessage)
                         return
                     }
-                    let newComments = resp.resultSet
+                    let newComments = resp.comments
                     if newComments.count > 0 {
                         self.lastId = newComments[0].id!
                     }
@@ -242,7 +242,7 @@ class LivePlayerPageViewController : CommonPlayerPageViewController {
             
             let song = item.song
             viewController.commentController.song = song
-            let request = GetLiveListernerCountRequest(song: song)
+            let request = GetSongLiveCommentsRequest(song: song, lastId: "-1")
             BasicService().sendRequest(ServiceConfiguration.GET_SONG_LIVE_COMMENTS,
                                        request: request) {
                                         (resp: GetSongLiveCommentsResponse) -> Void in

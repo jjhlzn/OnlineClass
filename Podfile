@@ -6,4 +6,5 @@ target 'AudioPlayer iOS' do
 	pod 'Alamofire', '~> 3.3'
 	pod 'KDEAudioPlayer'
     pod 'Emoji-swift'
+    pod 'SwiftyJSON', :git => 'https://github.com/SwiftyJSON/SwiftyJSON.git'
 end

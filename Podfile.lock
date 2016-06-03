@@ -2,17 +2,29 @@ PODS:
   - Alamofire (3.4.0)
   - Emoji-swift (0.0.3)
   - KDEAudioPlayer (0.9.0)
+  - SwiftyJSON (2.3.2)
 
 DEPENDENCIES:
   - Alamofire (~> 3.3)
   - Emoji-swift
   - KDEAudioPlayer
+  - SwiftyJSON (from `https://github.com/SwiftyJSON/SwiftyJSON.git`)
+
+EXTERNAL SOURCES:
+  SwiftyJSON:
+    :git: https://github.com/SwiftyJSON/SwiftyJSON.git
+
+CHECKOUT OPTIONS:
+  SwiftyJSON:
+    :commit: 2a5b70f06001316d4fb54501edc70b4084705da0
+    :git: https://github.com/SwiftyJSON/SwiftyJSON.git
 
 SPEC CHECKSUMS:
   Alamofire: c19a627cefd6a95f840401c49ab1f124e07f54ee
   Emoji-swift: 1f9bbabce9aebace9fd9824b0dbb0d9eb31a746c
   KDEAudioPlayer: 67c2de50af38d045638b15f246113594b22a7ec2
+  SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
 
-PODFILE CHECKSUM: 966881f093576c67d3c9be5f048dff0621b2824c
+PODFILE CHECKSUM: 148d5808e34a238f67131d34689dfd76aa4baa91
 
 COCOAPODS: 1.0.0

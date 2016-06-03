@@ -50,8 +50,8 @@ class ForgetPasswordViewController: BaseUIViewController {
         //手机号码的格式必须正确
         
         //发送请求
-        let params = ["phoneNumber": phoneNumber!]
-        BasicService().sendRequest(ServiceConfiguration.GET_PHONE_CHECK_CODE, params: params) { (response: GetPhoneCheckCodeResponse) -> Void in
+        let request = GetPhoneCheckCodeRequest(phoneNumber: phoneNumber!)
+        BasicService().sendRequest(ServiceConfiguration.GET_PHONE_CHECK_CODE, request: request) { (response: GetPhoneCheckCodeResponse) -> Void in
             if response.status != 0 {
                 self.displayMessage(response.errorMessage!)
             }
@@ -88,10 +88,9 @@ class ForgetPasswordViewController: BaseUIViewController {
         //验证密码
         let password = passwordField.text
         
-        let params = ["phoneNumber": phoneNumber!, "checkCode": phoneCode!, "password": password!]
-        
         loadingOverlay.showOverlay(view)
-        BasicService().sendRequest(ServiceConfiguration.GET_PASSWORD, params: params) { (response : GetPasswordResponse) -> Void in
+        let request = GetPasswordRequest(phoneNumber: phoneNumber!, checkCode: phoneCode!, password: password!)
+        BasicService().sendRequest(ServiceConfiguration.GET_PASSWORD, request: request) { (response : GetPasswordResponse) -> Void in
             self.loadingOverlay.hideOverlayView()
             if response.status != 0 {
                 self.displayMessage(response.errorMessage!)

@@ -138,8 +138,8 @@ class LoginViewController: BaseUIViewController {
         
         loadingOverlay.showOverlay(self.view)
         
-        let params = ["username": userName, "password": password]
-        BasicService().sendRequest(ServiceConfiguration.LOGIN, params: params) { (response: LoginResponse) -> Void in
+        let request = LoginRequest(userName: userName, password: password)
+        BasicService().sendRequest(ServiceConfiguration.LOGIN, request: request) { (response: LoginResponse) -> Void in
             dispatch_async(dispatch_get_main_queue()) {
                 self.loadingOverlay.hideOverlayView()
                 if response.status == 0 {

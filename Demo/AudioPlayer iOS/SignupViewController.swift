@@ -73,8 +73,8 @@ class SignupViewController : BaseUIViewController, UIAlertViewDelegate {
         //手机号码的格式必须正确
         
         //发送请求
-        let params = ["phoneNumber": phoneNumber!]
-        BasicService().sendRequest(ServiceConfiguration.GET_PHONE_CHECK_CODE, params: params) { (response: GetPhoneCheckCodeResponse) -> Void in
+        let request = GetPhoneCheckCodeRequest(phoneNumber: phoneNumber!)
+        BasicService().sendRequest(ServiceConfiguration.GET_PHONE_CHECK_CODE, request: request) { (response: GetPhoneCheckCodeResponse) -> Void in
             if response.status != 0 {
                 self.displayMessage(response.errorMessage!)
             }
@@ -115,8 +115,9 @@ class SignupViewController : BaseUIViewController, UIAlertViewDelegate {
         
         //发送注册请求
         loadingOverlay.showOverlay(self.view)
-        let params = ["phoneNumber": phoneNumber!, "checkCode": checkCode!, "invitePhone": otherPhone!, "password": password!]
-        BasicService().sendRequest(ServiceConfiguration.SIGNUP, params: params) { (response: SignupResponse) -> Void in
+
+        let request = SignupRequest(phoneNumber: phoneNumber!, checkCode: checkCode!, invitePhone: otherPhone!, password: password!)
+        BasicService().sendRequest(ServiceConfiguration.SIGNUP, request: request) { (response: SignupResponse) -> Void in
             self.loadingOverlay.hideOverlayView()
             if response.status != 0 {
                 self.displayMessage(response.errorMessage!)

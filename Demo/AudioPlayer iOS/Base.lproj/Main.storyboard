@@ -734,6 +734,17 @@
                                     <segue destination="L2O-fx-t11" kind="modal" id="4Sf-GI-mZT"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="qy9-aD-Lyt">
+                                <rect key="frame" x="123" y="541" width="74" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                <state key="normal" title="配置">
+                                    <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="k9X-IE-Oxb" kind="modal" identifier="configurationSegue" id="3mu-mS-NWM"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -747,7 +758,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="H2f-BP-R0Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-264" y="-538"/>
+            <point key="canvasLocation" x="-7" y="-1253"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="DBt-Ms-qHP">
@@ -1835,7 +1846,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bVq-g1-8Qk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-252" y="-1263"/>
+            <point key="canvasLocation" x="-126" y="-1388"/>
         </scene>
         <!--主页-->
         <scene sceneID="WPv-rv-FPk">
@@ -2324,6 +2335,81 @@
             </objects>
             <point key="canvasLocation" x="2908" y="1604"/>
         </scene>
+        <!--服务器配置-->
+        <scene sceneID="GxA-uE-PWz">
+            <objects>
+                <viewController id="k9X-IE-Oxb" customClass="ConfigurationController" customModule="ContractApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="k0v-0R-D7p">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" id="Jd7-Y0-eGj">
+                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <navigationItem title="服务器配置" id="IzW-sr-5Oe">
+                                        <barButtonItem key="leftBarButtonItem" title="返回" id="JJB-oS-mFP">
+                                            <connections>
+                                                <action selector="backPressed:" destination="k9X-IE-Oxb" id="9wB-PY-flR"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" title="保存" id="DOr-Jj-eve">
+                                            <connections>
+                                                <action selector="savePressed:" destination="k9X-IE-Oxb" id="fZz-2s-QQ1"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="50" sectionHeaderHeight="18" sectionFooterHeight="18" id="rkp-UK-liO">
+                                <rect key="frame" x="0.0" y="66" width="320" height="502"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="configurationCell" id="Tae-98-rCy" customClass="ConfigurationCell" customModule="ContractApp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="50" width="320" height="50"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Tae-98-rCy" id="cxv-X7-lje">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Yxq-X9-J0l">
+                                                    <rect key="frame" x="15" y="14" width="68" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" id="oLn-zY-cMn">
+                                                    <rect key="frame" x="91" y="9" width="221" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="editView" destination="oLn-zY-cMn" id="oTo-xg-MxJ"/>
+                                            <outlet property="nameInfoLabel" destination="Yxq-X9-J0l" id="CU1-0t-yEY"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="服务器配置" id="zHG-kc-2UN">
+                        <barButtonItem key="rightBarButtonItem" title="保存" id="E8l-8X-Jbl"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="rkp-UK-liO" id="G9h-cB-cAI"/>
+                        <segue destination="59B-S3-xkA" kind="modal" identifier="loginSegue" id="Z9c-Cf-iz6"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sXB-xj-L50" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-592" y="-1253"/>
+        </scene>
     </scenes>
     <resources>
         <image name="audioIcon" width="150" height="150"/>
@@ -2356,9 +2442,9 @@
         <image name="wave1" width="24" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="wCU-pg-fxd"/>
-        <segue reference="VNd-S5-Rjk"/>
+        <segue reference="Z9c-Cf-iz6"/>
         <segue reference="G0l-Dl-hO0"/>
+        <segue reference="VNd-S5-Rjk"/>
         <segue reference="wgg-JW-dPY"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.94901960784313721" green="0.38039215686274508" blue="0.0" alpha="0.90000000000000002" colorSpace="calibratedRGB"/>

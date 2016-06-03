@@ -48,9 +48,10 @@ class BaseUIViewController: UIViewController, AudioPlayerDelegate {
         getAudioPlayer().delegate = nil
         
         if isNeedResetAudioPlayerDelegate() && self.navigationController?.viewControllers.indexOf(self) == nil {
-            let topViewController = (self.parentViewController as! UINavigationController).topViewController
-            if let delegate = topViewController as? AudioPlayerDelegate {
-                getAudioPlayer().delegate = delegate
+            if let navigatoinViewController = (self.parentViewController as? UINavigationController) {
+                if let delegate = navigatoinViewController.topViewController as? AudioPlayerDelegate {
+                    getAudioPlayer().delegate = delegate
+                }
             }
         }
 

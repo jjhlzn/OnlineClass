@@ -41,8 +41,10 @@ class AlbumDetailController: BaseUIViewController {
             nameLabel.text = album?.name
             descLabel.text = album?.author
             loadingOverlay.showOverlay(self.view)
+            
+            let request = GetAlbumSongsRequest(album: album!)
             BasicService().sendRequest(ServiceConfiguration.GET_ALBUM_SONGS,
-                                       params: ["album": album!]) {
+                                       request: request) {
                 (resp: GetAlbumSongsResponse) -> Void in
                 dispatch_async(dispatch_get_main_queue()) {
                     self.loadingOverlay.hideOverlayView()

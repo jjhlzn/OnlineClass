@@ -10,12 +10,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BasicService.swift"
-            timestampString = "485017595.861661"
+            timestampString = "486633673.264213"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "46"
-            endingLineNumber = "46"
-            landmarkName = "sendRequest(_:method:params:completion:)"
+            startingLineNumber = "65"
+            endingLineNumber = "65"
+            landmarkName = "sendRequest(_:method:severRequest:params:completion:)"
             landmarkType = "5">
             <Locations>
                <Location
@@ -216,11 +216,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Demo/AudioPlayer iOS/SignupViewController.swift"
-            timestampString = "485016916.485689"
+            timestampString = "486633673.264213"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "119"
-            endingLineNumber = "119"
+            startingLineNumber = "120"
+            endingLineNumber = "120"
             landmarkName = "signupPressed(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -232,12 +232,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BasicService.swift"
-            timestampString = "485017497.959175"
+            timestampString = "486633673.264213"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "38"
-            endingLineNumber = "38"
-            landmarkName = "sendRequest(_:method:params:completion:)"
+            startingLineNumber = "57"
+            endingLineNumber = "57"
+            landmarkName = "sendRequest(_:method:severRequest:params:completion:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -248,12 +248,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BasicService.swift"
-            timestampString = "485017577.656083"
+            timestampString = "486633673.264213"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "42"
-            endingLineNumber = "42"
-            landmarkName = "sendRequest(_:method:params:completion:)"
+            startingLineNumber = "61"
+            endingLineNumber = "61"
+            landmarkName = "sendRequest(_:method:severRequest:params:completion:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -264,12 +264,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BasicService.swift"
-            timestampString = "485017648.637117"
+            timestampString = "486633673.264213"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "30"
-            endingLineNumber = "30"
-            landmarkName = "sendRequest(_:method:params:completion:)"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
+            landmarkName = "sendRequest(_:method:severRequest:params:completion:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -280,11 +280,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Demo/AudioPlayer iOS/SignupViewController.swift"
-            timestampString = "485017828.527323"
+            timestampString = "486633673.264213"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "121"
-            endingLineNumber = "121"
+            startingLineNumber = "122"
+            endingLineNumber = "122"
             landmarkName = "signupPressed(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -296,11 +296,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Demo/AudioPlayer iOS/SignupViewController.swift"
-            timestampString = "485019439.522138"
+            timestampString = "486633673.264213"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "132"
-            endingLineNumber = "132"
+            startingLineNumber = "133"
+            endingLineNumber = "133"
             landmarkName = "alertView(_:clickedButtonAtIndex:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -806,11 +806,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Demo/AudioPlayer iOS/AlbumDetailController.swift"
-            timestampString = "486395360.367582"
+            timestampString = "486631516.63517"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "143"
-            endingLineNumber = "143"
+            startingLineNumber = "145"
+            endingLineNumber = "145"
             landmarkName = "updateCellPlayingButtons()"
             landmarkType = "5">
          </BreakpointContent>
@@ -822,11 +822,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Demo/AudioPlayer iOS/AlbumDetailController.swift"
-            timestampString = "486395249.238142"
+            timestampString = "486631516.63517"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "157"
-            endingLineNumber = "157"
+            startingLineNumber = "159"
+            endingLineNumber = "159"
             landmarkName = "updateCellPlayingButtons()"
             landmarkType = "5">
          </BreakpointContent>
@@ -838,11 +838,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Demo/AudioPlayer iOS/BaseUIViewController.swift"
-            timestampString = "486445635.668525"
+            timestampString = "486636891.290171"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "178"
-            endingLineNumber = "178"
+            startingLineNumber = "179"
+            endingLineNumber = "179"
             landmarkName = "hideKeyboardWhenTappedAround()"
             landmarkType = "5">
          </BreakpointContent>
@@ -1020,6 +1020,134 @@
             startingLineNumber = "281"
             endingLineNumber = "281"
             landmarkName = "showOrAdjustCommentWindow(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BasicService.swift"
+            timestampString = "486633673.264213"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "33"
+            endingLineNumber = "33"
+            landmarkName = "sendRequest(_:method:severRequest:params:completion:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BasicService.swift"
+            timestampString = "486633673.264213"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "37"
+            endingLineNumber = "37"
+            landmarkName = "sendRequest(_:method:severRequest:params:completion:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BasicService.swift"
+            timestampString = "486633673.264213"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "32"
+            endingLineNumber = "32"
+            landmarkName = "sendRequest(_:method:severRequest:params:completion:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BasicService.swift"
+            timestampString = "486633673.264213"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "35"
+            endingLineNumber = "35"
+            landmarkName = "sendRequest(_:method:severRequest:params:completion:)"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "AudioPlayer.BasicService.sendRequest &lt;A where A: AudioPlayer.ServerResponse&gt; (Swift.String, method : Alamofire.Method, params : Swift.Optional&lt;Swift.Dictionary&lt;Swift.String, Swift.AnyObject&gt;&gt;, completion : (resp : A) -&gt; ()) -&gt; A"
+                  moduleName = "AudioPlayer"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/lzn/Desktop/OnlineClass/BasicService.swift"
+                  timestampString = "486631655.215157"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "34"
+                  endingLineNumber = "34"
+                  offsetFromSymbolStart = "1623">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "AudioPlayer.BasicService.sendRequest &lt;A where A: AudioPlayer.ServerResponse&gt; (Swift.String, method : Alamofire.Method, params : Swift.Optional&lt;Swift.Dictionary&lt;Swift.String, Swift.AnyObject&gt;&gt;, completion : (resp : A) -&gt; ()) -&gt; A"
+                  moduleName = "AudioPlayer"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/lzn/Desktop/OnlineClass/BasicService.swift"
+                  timestampString = "486631655.215645"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "34"
+                  endingLineNumber = "34"
+                  offsetFromSymbolStart = "2582">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ServerResponse.swift"
+            timestampString = "486633850.246546"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "263"
+            endingLineNumber = "263"
+            landmarkName = "LoginRequest"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ServerResponse.swift"
+            timestampString = "486633909.847508"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "166"
+            endingLineNumber = "166"
+            landmarkName = "parseJSON(_:json:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

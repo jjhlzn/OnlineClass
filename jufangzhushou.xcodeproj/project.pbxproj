@@ -32,6 +32,11 @@
 		1C3CC4C01CFBE3FE007D3EBC /* SongListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C3CC4BF1CFBE3FE007D3EBC /* SongListCell.swift */; };
 		1C3DC3921CFD8EC5007807AF /* LiveAlbumListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C3DC3911CFD8EC5007807AF /* LiveAlbumListController.swift */; };
 		1C3DC3941CFDC538007807AF /* LiveAlbumDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C3DC3931CFDC538007807AF /* LiveAlbumDetailController.swift */; };
+		1C451F661D0175FA00DC29F9 /* ConfigurationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C451F651D0175FA00DC29F9 /* ConfigurationViewController.swift */; };
+		1C451F681D01765F00DC29F9 /* ConfigurationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C451F671D01765F00DC29F9 /* ConfigurationCell.swift */; };
+		1C451F6C1D01787B00DC29F9 /* ServiceLocatorEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C451F6A1D01787B00DC29F9 /* ServiceLocatorEntity+CoreDataProperties.swift */; };
+		1C451F6D1D01787B00DC29F9 /* ServiceLocatorEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C451F6B1D01787B00DC29F9 /* ServiceLocatorEntity.swift */; };
+		1C451F6F1D0178A700DC29F9 /* ServiceLocatorStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C451F6E1D0178A700DC29F9 /* ServiceLocatorStore.swift */; };
 		1C5A6FC51CE99644000E7282 /* PlayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C5A6FC41CE99644000E7282 /* PlayerController.swift */; };
 		1C5A6FC71CE9A0D5000E7282 /* LivePlayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C5A6FC61CE9A0D5000E7282 /* LivePlayerController.swift */; };
 		1C6420F61CD0605200119272 /* CommentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C6420F51CD0605200119272 /* CommentController.swift */; };
@@ -106,6 +111,11 @@
 		1C3CC4BF1CFBE3FE007D3EBC /* SongListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongListCell.swift; sourceTree = "<group>"; };
 		1C3DC3911CFD8EC5007807AF /* LiveAlbumListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiveAlbumListController.swift; sourceTree = "<group>"; };
 		1C3DC3931CFDC538007807AF /* LiveAlbumDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiveAlbumDetailController.swift; sourceTree = "<group>"; };
+		1C451F651D0175FA00DC29F9 /* ConfigurationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigurationViewController.swift; sourceTree = "<group>"; };
+		1C451F671D01765F00DC29F9 /* ConfigurationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigurationCell.swift; sourceTree = "<group>"; };
+		1C451F6A1D01787B00DC29F9 /* ServiceLocatorEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ServiceLocatorEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		1C451F6B1D01787B00DC29F9 /* ServiceLocatorEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceLocatorEntity.swift; sourceTree = "<group>"; };
+		1C451F6E1D0178A700DC29F9 /* ServiceLocatorStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceLocatorStore.swift; sourceTree = "<group>"; };
 		1C5A6FC41CE99644000E7282 /* PlayerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerController.swift; sourceTree = "<group>"; };
 		1C5A6FC61CE9A0D5000E7282 /* LivePlayerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LivePlayerController.swift; sourceTree = "<group>"; };
 		1C6420F51CD0605200119272 /* CommentController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentController.swift; sourceTree = "<group>"; };
@@ -192,12 +202,8 @@
 		1C09D3BB1CD083A0004A8F9C /* model */ = {
 			isa = PBXGroup;
 			children = (
+				1C451F691D0176E500DC29F9 /* store */,
 				1CEFF7821CBFB809000DEFF7 /* Model.swift */,
-				1C2451D01CE89EB800F350DA /* CoreDataStack.swift */,
-				1C2451D21CE8A0BD00F350DA /* jufangzhushou.xcdatamodeld */,
-				1C2451D51CE8A1CE00F350DA /* LoginUserStore.swift */,
-				1C2451D71CE8A28B00F350DA /* LoginUserEntity+CoreDataProperties.swift */,
-				1C2451D81CE8A28B00F350DA /* LoginUserEntity.swift */,
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -240,6 +246,7 @@
 				1CD3496D1CF9A97D00037F78 /* PersonalInfoCell.swift */,
 				1CD349711CF9AC7D00037F78 /* PersonalInfoCell2.swift */,
 				1C3CC4BF1CFBE3FE007D3EBC /* SongListCell.swift */,
+				1C451F671D01765F00DC29F9 /* ConfigurationCell.swift */,
 			);
 			name = customCell;
 			sourceTree = "<group>";
@@ -268,6 +275,21 @@
 				1CEE8AF21CD4998A00865FB6 /* PagableController.swift */,
 			);
 			name = controller;
+			sourceTree = "<group>";
+		};
+		1C451F691D0176E500DC29F9 /* store */ = {
+			isa = PBXGroup;
+			children = (
+				1C2451D21CE8A0BD00F350DA /* jufangzhushou.xcdatamodeld */,
+				1C2451D01CE89EB800F350DA /* CoreDataStack.swift */,
+				1C2451D51CE8A1CE00F350DA /* LoginUserStore.swift */,
+				1C2451D71CE8A28B00F350DA /* LoginUserEntity+CoreDataProperties.swift */,
+				1C2451D81CE8A28B00F350DA /* LoginUserEntity.swift */,
+				1C451F6A1D01787B00DC29F9 /* ServiceLocatorEntity+CoreDataProperties.swift */,
+				1C451F6B1D01787B00DC29F9 /* ServiceLocatorEntity.swift */,
+				1C451F6E1D0178A700DC29F9 /* ServiceLocatorStore.swift */,
+			);
+			name = store;
 			sourceTree = "<group>";
 		};
 		1CEFF7841CBFB9E7000DEFF7 /* Service */ = {
@@ -342,6 +364,7 @@
 				1CD3496F1CF9AB1000037F78 /* PersonalInfoViewController.swift */,
 				1CD349731CFA8DD700037F78 /* SearchCourseViewController.swift */,
 				1C3479BC1CF2F9BD003FEF05 /* FirstPageViewController.swift */,
+				1C451F651D0175FA00DC29F9 /* ConfigurationViewController.swift */,
 			);
 			name = "AudioPlayer iOS";
 			path = "Demo/AudioPlayer iOS";
@@ -557,6 +580,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1C451F6D1D01787B00DC29F9 /* ServiceLocatorEntity.swift in Sources */,
 				1C1E69251CCA0F3E00CEA029 /* NoCommentCell.swift in Sources */,
 				1CD349641CF8167C00037F78 /* WebPageViewController.swift in Sources */,
 				1CD349721CF9AC7D00037F78 /* PersonalInfoCell2.swift in Sources */,
@@ -585,6 +609,7 @@
 				1CA3B2121CD86BD300D0ABD8 /* CourseTypeCell.swift in Sources */,
 				1CD349661CF83A4700037F78 /* SettingsViewController.swift in Sources */,
 				1C2451D91CE8A28B00F350DA /* LoginUserEntity+CoreDataProperties.swift in Sources */,
+				1C451F681D01765F00DC29F9 /* ConfigurationCell.swift in Sources */,
 				1CEFF79C1CC20171000DEFF7 /* AudioPlayerExtension.swift in Sources */,
 				1C154A501CDACCA6003B900C /* MyUISlider.swift in Sources */,
 				1CD349681CF9703700037F78 /* KeyValueCell.swift in Sources */,
@@ -593,6 +618,7 @@
 				1CEE8AF31CD4998A00865FB6 /* PagableController.swift in Sources */,
 				1C2FC9271CFEE5BA0057EB93 /* EmojiKeyboard.swift in Sources */,
 				1CA3B2141CD8E83B00D0ABD8 /* FunctionCell.swift in Sources */,
+				1C451F6F1D0178A700DC29F9 /* ServiceLocatorStore.swift in Sources */,
 				1CEFF7901CC077D0000DEFF7 /* Utils.swift in Sources */,
 				1C1E69211CCA05E500CEA029 /* MoreLinkCell.swift in Sources */,
 				1CEFF7981CC0D63B000DEFF7 /* LoadingOverlay.swift in Sources */,
@@ -610,8 +636,10 @@
 				1CD349701CF9AB1000037F78 /* PersonalInfoViewController.swift in Sources */,
 				1CEFF7811CBFB73D000DEFF7 /* AlbumListController.swift in Sources */,
 				1C09D3BF1CD09FED004A8F9C /* ToastMessage.swift in Sources */,
+				1C451F661D0175FA00DC29F9 /* ConfigurationViewController.swift in Sources */,
 				1C3DC3941CFDC538007807AF /* LiveAlbumDetailController.swift in Sources */,
 				1CDCC8ED1CE717F3001640CC /* ForgetPasswordViewController.swift in Sources */,
+				1C451F6C1D01787B00DC29F9 /* ServiceLocatorEntity+CoreDataProperties.swift in Sources */,
 				1C2451DA1CE8A28B00F350DA /* LoginUserEntity.swift in Sources */,
 				1CEFF78A1CBFBA70000DEFF7 /* ServerResponse.swift in Sources */,
 				1C2451D61CE8A1CE00F350DA /* LoginUserStore.swift in Sources */,

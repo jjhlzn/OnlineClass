@@ -139,3 +139,14 @@ class ChatSetting : BaseModelObject {
     var lastCommenTime : NSDate?
     
 }
+
+class ServiceLocator {
+    var http: String!
+    var serverName: String!
+    var port: Int!
+    
+    init() {
+        
+    }
+    
+}

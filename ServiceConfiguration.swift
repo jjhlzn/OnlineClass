@@ -10,33 +10,48 @@ import Foundation
 
 class ServiceConfiguration {
     static let PageSize = 20
+    static let isUseConfig = true
+     static let serviceLocatorStore = ServiceLocatorStore()
     
     static let serverName2 = "localhost"
     static let port2 =  3000 // 19540
-    
+    //114.80.101.27:6012/
     static let serverName3 = "jjhaudio.hengdianworld.com"
     static let port3 = 80
     
     static let serverName4 = "www.jinjunhang.com" 
     static let port4 = 3001
     
-    static var http: String {
-        get {
-            return "http"
-        }
-    }
-    
     static var serverName: String {
         get {
-            return serverName3
+            if isUseConfig {
+                return (serviceLocatorStore.GetServiceLocator()!.serverName)!
+            } else {
+                return serverName3
+            }
         }
     }
     
     static var port: Int {
         get {
-            return port3
+            if isUseConfig {
+                return Int((serviceLocatorStore.GetServiceLocator()!.port)!)
+            } else {
+                return port3
+            }
         }
     }
+    
+    static var http: String {
+        get {
+            if isUseConfig {
+                return (serviceLocatorStore.GetServiceLocator()?.http)!
+            } else {
+                return "http"
+            }
+        }
+    }
+
 
     
     //User
