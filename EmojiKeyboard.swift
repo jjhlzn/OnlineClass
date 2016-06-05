@@ -19,11 +19,11 @@ class EmojiKeyboard: NSObject {
     
     var editText : UITextView
     
-    let emojiKeys = [":smile:", ":laughing:", ":broken_heart:", ":clap:", ":heartbeat:", ":panda_face:", ":ghost:",
-                     ":smile:", ":laughing:", ":broken_heart:", ":clap:", ":heartbeat:", ":panda_face:", ":ghost:",
-                     ":smile:", ":laughing:", ":broken_heart:", ":clap:", ":heartbeat:", ":panda_face:", ":ghost:",
-                     ":smile:", ":laughing:", ":broken_heart:", ":clap:", ":heartbeat:", ":panda_face:", ":ghost:",
-                     ":smile:", ":laughing:", ":broken_heart:", ":clap:", ":heartbeat:", ":panda_face:", ":ghost:",]
+    let emojiKeys = [":smile:", ":laughing:", ":kissing_smiling_eyes:", ":heart_eyes:", ":heart:", ":heartpulse:", ":sparkling_heart:",
+                     ":star:", ":fire:", ":thumbsup:", ":ok_hand:", ":v:", ":clap:", ":muscle:",
+                     ":kiss:", ":ox:", ":coffee:", ":tea:", ":beers:", ":100:", ":lollipop:",
+                     ":tangerine:", ":watermelon:", ":lemon:", ":strawberry:", ":pear:", ":tomato:", ":apple:",
+                     ":cherries:", ":peach:", ":pineapple:", ":sunny:", ":sunflower:", ":rose:", ":hibiscus:",]
     
     init(editText: UITextView) {
         self.editText = editText
