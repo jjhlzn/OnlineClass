@@ -54,15 +54,15 @@ public class ExtendFunctionMananger : NSObject {
     var controller : UIViewController
     
     var functions = [
-                     ExtendFunction(imageName: "visa", name: "去刷卡额", url: "http://www.baidu.com"),
+                     ExtendFunction(imageName: "commonCard", name: "去刷卡", url: "http://www.baidu.com"),
                      ExtendFunction(imageName: "up", name: "一键提额", url: "http://www.baidu.com"),
                      ExtendFunction(imageName: "visa", name: "一键办卡", url: "http://www.weibo.com"),
-                     ExtendFunction(imageName: "up", name: "卡片管理", url: "http://www.weibo.com"),
-                     ExtendFunction(imageName: "visa", name: "信用查询", url: "http://www.weibo.com"),
-                     ExtendFunction(imageName: "up", name: "mcc查询", url: "http://www.weibo.com"),
-                     ExtendFunction(imageName: "visa", name: "商城", url: "http://www.weibo.com"),
-                     ExtendFunction(imageName: "up", name: "缴费", url: "http://www.weibo.com"),
-                     ExtendFunction(imageName: "visa", name: "贷款", url: "http://www.weibo.com"),
+                     ExtendFunction(imageName: "cardManage", name: "卡片管理", url: "http://www.weibo.com"),
+                     ExtendFunction(imageName: "creditSearch", name: "信用查询", url: "http://www.weibo.com"),
+                     ExtendFunction(imageName: "mmcSearch", name: "mcc查询", url: "http://www.weibo.com"),
+                     ExtendFunction(imageName: "shopcart", name: "商城", url: "http://www.weibo.com"),
+                     ExtendFunction(imageName: "rmb", name: "缴费", url: "http://www.weibo.com"),
+                     ExtendFunction(imageName: "dollar", name: "贷款", url: "http://www.weibo.com"),
                     ]
     
     public init(controller: UIViewController) {

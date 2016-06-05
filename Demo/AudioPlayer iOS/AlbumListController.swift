@@ -62,16 +62,13 @@ class AlbumListController: BaseUIViewController, UITableViewDataSource, UITableV
     //PageableControllerDelegate
     func searchHandler(respHandler: ((resp: ServerResponse) -> Void)) {
         let request = GetAlbumsRequest(courseType: courseType)
+        request.pageNo = pagableController.page
         BasicService().sendRequest(ServiceConfiguration.GET_ALBUMS, request: request,
                                    completion: respHandler as ((resp: GetAlbumsResponse) -> Void))
 
     }
     
     
-    func refreshHandler(respHandler: ((resp: ServerResponse) -> Void)) {
-        let request = GetAlbumsRequest(courseType: courseType)
-        BasicService().sendRequest(ServiceConfiguration.GET_ALBUMS, request: request, completion: respHandler as ((resp: GetAlbumsResponse) -> Void))
-    }
     
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

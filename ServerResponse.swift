@@ -58,7 +58,7 @@ public class PageServerResponse<T> : ServerResponse{
 }
 
 
-class GetAlbumsRequest : ServerRequest {
+class GetAlbumsRequest : PagedServerRequest {
     var courseType : CourseType
     
     required init(courseType: CourseType) {

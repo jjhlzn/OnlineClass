@@ -104,17 +104,7 @@ extension CommentListController {
                                    completion: respHandler as ((resp: GetSongCommentsResponse) -> Void))
         
     }
-    
-    
-    func refreshHandler(respHandler: ((resp: ServerResponse) -> Void)) {
-        let request = GetSongCommentsRequest(song: song)
-        request.pageNo = pagableController.page
-        request.pageSize = ServiceConfiguration.PageSize
-        
-        BasicService().sendRequest(ServiceConfiguration.GET_SONG_COMMENTS,
-                                   request: request,
-                                   completion: respHandler as ((resp: GetSongCommentsResponse) -> Void))
-    }
+
     
     /*
     

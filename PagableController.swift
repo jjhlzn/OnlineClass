@@ -11,7 +11,6 @@ import UIKit
 
 public protocol PagableControllerDelegate : NSObjectProtocol {
     func searchHandler(respHandler: ((resp: ServerResponse) -> Void))
-    func refreshHandler(respHandler: ((resp: ServerResponse) -> Void))
 }
 
 class PagableController<T> : NSObject {
@@ -79,11 +78,13 @@ class PagableController<T> : NSObject {
         quering = true
         page = 0
         
-        delegate.refreshHandler() {
+        delegate.searchHandler() {
             (resp: ServerResponse) -> Void in
-            self.afterHandleRefreshRespones(resp as! PageServerResponse<T>)
+            dispatch_async(dispatch_get_main_queue()) {
+                self.afterHandleRefreshRespones(resp as! PageServerResponse<T>)
+            }
         }
-
+        
     }
     
     func afterHandleRefreshRespones(resp: PageServerResponse<T>) {
