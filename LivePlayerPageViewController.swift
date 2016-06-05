@@ -218,8 +218,8 @@ class LivePlayerPageViewController : CommonPlayerPageViewController {
                         cell.contentLabel.frame = frame;
                         var height = 25 + cell.contentLabel.bounds.height + 10
                         
-                        if height < 55 {
-                            height = 55
+                        if height < 65 {
+                            height = 65
                         }
                         heightCache[comment.content] = height
                         

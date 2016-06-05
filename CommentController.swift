@@ -338,7 +338,7 @@ class CommentController : NSObject, UITextViewDelegate {
     func showOverlay() {
         print("showOverlay")
         overlay = UIView(frame: UIScreen.mainScreen().bounds)
-        overlay.backgroundColor = UIColor(white: 0.2, alpha: 0.4)
+        overlay.backgroundColor = UIColor(white: 0, alpha: 0.65)
         
         
         bottomView2.removeFromSuperview()
