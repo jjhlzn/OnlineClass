@@ -43,7 +43,9 @@ extension MyInfoVieController {
         case 0:
             return 1
         case 1:
-            return 4
+            return 2
+        case 2:
+            return 1
         default:
             return 1
         }
@@ -57,7 +59,7 @@ extension MyInfoVieController {
         case 1:
             return 48
         case 2:
-            return 66
+            return 48
         default:
             return 1
         }
@@ -84,16 +86,17 @@ extension MyInfoVieController {
                 title = "我已推荐  0人"
                 cell.accessoryType = .None
                 break
-            case 2:
-                title = "消息中心"
-                break
-            case 3:
-                title = "设置"
-                break
+           // case 2:
+              //  title = "消息中心"
+               // break
             default:
                 break
             }
             cell.titleLabel.text = title
+            return cell
+        case 2:
+            let cell = tableView.dequeueReusableCellWithIdentifier("myInfoOtherCell") as! MyInfoOtherCell
+            cell.titleLabel.text = "设置"
             return cell
         default:
             let cell = tableView.dequeueReusableCellWithIdentifier("logoutCell") as! logoutCell
@@ -114,20 +117,25 @@ extension MyInfoVieController {
             case 0:
                 performSegueWithIdentifier("personalInfoSegue", sender: nil)
                 break
-            case 3:
+            default:
+                break
+            }
+            break
+        case 2:
+            switch row {
+            case 0:
                 performSegueWithIdentifier("settingSegue", sender: nil)
                 break
             default:
                 break
             }
-            break
         default:
             break
         }
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 2
+        return 3
     }
 
 }
