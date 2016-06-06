@@ -172,6 +172,16 @@ extension BaseUIViewController {
         alertView.show()
         
     }
+    
+    func displayConfirmMessage(message : String, delegate: UIAlertViewDelegate) {
+        let alertView = UIAlertView()
+        //alertView.title = "系统提示"
+        alertView.message = message
+        alertView.addButtonWithTitle("确认")
+        alertView.addButtonWithTitle("取消")
+        alertView.delegate=delegate
+        alertView.show()
+    }
 
     
     func hideKeyboardWhenTappedAround() {

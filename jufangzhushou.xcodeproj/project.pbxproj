@@ -26,6 +26,7 @@
 		1C2684761CCA66040032C014 /* MyInfoMainCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C2684751CCA66040032C014 /* MyInfoMainCell.swift */; };
 		1C2684781CCB59210032C014 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C2684771CCB59200032C014 /* LoginViewController.swift */; };
 		1C2FC9271CFEE5BA0057EB93 /* EmojiKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C2FC9261CFEE5BA0057EB93 /* EmojiKeyboard.swift */; };
+		1C33A5701D059A5D00E87803 /* StartupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C33A56F1D059A5D00E87803 /* StartupViewController.swift */; };
 		1C3479BD1CF2F9BD003FEF05 /* FirstPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C3479BC1CF2F9BD003FEF05 /* FirstPageViewController.swift */; };
 		1C3479C01CF3EBEF003FEF05 /* LivePlayerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C3479BF1CF3EBEF003FEF05 /* LivePlayerCell.swift */; };
 		1C3479C21CF4236A003FEF05 /* LivePlayerPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C3479C11CF4236A003FEF05 /* LivePlayerPageViewController.swift */; };
@@ -105,6 +106,7 @@
 		1C2684751CCA66040032C014 /* MyInfoMainCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyInfoMainCell.swift; sourceTree = "<group>"; };
 		1C2684771CCB59200032C014 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		1C2FC9261CFEE5BA0057EB93 /* EmojiKeyboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmojiKeyboard.swift; sourceTree = "<group>"; };
+		1C33A56F1D059A5D00E87803 /* StartupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartupViewController.swift; sourceTree = "<group>"; };
 		1C3479BC1CF2F9BD003FEF05 /* FirstPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstPageViewController.swift; sourceTree = "<group>"; };
 		1C3479BF1CF3EBEF003FEF05 /* LivePlayerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LivePlayerCell.swift; sourceTree = "<group>"; };
 		1C3479C11CF4236A003FEF05 /* LivePlayerPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LivePlayerPageViewController.swift; sourceTree = "<group>"; };
@@ -346,6 +348,7 @@
 				E2A9AF9F1C498E2900FE943A /* AppDelegate.swift */,
 				1CEFF79D1CC21E98000DEFF7 /* BaseUIViewController.swift */,
 				E2A9AFAB1C498E2900FE943A /* Info.plist */,
+				1C33A56F1D059A5D00E87803 /* StartupViewController.swift */,
 				1CA3B20F1CD86B7800D0ABD8 /* MainPageViewController.swift */,
 				1CEFF7801CBFB73D000DEFF7 /* AlbumListController.swift */,
 				1C3DC3911CFD8EC5007807AF /* LiveAlbumListController.swift */,
@@ -634,6 +637,7 @@
 				1C2451D41CE8A0BD00F350DA /* jufangzhushou.xcdatamodeld in Sources */,
 				1C2684761CCA66040032C014 /* MyInfoMainCell.swift in Sources */,
 				1CD349701CF9AB1000037F78 /* PersonalInfoViewController.swift in Sources */,
+				1C33A5701D059A5D00E87803 /* StartupViewController.swift in Sources */,
 				1CEFF7811CBFB73D000DEFF7 /* AlbumListController.swift in Sources */,
 				1C09D3BF1CD09FED004A8F9C /* ToastMessage.swift in Sources */,
 				1C451F661D0175FA00DC29F9 /* ConfigurationViewController.swift in Sources */,

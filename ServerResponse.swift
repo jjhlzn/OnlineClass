@@ -298,6 +298,14 @@ class LoginResponse : ServerResponse {
 
 }
 
+class LogoutRequest : ServerRequest {
+    
+}
+
+class LogoutResponse : ServerResponse {
+    
+}
+
 class GetPhoneCheckCodeRequest : ServerRequest {
     var phoneNumber : String
     init(phoneNumber: String) {

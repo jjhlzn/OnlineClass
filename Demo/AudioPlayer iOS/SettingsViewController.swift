@@ -8,9 +8,11 @@
 
 import UIKit
 
-class SettingsViewController: BaseUIViewController, UITableViewDataSource, UITableViewDelegate {
+class SettingsViewController: BaseUIViewController, UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate {
     
     @IBOutlet weak var tableView: UITableView!
+    
+    var loginUserStore = LoginUserStore()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,6 +80,25 @@ class SettingsViewController: BaseUIViewController, UITableViewDataSource, UITab
     
 
     @IBAction func logoutPressed(sender: UIButton) {
-        performSegueWithIdentifier("logoutSegue", sender: nil)
+        displayConfirmMessage("确认退出登录吗？", delegate: self)
     }
+    
+    func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
+        switch buttonIndex {
+        case 0:
+            
+            BasicService().sendRequest(ServiceConfiguration.LOGOUT,request: LogoutRequest())  {
+                (response : LogoutResponse) -> Void in
+                self.loginUserStore.removeLoginUser()
+                self.performSegueWithIdentifier("logoutSegue", sender: nil)
+            }
+            
+            break;
+        case 1:
+            break;
+        default:
+            break;
+        }
+    }
+
 }

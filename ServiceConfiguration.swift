@@ -61,6 +61,12 @@ class ServiceConfiguration {
         }
     }
     
+    static var LOGOUT : String {
+        get {
+            return "\(http)://\(serverName):\(port)/user/logout"
+        }
+    }
+    
     static var GET_PHONE_CHECK_CODE : String {
         get {
             return "\(http)://\(serverName):\(port)/user/getPhoneCheckCode"
