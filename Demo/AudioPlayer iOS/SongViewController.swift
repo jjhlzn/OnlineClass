@@ -38,8 +38,7 @@ class SongViewController: BaseUIViewController, UIGestureRecognizerDelegate, Com
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        
+
         audioPlayer = getAudioPlayer()
         song = (audioPlayer.currentItem as! MyAudioItem).song
 

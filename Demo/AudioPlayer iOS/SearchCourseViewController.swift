@@ -23,7 +23,7 @@ class SearchCourseViewController: BaseUIViewController, UITextFieldDelegate , Pa
     
     var request : SearchRequest?
     
-    var hotSearchKeywords = ["信用卡", "提高额度", "办卡"]
+    var hotSearchKeywords = []
     
     var pagableController = PagableController<Album>()
     
@@ -54,7 +54,17 @@ class SearchCourseViewController: BaseUIViewController, UITextFieldDelegate , Pa
         self.searchTipView.removeFromSuperview()
         view.addSubview(searchTipView)
        
-        
+        BasicService().sendRequest(ServiceConfiguration.GET_HOT_SEARCH_WORDS, request: GetHotSearchWordsRequest()) {
+            (resp : GetHotSearchWordsResponse) -> Void in
+            dispatch_async(dispatch_get_main_queue()) {
+                if resp.status != 0 {
+                    self.displayMessage(resp.errorMessage!)
+                    return
+                }
+                self.hotSearchKeywords = resp.keywords
+                self.drawHotKeywordButtons()
+            }
+        }
         
         
     }
@@ -62,7 +72,7 @@ class SearchCourseViewController: BaseUIViewController, UITextFieldDelegate , Pa
     private func drawHotKeywordButtons() {
         var index = 0
         for item in hotSearchKeywords {
-            searchTipView.addSubview(drawHotkeywordButton(item, index: index))
+            searchTipView.addSubview(drawHotkeywordButton(item as! String, index: index))
             index = index + 1
         }
 

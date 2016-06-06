@@ -112,6 +112,12 @@ class ServiceConfiguration {
         }
     }
     
+    static var GET_HOT_SEARCH_WORDS : String {
+        get {
+            return "\(http)://\(serverName):\(port)/album/getHotSearchWords"
+        }
+    }
+    
     //Songs
     static var GET_SONG_LIVE_COMMENTS: String {
         get {

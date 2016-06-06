@@ -453,3 +453,18 @@ class SearchRequest : PagedServerRequest {
 class SearchResponse : GetAlbumsResponse {
     
 }
+
+class GetHotSearchWordsRequest : ServerRequest {
+    
+}
+
+class GetHotSearchWordsResponse : ServerResponse {
+    var keywords = [String]()
+    
+    override func parseJSON(request: ServerRequest, json: NSDictionary) {
+        super.parseJSON(request, json: json)
+        if status == 0 {
+            keywords = json["keywords"]  as! [String]
+        }
+    }
+}
