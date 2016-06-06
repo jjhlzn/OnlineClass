@@ -142,8 +142,6 @@ class SongViewController: BaseUIViewController, UIGestureRecognizerDelegate, Com
     func showSongList() {
         print("showSongList")
         
-       
-        
         songListOverlay = UIView(frame: UIScreen.mainScreen().bounds)
         songListOverlay.backgroundColor = UIColor(white: 0, alpha: 0.65)
         
@@ -153,6 +151,7 @@ class SongViewController: BaseUIViewController, UIGestureRecognizerDelegate, Com
         view.addSubview(songListOverlay)
         
         songListView.hidden = false
+        songListTableView.reloadData()
     }
     
     func hideSongList() {

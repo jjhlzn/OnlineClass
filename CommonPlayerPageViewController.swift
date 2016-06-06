@@ -197,6 +197,7 @@ class CommonPlayerPageViewController : NSObject, UITableViewDataSource, UITableV
             viewController.commentController.song = song
             
             let request = GetSongCommentsRequest(song: song)
+            request.pageSize = 5
             BasicService().sendRequest(ServiceConfiguration.GET_SONG_COMMENTS,
                                        request: request) {
                                         (resp: GetSongCommentsResponse) -> Void in
