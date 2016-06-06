@@ -552,11 +552,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Demo/AudioPlayer iOS/SearchCourseViewController.swift"
-            timestampString = "486442185.663774"
+            timestampString = "486879110.403267"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "32"
-            endingLineNumber = "32"
+            startingLineNumber = "34"
+            endingLineNumber = "34"
             landmarkName = "viewDidLoad()"
             landmarkType = "5">
          </BreakpointContent>
@@ -822,11 +822,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Demo/AudioPlayer iOS/SearchCourseViewController.swift"
-            timestampString = "486446279.441932"
+            timestampString = "486879110.403267"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "128"
-            endingLineNumber = "128"
+            startingLineNumber = "130"
+            endingLineNumber = "130"
             landmarkName = "addGraylayer()"
             landmarkType = "5">
          </BreakpointContent>
@@ -1133,38 +1133,22 @@
             endingLineNumber = "20"
             landmarkName = "Static"
             landmarkType = "3">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "globalinit_33_DF91E9B09F739143839F0710710116E6_func0"
-                  moduleName = "AudioPlayer"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/lzn/Desktop/OnlineClass/Demo/AudioPlayer%20iOS/LoadingOverlay.swift"
-                  timestampString = "486877963.789188"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "21"
-                  endingLineNumber = "21"
-                  offsetFromSymbolStart = "8">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "static AudioPlayer.LoadingOverlay.(shared.getter : AudioPlayer.LoadingOverlay).(Static #1).instance.unsafeMutableAddressor : AudioPlayer.LoadingOverlay"
-                  moduleName = "AudioPlayer"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/lzn/Desktop/OnlineClass/Demo/AudioPlayer%20iOS/LoadingOverlay.swift"
-                  timestampString = "486877963.789942"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "21"
-                  endingLineNumber = "21"
-                  offsetFromSymbolStart = "16">
-               </Location>
-            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Demo/AudioPlayer iOS/PlayerCell.swift"
+            timestampString = "486879876.273056"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "59"
+            endingLineNumber = "59"
+            landmarkName = "initPalyer()"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

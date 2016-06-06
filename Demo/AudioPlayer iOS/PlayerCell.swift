@@ -55,7 +55,10 @@ class PlayerCell: UITableViewCell {
         audioPlayer.delegate = playerViewController
         
         //setup progressbar
-        progressBar.setThumbImage(UIImage(named: "sliderImage"), forState: .Normal)
+        var sliderImage = UIImage(named: "sliderImage")!
+        sliderImage = sliderImage.scaledToSize(CGSize(width: 14, height: 14))
+        progressBar.setThumbImage(sliderImage, forState: .Normal)
+        
         UIGraphicsBeginImageContextWithOptions(CGSize(width: 1, height: 1), false, 0.0)
         let transparentImage = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext()

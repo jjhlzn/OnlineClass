@@ -22,6 +22,8 @@ class SearchCourseViewController: BaseUIViewController, UITextFieldDelegate , Pa
     
     var request : SearchRequest?
     
+    var hotSearchKeywords : [String]?
+    
     var pagableController = PagableController<Album>()
     
     override func viewDidLoad() {

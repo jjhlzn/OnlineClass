@@ -73,6 +73,16 @@ extension UIImageView {
     }
 }
 
+extension UIImage{
+    func scaledToSize(size: CGSize) -> UIImage{
+        UIGraphicsBeginImageContextWithOptions(size, false, 0.0);
+        self.drawInRect(CGRectMake(0, 0, size.width, size.height))
+        let newImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return newImage
+    }
+}
+
 import UIKit
 
 enum viewBorder: String {
