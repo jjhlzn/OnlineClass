@@ -17,12 +17,13 @@ class SearchCourseViewController: BaseUIViewController, UITextFieldDelegate , Pa
     @IBOutlet weak var searchTipView: UIView!
     
     @IBOutlet weak var searchView: UIView!
+    var searchTipViewBackup :UIView?
     
     var loading = LoadingOverlay()
     
     var request : SearchRequest?
     
-    var hotSearchKeywords : [String]?
+    var hotSearchKeywords = ["信用卡", "提高额度", "办卡"]
     
     var pagableController = PagableController<Album>()
     
@@ -38,6 +39,9 @@ class SearchCourseViewController: BaseUIViewController, UITextFieldDelegate , Pa
         tableView.dataSource = self
         tableView.delegate = self
         
+        searchField.clearButtonMode = UITextFieldViewMode.Always
+        addIconToField(searchField, imageName: "search-filled")
+        
         //初始化PagableController
         pagableController.viewController = self
         pagableController.delegate = self
@@ -46,13 +50,43 @@ class SearchCourseViewController: BaseUIViewController, UITextFieldDelegate , Pa
         pagableController.isNeedRefresh = false
         pagableController.initController()
     
+        drawHotKeywordButtons()
         self.searchTipView.removeFromSuperview()
         view.addSubview(searchTipView)
        
-        searchField.clearButtonMode = UITextFieldViewMode.Always
-        addIconToField(searchField, imageName: "search-filled")
-        //addTopLayer()
         
+        
+        
+    }
+    
+    private func drawHotKeywordButtons() {
+        var index = 0
+        for item in hotSearchKeywords {
+            searchTipView.addSubview(drawHotkeywordButton(item, index: index))
+            index = index + 1
+        }
+
+    }
+    
+    private func drawHotkeywordButton(keyword: String, index: Int) -> UIButton {
+        let screenSize = UIScreen.mainScreen().bounds
+        
+        let x = 0
+        let y = 84 + index * 36
+        
+        let button = UIButton(frame: CGRect(x: x, y: y, width: Int(screenSize.width), height: 21))
+        print("x = \(x), y = \(y), width = \(screenSize.width), height = 21, keyword = \(keyword)")
+        button.setTitle(keyword, forState: .Normal)
+        button.setTitleColor(UIColor(colorLiteralRed: 1, green: 0x6e/0xff, blue: 0x36/0xff, alpha: 1), forState: .Normal)
+        button.addTarget(self, action: #selector(tapKeyword), forControlEvents: .TouchUpInside)
+            //
+        return button
+    }
+    
+    func tapKeyword(sender: UIButton!) {
+        let title = sender.titleLabel?.text
+        searchField.text = title
+        executeSearch()
     }
     
     func addIconToField(field: UITextField, imageName: String) {
@@ -98,23 +132,11 @@ class SearchCourseViewController: BaseUIViewController, UITextFieldDelegate , Pa
         }
     
         BasicService().sendRequest(ServiceConfiguration.SEARCH,
-                                   request: request!) {
-                                    (resp: SearchResponse) -> Void in
-                                    dispatch_async(dispatch_get_main_queue()) {
-                                        //self.removeTopLayer()
-                                        if self.searchTipView != nil {
-                                            self.searchTipView.removeFromSuperview()
-                                        }
-                                        self.pagableController.afterHandleResponse(resp)
-                                    }
-        }
+                                   request: request!, completion: respHandler as ((resp: SearchResponse) -> Void))
+        
 
     }
-    
-    
-    func refreshHandler(respHandler: ((resp: ServerResponse) -> Void)) {
-        
-    }
+
     
     
     
@@ -147,6 +169,16 @@ class SearchCourseViewController: BaseUIViewController, UITextFieldDelegate , Pa
     func textFieldDidEndEditing(textField: UITextField) {
         cancleHideKeybaordWhenTappedAround()
         removeGraylayer()
+        
+        if searchField.text?.length == 0 {
+            if searchTipView != nil {
+                searchTipView.removeFromSuperview()
+            }
+            if (searchTipViewBackup != nil) {
+                view.addSubview(searchTipViewBackup!)
+                searchTipView = searchTipViewBackup
+            }
+        }
     }
     
     
@@ -154,6 +186,12 @@ class SearchCourseViewController: BaseUIViewController, UITextFieldDelegate , Pa
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         self.view.endEditing(true)
         
+        executeSearch()
+        
+        return false
+    }
+    
+    func executeSearch() {
         pagableController.hasMore = true
         let keyword = searchField.text
         
@@ -162,16 +200,22 @@ class SearchCourseViewController: BaseUIViewController, UITextFieldDelegate , Pa
         
         //reset tableView
         pagableController.reset()
-
+        
+        self.searchTipViewBackup = self.searchTipView
+        if self.searchTipView != nil {
+            self.searchTipView.removeFromSuperview()
+        }
+        
+        loading.showOverlay(view)
         searchHandler() {
             (resp: ServerResponse) -> Void in
             
             dispatch_async(dispatch_get_main_queue()) {
+                self.loading.hideOverlayView()
                 self.pagableController.afterHandleResponse(resp as! GetAlbumsResponse)
             }
         }
-        
-        return false
+
     }
 }
 
