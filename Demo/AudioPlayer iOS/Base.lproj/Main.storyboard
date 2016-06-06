@@ -1219,9 +1219,9 @@
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 </imageView>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="nSg-mE-Y2N">
-                                                    <rect key="frame" x="143" y="357" width="35" height="35"/>
+                                                    <rect key="frame" x="140" y="355" width="40" height="40"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                    <state key="normal" title="播放" image="play"/>
+                                                    <state key="normal" title="播放" image="pause"/>
                                                     <connections>
                                                         <action selector="playButtonPressed:" destination="PWy-43-R2i" eventType="touchUpInside" id="s7W-3o-ASh"/>
                                                     </connections>
@@ -1246,7 +1246,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="9KZ-ct-Pwm">
-                                                    <rect key="frame" x="212" y="357" width="35" height="35"/>
+                                                    <rect key="frame" x="210" y="357" width="35" height="35"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <state key="normal" title="&gt;&gt;" image="nextPlay"/>
                                                     <connections>
@@ -1259,31 +1259,20 @@
                                                     <color key="tintColor" red="0.94901960780000005" green="0.3803921569" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 </slider>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="pMj-nW-pUe">
-                                                    <rect key="frame" x="67" y="357" width="35" height="35"/>
+                                                    <rect key="frame" x="75" y="357" width="35" height="35"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <state key="normal" title="&lt;&lt;" image="prevPlay"/>
                                                     <connections>
                                                         <action selector="prevButtonPressed:" destination="PWy-43-R2i" eventType="touchUpInside" id="hVG-R3-OGe"/>
                                                     </connections>
                                                 </button>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bufferCircle1" id="9lW-0F-dFq">
-                                                    <rect key="frame" x="135" y="349" width="50" height="50"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                </imageView>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="P8D-XJ-ySz">
-                                                    <rect key="frame" x="6" y="376" width="54" height="24"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="thin" pointSize="9"/>
-                                                    <state key="normal" title="播放列表">
-                                                        <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </state>
-                                                    <connections>
-                                                        <action selector="songListButtonPressed:" destination="PWy-43-R2i" eventType="touchUpInside" id="TXW-Fa-yFD"/>
-                                                    </connections>
-                                                </button>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="playlist" id="RXR-6j-A8H">
-                                                    <rect key="frame" x="22" y="362" width="20" height="15"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                    <rect key="frame" x="276" y="360" width="30" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                                                </imageView>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bufferCircle1" id="9lW-0F-dFq">
+                                                    <rect key="frame" x="135" y="350" width="50" height="50"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                 </imageView>
                                             </subviews>
                                             <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="0.0"/>
@@ -1299,7 +1288,6 @@
                                             <outlet property="playingLabel" destination="GkG-OC-hHg" id="d1A-Fl-ojI"/>
                                             <outlet property="preButton" destination="pMj-nW-pUe" id="AFq-1r-s11"/>
                                             <outlet property="progressBar" destination="18F-qB-wBm" id="hUN-F3-4Gv"/>
-                                            <outlet property="songListButton" destination="P8D-XJ-ySz" id="FLO-71-Dfb"/>
                                             <outlet property="songListImage" destination="RXR-6j-A8H" id="oBd-bc-5LO"/>
                                         </connections>
                                     </tableViewCell>
@@ -2434,10 +2422,11 @@
         <image name="me-filled" width="25" height="25"/>
         <image name="morethan" width="17" height="17"/>
         <image name="musicCover" width="250" height="250"/>
-        <image name="nextPlay" width="50" height="50"/>
-        <image name="play" width="50" height="50"/>
-        <image name="playlist" width="141" height="90"/>
-        <image name="prevPlay" width="50" height="50"/>
+        <image name="nextPlay" width="100" height="100"/>
+        <image name="pause" width="100" height="100"/>
+        <image name="play" width="100" height="100"/>
+        <image name="playlist" width="100" height="100"/>
+        <image name="prevPlay" width="100" height="100"/>
         <image name="sample" width="500" height="500"/>
         <image name="search" width="25" height="25"/>
         <image name="search-filled" width="25" height="25"/>
