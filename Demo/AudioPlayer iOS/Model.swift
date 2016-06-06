@@ -23,6 +23,8 @@ class Album : BaseModelObject {
     var name: String = ""
     var author: String = ""
     var image: String = ""
+    var count: Int = 0
+    var listenCount : String = ""
     var courseType = CourseType.Common
     var songs = [Song]()
     

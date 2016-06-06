@@ -13,4 +13,5 @@ import UIKit
 class MoreLinkCell : UITableViewCell {
     
     
+    @IBOutlet weak var moreCommentLabel: UILabel!
 }

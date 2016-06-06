@@ -151,7 +151,7 @@ class BaseUIViewController: UIViewController, AudioPlayerDelegate {
 
 extension BaseUIViewController {
     func displayMessage(message : String) {
-        
+        print("displayMessage")
         let alertView = UIAlertView()
         //alertView.title = "系统提示"
         alertView.message = message
@@ -162,7 +162,7 @@ extension BaseUIViewController {
     }
     
     func displayMessage(message : String, delegate: UIAlertViewDelegate) {
-        
+        print("displayMessage: delegate")
         let alertView = UIAlertView()
         //alertView.title = "系统提示"
         alertView.message = message

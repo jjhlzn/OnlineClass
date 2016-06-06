@@ -10,6 +10,7 @@ import UIKit
 
 class AlbumCell: UITableViewCell {
     
+    @IBOutlet weak var listenCountAndCountLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
     
     @IBOutlet weak var authorLabel: UILabel!

@@ -13,6 +13,7 @@ class CommonPlayerPageViewController : NSObject, UITableViewDataSource, UITableV
     
     var viewController: SongViewController!
     var comments: [Comment]!
+    var totalCommentCount = 0
     var showHasMoreLink = true
     
     var heightCache = [String: CGFloat]()
@@ -71,6 +72,7 @@ class CommonPlayerPageViewController : NSObject, UITableViewDataSource, UITableV
             if row == 0 {
                 
                 let cell = tableView.dequeueReusableCellWithIdentifier("commentHeaderCell") as! CommentHeaderCell
+                cell.countLabel.text = "(" + "\(self.totalCommentCount)" + ")"
                 return cell
                 
             } else   {
@@ -78,8 +80,9 @@ class CommonPlayerPageViewController : NSObject, UITableViewDataSource, UITableV
                     let cell = tableView.dequeueReusableCellWithIdentifier("noCommentCell")
                     return cell!
                 } else if row == rowCount + 1 {  //最后一行
-                    let cell = tableView.dequeueReusableCellWithIdentifier("moreCommentCell")
-                    return cell!
+                    let cell = tableView.dequeueReusableCellWithIdentifier("moreCommentCell") as! MoreLinkCell
+                    cell.moreCommentLabel.text = "查看全部\(self.totalCommentCount)条评论 >"
+                    return cell
                 } else {
                     return getCommonCell(tableView, row: row)
                 }
@@ -206,6 +209,8 @@ class CommonPlayerPageViewController : NSObject, UITableViewDataSource, UITableV
                                                 print(resp.errorMessage)
                                                 return
                                             }
+                                            
+                                            self.totalCommentCount = resp.totalNumber
                                             self.viewController.playerPageViewController.comments = resp.resultSet
                                             self.viewController.tableView.reloadSections(NSIndexSet(index: 1), withRowAnimation: .None)
                                         }

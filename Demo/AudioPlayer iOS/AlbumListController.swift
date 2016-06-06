@@ -114,6 +114,7 @@ extension AlbumListController {
             let album = pagableController.data[indexPath.row]
             cell.nameLabel.text = album.name
             cell.authorLabel.text = album.author
+            cell.listenCountAndCountLabel.text = "\(album.listenCount), \(album.count)集"
             if album.hasImage {
                 cell.albumImage.downloadedFrom(link: album.image, contentMode: UIViewContentMode.ScaleAspectFit)
             }

@@ -43,7 +43,7 @@ class BasicService {
             .responseJSON { response in
                 //print("---------------------------------StartRequest---------------------------------")
                 debugPrint(finalParams)
-                debugPrint(response)
+                //debugPrint(response)
                 //print("----------------------------------EndRequest----------------------------------")
                 
                 if response.result.isFailure {
@@ -68,8 +68,8 @@ class BasicService {
     }
     
     func sendRequest<T: ServerResponse>(url: String,
-                     method: Alamofire.Method = .POST,
                      request: ServerRequest,
+                     method: Alamofire.Method = .POST,
                      //controller中定义的处理函数
         completion: (resp: T) -> Void) -> T {
         return sendRequest(url, method: method, severRequest: request, params: request.params, completion: completion)
@@ -101,10 +101,12 @@ class BasicService {
         
     }
     
+    var loginUserStore = LoginUserStore()
     private func getUserInfo() -> [String: AnyObject] {
         var userInfo = [String: AnyObject]()
-        userInfo["userid"] = ""
-        userInfo["token"] = ""
+        let loginUser = loginUserStore.getLoginUser()
+        userInfo["userid"] = loginUser?.userName!
+        userInfo["token"] = loginUser?.token!
         return userInfo
     }
     

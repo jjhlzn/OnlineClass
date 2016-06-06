@@ -26,10 +26,12 @@ class PagableController<T> : NSObject {
     var delegate :PagableControllerDelegate!
     var data = [T]()
     var isShowLoadCompleteText = true
+    var confirmDelegate : ConfirmDelegate?
     
     var refreshControl: UIRefreshControl!
     
     func initController() {
+        confirmDelegate = ConfirmDelegate(controller: viewController)
         if isNeedRefresh {
             refreshControl = UIRefreshControl()
             refreshControl.addTarget(self, action: #selector(refresh), forControlEvents: UIControlEvents.ValueChanged)
@@ -118,6 +120,12 @@ class PagableController<T> : NSObject {
     
     func afterHandleResponse(resp: PageServerResponse<T>) {
         self.quering = false
+        
+        if resp.status == ServerResponseStatus.NoEnoughAuthority.rawValue {
+            self.hasMore = false
+            viewController.displayMessage(resp.errorMessage!, delegate: confirmDelegate!)
+            return
+        }
         
         if resp.status != 0 {
             print("Server Return Error")
@@ -218,4 +226,15 @@ class PagableController<T> : NSObject {
     }
 
 
+}
+
+class ConfirmDelegate : NSObject, UIAlertViewDelegate {
+    var controller : UIViewController
+    init(controller: UIViewController) {
+        self.controller = controller
+    }
+    func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
+        controller.navigationController?.popViewControllerAnimated(true)
+    }
+    
 }

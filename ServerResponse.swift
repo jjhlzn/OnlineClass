@@ -10,6 +10,7 @@ import Foundation
 
 enum ServerResponseStatus : Int {
     case Success = 0
+    case NoEnoughAuthority = -10  //没有足够的权限
 }
 
 class ServerRequest {
@@ -70,13 +71,13 @@ class GetAlbumsRequest : PagedServerRequest {
             var parameters = super.params
             switch courseType {
             case .Common:
-                parameters = ["type": "common"]
+                parameters = ["type": "Common"]
                 break
             case .Live:
-                parameters = ["type": "live"]
+                parameters = ["type": "Live"]
                 break
             case .Vip:
-                parameters = ["type": "vip"]
+                parameters = ["type": "Vip"]
                 break
                 
             }
@@ -103,6 +104,8 @@ class GetAlbumsResponse : PageServerResponse<Album> {
             album.name = albumJson["name"] as! String
             album.author = albumJson["author"] as! String
             album.image = albumJson["image"] as! String
+            album.count = albumJson["count"] as! Int
+            album.listenCount = albumJson["listenCount"] as! String
             album.courseType = CourseType(rawValue: albumJson["type"] as! String)!
             albums.append(album)
         }

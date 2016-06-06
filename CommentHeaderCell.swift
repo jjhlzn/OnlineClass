@@ -10,4 +10,5 @@ import UIKit
 
 class CommentHeaderCell: UITableViewCell {
 
+    @IBOutlet weak var countLabel: UILabel!
 }

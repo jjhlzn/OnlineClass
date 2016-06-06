@@ -150,10 +150,10 @@ extension CourseMainPageViewController : UITableViewDataSource, UITableViewDeleg
                 performSegueWithIdentifier("liveCourseSegue", sender: CourseType.Live.rawValue)
                 break
             case 1:
-                performSegueWithIdentifier("beforeCourseSegue", sender: CourseType.Common.rawValue)
+                performSegueWithIdentifier("beforeCourseSegue", sender: CourseType.Vip.rawValue)
                 break
             case 2:
-                performSegueWithIdentifier("beforeCourseSegue", sender: CourseType.Vip.rawValue)
+                performSegueWithIdentifier("beforeCourseSegue", sender: CourseType.Common.rawValue)
                 break
             default:
                 break
