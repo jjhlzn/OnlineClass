@@ -145,7 +145,7 @@ class SongViewController: BaseUIViewController, UIGestureRecognizerDelegate, Com
        
         
         songListOverlay = UIView(frame: UIScreen.mainScreen().bounds)
-        songListOverlay.backgroundColor = UIColor(white: 0.2, alpha: 0.4)
+        songListOverlay.backgroundColor = UIColor(white: 0, alpha: 0.65)
         
         songListView.removeFromSuperview()
         songListOverlay.addSubview(songListView)
@@ -189,7 +189,13 @@ class SongListDataSource : NSObject, UITableViewDataSource, UITableViewDelegate 
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("songListCell") as! SongListCell
+        let song = songs[indexPath.row]
+        var cell : SongListCell!
+        if controller.audioPlayer.isPlayThisSong(song) {
+            cell = tableView.dequeueReusableCellWithIdentifier("songListCell2") as! SongListCell
+        } else {
+            cell = tableView.dequeueReusableCellWithIdentifier("songListCell") as! SongListCell
+        }
         cell.nameLabel.text = songs[indexPath.row].name
         return cell
     }
@@ -197,7 +203,11 @@ class SongListDataSource : NSObject, UITableViewDataSource, UITableViewDelegate 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let audioPlayer = Utils.getAudioPlayer()
         audioPlayer.playItems(audioPlayer.items!, startAtIndex: indexPath.row)
+        
         controller.playerPageViewController.reload()
+        tableView.deselectRowAtIndexPath(indexPath, animated: false)
+        tableView.reloadData()
+
     }
 }
 
