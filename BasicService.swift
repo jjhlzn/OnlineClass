@@ -43,7 +43,7 @@ class BasicService {
             .responseJSON { response in
                 //print("---------------------------------StartRequest---------------------------------")
                 debugPrint(finalParams)
-                //debugPrint(response)
+                debugPrint(response)
                 //print("----------------------------------EndRequest----------------------------------")
                 
                 if response.result.isFailure {

@@ -846,7 +846,7 @@
                                             <outlet property="courseTypeName" destination="Je6-1Z-Hsy" id="xe8-yc-Io0"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="functionCell" rowHeight="79" id="jJc-bh-4KF" customClass="FunctionCell" customModule="AudioPlayer" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="functionCell" rowHeight="79" id="jJc-bh-4KF" customClass="FunctionCell" customModule="AudioPlayer" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="103" width="320" height="79"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jJc-bh-4KF" id="JAe-eg-zy2">
@@ -936,7 +936,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="laU-XU-h4Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3188" y="-469"/>
+            <point key="canvasLocation" x="3021" y="-585"/>
         </scene>
         <!--搜索-->
         <scene sceneID="kOi-ZK-PgG">
@@ -2342,11 +2342,11 @@
         <image name="wave1" width="24" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="YYP-Ho-b8S"/>
         <segue reference="pCp-Ba-NtI"/>
         <segue reference="Kp8-Nw-Lqb"/>
+        <segue reference="tVi-RP-0bn"/>
+        <segue reference="gK4-D6-0Uz"/>
         <segue reference="VNd-S5-Rjk"/>
-        <segue reference="Q3U-7n-t25"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.94901960784313721" green="0.38039215686274508" blue="0.0" alpha="0.90000000000000002" colorSpace="calibratedRGB"/>
 </document>
