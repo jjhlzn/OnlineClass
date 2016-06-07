@@ -266,10 +266,12 @@ class SendCommentResponse : ServerResponse {
 class LoginRequest : ServerRequest {
     var userName : String 
     var password : String
+    var deviceToken : String
     
-    init(userName : String, password: String) {
+    init(userName : String, password: String, deviceToken: String) {
         self.userName = userName
         self.password = password
+        self.deviceToken = deviceToken
     }
     
     override var params: [String : AnyObject] {
@@ -277,6 +279,7 @@ class LoginRequest : ServerRequest {
             var parameters = super.params
             parameters["userName"] = userName
             parameters["password"] = password
+            parameters["deviceToken"] = deviceToken
             return parameters
         }
     }
@@ -478,4 +481,42 @@ class GetHotSearchWordsResponse : ServerResponse {
             keywords = json["keywords"]  as! [String]
         }
     }
+}
+
+class CheckUpgradeRequest : ServerRequest {
+    
+}
+
+class CheckUpgradeResponse : ServerResponse {
+    var newestVersion = ""
+    var isNeedUpgrade = false
+    var upgradeType = "optional"
+    var upgradeUrl = "http://www.baidu.com"
+    override func parseJSON(request: ServerRequest, json: NSDictionary) {
+        super.parseJSON(request, json: json)
+        if status == 0 {
+            isNeedUpgrade = json["isNeedUpgrade"]  as! Bool
+            newestVersion = json["newestVersion"] as! String
+            if isNeedUpgrade {
+                upgradeType = json["upgradeType"] as! String
+                upgradeUrl = json["upgradeUrl"] as! String
+            }
+        }
+    }
+}
+
+
+class RegisterDeviceRequest : ServerRequest {
+    var deviceToken = ""
+    override var params: [String : AnyObject] {
+        get {
+            var parameters = super.params
+            parameters["deviceToken"] = deviceToken
+            return parameters
+        }
+    }
+}
+
+class RegisterDeviceResponse : ServerResponse {
+    
 }

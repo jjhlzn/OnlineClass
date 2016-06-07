@@ -164,7 +164,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ueE-jL-He1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1369" y="923"/>
+            <point key="canvasLocation" x="1181" y="673"/>
         </scene>
         <!--设置-->
         <scene sceneID="p5d-nN-Nvz">
@@ -691,11 +691,12 @@
                     <connections>
                         <segue destination="59B-S3-xkA" kind="modal" identifier="notLoginSegue" id="Kp8-Nw-Lqb"/>
                         <segue destination="IeE-13-KTg" kind="modal" identifier="hasLoginSegue" id="pCp-Ba-NtI"/>
+                        <segue destination="MBI-uG-znL" kind="modal" identifier="upgradeSegue" id="dcP-3V-tsC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fKN-Zb-buE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-879" y="-596"/>
+            <point key="canvasLocation" x="-1086" y="-618"/>
         </scene>
         <!--登录-->
         <scene sceneID="in9-II-L7U">
@@ -783,7 +784,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="H2f-BP-R0Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-357" y="-508"/>
+            <point key="canvasLocation" x="623" y="-72"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="DBt-Ms-qHP">
@@ -806,7 +807,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ByJ-xc-bHB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-621" y="-174"/>
+            <point key="canvasLocation" x="-156" y="258"/>
         </scene>
         <!--课程-->
         <scene sceneID="HK8-uw-quO">
@@ -973,7 +974,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Dl-Ao-wR4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3469" y="1855"/>
+            <point key="canvasLocation" x="3133" y="1955"/>
         </scene>
         <!--Web Page View Controller-->
         <scene sceneID="wge-sZ-oJ8">
@@ -1007,7 +1008,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IHP-Mp-DaU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3108" y="705"/>
+            <point key="canvasLocation" x="2360" y="784"/>
         </scene>
         <!--我-->
         <scene sceneID="oct-0p-3hq">
@@ -1617,7 +1618,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8PI-eW-0Up" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-627" y="267"/>
+            <point key="canvasLocation" x="-267" y="333"/>
         </scene>
         <!--忘记密码-->
         <scene sceneID="GUZ-XU-krF">
@@ -1948,7 +1949,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rm4-Qz-wnZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4665" y="2240"/>
+            <point key="canvasLocation" x="4817" y="2295"/>
         </scene>
         <!--搜索-->
         <scene sceneID="Puq-vm-CuL">
@@ -2069,7 +2070,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IJc-sj-jGc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2908" y="1604"/>
+            <point key="canvasLocation" x="2562" y="1922"/>
         </scene>
         <!--服务器配置-->
         <scene sceneID="GxA-uE-PWz">
@@ -2146,6 +2147,55 @@
             </objects>
             <point key="canvasLocation" x="-592" y="-1253"/>
         </scene>
+        <!--升级-->
+        <scene sceneID="XCk-h1-Zls">
+            <objects>
+                <viewController title="升级" id="MBI-uG-znL" customClass="UpgradeViewController" customModule="AudioPlayer" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Y2q-vI-1gV">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" id="7EN-Xf-iwD">
+                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <navigationItem title="升级" id="0nw-fM-nS1">
+                                        <barButtonItem key="leftBarButtonItem" title="取消" id="mBi-ZU-Kzk">
+                                            <connections>
+                                                <action selector="cancelPressed:" destination="MBI-uG-znL" id="Ier-HW-pwn"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <webView contentMode="scaleToFill" id="swd-RV-fbf">
+                                <rect key="frame" x="0.0" y="66" width="320" height="502"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="YNf-sH-ypf">
+                        <leftBarButtonItems>
+                            <barButtonItem title="返回" image="backicon" id="Eb4-oW-kVd">
+                                <inset key="imageInsets" minX="-15" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            </barButtonItem>
+                            <barButtonItem title="关闭" id="4AI-Il-BDS"/>
+                        </leftBarButtonItems>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="cancelButton" destination="mBi-ZU-Kzk" id="Yfj-Xj-VGw"/>
+                        <outlet property="webView" destination="swd-RV-fbf" id="ziU-Vx-aDg"/>
+                        <segue destination="mtC-8X-XYd" kind="modal" identifier="startupSegue" id="Z2W-Fc-5CV"/>
+                        <segue destination="IeE-13-KTg" kind="modal" identifier="hasLoginSegue" id="NqG-xf-4Ov"/>
+                        <segue destination="59B-S3-xkA" kind="modal" identifier="notLoginSegue" id="Jrw-Zp-n8P"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zch-KG-J15" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-457" y="-412"/>
+        </scene>
     </scenes>
     <resources>
         <image name="audioUserIcon" width="50" height="50"/>
@@ -2174,11 +2224,11 @@
         <image name="wave1" width="24" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="pCp-Ba-NtI"/>
-        <segue reference="Kp8-Nw-Lqb"/>
+        <segue reference="NqG-xf-4Ov"/>
+        <segue reference="Jrw-Zp-n8P"/>
+        <segue reference="3eS-Pl-zlw"/>
         <segue reference="G0l-Dl-hO0"/>
         <segue reference="ybB-My-glY"/>
-        <segue reference="VNd-S5-Rjk"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.94901960784313721" green="0.38039215686274508" blue="0.0" alpha="0.90000000000000002" colorSpace="calibratedRGB"/>
 </document>

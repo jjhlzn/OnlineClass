@@ -13,7 +13,7 @@ import KDEAudioPlayer
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    
+    var loginUserStore = LoginUserStore()
     var audioPlayer = AudioPlayer()
     var liveProgressTimer : NSTimer?
 
@@ -49,6 +49,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
     
+    var deviceTokenString = ""
     func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
         let tokenChars = UnsafePointer<CChar>(deviceToken.bytes)
         var tokenString = ""
@@ -58,6 +59,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         print("Device Token:", tokenString)
+        
+        deviceTokenString = tokenString
+        
+        registerDeviceTokenToServer(nil)
+    }
+    
+    
+    func registerDeviceTokenToServer(completionHandler: ((response: RegisterDeviceResponse) -> Void)?) {
+        let loginUser = loginUserStore.getLoginUser()
+        if loginUser != nil {
+            let request = RegisterDeviceRequest()
+            request.deviceToken = deviceTokenString
+            BasicService().sendRequest(ServiceConfiguration.REGISTER_DEVICE, request: request) {
+                (resp: RegisterDeviceResponse) -> Void in
+                print("register \(self.deviceTokenString) to \((loginUser?.userName)!)")
+                if completionHandler  != nil {
+                    completionHandler!(response: resp)
+                }
+            }
+            
+        }
     }
     
     func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {

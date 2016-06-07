@@ -8,13 +8,50 @@
 
 import UIKit
 
-class StartupViewController: UIViewController {
+class StartupViewController: BaseUIViewController {
     
     var loginUserStore = LoginUserStore()
+    var isForceUpgrade = false
+    var isSkipUpgradeCheck = false
     
+    var optionalUpgradeAlertViewDelegate : OptionalUpgradeAlertViewDelegate!
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        
+        optionalUpgradeAlertViewDelegate = OptionalUpgradeAlertViewDelegate(controller: self)
+        
+        if isSkipUpgradeCheck {
+            checkLoginUser()
+        } else {
+            BasicService().sendRequest(ServiceConfiguration.CHECK_UPGRADE, request: CheckUpgradeRequest()) {
+                (resp : CheckUpgradeResponse) -> Void in
+                if resp.status != 0 {
+                    self.displayMessage(resp.errorMessage!)
+                    self.checkLoginUser()
+                    return
+                }
+                
+                if resp.isNeedUpgrade {
+                    self.isForceUpgrade = ("force" == resp.upgradeType)
+                    
+                    if self.isForceUpgrade {
+                        self.displayForceUpgradeConfirmMessage ("请升级新版本", delegate: self.optionalUpgradeAlertViewDelegate)
+                    } else {
+                        self.displayOptionUpgradeConfirmMessage("有新版本，去升级吗？", delegate: self.optionalUpgradeAlertViewDelegate)
+                    }
+                } else {
+                    self.checkLoginUser()
+                }
+            }
+            
+            
+        }
+        
+        return
+    }
+    
+    private func checkLoginUser() {
         //检查一下是否已经登录，如果登录，则直接进入后面的页面
         let loginUser = loginUserStore.getLoginUser()
         if  loginUser != nil {
@@ -26,10 +63,64 @@ class StartupViewController: UIViewController {
             self.performSegueWithIdentifier("notLoginSegue", sender: self)
         }
 
-        
+    }
+    
+
+    
+    func displayOptionUpgradeConfirmMessage(message : String, delegate: UIAlertViewDelegate) {
+        let alertView = UIAlertView()
+        //alertView.title = "系统提示"
+        alertView.message = message
+        alertView.addButtonWithTitle("去升级")
+        alertView.addButtonWithTitle("取消")
+        alertView.delegate=delegate
+        alertView.show()
+    }
+    
+    func displayForceUpgradeConfirmMessage(message : String, delegate: UIAlertViewDelegate) {
+        let alertView = UIAlertView()
+        //alertView.title = "系统提示"
+        alertView.message = message
+        alertView.addButtonWithTitle("去升级")
+        alertView.delegate=delegate
+        alertView.show()
+    }
+
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        super.prepareForSegue(segue, sender: sender)
+        if segue.identifier == "upgradeSegue" {
+            let dest = segue.destinationViewController as! UpgradeViewController
+            dest.isForceUpgrade = isForceUpgrade
+            dest.url = NSURL(string: "http://www.baidu.com")
+        }
     }
     
     
+    class OptionalUpgradeAlertViewDelegate : NSObject, UIAlertViewDelegate {
+        
+        var controller : StartupViewController
+        
+        init(controller: StartupViewController) {
+            self.controller = controller
+        }
+    
+        func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
+            switch buttonIndex {
+            case 0:
+                
+                print("click 0")
+                controller.performSegueWithIdentifier("upgradeSegue", sender: nil)
+                break;
+            case 1:
+                print("click 1")
+                controller.checkLoginUser()
+                break;
+            default:
+                break;
+            }
+        }
+    }
     
 
 }

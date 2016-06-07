@@ -27,6 +27,7 @@
 		1C2684781CCB59210032C014 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C2684771CCB59200032C014 /* LoginViewController.swift */; };
 		1C2FC9271CFEE5BA0057EB93 /* EmojiKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C2FC9261CFEE5BA0057EB93 /* EmojiKeyboard.swift */; };
 		1C33A5701D059A5D00E87803 /* StartupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C33A56F1D059A5D00E87803 /* StartupViewController.swift */; };
+		1C33F02F1D066C5F00D3EE4C /* UpgradeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C33F02E1D066C5F00D3EE4C /* UpgradeViewController.swift */; };
 		1C3479BD1CF2F9BD003FEF05 /* FirstPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C3479BC1CF2F9BD003FEF05 /* FirstPageViewController.swift */; };
 		1C3479C01CF3EBEF003FEF05 /* LivePlayerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C3479BF1CF3EBEF003FEF05 /* LivePlayerCell.swift */; };
 		1C3479C21CF4236A003FEF05 /* LivePlayerPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C3479C11CF4236A003FEF05 /* LivePlayerPageViewController.swift */; };
@@ -107,6 +108,7 @@
 		1C2684771CCB59200032C014 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		1C2FC9261CFEE5BA0057EB93 /* EmojiKeyboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmojiKeyboard.swift; sourceTree = "<group>"; };
 		1C33A56F1D059A5D00E87803 /* StartupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartupViewController.swift; sourceTree = "<group>"; };
+		1C33F02E1D066C5F00D3EE4C /* UpgradeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpgradeViewController.swift; sourceTree = "<group>"; };
 		1C3479BC1CF2F9BD003FEF05 /* FirstPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstPageViewController.swift; sourceTree = "<group>"; };
 		1C3479BF1CF3EBEF003FEF05 /* LivePlayerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LivePlayerCell.swift; sourceTree = "<group>"; };
 		1C3479C11CF4236A003FEF05 /* LivePlayerPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LivePlayerPageViewController.swift; sourceTree = "<group>"; };
@@ -349,6 +351,7 @@
 				1CEFF79D1CC21E98000DEFF7 /* BaseUIViewController.swift */,
 				E2A9AFAB1C498E2900FE943A /* Info.plist */,
 				1C33A56F1D059A5D00E87803 /* StartupViewController.swift */,
+				1C33F02E1D066C5F00D3EE4C /* UpgradeViewController.swift */,
 				1CA3B20F1CD86B7800D0ABD8 /* MainPageViewController.swift */,
 				1CEFF7801CBFB73D000DEFF7 /* AlbumListController.swift */,
 				1C3DC3911CFD8EC5007807AF /* LiveAlbumListController.swift */,
@@ -588,6 +591,7 @@
 				1CD349641CF8167C00037F78 /* WebPageViewController.swift in Sources */,
 				1CD349721CF9AC7D00037F78 /* PersonalInfoCell2.swift in Sources */,
 				1C1E691B1CC90A6500CEA029 /* PlayerCell.swift in Sources */,
+				1C33F02F1D066C5F00D3EE4C /* UpgradeViewController.swift in Sources */,
 				1CD3496A1CF9802C00037F78 /* FormCell.swift in Sources */,
 				1C2684741CCA62F40032C014 /* MyInfoVieController.swift in Sources */,
 				1CEFF7961CC0C4C9000DEFF7 /* SongCell.swift in Sources */,

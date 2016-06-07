@@ -111,8 +111,6 @@ class LoginViewController: BaseUIViewController {
         
     }
     
-    
-    
     func keyboardWillHide(notification: NSNotification) {
         if isKeyboardShow {
             isKeyboardShow = false
@@ -138,7 +136,7 @@ class LoginViewController: BaseUIViewController {
         
         loadingOverlay.showOverlay(self.view)
         
-        let request = LoginRequest(userName: userName, password: password)
+        let request = LoginRequest(userName: userName, password: password, deviceToken: (UIApplication.sharedApplication().delegate as! AppDelegate).deviceTokenString)
         BasicService().sendRequest(ServiceConfiguration.LOGIN, request: request) { (response: LoginResponse) -> Void in
             dispatch_async(dispatch_get_main_queue()) {
                 self.loadingOverlay.hideOverlayView()

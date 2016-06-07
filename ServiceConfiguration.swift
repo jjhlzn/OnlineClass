@@ -51,7 +51,19 @@ class ServiceConfiguration {
             }
         }
     }
-
+    
+    //App
+    static var CHECK_UPGRADE : String {
+        get {
+            return "\(http)://\(serverName):\(port)/app/checkUpgrade"
+        }
+    }
+    
+    static var REGISTER_DEVICE : String {
+        get {
+            return "\(http)://\(serverName):\(port)/app/registerDevice"
+        }
+    }
 
     
     //User
