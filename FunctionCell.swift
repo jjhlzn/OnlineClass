@@ -10,43 +10,12 @@ import UIKit
 
 class FunctionCell: UITableViewCell {
 
-    @IBOutlet weak var firstImageView: UIImageView!
-    @IBOutlet weak var firstLabel: UILabel!
+
     
-    @IBOutlet weak var secondImageView: UIImageView!
-    @IBOutlet weak var secondLabel: UILabel!
+    var images = [UIImageView]()
+    var labels = [UILabel]()
     
-    @IBOutlet weak var thirdImageView: UIImageView!
-    @IBOutlet weak var thirdLabel: UILabel!
-    
-    @IBOutlet weak var fourthImageView: UIImageView!
-    @IBOutlet weak var fourthLabel: UILabel!
-    
-    func getImageView(index: Int) -> UIImageView {
-        switch index {
-        case 0:
-            return firstImageView
-        case 1:
-            return secondImageView
-        case 2:
-            return thirdImageView
-        default:
-            return fourthImageView
-        }
-    }
-    
-    func getLabel(index: Int) -> UILabel {
-        switch index {
-        case 0:
-            return firstLabel
-        case 1:
-            return secondLabel
-        case 2:
-            return thirdLabel
-        default:
-            return fourthLabel
-        }
-    }
+ 
 }
 
  class ExtendFunctionMananger : NSObject {
@@ -77,33 +46,70 @@ class FunctionCell: UITableViewCell {
     func getFunctionCell(tableView: UITableView, row: Int) -> FunctionCell {
         var index = row * 4
         let cell = tableView.dequeueReusableCellWithIdentifier("functionCell") as! FunctionCell
+        
         for i in 0...3 {
             if index >= functions.count {
-                cell.getLabel(i).hidden = true
-                cell.getImageView(i).hidden = true
-            } else {
-                let function = functions[index]
-                cell.getLabel(i).text = function.name
-                let imageView = cell.getImageView(i)
-                imageView.image = UIImage(named: function.imageName)
-                imageView.tag = index
-                
-                if function.isSupport {
-                    imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(imageHandler)))
-                    cell.getLabel(i).addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(imageHandler)))
-                } else {
-                    imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(unSupportHandler)))
-                    cell.getLabel(i).addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(unSupportHandler)))
-                }
-                
-                imageView.userInteractionEnabled = true
-                cell.getLabel(i).userInteractionEnabled = true
-                index = index + 1
+                break
             }
+            print("row = \(row), index = \(index)")
+            let function = functions[index]
+            let imageView = makeImage(row, column: i, index: index, function: function)
+            cell.addSubview(imageView)
+            
+            let label = makeLabel(row, column: i, index: index, function: function, imageView: imageView)
+            cell.addSubview(label)
+            
+            cell.images.append(imageView)
+            cell.labels.append(label)
+            index = index + 1
+            
         }
         
         cell.separatorInset = UIEdgeInsetsMake(0, UIScreen.mainScreen().bounds.width, 0, 0);
+        print(cell)
         return cell
+    }
+    
+    
+    let imageWidth : CGFloat = 40
+    let cellHeight = 79
+    private func makeImage(row : Int, column : Int, index: Int, function: ExtendFunction) -> UIImageView {
+        let screenWidth = UIScreen.mainScreen().bounds.width
+        let firstPart = CGFloat(screenWidth) - CGFloat(20) * CGFloat(2) - CGFloat(imageWidth) * 4
+        let interval = firstPart / 3
+        let x = 20 + (CGFloat(imageWidth) + interval) * CGFloat(column)
+        let y = 10
+        let imageView = UIImageView(frame: CGRectMake(x, CGFloat(y), imageWidth, imageWidth))
+        imageView.image = UIImage(named: function.imageName)
+        imageView.tag = index
+        if function.isSupport {
+            imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(imageHandler)))
+        } else {
+            imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(unSupportHandler)))
+        }
+        
+        imageView.userInteractionEnabled = true
+        return imageView
+    }
+    
+    private func makeLabel(row : Int, column : Int, index: Int, function: ExtendFunction, imageView: UIImageView) -> UILabel {
+        let screenWidth = UIScreen.mainScreen().bounds.width
+        let labelWidth =  screenWidth / 4
+        let x =  labelWidth * CGFloat(column)
+        let y = 54
+        let label = UILabel(frame: CGRectMake(x, CGFloat(y), labelWidth, 21))
+        label.textAlignment = .Center
+        label.font = label.font.fontWithSize(13)
+        label.center.x = imageView.center.x
+        label.text = function.name
+        if function.isSupport {
+            label.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(imageHandler)))
+        } else {
+            label.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(unSupportHandler)))
+        }
+        label.userInteractionEnabled = true
+        return label
+        
     }
     
     
