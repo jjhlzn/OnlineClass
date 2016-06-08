@@ -42,8 +42,8 @@ class BasicService {
         Alamofire.request(request)
             .responseJSON { response in
                 //print("---------------------------------StartRequest---------------------------------")
-                debugPrint(finalParams)
-                debugPrint(response)
+                //debugPrint(finalParams)
+                //debugPrint(response)
                 //print("----------------------------------EndRequest----------------------------------")
                 
                 if response.result.isFailure {

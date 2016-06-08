@@ -12,8 +12,8 @@ class FunctionCell: UITableViewCell {
 
 
     
-    var images = [UIImageView]()
-    var labels = [UILabel]()
+    //var images = [UIImageView]()
+    //var labels = [UILabel]()
     
  
 }
@@ -92,15 +92,10 @@ class ExtendFunctionMananger : NSObject {
                 function = moreFunction!
             }
             
+            //print("cell.width = \(cell.bounds.width)")
+            addCellView(row, column: i, index: index, function: function, cell: cell)
             
-            let imageView = makeImage(row, column: i, index: index, function: function)
-            cell.addSubview(imageView)
-            
-            let label = makeLabel(row, column: i, index: index, function: function, imageView: imageView)
-            cell.addSubview(label)
-            
-            cell.images.append(imageView)
-            cell.labels.append(label)
+           
             index = index + 1
             
         }
@@ -110,39 +105,59 @@ class ExtendFunctionMananger : NSObject {
     }
     
     
-    let imageWidth : CGFloat = 40
-    let cellHeight = 79
-    private func makeImage(row : Int, column : Int, index: Int, function: ExtendFunction) -> UIImageView {
-        let screenWidth = UIScreen.mainScreen().bounds.width
-        let firstPart = CGFloat(screenWidth) - CGFloat(20) * CGFloat(2) - CGFloat(imageWidth) * 4
-        let interval = firstPart / 3
-        let x = 20 + (CGFloat(imageWidth) + interval) * CGFloat(column)
-        let y = 10
-        let imageView = UIImageView(frame: CGRectMake(x, CGFloat(y), imageWidth, imageWidth))
-        imageView.image = UIImage(named: function.imageName)
-        imageView.tag = index
+    private func addCellView(row : Int, column : Int, index: Int, function: ExtendFunction, cell: UITableViewCell) -> UIView {
+        let interval : CGFloat = UIScreen.mainScreen().bounds.width / 4
+        let x = interval  * CGFloat(column)
+        let y = 0
+        print("x = \(x), y = \(y), width = \(interval), height = 79")
+        let cellView = UIView(frame: CGRectMake(x, 0, interval, 79))
+        
+        cell.addSubview(cellView)
+        
+        let imageView = makeImage(index, function: function, superView: cellView)
+        let label =     makeLabel(index, function: function, superView: cellView)
+        
+        cellView.addSubview(imageView)
+        cellView.addSubview(label)
+        
         if function.action != nil {
-            imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: function.action ))
+            cellView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: function.action ))
+            cellView.userInteractionEnabled = true
         }
         
-        imageView.userInteractionEnabled = true
+        return cellView
+
+    }
+    
+    
+    let imageWidth : CGFloat = 40
+    let cellHeight = 79
+    private func makeImage(index: Int, function: ExtendFunction, superView: UIView) -> UIImageView {
+        let imageView = UIImageView(frame: CGRectMake(0, 0, imageWidth, imageWidth))
+        imageView.center.x = superView.bounds.width / 2
+        imageView.center.y = superView.bounds.height / 2 - 10
+        print("superView.center.x = \(superView.center.x), superView.center.y - 10 = \(superView.center.y - 10)")
+        imageView.image = UIImage(named: function.imageName)
+        imageView.tag = index
+        
         return imageView
     }
     
-    private func makeLabel(row : Int, column : Int, index: Int, function: ExtendFunction, imageView: UIImageView) -> UILabel {
+    private func makeLabel(index: Int, function: ExtendFunction, superView: UIView) -> UILabel {
         let screenWidth = UIScreen.mainScreen().bounds.width
         let labelWidth =  screenWidth / 4
-        let x =  labelWidth * CGFloat(column)
-        let y = 54
-        let label = UILabel(frame: CGRectMake(x, CGFloat(y), labelWidth, 21))
+        
+        let label = UILabel(frame: CGRectMake(0, 0, labelWidth, 21))
+        label.tag = index
+        
+        label.center.x = superView.bounds.width / 2
+        label.center.y = superView.bounds.height / 2 + imageWidth / 2 + 5
+
         label.textAlignment = .Center
         label.font = label.font.fontWithSize(13)
-        label.center.x = imageView.center.x
+        label.textColor = UIColor.blackColor()
         label.text = function.name
-        if function.action != nil {
-            label.addGestureRecognizer(UITapGestureRecognizer(target: self, action: function.action ))
-        }
-        label.userInteractionEnabled = true
+        
         return label
         
     }
