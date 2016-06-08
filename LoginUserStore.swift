@@ -12,7 +12,7 @@ import CoreData
 class LoginUserStore {
     var coreDataStack = CoreDataStack(modelName: Utils.Model_Name)
     
-    func saveLoginUser(userName: String, password: String, name: String, token: String) -> Bool {
+    func saveLoginUser(userName: String, password: String, name: String, sex: String, codeImageUrl: String, token: String) -> Bool {
         removeLoginUser()
         
         //存储登录的信息
@@ -23,6 +23,8 @@ class LoginUserStore {
             user.userName = userName
             user.password = password
             user.name = name
+            user.sex = sex
+            user.codeImageUrl = codeImageUrl
             user.lastLoginTime = NSDate()
             user.token = token
         }
@@ -35,6 +37,18 @@ class LoginUserStore {
             return false
         }
         return true
+    }
+    
+    func updateLoginUser() -> Bool {
+        do {
+            try coreDataStack.saveChanges()
+        }
+        catch let error {
+            print("Core Data save failed: \(error)")
+            return false
+        }
+        return true
+        
     }
     
     func getLoginUser() -> LoginUserEntity? {

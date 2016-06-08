@@ -20,4 +20,6 @@ extension LoginUserEntity {
     @NSManaged var password: String?
     @NSManaged var lastLoginTime: NSDate?
 
+    @NSManaged var sex: String?
+    @NSManaged var codeImageUrl: String?
 }

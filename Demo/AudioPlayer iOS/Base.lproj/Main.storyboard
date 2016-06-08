@@ -142,7 +142,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="barcode" id="wZ8-IS-3GG">
-                                                    <rect key="frame" x="265" y="14" width="20" height="20"/>
+                                                    <rect key="frame" x="268" y="14" width="20" height="20"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
                                             </subviews>
@@ -160,11 +160,132 @@
                     <navigationItem key="navigationItem" title="个人资料" id="z69-xw-TuM"/>
                     <connections>
                         <outlet property="tableView" destination="VBJ-fs-lNt" id="o7H-Cy-kDY"/>
+                        <segue destination="vNC-ta-SAY" kind="push" identifier="setNameSegue" id="3B5-RV-nDv"/>
+                        <segue destination="68y-yK-JRN" kind="push" identifier="setSexSegue" id="fZc-0h-GYi"/>
+                        <segue destination="tlV-Sn-3a7" kind="push" id="rka-yI-XBB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ueE-jL-He1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1181" y="673"/>
+            <point key="canvasLocation" x="997" y="2323"/>
+        </scene>
+        <!--二维码-->
+        <scene sceneID="zcg-kT-Pr4">
+            <objects>
+                <viewController id="tlV-Sn-3a7" customClass="CodeImageViewController" customModule="AudioPlayer" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="7xt-Of-WdR">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="CbA-f3-TaB">
+                                <rect key="frame" x="20" y="143" width="280" height="280"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="二维码" id="Z51-eT-H9A"/>
+                    <connections>
+                        <outlet property="codeImageView" destination="CbA-f3-TaB" id="K0R-Ib-ZO9"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7EG-bo-2sb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1193" y="3416"/>
+        </scene>
+        <!--性别-->
+        <scene sceneID="gtX-7i-YBV">
+            <objects>
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="68y-yK-JRN" customClass="SetSexViewController" customModule="AudioPlayer" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="tFP-nK-EMA">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="cba-2Y-apR">
+                                <rect key="frame" x="0.0" y="35" width="320" height="575"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="sexCell" id="hJP-rI-wd2">
+                                        <rect key="frame" x="0.0" y="50" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hJP-rI-wd2" id="Vvx-SS-SWa">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="性别" id="PBd-5u-oD6">
+                        <barButtonItem key="rightBarButtonItem" title="保存" id="nfb-6I-JXZ">
+                            <connections>
+                                <action selector="savePressed:" destination="68y-yK-JRN" id="Ik6-jl-L79"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="cba-2Y-apR" id="aed-Ps-aJ1"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jwi-qn-m72" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="927" y="3238"/>
+        </scene>
+        <!--名字-->
+        <scene sceneID="I9X-Ul-hLn">
+            <objects>
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="vNC-ta-SAY" customClass="SetNameViewController" customModule="AudioPlayer" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Dul-Cz-g4u">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="zLs-ag-xlY">
+                                <rect key="frame" x="0.0" y="35" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="textFieldCell" id="jxh-6O-GDT" customClass="TextFieldCell" customModule="AudioPlayer" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="50" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jxh-6O-GDT" id="Ir8-rh-oNS">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="名字" textAlignment="natural" minimumFontSize="17" id="gao-g1-fbe">
+                                                    <rect key="frame" x="8" y="8" width="312" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="textField" destination="gao-g1-fbe" id="csp-b1-QqX"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="名字" id="wNS-3C-DTQ">
+                        <barButtonItem key="rightBarButtonItem" title="保存" id="rmd-fc-mwn">
+                            <connections>
+                                <action selector="savePressed:" destination="vNC-ta-SAY" id="AaL-iM-nl3"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="saveButton" destination="rmd-fc-mwn" id="n9t-ig-jkL"/>
+                        <outlet property="tableView" destination="zLs-ag-xlY" id="qIq-sO-04v"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HoU-LV-M1e" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1443" y="2323"/>
         </scene>
         <!--设置-->
         <scene sceneID="p5d-nN-Nvz">
@@ -312,7 +433,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ntW-79-2BF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="574" y="2323"/>
+            <point key="canvasLocation" x="590" y="2323"/>
         </scene>
         <!--课程-->
         <scene sceneID="tne-QT-ifu">
@@ -679,6 +800,29 @@
             </objects>
             <point key="canvasLocation" x="4747" y="-288"/>
         </scene>
+        <!--Test Auk View Controller-->
+        <scene sceneID="Jyr-eg-9us">
+            <objects>
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="LAS-At-8SP" customClass="TestAukViewController" customModule="AudioPlayer" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="wlF-F7-As8">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="VUn-3t-2sc">
+                                <rect key="frame" x="0.0" y="30" width="320" height="137"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="scrollView" destination="VUn-3t-2sc" id="Pjj-QQ-2Xb"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SUn-9W-nRg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1193" y="-1135"/>
+        </scene>
         <!--启动-->
         <scene sceneID="IfE-Nn-UJb">
             <objects>
@@ -696,7 +840,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fKN-Zb-buE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1086" y="-618"/>
+            <point key="canvasLocation" x="-1056" y="-513"/>
         </scene>
         <!--登录-->
         <scene sceneID="in9-II-L7U">
@@ -2145,7 +2289,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sXB-xj-L50" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-592" y="-1253"/>
+            <point key="canvasLocation" x="-621" y="-1287"/>
         </scene>
         <!--升级-->
         <scene sceneID="XCk-h1-Zls">
@@ -2194,7 +2338,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zch-KG-J15" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-457" y="-412"/>
+            <point key="canvasLocation" x="-335" y="-445"/>
         </scene>
     </scenes>
     <resources>
@@ -2224,11 +2368,11 @@
         <image name="wave1" width="24" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="NqG-xf-4Ov"/>
-        <segue reference="Jrw-Zp-n8P"/>
+        <segue reference="pCp-Ba-NtI"/>
+        <segue reference="Kp8-Nw-Lqb"/>
+        <segue reference="tVi-RP-0bn"/>
+        <segue reference="gK4-D6-0Uz"/>
         <segue reference="3eS-Pl-zlw"/>
-        <segue reference="G0l-Dl-hO0"/>
-        <segue reference="ybB-My-glY"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.94901960784313721" green="0.38039215686274508" blue="0.0" alpha="0.90000000000000002" colorSpace="calibratedRGB"/>
 </document>

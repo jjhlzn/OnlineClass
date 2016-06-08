@@ -288,6 +288,8 @@ class LoginRequest : ServerRequest {
 class LoginResponse : ServerResponse {
     var name : String?
     var token : String?
+    var sex: String = ""
+    var codeImageUrl: String = ""
     
     required init() {
         
@@ -299,6 +301,8 @@ class LoginResponse : ServerResponse {
         if status == 0 {
             name = json["name"] as? String
             token = json["token"] as? String
+            sex = json["sex"] as! String
+            codeImageUrl = json["codeImageUrl"] as! String
         }
     }
 
@@ -518,5 +522,35 @@ class RegisterDeviceRequest : ServerRequest {
 }
 
 class RegisterDeviceResponse : ServerResponse {
+    
+}
+
+class SetNameRequest : ServerRequest {
+    var newName = ""
+    override var params: [String : AnyObject] {
+        get {
+            var parameters = super.params
+            parameters["newName"] = newName
+            return parameters
+        }
+    }
+}
+
+class SetNameResponse : ServerResponse {
+    
+}
+
+class SetSexRequest : ServerRequest {
+    var newSex = ""
+    override var params: [String : AnyObject] {
+        get {
+            var parameters = super.params
+            parameters["newSex"] = newSex
+            return parameters
+        }
+    }
+}
+
+class SetSexResponse : ServerResponse {
     
 }

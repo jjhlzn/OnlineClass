@@ -142,7 +142,7 @@ class LoginViewController: BaseUIViewController {
                 self.loadingOverlay.hideOverlayView()
                 if response.status == 0 {
 
-                        if self.loginUserStore.saveLoginUser(userName, password: password, name: response.name!, token: response.token!) {
+                        if self.loginUserStore.saveLoginUser(userName, password: password, name: response.name!, sex: response.sex, codeImageUrl: response.codeImageUrl, token: response.token!) {
                             self.performSegueWithIdentifier("loginSuccessSegue", sender: self)
                         } else {
                             self.displayMessage("登录失败")

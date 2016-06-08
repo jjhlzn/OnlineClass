@@ -31,13 +31,17 @@ class PersonalInfoViewController: BaseUIViewController, UITableViewDataSource, U
         case 0:
             let cell = tableView.dequeueReusableCellWithIdentifier("personalItemCell") as! PersonalInfoCell
             cell.nameLabel.text = "姓名"
-            cell.valueLabel.text = "张三"
+            cell.valueLabel.text = LoginUserStore().getLoginUser()?.name
             return cell
             
         case 1:
             let cell = tableView.dequeueReusableCellWithIdentifier("personalItemCell") as! PersonalInfoCell
             cell.nameLabel.text = "性别"
-            cell.valueLabel.text = "男"
+            if LoginUserStore().getLoginUser()?.sex == nil {
+                cell.valueLabel.text = "保密"
+            } else {
+                cell.valueLabel.text = LoginUserStore().getLoginUser()?.sex!
+            }
             return cell
         
         case 2:
@@ -51,6 +55,17 @@ class PersonalInfoViewController: BaseUIViewController, UITableViewDataSource, U
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let row = indexPath.row
+        switch row {
+        case 0:
+            performSegueWithIdentifier("setNameSegue", sender: nil)
+            break
+        case 1:
+            performSegueWithIdentifier("setSexSegue", sender: nil)
+            break
+        default:
+            break
+        }
         tableView.deselectRowAtIndexPath(indexPath, animated: false)
     }
     

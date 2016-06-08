@@ -109,6 +109,18 @@ class ServiceConfiguration {
         }
     }
     
+    static var SET_NAME : String {
+        get {
+            return "\(http)://\(serverName):\(port)/user/setName"
+        }
+    }
+    
+    static var SET_SEX : String {
+        get {
+            return "\(http)://\(serverName):\(port)/user/setSex"
+        }
+    }
+    
     
     //Albums
     static var GET_ALBUMS : String {
