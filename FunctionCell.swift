@@ -77,7 +77,7 @@ class ExtendFunctionMananger : NSObject {
     func getFunctionCell(tableView: UITableView, row: Int) -> FunctionCell {
         var index = row * buttonCountEachRow
         let cell = tableView.dequeueReusableCellWithIdentifier("functionCell") as! FunctionCell
-        print("row = \(row)")
+        //print("row = \(row)")
         for i in 0...(buttonCountEachRow - 1) {
             
             if index >= functions.count {
@@ -85,7 +85,7 @@ class ExtendFunctionMananger : NSObject {
                 break
             }
             
-            print("index = \(index)")
+            // print("index = \(index)")
             
             var function = functions[index]
             if isNeedMoreButton()  && index == (showMaxRows * buttonCountEachRow - 1) {

@@ -246,7 +246,7 @@ extension CourseMainPageViewController : UITableViewDataSource, UITableViewDeleg
             let row = indexPath.row
             switch row {
             case 0:
-                performSegueWithIdentifier("liveCourseSegue", sender: CourseType.Live.rawValue)
+                performSegueWithIdentifier("beforeCourseSegue", sender: CourseType.Live.rawValue)
                 break
             case 1:
                 performSegueWithIdentifier("beforeCourseSegue", sender: CourseType.Vip.rawValue)
