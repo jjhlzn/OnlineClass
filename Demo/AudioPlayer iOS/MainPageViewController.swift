@@ -15,12 +15,22 @@ class CourseMainPageViewController: BaseUIViewController {
     
     @IBOutlet weak var playingButton: UIButton!
     var extendFunctionMananger : ExtendFunctionMananger!
+    var ads = [Advertise]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = self
         tableView.delegate = self
-        extendFunctionMananger = ExtendFunctionMananger(controller: self)
+        
+        let screenWidth = UIScreen.mainScreen().bounds.height
+        print("screenWidth = \(screenWidth)")
+        var maxRows = 100
+        if screenWidth < 667 {
+            maxRows = 2
+        }
+        extendFunctionMananger = ExtendFunctionMananger(controller: self, showMaxRows: maxRows)
+        
+        
         addPlayingButton(playingButton)
   
     }
@@ -66,6 +76,10 @@ class CourseMainPageViewController: BaseUIViewController {
     @IBAction func searchPressed(sender: AnyObject) {
         performSegueWithIdentifier("searchSegue", sender: nil)
     }
+    
+    
+    let adImageWidth = UIScreen.mainScreen().bounds.width
+    let adImageRatio : CGFloat = 0.3
 }
 
 
@@ -78,7 +92,7 @@ extension CourseMainPageViewController : UITableViewDataSource, UITableViewDeleg
         if section == 0 {
             return 3
         } else {
-            return extendFunctionMananger.getRowCount()
+            return extendFunctionMananger.getRowCount() + 1
         }
         
     }
@@ -121,17 +135,102 @@ extension CourseMainPageViewController : UITableViewDataSource, UITableViewDeleg
                 return tableView.dequeueReusableCellWithIdentifier("courseTypeCell") as! CourseTypeCell
             }
         } else {
-            let cell = extendFunctionMananger.getFunctionCell(tableView, row: row)
             
-            return cell
+            if row == extendFunctionMananger.getRowCount() {
+                return makeAdvCell()
+            } else {
+                let cell = extendFunctionMananger.getFunctionCell(tableView, row: row)
+                
+                return cell
+            }
         }
     }
     
+    
+    
+    private func makeAdvCell() -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("functionCell")!
+        
+        let imageWidth = adImageWidth
+        let imageHeight = adImageWidth * adImageRatio
+        
+        let cellHeight = computeAdCellHeight()
+        let x : CGFloat = 0
+        var y =  (cellHeight - imageHeight)
+        
+        if y < 0 {
+            y = 0
+        }
+        
+        //print("cellWidth = \(imageWidth), cellHeight = \(cellHeight), imageHeight = \(imageHeight), x = \(x), y = \(y)")
+        
+        let scrollView = UIScrollView(frame: CGRect(x: x, y: y, width: imageWidth, height: imageHeight ))
+        
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.tapAdImageHandler))
+        
+        scrollView.addGestureRecognizer(tapGesture)
+        scrollView.userInteractionEnabled = true
+        
+        cell.addSubview(scrollView)
+        //print("scrollView.superview = \(scrollView.superview)")
+        scrollView.auk.settings.pageControl.backgroundColor =  UIColor.grayColor().colorWithAlphaComponent(0)
+        scrollView.auk.settings.contentMode = UIViewContentMode.ScaleToFill
+        
+        BasicService().sendRequest(ServiceConfiguration.GET_ADS, request: GetAdsRequest()) {
+            (resp : GetAdsResponse) -> Void in
+            if resp.status != 0 {
+                print("ERROR: ads return status is \(resp.status)")
+                return
+            }
+            
+            self.ads = resp.ads
+            for ad in self.ads {
+                // Show remote image
+                scrollView.auk.show(url: ad.imageUrl)
+                
+            }
+            scrollView.auk.startAutoScroll(delaySeconds: 3)
+        }
+        
+        
+        
+        return cell
+    }
 
+    func tapAdImageHandler(sender: UITapGestureRecognizer? = nil) {
+        let scrollView = sender?.view as! UIScrollView
+        scrollView.auk.startAutoScroll(delaySeconds: 3)
+        print(scrollView.auk.currentPageIndex)
+        let index = scrollView.auk.currentPageIndex
+        if index != nil {
+            let params : [String: String] = ["url": ads[index!].clickUrl, "title": ads[index!].title]
+            performSegueWithIdentifier("loadWebPageSegue", sender: params)
+        }
+    }
+
+    private func computeAdCellHeight() -> CGFloat {
+        let section1Height = 3 * 53
+        let section2Height = extendFunctionMananger.getRowCount() * 79
+        let total = section1Height + section2Height + 3 + 65 + 49 - 1
+        var height = UIScreen.mainScreen().bounds.height - CGFloat(total)
+        
+        if height < adImageWidth * adImageRatio  {
+            height = adImageWidth * adImageRatio + 10
+        }
+        return height
+    }
+
+    
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         let section = indexPath.section
+        let row = indexPath.row
         if section == 1 {
-            return 79
+            if row == extendFunctionMananger.getRowCount() {
+                return computeAdCellHeight()
+            } else {
+                return 79
+            }
         } else {
             return 53
         }

@@ -64,6 +64,12 @@ class ServiceConfiguration {
             return "\(http)://\(serverName):\(port)/app/registerDevice"
         }
     }
+    
+    static var GET_ADS : String {
+        get {
+            return "\(http)://\(serverName):\(port)/app/getAds"
+        }
+    }
 
     
     //User

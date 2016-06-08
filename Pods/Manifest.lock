@@ -4,6 +4,7 @@ PODS:
     - moa (~> 2.0)
   - Emoji-swift (0.0.3)
   - KDEAudioPlayer (0.9.0)
+  - Kingfisher (2.4.1)
   - moa (2.1.7)
   - SwiftyJSON (2.3.2)
 
@@ -12,6 +13,7 @@ DEPENDENCIES:
   - Auk (~> 2.1)
   - Emoji-swift
   - KDEAudioPlayer
+  - Kingfisher (~> 2.4)
   - SwiftyJSON (from `https://github.com/SwiftyJSON/SwiftyJSON.git`)
 
 EXTERNAL SOURCES:
@@ -28,9 +30,10 @@ SPEC CHECKSUMS:
   Auk: 4d424f89f340b243826db32f30efed2953d5b687
   Emoji-swift: 1f9bbabce9aebace9fd9824b0dbb0d9eb31a746c
   KDEAudioPlayer: 67c2de50af38d045638b15f246113594b22a7ec2
+  Kingfisher: 41aed5b6c1ed8fa98cf6d75283ce89cf7890f517
   moa: bf5704e649973fdefbcebe7bfa1aa21cdd3292b4
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
 
-PODFILE CHECKSUM: 94797a52bb5a4d4c54467c1835d06e3b858c0f7b
+PODFILE CHECKSUM: cf8f22450162ef18b1017e7e3747689ed4106240
 
 COCOAPODS: 1.0.0

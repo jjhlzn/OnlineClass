@@ -24,6 +24,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Kingfisher.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-AudioPlayer iOS.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -42,17 +47,17 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>073E8243E74CE24D49ADF86029340ACB</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>2C9F8188802DB4395B862D4E5BC72FD3</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>40B0BF126308785D1027032FF80AB074</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>452D4B541C7A44BB3659607E79089148</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -72,7 +77,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C2C13ED9BF64F3F507B24120DCD339A2</key>
+		<key>E4115E95F098E0ECF611D8684914F856</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E96E13C4D3B5B5FC0651440734C2BF4D</key>
 		<dict>
 			<key>primary</key>
 			<true/>

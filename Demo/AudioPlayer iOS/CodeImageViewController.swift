@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class CodeImageViewController: BaseUIViewController {
     
@@ -14,5 +15,14 @@ class CodeImageViewController: BaseUIViewController {
     @IBOutlet weak var codeImageView: UIImageView!
     
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        let loginUser = LoginUserStore().getLoginUser()!
+        
+        if loginUser.codeImageUrl != nil {
+            codeImageView.kf_setImageWithURL(NSURL(string: loginUser.codeImageUrl!)!)
+        }
+    }
 
 }

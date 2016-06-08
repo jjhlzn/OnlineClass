@@ -554,3 +554,32 @@ class SetSexRequest : ServerRequest {
 class SetSexResponse : ServerResponse {
     
 }
+
+
+class Advertise : BaseModelObject {
+    var imageUrl = ""
+    var clickUrl = ""
+    var title = ""
+}
+class GetAdsRequest : ServerRequest {
+    
+}
+
+class GetAdsResponse : ServerResponse {
+    var ads = [Advertise]()
+    
+    override func parseJSON(request: ServerRequest, json: NSDictionary) {
+        super.parseJSON(request, json: json)
+        if status == 0 {
+            let adsJson = json["ads"] as! NSArray
+            for adJson in adsJson {
+                let ad = Advertise()
+                ad.imageUrl = adJson["imageUrl"] as! String
+                ad.clickUrl = adJson["clickUrl"] as! String
+                ad.title = adJson["title"] as! String
+                ads.append(ad)
+            }
+            
+        }
+    }
+}

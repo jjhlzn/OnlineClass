@@ -18,41 +18,81 @@ class FunctionCell: UITableViewCell {
  
 }
 
- class ExtendFunctionMananger : NSObject {
+class ExtendFunctionMananger : NSObject {
     
     var controller : BaseUIViewController
+    var showMaxRows : Int
+    var moreFunction : ExtendFunction?
     
-    var functions = [
-                     ExtendFunction(imageName: "commonCard", name: "去刷卡", isSupport: true, url: "http://www.baidu.com"),
-                     ExtendFunction(imageName: "up", name: "一键提额", isSupport: true, url: "http://www.baidu.com"),
-                     ExtendFunction(imageName: "visa", name: "一键办卡", isSupport: true, url: "http://www.weibo.com"),
-                     ExtendFunction(imageName: "cardManage", name: "卡片管理", isSupport: false, url: "http://www.weibo.com"),
-                     ExtendFunction(imageName: "creditSearch", name: "信用查询", isSupport: true, url: "http://www.weibo.com"),
-                     ExtendFunction(imageName: "mmcSearch", name: "mcc查询", isSupport: true, url: "http://www.weibo.com"),
-                     ExtendFunction(imageName: "shopcart", name: "商城", isSupport: false, url: "http://www.weibo.com"),
-                     ExtendFunction(imageName: "rmb", name: "缴费", isSupport: false, url: "http://www.weibo.com"),
-                     ExtendFunction(imageName: "dollar", name: "贷款", isSupport: false, url: "http://www.weibo.com"),
-                    ]
+    var functions : [ExtendFunction] = [ExtendFunction]()
     
-    init(controller: BaseUIViewController) {
+    init(controller: BaseUIViewController, showMaxRows : Int = 100) {
         self.controller = controller
+        self.showMaxRows = showMaxRows
+        
+        
+        super.init()
+        moreFunction = ExtendFunction(imageName: "moreFunction", name: "更多",  url: "",
+                                      selector: #selector(moreHanlder))
+        functions = [
+            ExtendFunction(imageName: "commonCard", name: "去刷卡", url: "http://www.baidu.com",
+                selector:  #selector(imageHandler)),
+            ExtendFunction(imageName: "up", name: "一键提额", url: "http://www.baidu.com",
+                selector:  #selector(imageHandler)),
+            ExtendFunction(imageName: "visa", name: "一键办卡", url: "http://www.weibo.com",
+                selector:  #selector(imageHandler)),
+            ExtendFunction(imageName: "cardManage", name: "卡片管理", url: "http://www.weibo.com",
+                selector:  #selector(unSupportHandler)),
+            ExtendFunction(imageName: "creditSearch", name: "信用查询", url: "http://www.weibo.com",
+                selector:  #selector(imageHandler)),
+            ExtendFunction(imageName: "mmcSearch", name: "mcc查询",  url: "http://www.weibo.com",
+                selector:  #selector(imageHandler)),
+            ExtendFunction(imageName: "shopcart", name: "商城",  url: "http://www.weibo.com",
+                selector:  #selector(unSupportHandler)),
+            ExtendFunction(imageName: "rmb", name: "缴费",  url: "http://www.weibo.com",
+                 selector:  #selector(unSupportHandler)),
+            ExtendFunction(imageName: "dollar", name: "贷款", url: "http://www.weibo.com",
+                 selector:  #selector(unSupportHandler)),
+        ]
+        
     }
     
-    
+    let buttonCountEachRow = 4
     func getRowCount() -> Int {
-        return (functions.count + 3) / 4
+        let rows = (functions.count + buttonCountEachRow - 1) / buttonCountEachRow
+        let result = rows > showMaxRows ? showMaxRows : rows
+        //print("result = \(result)")
+        return result
+    }
+    
+    func isNeedMoreButton() -> Bool {
+        let buttonCount = showMaxRows * buttonCountEachRow
+        if buttonCount < functions.count {
+            return true
+        } else {
+            return false
+        }
     }
     
     func getFunctionCell(tableView: UITableView, row: Int) -> FunctionCell {
-        var index = row * 4
+        var index = row * buttonCountEachRow
         let cell = tableView.dequeueReusableCellWithIdentifier("functionCell") as! FunctionCell
-        
-        for i in 0...3 {
+        print("row = \(row)")
+        for i in 0...(buttonCountEachRow - 1) {
+            
             if index >= functions.count {
+                print("index = \(index), functions.count = \(functions.count)")
                 break
             }
-            print("row = \(row), index = \(index)")
-            let function = functions[index]
+            
+            print("index = \(index)")
+            
+            var function = functions[index]
+            if isNeedMoreButton()  && index == (showMaxRows * buttonCountEachRow - 1) {
+                function = moreFunction!
+            }
+            
+            
             let imageView = makeImage(row, column: i, index: index, function: function)
             cell.addSubview(imageView)
             
@@ -66,7 +106,6 @@ class FunctionCell: UITableViewCell {
         }
         
         cell.separatorInset = UIEdgeInsetsMake(0, UIScreen.mainScreen().bounds.width, 0, 0);
-        print(cell)
         return cell
     }
     
@@ -82,10 +121,8 @@ class FunctionCell: UITableViewCell {
         let imageView = UIImageView(frame: CGRectMake(x, CGFloat(y), imageWidth, imageWidth))
         imageView.image = UIImage(named: function.imageName)
         imageView.tag = index
-        if function.isSupport {
-            imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(imageHandler)))
-        } else {
-            imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(unSupportHandler)))
+        if function.action != nil {
+            imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: function.action ))
         }
         
         imageView.userInteractionEnabled = true
@@ -102,10 +139,8 @@ class FunctionCell: UITableViewCell {
         label.font = label.font.fontWithSize(13)
         label.center.x = imageView.center.x
         label.text = function.name
-        if function.isSupport {
-            label.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(imageHandler)))
-        } else {
-            label.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(unSupportHandler)))
+        if function.action != nil {
+            label.addGestureRecognizer(UITapGestureRecognizer(target: self, action: function.action ))
         }
         label.userInteractionEnabled = true
         return label
@@ -125,7 +160,11 @@ class FunctionCell: UITableViewCell {
         controller.displayMessage("敬请期待")
     }
     
-
+    func moreHanlder(sender: UITapGestureRecognizer? = nil) {
+        controller.performSegueWithIdentifier("moreFunctionSegue", sender: nil)
+    }
+    
+    
 }
 
 class ExtendFunction {
@@ -133,12 +172,12 @@ class ExtendFunction {
     var name = ""
     var url = ""
     var isSupport = false
-    var actiono : UITapGestureRecognizer?
+    var action : Selector
     
-    init(imageName: String, name: String, isSupport: Bool, url: String) {
+    init(imageName: String, name: String, url: String, selector: Selector) {
         self.imageName = imageName
         self.name = name
-        self.isSupport = isSupport
         self.url = url
+        self.action = selector
     }
 }

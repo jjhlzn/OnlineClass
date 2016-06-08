@@ -33,6 +33,7 @@
 		1C33F0361D0719BE00D3EE4C /* SetNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C33F0351D0719BE00D3EE4C /* SetNameViewController.swift */; };
 		1C33F03C1D079DBE00D3EE4C /* SetSexViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C33F03B1D079DBE00D3EE4C /* SetSexViewController.swift */; };
 		1C33F03E1D07A8E200D3EE4C /* CodeImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C33F03D1D07A8E200D3EE4C /* CodeImageViewController.swift */; };
+		1C33F0421D07DBF000D3EE4C /* AllFunctionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C33F0411D07DBF000D3EE4C /* AllFunctionViewController.swift */; };
 		1C3479BD1CF2F9BD003FEF05 /* FirstPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C3479BC1CF2F9BD003FEF05 /* FirstPageViewController.swift */; };
 		1C3479C01CF3EBEF003FEF05 /* LivePlayerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C3479BF1CF3EBEF003FEF05 /* LivePlayerCell.swift */; };
 		1C3479C21CF4236A003FEF05 /* LivePlayerPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C3479C11CF4236A003FEF05 /* LivePlayerPageViewController.swift */; };
@@ -120,6 +121,7 @@
 		1C33F03A1D0724A700D3EE4C /* jufangzhushou 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "jufangzhushou 2.xcdatamodel"; sourceTree = "<group>"; };
 		1C33F03B1D079DBE00D3EE4C /* SetSexViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetSexViewController.swift; sourceTree = "<group>"; };
 		1C33F03D1D07A8E200D3EE4C /* CodeImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodeImageViewController.swift; sourceTree = "<group>"; };
+		1C33F0411D07DBF000D3EE4C /* AllFunctionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllFunctionViewController.swift; sourceTree = "<group>"; };
 		1C3479BC1CF2F9BD003FEF05 /* FirstPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstPageViewController.swift; sourceTree = "<group>"; };
 		1C3479BF1CF3EBEF003FEF05 /* LivePlayerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LivePlayerCell.swift; sourceTree = "<group>"; };
 		1C3479C11CF4236A003FEF05 /* LivePlayerPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LivePlayerPageViewController.swift; sourceTree = "<group>"; };
@@ -303,6 +305,7 @@
 				1C3DC3931CFDC538007807AF /* LiveAlbumDetailController.swift */,
 				1C1E69181CC9079100CEA029 /* SongViewController.swift */,
 				1C1E68EE1CC65DF600CEA029 /* CommentListController.swift */,
+				1C33F0411D07DBF000D3EE4C /* AllFunctionViewController.swift */,
 			);
 			name = song;
 			sourceTree = "<group>";
@@ -690,6 +693,7 @@
 				1C09D3BF1CD09FED004A8F9C /* ToastMessage.swift in Sources */,
 				1C451F661D0175FA00DC29F9 /* ConfigurationViewController.swift in Sources */,
 				1C3DC3941CFDC538007807AF /* LiveAlbumDetailController.swift in Sources */,
+				1C33F0421D07DBF000D3EE4C /* AllFunctionViewController.swift in Sources */,
 				1CDCC8ED1CE717F3001640CC /* ForgetPasswordViewController.swift in Sources */,
 				1C451F6C1D01787B00DC29F9 /* ServiceLocatorEntity+CoreDataProperties.swift in Sources */,
 				1C33F0341D07195700D3EE4C /* TextFieldCell.swift in Sources */,

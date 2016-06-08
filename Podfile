@@ -8,4 +8,5 @@ target 'AudioPlayer iOS' do
     pod 'Emoji-swift'
     pod 'SwiftyJSON', :git => 'https://github.com/SwiftyJSON/SwiftyJSON.git'
     pod 'Auk', '~> 2.1'
+    pod 'Kingfisher', '~> 2.4'
 end

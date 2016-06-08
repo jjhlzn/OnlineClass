@@ -84,7 +84,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6HR-Q7-heN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="897" y="923"/>
+            <point key="canvasLocation" x="1160" y="969"/>
         </scene>
         <!--个人资料-->
         <scene sceneID="ett-c2-aL0">
@@ -162,7 +162,7 @@
                         <outlet property="tableView" destination="VBJ-fs-lNt" id="o7H-Cy-kDY"/>
                         <segue destination="vNC-ta-SAY" kind="push" identifier="setNameSegue" id="3B5-RV-nDv"/>
                         <segue destination="68y-yK-JRN" kind="push" identifier="setSexSegue" id="fZc-0h-GYi"/>
-                        <segue destination="tlV-Sn-3a7" kind="push" id="rka-yI-XBB"/>
+                        <segue destination="tlV-Sn-3a7" kind="push" identifier="codeImageSegue" id="rka-yI-XBB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ueE-jL-He1" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -179,7 +179,7 @@
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="CbA-f3-TaB">
                                 <rect key="frame" x="20" y="143" width="280" height="280"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -191,7 +191,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7EG-bo-2sb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1193" y="3416"/>
+            <point key="canvasLocation" x="1314" y="3424"/>
         </scene>
         <!--性别-->
         <scene sceneID="gtX-7i-YBV">
@@ -506,7 +506,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3843" y="-26"/>
+            <point key="canvasLocation" x="3071" y="-126"/>
         </scene>
         <!--课列表-->
         <scene sceneID="URI-7O-Zhf">
@@ -624,7 +624,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aAv-dc-Ce6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4181" y="661"/>
+            <point key="canvasLocation" x="2881" y="1009"/>
         </scene>
         <!--所有评论-->
         <scene sceneID="Xxb-Tn-VuQ">
@@ -951,7 +951,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ByJ-xc-bHB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-156" y="258"/>
+            <point key="canvasLocation" x="103" y="126"/>
         </scene>
         <!--课程-->
         <scene sceneID="HK8-uw-quO">
@@ -999,6 +999,14 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="advCell" rowHeight="188" id="7ca-XL-2oq">
+                                        <rect key="frame" x="0.0" y="182" width="320" height="188"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7ca-XL-2oq" id="cf1-vu-8DE">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="187"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </prototypes>
                             </tableView>
                         </subviews>
@@ -1021,11 +1029,48 @@
                         <segue destination="qTJ-UI-98H" kind="push" identifier="loadWebPageSegue" id="tVi-RP-0bn"/>
                         <segue destination="nrh-Rw-P5G" kind="push" identifier="searchSegue" id="TBa-xp-hjj"/>
                         <segue destination="Zuy-cj-6pY" kind="push" identifier="liveCourseSegue" id="m7l-yQ-bGL"/>
+                        <segue destination="SlY-yD-6L0" kind="push" identifier="moreFunctionSegue" id="nu7-5V-LHA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="laU-XU-h4Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3191" y="-608"/>
+            <point key="canvasLocation" x="2282" y="-1219"/>
+        </scene>
+        <!--功能-->
+        <scene sceneID="eyd-dN-buH">
+            <objects>
+                <viewController hidesBottomBarWhenPushed="YES" id="SlY-yD-6L0" customClass="AllFunctionViewController" customModule="AudioPlayer" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="7xi-KK-Cy6">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="79" sectionHeaderHeight="28" sectionFooterHeight="28" id="gw7-b7-gJF">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="573"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="functionCell" id="nMx-i2-zh4" customClass="FunctionCell" customModule="AudioPlayer" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="92" width="320" height="79"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nMx-i2-zh4" id="KV1-bG-Y2O">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="79"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="功能" id="dMW-5S-1cM"/>
+                    <connections>
+                        <outlet property="tableView" destination="gw7-b7-gJF" id="ZaS-E1-tdF"/>
+                        <segue destination="qTJ-UI-98H" kind="push" identifier="loadWebPageSegue" id="tvc-Xd-SA1"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SbC-uk-qm6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3093" y="-1113"/>
         </scene>
         <!--搜索-->
         <scene sceneID="kOi-ZK-PgG">
@@ -1118,7 +1163,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Dl-Ao-wR4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3133" y="1955"/>
+            <point key="canvasLocation" x="3165" y="2013"/>
         </scene>
         <!--Web Page View Controller-->
         <scene sceneID="wge-sZ-oJ8">
@@ -1152,7 +1197,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IHP-Mp-DaU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2360" y="784"/>
+            <point key="canvasLocation" x="2042" y="22"/>
         </scene>
         <!--我-->
         <scene sceneID="oct-0p-3hq">
@@ -1171,7 +1216,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wwz-WH-HI4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="50" y="538"/>
+            <point key="canvasLocation" x="-38" y="1074"/>
         </scene>
         <!--播放页面-->
         <scene sceneID="0q5-Ra-Uzo">
@@ -1642,7 +1687,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RQo-og-278" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4772" y="-937"/>
+            <point key="canvasLocation" x="4080" y="-1401"/>
         </scene>
         <!--注册-->
         <scene sceneID="RAf-Nv-y6Q">
@@ -1762,7 +1807,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8PI-eW-0Up" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-267" y="333"/>
+            <point key="canvasLocation" x="-585" y="633"/>
         </scene>
         <!--忘记密码-->
         <scene sceneID="GUZ-XU-krF">
@@ -1966,7 +2011,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GaB-TD-Wup" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4472" y="1"/>
+            <point key="canvasLocation" x="4120" y="325"/>
         </scene>
         <!--直播课列表-->
         <scene sceneID="8qh-ZD-epN">
@@ -2093,7 +2138,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rm4-Qz-wnZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4817" y="2295"/>
+            <point key="canvasLocation" x="4497" y="1271"/>
         </scene>
         <!--搜索-->
         <scene sceneID="Puq-vm-CuL">
@@ -2195,7 +2240,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fUb-8w-yGM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4206" y="1764"/>
+            <point key="canvasLocation" x="4005" y="1464"/>
         </scene>
         <!--搜索-->
         <scene sceneID="3Nn-97-MSo">
@@ -2214,7 +2259,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IJc-sj-jGc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2562" y="1922"/>
+            <point key="canvasLocation" x="2290" y="1854"/>
         </scene>
         <!--服务器配置-->
         <scene sceneID="GxA-uE-PWz">
@@ -2369,10 +2414,10 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="pCp-Ba-NtI"/>
-        <segue reference="Kp8-Nw-Lqb"/>
         <segue reference="tVi-RP-0bn"/>
         <segue reference="gK4-D6-0Uz"/>
         <segue reference="3eS-Pl-zlw"/>
+        <segue reference="xmL-0a-HxS"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.94901960784313721" green="0.38039215686274508" blue="0.0" alpha="0.90000000000000002" colorSpace="calibratedRGB"/>
 </document>

@@ -63,6 +63,9 @@ class PersonalInfoViewController: BaseUIViewController, UITableViewDataSource, U
         case 1:
             performSegueWithIdentifier("setSexSegue", sender: nil)
             break
+        case 2:
+            performSegueWithIdentifier("codeImageSegue", sender: nil)
+            break
         default:
             break
         }
