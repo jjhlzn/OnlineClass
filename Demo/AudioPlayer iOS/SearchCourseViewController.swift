@@ -181,13 +181,7 @@ class SearchCourseViewController: BaseUIViewController, UITextFieldDelegate , Pa
         removeGraylayer()
         
         if searchField.text?.length == 0 {
-            if searchTipView != nil {
-                searchTipView.removeFromSuperview()
-            }
-            if (searchTipViewBackup != nil) {
-                view.addSubview(searchTipViewBackup!)
-                searchTipView = searchTipViewBackup
-            }
+            searchTipView.hidden = false
         }
     }
     
@@ -211,10 +205,10 @@ class SearchCourseViewController: BaseUIViewController, UITextFieldDelegate , Pa
         //reset tableView
         pagableController.reset()
         
-        self.searchTipViewBackup = self.searchTipView
-        if self.searchTipView != nil {
-            self.searchTipView.removeFromSuperview()
-        }
+        //self.searchTipViewBackup = self.searchTipView
+
+            self.searchTipView.hidden = true
+        //}
         
         loading.showOverlay(view)
         searchHandler() {
