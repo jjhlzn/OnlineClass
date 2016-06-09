@@ -7,6 +7,7 @@ PODS:
   - Kingfisher (2.4.1)
   - moa (2.1.7)
   - SwiftyJSON (2.3.2)
+  - XCGLogger (3.3)
 
 DEPENDENCIES:
   - Alamofire (~> 3.3)
@@ -15,6 +16,7 @@ DEPENDENCIES:
   - KDEAudioPlayer
   - Kingfisher (~> 2.4)
   - SwiftyJSON (from `https://github.com/SwiftyJSON/SwiftyJSON.git`)
+  - XCGLogger (~> 3.3)
 
 EXTERNAL SOURCES:
   SwiftyJSON:
@@ -33,7 +35,8 @@ SPEC CHECKSUMS:
   Kingfisher: 41aed5b6c1ed8fa98cf6d75283ce89cf7890f517
   moa: bf5704e649973fdefbcebe7bfa1aa21cdd3292b4
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
+  XCGLogger: d6e196e78940ff6daab17d6917107876f973fa31
 
-PODFILE CHECKSUM: cf8f22450162ef18b1017e7e3747689ed4106240
+PODFILE CHECKSUM: bd5b9d165da8975be3b70f5f3f6308e43438fca7
 
 COCOAPODS: 1.0.0

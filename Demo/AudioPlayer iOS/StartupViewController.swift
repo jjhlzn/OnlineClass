@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import XCGLogger
 
 class StartupViewController: BaseUIViewController {
     
@@ -55,11 +56,11 @@ class StartupViewController: BaseUIViewController {
         //检查一下是否已经登录，如果登录，则直接进入后面的页面
         let loginUser = loginUserStore.getLoginUser()
         if  loginUser != nil {
-            print("found login user")
-            print("userid = \(loginUser?.userName), password = \(loginUser?.password), token = \(loginUser?.token)")
+            log.debug("found login user")
+            log.debug("userid = \(loginUser?.userName), password = \(loginUser?.password), token = \(loginUser?.token)")
             self.performSegueWithIdentifier("hasLoginSegue", sender: self)
         } else {
-            print("no login user")
+            log.debug("no login user")
             self.performSegueWithIdentifier("notLoginSegue", sender: self)
         }
 
@@ -108,12 +109,10 @@ class StartupViewController: BaseUIViewController {
         func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
             switch buttonIndex {
             case 0:
-                
-                print("click 0")
+
                 controller.performSegueWithIdentifier("upgradeSegue", sender: nil)
                 break;
             case 1:
-                print("click 1")
                 controller.checkLoginUser()
                 break;
             default:

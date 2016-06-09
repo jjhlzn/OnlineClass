@@ -9,4 +9,5 @@ target 'AudioPlayer iOS' do
     pod 'SwiftyJSON', :git => 'https://github.com/SwiftyJSON/SwiftyJSON.git'
     pod 'Auk', '~> 2.1'
     pod 'Kingfisher', '~> 2.4'
+    pod 'XCGLogger', '~> 3.3'
 end

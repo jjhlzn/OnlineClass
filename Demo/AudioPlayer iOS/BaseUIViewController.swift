@@ -93,7 +93,7 @@ class BaseUIViewController: UIViewController, AudioPlayerDelegate {
     
     func updatePlayingButton(button: UIButton) {
         let audioPlayer = getAudioPlayer()
-        print("audioPlayer.state = \(audioPlayer.state)")
+        log.debug("audioPlayer.state = \(audioPlayer.state)")
         if audioPlayer.state == AudioPlayerState.Playing {
             
             let image = UIImage.animatedImageWithImages([UIImage(named: "wave1")!,
@@ -108,11 +108,11 @@ class BaseUIViewController: UIViewController, AudioPlayerDelegate {
     }
 
     func audioPlayer(audioPlayer: AudioPlayer, didChangeStateFrom from: AudioPlayerState, toState to: AudioPlayerState) {
-        print("audioPlayer:didChangeStateFrom called")
+        log.debug("audioPlayer:didChangeStateFrom called")
     }
     
     func audioPlayer(audioPlayer: AudioPlayer, willStartPlayingItem item: AudioItem) {
-        print("audioPlayer:willStartPlayingItem called")
+        log.debug("audioPlayer:willStartPlayingItem called")
     }
     
     func audioPlayer(audioPlayer: AudioPlayer, didUpdateProgressionToTime time: NSTimeInterval, percentageRead: Float) {
@@ -124,7 +124,7 @@ class BaseUIViewController: UIViewController, AudioPlayerDelegate {
     }
     
     func audioPlayer(audioPlayer: AudioPlayer, didUpdateEmptyMetadataOnItem item: AudioItem, withData data: Metadata) {
-        print("audioPlayer:didUpdateEmptyMetadataOnItem called, metaData = \(data)")
+        log.debug("audioPlayer:didUpdateEmptyMetadataOnItem called, metaData = \(data)")
     }
     
     func audioPlayer(audioPlayer: AudioPlayer, didLoadRange range: AudioPlayer.TimeRange, forItem item: AudioItem){
@@ -151,7 +151,6 @@ class BaseUIViewController: UIViewController, AudioPlayerDelegate {
 
 extension BaseUIViewController {
     func displayMessage(message : String) {
-        print("displayMessage")
         let alertView = UIAlertView()
         //alertView.title = "系统提示"
         alertView.message = message
@@ -162,7 +161,6 @@ extension BaseUIViewController {
     }
     
     func displayMessage(message : String, delegate: UIAlertViewDelegate) {
-        print("displayMessage: delegate")
         let alertView = UIAlertView()
         //alertView.title = "系统提示"
         alertView.message = message
@@ -185,17 +183,14 @@ extension BaseUIViewController {
 
     
     func hideKeyboardWhenTappedAround() {
-        print("hideKeyboardWhenTappedAround")
         view.addGestureRecognizer(tap)
     }
     
     func cancleHideKeybaordWhenTappedAround() {
-        print("cancleHideKeybaordWhenTappedAround")
         view.removeGestureRecognizer(tap)
     }
     
     func dismissKeyboard() {
-        print("dismissKeyboard")
         view.endEditing(true)
     }
 

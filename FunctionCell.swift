@@ -81,7 +81,7 @@ class ExtendFunctionMananger : NSObject {
         for i in 0...(buttonCountEachRow - 1) {
             
             if index >= functions.count {
-                print("index = \(index), functions.count = \(functions.count)")
+                //print("index = \(index), functions.count = \(functions.count)")
                 break
             }
             
@@ -108,8 +108,6 @@ class ExtendFunctionMananger : NSObject {
     private func addCellView(row : Int, column : Int, index: Int, function: ExtendFunction, cell: UITableViewCell) -> UIView {
         let interval : CGFloat = UIScreen.mainScreen().bounds.width / 4
         let x = interval  * CGFloat(column)
-        let y = 0
-        print("x = \(x), y = \(y), width = \(interval), height = 79")
         let cellView = UIView(frame: CGRectMake(x, 0, interval, 79))
         
         cell.addSubview(cellView)
@@ -136,7 +134,7 @@ class ExtendFunctionMananger : NSObject {
         let imageView = UIImageView(frame: CGRectMake(0, 0, imageWidth, imageWidth))
         imageView.center.x = superView.bounds.width / 2
         imageView.center.y = superView.bounds.height / 2 - 10
-        print("superView.center.x = \(superView.center.x), superView.center.y - 10 = \(superView.center.y - 10)")
+        //print("superView.center.x = \(superView.center.x), superView.center.y - 10 = \(superView.center.y - 10)")
         imageView.image = UIImage(named: function.imageName)
         imageView.tag = index
         
