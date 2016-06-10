@@ -8,6 +8,7 @@
 
 import Foundation
 import KDEAudioPlayer
+import XCGLogger
 
 
 class LivePlayerViewController : PlayerViewController {
@@ -37,7 +38,9 @@ class LivePlayerViewController : PlayerViewController {
             appDelegate.liveProgressTimer  = NSTimer.scheduledTimerWithTimeInterval(0.4, target: self, selector: #selector(updatePlayingProgress), userInfo: nil, repeats: true)
         }
         
-        cell.progressBar.value =  Float(song.leftTime / song.totalTime)
+        cell.progressBar.value =  Float(song.playedTime / song.totalTime)
+        
+        cell.progressBar.enabled = true
     }
     
     var stopItem: AudioItem?
@@ -60,6 +63,8 @@ class LivePlayerViewController : PlayerViewController {
         updatePlayAndPauseButton()
         
         updateBufferCircle()
+        cell.progressBar.enabled = true
+        
 
     }
     
@@ -108,9 +113,10 @@ class LivePlayerViewController : PlayerViewController {
     override func updatePlayingProgress() {
         if isPlaying {
             //print("LivePlayerViewController:updatePlayingProgress")
-
+            
             cell.playingLabel.text = Utils.getCurrentTime()
-             cell.progressBar.value = getCurrentSong().progress
+            log.debug("progress = \(getCurrentSong().progress)")
+            cell.progressBar.value = getCurrentSong().progress
         }
         
     }

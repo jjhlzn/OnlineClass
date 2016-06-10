@@ -69,7 +69,7 @@ class PlayerCell: UITableViewCell {
         progressBar.addTarget(self, action: #selector(progressBarTouchUp), forControlEvents: .TouchUpInside)
         progressBar.addTarget(self, action: #selector(progressBarTouchUp), forControlEvents: .TouchUpOutside)
         progressBar.addTarget(self, action: #selector(progressBarTouchDown), forControlEvents: .TouchDown)
-        progressBar.enabled = false
+        //progressBar.enabled = false
         
         //hidden bufferCircle
         bufferCircle.hidden = true
@@ -92,10 +92,7 @@ class PlayerCell: UITableViewCell {
         }
         
         //update progress bar
-        if audioPlayer.currentItemProgression != nil && audioPlayer.currentItemDuration != nil {
-            progressBar.value = Float(audioPlayer.currentItemProgression! / audioPlayer.currentItemDuration!)
-            playingLabel.text = Utils.stringFromTimeInterval(audioPlayer.currentItemProgression!)
-        }
+        playerViewController.updatePlayingProgress()
         
         inited = true
         

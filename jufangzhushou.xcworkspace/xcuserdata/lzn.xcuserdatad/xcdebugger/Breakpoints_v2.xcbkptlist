@@ -106,12 +106,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Demo/AudioPlayer iOS/PlayerCell.swift"
-            timestampString = "485768686.948236"
+            timestampString = "487218644.604259"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "105"
-            endingLineNumber = "105"
-            landmarkName = "playButtonPressed(_:)"
+            startingLineNumber = "102"
+            endingLineNumber = "102"
+            landmarkName = "initPalyer()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

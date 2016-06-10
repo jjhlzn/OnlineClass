@@ -109,6 +109,16 @@ class LiveSong : Song {
         }
     }
     
+    var playedTime : NSTimeInterval {
+        get {
+            if startDateTime == nil || endDateTime == nil {
+                return NSTimeInterval(0)
+            }
+            return totalTime - leftTime
+
+        }
+    }
+    
     var progress : Float {
         get {
             return Float( (self.totalTime - self.leftTime) / self.totalTime )
