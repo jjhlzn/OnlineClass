@@ -53,13 +53,19 @@ class LivePlayerPageViewController : CommonPlayerPageViewController {
     
     private func createTimer() {
         freshChatTimer = NSTimer.scheduledTimerWithTimeInterval(freshChatInterval, target: self,
-                                                                selector: #selector(updateChat), userInfo: nil, repeats: true)
+                                                                selector: #selector(checkStatusAndUpdateChat), userInfo: nil, repeats: true)
         
         updateListernerCountTimer = NSTimer.scheduledTimerWithTimeInterval(freshListernCountInterval, target: self,
                                                                            selector: #selector(updateListernerCount), userInfo: nil, repeats: true)
     }
     
-    func updateChat() {
+    
+    func checkStatusAndUpdateChat() {
+        //如果直播在缓冲，尝试重新连接
+        if audioPlayer.state == AudioPlayerState.Buffering {
+            audioPlayer.playItems(audioPlayer.items!, startAtIndex: audioPlayer.currentItemIndexInQueue!)
+        }
+        
         if isUpdateChat {
             return
         }

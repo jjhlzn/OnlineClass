@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import XCGLogger
+import QorumLogs
 
 class StartupViewController: BaseUIViewController {
     
@@ -56,11 +56,11 @@ class StartupViewController: BaseUIViewController {
         //检查一下是否已经登录，如果登录，则直接进入后面的页面
         let loginUser = loginUserStore.getLoginUser()
         if  loginUser != nil {
-            log.debug("found login user")
-            log.debug("userid = \(loginUser?.userName), password = \(loginUser?.password), token = \(loginUser?.token)")
+            QL1("found login user")
+            QL1("userid = \(loginUser?.userName), password = \(loginUser?.password), token = \(loginUser?.token)")
             self.performSegueWithIdentifier("hasLoginSegue", sender: self)
         } else {
-            log.debug("no login user")
+            QL1("no login user")
             self.performSegueWithIdentifier("notLoginSegue", sender: self)
         }
 

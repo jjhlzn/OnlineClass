@@ -34,12 +34,12 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>SwiftyJSON.xcscheme</key>
+		<key>QorumLogs.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>XCGLogger.xcscheme</key>
+		<key>SwiftyJSON.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -52,22 +52,17 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>1D2406F72A8723E6BC372E44D9D594D6</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>24CAD7075864A60E5A83EC2147B4567B</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>2C9F8188802DB4395B862D4E5BC72FD3</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>40B0BF126308785D1027032FF80AB074</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>5284D1E805A723A7F370EFB6EA39CE51</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -82,12 +77,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>86BCCF0A187B99D8A7D415C9E043393D</key>
+		<key>96156A5F1AD1FBE6AB7AD495CD1FB54F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>96156A5F1AD1FBE6AB7AD495CD1FB54F</key>
+		<key>9B52FD67CAA932C972E1D094C4A18D93</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D933B99C1E6F2F37D47C86CB4BBA412D</key>
 		<dict>
 			<key>primary</key>
 			<true/>

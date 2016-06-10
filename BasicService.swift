@@ -9,7 +9,7 @@
 import Foundation
 import Alamofire
 import SwiftyJSON
-import XCGLogger
+import QorumLogs
 
 
 class BasicService {
@@ -21,7 +21,7 @@ class BasicService {
                      //controller中定义的处理函数
                      completion: (resp: T) -> Void) -> T {
         let serverResponse = T()
-        log.debug(url)
+        QL1(url)
         let finalParams = addMoreRequestInfo(params)
         
         let request = NSMutableURLRequest(URL: NSURL( string: url)!)
@@ -34,7 +34,7 @@ class BasicService {
             
             
         } catch let error {
-            log.error("catchException, ex = \(error)")
+            QL4("catchException, ex = \(error)")
             serverResponse.status = -1
             serverResponse.errorMessage = "客户端错误，解析Request出错"
             return serverResponse

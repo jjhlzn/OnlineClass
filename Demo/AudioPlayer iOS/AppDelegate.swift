@@ -8,9 +8,8 @@
 
 import UIKit
 import KDEAudioPlayer
-import XCGLogger
+import QorumLogs
 
-let log = XCGLogger.defaultInstance()
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -24,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        log.setup(.Debug, showThreadName: true, showLogLevel: true, showFileNames: true, showLineNumbers: true, writeToFile: nil, fileLogLevel: .Debug)
+       QorumLogs.enabled = true
         
         // Override point for customization after application launch.
         application.beginReceivingRemoteControlEvents()
@@ -65,7 +64,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             tokenString += String(format: "%02.2hhx", arguments: [tokenChars[i]])
         }
         
-        log.debug("Device Token: \(tokenString)")
+        QL1("Device Token: \(tokenString)")
         
         deviceTokenString = tokenString
         

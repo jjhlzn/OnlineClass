@@ -8,7 +8,7 @@
 
 import Foundation
 import KDEAudioPlayer
-import XCGLogger
+import QorumLogs
 
 
 class LivePlayerViewController : PlayerViewController {
@@ -25,6 +25,8 @@ class LivePlayerViewController : PlayerViewController {
         cell.preButton.enabled = false
         cell.nextButton.enabled = false
         cell.bufferProgress.progress = 0
+        //直播不显示进度条
+        cell.bufferProgress.hidden = true
         
         let song = (audioPlayer.currentItem as! MyAudioItem).song as! LiveSong
         //获取直播的时间
@@ -64,8 +66,6 @@ class LivePlayerViewController : PlayerViewController {
         
         updateBufferCircle()
         cell.progressBar.enabled = true
-        
-
     }
     
     //加载直播信息，不能删除
@@ -115,7 +115,7 @@ class LivePlayerViewController : PlayerViewController {
             //print("LivePlayerViewController:updatePlayingProgress")
             
             cell.playingLabel.text = Utils.getCurrentTime()
-            log.debug("progress = \(getCurrentSong().progress)")
+            //log.debug("progress = \(getCurrentSong().progress)")
             cell.progressBar.value = getCurrentSong().progress
         }
         

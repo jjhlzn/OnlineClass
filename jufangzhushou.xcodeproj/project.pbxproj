@@ -53,8 +53,6 @@
 		1CA3B2101CD86B7800D0ABD8 /* MainPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA3B20F1CD86B7800D0ABD8 /* MainPageViewController.swift */; };
 		1CA3B2121CD86BD300D0ABD8 /* CourseTypeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA3B2111CD86BD300D0ABD8 /* CourseTypeCell.swift */; };
 		1CA3B2141CD8E83B00D0ABD8 /* FunctionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA3B2131CD8E83B00D0ABD8 /* FunctionCell.swift */; };
-		1CBC1DBC1D08F74C00F140D3 /* XCGLogger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CBC1DBB1D08F74C00F140D3 /* XCGLogger.framework */; };
-		1CBC1DBD1D08F74C00F140D3 /* XCGLogger.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1CBC1DBB1D08F74C00F140D3 /* XCGLogger.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		1CD349641CF8167C00037F78 /* WebPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD349631CF8167C00037F78 /* WebPageViewController.swift */; };
 		1CD349661CF83A4700037F78 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD349651CF83A4700037F78 /* SettingsViewController.swift */; };
 		1CD349681CF9703700037F78 /* KeyValueCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD349671CF9703700037F78 /* KeyValueCell.swift */; };
@@ -92,20 +90,6 @@
 		E2C6FAE11C4B01D80055A1BF /* sound1.caf in Resources */ = {isa = PBXBuildFile; fileRef = E2C6FADF1C4B01D80055A1BF /* sound1.caf */; };
 		E2C6FAE21C4B01D80055A1BF /* sound2.caf in Resources */ = {isa = PBXBuildFile; fileRef = E2C6FAE01C4B01D80055A1BF /* sound2.caf */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		1CBC1DBE1D08F74D00F140D3 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				1CBC1DBD1D08F74C00F140D3 /* XCGLogger.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		027A6F2741F10408886C9077 /* Pods_AudioPlayer_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AudioPlayer_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -204,7 +188,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C8FD3BA5397761EB2BB46B45 /* Pods_AudioPlayer_iOS.framework in Frameworks */,
-				1CBC1DBC1D08F74C00F140D3 /* XCGLogger.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -468,7 +451,6 @@
 				E2A9AF9A1C498E2900FE943A /* Resources */,
 				63783D85F8B04DD6FFC5B7C3 /* 📦 Embed Pods Frameworks */,
 				60A30163376FEA35090F147B /* 📦 Copy Pods Resources */,
-				1CBC1DBE1D08F74D00F140D3 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);

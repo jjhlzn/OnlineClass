@@ -89,8 +89,8 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/Emoji-swift/Emoji.framework"
   install_framework "$BUILT_PRODUCTS_DIR/KDEAudioPlayer/KDEAudioPlayer.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Kingfisher/Kingfisher.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/QorumLogs/QorumLogs.framework"
   install_framework "$BUILT_PRODUCTS_DIR/SwiftyJSON/SwiftyJSON.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/XCGLogger/XCGLogger.framework"
   install_framework "$BUILT_PRODUCTS_DIR/moa/moa.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
@@ -99,7 +99,7 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/Emoji-swift/Emoji.framework"
   install_framework "$BUILT_PRODUCTS_DIR/KDEAudioPlayer/KDEAudioPlayer.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Kingfisher/Kingfisher.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/QorumLogs/QorumLogs.framework"
   install_framework "$BUILT_PRODUCTS_DIR/SwiftyJSON/SwiftyJSON.framework"
-  install_framework "$BUILT_PRODUCTS_DIR/XCGLogger/XCGLogger.framework"
   install_framework "$BUILT_PRODUCTS_DIR/moa/moa.framework"
 fi

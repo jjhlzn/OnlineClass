@@ -8,6 +8,7 @@
 
 import UIKit
 import KDEAudioPlayer
+import QorumLogs
 
 class CourseMainPageViewController: BaseUIViewController {
 
@@ -175,6 +176,7 @@ extension CourseMainPageViewController : UITableViewDataSource, UITableViewDeleg
         cell.addSubview(scrollView)
         //print("scrollView.superview = \(scrollView.superview)")
         scrollView.auk.settings.pageControl.backgroundColor =  UIColor.grayColor().colorWithAlphaComponent(0)
+        
         scrollView.auk.settings.contentMode = UIViewContentMode.ScaleToFill
         
         BasicService().sendRequest(ServiceConfiguration.GET_ADS, request: GetAdsRequest()) {
@@ -187,6 +189,7 @@ extension CourseMainPageViewController : UITableViewDataSource, UITableViewDeleg
             self.ads = resp.ads
             for ad in self.ads {
                 // Show remote image
+                QL1("ad.imageUrl = \(ad.imageUrl)")
                 scrollView.auk.show(url: ad.imageUrl)
                 
             }
@@ -194,13 +197,11 @@ extension CourseMainPageViewController : UITableViewDataSource, UITableViewDeleg
         }
         
         
-        
         return cell
     }
 
     func tapAdImageHandler(sender: UITapGestureRecognizer? = nil) {
         let scrollView = sender?.view as! UIScrollView
-        scrollView.auk.startAutoScroll(delaySeconds: 3)
         print(scrollView.auk.currentPageIndex)
         let index = scrollView.auk.currentPageIndex
         if index != nil {

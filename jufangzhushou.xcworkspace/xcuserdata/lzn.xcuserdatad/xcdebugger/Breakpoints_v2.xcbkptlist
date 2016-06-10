@@ -154,11 +154,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Demo/AudioPlayer iOS/BaseUIViewController.swift"
-            timestampString = "485412041.41983"
+            timestampString = "487232391.585706"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "35"
-            endingLineNumber = "35"
+            startingLineNumber = "36"
+            endingLineNumber = "36"
             landmarkName = "prepareForSegue(_:sender:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -170,11 +170,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Demo/AudioPlayer iOS/BaseUIViewController.swift"
-            timestampString = "485412041.41983"
+            timestampString = "487232391.585706"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "35"
-            endingLineNumber = "35"
+            startingLineNumber = "36"
+            endingLineNumber = "36"
             landmarkName = "prepareForSegue(_:sender:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -186,11 +186,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Demo/AudioPlayer iOS/BaseUIViewController.swift"
-            timestampString = "485412041.41983"
+            timestampString = "487232391.585706"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "34"
-            endingLineNumber = "34"
+            startingLineNumber = "35"
+            endingLineNumber = "35"
             landmarkName = "prepareForSegue(_:sender:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -218,13 +218,105 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Demo/AudioPlayer iOS/BaseUIViewController.swift"
-            timestampString = "487127356.677771"
+            timestampString = "487232391.585706"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "189"
-            endingLineNumber = "189"
+            startingLineNumber = "190"
+            endingLineNumber = "190"
             landmarkName = "cancleHideKeybaordWhenTappedAround()"
             landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BasicService.swift"
+            timestampString = "487234664.092755"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "24"
+            endingLineNumber = "24"
+            landmarkName = "sendRequest(_:method:severRequest:params:completion:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Pods/QorumLogs/QorumLogs.swift"
+            timestampString = "487234880.251439"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "219"
+            endingLineNumber = "219">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "QorumLogs.QL2 &lt;A&gt; (A, Swift.String, Swift.String, Swift.Int) -&gt; ()"
+                  moduleName = "QorumLogs"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/lzn/Desktop/OnlineClass/Pods/QorumLogs/QorumLogs.swift"
+                  timestampString = "487234880.276809"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "221"
+                  endingLineNumber = "221"
+                  offsetFromSymbolStart = "68">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "QorumLogs.(QL2 &lt;A&gt; (A, Swift.String, Swift.String, Swift.Int) -&gt; ()).(default argument 1)"
+                  moduleName = "QorumLogs"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/lzn/Desktop/OnlineClass/Pods/QorumLogs/QorumLogs.swift"
+                  timestampString = "487234880.277087"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "220"
+                  endingLineNumber = "220"
+                  offsetFromSymbolStart = "12">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "QorumLogs.(QL2 &lt;A&gt; (A, Swift.String, Swift.String, Swift.Int) -&gt; ()).(default argument 2)"
+                  moduleName = "QorumLogs"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/lzn/Desktop/OnlineClass/Pods/QorumLogs/QorumLogs.swift"
+                  timestampString = "487234880.277269"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "220"
+                  endingLineNumber = "220"
+                  offsetFromSymbolStart = "12">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "QorumLogs.(QL2 &lt;A&gt; (A, Swift.String, Swift.String, Swift.Int) -&gt; ()).(default argument 3)"
+                  moduleName = "QorumLogs"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/lzn/Desktop/OnlineClass/Pods/QorumLogs/QorumLogs.swift"
+                  timestampString = "487234880.277379"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "220"
+                  endingLineNumber = "220"
+                  offsetFromSymbolStart = "10">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
