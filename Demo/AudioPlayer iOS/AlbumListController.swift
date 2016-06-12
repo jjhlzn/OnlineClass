@@ -51,7 +51,7 @@ class AlbumListController: BaseUIViewController, UITableViewDataSource, UITableV
             self.title = "往期课程"
             break
         case .Live:
-            self.title = "直播课程"
+            self.title = "在线直播"
             break
         case .Vip:
             self.title = "VIP课程"
@@ -110,8 +110,21 @@ extension AlbumListController {
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 
+        
+        let album = pagableController.data[indexPath.row]
+        
+        if album.courseType == CourseType.Live {
+            let cell = tableView.dequeueReusableCellWithIdentifier("liveAlbumCell") as! LiveAlbumCell
+            cell.nameLabel.text = album.name
+            cell.descLabel.text = album.desc
+            if album.hasImage {
+                cell.albumImage.downloadedFrom(link: album.image, contentMode: UIViewContentMode.ScaleAspectFit)
+            }
+            return cell
+
+            
+        } else {
             let cell = tableView.dequeueReusableCellWithIdentifier("albumCell") as! AlbumCell
-            let album = pagableController.data[indexPath.row]
             cell.nameLabel.text = album.name
             cell.authorLabel.text = album.author
             cell.listenCountAndCountLabel.text = "\(album.listenCount), \(album.count)集"
@@ -119,6 +132,8 @@ extension AlbumListController {
                 cell.albumImage.downloadedFrom(link: album.image, contentMode: UIViewContentMode.ScaleAspectFit)
             }
             return cell
+
+        }
         
     }
     

@@ -135,7 +135,7 @@ extension MyInfoVieController {
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 3
+        return 2
     }
 
 }

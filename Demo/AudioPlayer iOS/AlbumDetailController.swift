@@ -77,16 +77,16 @@ class AlbumDetailController: BaseUIViewController {
                 var audioItems = [AudioItem]()
                 var startIndex = 0
                 var index = 0
-                for item in album!.songs {
-                    var url = NSURL(string: ServiceConfiguration.GetSongUrl(item.url))
-                    if item.album.courseType == CourseType.Live {
-                        url = NSURL(string: item.url)
+                for songItem in album!.songs {
+                    var url = NSURL(string: ServiceConfiguration.GetSongUrl(songItem.url))
+                    if songItem.album.courseType == CourseType.Live {
+                        url = NSURL(string: songItem.url)
                     }
-                    let audioItem = MyAudioItem(song: item, highQualitySoundURL: url)
+                    let audioItem = MyAudioItem(song: songItem, highQualitySoundURL: url)
                     //(audioItem as! MyAudioItem).song = item
                     audioItems.append(audioItem!)
                     
-                    if item.url == song.url {
+                    if songItem.url == song.url {
                         startIndex = index
                     }
                     index = index + 1

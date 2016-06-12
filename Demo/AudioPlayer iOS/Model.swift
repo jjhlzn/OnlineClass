@@ -21,6 +21,7 @@ enum CourseType: String {
 class Album : BaseModelObject {
     var id: String = ""
     var name: String = ""
+    var desc: String = ""
     var author: String = ""
     var image: String = ""
     var count: Int = 0

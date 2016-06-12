@@ -53,6 +53,7 @@
 		1CA3B2101CD86B7800D0ABD8 /* MainPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA3B20F1CD86B7800D0ABD8 /* MainPageViewController.swift */; };
 		1CA3B2121CD86BD300D0ABD8 /* CourseTypeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA3B2111CD86BD300D0ABD8 /* CourseTypeCell.swift */; };
 		1CA3B2141CD8E83B00D0ABD8 /* FunctionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA3B2131CD8E83B00D0ABD8 /* FunctionCell.swift */; };
+		1CB2D7E81D0D9918007FE507 /* LiveAlbumCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CB2D7E71D0D9918007FE507 /* LiveAlbumCell.swift */; };
 		1CD349641CF8167C00037F78 /* WebPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD349631CF8167C00037F78 /* WebPageViewController.swift */; };
 		1CD349661CF83A4700037F78 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD349651CF83A4700037F78 /* SettingsViewController.swift */; };
 		1CD349681CF9703700037F78 /* KeyValueCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD349671CF9703700037F78 /* KeyValueCell.swift */; };
@@ -141,6 +142,7 @@
 		1CA3B20F1CD86B7800D0ABD8 /* MainPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainPageViewController.swift; sourceTree = "<group>"; };
 		1CA3B2111CD86BD300D0ABD8 /* CourseTypeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseTypeCell.swift; sourceTree = "<group>"; };
 		1CA3B2131CD8E83B00D0ABD8 /* FunctionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FunctionCell.swift; sourceTree = "<group>"; };
+		1CB2D7E71D0D9918007FE507 /* LiveAlbumCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiveAlbumCell.swift; sourceTree = "<group>"; };
 		1CBC1DBB1D08F74C00F140D3 /* XCGLogger.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = XCGLogger.framework; path = "/Users/lzn/Library/Developer/Xcode/DerivedData/jufangzhushou-gwlwmlecjbhnzsegqgsoeihdcszi/Build/Products/Debug-iphonesimulator/XCGLogger/XCGLogger.framework"; sourceTree = "<absolute>"; };
 		1CD349631CF8167C00037F78 /* WebPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebPageViewController.swift; sourceTree = "<group>"; };
 		1CD349651CF83A4700037F78 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -248,6 +250,7 @@
 			isa = PBXGroup;
 			children = (
 				1CEFF78D1CBFC9B7000DEFF7 /* AlbumCell.swift */,
+				1CB2D7E71D0D9918007FE507 /* LiveAlbumCell.swift */,
 				1C1E68F01CC65F7500CEA029 /* CommentCell.swift */,
 				1C1E691A1CC90A6500CEA029 /* PlayerCell.swift */,
 				1C1E69201CCA05E500CEA029 /* MoreLinkCell.swift */,
@@ -679,6 +682,7 @@
 				1C1E69211CCA05E500CEA029 /* MoreLinkCell.swift in Sources */,
 				1CEFF7981CC0D63B000DEFF7 /* LoadingOverlay.swift in Sources */,
 				1CD3496E1CF9A97D00037F78 /* PersonalInfoCell.swift in Sources */,
+				1CB2D7E81D0D9918007FE507 /* LiveAlbumCell.swift in Sources */,
 				1CEFF7941CC0BBBF000DEFF7 /* AlbumDetailController.swift in Sources */,
 				1C3CC4C01CFBE3FE007D3EBC /* SongListCell.swift in Sources */,
 				1CD349741CFA8DD700037F78 /* SearchCourseViewController.swift in Sources */,

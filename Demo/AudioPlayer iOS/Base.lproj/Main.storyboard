@@ -6,7 +6,7 @@
         <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
     <scenes>
-        <!--我-->
+        <!--我的-->
         <scene sceneID="RJI-4j-tml">
             <objects>
                 <viewController automaticallyAdjustsScrollViewInsets="NO" id="jTL-YG-lW0" customClass="MyInfoVieController" customModule="AudioPlayer" customModuleProvider="target" sceneMemberID="viewController">
@@ -74,17 +74,16 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="我" id="LCK-C6-VtG"/>
+                    <navigationItem key="navigationItem" title="我的" id="LCK-C6-VtG"/>
                     <connections>
                         <outlet property="tableView" destination="cs3-w7-xqz" id="Q1F-zb-Vt2"/>
                         <segue destination="59B-S3-xkA" kind="modal" identifier="logoutSegue" id="xmL-0a-HxS"/>
                         <segue destination="H6H-2U-a24" kind="push" identifier="personalInfoSegue" id="sRn-4U-FcV"/>
-                        <segue destination="U8X-pM-Yzb" kind="push" identifier="settingSegue" id="nfd-6x-ZQn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6HR-Q7-heN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1160" y="969"/>
+            <point key="canvasLocation" x="1128" y="1215"/>
         </scene>
         <!--个人资料-->
         <scene sceneID="ett-c2-aL0">
@@ -373,7 +372,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d0P-gH-5iy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1667" y="1566"/>
+            <point key="canvasLocation" x="2491" y="974"/>
         </scene>
         <!--重设密码-->
         <scene sceneID="pEl-22-gMZ">
@@ -445,7 +444,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="albumCell" rowHeight="74" id="jMg-kZ-gym" customClass="AlbumCell" customModule="AudioPlayer" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="320" height="74"/>
+                                <rect key="frame" x="0.0" y="92" width="320" height="74"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jMg-kZ-gym" id="eSJ-qm-QvQ">
                                     <rect key="frame" x="0.0" y="0.0" width="287" height="73"/>
@@ -483,6 +482,39 @@
                                     <outlet property="authorLabel" destination="iCQ-k6-osd" id="TFH-Zd-SDc"/>
                                     <outlet property="listenCountAndCountLabel" destination="jej-ao-wVk" id="dpx-97-SAk"/>
                                     <outlet property="nameLabel" destination="nCi-5j-Vs9" id="ec5-w2-9R0"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="liveAlbumCell" rowHeight="74" id="1LG-bb-0ID" customClass="LiveAlbumCell" customModule="AudioPlayer" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="166" width="320" height="74"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1LG-bb-0ID" id="Cpa-bW-L7M">
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="73"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sample" id="BIP-tO-A2f">
+                                            <rect key="frame" x="14" y="7" width="60" height="60"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="qjC-fm-1WB">
+                                            <rect key="frame" x="88" y="7" width="159" height="29"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fP4-BJ-Gpx">
+                                            <rect key="frame" x="88" y="37" width="191" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="highlightedColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="albumImage" destination="BIP-tO-A2f" id="U65-GA-4YS"/>
+                                    <outlet property="descLabel" destination="fP4-BJ-Gpx" id="IsO-jS-3xd"/>
+                                    <outlet property="nameLabel" destination="qjC-fm-1WB" id="2fn-k0-v4f"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -624,7 +656,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aAv-dc-Ce6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2881" y="1009"/>
+            <point key="canvasLocation" x="3474" y="964"/>
         </scene>
         <!--所有评论-->
         <scene sceneID="Xxb-Tn-VuQ">
@@ -947,13 +979,14 @@
                         <segue destination="ya2-w7-wG2" kind="relationship" relationship="viewControllers" id="zsi-PQ-Yec"/>
                         <segue destination="RMK-b3-F34" kind="relationship" relationship="viewControllers" id="G5Y-9X-Gdc"/>
                         <segue destination="TZY-KL-rYs" kind="relationship" relationship="viewControllers" id="pAM-va-lxF"/>
+                        <segue destination="2kR-r7-fJK" kind="relationship" relationship="viewControllers" id="tH2-XQ-uzD"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ByJ-xc-bHB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="103" y="126"/>
+            <point key="canvasLocation" x="734" y="868"/>
         </scene>
-        <!--课程-->
+        <!--巨方助手-->
         <scene sceneID="HK8-uw-quO">
             <objects>
                 <viewController automaticallyAdjustsScrollViewInsets="NO" id="klh-jW-OoR" customClass="CourseMainPageViewController" customModule="AudioPlayer" customModuleProvider="target" sceneMemberID="viewController">
@@ -1012,7 +1045,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="课程" id="IJg-9Z-5d9">
+                    <navigationItem key="navigationItem" title="巨方助手" id="IJg-9Z-5d9">
                         <barButtonItem key="rightBarButtonItem" style="plain" id="hki-SA-fJx">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="0yo-GP-COf">
                                 <rect key="frame" x="280" y="9" width="24" height="25"/>
@@ -1199,11 +1232,11 @@
             </objects>
             <point key="canvasLocation" x="2042" y="22"/>
         </scene>
-        <!--我-->
+        <!--我的-->
         <scene sceneID="oct-0p-3hq">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="TZY-KL-rYs" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="我" image="me" selectedImage="me-filled" id="owk-5T-4hW"/>
+                    <tabBarItem key="tabBarItem" title="我的" image="me" selectedImage="me-filled" id="owk-5T-4hW"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="8yN-zm-MH5">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -1906,11 +1939,11 @@
             </objects>
             <point key="canvasLocation" x="-126" y="-1388"/>
         </scene>
-        <!--主页-->
+        <!--首页-->
         <scene sceneID="WPv-rv-FPk">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ya2-w7-wG2" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="主页" image="course" selectedImage="course-filled" id="JEl-jD-25b"/>
+                    <tabBarItem key="tabBarItem" title="首页" image="course" selectedImage="course-filled" id="JEl-jD-25b"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="nwi-ip-qsl">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -2138,7 +2171,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rm4-Qz-wnZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4497" y="1271"/>
+            <point key="canvasLocation" x="5029" y="1271"/>
         </scene>
         <!--搜索-->
         <scene sceneID="Puq-vm-CuL">
@@ -2240,7 +2273,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fUb-8w-yGM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4005" y="1464"/>
+            <point key="canvasLocation" x="4537" y="1464"/>
         </scene>
         <!--搜索-->
         <scene sceneID="3Nn-97-MSo">
@@ -2385,6 +2418,25 @@
             </objects>
             <point key="canvasLocation" x="-335" y="-445"/>
         </scene>
+        <!--设置-->
+        <scene sceneID="CVZ-XW-giu">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="2kR-r7-fJK" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="设置" image="setting" selectedImage="setting-filled" id="JMx-He-QWO"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ZrM-ya-Uph">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="U8X-pM-Yzb" kind="relationship" relationship="rootViewController" id="3sR-6p-8OZ"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mu3-Qs-NF8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1277" y="849"/>
+        </scene>
     </scenes>
     <resources>
         <image name="audioUserIcon" width="50" height="50"/>
@@ -2407,17 +2459,19 @@
         <image name="sample" width="500" height="500"/>
         <image name="search" width="25" height="25"/>
         <image name="search-filled" width="25" height="25"/>
+        <image name="setting" width="25" height="25"/>
+        <image name="setting-filled" width="25" height="25"/>
         <image name="smallPlayIcon" width="50" height="50"/>
         <image name="soundup" width="40" height="40"/>
         <image name="user" width="250" height="250"/>
         <image name="wave1" width="24" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="OFk-Xz-NKv"/>
         <segue reference="pCp-Ba-NtI"/>
-        <segue reference="Kp8-Nw-Lqb"/>
-        <segue reference="tVi-RP-0bn"/>
-        <segue reference="gK4-D6-0Uz"/>
-        <segue reference="3eS-Pl-zlw"/>
+        <segue reference="HJR-zD-bje"/>
+        <segue reference="VNd-S5-Rjk"/>
+        <segue reference="SaH-Yu-nYI"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.94901960784313721" green="0.38039215686274508" blue="0.0" alpha="0.90000000000000002" colorSpace="calibratedRGB"/>
 </document>
