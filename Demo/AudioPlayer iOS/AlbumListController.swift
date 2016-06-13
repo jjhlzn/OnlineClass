@@ -118,7 +118,8 @@ extension AlbumListController {
             cell.nameLabel.text = album.name
             cell.descLabel.text = album.desc
             if album.hasImage {
-                cell.albumImage.downloadedFrom(link: album.image, contentMode: UIViewContentMode.ScaleAspectFit)
+                //cell.albumImage.downloadedFrom(link: album.image, contentMode: UIViewContentMode.ScaleAspectFit)
+                cell.albumImage.kf_setImageWithURL(NSURL(string: album.image)!)
             }
             return cell
 

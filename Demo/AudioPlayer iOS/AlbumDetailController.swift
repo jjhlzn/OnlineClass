@@ -43,6 +43,7 @@ class AlbumDetailController: BaseUIViewController {
             loadingOverlay.showOverlay(self.view)
             
             let request = GetAlbumSongsRequest(album: album!)
+            request.pageSize = 200
             BasicService().sendRequest(ServiceConfiguration.GET_ALBUM_SONGS,
                                        request: request) {
                 (resp: GetAlbumSongsResponse) -> Void in

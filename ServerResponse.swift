@@ -118,7 +118,7 @@ class GetAlbumsResponse : PageServerResponse<Album> {
     }
 }
 
-class GetAlbumSongsRequest : ServerRequest {
+class GetAlbumSongsRequest : PagedServerRequest {
     var album : Album
     init(album: Album) {
         self.album = album
