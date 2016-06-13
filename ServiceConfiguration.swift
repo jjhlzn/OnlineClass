@@ -79,6 +79,12 @@ class ServiceConfiguration {
         }
     }
     
+    static var UPDATE_TOKEN : String {
+        get {
+            return "\(http)://\(serverName):\(port)/user/updatetoken"
+        }
+    }
+    
     static var LOGOUT : String {
         get {
             return "\(http)://\(serverName):\(port)/user/logout"

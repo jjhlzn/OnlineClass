@@ -11,12 +11,16 @@ import Foundation
 enum ServerResponseStatus : Int {
     case Success = 0
     case NoEnoughAuthority = -10  //没有足够的权限
+    case TokenInvalid = -11 //token无效，或过期
 }
 
 class ServerRequest {
+    var test: String = ""  //用了测试token失效
     var params: [String: AnyObject] {
         get {
-            return [String: AnyObject]()
+            var parameters = [String: AnyObject]()
+            parameters["test"] = test
+            return parameters
         }
     }
 }
@@ -307,6 +311,47 @@ class LoginResponse : ServerResponse {
         }
     }
 
+}
+
+class UpdateTokenRequest : ServerRequest {
+    var userName : String
+    var password : String
+    
+    init(userName : String, password: String) {
+        self.userName = userName
+        self.password = password
+    }
+    
+    override var params: [String : AnyObject] {
+        get {
+            var parameters = super.params
+            parameters["userName"] = userName
+            parameters["password"] = password
+            return parameters
+        }
+    }
+}
+
+class UpdateTokenResponse : ServerResponse {
+    var name : String?
+    var token : String?
+    var sex: String = ""
+    var codeImageUrl: String = ""
+    
+    required init() {
+        
+    }
+    
+    override func parseJSON(request: ServerRequest, json: NSDictionary) {
+        super.parseJSON(request, json: json)
+        
+        if status == 0 {
+            name = json["name"] as? String
+            token = json["token"] as? String
+            sex = json["sex"] as! String
+            codeImageUrl = json["codeImageUrl"] as! String
+        }
+    }
 }
 
 class LogoutRequest : ServerRequest {

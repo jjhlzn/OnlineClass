@@ -48,6 +48,11 @@ class AlbumDetailController: BaseUIViewController {
                 (resp: GetAlbumSongsResponse) -> Void in
                 dispatch_async(dispatch_get_main_queue()) {
                     self.loadingOverlay.hideOverlayView()
+                    if resp.status == ServerResponseStatus.TokenInvalid.rawValue {
+                        self.displayMessage("请重新登录")
+                        return
+                    }
+                    
                     if resp.status != 0 {
                         print(resp.errorMessage)
                     } else {

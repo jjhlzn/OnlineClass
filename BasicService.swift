@@ -16,8 +16,9 @@ class BasicService {
     
     private func sendRequest<T: ServerResponse>(url: String,
                      method: Alamofire.Method = .POST,
-                     severRequest: ServerRequest,
+                     serverRequest: ServerRequest,
                      params: [String: AnyObject]? = [String: AnyObject](),
+                     hasResendForTokenInvalid: Bool = false,
                      //controller中定义的处理函数
                      completion: (resp: T) -> Void) -> T {
         let serverResponse = T()
@@ -55,13 +56,57 @@ class BasicService {
                 } else {
                     let json = response.result.value as! NSDictionary
                     serverResponse.status = json["status"] as! Int
-                    //TODO: 检查status是否是因为token过期，如果是，则需要重新验证token的值, 获得token的值后，重新发送一次请求
-                    if serverResponse.status == 0 {
-                        serverResponse.parseJSON(severRequest, json: response.result.value as! NSDictionary)
-                    } else {
-                        serverResponse.errorMessage = json["errorMessage"] as? String
+                    //检查status是否是因为token过期，如果是，则需要重新验证token的值, 获得token的值后，重新发送一次请求
+                    if serverResponse.status == ServerResponseStatus.TokenInvalid.rawValue && !hasResendForTokenInvalid {
+                        var loginUser = LoginUserStore().getLoginUser()
+                        if (loginUser != nil) {
+                            let updateTokenReq = UpdateTokenRequest(userName: loginUser!.userName!, password: loginUser!.password!)
+                            let fatherCompletion = completion
+                            let fatherUrl = url
+                            let fatherRequest = serverRequest
+                            self.sendRequest(ServiceConfiguration.UPDATE_TOKEN, serverRequest: updateTokenReq, hasResendForTokenInvalid: true) {
+                                (updateTokenResp : UpdateTokenResponse) -> Void in
+                                QL1("handle update token response")
+                                if updateTokenResp.status != 0  {
+                                    serverResponse.errorMessage = "登录已过期，请重新登录"
+                                    fatherCompletion(resp: serverResponse)
+                                    return
+                                }
+                                
+                                //保存token
+                                loginUser = LoginUserStore().getLoginUser()
+                                QL1(loginUser)
+                                loginUser!.token = updateTokenResp.token
+                                QL1("set token")
+                                if !LoginUserStore().updateLoginUser() {
+                                    serverResponse.errorMessage = "登录已过期，请重新登录"
+                                    fatherCompletion(resp: serverResponse)
+                                    return
+                                }
+                                
+                                //重新发送请求
+                                QL1("重新发送请求")
+                                QL1(fatherRequest)
+                                fatherRequest.test = "resend"
+                                self.sendRequest(fatherUrl, serverRequest: fatherRequest, params: fatherRequest.params, hasResendForTokenInvalid: true, completion: fatherCompletion)
+                            }
+                        }
                     }
-                    completion(resp: serverResponse)
+                    
+                    if serverResponse.status == 0 {
+                        serverResponse.parseJSON(serverRequest, json: response.result.value as! NSDictionary)
+                        completion(resp: serverResponse)
+                    } else if serverResponse.status == ServerResponseStatus.TokenInvalid.rawValue {
+                        //在上面的代理处理，推迟resp处理
+                        QL1("handle invalid token")
+                        if hasResendForTokenInvalid {
+                            serverResponse.errorMessage = "请重新登录"
+                            completion(resp: serverResponse)
+                        }
+                    } else  {
+                        serverResponse.errorMessage = json["errorMessage"] as? String
+                        completion(resp: serverResponse)
+                    }
                 }
         }
         
@@ -73,7 +118,7 @@ class BasicService {
                      method: Alamofire.Method = .POST,
                      //controller中定义的处理函数
         completion: (resp: T) -> Void) -> T {
-        return sendRequest(url, method: method, severRequest: request, params: request.params, completion: completion)
+        return sendRequest(url, method: method, serverRequest: request, params: request.params, completion: completion)
     }
     
     private func addMoreRequestInfo(params: [String: AnyObject]?) -> [String: AnyObject] {
