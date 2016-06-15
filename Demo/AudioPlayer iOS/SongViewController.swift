@@ -9,7 +9,7 @@
 import UIKit
 import KDEAudioPlayer
 
-class SongViewController: BaseUIViewController, UIGestureRecognizerDelegate, CommentDelegate {
+class SongViewController: BaseUIViewController, UIGestureRecognizerDelegate {
     
     //播放页控制
     var playerPageViewController: CommonPlayerPageViewController!
@@ -51,7 +51,7 @@ class SongViewController: BaseUIViewController, UIGestureRecognizerDelegate, Com
         commentController.sendButton = sendButton
         commentController.emojiSwitchButton = emojiSwithButton
         commentController.viewController = self
-        commentController.delegate = self
+        
         commentController.initView(song)
         
 
@@ -76,6 +76,12 @@ class SongViewController: BaseUIViewController, UIGestureRecognizerDelegate, Com
         playerPageViewController.viewController = self
         playerPageViewController.showHasMoreLink = true
         playerPageViewController.comments = [Comment]()
+        
+        if song.album.courseType == CourseType.Live {
+            commentController.liveDelegate = playerPageViewController as! LivePlayerPageViewController
+        } else {
+            commentController.delegate = playerPageViewController
+        }
         
         tableView.dataSource = playerPageViewController
         tableView.delegate = playerPageViewController
@@ -121,10 +127,7 @@ class SongViewController: BaseUIViewController, UIGestureRecognizerDelegate, Com
          playerPageViewController.reload()
     }
     
-    func afterSendComment(comment: Comment) {
-        playerPageViewController.comments.insert(comment, atIndex: 0)
-        tableView.reloadSections(NSIndexSet(index: 1), withRowAnimation: .None)
-    }
+    
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "commentListSegue" {
@@ -165,7 +168,7 @@ class SongViewController: BaseUIViewController, UIGestureRecognizerDelegate, Com
         hideSongList()
     }
     
-    
+   
 }
 
 

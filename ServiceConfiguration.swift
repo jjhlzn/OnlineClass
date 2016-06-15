@@ -180,6 +180,12 @@ class ServiceConfiguration {
         }
     }
     
+    static var SEND_LIVE_COMMENT: String {
+        get {
+            return "\(http)://\(serverName):\(port)/comment/addLive"
+        }
+    }
+    
     //获取直播在线人数
     static var GET_LIVE_LISTERNER_COUNT : String {
         get {

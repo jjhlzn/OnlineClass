@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class CommonPlayerPageViewController : NSObject, UITableViewDataSource, UITableViewDelegate {
+class CommonPlayerPageViewController : NSObject, UITableViewDataSource, UITableViewDelegate, CommentDelegate {
     
     var viewController: SongViewController!
     var comments: [Comment]!
@@ -217,4 +217,11 @@ class CommonPlayerPageViewController : NSObject, UITableViewDataSource, UITableV
             }
         }
     }
+    
+    func afterSendComment(comment: Comment) {
+        comments.insert(comment, atIndex: 0)
+        viewController.tableView.reloadSections(NSIndexSet(index: 1), withRowAnimation: .None)
+    }
+    
+    
 }

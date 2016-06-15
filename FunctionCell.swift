@@ -37,15 +37,15 @@ class ExtendFunctionMananger : NSObject {
         functions = [
             ExtendFunction(imageName: "commonCard", name: "去刷卡", url: "http://www.baidu.com",
                 selector:  #selector(imageHandler)),
-            ExtendFunction(imageName: "up", name: "一键提额", url: "http://www.baidu.com",
+            ExtendFunction(imageName: "up", name: "一键提额", url: "http://114.215.236.171:6012/Service/CreditLines",
                 selector:  #selector(imageHandler)),
-            ExtendFunction(imageName: "visa", name: "一键办卡", url: "http://www.weibo.com",
+            ExtendFunction(imageName: "visa", name: "一键办卡", url: "http://114.215.236.171:6012/Service/FastCard",
                 selector:  #selector(imageHandler)),
-            ExtendFunction(imageName: "cardManage", name: "卡片管理", url: "http://www.weibo.com",
+            ExtendFunction(imageName: "cardManage", name: "卡片管理", url: "http://114.215.236.171:6012/Service/CardManage",
                 selector:  #selector(unSupportHandler)),
-            ExtendFunction(imageName: "creditSearch", name: "信用查询", url: "http://www.weibo.com",
+            ExtendFunction(imageName: "creditSearch", name: "信用查询", url: "http://114.215.236.171:6012/Service/Ipcrs",
                 selector:  #selector(imageHandler)),
-            ExtendFunction(imageName: "mmcSearch", name: "mcc查询",  url: "http://www.weibo.com",
+            ExtendFunction(imageName: "mmcSearch", name: "mcc查询",  url: "http://114.215.236.171:6012/Service/MccSearch",
                 selector:  #selector(imageHandler)),
             ExtendFunction(imageName: "shopcart", name: "商城",  url: "http://www.weibo.com",
                 selector:  #selector(unSupportHandler)),
@@ -53,6 +53,8 @@ class ExtendFunctionMananger : NSObject {
                  selector:  #selector(unSupportHandler)),
             ExtendFunction(imageName: "dollar", name: "贷款", url: "http://www.weibo.com",
                  selector:  #selector(unSupportHandler)),
+            ExtendFunction(imageName: "car", name: "汽车分期", url: "http://www.weibo.com",
+                selector:  #selector(unSupportHandler)),
         ]
         
     }
@@ -109,6 +111,7 @@ class ExtendFunctionMananger : NSObject {
         let interval : CGFloat = UIScreen.mainScreen().bounds.width / 4
         let x = interval  * CGFloat(column)
         let cellView = UIView(frame: CGRectMake(x, 0, interval, 79))
+        cellView.tag = index
         
         cell.addSubview(cellView)
         

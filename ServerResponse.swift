@@ -202,13 +202,13 @@ class GetSongLiveCommentsResponse : ServerResponse {
         let jsonArray = json["comments"] as! NSArray
         comments = [Comment]()
         
-        for json in jsonArray {
+        for eachJSON in jsonArray {
             let comment = Comment()
-            comment.id = "\(json["id"] as? Int)"
+            comment.id = "\(eachJSON["id"] as! Int)"
             comment.song = (request as! GetSongLiveCommentsRequest).song
-            comment.userId = json["userId"] as! String
-            comment.time = json["time"] as! String
-            comment.content = json["content"] as! String
+            comment.userId = eachJSON["userId"] as! String
+            comment.time = eachJSON["time"] as! String
+            comment.content = eachJSON["content"] as! String
             comments.append(comment)
         }
     }
@@ -266,6 +266,45 @@ class SendCommentRequest : ServerRequest {
 
 class SendCommentResponse : ServerResponse {
     
+    
+    
+}
+
+class SendLiveCommentRequest : ServerRequest {
+    var song: Song!
+    var lastId: String!
+    var comment: String!
+    override var params: [String : AnyObject] {
+        get {
+            var parameters = super.params
+            parameters["song"] = ["id": song.id]
+            parameters["lastId"] = lastId
+            parameters["comment"] = comment
+            return parameters
+        }
+    }
+}
+
+class SendLiveCommentResponse : ServerResponse {
+    var comments = [Comment]()
+    required init() {}
+    override func parseJSON(request: ServerRequest, json: NSDictionary) {
+        super.parseJSON(request, json: json)
+        
+        let jsonArray = json["comments"] as! NSArray
+        comments = [Comment]()
+        
+        for eachJSON in jsonArray {
+            let comment = Comment()
+            comment.id = "\(eachJSON["id"] as! Int)"
+            comment.song = (request as! SendLiveCommentRequest).song
+            comment.userId = eachJSON["userId"] as! String
+            comment.time = eachJSON["time"] as! String
+            comment.content = eachJSON["content"] as! String
+            comments.append(comment)
+        }
+    }
+
 }
 
 class LoginRequest : ServerRequest {
@@ -457,7 +496,7 @@ class GetLiveListernerCountResponse : ServerResponse {
     override func parseJSON(request: ServerRequest, json: NSDictionary) {
         super.parseJSON(request, json: json)
         if status == 0 {
-            count = json["count"] as! Int
+            count = json["listerCount"] as! Int
         }
     }
 }

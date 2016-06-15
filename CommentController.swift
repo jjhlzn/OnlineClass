@@ -10,6 +10,13 @@ import UIKit
 
 protocol CommentDelegate {
     func afterSendComment(comment: Comment)
+    
+}
+
+protocol LiveCommentDelegate {
+    func afterSendLiveComment(comments: [Comment])
+    func getLastCommentId() -> String
+    func setUpdateChatFlag(isUpdateFlag: Bool)
 }
 
 class CommentController : NSObject, UITextViewDelegate {
@@ -17,6 +24,7 @@ class CommentController : NSObject, UITextViewDelegate {
     var overlay = UIView()
     var viewController: BaseUIViewController!
     var delegate: CommentDelegate?
+    var liveDelegate: LiveCommentDelegate?
     var bottomView: UIView!
     
     var bottomView2: UIView!
@@ -63,6 +71,7 @@ class CommentController : NSObject, UITextViewDelegate {
         
         self.song = song
         
+        
         bottomView2.hidden = true
         commentFiled2.editable = true
         
@@ -94,6 +103,8 @@ class CommentController : NSObject, UITextViewDelegate {
         if emojiSwitchButton != nil {
             emojiSwitchButton?.addTarget(self, action: #selector(emojiSwitchButtonPressed), forControlEvents: .TouchUpInside)
         }
+        
+        
     }
     
     
@@ -192,7 +203,7 @@ class CommentController : NSObject, UITextViewDelegate {
     func sendComment() {
         NSLog("%s: sendComment", TAG)
         isSendPressed = true
-        let commentConent = getCommentContent()
+        
         let song = (viewController.getAudioPlayer().currentItem as! MyAudioItem).song
         if (song == nil) {
             NSLog("%s: song is null", TAG)
@@ -206,9 +217,18 @@ class CommentController : NSObject, UITextViewDelegate {
         //关闭评论窗口
         closeCommentWindow()
         
+        if song.album.courseType == CourseType.Live {
+            sendLiveComment()
+        } else {
+            sendCommonComment()
+        }
+        
+    }
+    
+    private func sendCommonComment() {
         let sendCommentRequest = SendCommentRequest()
         sendCommentRequest.song = song
-        sendCommentRequest.comment = commentConent.emojiEscapedString
+        sendCommentRequest.comment = getCommentContent().emojiEscapedString
         
         BasicService().sendRequest(ServiceConfiguration.SEND_COMMENT, request: sendCommentRequest) {
             (resp: SendCommentResponse) -> Void in
@@ -223,10 +243,10 @@ class CommentController : NSObject, UITextViewDelegate {
                     
                     self.isCommentSuccess = true
                     let comment = Comment()
-                    comment.song = song
+                    comment.song = self.song
                     comment.time = "现在"
                     comment.userId = self.getLoginUser().userName
-                    comment.content = commentConent
+                    comment.content = sendCommentRequest.comment
                     self.delegate?.afterSendComment(comment)
                     
                     if !self.isKeyboardShow {
@@ -238,9 +258,48 @@ class CommentController : NSObject, UITextViewDelegate {
                     self.isCommentSuccess = false
                 }
             }
-                                    
+            
         }
+
+    }
+    
+    private func sendLiveComment() {
         
+        liveDelegate?.setUpdateChatFlag(true)
+        let sendCommentRequest = SendLiveCommentRequest()
+        sendCommentRequest.song = song
+        sendCommentRequest.lastId = liveDelegate!.getLastCommentId()
+        sendCommentRequest.comment = getCommentContent().emojiEscapedString
+        
+        BasicService().sendRequest(ServiceConfiguration.SEND_LIVE_COMMENT, request: sendCommentRequest) {
+            (resp: SendLiveCommentResponse) -> Void in
+            dispatch_async(dispatch_get_main_queue()) {
+                self.liveDelegate?.setUpdateChatFlag(false)
+                NSLog("%s: process send comment response", self.TAG)
+                self.viewController.dismissKeyboard()
+                self.lastCommentTime = NSDate()
+                if ( resp.status == ServerResponseStatus.Success.rawValue) {
+                    NSLog("%s: sucess", self.TAG)
+                    self.commentFiled2.text = ""
+                    self.disableSendButton()
+                    
+                    self.isCommentSuccess = true
+                    
+                    
+                    self.liveDelegate?.afterSendLiveComment(resp.comments)
+                    
+                    if !self.isKeyboardShow {
+                        self.showComentResultTip()
+                    }
+                    
+                } else {
+                    NSLog("%s: fail", self.TAG)
+                    self.isCommentSuccess = false
+                }
+            }
+            
+        }
+
     }
     
     //注册键盘改变通知

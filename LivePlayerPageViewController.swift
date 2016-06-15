@@ -13,7 +13,7 @@ import KDEAudioPlayer
 //1. 在线聊天最多显示100条
 //2. 控制聊天的自述
 //3. 每隔5s, 向服务器获取配置的信息，以及获取最新的聊天信息
-class LivePlayerPageViewController : CommonPlayerPageViewController {
+class LivePlayerPageViewController : CommonPlayerPageViewController, LiveCommentDelegate {
     
     //聊天刷新频率
     let freshChatInterval: NSTimeInterval = 5
@@ -49,6 +49,24 @@ class LivePlayerPageViewController : CommonPlayerPageViewController {
     override func enterForhand() {
         super.enterForhand()
         createTimer()
+    }
+    
+    func afterSendLiveComment(comments: [Comment]) {
+        if comments.count > 0 {
+            self.lastId = comments[0].id!
+        }
+        for comment in comments {
+            self.comments.insert(comment, atIndex: 0)
+        }
+        viewController.tableView.reloadSections(NSIndexSet(index: 1), withRowAnimation: .None)
+    }
+    
+    func getLastCommentId() -> String {
+        return lastId
+    }
+    
+    func setUpdateChatFlag(isUpdateFlag: Bool) {
+        self.isUpdateChat = isUpdateFlag
     }
     
     private func createTimer() {
@@ -257,8 +275,14 @@ class LivePlayerPageViewController : CommonPlayerPageViewController {
                                                 print(resp.errorMessage)
                                                 return
                                             }
+                                            if resp.comments.count > 0 {
+                                                self.lastId = resp.comments[0].id!
+                                                
+                                            }
+
                                             self.viewController.playerPageViewController.comments = resp.comments
                                             self.viewController.tableView.reloadSections(NSIndexSet(index: 1), withRowAnimation: .None)
+                                            
                                         }
             }
         }
