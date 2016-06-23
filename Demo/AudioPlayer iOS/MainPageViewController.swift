@@ -49,11 +49,7 @@ class CourseMainPageViewController: BaseUIViewController {
             let dest = segue.destinationViewController as! AlbumListController
             
             dest.courseType = CourseType(rawValue: sender as! String)!
-        } else if segue.identifier == "liveCourseSegue" {
-            let dest = segue.destinationViewController as! LiveAlbumListController
-            
-            dest.courseType = CourseType(rawValue: sender as! String)!
-        }
+        } 
         else if segue.identifier == "loadWebPageSegue" {
             let dest = segue.destinationViewController as! WebPageViewController
             

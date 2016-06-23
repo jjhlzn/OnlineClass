@@ -113,10 +113,11 @@ extension AlbumListController {
         
         let album = pagableController.data[indexPath.row]
         
-        if album.courseType == CourseType.Live {
+        if album.isLive {
             let cell = tableView.dequeueReusableCellWithIdentifier("liveAlbumCell") as! LiveAlbumCell
             cell.nameLabel.text = album.name
             cell.descLabel.text = album.desc
+            cell.listenPeopleLabel.text = album.listenCount
             if album.hasImage {
                 //cell.albumImage.downloadedFrom(link: album.image, contentMode: UIViewContentMode.ScaleAspectFit)
                 cell.albumImage.kf_setImageWithURL(NSURL(string: album.image)!)
@@ -128,6 +129,7 @@ extension AlbumListController {
             let cell = tableView.dequeueReusableCellWithIdentifier("albumCell") as! AlbumCell
             cell.nameLabel.text = album.name
             cell.authorLabel.text = album.author
+            
             cell.listenCountAndCountLabel.text = "\(album.listenCount), \(album.count)集"
             if album.hasImage {
                 cell.albumImage.downloadedFrom(link: album.image, contentMode: UIViewContentMode.ScaleAspectFit)

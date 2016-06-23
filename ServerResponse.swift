@@ -147,11 +147,12 @@ class GetAlbumSongsResponse : ServerResponse {
         for json in jsonArray {
             var song : Song!
             let album = req.album
-            if album.courseType == CourseType.Live {
+            if album.isLive {
                 let liveSong = LiveSong()
                 liveSong.imageUrl = json["image"] as? String
                 liveSong.startDateTime = json["startTime"] as? String
                 liveSong.endDateTime = json["endTime"] as? String
+                liveSong.listenPeople = json["listenPeople"] as! String
                 song = liveSong
             } else {
                 song = Song()

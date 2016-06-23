@@ -15,5 +15,6 @@ class AlbumCell: UITableViewCell {
     
     @IBOutlet weak var authorLabel: UILabel!
 
+    @IBOutlet weak var listenPeopleLabel: UILabel!
     @IBOutlet weak var albumImage: UIImageView!
 }

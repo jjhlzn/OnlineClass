@@ -15,6 +15,7 @@ class SongCell: UITableViewCell {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var playImage: UIImageView!
     
+    @IBOutlet weak var listenPeopleLabel: UILabel!
     @IBOutlet weak var playBigImage: UIButton!
     
 }

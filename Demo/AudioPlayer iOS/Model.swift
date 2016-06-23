@@ -18,6 +18,7 @@ enum CourseType: String {
     case Common, Vip, Live
 }
 
+
 class Album : BaseModelObject {
     var id: String = ""
     var name: String = ""
@@ -40,6 +41,14 @@ class Album : BaseModelObject {
             return "{'id': \(id)}"
         }
     }
+    
+    var isLive: Bool {
+            if courseType == CourseType.Live || courseType == CourseType.Vip {
+                return true
+            } else {
+                return false
+            }
+    }
 }
 
 class SongSetting : BaseModelObject {
@@ -58,11 +67,16 @@ class Song : BaseModelObject {
     var wholeUrl : String {
         return ServiceConfiguration.GetSongUrl(url)
     }
+    var isLive : Bool {
+        return album.isLive
+    }
+
     override var description: String {
         get {
             return "{'id': \(id)}"
         }
     }
+    
 }
 
 class LiveSong : Song {
@@ -76,6 +90,9 @@ class LiveSong : Song {
     
     var imageUrl: String?
     var startDateTime: String?
+    var listenPeople: String = ""
+    
+    
     var startTime: String? {
         get {
             if startDateTime == nil {

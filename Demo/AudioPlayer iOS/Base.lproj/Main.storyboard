@@ -484,11 +484,11 @@
                                     <outlet property="nameLabel" destination="nCi-5j-Vs9" id="ec5-w2-9R0"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="liveAlbumCell" rowHeight="74" id="1LG-bb-0ID" customClass="LiveAlbumCell" customModule="AudioPlayer" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="liveAlbumCell" rowHeight="74" id="1LG-bb-0ID" customClass="LiveAlbumCell" customModule="AudioPlayer" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="166" width="320" height="74"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1LG-bb-0ID" id="Cpa-bW-L7M">
-                                    <rect key="frame" x="0.0" y="0.0" width="287" height="73"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="73"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sample" id="BIP-tO-A2f">
@@ -509,11 +509,23 @@
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="highlightedColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="usericon1" id="tKF-kk-L7U">
+                                            <rect key="frame" x="277" y="16" width="25" height="25"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1000人" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="vJF-Db-G3m">
+                                            <rect key="frame" x="259" y="39" width="67" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="albumImage" destination="BIP-tO-A2f" id="U65-GA-4YS"/>
                                     <outlet property="descLabel" destination="fP4-BJ-Gpx" id="IsO-jS-3xd"/>
+                                    <outlet property="listenPeopleLabel" destination="vJF-Db-G3m" id="cK8-ui-ZlV"/>
                                     <outlet property="nameLabel" destination="qjC-fm-1WB" id="2fn-k0-v4f"/>
                                 </connections>
                             </tableViewCell>
@@ -538,7 +550,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3071" y="-126"/>
+            <point key="canvasLocation" x="3378" y="59"/>
         </scene>
         <!--课列表-->
         <scene sceneID="URI-7O-Zhf">
@@ -628,6 +640,60 @@
                                             <outlet property="playImage" destination="Aol-OS-91n" id="zYj-UJ-SNr"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="liveSongCell" rowHeight="70" id="JOO-Kw-LJE" customClass="SongCell" customModule="AudioPlayer" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="98" width="320" height="70"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="JOO-Kw-LJE" id="zWP-kR-QB8">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="69"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Ma9-tl-kpc">
+                                                    <rect key="frame" x="72" y="-2" width="158" height="41"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="yKo-9h-ElL">
+                                                    <rect key="frame" x="72" y="41" width="191" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                    <color key="textColor" white="0.86031879190000005" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="highlightedColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="GSa-XF-1sh">
+                                                    <rect key="frame" x="12" y="9" width="50" height="50"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal" title="Button" image="sample"/>
+                                                    <connections>
+                                                        <action selector="playButtonPressed:" destination="3ur-uT-JCP" eventType="touchUpInside" id="QOc-MP-gJj"/>
+                                                    </connections>
+                                                </button>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="smallPlayIcon" id="PAV-X2-IKR">
+                                                    <rect key="frame" x="27" y="24" width="20" height="20"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1000人" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="rxF-6K-wZ6">
+                                                    <rect key="frame" x="258" y="38" width="67" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="usericon1" id="D0G-EP-x71">
+                                                    <rect key="frame" x="277" y="12" width="25" height="25"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                                </imageView>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="descLabel" destination="yKo-9h-ElL" id="8Mv-aL-GfW"/>
+                                            <outlet property="listenPeopleLabel" destination="rxF-6K-wZ6" id="oQH-I6-eVV"/>
+                                            <outlet property="nameLabel" destination="Ma9-tl-kpc" id="K3Z-Yo-cb2"/>
+                                            <outlet property="playBigImage" destination="GSa-XF-1sh" id="0rI-3k-cFY"/>
+                                            <outlet property="playImage" destination="PAV-X2-IKR" id="tGs-Lk-SB5"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </prototypes>
                             </tableView>
                         </subviews>
@@ -656,7 +722,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aAv-dc-Ce6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3474" y="964"/>
+            <point key="canvasLocation" x="3644" y="633"/>
         </scene>
         <!--所有评论-->
         <scene sceneID="Xxb-Tn-VuQ">
@@ -1083,7 +1149,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="functionCell" id="nMx-i2-zh4" customClass="FunctionCell" customModule="AudioPlayer" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="320" height="79"/>
+                                        <rect key="frame" x="0.0" y="92" width="320" height="79"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nMx-i2-zh4" id="KV1-bG-Y2O">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="79"/>
@@ -2044,7 +2110,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GaB-TD-Wup" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4120" y="325"/>
+            <point key="canvasLocation" x="4278" y="48"/>
         </scene>
         <!--直播课列表-->
         <scene sceneID="8qh-ZD-epN">
@@ -2464,14 +2530,15 @@
         <image name="smallPlayIcon" width="50" height="50"/>
         <image name="soundup" width="40" height="40"/>
         <image name="user" width="250" height="250"/>
+        <image name="usericon1" width="35" height="35"/>
         <image name="wave1" width="24" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="OFk-Xz-NKv"/>
         <segue reference="pCp-Ba-NtI"/>
-        <segue reference="HJR-zD-bje"/>
+        <segue reference="xmL-0a-HxS"/>
+        <segue reference="Q3U-7n-t25"/>
         <segue reference="VNd-S5-Rjk"/>
-        <segue reference="SaH-Yu-nYI"/>
+        <segue reference="MPd-di-4DT"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.94901960784313721" green="0.38039215686274508" blue="0.0" alpha="0.90000000000000002" colorSpace="calibratedRGB"/>
 </document>

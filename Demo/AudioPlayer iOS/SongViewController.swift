@@ -63,7 +63,7 @@ class SongViewController: BaseUIViewController, UIGestureRecognizerDelegate {
             navigationItem.title = item.song!.name
             
             //设置播放页控制器
-            if item.song!.album.courseType == CourseType.Live {
+            if item.song!.isLive {
                 playerPageViewController = LivePlayerPageViewController()
             } else {
                 playerPageViewController = CommonPlayerPageViewController()
@@ -77,7 +77,7 @@ class SongViewController: BaseUIViewController, UIGestureRecognizerDelegate {
         playerPageViewController.showHasMoreLink = true
         playerPageViewController.comments = [Comment]()
         
-        if song.album.courseType == CourseType.Live {
+        if song.album.isLive {
             commentController.liveDelegate = playerPageViewController as! LivePlayerPageViewController
         } else {
             commentController.delegate = playerPageViewController

@@ -211,10 +211,17 @@ extension AlbumDetailController : UITableViewDataSource, UITableViewDelegate {
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let song = songs[indexPath.row]
-        let cell = tableView.dequeueReusableCellWithIdentifier("songCell") as! SongCell
+        var cell : SongCell!
+        if album!.isLive {
+            cell  = tableView.dequeueReusableCellWithIdentifier("liveSongCell") as! SongCell
+            cell.listenPeopleLabel.text = (song as! LiveSong).listenPeople
+        } else {
+            cell  = tableView.dequeueReusableCellWithIdentifier("songCell") as! SongCell
+            cell.dateLabel.text = song.date
+        }
         cell.nameLabel.text = song.name
         cell.descLabel.text = song.desc
-        cell.dateLabel.text = song.date
+        
         //cell.playBigImage.imageView!.image = albumImageData
         let playBigImage = cell.playBigImage
         playBigImage.setImage(albumImageData, forState: .Normal)
