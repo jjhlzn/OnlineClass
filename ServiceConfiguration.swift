@@ -27,7 +27,7 @@ class ServiceConfiguration {
             if isUseConfig {
                 return (serviceLocatorStore.GetServiceLocator()!.serverName)!
             } else {
-                return serverName3
+                return serverName2
             }
         }
     }
@@ -37,7 +37,7 @@ class ServiceConfiguration {
             if isUseConfig {
                 return Int((serviceLocatorStore.GetServiceLocator()!.port)!)
             } else {
-                return port3
+                return port2
             }
         }
     }
@@ -137,6 +137,12 @@ class ServiceConfiguration {
     
         get {
             return "\(http)://\(serverName):\(port)/user/uploadprofileimage"
+        }
+    }
+    
+    static var GET_PROFILE_IMAGE : String {
+        get {
+            return "\(http)://\(serverName):\(port)/user/getprofileimage"
         }
     }
     

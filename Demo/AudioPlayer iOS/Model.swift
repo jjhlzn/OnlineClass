@@ -148,6 +148,7 @@ class Comment : BaseModelObject {
     var id: String?
     var song: Song?
     var userId: String!
+    var nickName: String!
     var time: String!
     var content: String!
     

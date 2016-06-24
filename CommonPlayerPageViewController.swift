@@ -98,7 +98,7 @@ class CommonPlayerPageViewController : NSObject, UITableViewDataSource, UITableV
         let cell = tableView.dequeueReusableCellWithIdentifier("commentCell") as! CommentCell
         
         let comment = comments![row - 1]
-        cell.userIdLabel.text = comment.userId
+        cell.userIdLabel.text = comment.nickName
         cell.timeLabel.text = comment.time
         cell.contentLabel.text = comment.content.emojiUnescapedString
         
@@ -108,8 +108,13 @@ class CommonPlayerPageViewController : NSObject, UITableViewDataSource, UITableV
         frame.size.height = cell.contentLabel.frame.size.height;
         cell.contentLabel.frame = frame;
         
-        
         cell.userImage.becomeCircle()
+        
+        let profileImageUrl = ServiceConfiguration.GET_PROFILE_IMAGE + "?userid=" + comment.userId
+        if let url = NSURL(string: profileImageUrl) {
+            cell.userImage.kf_setImageWithURL(url)
+        }
+
         //print("computeHeight")
         return cell
 

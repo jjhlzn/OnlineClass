@@ -155,7 +155,7 @@ extension CommentListController {
         let cell = tableView.dequeueReusableCellWithIdentifier("commentCell") as! CommentCell
         
         let comment = pagableController.data[row]
-        cell.userIdLabel.text = comment.userId
+        cell.userIdLabel.text = comment.nickName
         cell.timeLabel.text = comment.time
         cell.contentLabel.text = comment.content.emojiUnescapedString
         
@@ -167,6 +167,11 @@ extension CommentListController {
         
         
         cell.userImage.becomeCircle()
+        let profileImageUrl = ServiceConfiguration.GET_PROFILE_IMAGE + "?userid=" + comment.userId
+        if let url = NSURL(string: profileImageUrl) {
+            cell.userImage.kf_setImageWithURL(url)
+        }
+
         //print("computeHeight")
         return cell
         

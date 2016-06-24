@@ -243,6 +243,7 @@ class GetSongCommentsResponse : PageServerResponse<Comment> {
             comment.id = "\(json["id"] as? Int)"
             comment.song = (request as! GetSongCommentsRequest).song
             comment.userId = json["userId"] as! String
+            comment.nickName = json["name"] as! String
             comment.time = json["time"] as! String
             comment.content = json["content"] as! String
             comments.append(comment)
@@ -300,6 +301,7 @@ class SendLiveCommentResponse : ServerResponse {
             comment.id = "\(eachJSON["id"] as! Int)"
             comment.song = (request as! SendLiveCommentRequest).song
             comment.userId = eachJSON["userId"] as! String
+            comment.nickName = json["name"] as! String
             comment.time = eachJSON["time"] as! String
             comment.content = eachJSON["content"] as! String
             comments.append(comment)

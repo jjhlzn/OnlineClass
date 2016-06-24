@@ -191,7 +191,7 @@ class LivePlayerPageViewController : CommonPlayerPageViewController, LiveComment
         let cell = tableView.dequeueReusableCellWithIdentifier("commentCell") as! CommentCell
         
         let comment = comments![row - 1]
-        cell.userIdLabel.text = comment.userId
+        cell.userIdLabel.text = comment.nickName
         cell.timeLabel.text = comment.time
         cell.contentLabel.text = comment.content.emojiUnescapedString
         
@@ -203,6 +203,11 @@ class LivePlayerPageViewController : CommonPlayerPageViewController, LiveComment
         
         
         cell.userImage.becomeCircle()
+        let profileImageUrl = ServiceConfiguration.GET_PROFILE_IMAGE + "?userid=" + comment.userId
+        if let url = NSURL(string: profileImageUrl) {
+            cell.userImage.kf_setImageWithURL(url)
+        }
+
         //print("computeHeight")
         return cell
         
