@@ -16,7 +16,7 @@ class AllFunctionViewController: BaseUIViewController, UITableViewDataSource, UI
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        extendFunctionMananger = ExtendFunctionMananger(controller: self)
+        extendFunctionMananger = ExtendFunctionMananger(controller: self, isNeedMore: false)
         tableView.dataSource = self
         tableView.delegate = self
     }

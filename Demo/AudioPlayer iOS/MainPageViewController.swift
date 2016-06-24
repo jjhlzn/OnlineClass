@@ -29,7 +29,7 @@ class CourseMainPageViewController: BaseUIViewController {
         if screenWidth < 667 {
             maxRows = 2
         }
-        extendFunctionMananger = ExtendFunctionMananger(controller: self, showMaxRows: maxRows)
+        extendFunctionMananger = ExtendFunctionMananger(controller: self, isNeedMore:  true, showMaxRows: maxRows)
         
         
         addPlayingButton(playingButton)

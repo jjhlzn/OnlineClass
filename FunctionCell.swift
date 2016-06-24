@@ -23,17 +23,19 @@ class ExtendFunctionMananger : NSObject {
     var controller : BaseUIViewController
     var showMaxRows : Int
     var moreFunction : ExtendFunction?
+    var isNeedMore = false
     
     var functions : [ExtendFunction] = [ExtendFunction]()
     
-    init(controller: BaseUIViewController, showMaxRows : Int = 100) {
+    init(controller: BaseUIViewController, isNeedMore: Bool = true, showMaxRows : Int = 100) {
         self.controller = controller
         self.showMaxRows = showMaxRows
-        
+        self.isNeedMore = isNeedMore
         
         super.init()
         moreFunction = ExtendFunction(imageName: "moreFunction", name: "更多",  url: "",
                                       selector: #selector(moreHanlder))
+        
         functions = [
             ExtendFunction(imageName: "commonCard", name: "去刷卡", url: "http://www.baidu.com",
                 selector:  #selector(imageHandler)),
@@ -55,6 +57,9 @@ class ExtendFunctionMananger : NSObject {
                  selector:  #selector(unSupportHandler)),
             ExtendFunction(imageName: "car", name: "汽车分期", url: "http://www.weibo.com",
                 selector:  #selector(unSupportHandler)),
+            ExtendFunction(imageName: "customerservice", name: "客服", url: "http://www.weibo.com",
+                selector:  #selector(unSupportHandler)),
+            moreFunction!
         ]
         
     }
@@ -68,12 +73,14 @@ class ExtendFunctionMananger : NSObject {
     }
     
     func isNeedMoreButton() -> Bool {
+        /*
         let buttonCount = showMaxRows * buttonCountEachRow
         if buttonCount < functions.count {
             return true
         } else {
             return false
-        }
+        } */
+        return isNeedMore
     }
     
     func getFunctionCell(tableView: UITableView, row: Int) -> FunctionCell {
@@ -89,9 +96,9 @@ class ExtendFunctionMananger : NSObject {
             
             // print("index = \(index)")
             
-            var function = functions[index]
-            if isNeedMoreButton()  && index == (showMaxRows * buttonCountEachRow - 1) {
-                function = moreFunction!
+            let function = functions[index]
+            if !isNeedMoreButton() && function.name == moreFunction!.name {
+                break
             }
             
             //print("cell.width = \(cell.bounds.width)")
