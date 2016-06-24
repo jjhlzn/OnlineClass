@@ -133,6 +133,12 @@ class ServiceConfiguration {
         }
     }
     
+    static var UPLOAD_PROFILE_IMAGE : String {
+    
+        get {
+            return "\(http)://\(serverName):\(port)/user/uploadprofileimage"
+        }
+    }
     
     //Albums
     static var GET_ALBUMS : String {

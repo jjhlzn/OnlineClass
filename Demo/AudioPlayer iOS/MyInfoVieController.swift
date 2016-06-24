@@ -9,7 +9,7 @@
 import UIKit
 
 class MyInfoVieController: BaseUIViewController, UITableViewDataSource, UITableViewDelegate {
-    
+
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -27,7 +27,11 @@ class MyInfoVieController: BaseUIViewController, UITableViewDataSource, UITableV
             }
         }
         
+        
     }
+    
+    
+    
     
 
     override func viewWillAppear(animated: Bool) {
@@ -65,13 +69,26 @@ extension MyInfoVieController {
         }
     }
     
+    func userImageTapped(img: AnyObject) {
+        //presentSettingsActionSheet()
+        performSegueWithIdentifier("setProfilePhotoSegue", sender: nil)
+    }
+    
+    
+
+    
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let section = indexPath.section
         let row = indexPath.row
         switch section {
         case 0:
             let cell = tableView.dequeueReusableCellWithIdentifier("myInfoMainCell") as! MyInfoMainCell
+            cell.userImage.image = UserProfilePhotoStore().get()
             cell.userImage.becomeCircle()
+            
+            let tapGestureRecognizer = UITapGestureRecognizer(target:self, action: #selector(userImageTapped))
+            cell.userImage.userInteractionEnabled = true
+            cell.userImage.addGestureRecognizer(tapGestureRecognizer)
            // cell.backgroundColor =
             //UIColor(red: 0xF2/255, green: 0x61/255, blue: 0, alpha: 0.9)
             return cell

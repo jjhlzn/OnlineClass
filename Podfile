@@ -10,4 +10,5 @@ target 'AudioPlayer iOS' do
     pod 'Auk', '~> 2.1'
     pod 'Kingfisher', '~> 2.4'
     pod 'QorumLogs'
+    pod 'ALCameraViewController'
 end

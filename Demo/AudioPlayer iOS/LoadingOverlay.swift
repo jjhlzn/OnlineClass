@@ -38,6 +38,104 @@ public class LoadingOverlay{
         
         view.addSubview(overlayView)
     }
+    /*
+    public func showOverlayWithMessage(msg: String, view: UIView!) {
+        /*
+        overlayView = UIView(frame: UIScreen.mainScreen().bounds)
+        overlayView.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0)
+        
+        activityIndicator = UIActivityIndicatorView(frame: CGRectMake(0, 0, 80, 80))
+        activityIndicator.layer.cornerRadius = 05;
+        activityIndicator.backgroundColor = UIColor(white: 0, alpha: 0.5)
+        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.WhiteLarge
+        activityIndicator.center = overlayView.center
+        activityIndicator.color = UIColor.whiteColor()
+        overlayView.addSubview(activityIndicator)
+        
+        let text = makeLabel(msg, superView: overlayView)
+        overlayView.addSubview(text)
+        
+        activityIndicator.startAnimating()
+        
+        view.addSubview(overlayView)*/
+    }*/
+    
+    private func makeLabel(msg: String, superView: UIView) -> UILabel {
+        let screenWidth = UIScreen.mainScreen().bounds.width
+        let labelWidth =  screenWidth / 4
+        
+        let label = UILabel(frame: CGRectMake(0, 0, labelWidth, 21))
+        
+        label.center.x = superView.bounds.width / 2
+        label.center.y = superView.bounds.height / 2 + 20 + 5
+        
+        label.textAlignment = .Center
+        label.font = label.font.fontWithSize(13)
+        label.textColor = UIColor.blackColor()
+        label.text = msg
+        
+        return label
+        
+    }
+    
+    public func hideOverlayView() {
+        activityIndicator.stopAnimating()
+        overlayView.removeFromSuperview()
+    }
+}
+
+public class LoadingOverlayWithMessage{
+    
+    var overlayView = UIView()
+    //var backgroundView = UIView()
+    var activityIndicator = UIActivityIndicatorView()
+    
+    class var shared: LoadingOverlayWithMessage {
+        struct Static {
+            static let instance: LoadingOverlayWithMessage = LoadingOverlayWithMessage()
+        }
+        return Static.instance
+    }
+    
+    
+     public func showOverlayWithMessage(msg: String, view: UIView!) {
+     
+     overlayView = UIView(frame: UIScreen.mainScreen().bounds)
+     overlayView.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0)
+     
+     activityIndicator = UIActivityIndicatorView(frame: CGRectMake(0, 0, 80, 80))
+     activityIndicator.layer.cornerRadius = 05;
+     activityIndicator.backgroundColor = UIColor(white: 0, alpha: 0.5)
+     activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.WhiteLarge
+     activityIndicator.center = overlayView.center
+     activityIndicator.color = UIColor.whiteColor()
+     overlayView.addSubview(activityIndicator)
+     
+     let text = makeLabel(msg, superView: overlayView)
+     overlayView.addSubview(text)
+     
+     activityIndicator.startAnimating()
+     
+     view.addSubview(overlayView)
+     }
+    
+    private func makeLabel(msg: String, superView: UIView) -> UILabel {
+        let screenWidth = UIScreen.mainScreen().bounds.width
+        let labelWidth =  screenWidth / 4
+        
+        let label = UILabel(frame: CGRectMake(0, 0, labelWidth, 21))
+        
+        label.center.x = superView.bounds.width / 2
+        label.center.y = superView.bounds.height / 2 + 20 + 5
+        
+        label.textAlignment = .Center
+        label.font = label.font.fontWithSize(13)
+        label.textColor = UIColor.whiteColor()
+        label.text = msg
+        
+        return label
+        
+    }
     
     public func hideOverlayView() {
         activityIndicator.stopAnimating()

@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>ALCameraViewController.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Alamofire.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -62,12 +67,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>5284D1E805A723A7F370EFB6EA39CE51</key>
+		<key>541E9AD8F0209976F59A780F49A3F069</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>541E9AD8F0209976F59A780F49A3F069</key>
+		<key>768CEA616EE375404612B65DC25D9047</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -82,17 +87,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9B52FD67CAA932C972E1D094C4A18D93</key>
+		<key>BF9E04D1FA41D0288A2695BE93BE3F44</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>D933B99C1E6F2F37D47C86CB4BBA412D</key>
+		<key>DAEFE5845A9A47287B43BE713DFD4B08</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>E96E13C4D3B5B5FC0651440734C2BF4D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>EBC78CB576EC08FF719B5B37853FF88E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
