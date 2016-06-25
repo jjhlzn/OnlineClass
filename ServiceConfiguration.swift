@@ -27,7 +27,7 @@ class ServiceConfiguration {
             if isUseConfig {
                 return (serviceLocatorStore.GetServiceLocator()!.serverName)!
             } else {
-                return serverName2
+                return serverName3
             }
         }
     }
@@ -37,7 +37,7 @@ class ServiceConfiguration {
             if isUseConfig {
                 return Int((serviceLocatorStore.GetServiceLocator()!.port)!)
             } else {
-                return port2
+                return port3
             }
         }
     }

@@ -23,6 +23,7 @@ class SetSexViewController: BaseUIViewController, UITableViewDataSource, UITable
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
+        
         if loginUserStore.getLoginUser()!.sex == nil {
             selectSex = "保密"
         } else {

@@ -19,6 +19,7 @@ class SetNickNameViewController: BaseUIViewController, UITableViewDataSource, UI
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.title = "昵称"
         saveButton.enabled = false
         
         tableView.dataSource = self
