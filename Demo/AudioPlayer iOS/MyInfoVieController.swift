@@ -29,7 +29,9 @@ class MyInfoVieController: BaseUIViewController, UITableViewDataSource, UITableV
     
     
     var keyValueStore = KeyValueStore()
-
+    
+    var refreshControl: UIRefreshControl!
+    var querying = false
 
     
     override func viewDidLoad() {
@@ -38,15 +40,29 @@ class MyInfoVieController: BaseUIViewController, UITableViewDataSource, UITableV
         tableView.dataSource = self
         tableView.delegate = self
         
-        BasicService().sendRequest(ServiceConfiguration.GET_CLIENT_NUBMER, request: GetClientNumberRequest()) {
-            (resp: GetClientNumberResponse) -> Void in
-            
-            if resp.status == 0 {
-                
-            }
-        }
+        refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(refresh), forControlEvents: UIControlEvents.ValueChanged)
+        tableView.addSubview(refreshControl)
         
     }
+    
+    
+    func refresh() {
+        if (querying) {
+            refreshControl.endRefreshing()
+            return
+        }
+        
+        querying = true
+        
+        BasicService().sendRequest(ServiceConfiguration.GET_USER_STAT_DATA, request: GetUserStatDataRequest()) {
+            (resp: GetUserStatDataResponse) -> Void in
+            self.updateUserStatData(resp)
+            self.querying = false
+            self.refreshControl.endRefreshing()
+        }
+    }
+
     
 
     override func viewWillAppear(animated: Bool) {
