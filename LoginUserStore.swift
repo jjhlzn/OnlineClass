@@ -9,10 +9,53 @@
 import Foundation
 import CoreData
 
+class LoginUser : NSObject {
+    var userName: String!
+    var password: String!
+    var name: String!
+    var sex: String!
+    var codeImageUrl: String!
+    var token: String!
+    var nickName: String!
+    var level: String!
+    var boss: String?
+}
+
 class LoginUserStore {
     var coreDataStack = CoreDataStack(modelName: Utils.Model_Name)
     
-    func saveLoginUser(userName: String, password: String, name: String, sex: String, codeImageUrl: String, token: String) -> Bool {
+    
+    func saveLoginUser(loginUser: LoginUser) -> Bool {
+        removeLoginUser()
+        
+        //存储登录的信息
+        let context = coreDataStack.mainQueueContext
+        var user: LoginUserEntity!
+        context.performBlockAndWait() {
+            user = NSEntityDescription.insertNewObjectForEntityForName("LoginUserEntity", inManagedObjectContext: context) as! LoginUserEntity
+            user.userName = loginUser.userName
+            user.password = loginUser.password
+            user.name = loginUser.name
+            user.sex = loginUser.sex
+            user.codeImageUrl = loginUser.codeImageUrl
+            user.lastLoginTime = NSDate()
+            user.token = loginUser.token
+            user.nickName = loginUser.nickName
+            user.level = loginUser.level
+            user.boss = loginUser.boss
+        }
+        
+        do {
+            try coreDataStack.saveChanges()
+        }
+        catch let error {
+            print("Core Data save failed: \(error)")
+            return false
+        }
+        return true
+    }
+    
+    private func saveLoginUser(userName: String, password: String, name: String, sex: String, codeImageUrl: String, token: String) -> Bool {
         removeLoginUser()
         
         //存储登录的信息

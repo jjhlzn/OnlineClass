@@ -22,4 +22,8 @@ extension LoginUserEntity {
 
     @NSManaged var sex: String?
     @NSManaged var codeImageUrl: String?
+    
+    @NSManaged var nickName: String?
+    @NSManaged var level: String?
+    @NSManaged var boss: String?
 }

@@ -141,8 +141,17 @@ class LoginViewController: BaseUIViewController {
             dispatch_async(dispatch_get_main_queue()) {
                 self.loadingOverlay.hideOverlayView()
                 if response.status == 0 {
-
-                        if self.loginUserStore.saveLoginUser(userName, password: password, name: response.name!, sex: response.sex, codeImageUrl: response.codeImageUrl, token: response.token!) {
+                        let loginUser = LoginUser()
+                        loginUser.userName = userName
+                        loginUser.password = password
+                        loginUser.name = response.name!
+                        loginUser.sex = response.sex
+                        loginUser.codeImageUrl = response.codeImageUrl
+                        loginUser.token = response.token!
+                        loginUser.nickName = response.nickName
+                        loginUser.level = response.level
+                        loginUser.boss = response.boss
+                        if self.loginUserStore.saveLoginUser(loginUser) {
                             self.performSegueWithIdentifier("loginSuccessSegue", sender: self)
                         } else {
                             self.displayMessage("登录失败")

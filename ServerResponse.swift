@@ -335,6 +335,9 @@ class LoginRequest : ServerRequest {
 class LoginResponse : ServerResponse {
     var name : String?
     var token : String?
+    var nickName: String!
+    var level: String!
+    var boss: String?
     var sex: String = ""
     var codeImageUrl: String = ""
     
@@ -350,6 +353,9 @@ class LoginResponse : ServerResponse {
             token = json["token"] as? String
             sex = json["sex"] as! String
             codeImageUrl = json["codeImageUrl"] as! String
+            nickName = json["nickname"] as! String
+            level = json["level"] as! String
+            boss = json["boss"] as? String
         }
     }
 
@@ -669,5 +675,25 @@ class GetAdsResponse : ServerResponse {
             }
             
         }
+    }
+}
+
+class GetUserStatDataRequest : ServerRequest {
+    
+}
+class GetUserStatDataResponse : ServerResponse {
+    var jifen: String!
+    var chaifu: String!
+    var teamPeople: String!
+    var tuijianPeople: String!
+    var orderCount: String!
+    
+    override func parseJSON(request: ServerRequest, json: NSDictionary) {
+        super.parseJSON(request, json: json)
+        jifen = json["jifen"] as! String
+        chaifu = json["chaifu"] as! String
+        teamPeople = json["teamPeople"] as! String
+        tuijianPeople = json["tuijianPeople"] as! String
+        orderCount = json["orderCount"] as! String
     }
 }

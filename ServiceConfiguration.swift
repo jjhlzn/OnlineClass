@@ -146,6 +146,12 @@ class ServiceConfiguration {
         }
     }
     
+    static var GET_USER_STAT_DATA : String {
+        get {
+            return "\(http)://\(serverName):\(port)/user/getstatdata"
+        }
+    }
+    
     //Albums
     static var GET_ALBUMS : String {
         get {

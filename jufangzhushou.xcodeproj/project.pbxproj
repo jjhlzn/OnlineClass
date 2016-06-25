@@ -37,6 +37,9 @@
 		1C3479BD1CF2F9BD003FEF05 /* FirstPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C3479BC1CF2F9BD003FEF05 /* FirstPageViewController.swift */; };
 		1C3479C01CF3EBEF003FEF05 /* LivePlayerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C3479BF1CF3EBEF003FEF05 /* LivePlayerCell.swift */; };
 		1C3479C21CF4236A003FEF05 /* LivePlayerPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C3479C11CF4236A003FEF05 /* LivePlayerPageViewController.swift */; };
+		1C3C5EDA1D1E11B0000F0A39 /* KeyValueEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C3C5ED81D1E11B0000F0A39 /* KeyValueEntity+CoreDataProperties.swift */; };
+		1C3C5EDB1D1E11B0000F0A39 /* KeyValueEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C3C5ED91D1E11B0000F0A39 /* KeyValueEntity.swift */; };
+		1C3C5EDD1D1E11DB000F0A39 /* KeyValueStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C3C5EDC1D1E11DB000F0A39 /* KeyValueStore.swift */; };
 		1C3CC4C01CFBE3FE007D3EBC /* SongListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C3CC4BF1CFBE3FE007D3EBC /* SongListCell.swift */; };
 		1C3DC3941CFDC538007807AF /* LiveAlbumDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C3DC3931CFDC538007807AF /* LiveAlbumDetailController.swift */; };
 		1C451F661D0175FA00DC29F9 /* ConfigurationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C451F651D0175FA00DC29F9 /* ConfigurationViewController.swift */; };
@@ -128,6 +131,10 @@
 		1C3479BC1CF2F9BD003FEF05 /* FirstPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstPageViewController.swift; sourceTree = "<group>"; };
 		1C3479BF1CF3EBEF003FEF05 /* LivePlayerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LivePlayerCell.swift; sourceTree = "<group>"; };
 		1C3479C11CF4236A003FEF05 /* LivePlayerPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LivePlayerPageViewController.swift; sourceTree = "<group>"; };
+		1C3C5ED71D1E0CA2000F0A39 /* jufangzhushou 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "jufangzhushou 3.xcdatamodel"; sourceTree = "<group>"; };
+		1C3C5ED81D1E11B0000F0A39 /* KeyValueEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "KeyValueEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		1C3C5ED91D1E11B0000F0A39 /* KeyValueEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyValueEntity.swift; sourceTree = "<group>"; };
+		1C3C5EDC1D1E11DB000F0A39 /* KeyValueStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyValueStore.swift; sourceTree = "<group>"; };
 		1C3CC4BF1CFBE3FE007D3EBC /* SongListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongListCell.swift; sourceTree = "<group>"; };
 		1C3DC3931CFDC538007807AF /* LiveAlbumDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiveAlbumDetailController.swift; sourceTree = "<group>"; };
 		1C451F651D0175FA00DC29F9 /* ConfigurationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigurationViewController.swift; sourceTree = "<group>"; };
@@ -346,6 +353,8 @@
 			isa = PBXGroup;
 			children = (
 				1C2451D21CE8A0BD00F350DA /* jufangzhushou.xcdatamodeld */,
+				1C3C5ED81D1E11B0000F0A39 /* KeyValueEntity+CoreDataProperties.swift */,
+				1C3C5ED91D1E11B0000F0A39 /* KeyValueEntity.swift */,
 				1C2451D01CE89EB800F350DA /* CoreDataStack.swift */,
 				1C2451D51CE8A1CE00F350DA /* LoginUserStore.swift */,
 				1C2451D71CE8A28B00F350DA /* LoginUserEntity+CoreDataProperties.swift */,
@@ -354,6 +363,7 @@
 				1C451F6B1D01787B00DC29F9 /* ServiceLocatorEntity.swift */,
 				1C451F6E1D0178A700DC29F9 /* ServiceLocatorStore.swift */,
 				1CC1ADBB1D1CC662005AF856 /* UserProfilePhotoStore.swift */,
+				1C3C5EDC1D1E11DB000F0A39 /* KeyValueStore.swift */,
 			);
 			name = store;
 			sourceTree = "<group>";
@@ -644,6 +654,7 @@
 				1C1E69251CCA0F3E00CEA029 /* NoCommentCell.swift in Sources */,
 				1CD349641CF8167C00037F78 /* WebPageViewController.swift in Sources */,
 				1CD349721CF9AC7D00037F78 /* PersonalInfoCell2.swift in Sources */,
+				1C3C5EDA1D1E11B0000F0A39 /* KeyValueEntity+CoreDataProperties.swift in Sources */,
 				1C1E691B1CC90A6500CEA029 /* PlayerCell.swift in Sources */,
 				1C33F02F1D066C5F00D3EE4C /* UpgradeViewController.swift in Sources */,
 				1CD3496A1CF9802C00037F78 /* FormCell.swift in Sources */,
@@ -671,8 +682,10 @@
 				1C5A6FC51CE99644000E7282 /* PlayerController.swift in Sources */,
 				1C1E68EF1CC65DF600CEA029 /* CommentListController.swift in Sources */,
 				1CA3B2121CD86BD300D0ABD8 /* CourseTypeCell.swift in Sources */,
+				1C3C5EDB1D1E11B0000F0A39 /* KeyValueEntity.swift in Sources */,
 				1CD349661CF83A4700037F78 /* SettingsViewController.swift in Sources */,
 				1C2451D91CE8A28B00F350DA /* LoginUserEntity+CoreDataProperties.swift in Sources */,
+				1C3C5EDD1D1E11DB000F0A39 /* KeyValueStore.swift in Sources */,
 				1C451F681D01765F00DC29F9 /* ConfigurationCell.swift in Sources */,
 				1CEFF79C1CC20171000DEFF7 /* AudioPlayerExtension.swift in Sources */,
 				1C154A501CDACCA6003B900C /* MyUISlider.swift in Sources */,
@@ -980,10 +993,11 @@
 		1C2451D21CE8A0BD00F350DA /* jufangzhushou.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				1C3C5ED71D1E0CA2000F0A39 /* jufangzhushou 3.xcdatamodel */,
 				1C33F03A1D0724A700D3EE4C /* jufangzhushou 2.xcdatamodel */,
 				1C2451D31CE8A0BD00F350DA /* jufangzhushou.xcdatamodel */,
 			);
-			currentVersion = 1C33F03A1D0724A700D3EE4C /* jufangzhushou 2.xcdatamodel */;
+			currentVersion = 1C3C5ED71D1E0CA2000F0A39 /* jufangzhushou 3.xcdatamodel */;
 			path = jufangzhushou.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
