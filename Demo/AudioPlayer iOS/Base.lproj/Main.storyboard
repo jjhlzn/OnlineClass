@@ -265,11 +265,12 @@
                         <segue destination="vNC-ta-SAY" kind="push" identifier="setNameSegue" id="3B5-RV-nDv"/>
                         <segue destination="68y-yK-JRN" kind="push" identifier="setSexSegue" id="fZc-0h-GYi"/>
                         <segue destination="tlV-Sn-3a7" kind="push" identifier="codeImageSegue" id="rka-yI-XBB"/>
+                        <segue destination="XhM-of-jTv" kind="push" identifier="setNickNameSegue" id="JWU-A0-cKA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ueE-jL-He1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="853" y="2215"/>
+            <point key="canvasLocation" x="1307" y="2213"/>
         </scene>
         <!--二维码-->
         <scene sceneID="zcg-kT-Pr4">
@@ -293,7 +294,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7EG-bo-2sb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1780" y="2711"/>
+            <point key="canvasLocation" x="1894" y="2641"/>
         </scene>
         <!--头像设置-->
         <scene sceneID="TXg-RR-1Jk">
@@ -426,7 +427,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HoU-LV-M1e" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="907" y="3063"/>
+            <point key="canvasLocation" x="1078" y="3440"/>
         </scene>
         <!--设置-->
         <scene sceneID="p5d-nN-Nvz">
@@ -1457,7 +1458,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wwz-WH-HI4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-38" y="1074"/>
+            <point key="canvasLocation" x="8" y="1262"/>
         </scene>
         <!--播放页面-->
         <scene sceneID="0q5-Ra-Uzo">
@@ -2683,6 +2684,59 @@
             </objects>
             <point key="canvasLocation" x="1277" y="849"/>
         </scene>
+        <!--昵称-->
+        <scene sceneID="Uuv-42-coa">
+            <objects>
+                <viewController title="昵称" automaticallyAdjustsScrollViewInsets="NO" id="XhM-of-jTv" customClass="SetNickNameViewController" customModule="AudioPlayer" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="aww-LS-4lX">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="HXu-ev-MX3">
+                                <rect key="frame" x="0.0" y="35" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="textFieldCell" id="f9f-ap-G9Q" customClass="TextFieldCell" customModule="AudioPlayer" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="50" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="f9f-ap-G9Q" id="m86-hR-rxe">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="昵称" textAlignment="natural" minimumFontSize="17" id="BIe-nr-dbE">
+                                                    <rect key="frame" x="8" y="8" width="312" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="textField" destination="BIe-nr-dbE" id="HUm-wP-eDw"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="名字" id="LwW-Cx-3w9" userLabel="昵称">
+                        <barButtonItem key="rightBarButtonItem" title="保存" id="LEb-82-1S6">
+                            <connections>
+                                <action selector="savePressed:" destination="XhM-of-jTv" id="3OV-bm-a4s"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="saveButton" destination="LEb-82-1S6" id="qzN-pT-57H"/>
+                        <outlet property="tableView" destination="HXu-ev-MX3" id="tq7-jH-BDx"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TP0-KV-XII" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1314" y="3171"/>
+        </scene>
     </scenes>
     <resources>
         <image name="audioUserIcon" width="50" height="50"/>
@@ -2720,7 +2774,7 @@
         <segue reference="VNd-S5-Rjk"/>
         <segue reference="MPd-di-4DT"/>
         <segue reference="TY9-aV-adh"/>
-        <segue reference="YDx-ix-HXt"/>
+        <segue reference="rka-yI-XBB"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.94901960784313721" green="0.38039215686274508" blue="0.0" alpha="0.90000000000000002" colorSpace="calibratedRGB"/>
 </document>

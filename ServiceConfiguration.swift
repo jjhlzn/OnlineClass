@@ -127,6 +127,12 @@ class ServiceConfiguration {
         }
     }
     
+    static var SET_NICK_NAME : String {
+        get {
+            return "\(http)://\(serverName):\(port)/user/setnickname"
+        }
+    }
+    
     static var SET_SEX : String {
         get {
             return "\(http)://\(serverName):\(port)/user/setSex"

@@ -634,6 +634,21 @@ class SetNameResponse : ServerResponse {
     
 }
 
+class SetNickNameRequest : ServerRequest {
+    var newNickName = ""
+    override var params: [String : AnyObject] {
+        get {
+            var parameters = super.params
+            parameters["newNickName"] = newNickName
+            return parameters
+        }
+    }
+}
+
+class SetNickNameResponse : ServerResponse {
+    
+}
+
 class SetSexRequest : ServerRequest {
     var newSex = ""
     override var params: [String : AnyObject] {

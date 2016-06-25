@@ -19,6 +19,11 @@ class PersonalInfoViewController: BaseUIViewController, UITableViewDataSource, U
         tableView.delegate = self
     }
     
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        (self.navigationController?.viewControllers[0] as! MyInfoVieController).tableView.reloadData()
+    }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 3
@@ -33,8 +38,14 @@ class PersonalInfoViewController: BaseUIViewController, UITableViewDataSource, U
             cell.nameLabel.text = "姓名"
             cell.valueLabel.text = LoginUserStore().getLoginUser()?.name
             return cell
-            
+        
         case 1:
+            let cell = tableView.dequeueReusableCellWithIdentifier("personalItemCell") as! PersonalInfoCell
+            cell.nameLabel.text = "昵称"
+            cell.valueLabel.text = LoginUserStore().getLoginUser()?.nickName
+            return cell
+            
+        case 2:
             let cell = tableView.dequeueReusableCellWithIdentifier("personalItemCell") as! PersonalInfoCell
             cell.nameLabel.text = "性别"
             if LoginUserStore().getLoginUser()?.sex == nil {
@@ -44,11 +55,7 @@ class PersonalInfoViewController: BaseUIViewController, UITableViewDataSource, U
             }
             return cell
         
-        case 2:
-            let cell = tableView.dequeueReusableCellWithIdentifier("personalItemCell2") as! PersonalInfoCell2
-            cell.nameLabel.text = "我的二维码"
-            cell.rightImage = UIImageView(image: UIImage(named: "barcode"))
-            return cell
+        
         default:
             return tableView.dequeueReusableCellWithIdentifier("personalItemCell")!
         }
@@ -61,11 +68,12 @@ class PersonalInfoViewController: BaseUIViewController, UITableViewDataSource, U
             performSegueWithIdentifier("setNameSegue", sender: nil)
             break
         case 1:
-            performSegueWithIdentifier("setSexSegue", sender: nil)
+            performSegueWithIdentifier("setNickNameSegue", sender: nil)
             break
         case 2:
-            performSegueWithIdentifier("codeImageSegue", sender: nil)
+            performSegueWithIdentifier("setSexSegue", sender: nil)
             break
+        
         default:
             break
         }
