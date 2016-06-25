@@ -121,9 +121,10 @@ class PagableController<T> : NSObject {
     func afterHandleResponse(resp: PageServerResponse<T>) {
         self.quering = false
         
+        //目前这个逻辑之针对VIP课程权限够的情况
         if resp.status == ServerResponseStatus.NoEnoughAuthority.rawValue {
             self.hasMore = false
-            viewController.displayMessage(resp.errorMessage!, delegate: confirmDelegate!)
+            viewController.displayVipBuyMessage(resp.errorMessage!, delegate: confirmDelegate!)
             return
         }
         
@@ -234,7 +235,19 @@ class ConfirmDelegate : NSObject, UIAlertViewDelegate {
         self.controller = controller
     }
     func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
-        controller.navigationController?.popViewControllerAnimated(true)
+        switch buttonIndex {
+        case 0:
+            print("button 0 pressed")
+            controller.performSegueWithIdentifier("bugVipSegue", sender: nil)
+            break
+        case 1:
+            print("button 1 pressed")
+            controller.navigationController?.popViewControllerAnimated(true)
+            break
+        default:
+            break
+        }
+        
     }
     
 }

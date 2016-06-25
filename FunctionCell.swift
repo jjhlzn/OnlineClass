@@ -32,7 +32,7 @@ class ExtendFunctionMananger : NSObject {
         
         functions = [
             ExtendFunction(imageName: "commonCard", name: "去刷卡", url: "http://www.baidu.com",
-                selector:  #selector(imageHandler)),
+                selector:  #selector(openApp)),
             ExtendFunction(imageName: "up", name: "一键提额", url: "http://114.215.236.171:6012/Service/CreditLines",
                 selector:  #selector(imageHandler)),
             ExtendFunction(imageName: "visa", name: "一键办卡", url: "http://114.215.236.171:6012/Service/FastCard",
@@ -182,6 +182,11 @@ class ExtendFunctionMananger : NSObject {
     
     func moreHanlder(sender: UITapGestureRecognizer? = nil) {
         controller.performSegueWithIdentifier("moreFunctionSegue", sender: nil)
+    }
+    
+    func openApp(sender: UITapGestureRecognizer? = nil) {
+        UIApplication.sharedApplication().openURL(NSURL(string: "huayuanerp://")!)
+
     }
     
     

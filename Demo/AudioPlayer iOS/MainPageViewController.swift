@@ -9,6 +9,7 @@
 import UIKit
 import KDEAudioPlayer
 import QorumLogs
+import Auk
 
 class CourseMainPageViewController: BaseUIViewController {
 

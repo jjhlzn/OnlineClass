@@ -172,6 +172,17 @@ extension BaseUIViewController {
         
     }
     
+    func displayVipBuyMessage(message : String, delegate: UIAlertViewDelegate) {
+        let alertView = UIAlertView()
+        //alertView.title = "系统提示"
+        alertView.message = message
+        alertView.addButtonWithTitle("购买")
+        alertView.addButtonWithTitle("返回")
+        alertView.delegate=delegate
+        alertView.show()
+    }
+
+    
     func displayConfirmMessage(message : String, delegate: UIAlertViewDelegate) {
         let alertView = UIAlertView()
         //alertView.title = "系统提示"

@@ -237,7 +237,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="xDc-Hf-JgV">
-                                                    <rect key="frame" x="14" y="14" width="124" height="21"/>
+                                                    <rect key="frame" x="14" y="14" width="177" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -688,12 +688,12 @@
                         <outlet property="tableView" destination="TYt-sS-iBT" id="pfr-kG-k1n"/>
                         <segue destination="3ur-uT-JCP" kind="push" identifier="albumDetailSegue" id="VNd-S5-Rjk"/>
                         <segue destination="Xdz-Ta-yt3" kind="push" identifier="songSegue" id="SaH-Yu-nYI"/>
-                        <segue destination="qTJ-UI-98H" kind="push" identifier="loadWebPageSegue" id="OFk-Xz-NKv"/>
+                        <segue destination="qTJ-UI-98H" kind="push" identifier="bugVipSegue" id="OFk-Xz-NKv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3378" y="59"/>
+            <point key="canvasLocation" x="3493" y="-422"/>
         </scene>
         <!--课列表-->
         <scene sceneID="URI-7O-Zhf">
@@ -1292,7 +1292,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="functionCell" id="nMx-i2-zh4" customClass="FunctionCell" customModule="AudioPlayer" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="320" height="79"/>
+                                        <rect key="frame" x="0.0" y="92" width="320" height="79"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nMx-i2-zh4" id="KV1-bG-Y2O">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="79"/>
@@ -1439,7 +1439,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IHP-Mp-DaU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2042" y="22"/>
+            <point key="canvasLocation" x="2690" y="501"/>
         </scene>
         <!--我的-->
         <scene sceneID="oct-0p-3hq">
@@ -2682,7 +2682,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mu3-Qs-NF8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1277" y="849"/>
+            <point key="canvasLocation" x="1134" y="1022"/>
         </scene>
         <!--昵称-->
         <scene sceneID="Uuv-42-coa">
@@ -2771,9 +2771,9 @@
     <inferredMetricsTieBreakers>
         <segue reference="xmL-0a-HxS"/>
         <segue reference="pCp-Ba-NtI"/>
+        <segue reference="OFk-Xz-NKv"/>
+        <segue reference="SaH-Yu-nYI"/>
         <segue reference="VNd-S5-Rjk"/>
-        <segue reference="MPd-di-4DT"/>
-        <segue reference="TY9-aV-adh"/>
         <segue reference="rka-yI-XBB"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.94901960784313721" green="0.38039215686274508" blue="0.0" alpha="0.90000000000000002" colorSpace="calibratedRGB"/>

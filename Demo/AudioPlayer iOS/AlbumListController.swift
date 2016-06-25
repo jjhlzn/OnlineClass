@@ -17,15 +17,13 @@ class AlbumListController: BaseUIViewController, UITableViewDataSource, UITableV
     
     var pagableController = PagableController<Album>()
     var courseType : CourseType = CourseType.Common
-    
-    var extendFunctionManager : ExtendFunctionMananger!
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         print("viewDidLoad")
         addPlayingButton(playingButton)
         
-        extendFunctionManager = ExtendFunctionMananger(controller: self)
         
         tableView.dataSource = self
         tableView.delegate = self
@@ -69,8 +67,6 @@ class AlbumListController: BaseUIViewController, UITableViewDataSource, UITableV
     }
     
     
-    
-    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         super.prepareForSegue(segue, sender: sender)
         if segue.identifier == "albumDetailSegue" {
@@ -78,12 +74,10 @@ class AlbumListController: BaseUIViewController, UITableViewDataSource, UITableV
             let row = (tableView.indexPathForSelectedRow?.row)!
             dest.album = pagableController.data[row]
             dest.albumImageData = (tableView.cellForRowAtIndexPath(tableView.indexPathForSelectedRow!)! as! AlbumCell).albumImage.image!
-        } else if segue.identifier == "loadWebPageSegue" {
+        } else if segue.identifier == "bugVipSegue" {
             let dest = segue.destinationViewController as! WebPageViewController
-            let params = sender as! [String: String]
-            dest.url = NSURL(string: params["url"]!)
-            
-            dest.title = params["title"]
+            dest.url = NSURL(string: "http://www.baidu.com")
+            dest.title = "Vip购买"
         }
 
     }
@@ -119,7 +113,6 @@ extension AlbumListController {
             cell.descLabel.text = album.desc
             cell.listenPeopleLabel.text = album.listenCount
             if album.hasImage {
-                //cell.albumImage.downloadedFrom(link: album.image, contentMode: UIViewContentMode.ScaleAspectFit)
                 cell.albumImage.kf_setImageWithURL(NSURL(string: album.image)!)
             }
             return cell
