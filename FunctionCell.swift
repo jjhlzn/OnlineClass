@@ -9,12 +9,6 @@
 import UIKit
 
 class FunctionCell: UITableViewCell {
-
-
-    
-    //var images = [UIImageView]()
-    //var labels = [UILabel]()
-    
  
 }
 
@@ -73,13 +67,6 @@ class ExtendFunctionMananger : NSObject {
     }
     
     func isNeedMoreButton() -> Bool {
-        /*
-        let buttonCount = showMaxRows * buttonCountEachRow
-        if buttonCount < functions.count {
-            return true
-        } else {
-            return false
-        } */
         return isNeedMore
     }
     

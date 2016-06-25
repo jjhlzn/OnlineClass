@@ -36,7 +36,7 @@ class AlbumListController: BaseUIViewController, UITableViewDataSource, UITableV
         pagableController.tableView = tableView
         pagableController.isNeedRefresh = true
         pagableController.initController()
-        
+        pagableController.isShowLoadCompleteText = false
         //pagableController.loadMore()
         setTitle()
     }
