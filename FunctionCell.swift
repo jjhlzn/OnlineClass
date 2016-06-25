@@ -83,6 +83,11 @@ class ExtendFunctionMananger : NSObject {
         return isNeedMore
     }
     
+    private func getLastIndex() -> Int {
+        let buttonCount = showMaxRows * buttonCountEachRow
+        return buttonCount < functions.count ? buttonCount - 1 : functions.count - 1
+    }
+    
     func getFunctionCell(tableView: UITableView, row: Int) -> FunctionCell {
         var index = row * buttonCountEachRow
         let cell = tableView.dequeueReusableCellWithIdentifier("functionCell") as! FunctionCell
@@ -96,7 +101,12 @@ class ExtendFunctionMananger : NSObject {
             
             // print("index = \(index)")
             
-            let function = functions[index]
+            var function = functions[index]
+            
+            if isNeedMoreButton() && index == getLastIndex() {
+                function = moreFunction!
+            }
+            
             if !isNeedMoreButton() && function.name == moreFunction!.name {
                 break
             }
