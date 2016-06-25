@@ -16,6 +16,15 @@ extension String {
     }
 }
 
+extension String {
+    public func indexOfCharacter(char: Character) -> Int? {
+        if let idx = self.characters.indexOf(char) {
+            return self.startIndex.distanceTo(idx)
+        }
+        return nil
+    }
+}
+
 class Utils {
     static let Model_Name = "jufangzhushou"
     
@@ -58,9 +67,23 @@ class Utils {
         formatter.dateFormat = "HH:mm:ss"
         return formatter.stringFromDate(currentDateTime)
     }
+    
+    static func addUserParams(url : String) -> String {
+        let loginUser = LoginUserStore().getLoginUser()
+        if loginUser != nil {
+            if url.indexOfCharacter("?") != nil {
+                return url + "&userid=\(loginUser!.userName!)&token=\(loginUser!.token!)"
+            } else {
+                return url + "?userid=\(loginUser!.userName!)&token=\(loginUser!.token!)"
+            }
+        }
+        return url
+    }
 
 
 }
+
+
 
 extension UIImageView {
     func becomeCircle() {

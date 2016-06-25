@@ -18,12 +18,14 @@ class WebPageViewController: BaseUIViewController, UIWebViewDelegate {
     var leftBarButtonItems: [UIBarButtonItem]?
     @IBOutlet weak var webView: UIWebView!
     var loading = LoadingCircle()
-    
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let myRequest = NSURLRequest(URL: url);
+        var url1 = url.absoluteString
+        url1 = Utils.addUserParams(url1)
+        print(url1)
+        let myRequest = NSURLRequest(URL: NSURL(string: url1)!);
         webView.delegate = self
         webView.loadRequest(myRequest);
         
