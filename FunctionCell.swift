@@ -33,15 +33,15 @@ class ExtendFunctionMananger : NSObject {
         functions = [
             ExtendFunction(imageName: "commonCard", name: "去刷卡", url: "http://www.baidu.com",
                 selector:  #selector(openApp)),
-            ExtendFunction(imageName: "up", name: "一键提额", url: "http://114.215.236.171:6012/Service/CreditLines",
+            ExtendFunction(imageName: "up", name: "一键提额", url: ServiceLinkManager.FunctionUpUrl,
                 selector:  #selector(imageHandler)),
-            ExtendFunction(imageName: "visa", name: "一键办卡", url: "http://114.215.236.171:6012/Service/FastCard",
+            ExtendFunction(imageName: "visa", name: "一键办卡", url: ServiceLinkManager.FunctionFastCardUrl,
                 selector:  #selector(imageHandler)),
-            ExtendFunction(imageName: "cardManage", name: "卡片管理", url: "http://114.215.236.171:6012/Service/CardManage",
-                selector:  #selector(unSupportHandler)),
-            ExtendFunction(imageName: "creditSearch", name: "信用查询", url: "http://114.215.236.171:6012/Service/Ipcrs",
+            ExtendFunction(imageName: "cardManage", name: "卡片管理", url: ServiceLinkManager.FunctionCardManagerUrl,
                 selector:  #selector(imageHandler)),
-            ExtendFunction(imageName: "mmcSearch", name: "mcc查询",  url: "http://114.215.236.171:6012/Service/MccSearch",
+            ExtendFunction(imageName: "creditSearch", name: "信用查询", url: ServiceLinkManager.FunctionCreditSearchUrl,
+                selector:  #selector(imageHandler)),
+            ExtendFunction(imageName: "mmcSearch", name: "mcc查询",  url: ServiceLinkManager.FunctionMccSearchUrl,
                 selector:  #selector(imageHandler)),
             ExtendFunction(imageName: "shopcart", name: "商城",  url: "http://www.weibo.com",
                 selector:  #selector(unSupportHandler)),
@@ -51,8 +51,8 @@ class ExtendFunctionMananger : NSObject {
                  selector:  #selector(unSupportHandler)),
             ExtendFunction(imageName: "car", name: "汽车分期", url: "http://www.weibo.com",
                 selector:  #selector(unSupportHandler)),
-            ExtendFunction(imageName: "customerservice", name: "客服", url: "http://www.weibo.com",
-                selector:  #selector(unSupportHandler)),
+            ExtendFunction(imageName: "customerservice", name: "客服", url: ServiceLinkManager.FunctionCustomerServiceUrl,
+                selector:  #selector(imageHandler)),
             moreFunction!
         ]
         

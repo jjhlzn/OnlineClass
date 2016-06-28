@@ -1,3 +1,5 @@
+
+
 //
 //  MyInfoVieController.swift
 //  OnlineClass
@@ -14,10 +16,10 @@ class MyInfoVieController: BaseUIViewController, UITableViewDataSource, UITableV
 
     
     @IBOutlet weak var tableView: UITableView!
-    var thirdSections = [ ["me_tuijian", "我的推荐", "webViewSegue", "http://wwww.baidu.com"],
-                          ["me_order", "我的订单", "webViewSegue", "http://wwww.baidu.com"],
-                          ["me_team", "我的团队", "webViewSegue", "http://wwww.baidu.com"],
-                          ["me_tixian", "我要提现","webViewSegue", "http://wwww.baidu.com"],
+    var thirdSections = [ ["me_tuijian", "我的推荐", "webViewSegue", ServiceLinkManager.MyTuiJianUrl],
+                          ["me_order", "我的订单", "webViewSegue", ServiceLinkManager.MyOrderUrl],
+                          ["me_team", "我的团队", "webViewSegue", ServiceLinkManager.MyTeamUrl],
+                          ["me_tixian", "我要提现","webViewSegue", ServiceLinkManager.MyExchangeUrl],
                        ]
     
 
@@ -25,7 +27,7 @@ class MyInfoVieController: BaseUIViewController, UITableViewDataSource, UITableV
                            ["me_qrcode", "我的二维码", "codeImageSegue"],
                            ]
     
-    var fifthSections = [ ["me_agent", "申请代理","webViewSegue", "http://wwww.baidu.com"],
+    var fifthSections = [ ["me_agent", "申请代理","webViewSegue", ServiceLinkManager.MyAgentUrl],
                            ]
     
     
