@@ -185,7 +185,7 @@ class ExtendFunctionMananger : NSObject {
     }
     
     func openApp(sender: UITapGestureRecognizer? = nil) {
-        UIApplication.sharedApplication().openURL(NSURL(string: "jfzf://")!)
+        UIApplication.sharedApplication().openURL(NSURL(string: "com.uen.jfzfxpush://")!)
 
     }
     
