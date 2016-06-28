@@ -17,12 +17,12 @@ class SetProfilePhotoController: BaseUIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        imageView.image = UserProfilePhotoStore().get()
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        imageView.image = UserProfilePhotoStore().get()
+        
     }
     
     override func viewWillDisappear(animated: Bool) {
