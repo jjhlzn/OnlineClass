@@ -17,6 +17,11 @@ class SetProfilePhotoController: BaseUIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         imageView.image = UserProfilePhotoStore().get()
     }
     

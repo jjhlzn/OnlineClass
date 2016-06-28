@@ -29,6 +29,16 @@ class UserProfilePhotoStore : NSObject {
         }
     }
     
+    func delete() {
+        let fileManager = NSFileManager.defaultManager()
+        let filePath = fileInDocumentsDirectory(imageName)
+        do {
+            try fileManager.removeItemAtPath(filePath)
+        } catch let error as NSError {
+            print(error.debugDescription)
+        }
+    }
+    
     private func loadImageFromPath(path: String) -> UIImage? {
         let image = UIImage(contentsOfFile: path)
         if image == nil {
@@ -43,17 +53,20 @@ class UserProfilePhotoStore : NSObject {
         let documentsURL = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)[0]
         return documentsURL
     }
+    
     private func fileInDocumentsDirectory(filename: String) -> String {
-        
+        print("fileInDocumentsDirectory()")
+
         let fileURL = getDocumentsURL().URLByAppendingPathComponent(filename)
         return fileURL.path!
         
     }
     
-     func get() -> UIImage {
-        var image = loadImageFromPath(fileInDocumentsDirectory(imageName))
+    func get() -> UIImage? {
+        print("get()")
+        let image = loadImageFromPath(fileInDocumentsDirectory(imageName))
         if image == nil {
-            image = UIImage(named: "userIcon")
+            return nil
         }
         return image!
     }

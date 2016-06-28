@@ -92,10 +92,11 @@ class SignupViewController : BaseUIViewController, UIAlertViewDelegate {
     func updateButtonTitle() {
         phoneCodeLabel.text = "\(timerCount)秒后重新获取"
         timerCount = timerCount - 1
-        if timerCount == 0 {
+        if timerCount <= 0 {
             timer?.invalidate()
             getPhoneCodeButton.hidden = false
             phoneCodeLabel.hidden = true
+            timerCount = 59
         }
     }
     

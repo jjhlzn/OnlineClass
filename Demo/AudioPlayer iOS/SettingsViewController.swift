@@ -90,6 +90,7 @@ class SettingsViewController: BaseUIViewController, UITableViewDataSource, UITab
             BasicService().sendRequest(ServiceConfiguration.LOGOUT,request: LogoutRequest())  {
                 (response : LogoutResponse) -> Void in
                 self.loginUserStore.removeLoginUser()
+                UserProfilePhotoStore().delete()
                 self.performSegueWithIdentifier("logoutSegue", sender: nil)
             }
             

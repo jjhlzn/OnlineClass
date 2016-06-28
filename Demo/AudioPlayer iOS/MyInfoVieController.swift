@@ -8,6 +8,7 @@
 
 import UIKit
 import QorumLogs
+import Kingfisher
 
 class MyInfoVieController: BaseUIViewController, UITableViewDataSource, UITableViewDelegate {
 
@@ -121,7 +122,27 @@ extension MyInfoVieController {
         case 0:
             let loginUser : LoginUserEntity = LoginUserStore().getLoginUser()!
             let cell = tableView.dequeueReusableCellWithIdentifier("myInfoMainCell") as! MyInfoMainCell
-            cell.userImage.image = UserProfilePhotoStore().get()
+            
+            
+            if UserProfilePhotoStore().get() == nil {
+                let profilePhotoUrl = ServiceConfiguration.GET_PROFILE_IMAGE + "?userid=" + LoginUserStore().getLoginUser()!.userName!
+                cell.userImage.kf_setImageWithURL(NSURL(string: profilePhotoUrl)!,
+                                                  placeholderImage: nil,
+                                                  optionsInfo: nil,
+                                                  progressBlock: { (receivedSize, totalSize) -> () in
+                                                    print("Download Progress: \(receivedSize)/\(totalSize)")
+                                                  },
+                                                  completionHandler: { (image, error, cacheType, imageURL) -> () in
+                                                    if image != nil {
+                                                        UserProfilePhotoStore().saveOrUpdate(image!)
+                                                    }
+                                                  })
+
+            } else {
+                cell.userImage.image = UserProfilePhotoStore().get()
+            }
+            
+            
             cell.userImage.becomeCircle()
             
             let tapGestureRecognizer = UITapGestureRecognizer(target:self, action: #selector(userImageTapped))
