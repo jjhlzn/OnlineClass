@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import QorumLogs
 
 class CommonPlayerPageViewController : NSObject, UITableViewDataSource, UITableViewDelegate, CommentDelegate {
     
@@ -203,7 +204,7 @@ class CommonPlayerPageViewController : NSObject, UITableViewDataSource, UITableV
             
             let song = item.song
             viewController.commentController.song = song
-            
+            QL1("reload: song.id = \(song.id)")
             let request = GetSongCommentsRequest(song: song)
             request.pageSize = 5
             BasicService().sendRequest(ServiceConfiguration.GET_SONG_COMMENTS,

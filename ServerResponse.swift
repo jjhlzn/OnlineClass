@@ -210,6 +210,7 @@ class GetSongLiveCommentsResponse : ServerResponse {
             comment.userId = eachJSON["userId"] as! String
             comment.time = eachJSON["time"] as! String
             comment.content = eachJSON["content"] as! String
+            comment.nickName = eachJSON["name"] as! String
             comments.append(comment)
         }
     }
@@ -301,7 +302,7 @@ class SendLiveCommentResponse : ServerResponse {
             comment.id = "\(eachJSON["id"] as! Int)"
             comment.song = (request as! SendLiveCommentRequest).song
             comment.userId = eachJSON["userId"] as! String
-            comment.nickName = json["name"] as! String
+            comment.nickName = eachJSON["name"] as! String
             comment.time = eachJSON["time"] as! String
             comment.content = eachJSON["content"] as! String
             comments.append(comment)

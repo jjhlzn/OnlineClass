@@ -16,7 +16,7 @@ class ServiceLinkManager {
     
     static var MyTuiJianUrl : String {
         get {
-            return "http://\(host):\(port)/Center/MyTuJian"
+            return "http://\(host):\(port)/Center/MyTuiJian"
         }
     }
     

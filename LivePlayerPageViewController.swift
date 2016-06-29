@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import KDEAudioPlayer
+import QorumLogs
 
 //1. 在线聊天最多显示100条
 //2. 控制聊天的自述
@@ -270,6 +271,7 @@ class LivePlayerPageViewController : CommonPlayerPageViewController, LiveComment
             
             
             let song = item.song
+            QL1("reload: song.id = \(song.id), song.name = \(song.name)")
             viewController.commentController.song = song
             let request = GetSongLiveCommentsRequest(song: song, lastId: "-1")
             BasicService().sendRequest(ServiceConfiguration.GET_SONG_LIVE_COMMENTS,

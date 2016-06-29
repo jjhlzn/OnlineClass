@@ -92,7 +92,7 @@ class AlbumDetailController: BaseUIViewController {
                     //(audioItem as! MyAudioItem).song = item
                     audioItems.append(audioItem!)
                     
-                    if songItem.url == song.url {
+                    if songItem.id == song.id {
                         startIndex = index
                     }
                     index = index + 1
@@ -243,7 +243,7 @@ extension AlbumDetailController : UITableViewDataSource, UITableViewDelegate {
         let song = songs[row]
         
         if audioPlayer.currentItem != nil {
-            if song.wholeUrl == audioPlayer.currentItem!.highestQualityURL.URL.absoluteString {
+            if song.id == (audioPlayer.currentItem! as! MyAudioItem).song.id {
                 performSegueWithIdentifier("songSegue", sender: false)
                 return
             }
