@@ -124,7 +124,7 @@ class PlayerCell: UITableViewCell {
         audioPlayer.previous()
         playerViewController.resetButtonAndProgress()
         playButton.setImage(UIImage(named: "pause"), forState: .Normal)
-        artImageView.image = UIImage(named: "musicCover")
+        setMusicDefaultImage()
         controller?.playerPageViewController.reload()
     }
     
@@ -136,8 +136,17 @@ class PlayerCell: UITableViewCell {
         audioPlayer.next()
         playerViewController.resetButtonAndProgress()
         playButton.setImage(UIImage(named: "pause"), forState: .Normal)
-        artImageView.image = UIImage(named: "musicCover")
+        setMusicDefaultImage()
         controller?.playerPageViewController.reload()
+    }
+    
+    private func setMusicDefaultImage() {
+        let song = (audioPlayer.currentItem as! MyAudioItem).song
+        if song.isLive {
+            artImageView.image = UIImage(named: "liveMusicCover")
+        } else {
+            artImageView.image = UIImage(named: "musicCover")
+        }
     }
     
     

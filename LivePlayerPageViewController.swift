@@ -80,12 +80,28 @@ class LivePlayerPageViewController : CommonPlayerPageViewController, LiveComment
     
     
     func checkStatusAndUpdateChat() {
-        //如果直播在缓冲，尝试重新连接
-        if audioPlayer.state == AudioPlayerState.Buffering {
+        //如果直播在缓冲、失败，尝试重新连接
+        switch audioPlayer.state {
+        case .Buffering:
+            QL1("try to connect again")
             audioPlayer.playItems(audioPlayer.items!, startAtIndex: audioPlayer.currentItemIndexInQueue!)
+            break
+        case .Failed(let error):
+            QL1("try to connect again")
+            print(error)
+            audioPlayer.playItems(audioPlayer.items!, startAtIndex: audioPlayer.currentItemIndexInQueue!)
+            break
+        default:
+            break
         }
+
         
         if isUpdateChat {
+            return
+        }
+        
+        //如果在debug模式，则不去轮询comments
+        if ServiceConfiguration.isDebug {
             return
         }
         if audioPlayer.currentItem != nil {
@@ -221,7 +237,7 @@ class LivePlayerPageViewController : CommonPlayerPageViewController, LiveComment
         case 0:
             let screenSize: CGRect = UIScreen.mainScreen().bounds
             let screenWidth = screenSize.width
-            return screenWidth * 0.3 + 95
+            return screenWidth * 0.5 + 95
         case 1:
             let row = indexPath.row
             let rowCount = (comments?.count)!
@@ -269,10 +285,11 @@ class LivePlayerPageViewController : CommonPlayerPageViewController, LiveComment
         if audioPlayer.currentItem != nil {
             let item = audioPlayer.currentItem as! MyAudioItem
             
-            
             let song = item.song
             QL1("reload: song.id = \(song.id), song.name = \(song.name)")
             viewController.commentController.song = song
+            
+            //update comments
             let request = GetSongLiveCommentsRequest(song: song, lastId: "-1")
             BasicService().sendRequest(ServiceConfiguration.GET_SONG_LIVE_COMMENTS,
                                        request: request) {
@@ -294,6 +311,8 @@ class LivePlayerPageViewController : CommonPlayerPageViewController, LiveComment
             }
         }
     }
+    
+
     
     
 }

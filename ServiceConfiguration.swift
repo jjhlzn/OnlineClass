@@ -13,6 +13,8 @@ class ServiceConfiguration {
     static let isUseConfig = false
     static let serviceLocatorStore = ServiceLocatorStore()
     
+    static let isDebug = false
+    
     static let serverName2 = "localhost"
     static let port2 =  3000 // 19540
     //114.80.101.27:6012/

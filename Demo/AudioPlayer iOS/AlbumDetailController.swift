@@ -9,7 +9,7 @@
 import UIKit
 import KDEAudioPlayer
 
-class AlbumDetailController: BaseUIViewController {
+class AlbumDetailController: BaseUIViewController, UIAlertViewDelegate {
     var tag = "AlbumDetailController"
 
     @IBOutlet weak var playingButton: UIButton!
@@ -44,6 +44,7 @@ class AlbumDetailController: BaseUIViewController {
             
             let request = GetAlbumSongsRequest(album: album!)
             request.pageSize = 200
+            let that = self
             BasicService().sendRequest(ServiceConfiguration.GET_ALBUM_SONGS,
                                        request: request) {
                 (resp: GetAlbumSongsResponse) -> Void in
@@ -56,19 +57,30 @@ class AlbumDetailController: BaseUIViewController {
                     
                     if resp.status != 0 {
                         print(resp.errorMessage)
+                        return
                     } else {
                         self.songs = resp.resultSet
                         self.tableView.reloadData()
                         self.updateCellPlayingButtons()
                     }
+                    
+                    if self.songs.count == 0 {
+                        self.displayMessage("敬请期待", delegate: self)
+                    }
                 }
             }
+            
         } else {
             updateCellPlayingButtons()
         }
         
         updatePlayingButton(playingButton)
         
+    }
+    
+    
+    func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
+        self.navigationController?.popViewControllerAnimated(true)
     }
 
     

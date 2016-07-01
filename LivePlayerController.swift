@@ -89,6 +89,7 @@ class LivePlayerViewController : PlayerViewController {
     override func audioPlayer(audioPlayer: AudioPlayer, didUpdateEmptyMetadataOnItem item: AudioItem, withData data: Metadata) {
         
     }
+
     
     private func getCurrentSong() -> LiveSong {
         return (audioPlayer.currentItem as! MyAudioItem).song as! LiveSong

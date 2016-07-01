@@ -587,7 +587,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="albumCell" rowHeight="74" id="jMg-kZ-gym" customClass="AlbumCell" customModule="AudioPlayer" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="92" width="320" height="74"/>
+                                <rect key="frame" x="0.0" y="28" width="320" height="74"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jMg-kZ-gym" id="eSJ-qm-QvQ">
                                     <rect key="frame" x="0.0" y="0.0" width="287" height="73"/>
@@ -628,7 +628,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="liveAlbumCell" rowHeight="74" id="1LG-bb-0ID" customClass="LiveAlbumCell" customModule="AudioPlayer" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="166" width="320" height="74"/>
+                                <rect key="frame" x="0.0" y="102" width="320" height="74"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1LG-bb-0ID" id="Cpa-bW-L7M">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="73"/>
@@ -653,11 +653,11 @@
                                             <color key="highlightedColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="usericon1" id="tKF-kk-L7U">
-                                            <rect key="frame" x="277" y="16" width="25" height="25"/>
+                                            <rect key="frame" x="282" y="16" width="25" height="25"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1000人" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="vJF-Db-G3m">
-                                            <rect key="frame" x="259" y="39" width="67" height="21"/>
+                                            <rect key="frame" x="261" y="39" width="67" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -817,14 +817,14 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1000人" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="rxF-6K-wZ6">
-                                                    <rect key="frame" x="258" y="38" width="67" height="21"/>
+                                                    <rect key="frame" x="261" y="38" width="67" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="usericon1" id="D0G-EP-x71">
-                                                    <rect key="frame" x="277" y="12" width="25" height="25"/>
+                                                    <rect key="frame" x="282" y="12" width="25" height="25"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                 </imageView>
                                             </subviews>
@@ -1292,7 +1292,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="functionCell" id="nMx-i2-zh4" customClass="FunctionCell" customModule="AudioPlayer" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="92" width="320" height="79"/>
+                                        <rect key="frame" x="0.0" y="28" width="320" height="79"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nMx-i2-zh4" id="KV1-bG-Y2O">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="79"/>
@@ -1468,6 +1468,52 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" id="vZo-j3-B8w">
+                                <rect key="frame" x="0.0" y="206" width="320" height="156"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="评论" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="aK0-wN-Jxh">
+                                        <rect key="frame" x="113" y="9" width="94" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="PcH-Ec-lFO">
+                                        <rect key="frame" x="261" y="5" width="59" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <state key="normal" title="发送"/>
+                                        <connections>
+                                            <action selector="sendComment:" destination="bGb-jo-ify" eventType="touchUpInside" id="KXE-Ga-roo"/>
+                                        </connections>
+                                    </button>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" id="gfO-eb-2J5">
+                                        <rect key="frame" x="13" y="44" width="293" height="75"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="xG9-aM-mvF">
+                                        <rect key="frame" x="0.0" y="5" width="53" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <state key="normal" title="取消"/>
+                                        <connections>
+                                            <action selector="closeComment:" destination="bGb-jo-ify" eventType="touchUpInside" id="NHc-ew-HLK"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="ISo-t1-o3r">
+                                        <rect key="frame" x="13" y="125" width="25" height="25"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="表情" image="emojiSwitchButton2">
+                                            <color key="titleColor" red="0.94901960780000005" green="0.3803921569" blue="0.0" alpha="0.90000000000000002" colorSpace="calibratedRGB"/>
+                                        </state>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
                             <view contentMode="scaleToFill" id="OeM-c4-RM9">
                                 <rect key="frame" x="0.0" y="166" width="320" height="402"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
@@ -1631,19 +1677,19 @@
                                             <outlet property="songListImage" destination="RXR-6j-A8H" id="oBd-bc-5LO"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="livePlayerCell" focusStyle="custom" rowHeight="183" id="tk5-cb-Z5Y" customClass="LivePlayerCell" customModule="AudioPlayer" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="465" width="320" height="183"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="livePlayerCell" focusStyle="custom" rowHeight="233" id="tk5-cb-Z5Y" customClass="LivePlayerCell" customModule="AudioPlayer" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="465" width="320" height="233"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tk5-cb-Z5Y" id="cA2-0H-HhZ">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="182"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="232"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="liveMusicCover" id="XTy-sw-Beu">
-                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="96"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="146"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 </imageView>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="txP-0L-fDd">
-                                                    <rect key="frame" x="140" y="131" width="35" height="35"/>
+                                                    <rect key="frame" x="142" y="177" width="35" height="35"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <state key="normal" title="播放" image="pause"/>
                                                     <connections>
@@ -1651,26 +1697,26 @@
                                                     </connections>
                                                 </button>
                                                 <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="1" id="2ql-IU-1Q1">
-                                                    <rect key="frame" x="0.0" y="96" width="320" height="2"/>
+                                                    <rect key="frame" x="0.0" y="146" width="320" height="2"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <color key="tintColor" red="0.60000002379999995" green="0.60000002379999995" blue="0.60000002379999995" alpha="1" colorSpace="calibratedRGB"/>
                                                 </progressView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Wrw-Uh-OCW">
-                                                    <rect key="frame" x="251" y="104" width="65" height="21"/>
+                                                    <rect key="frame" x="251" y="154" width="65" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2i1-Up-r6k">
-                                                    <rect key="frame" x="5" y="104" width="82" height="21"/>
+                                                    <rect key="frame" x="5" y="154" width="82" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="A27-0l-kzQ">
-                                                    <rect key="frame" x="210" y="131" width="35" height="35"/>
+                                                    <rect key="frame" x="210" y="176" width="35" height="35"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <state key="normal" title="&gt;&gt;" image="nextPlay"/>
                                                     <connections>
@@ -1679,12 +1725,12 @@
                                                     </connections>
                                                 </button>
                                                 <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" id="Xmu-PK-eHa" customClass="MyUISlider" customModule="AudioPlayer" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="82" width="324" height="31"/>
+                                                    <rect key="frame" x="0.0" y="132" width="324" height="31"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                     <color key="tintColor" red="0.94901960780000005" green="0.3803921569" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 </slider>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="SV4-F6-i0R">
-                                                    <rect key="frame" x="75" y="131" width="35" height="35"/>
+                                                    <rect key="frame" x="75" y="176" width="35" height="35"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <state key="normal" title="&lt;&lt;" image="prevPlay"/>
                                                     <connections>
@@ -1703,7 +1749,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bufferCircle1" id="wpU-E0-GI7">
-                                                    <rect key="frame" x="132" y="123" width="50" height="50"/>
+                                                    <rect key="frame" x="135" y="170" width="50" height="50"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                 </imageView>
                                             </subviews>
@@ -1724,7 +1770,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="commentCell" rowHeight="65" id="MnR-Yt-eyT" customClass="CommentCell" customModule="AudioPlayer" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="648" width="320" height="65"/>
+                                        <rect key="frame" x="0.0" y="698" width="320" height="65"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="MnR-Yt-eyT" id="Ulr-mo-Gol">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
@@ -1764,7 +1810,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="moreCommentCell" rowHeight="44" id="bio-9i-h38" customClass="MoreLinkCell" customModule="AudioPlayer" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="713" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="763" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bio-9i-h38" id="OcJ-bb-K3O">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -1784,7 +1830,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="commentHeaderCell" rowHeight="40" id="1NM-r3-hdX" customClass="CommentHeaderCell" customModule="AudioPlayer" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="757" width="320" height="40"/>
+                                        <rect key="frame" x="0.0" y="807" width="320" height="40"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1NM-r3-hdX" id="qpU-4g-sLT">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="39"/>
@@ -1812,7 +1858,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="noCommentCell" rowHeight="70" id="xns-C0-OoK" customClass="NoCommentCell" customModule="AudioPlayer" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="797" width="320" height="70"/>
+                                        <rect key="frame" x="0.0" y="847" width="320" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xns-C0-OoK" id="Rob-eB-rpE">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="69"/>
@@ -1829,7 +1875,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="chatHeaderCell" rowHeight="40" id="Aew-rS-dMd" customClass="CommentHeaderCell" customModule="AudioPlayer" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="867" width="320" height="40"/>
+                                        <rect key="frame" x="0.0" y="917" width="320" height="40"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Aew-rS-dMd" id="vY0-9U-PSc">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="39"/>
@@ -1862,52 +1908,6 @@
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
-                            <view contentMode="scaleToFill" id="vZo-j3-B8w">
-                                <rect key="frame" x="0.0" y="206" width="320" height="156"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="评论" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="aK0-wN-Jxh">
-                                        <rect key="frame" x="113" y="9" width="94" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="PcH-Ec-lFO">
-                                        <rect key="frame" x="261" y="5" width="59" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                        <state key="normal" title="发送"/>
-                                        <connections>
-                                            <action selector="sendComment:" destination="bGb-jo-ify" eventType="touchUpInside" id="KXE-Ga-roo"/>
-                                        </connections>
-                                    </button>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" id="gfO-eb-2J5">
-                                        <rect key="frame" x="13" y="44" width="293" height="75"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                    </textView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="xG9-aM-mvF">
-                                        <rect key="frame" x="0.0" y="5" width="53" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                        <state key="normal" title="取消"/>
-                                        <connections>
-                                            <action selector="closeComment:" destination="bGb-jo-ify" eventType="touchUpInside" id="NHc-ew-HLK"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="ISo-t1-o3r">
-                                        <rect key="frame" x="13" y="125" width="25" height="25"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="表情" image="emojiSwitchButton2">
-                                            <color key="titleColor" red="0.94901960780000005" green="0.3803921569" blue="0.0" alpha="0.90000000000000002" colorSpace="calibratedRGB"/>
-                                        </state>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -2769,12 +2769,12 @@
         <image name="wave1" width="24" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="rka-yI-XBB"/>
-        <segue reference="xbm-kK-Zqp"/>
         <segue reference="71V-Tn-QDD"/>
-        <segue reference="VNd-S5-Rjk"/>
+        <segue reference="xbm-kK-Zqp"/>
         <segue reference="OFk-Xz-NKv"/>
-        <segue reference="SaH-Yu-nYI"/>
+        <segue reference="VNd-S5-Rjk"/>
+        <segue reference="MPd-di-4DT"/>
+        <segue reference="rka-yI-XBB"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.94901960784313721" green="0.38039215686274508" blue="0.0" alpha="0.90000000000000002" colorSpace="calibratedRGB"/>
 </document>

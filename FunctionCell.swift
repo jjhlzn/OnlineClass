@@ -185,7 +185,20 @@ class ExtendFunctionMananger : NSObject {
     }
     
     func openApp(sender: UITapGestureRecognizer? = nil) {
-        UIApplication.sharedApplication().openURL(NSURL(string: "com.uen.jfzfxpush://")!)
+        
+        let jfzfHooks = "com.uen.jfzfxpush://"
+        let jfzfUrl = NSURL(string: jfzfHooks)
+        if UIApplication.sharedApplication().canOpenURL(NSURL(string: jfzfHooks)!)
+        {
+            UIApplication.sharedApplication().openURL(jfzfUrl!)
+            
+        } else {
+            //redirect to safari because the user doesn't have Instagram
+            print("App not installed")
+            //UIApplication.sharedApplication().openURL(NSURL(string: "https://itunes.apple.com/in/app/instagram/id389801252?m")!)
+            let params : [String: String] = ["url": "https://uenpay.com/downloadcopy/jfjr/down-jfjr.html?from=singlemessage&isappinstalled=0", "title": "巨方支付下载"]
+            controller.performSegueWithIdentifier("loadWebPageSegue", sender: params)
+        }
 
     }
     

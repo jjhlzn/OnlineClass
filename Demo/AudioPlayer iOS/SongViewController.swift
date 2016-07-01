@@ -128,7 +128,6 @@ class SongViewController: BaseUIViewController, UIGestureRecognizerDelegate {
     }
     
     
-    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "commentListSegue" {
             let dest = segue.destinationViewController as! CommentListController
