@@ -82,4 +82,28 @@ class ServiceLinkManager {
         }
     }
     
+    static var FunctionJiaoFeiUrl : String {
+        get {
+            return "http://\(host):\(port)/Service/Fee"
+        }
+    }
+    
+    static var FunctionDaiKuangUrl : String {
+        get {
+            return "http://\(host):\(port)/Service/Loan"
+        }
+    }
+    
+    static var FunctionCarLoanUrl : String {
+        get {
+            return "http://\(host):\(port)/Service/CarLoan"
+        }
+    }
+    
+    static var FunctionShopUrl : String {
+        get {
+            return "http://\(host):\(port)/shop/shopindex"
+        }
+    }
+    
 }

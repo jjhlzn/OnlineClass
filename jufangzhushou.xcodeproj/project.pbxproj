@@ -291,8 +291,8 @@
 				1CEFF78F1CC077D0000DEFF7 /* Utils.swift */,
 				1CEFF79B1CC20171000DEFF7 /* AudioPlayerExtension.swift */,
 				1CEFF7911CC07838000DEFF7 /* UIImageView.swift */,
-				1C09D3BE1CD09FED004A8F9C /* ToastMessage.swift */,
 				1C2FC9261CFEE5BA0057EB93 /* EmojiKeyboard.swift */,
+				1C09D3BE1CD09FED004A8F9C /* ToastMessage.swift */,
 				1CB425A51D229E1600971F95 /* ServiceLinkManager.swift */,
 			);
 			name = lib;

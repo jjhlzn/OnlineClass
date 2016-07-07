@@ -32,8 +32,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if serviceLocatorStore.GetServiceLocator() == nil {
             let serviceLocator = ServiceLocator()
             serviceLocator.http = "http"
-            serviceLocator.serverName = "jjhaudio.hengdianworld.com"
-            serviceLocator.port = 80
+            serviceLocator.serverName = "114.215.236.171"
+            serviceLocator.port = 6012
             serviceLocatorStore.saveServiceLocator(serviceLocator)
         }
 

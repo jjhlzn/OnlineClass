@@ -10,7 +10,7 @@ import Foundation
 
 class ServiceConfiguration {
     static let PageSize = 20
-    static let isUseConfig = false
+    static let isUseConfig = true
     static let serviceLocatorStore = ServiceLocatorStore()
     
     static let isDebug = false
@@ -29,7 +29,7 @@ class ServiceConfiguration {
             if isUseConfig {
                 return (serviceLocatorStore.GetServiceLocator()!.serverName)!
             } else {
-                return serverName4
+                return serverName3
             }
         }
     }
@@ -39,7 +39,7 @@ class ServiceConfiguration {
             if isUseConfig {
                 return Int((serviceLocatorStore.GetServiceLocator()!.port)!)
             } else {
-                return port4
+                return port3
             }
         }
     }

@@ -27,7 +27,7 @@ class MyInfoVieController: BaseUIViewController, UITableViewDataSource, UITableV
                            ["me_qrcode", "我的二维码", "codeImageSegue"],
                            ]
     
-    var fifthSections = [ ["me_agent", "申请代理","webViewSegue", ServiceLinkManager.MyAgentUrl],
+    var fifthSections = [ ["me_agent", "我要申请","webViewSegue", ServiceLinkManager.MyAgentUrl],
                            ]
     
     

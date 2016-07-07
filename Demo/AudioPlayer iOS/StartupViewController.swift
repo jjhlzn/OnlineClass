@@ -93,6 +93,7 @@ class StartupViewController: BaseUIViewController {
         if segue.identifier == "upgradeSegue" {
             let dest = segue.destinationViewController as! UpgradeViewController
             dest.isForceUpgrade = isForceUpgrade
+            //TODO 链接要换成真是的升级链接
             dest.url = NSURL(string: "http://www.baidu.com")
         }
     }
