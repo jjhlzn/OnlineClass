@@ -27,7 +27,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="icon" translatesAutoresizingMaskIntoConstraints="NO" id="mkR-c0-wDO">
-                                        <rect key="frame" x="20" y="27" width="60" height="60"/>
+                                        <rect key="frame" x="20" y="24" width="60" height="60"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="巨方助手" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xfR-BQ-6Dk">
                                         <rect key="frame" x="92" y="33" width="100" height="30"/>
@@ -58,6 +58,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="icon" width="150" height="150"/>
+        <image name="icon" width="270" height="270"/>
     </resources>
 </document>

@@ -595,7 +595,9 @@ class CheckUpgradeResponse : ServerResponse {
         super.parseJSON(request, json: json)
         if status == 0 {
             isNeedUpgrade = json["isNeedUpgrade"]  as! Bool
-            newestVersion = json["newestVersion"] as! String
+            if json["newestVersion"] != nil && !(json["newestVersion"] is NSNull) {
+                newestVersion = json["newestVersion"] as! String
+            }
             if isNeedUpgrade {
                 upgradeType = json["upgradeType"] as! String
                 upgradeUrl = json["upgradeUrl"] as! String
