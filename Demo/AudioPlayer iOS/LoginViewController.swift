@@ -95,12 +95,11 @@ class LoginViewController: BaseUIViewController {
     func keyboardWillShow(notification: NSNotification) {
         
         if !isKeyboardShow {
-            view.frame.origin.y -= 65
-            
+            view.frame.origin.y -= 35
             var frame = logImage.frame
             originFrame = logImage.frame
-            frame.size.width = 70
-            frame.size.height = 70
+            frame.size.width = 90
+            frame.size.height = 90
             originCenter = logImage.center
             logImage.frame = frame
             logImage.center.x = originCenter!.x
@@ -115,7 +114,7 @@ class LoginViewController: BaseUIViewController {
         if isKeyboardShow {
             isKeyboardShow = false
         
-            view.frame.origin.y += 65
+            view.frame.origin.y += 35
             logImage.frame = originFrame!
             logImage.center = originCenter!
         }
