@@ -39,6 +39,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         
         registerForPushNotifications(application)
+        
+        WXApi.registerApp("wx73653b5260b24787", withDescription: "AudioPlayer iOS")
+        
         return true
     }
 
@@ -122,6 +125,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
 
     }
+    
+    func application(application: UIApplication, handleOpenURL url: NSURL) -> Bool {
+        
+        return WXApi.handleOpenURL(url, delegate: nil)
+    }
+    
+    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
+        return WXApi.handleOpenURL(url, delegate: nil)
+    }
+    
+    
     
     private func getVisibleViewController(var rootViewController: UIViewController?) -> UIViewController? {
         

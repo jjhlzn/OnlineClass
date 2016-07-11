@@ -106,4 +106,10 @@ class ServiceLinkManager {
         }
     }
     
+    static var ShareQrImageUrl : String {
+        get {
+            return "http://\(host):\(port)/Center/MyLink.aspx";
+        }
+    }
+    
 }
