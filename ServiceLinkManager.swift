@@ -112,4 +112,10 @@ class ServiceLinkManager {
         }
     }
     
+    static var ShareTiEMijueUrl : String {
+        get {
+            return "http://\(host):\(port)/Center/MyLink.aspx";
+        }
+    }
+    
 }

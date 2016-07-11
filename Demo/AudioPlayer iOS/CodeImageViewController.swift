@@ -102,7 +102,7 @@ class CodeImageViewController: BaseUIViewController {
         
         let webPageObject = WXWebpageObject()
         let loginUser = LoginUserStore().getLoginUser()!
-        webPageObject.webpageUrl = ServiceLinkManager.ShareQrImageUrl + "?userid=\(loginUser.userName)"
+        webPageObject.webpageUrl = ServiceLinkManager.ShareQrImageUrl + "?userid=\(loginUser.userName!)"
         message.mediaObject = webPageObject
         
         let req = SendMessageToWXReq()
