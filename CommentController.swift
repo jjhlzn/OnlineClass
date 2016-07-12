@@ -246,6 +246,7 @@ class CommentController : NSObject, UITextViewDelegate {
                     comment.song = self.song
                     comment.time = "现在"
                     comment.userId = self.getLoginUser().userName
+                    comment.nickName = LoginUserStore().getLoginUser()?.nickName!
                     comment.content = sendCommentRequest.comment
                     self.delegate?.afterSendComment(comment)
                     

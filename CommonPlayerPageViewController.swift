@@ -112,11 +112,12 @@ class CommonPlayerPageViewController : NSObject, UITableViewDataSource, UITableV
         cell.userImage.becomeCircle()
         
         let profileImageUrl = ServiceConfiguration.GET_PROFILE_IMAGE + "?userid=" + comment.userId
+        //print(profileImageUrl)
         if let url = NSURL(string: profileImageUrl) {
+            //print("download image")
             cell.userImage.kf_setImageWithURL(url)
         }
 
-        //print("computeHeight")
         return cell
 
     }
