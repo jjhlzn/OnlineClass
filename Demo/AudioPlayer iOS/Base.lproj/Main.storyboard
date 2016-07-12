@@ -2215,7 +2215,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TKQ-dt-z7x" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="409" y="-1052"/>
+            <point key="canvasLocation" x="416" y="-1371"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ta5-o8-ux4">
@@ -2859,11 +2859,11 @@
         <image name="wave1" width="24" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="3eS-Pl-zlw"/>
         <segue reference="xbm-kK-Zqp"/>
-        <segue reference="xmL-0a-HxS"/>
+        <segue reference="wCU-pg-fxd"/>
         <segue reference="TY9-aV-adh"/>
         <segue reference="gK4-D6-0Uz"/>
+        <segue reference="3eS-Pl-zlw"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.94901960784313721" green="0.38039215686274508" blue="0.0" alpha="0.90000000000000002" colorSpace="calibratedRGB"/>
 </document>

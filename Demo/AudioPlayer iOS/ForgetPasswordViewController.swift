@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ForgetPasswordViewController: BaseUIViewController {
+class ForgetPasswordViewController: BaseUIViewController, UIAlertViewDelegate {
     
     @IBOutlet weak var phoneField: UITextField!
     
@@ -95,11 +95,18 @@ class ForgetPasswordViewController: BaseUIViewController {
             self.loadingOverlay.hideOverlayView()
             if response.status != 0 {
                 self.displayMessage(response.errorMessage!)
+                return
             }
+            
+            self.displayMessage("密码修改成功", delegate: self)
         }
         
         
         
+    }
+    
+    func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
+        performSegueWithIdentifier("backToLoginPageSegue", sender: nil)
     }
 
 

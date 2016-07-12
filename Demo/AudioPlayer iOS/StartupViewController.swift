@@ -14,6 +14,7 @@ class StartupViewController: BaseUIViewController {
     var loginUserStore = LoginUserStore()
     var isForceUpgrade = false
     var isSkipUpgradeCheck = false
+    var upgradeUrl : String!
     
     var optionalUpgradeAlertViewDelegate : OptionalUpgradeAlertViewDelegate!
     
@@ -35,7 +36,7 @@ class StartupViewController: BaseUIViewController {
                 
                 if resp.isNeedUpgrade {
                     self.isForceUpgrade = ("force" == resp.upgradeType)
-                    
+                    self.upgradeUrl = resp.upgradeUrl
                     if self.isForceUpgrade {
                         self.displayForceUpgradeConfirmMessage ("请升级新版本", delegate: self.optionalUpgradeAlertViewDelegate)
                     } else {
@@ -94,7 +95,7 @@ class StartupViewController: BaseUIViewController {
             let dest = segue.destinationViewController as! UpgradeViewController
             dest.isForceUpgrade = isForceUpgrade
             //TODO 链接要换成真是的升级链接
-            dest.url = NSURL(string: "http://www.baidu.com")
+            dest.url = NSURL(string: upgradeUrl )
         }
     }
     
