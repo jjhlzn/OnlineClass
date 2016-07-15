@@ -9,10 +9,10 @@
 import Foundation
 import UIKit
 
-class UserProfilePhotoStore : ImageStore {
+class QrCodeImageStore : ImageStore {
     override var imageName : String {
         get {
-            return "userimage.png"
+            return "qrimage.png"
         }
     }
 }

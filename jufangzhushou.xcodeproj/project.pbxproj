@@ -50,6 +50,8 @@
 		1C5A6FC51CE99644000E7282 /* PlayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C5A6FC41CE99644000E7282 /* PlayerController.swift */; };
 		1C5A6FC71CE9A0D5000E7282 /* LivePlayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C5A6FC61CE9A0D5000E7282 /* LivePlayerController.swift */; };
 		1C6420F61CD0605200119272 /* CommentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C6420F51CD0605200119272 /* CommentController.swift */; };
+		1C66ADFD1D38C2CE001A6525 /* QrCodeImageStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C66ADFC1D38C2CD001A6525 /* QrCodeImageStore.swift */; };
+		1C66ADFF1D38C312001A6525 /* ImageStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C66ADFE1D38C312001A6525 /* ImageStore.swift */; };
 		1C86200F1D337954006C30BB /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C86200E1D337954006C30BB /* libsqlite3.dylib */; };
 		1C8620101D3379D9006C30BB /* libstdc++.6.0.9.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C86200C1D337908006C30BB /* libstdc++.6.0.9.dylib */; };
 		1C8620121D337A7D006C30BB /* libz.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C8620111D337A7D006C30BB /* libz.1.dylib */; };
@@ -153,6 +155,8 @@
 		1C5A6FC41CE99644000E7282 /* PlayerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerController.swift; sourceTree = "<group>"; };
 		1C5A6FC61CE9A0D5000E7282 /* LivePlayerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LivePlayerController.swift; sourceTree = "<group>"; };
 		1C6420F51CD0605200119272 /* CommentController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentController.swift; sourceTree = "<group>"; };
+		1C66ADFC1D38C2CD001A6525 /* QrCodeImageStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QrCodeImageStore.swift; sourceTree = "<group>"; };
+		1C66ADFE1D38C312001A6525 /* ImageStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageStore.swift; sourceTree = "<group>"; };
 		1C86200C1D337908006C30BB /* libstdc++.6.0.9.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.6.0.9.dylib"; path = "../../../../usr/lib/libstdc++.6.0.9.dylib"; sourceTree = "<group>"; };
 		1C86200E1D337954006C30BB /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = ../../../../usr/lib/libsqlite3.dylib; sourceTree = "<group>"; };
 		1C8620111D337A7D006C30BB /* libz.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.dylib; path = ../../../../usr/lib/libz.1.dylib; sourceTree = "<group>"; };
@@ -394,6 +398,8 @@
 				1C451F6E1D0178A700DC29F9 /* ServiceLocatorStore.swift */,
 				1CC1ADBB1D1CC662005AF856 /* UserProfilePhotoStore.swift */,
 				1C3C5EDC1D1E11DB000F0A39 /* KeyValueStore.swift */,
+				1C66ADFC1D38C2CD001A6525 /* QrCodeImageStore.swift */,
+				1C66ADFE1D38C312001A6525 /* ImageStore.swift */,
 			);
 			name = store;
 			sourceTree = "<group>";
@@ -745,6 +751,7 @@
 				1C3479BD1CF2F9BD003FEF05 /* FirstPageViewController.swift in Sources */,
 				1C3479C01CF3EBEF003FEF05 /* LivePlayerCell.swift in Sources */,
 				1CEE8AF31CD4998A00865FB6 /* PagableController.swift in Sources */,
+				1C66ADFF1D38C312001A6525 /* ImageStore.swift in Sources */,
 				1C2FC9271CFEE5BA0057EB93 /* EmojiKeyboard.swift in Sources */,
 				1C33F0361D0719BE00D3EE4C /* SetNameViewController.swift in Sources */,
 				1CC1ADBC1D1CC662005AF856 /* UserProfilePhotoStore.swift in Sources */,
@@ -757,6 +764,7 @@
 				1CB2D7E81D0D9918007FE507 /* LiveAlbumCell.swift in Sources */,
 				1CEFF7941CC0BBBF000DEFF7 /* AlbumDetailController.swift in Sources */,
 				1C3CC4C01CFBE3FE007D3EBC /* SongListCell.swift in Sources */,
+				1C66ADFD1D38C2CE001A6525 /* QrCodeImageStore.swift in Sources */,
 				1CD349741CFA8DD700037F78 /* SearchCourseViewController.swift in Sources */,
 				1CEFF7881CBFBA1B000DEFF7 /* ServiceConfiguration.swift in Sources */,
 				E2A9AFA01C498E2900FE943A /* AppDelegate.swift in Sources */,

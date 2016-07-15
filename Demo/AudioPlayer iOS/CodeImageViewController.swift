@@ -8,6 +8,7 @@
 
 import UIKit
 import Kingfisher
+import QorumLogs
 
 class CodeImageViewController: BaseUIViewController {
     
@@ -17,6 +18,7 @@ class CodeImageViewController: BaseUIViewController {
     @IBOutlet weak var wechatButton: UIButton!
     
     @IBOutlet weak var codeImageView: UIImageView!
+    var qrCodeImageStore: QrCodeImageStore!
     
     
     override func viewDidLoad() {
@@ -24,14 +26,23 @@ class CodeImageViewController: BaseUIViewController {
         
         let loginUser = LoginUserStore().getLoginUser()!
         
+        qrCodeImageStore = QrCodeImageStore()
+        
+        
         if loginUser.codeImageUrl != nil {
-            codeImageView.kf_setImageWithURL(NSURL(string: loginUser.codeImageUrl!)!)
+            QL1("loading code image: \(loginUser.codeImageUrl!)")
+            codeImageView.kf_setImageWithURL(NSURL(string: loginUser.codeImageUrl!)!,
+                                         placeholderImage: qrCodeImageStore.get(),
+                                         optionsInfo: [.ForceRefresh],
+                                         completionHandler: { (image, error, cacheType, imageURL) -> () in
+                                            if image != nil {
+                                                self.qrCodeImageStore.saveOrUpdate(image!)
+                                            }
+            })
         }
         
         addLineBorder(cancelButton)
         shareView.hidden = true
-        
-        
     }
     
     func addLineBorder(field: UIButton) {
