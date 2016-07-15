@@ -76,7 +76,7 @@ class AlbumListController: BaseUIViewController, UITableViewDataSource, UITableV
             dest.albumImageData = (tableView.cellForRowAtIndexPath(tableView.indexPathForSelectedRow!)! as! AlbumCell).albumImage.image!
         } else if segue.identifier == "bugVipSegue" {
             let dest = segue.destinationViewController as! WebPageViewController
-            dest.url = NSURL(string: "http://www.baidu.com")
+            dest.url = NSURL(string: ServiceLinkManager.MyAgentUrl)
             dest.title = "Vip购买"
         }
 
