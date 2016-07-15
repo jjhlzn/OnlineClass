@@ -118,4 +118,10 @@ class ServiceLinkManager {
         }
     }
     
+    static var AgreementUrl : String {
+        get {
+            return "http://\(host):\(port)/agreement.html"
+        }
+    }
+    
 }

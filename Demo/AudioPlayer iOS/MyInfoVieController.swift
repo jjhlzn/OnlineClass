@@ -278,6 +278,16 @@ extension MyInfoVieController {
         indexPath = NSIndexPath(forRow: 2, inSection: 2)
         let cell3 = tableView.cellForRowAtIndexPath(indexPath) as! MyInfoOtherCell
         cell3.otherInfoLabel.text = resp.teamPeople
+        
+        let loginUserStore = LoginUserStore()
+        let loginUser = loginUserStore.getLoginUser()!
+        loginUser.name = resp.name
+        loginUser.nickName = resp.nickName
+        loginUser.codeImageUrl = resp.codeImageUrl
+        loginUser.level = resp.level
+        loginUser.sex = resp.sex
+        loginUser.boss = resp.boss
+        loginUserStore.updateLoginUser()
     
         
     }

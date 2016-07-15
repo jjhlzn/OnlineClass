@@ -706,6 +706,14 @@ class GetUserStatDataResponse : ServerResponse {
     var tuijianPeople: String!
     var orderCount: String!
     
+    var name : String?
+    var nickName: String!
+    var level: String!
+    var boss: String?
+    var sex: String = ""
+    var codeImageUrl: String = ""
+
+    
     override func parseJSON(request: ServerRequest, json: NSDictionary) {
         super.parseJSON(request, json: json)
         jifen = json["jifen"] as! String
@@ -713,5 +721,17 @@ class GetUserStatDataResponse : ServerResponse {
         teamPeople = json["teamPeople"] as! String
         tuijianPeople = json["tuijianPeople"] as! String
         orderCount = json["orderCount"] as! String
+        
+        name = json["name"] as? String
+        if json["nickName"] != nil {
+            nickName = json["nickName"] as! String
+        } else {
+            nickName = ""
+        }
+        
+        level = json["level"] as! String
+        boss = json["boss"] as? String
+        sex = json["sex"] as! String
+        codeImageUrl = json["codeImageUrl"] as! String
     }
 }

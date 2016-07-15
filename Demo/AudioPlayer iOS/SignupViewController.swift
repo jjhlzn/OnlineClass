@@ -134,5 +134,17 @@ class SignupViewController : BaseUIViewController, UIAlertViewDelegate {
         self.performSegueWithIdentifier("signupSuccessSegue", sender: nil)
     }
     
+    @IBAction func showAgreementButtonPressed(sender: AnyObject) {
+        performSegueWithIdentifier("webViewSegue", sender: nil)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "webViewSegue" {
+            let dest = segue.destinationViewController as! WebPageViewController
+            dest.title = "巨方助手APP服务协议"
+            dest.url = NSURL(string: ServiceLinkManager.AgreementUrl)
+        }
+    }
+ 
     
 }

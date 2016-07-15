@@ -1526,7 +1526,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IHP-Mp-DaU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2881" y="-186"/>
+            <point key="canvasLocation" x="1869" y="-428"/>
         </scene>
         <!--我的-->
         <scene sceneID="oct-0p-3hq">
@@ -2066,6 +2066,9 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <state key="normal" title="《巨方助手软件许可及服务协议》"/>
+                                <connections>
+                                    <action selector="showAgreementButtonPressed:" destination="UXT-7U-nAQ" eventType="touchUpInside" id="Ata-98-RWy"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="JHs-L0-mtN">
                                 <rect key="frame" x="219" y="142" width="87" height="30"/>
@@ -2113,11 +2116,12 @@
                         <outlet property="phoneCodeLabel" destination="ZXh-xP-uf6" id="3oB-DL-3mD"/>
                         <outlet property="phoneField" destination="S1r-9X-Qbf" id="KPw-Gx-PMt"/>
                         <segue destination="59B-S3-xkA" kind="modal" identifier="signupSuccessSegue" modalPresentationStyle="pageSheet" id="6YY-4Q-Fzm"/>
+                        <segue destination="qTJ-UI-98H" kind="push" identifier="webViewSegue" id="6jW-kq-E2K"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AAV-pC-GL4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="922" y="-760"/>
+            <point key="canvasLocation" x="1157" y="-683"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="DfZ-8E-aqq">
@@ -2252,7 +2256,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MrD-aa-jPu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1493" y="178"/>
+            <point key="canvasLocation" x="1233" y="-272"/>
         </scene>
         <!--直播课程-->
         <scene sceneID="jc6-v7-kIt">
@@ -2860,8 +2864,8 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="xbm-kK-Zqp"/>
-        <segue reference="wCU-pg-fxd"/>
-        <segue reference="TY9-aV-adh"/>
+        <segue reference="71V-Tn-QDD"/>
+        <segue reference="6jW-kq-E2K"/>
         <segue reference="gK4-D6-0Uz"/>
         <segue reference="3eS-Pl-zlw"/>
     </inferredMetricsTieBreakers>
