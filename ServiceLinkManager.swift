@@ -124,4 +124,25 @@ class ServiceLinkManager {
         }
     }
     
+    static var MyJifenUrl : String {
+        get {
+            return "http://\(host):\(port)/Center/MyPoint"
+
+        }
+    }
+    
+    static var MyChaifuUrl : String {
+        get {
+            return "http://\(host):\(port)/Center/MyMoney"
+            
+        }
+    }
+    
+    static var MyTeamUrl2 : String {
+        get {
+            return "http://\(host):\(port)/Center/MyTeam2"
+            
+        }
+    }
+    
 }

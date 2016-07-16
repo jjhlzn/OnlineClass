@@ -31,4 +31,10 @@ class MyInfoSecondLineCell : UITableViewCell {
     @IBOutlet weak var jifenLabel: UILabel!
     @IBOutlet weak var chaifuLabel: UILabel!
     @IBOutlet weak var tuanduiLabel: UILabel!
+    
+    @IBOutlet weak var chaifuView: UIView!
+    @IBOutlet weak var jifenView: UIView!
+    
+    @IBOutlet weak var taunduiView: UIView!
+    
 }

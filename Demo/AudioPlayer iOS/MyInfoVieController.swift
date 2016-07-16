@@ -116,6 +116,31 @@ extension MyInfoVieController {
         performSegueWithIdentifier("setProfilePhotoSegue", sender: nil)
     }
     
+    func userInfoTapped(sender: UITapGestureRecognizer? = nil) {
+        let index = (sender?.view?.tag)!
+        var link = ServiceLinkManager.MyTeamUrl2
+        var title = ""
+        switch index {
+        case 0:
+            link = ServiceLinkManager.MyJifenUrl
+            title = "我的积分"
+            break
+        case 1:
+            link = ServiceLinkManager.MyChaifuUrl
+            title = "我的财富"
+            break
+        case 2:
+            link = ServiceLinkManager.MyTeamUrl2
+            title = "我的团队"
+            break
+        default:
+            break
+            
+        }
+        performSegueWithIdentifier("webViewSegue2", sender:  [link, title])
+        
+    }
+    
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let section = indexPath.section
@@ -164,6 +189,19 @@ extension MyInfoVieController {
             cell.jifenLabel.text = keyValueStore.get(KeyValueStore.key_jifen, defaultValue: "0")
             cell.chaifuLabel.text = keyValueStore.get(KeyValueStore.key_chaifu, defaultValue: "0")
             cell.tuanduiLabel.text = keyValueStore.get(KeyValueStore.key_tuandui, defaultValue: "1人")
+            
+
+            cell.jifenView.tag = 0
+            cell.jifenView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(userInfoTapped)))
+            cell.jifenView.userInteractionEnabled = true
+            
+            cell.chaifuView.tag = 1
+            cell.chaifuView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(userInfoTapped)))
+            cell.chaifuView.userInteractionEnabled = true
+            
+            cell.taunduiView.tag = 2
+            cell.taunduiView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(userInfoTapped)))
+            cell.taunduiView.userInteractionEnabled = true
 
             return cell
         case 2:
@@ -242,6 +280,11 @@ extension MyInfoVieController {
             let data  = sender as! Array<String>
             let dest = segue.destinationViewController as! WebPageViewController
             dest.url = NSURL(string: data[3])!
+            dest.title = data[1]
+        } else if segue.identifier == "webViewSegue2" {
+            let data  = sender as! Array<String>
+            let dest = segue.destinationViewController as! WebPageViewController
+            dest.url = NSURL(string: data[0])!
             dest.title = data[1]
         }
     }
