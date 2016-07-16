@@ -16,6 +16,7 @@ class CommonPlayerPageViewController : NSObject, UITableViewDataSource, UITableV
     var comments: [Comment]!
     var totalCommentCount = 0
     var showHasMoreLink = true
+    var playerViewController : PlayerViewController?
     
     var heightCache = [String: CGFloat]()
     
@@ -65,7 +66,7 @@ class CommonPlayerPageViewController : NSObject, UITableViewDataSource, UITableV
             let cell = tableView.dequeueReusableCellWithIdentifier("playerCell") as! PlayerCell
             cell.controller = viewController
             cell.initPalyer()
-            
+            self.playerViewController = cell.playerViewController
             return cell
         case 1:
             let row = indexPath.row
@@ -204,6 +205,11 @@ class CommonPlayerPageViewController : NSObject, UITableViewDataSource, UITableV
             
             
             let song = item.song
+            
+            if playerViewController != nil {
+                playerViewController?.loadArtImage()
+            }
+            
             viewController.commentController.song = song
             QL1("reload: song.id = \(song.id)")
             let request = GetSongCommentsRequest(song: song)

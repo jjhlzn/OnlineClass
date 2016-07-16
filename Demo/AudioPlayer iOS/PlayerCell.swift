@@ -53,6 +53,7 @@ class PlayerCell: UITableViewCell {
         playerViewController.initPlayerController()
         
         audioPlayer.delegate = playerViewController
+        playerViewController?.loadArtImage()
         
         //setup progressbar
         var sliderImage = UIImage(named: "sliderImage")!

@@ -275,6 +275,8 @@
 		1C154A4E1CDACC89003B900C /* ui */ = {
 			isa = PBXGroup;
 			children = (
+				1C1E691F1CC9FB5D00CEA029 /* customCell */,
+				1C3479BE1CF3DECC003FEF05 /* controller */,
 				1C154A4F1CDACCA6003B900C /* MyUISlider.swift */,
 			);
 			name = ui;
@@ -449,13 +451,11 @@
 				1CBF78701D33727B00B596BC /* weixinshare_bridge.h */,
 				1CBF785F1D336CC300B596BC /* weixinsdk */,
 				1CBC1DBB1D08F74C00F140D3 /* XCGLogger.framework */,
-				1C3479BE1CF3DECC003FEF05 /* controller */,
 				1C154A4E1CDACC89003B900C /* ui */,
 				1C2684721CCA5CA80032C014 /* lib */,
 				1C09D3BB1CD083A0004A8F9C /* model */,
 				1C1E691E1CC9F97300CEA029 /* storyboard */,
 				1CEFF7841CBFB9E7000DEFF7 /* Service */,
-				1C1E691F1CC9FB5D00CEA029 /* customCell */,
 				E2A9AF9E1C498E2900FE943A /* AudioPlayer iOS */,
 				E2A9AFB71C498F8800FE943A /* Sounds */,
 				E2A9AFB61C498F6D00FE943A /* framework */,

@@ -149,7 +149,6 @@ class GetAlbumSongsResponse : ServerResponse {
             let album = req.album
             if album.isLive {
                 let liveSong = LiveSong()
-                liveSong.imageUrl = json["image"] as? String
                 liveSong.startDateTime = json["startTime"] as? String
                 liveSong.endDateTime = json["endTime"] as? String
                 liveSong.listenPeople = json["listenPeople"] as! String
@@ -163,6 +162,7 @@ class GetAlbumSongsResponse : ServerResponse {
             song.date = json["date"] as! String
             song.url = json["url"] as! String
             song.id = json["id"] as! String
+            song.imageUrl = json["image"] as! String
             let settings = SongSetting()
             song.settings = settings
             let settingsJson = json["settings"] as! NSDictionary

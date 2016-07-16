@@ -62,6 +62,7 @@ class Song : BaseModelObject {
     var desc: String = ""
     var date: String = ""
     var url: String = ""
+    var imageUrl: String = ""
     var settings = SongSetting()
     var album: Album!
     var wholeUrl : String {
@@ -88,7 +89,6 @@ class LiveSong : Song {
         dateFormatter2.dateFormat = "yyyy-MM-dd"
     }
     
-    var imageUrl: String?
     var startDateTime: String?
     var listenPeople: String = ""
     

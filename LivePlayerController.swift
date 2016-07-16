@@ -59,6 +59,10 @@ class LivePlayerViewController : PlayerViewController {
         }
     }
     
+    override func getPlaceHolderMusicImageName() -> String {
+        return "liveMusicCover"
+    }
+    
     override func audioPlayer(audioPlayer: AudioPlayer, didChangeStateFrom from: AudioPlayerState, toState to: AudioPlayerState) {
         print("LivePlayerViewController:didChangeStateFrom called，from = \(from), to = \(to)")
         updatePrevAndNextButtonStatus()

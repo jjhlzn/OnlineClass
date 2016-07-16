@@ -22,6 +22,7 @@ class PlayerViewController : NSObject, AudioPlayerDelegate {
     func initPlayerController() {
         audioPlayer = Utils.getAudioPlayer()
         audioPlayer.delegate = self
+        
     }
     
     func playOrPause() {
@@ -156,10 +157,24 @@ class PlayerViewController : NSObject, AudioPlayerDelegate {
         
     }
     
+    func loadArtImage() {
+        let item = audioPlayer.currentItem
+        if item != nil {
+            let song = (item as! MyAudioItem).song
+            cell.controller?.title = song.name
+            cell.artImageView.kf_setImageWithURL(NSURL(string: song.imageUrl)!, placeholderImage: UIImage(named: getPlaceHolderMusicImageName()))
+        }
+    }
+    
+    func getPlaceHolderMusicImageName() -> String {
+        return "musicCover"
+    }
+    
     func audioPlayer(audioPlayer: AudioPlayer, willStartPlayingItem item: AudioItem) {
         print("audioPlayer:willStartPlayingItem called")
-        cell.artImageView.image = item.artworkImage
-        cell.controller?.title = (item as! MyAudioItem).song?.name
+        //cell.artImageView.image = item.artworkImage
+        loadArtImage()
+
     }
     
     
@@ -183,9 +198,6 @@ class PlayerViewController : NSObject, AudioPlayerDelegate {
     
     func audioPlayer(audioPlayer: AudioPlayer, didUpdateEmptyMetadataOnItem item: AudioItem, withData data: Metadata) {
         print("audioPlayer:didUpdateEmptyMetadataOnItem called")
-        if audioPlayer.currentItem != nil && audioPlayer.currentItem?.artworkImage != nil {
-            cell.artImageView.image = audioPlayer.currentItem?.artworkImage!
-        }
     }
 
 }
