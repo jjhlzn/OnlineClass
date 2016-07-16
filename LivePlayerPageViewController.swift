@@ -176,7 +176,7 @@ class LivePlayerPageViewController : CommonPlayerPageViewController, LiveComment
             livePlayerCell = tableView.dequeueReusableCellWithIdentifier("livePlayerCell") as? LivePlayerCell
             livePlayerCell?.controller = viewController
             livePlayerCell?.initPalyer()
-            
+            self.playerViewController = livePlayerCell?.playerViewController
             return livePlayerCell!
         case 1:
             let row = indexPath.row
@@ -288,6 +288,8 @@ class LivePlayerPageViewController : CommonPlayerPageViewController, LiveComment
             let song = item.song
             QL1("reload: song.id = \(song.id), song.name = \(song.name)")
             viewController.commentController.song = song
+            
+            playerViewController?.loadArtImage()
             
             //update comments
             let request = GetSongLiveCommentsRequest(song: song, lastId: "-1")
