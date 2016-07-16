@@ -102,6 +102,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func applicationWillEnterForeground(application: UIApplication) {
+        application.applicationIconBadgeNumber = 0
         let currentViewController = getVisibleViewController(nil)
         
         if currentViewController != nil {
