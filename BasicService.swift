@@ -19,6 +19,7 @@ class BasicService {
                      serverRequest: ServerRequest,
                      params: [String: AnyObject]? = [String: AnyObject](),
                      hasResendForTokenInvalid: Bool = false,
+                     timeout: NSTimeInterval = 5,
                      //controller中定义的处理函数
                      completion: (resp: T) -> Void) -> T {
         let serverResponse = T()
@@ -28,7 +29,7 @@ class BasicService {
         let request = NSMutableURLRequest(URL: NSURL( string: url)!)
         request.HTTPMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        
+        request.timeoutInterval = timeout
         
         do {
             request.HTTPBody = try JSON(finalParams).rawData()
@@ -119,10 +120,11 @@ class BasicService {
     
     func sendRequest<T: ServerResponse>(url: String,
                      request: ServerRequest,
+                     timeout: NSTimeInterval = 5,
                      method: Alamofire.Method = .POST,
                      //controller中定义的处理函数
         completion: (resp: T) -> Void) -> T {
-        return sendRequest(url, method: method, serverRequest: request, params: request.params, completion: completion)
+        return sendRequest(url, method: method, serverRequest: request, params: request.params, timeout: timeout, completion: completion)
     }
     
     

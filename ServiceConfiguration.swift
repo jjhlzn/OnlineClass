@@ -21,8 +21,11 @@ class ServiceConfiguration {
     static let serverName3 = "jjhaudio.hengdianworld.com"
     static let port3 = 80
     
+    
     static let serverName4 = "114.215.236.171"
     static let port4 = 6012
+    
+    static let serviceLocatorServer = "servicelocator.hengdianworld.com"
     
     static var serverName: String {
         get {
@@ -226,6 +229,13 @@ class ServiceConfiguration {
     }
     static func GetAlbumImageUrl(urlSuffix: String) -> String {
         return urlSuffix
+    }
+    
+    
+    static var GET_SERVICE_LOACTOR_URL : String {
+        get {
+            return "\(http)://\(serverName):\(port)/song/livelistener"
+        }
     }
 
 
