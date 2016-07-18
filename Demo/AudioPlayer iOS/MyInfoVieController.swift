@@ -61,6 +61,7 @@ class MyInfoVieController: BaseUIViewController, UITableViewDataSource, UITableV
         BasicService().sendRequest(ServiceConfiguration.GET_USER_STAT_DATA, request: GetUserStatDataRequest()) {
             (resp: GetUserStatDataResponse) -> Void in
             self.updateUserStatData(resp)
+            self.tableView.reloadData()
             self.querying = false
             self.refreshControl.endRefreshing()
         }
@@ -333,7 +334,7 @@ extension MyInfoVieController {
         loginUser.boss = resp.boss
         loginUserStore.updateLoginUser()
         
-        tableView.reloadData()
+        //tableView.reloadData()
     
         
     }
