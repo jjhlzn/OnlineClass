@@ -44,17 +44,20 @@ class BasicService {
         Alamofire.request(request)
             .responseJSON { response in
                 //print("---------------------------------StartRequest---------------------------------")
-                debugPrint(finalParams)
-                debugPrint(response)
+                //debugPrint(finalParams)
+                //debugPrint(response)
+                
                 //print("----------------------------------EndRequest----------------------------------")
                 
                 if response.result.isFailure {
+                    QL4("服务器出错了")
                     serverResponse.status = -1
                     serverResponse.errorMessage = "服务器返回出错"
                     completion(resp: serverResponse)
                     
                 } else {
                     let json = response.result.value as! NSDictionary
+                    QL1(json)
                     serverResponse.status = json["status"] as! Int
                     //检查status是否是因为token过期，如果是，则需要重新验证token的值, 获得token的值后，重新发送一次请求
                     if serverResponse.status == ServerResponseStatus.TokenInvalid.rawValue && !hasResendForTokenInvalid {
