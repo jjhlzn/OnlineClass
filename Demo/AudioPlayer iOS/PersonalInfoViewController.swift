@@ -11,12 +11,21 @@ import UIKit
 class PersonalInfoViewController: BaseUIViewController, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet weak var tableView: UITableView!
+    var loginUserStore : LoginUserStore!
+    var loginUser : LoginUserEntity!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.dataSource = self
         tableView.delegate = self
+        
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        loginUserStore = LoginUserStore()
+        loginUser = loginUserStore.getLoginUser()!
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -36,22 +45,22 @@ class PersonalInfoViewController: BaseUIViewController, UITableViewDataSource, U
         case 0:
             let cell = tableView.dequeueReusableCellWithIdentifier("personalItemCell") as! PersonalInfoCell
             cell.nameLabel.text = "姓名"
-            cell.valueLabel.text = LoginUserStore().getLoginUser()?.name
+            cell.valueLabel.text = loginUser.name
             return cell
         
         case 1:
             let cell = tableView.dequeueReusableCellWithIdentifier("personalItemCell") as! PersonalInfoCell
             cell.nameLabel.text = "昵称"
-            cell.valueLabel.text = LoginUserStore().getLoginUser()?.nickName
+            cell.valueLabel.text = loginUser.nickName
             return cell
             
         case 2:
             let cell = tableView.dequeueReusableCellWithIdentifier("personalItemCell") as! PersonalInfoCell
             cell.nameLabel.text = "性别"
-            if LoginUserStore().getLoginUser()?.sex == nil {
+            if loginUser.sex == nil {
                 cell.valueLabel.text = "保密"
             } else {
-                cell.valueLabel.text = LoginUserStore().getLoginUser()?.sex!
+                cell.valueLabel.text = loginUser.sex!
             }
             return cell
         

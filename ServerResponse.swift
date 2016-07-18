@@ -723,8 +723,8 @@ class GetUserStatDataResponse : ServerResponse {
         orderCount = json["orderCount"] as! String
         
         name = json["name"] as? String
-        if json["nickName"] != nil {
-            nickName = json["nickName"] as! String
+        if json["nickname"] != nil {
+            nickName = json["nickname"] as! String
         } else {
             nickName = ""
         }

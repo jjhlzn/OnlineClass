@@ -177,6 +177,7 @@ extension MyInfoVieController {
             cell.userImage.addGestureRecognizer(tapGestureRecognizer)
             cell.levelLabel.text = loginUser.level
             cell.bossLabel.text = loginUser.boss
+            print("nickname = \(loginUser.nickName!)")
             if loginUser.nickName == nil || loginUser.nickName == "" {
                 cell.userInfoLabel.text = "\(loginUser.name!)"
             } else {
@@ -331,6 +332,8 @@ extension MyInfoVieController {
         loginUser.sex = resp.sex
         loginUser.boss = resp.boss
         loginUserStore.updateLoginUser()
+        
+        tableView.reloadData()
     
         
     }

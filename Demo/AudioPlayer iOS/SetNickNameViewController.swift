@@ -36,7 +36,9 @@ class SetNickNameViewController: BaseUIViewController, UITableViewDataSource, UI
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("textFieldCell") as! TextFieldCell
-        cell.textField.text = loginUserStore.getLoginUser()?.nickName
+        let loginUser = loginUserStore.getLoginUser()!
+        cell.textField.text = loginUser.nickName
+        print ("loginUser.nickName = \(loginUser.nickName)")
         cell.textField.addTarget(self, action: #selector(textFieldDidChange), forControlEvents: UIControlEvents.EditingChanged)
         return cell
     }
@@ -63,9 +65,11 @@ class SetNickNameViewController: BaseUIViewController, UITableViewDataSource, UI
                 return
             }
             
-            let loginUser = self.loginUserStore.getLoginUser()!
+            var loginUser = self.loginUserStore.getLoginUser()!
             loginUser.nickName = request.newNickName
             if self.loginUserStore.updateLoginUser() {
+                loginUser = self.loginUserStore.getLoginUser()!
+                print("nickname = \(loginUser.nickName)" )
                 (self.navigationController?.viewControllers[1] as! PersonalInfoViewController).tableView.reloadData()
                 self.navigationController?.popViewControllerAnimated(true)
             } else {

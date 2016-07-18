@@ -55,33 +55,7 @@ class LoginUserStore {
         return true
     }
     
-    private func saveLoginUser(userName: String, password: String, name: String, sex: String, codeImageUrl: String, token: String) -> Bool {
-        removeLoginUser()
         
-        //存储登录的信息
-        let context = coreDataStack.mainQueueContext
-        var user: LoginUserEntity!
-        context.performBlockAndWait() {
-            user = NSEntityDescription.insertNewObjectForEntityForName("LoginUserEntity", inManagedObjectContext: context) as! LoginUserEntity
-            user.userName = userName
-            user.password = password
-            user.name = name
-            user.sex = sex
-            user.codeImageUrl = codeImageUrl
-            user.lastLoginTime = NSDate()
-            user.token = token
-        }
-        
-        do {
-            try coreDataStack.saveChanges()
-        }
-        catch let error {
-            print("Core Data save failed: \(error)")
-            return false
-        }
-        return true
-    }
-    
     func updateLoginUser() -> Bool {
         do {
             try coreDataStack.saveChanges()
