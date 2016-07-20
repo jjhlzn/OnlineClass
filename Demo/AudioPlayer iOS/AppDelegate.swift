@@ -34,6 +34,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             serviceLocator.http = "http"
             serviceLocator.serverName = "114.215.236.171"
             serviceLocator.port = 6012
+            serviceLocator.isUseServiceLocator = "1"
             serviceLocatorStore.saveServiceLocator(serviceLocator)
         }
 

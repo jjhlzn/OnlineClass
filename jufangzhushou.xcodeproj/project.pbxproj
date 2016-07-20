@@ -152,6 +152,7 @@
 		1C451F6A1D01787B00DC29F9 /* ServiceLocatorEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ServiceLocatorEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		1C451F6B1D01787B00DC29F9 /* ServiceLocatorEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceLocatorEntity.swift; sourceTree = "<group>"; };
 		1C451F6E1D0178A700DC29F9 /* ServiceLocatorStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceLocatorStore.swift; sourceTree = "<group>"; };
+		1C48D9C81D3F041300F810CA /* jufangzhushou 4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "jufangzhushou 4.xcdatamodel"; sourceTree = "<group>"; };
 		1C5A6FC41CE99644000E7282 /* PlayerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerController.swift; sourceTree = "<group>"; };
 		1C5A6FC61CE9A0D5000E7282 /* LivePlayerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LivePlayerController.swift; sourceTree = "<group>"; };
 		1C6420F51CD0605200119272 /* CommentController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentController.swift; sourceTree = "<group>"; };
@@ -1063,11 +1064,12 @@
 		1C2451D21CE8A0BD00F350DA /* jufangzhushou.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				1C48D9C81D3F041300F810CA /* jufangzhushou 4.xcdatamodel */,
 				1C3C5ED71D1E0CA2000F0A39 /* jufangzhushou 3.xcdatamodel */,
 				1C33F03A1D0724A700D3EE4C /* jufangzhushou 2.xcdatamodel */,
 				1C2451D31CE8A0BD00F350DA /* jufangzhushou.xcdatamodel */,
 			);
-			currentVersion = 1C3C5ED71D1E0CA2000F0A39 /* jufangzhushou 3.xcdatamodel */;
+			currentVersion = 1C48D9C81D3F041300F810CA /* jufangzhushou 4.xcdatamodel */;
 			path = jufangzhushou.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

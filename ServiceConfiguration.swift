@@ -25,7 +25,6 @@ class ServiceConfiguration {
     static let serverName4 = "114.215.236.171"
     static let port4 = 6012
     
-    static let serviceLocatorServer = "servicelocator.hengdianworld.com"
     
     static var serverName: String {
         get {
@@ -234,7 +233,7 @@ class ServiceConfiguration {
     
     static var GET_SERVICE_LOACTOR_URL : String {
         get {
-            return "\(http)://\(serverName):\(port)/song/livelistener"
+            return "http://servicelocator.hengdianworld.com:9000/servicelocator"
         }
     }
 

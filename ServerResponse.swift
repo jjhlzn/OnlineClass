@@ -735,3 +735,22 @@ class GetUserStatDataResponse : ServerResponse {
         codeImageUrl = json["codeImageUrl"] as! String
     }
 }
+
+
+class GetServiceLocatorRequest : ServerRequest {
+    
+}
+
+class GetServiceLocatorResponse : ServerResponse {
+    var http: String!
+    var serverName: String!
+    var port: Int!
+    
+    override func parseJSON(request: ServerRequest, json: NSDictionary) {
+        super.parseJSON(request, json: json)
+        let jsonObject = json["result"] as! NSDictionary
+        http = jsonObject["http"] as! String
+        serverName = jsonObject["serverName"] as! String
+        port = jsonObject["port"] as! Int
+    }
+}

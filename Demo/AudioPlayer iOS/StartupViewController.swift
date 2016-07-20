@@ -12,6 +12,7 @@ import QorumLogs
 class StartupViewController: BaseUIViewController {
     
     var loginUserStore = LoginUserStore()
+    var serviceLocatorStore = ServiceLocatorStore()
     var isForceUpgrade = false
     var isSkipUpgradeCheck = false
     var upgradeUrl : String!
@@ -22,35 +23,29 @@ class StartupViewController: BaseUIViewController {
         super.viewDidAppear(animated)
         
         optionalUpgradeAlertViewDelegate = OptionalUpgradeAlertViewDelegate(controller: self)
+
+        let serviceLocator = serviceLocatorStore.GetServiceLocator()
         
-        if isSkipUpgradeCheck {
-            checkLoginUser()
-        } else {
-            BasicService().sendRequest(ServiceConfiguration.CHECK_UPGRADE, request: CheckUpgradeRequest()) {
-                (resp : CheckUpgradeResponse) -> Void in
-                if resp.status != 0 {
-                    self.displayMessage(resp.errorMessage!)
-                    self.checkLoginUser()
-                    return
+        //serviceLocator不应该为null，因为在AppDelegate会有一个初始化值
+        if (serviceLocator?.needServieLocator)! {
+            BasicService().sendRequest(ServiceConfiguration.GET_SERVICE_LOACTOR_URL, request: GetServiceLocatorRequest()) {
+                (resp : GetServiceLocatorResponse) -> Void in
+                
+                if resp.status == ServerResponseStatus.Success.rawValue {
+                    serviceLocator?.http = resp.http
+                    serviceLocator?.port = resp.port
+                    serviceLocator?.serverName = resp.serverName
+                    
+                    self.serviceLocatorStore.UpdateServiceLocator()
                 }
                 
-                if resp.isNeedUpgrade {
-                    self.isForceUpgrade = ("force" == resp.upgradeType)
-                    self.upgradeUrl = resp.upgradeUrl
-                    if self.isForceUpgrade {
-                        self.displayForceUpgradeConfirmMessage ("请升级新版本", delegate: self.optionalUpgradeAlertViewDelegate)
-                    } else {
-                        self.displayOptionUpgradeConfirmMessage("有新版本，去升级吗？", delegate: self.optionalUpgradeAlertViewDelegate)
-                    }
-                } else {
-                    self.checkLoginUser()
-                }
+                self.checkUpgrade()
+                
             }
-            
-            
+        } else {
+            checkUpgrade()
         }
         
-        return
     }
     
     private func checkLoginUser() {
@@ -79,6 +74,7 @@ class StartupViewController: BaseUIViewController {
         alertView.show()
     }
     
+    
     func displayForceUpgradeConfirmMessage(message : String, delegate: UIAlertViewDelegate) {
         let alertView = UIAlertView()
         //alertView.title = "系统提示"
@@ -97,6 +93,36 @@ class StartupViewController: BaseUIViewController {
             //TODO 链接要换成真是的升级链接
             dest.url = NSURL(string: upgradeUrl )
         }
+    }
+    
+    func checkUpgrade() {
+        if isSkipUpgradeCheck {
+            checkLoginUser()
+        } else {
+            BasicService().sendRequest(ServiceConfiguration.CHECK_UPGRADE, request: CheckUpgradeRequest()) {
+                (resp : CheckUpgradeResponse) -> Void in
+                if resp.status != 0 {
+                    self.displayMessage(resp.errorMessage!)
+                    self.checkLoginUser()
+                    return
+                }
+                
+                if resp.isNeedUpgrade {
+                    self.isForceUpgrade = ("force" == resp.upgradeType)
+                    self.upgradeUrl = resp.upgradeUrl
+                    if self.isForceUpgrade {
+                        self.displayForceUpgradeConfirmMessage ("请升级新版本", delegate: self.optionalUpgradeAlertViewDelegate)
+                    } else {
+                        self.displayOptionUpgradeConfirmMessage("有新版本，去升级吗？", delegate: self.optionalUpgradeAlertViewDelegate)
+                    }
+                } else {
+                    self.checkLoginUser()
+                }
+            }
+            
+            
+        }
+
     }
     
     

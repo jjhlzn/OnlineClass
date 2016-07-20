@@ -16,3 +16,13 @@ class ConfigurationCell: UITableViewCell {
     @IBOutlet weak var editView: UITextField!
     
 }
+
+
+class ConfigurationCell2: UITableViewCell {
+    
+    
+    @IBOutlet weak var nameInfoLabel: UILabel!
+    
+   
+    @IBOutlet weak var switchButton: UISwitch!
+}

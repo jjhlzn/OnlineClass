@@ -13,5 +13,16 @@ import CoreData
 class ServiceLocatorEntity: NSManagedObject {
 
 // Insert code here to add functionality to your managed object subclass
+    
+    
+    var needServieLocator : Bool {
+        get {
+            if isUseServiceLocator == nil {
+                return true
+            }
+            
+            return "1" == isUseServiceLocator
+        }
+    }
 
 }

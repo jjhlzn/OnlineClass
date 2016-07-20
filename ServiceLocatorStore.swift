@@ -51,6 +51,7 @@ class ServiceLocatorStore {
             entity.http = serviceLocator.http
             entity.serverName = serviceLocator.serverName
             entity.port = serviceLocator.port
+            entity.isUseServiceLocator = serviceLocator.isUseServiceLocator
         }
         
         do {

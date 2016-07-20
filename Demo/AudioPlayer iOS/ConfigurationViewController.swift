@@ -11,8 +11,8 @@ import UIKit
 class ConfigurationController: BaseUIViewController, UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate {
     
     @IBOutlet weak var tableView: UITableView!
-    let names = [["协议", "http 后者 https"], ["服务器", "服务器地址"], ["端口号", "端口号"]]
-    var values = ["", "", ""]
+    let names = [["协议", "http 后者 https"], ["服务器", "服务器地址"], ["端口号", "端口号"], ["是否使用ServiceLocator", ""]]
+    var values = ["", "", "", ""]
     let serviceLocatorStore = ServiceLocatorStore()
     
     
@@ -28,6 +28,11 @@ class ConfigurationController: BaseUIViewController, UITableViewDataSource, UITa
             values[0] = (serviceLoator?.http)!
             values[1] = (serviceLoator?.serverName)!
             values[2] = "\((serviceLoator?.port)!)"
+            if serviceLoator?.isUseServiceLocator == nil {
+                values[3] = "1"
+            } else {
+                values[3] = "0"
+            }
         }
     }
     
@@ -42,12 +47,23 @@ class ConfigurationController: BaseUIViewController, UITableViewDataSource, UITa
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("configurationCell") as! ConfigurationCell
-        cell.nameInfoLabel?.text = names[indexPath.row][0]
-        cell.editView.placeholder = names[indexPath.row][1]
-        cell.editView.text = values[indexPath.row]
         
-        return cell
+        let row = indexPath.row
+        
+        if row == 3 {
+            let cell = tableView.dequeueReusableCellWithIdentifier("configurationCell2") as! ConfigurationCell2
+            cell.nameInfoLabel?.text = names[indexPath.row][0]
+            cell.switchButton.on = values[row] == "1"
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCellWithIdentifier("configurationCell") as! ConfigurationCell
+            cell.nameInfoLabel?.text = names[indexPath.row][0]
+            cell.editView.placeholder = names[indexPath.row][1]
+            cell.editView.text = values[indexPath.row]
+            return cell
+
+        }
+        
     }
     
     
@@ -62,6 +78,7 @@ class ConfigurationController: BaseUIViewController, UITableViewDataSource, UITa
         let http = (tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0)) as!ConfigurationCell).editView.text!
         let serverName = (tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 1, inSection: 0)) as!ConfigurationCell).editView.text!
         let port = (tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 2, inSection: 0)) as!ConfigurationCell).editView.text!
+        let isUseServiceLocator = (tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 3, inSection: 0)) as! ConfigurationCell2).switchButton.on ? "1" : "0"
         
         if Int(port) == nil {
             displayMessage("端口号必须为数字")
@@ -74,26 +91,17 @@ class ConfigurationController: BaseUIViewController, UITableViewDataSource, UITa
         }
         
         let serviceLocator = serviceLocatorStore.GetServiceLocator()
-        if serviceLocator == nil {
-            let new = ServiceLocator()
-            new.http = http
-            new.port = Int(port)
-            new.serverName = serverName
-            if serviceLocatorStore.saveServiceLocator(new) {
-                displayMessage("保存成功", delegate: self)
-            } else {
-                displayMessage("保存失败")
-            }
+
+        serviceLocator?.http = http
+        serviceLocator?.port = Int(port)
+        serviceLocator?.serverName = serverName
+        serviceLocator?.isUseServiceLocator = isUseServiceLocator
+        if serviceLocatorStore.UpdateServiceLocator() {
+            displayMessage("保存成功", delegate: self)
         } else {
-            serviceLocator?.http = http
-            serviceLocator?.port = Int(port)
-            serviceLocator?.serverName = serverName
-            if serviceLocatorStore.UpdateServiceLocator() {
-                displayMessage("保存成功", delegate: self)
-            } else {
-                displayMessage("保存失败")
-            }
+            displayMessage("保存失败")
         }
+        
         
     }
     

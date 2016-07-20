@@ -17,5 +17,6 @@ extension ServiceLocatorEntity {
     @NSManaged var http: String?
     @NSManaged var serverName: String?
     @NSManaged var port: NSNumber?
+    @NSManaged var isUseServiceLocator: String?
 
 }

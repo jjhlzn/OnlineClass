@@ -175,9 +175,21 @@ class ServiceLocator {
     var http: String!
     var serverName: String!
     var port: Int!
+    var isUseServiceLocator: String!
     
     init() {
         
     }
+    
+    var needServieLocator : Bool {
+        get {
+            if isUseServiceLocator == nil {
+                return true
+            }
+            
+            return "1" == isUseServiceLocator
+        }
+    }
+
     
 }

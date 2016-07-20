@@ -50,18 +50,6 @@ class UpgradeViewController: BaseUIViewController, UIWebViewDelegate {
     }
     
     
-    
-    func returnLastController() {
-        navigationController?.popViewControllerAnimated(true)
-    }
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "startupSegue" {
-            let dest = segue.destinationViewController as! StartupViewController
-            dest.isSkipUpgradeCheck = true
-        }
-    }
-    
     @IBAction func cancelPressed(sender: UIBarButtonItem) {
         checkLoginUser()
     }
