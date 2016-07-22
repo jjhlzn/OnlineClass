@@ -158,7 +158,7 @@ extension MyInfoVieController {
                                                   placeholderImage: nil,
                                                   optionsInfo: nil,
                                                   progressBlock: { (receivedSize, totalSize) -> () in
-                                                    print("Download Progress: \(receivedSize)/\(totalSize)")
+                                                    //print("Download Progress: \(receivedSize)/\(totalSize)")
                                                   },
                                                   completionHandler: { (image, error, cacheType, imageURL) -> () in
                                                     if image != nil {

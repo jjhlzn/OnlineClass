@@ -13,7 +13,6 @@ import QorumLogs
 class CodeImageViewController: BaseUIViewController {
     
     @IBOutlet weak var shareView: UIView!
-    @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var pengyouquanButton: UIButton!
     @IBOutlet weak var wechatButton: UIButton!
     
@@ -41,8 +40,11 @@ class CodeImageViewController: BaseUIViewController {
             })
         }
         
-        addLineBorder(cancelButton)
-        shareView.hidden = true
+        if WXApi.isWXAppInstalled() && WXApi.isWXAppSupportApi() {
+            print("winxin share is OK")
+        } else {
+            print("winxin share is  NOT OK")
+        }
     }
     
     func addLineBorder(field: UIButton) {
@@ -52,46 +54,7 @@ class CodeImageViewController: BaseUIViewController {
         field.layer.addSublayer(bottomBorder)
     }
     
-    @IBAction func shareButtonPressed(sender: AnyObject) {
-        showShareView()
-    }
-    
-    @IBAction func cancelButtonPressed(sender: AnyObject) {
-        hideShareView()
-    }
-    
-    var shareViewOverlay : UIView!
-    
-    func showShareView() {
-        if !shareView.hidden {
-            return
-        }
-        print("showShareView")
-        shareViewOverlay = UIView(frame: UIScreen.mainScreen().bounds)
-        shareViewOverlay.backgroundColor = UIColor(white: 0, alpha: 0.65)
-        
-        shareView.removeFromSuperview()
-        shareViewOverlay.addSubview(shareView)
-        
-        view.addSubview(shareViewOverlay)
-        
-        shareView.hidden = false
-        
-        if WXApi.isWXAppInstalled() && WXApi.isWXAppSupportApi() {
-            print("winxin share is OK")
-        } else {
-            print("winxin share is  NOT OK")
-        }
-    }
-    
-    func hideShareView() {
-        shareView.hidden = true
-        shareView.removeFromSuperview()
-        view.addSubview(shareView)
-        shareViewOverlay.removeFromSuperview()
-    }
-    
-    
+
     
     @IBAction func shareToFriends(sender: AnyObject) {
         print("share to friends")
