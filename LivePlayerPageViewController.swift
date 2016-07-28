@@ -15,7 +15,7 @@ import QorumLogs
 //2. 控制聊天的自述
 //3. 每隔5s, 向服务器获取配置的信息，以及获取最新的聊天信息
 class LivePlayerPageViewController : CommonPlayerPageViewController, LiveCommentDelegate {
-    
+    let maxCommentCount = 10 + 1
     //聊天刷新频率
     let freshChatInterval: NSTimeInterval = 5
     //人数更新频率
@@ -27,6 +27,7 @@ class LivePlayerPageViewController : CommonPlayerPageViewController, LiveComment
     var isUpdateChat = false
     var livePlayerCell : LivePlayerCell?
     var lastId = "-1"
+    var updateChatCount = 0
     
     override func initController() {
         super.initController()
@@ -80,6 +81,7 @@ class LivePlayerPageViewController : CommonPlayerPageViewController, LiveComment
     
     
     func checkStatusAndUpdateChat() {
+
         //如果直播在缓冲、失败，尝试重新连接
         switch audioPlayer.state {
         case .Buffering:
@@ -124,9 +126,43 @@ class LivePlayerPageViewController : CommonPlayerPageViewController, LiveComment
                     for comment in newComments {
                         self.comments.insert(comment, atIndex: 0)
                     }
-                    self.viewController.tableView.reloadSections(NSIndexSet(index: 1), withRowAnimation: .None)
+                    var section = 1
+                    if (song as! LiveSong).hasAdvImage!  {
+                        section = 2
+                    }
+                    self.viewController.tableView.reloadSections(NSIndexSet(index: section), withRowAnimation: .None)
                 }
             }
+            
+            updateChatCount = updateChatCount + 1
+            
+            if updateChatCount % 3 == 0 {
+                let request = GetSongInfoRequest()
+                request.song = item.song
+                BasicService().sendRequest(ServiceConfiguration.GET_SONG_INFO, request: request) {
+                    (resp: GetSongInfoResponse) -> Void in
+                    dispatch_async(dispatch_get_main_queue()) {
+                        if resp.status != ServerResponseStatus.Success.rawValue {
+                            QL4(resp.errorMessage)
+                            return
+                        }
+                        let liveSong = song as! LiveSong
+                        
+                        let newSong = resp.song as! LiveSong
+                        if liveSong.hasAdvImage == newSong.hasAdvImage
+                           && liveSong.advImageUrl == newSong.advImageUrl
+                            && liveSong.advUrl == newSong.advUrl {
+                            return
+                        }
+                        liveSong.hasAdvImage = newSong.hasAdvImage
+                        liveSong.advImageUrl = newSong.advImageUrl
+                        liveSong.advUrl = newSong.advUrl
+                        self.viewController.tableView.reloadData()
+                    }
+                }
+            }
+            
+            
         }
     }
     
@@ -151,20 +187,47 @@ class LivePlayerPageViewController : CommonPlayerPageViewController, LiveComment
 
     }
     
+    func getCurrentSong() -> LiveSong? {
+        if audioPlayer.currentItem != nil {
+            let item = audioPlayer.currentItem as! MyAudioItem
+            let song = item.song as! LiveSong
+            return song
+        }
+        return nil
+        
+    }
+    
+   override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        if audioPlayer.currentItem != nil {
+            let item = audioPlayer.currentItem as! MyAudioItem
+            let song = item.song as! LiveSong
+            if song.hasAdvImage! {
+                return 3
+            }
+        }
+        return 2
+   }
+
+    
    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        let sections = numberOfSectionsInTableView(tableView)
+    
         switch section{
+            
         case 0:
             return 1
         case 1:
-            print("comments.count = \((comments?.count)!)")
-            let count = (comments?.count)!
-            if showHasMoreLink {
-                return count == 0 ? 2 : count + 2
+            if sections == 3 {
+                 return 1
             } else {
-                return count == 0 ? 2 : count + 1
+                let count = (comments?.count)!
+                let result = count == 0 ? 2 : count + 1
+                return result > maxCommentCount ? maxCommentCount : result
             }
         default:
-            return 0
+            let count = (comments?.count)!
+            let result = count == 0 ? 2 : count + 1
+            return result > maxCommentCount ? maxCommentCount : result
         }
     }
     
@@ -179,34 +242,47 @@ class LivePlayerPageViewController : CommonPlayerPageViewController, LiveComment
             self.playerViewController = livePlayerCell?.playerViewController
             return livePlayerCell!
         case 1:
-            let row = indexPath.row
-            let rowCount = (comments?.count)!
-            if row == 0 {
-                
-                let cell = tableView.dequeueReusableCellWithIdentifier("chatHeaderCell") as! CommentHeaderCell
-                return cell
-                
-            } else   {
-                if rowCount == 0 {
-                    let cell = tableView.dequeueReusableCellWithIdentifier("noCommentCell")
-                    return cell!
-                } else if row == rowCount + 1 {  //最后一行
-                    let cell = tableView.dequeueReusableCellWithIdentifier("moreCommentCell")
-                    return cell!
-                } else {
-                    return getCommonCell(tableView, row: row)
+            if numberOfSectionsInTableView(tableView) == 3{
+                let cell = tableView.dequeueReusableCellWithIdentifier("songAdvCell") as? SongAdvCell
+                if getCurrentSong() != nil && getCurrentSong()?.advImageUrl != nil {
+                    if let url = NSURL(string: (getCurrentSong()?.advImageUrl!)!) {
+                        cell?.advImageView.kf_setImageWithURL(url)
+                    }
                 }
+                return cell!
+            } else {
+                return getCommentCell(tableView, row: indexPath.row)
             }
+            
         default:
-            break
+            return getCommentCell(tableView, row: indexPath.row)
         }
-        return tableView.dequeueReusableCellWithIdentifier("playerCell")!
-        
     }
+    
+    private func getCommentCell(tableView: UITableView, row: Int) -> UITableViewCell {
+        let rowCount = (comments?.count)!
+        if row == 0 {
+            let cell = tableView.dequeueReusableCellWithIdentifier("chatHeaderCell") as! CommentHeaderCell
+            return cell
+            
+        } else   {
+            if rowCount == 0 {
+                let cell = tableView.dequeueReusableCellWithIdentifier("noCommentCell")
+                return cell!
+            } else if row == rowCount + 1 {  //最后一行
+                let cell = tableView.dequeueReusableCellWithIdentifier("moreCommentCell")
+                return cell!
+            } else {
+                return getCommonCell(tableView, row: row)
+            }
+        }
+
+    }
+    
+    
     
     private func getCommonCell(tableView: UITableView, row: Int) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("commentCell") as! CommentCell
-        
         let comment = comments![row - 1]
         cell.userIdLabel.text = comment.nickName
         cell.timeLabel.text = comment.time
@@ -239,44 +315,76 @@ class LivePlayerPageViewController : CommonPlayerPageViewController, LiveComment
             let screenWidth = screenSize.width
             return screenWidth * 0.5 + 95
         case 1:
-            let row = indexPath.row
-            let rowCount = (comments?.count)!
-            if row == 0 { //点评头
+            if section == 3 {
                 return 40
             } else {
-                if rowCount == 0 { //没有点评的情况
-                    return 70
-                } else if row == rowCount + 1 { //最后一行
-                    return 44
-                } else {   //评论行
-                    
-                    let cell = tableView.dequeueReusableCellWithIdentifier("commentCell") as! CommentCell
-                    let row = indexPath.row
-                    let comment = comments![row - 1]
-                    if heightCache[comment.content] == nil {
-                        cell.userIdLabel.text = comment.userId
-                        cell.timeLabel.text = comment.time
-                        cell.contentLabel.text = comment.content.emojiEscapedString
-                        var frame = cell.contentLabel.frame;
-                        cell.contentLabel.numberOfLines = 0
-                        cell.contentLabel.sizeToFit()
-                        frame.size.height = cell.contentLabel.frame.size.height;
-                        cell.contentLabel.frame = frame;
-                        var height = 25 + cell.contentLabel.bounds.height + 10
-                        
-                        if height < 65 {
-                            height = 65
-                        }
-                        heightCache[comment.content] = height
-                        
-                        
-                    }
-                    //NSLog("row = \(row), height = \(heightCache[comment.content])" )
-                    return  heightCache[comment.content]!
-                }
+                return getCommentCellHeight(tableView, row: indexPath.row)
             }
         default:
-            return 1
+            return getCommentCellHeight(tableView, row: indexPath.row)
+        }
+    }
+    
+    private func getCommentCellHeight(tableView: UITableView, row: Int) -> CGFloat {
+        let rowCount = (comments?.count)!
+        if row == 0 { //点评头
+            return 40
+        } else {
+            if rowCount == 0 { //没有点评的情况
+                return 70
+            } else if row == rowCount + 1 { //最后一行
+                return 44
+            } else {   //评论行
+                
+                let cell = tableView.dequeueReusableCellWithIdentifier("commentCell") as! CommentCell
+                let comment = comments![row - 1]
+                if heightCache[comment.content] == nil {
+                    cell.userIdLabel.text = comment.userId
+                    cell.timeLabel.text = comment.time
+                    cell.contentLabel.text = comment.content.emojiEscapedString
+                    var frame = cell.contentLabel.frame;
+                    cell.contentLabel.numberOfLines = 0
+                    cell.contentLabel.sizeToFit()
+                    frame.size.height = cell.contentLabel.frame.size.height;
+                    cell.contentLabel.frame = frame;
+                    var height = 25 + cell.contentLabel.bounds.height + 10
+                    
+                    if height < 65 {
+                        height = 65
+                    }
+                    heightCache[comment.content] = height
+                    
+                    
+                }
+                //NSLog("row = \(row), height = \(heightCache[comment.content])" )
+                return  heightCache[comment.content]!
+            }
+        }
+
+    }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let section = indexPath.section
+        tableView.deselectRowAtIndexPath(indexPath, animated: false)
+        switch section {
+        case 0:
+            let cell = tableView.cellForRowAtIndexPath(indexPath)
+            cell?.selectionStyle = .None
+            break;
+        case 1:
+            if numberOfSectionsInTableView(tableView) == 3 {
+                if audioPlayer.currentItem != nil {
+                    let item = audioPlayer.currentItem as! MyAudioItem
+                    let song = item.song as! LiveSong
+                    if song.hasAdvImage && song.advUrl != nil {
+                        viewController.performSegueWithIdentifier("advWebView", sender: song.advUrl!)
+                    }
+                }
+                
+            }
+            break
+        default:
+            break
         }
     }
     
@@ -307,7 +415,11 @@ class LivePlayerPageViewController : CommonPlayerPageViewController, LiveComment
                                             }
 
                                             self.viewController.playerPageViewController.comments = resp.comments
-                                            self.viewController.tableView.reloadSections(NSIndexSet(index: 1), withRowAnimation: .None)
+                                            var section = 1
+                                            if (song as! LiveSong).hasAdvImage!  {
+                                                section = 2
+                                            }
+                                            self.viewController.tableView.reloadSections(NSIndexSet(index: section), withRowAnimation: .None)
                                             
                                         }
             }

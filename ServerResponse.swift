@@ -152,6 +152,11 @@ class GetAlbumSongsResponse : ServerResponse {
                 liveSong.startDateTime = json["startTime"] as? String
                 liveSong.endDateTime = json["endTime"] as? String
                 liveSong.listenPeople = json["listenPeople"] as! String
+                liveSong.hasAdvImage = json["hasAdvImage"] as! Bool
+                if liveSong.hasAdvImage! {
+                    liveSong.advImageUrl = json["advImageUrl"] as? String
+                    liveSong.advUrl = json["advUrl"] as? String
+                }
                 song = liveSong
             } else {
                 song = Song()
@@ -752,5 +757,54 @@ class GetServiceLocatorResponse : ServerResponse {
         http = jsonObject["http"] as! String
         serverName = jsonObject["serverName"] as! String
         port = jsonObject["port"] as! Int
+    }
+}
+
+class GetSongInfoRequest : ServerRequest {
+    var song: Song!
+    override var params: [String : AnyObject] {
+        get {
+            var parameters = super.params
+            parameters["id"] = song.id
+            return parameters
+        }
+    }
+}
+
+class GetSongInfoResponse : ServerResponse {
+    var song: Song!
+    
+    override func parseJSON(request: ServerRequest, json: NSDictionary) {
+        super.parseJSON(request, json: json)
+        let req = request as! GetSongInfoRequest
+        let jsonObject = json["song"] as! NSDictionary
+
+        let album = req.song.album
+        if album.isLive {
+            let liveSong = LiveSong()
+            liveSong.startDateTime = jsonObject["startTime"] as? String
+            liveSong.endDateTime = jsonObject["endTime"] as? String
+            liveSong.listenPeople = jsonObject["listenPeople"] as! String
+            liveSong.hasAdvImage = jsonObject["hasAdvImage"] as! Bool
+            if liveSong.hasAdvImage! {
+                liveSong.advImageUrl = jsonObject["advImageUrl"] as? String
+                liveSong.advUrl = jsonObject["advUrl"] as? String
+            }
+            song = liveSong
+        } else {
+            song = Song()
+        }
+        song.album = album
+        song.name = jsonObject["name"] as! String
+        song.desc = jsonObject["desc"] as! String
+        song.date = jsonObject["date"] as! String
+        song.url = jsonObject["url"] as! String
+        song.id = jsonObject["id"] as! String
+        song.imageUrl = jsonObject["image"] as! String
+        let settings = SongSetting()
+        song.settings = settings
+        let settingsJson = jsonObject["settings"] as! NSDictionary
+        settings.canComment = settingsJson["canComment"] as! Bool
+        settings.maxCommentWord = settingsJson["maxCommentWord"] as! Int
     }
 }

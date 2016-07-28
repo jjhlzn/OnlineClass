@@ -201,6 +201,12 @@ class ServiceConfiguration {
         }
     }
     
+    static var GET_SONG_INFO : String {
+        get {
+            return "\(http)://\(serverName):\(port)/song/getsonginfo"
+        }
+    }
+    
     //Comment
     static var SEND_COMMENT: String {
         get {

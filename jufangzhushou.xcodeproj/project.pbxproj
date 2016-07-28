@@ -47,6 +47,7 @@
 		1C451F6C1D01787B00DC29F9 /* ServiceLocatorEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C451F6A1D01787B00DC29F9 /* ServiceLocatorEntity+CoreDataProperties.swift */; };
 		1C451F6D1D01787B00DC29F9 /* ServiceLocatorEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C451F6B1D01787B00DC29F9 /* ServiceLocatorEntity.swift */; };
 		1C451F6F1D0178A700DC29F9 /* ServiceLocatorStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C451F6E1D0178A700DC29F9 /* ServiceLocatorStore.swift */; };
+		1C50C7561D48D28C0022B952 /* SongAdvCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C50C7551D48D28C0022B952 /* SongAdvCell.swift */; };
 		1C5A6FC51CE99644000E7282 /* PlayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C5A6FC41CE99644000E7282 /* PlayerController.swift */; };
 		1C5A6FC71CE9A0D5000E7282 /* LivePlayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C5A6FC61CE9A0D5000E7282 /* LivePlayerController.swift */; };
 		1C6420F61CD0605200119272 /* CommentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C6420F51CD0605200119272 /* CommentController.swift */; };
@@ -153,6 +154,7 @@
 		1C451F6B1D01787B00DC29F9 /* ServiceLocatorEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceLocatorEntity.swift; sourceTree = "<group>"; };
 		1C451F6E1D0178A700DC29F9 /* ServiceLocatorStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceLocatorStore.swift; sourceTree = "<group>"; };
 		1C48D9C81D3F041300F810CA /* jufangzhushou 4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "jufangzhushou 4.xcdatamodel"; sourceTree = "<group>"; };
+		1C50C7551D48D28C0022B952 /* SongAdvCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongAdvCell.swift; sourceTree = "<group>"; };
 		1C5A6FC41CE99644000E7282 /* PlayerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerController.swift; sourceTree = "<group>"; };
 		1C5A6FC61CE9A0D5000E7282 /* LivePlayerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LivePlayerController.swift; sourceTree = "<group>"; };
 		1C6420F51CD0605200119272 /* CommentController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentController.swift; sourceTree = "<group>"; };
@@ -316,6 +318,7 @@
 				1CD349711CF9AC7D00037F78 /* PersonalInfoCell2.swift */,
 				1C3CC4BF1CFBE3FE007D3EBC /* SongListCell.swift */,
 				1C451F671D01765F00DC29F9 /* ConfigurationCell.swift */,
+				1C50C7551D48D28C0022B952 /* SongAdvCell.swift */,
 			);
 			name = customCell;
 			sourceTree = "<group>";
@@ -780,6 +783,7 @@
 				1CEFF7811CBFB73D000DEFF7 /* AlbumListController.swift in Sources */,
 				1C09D3BF1CD09FED004A8F9C /* ToastMessage.swift in Sources */,
 				1C451F661D0175FA00DC29F9 /* ConfigurationViewController.swift in Sources */,
+				1C50C7561D48D28C0022B952 /* SongAdvCell.swift in Sources */,
 				1C3DC3941CFDC538007807AF /* LiveAlbumDetailController.swift in Sources */,
 				1C33F0421D07DBF000D3EE4C /* AllFunctionViewController.swift in Sources */,
 				1CDCC8ED1CE717F3001640CC /* ForgetPasswordViewController.swift in Sources */,

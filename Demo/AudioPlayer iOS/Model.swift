@@ -142,6 +142,10 @@ class LiveSong : Song {
             return Float( (self.totalTime - self.leftTime) / self.totalTime )
         }
     }
+    
+    var hasAdvImage : Bool!
+    var advImageUrl: String?
+    var advUrl: String?
 }
 
 class Comment : BaseModelObject {
