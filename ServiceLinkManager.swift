@@ -108,13 +108,13 @@ class ServiceLinkManager {
     
     static var ShareQrImageUrl : String {
         get {
-            return "http://\(host):\(port)/Center/MyLink.aspx";
+            return "http://jf.yhkamani.com/Center/MyLink.aspx" 
         }
     }
     
     static var ShareTiEMijueUrl : String {
         get {
-            return "http://\(host):\(port)/Center/MyLink.aspx";
+            return "http://jf.yhkamani.com/Center/MyLink.aspx"
         }
     }
     
