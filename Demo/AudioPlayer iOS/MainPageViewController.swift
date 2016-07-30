@@ -18,6 +18,7 @@ class CourseMainPageViewController: BaseUIViewController {
     @IBOutlet weak var playingButton: UIButton!
     var extendFunctionMananger : ExtendFunctionMananger!
     var ads = [Advertise]()
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,9 +32,23 @@ class CourseMainPageViewController: BaseUIViewController {
             maxRows = 2
         }
         extendFunctionMananger = ExtendFunctionMananger(controller: self, isNeedMore:  true, showMaxRows: maxRows)
-        
-        
         addPlayingButton(playingButton)
+        
+        let request = GetParameterInfoRequest()
+        request.keys.append(GetParameterInfoResponse.LIVE_DESCRIPTION)
+        BasicService().sendRequest(ServiceConfiguration.GET_PARAMETER_INFO, request: request) {
+            (resp: GetParameterInfoResponse) -> Void in
+            if resp.status != ServerResponseStatus.Success.rawValue {
+                QL4(resp.errorMessage)
+                return
+            }
+            
+            let liveDescription = resp.getValue(GetParameterInfoResponse.LIVE_DESCRIPTION)
+            KeyValueStore().save(GetParameterInfoResponse.LIVE_DESCRIPTION, value: liveDescription)
+            let liveCell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0)) as! CourseTypeCell
+            liveCell.courseDescription.text = liveDescription
+            self.tableView.reloadData()
+        }
   
     }
     
@@ -109,6 +124,8 @@ extension CourseMainPageViewController : UITableViewDataSource, UITableViewDeleg
                 cell.courseTypeName.text = "直播课程！"
                 imageName = "liveAudio"
                 cell.courseTypeImageView.image = UIImage(named: imageName)
+                QL2("liveDescription = \(KeyValueStore().get(GetParameterInfoResponse.LIVE_DESCRIPTION))")
+                cell.courseDescription.text = KeyValueStore().get(GetParameterInfoResponse.LIVE_DESCRIPTION)
                 return cell
                 
             case 1:

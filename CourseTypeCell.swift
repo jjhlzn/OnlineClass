@@ -13,4 +13,5 @@ class CourseTypeCell: UITableViewCell {
     @IBOutlet weak var courseTypeName: UILabel!
     @IBOutlet weak var courseTypeImageView: UIImageView!
     
+    @IBOutlet weak var courseDescription: UILabel!
 }

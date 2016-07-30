@@ -587,7 +587,7 @@
 				TargetAttributes = {
 					E2A9AF9B1C498E2900FE943A = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = KG295RN6U3;
+						DevelopmentTeam = K4J842S7JT;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -932,7 +932,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.jinjunhang.jufangzhushou;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jufang.jfzs;
 				PRODUCT_NAME = AudioPlayer;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = weixinshare_bridge.h;
@@ -955,7 +955,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.jinjunhang.jufangzhushou;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jufang.jfzs;
 				PRODUCT_NAME = AudioPlayer;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = weixinshare_bridge.h;

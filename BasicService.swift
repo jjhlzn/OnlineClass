@@ -45,7 +45,7 @@ class BasicService {
         Alamofire.request(request)
             .responseJSON { response in
                 //print("---------------------------------StartRequest---------------------------------")
-                //debugPrint(finalParams)
+                QL1(finalParams)
                 //debugPrint(response)
                 
                 //print("----------------------------------EndRequest----------------------------------")

@@ -644,7 +644,7 @@ extension JSON: Swift.RawRepresentable {
         return try NSJSONSerialization.dataWithJSONObject(self.object, options: opt)
     }
 
-    public func rawString(encoding: UInt = NSUTF8StringEncoding, options opt: NSJSONWritingOptions = .PrettyPrinted) -> String? {
+public func rawString(encoding: UInt = NSUTF8StringEncoding, options opt: NSJSONWritingOptions = .PrettyPrinted) -> String? {
         switch self.type {
         case .Array, .Dictionary:
             do {

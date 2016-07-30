@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SwiftyJSON
 
 enum ServerResponseStatus : Int {
     case Success = 0
@@ -806,5 +807,48 @@ class GetSongInfoResponse : ServerResponse {
         let settingsJson = jsonObject["settings"] as! NSDictionary
         settings.canComment = settingsJson["canComment"] as! Bool
         settings.maxCommentWord = settingsJson["maxCommentWord"] as! Int
+    }
+}
+
+class GetParameterInfoRequest : ServerRequest {
+    var keys: [String] = []
+    
+    override var params: [String : AnyObject] {
+        get {
+            var parameters = super.params
+            do {
+                let paramsJSON = JSON(keys)
+                let paramsString = paramsJSON.rawString(NSUTF8StringEncoding)
+                parameters["keywords"] = paramsString
+
+            }catch let error as NSError{
+                print(error.description)
+            }
+            return parameters
+        }
+    }
+}
+
+class GetParameterInfoResponse : ServerResponse {
+    static let LIVE_DESCRIPTION = "livedescription"
+    
+    var map: [String: String] = [:]
+    
+    func getValue(key: String, defaultValue: String = "") -> String {
+        if map[key] == nil {
+            return defaultValue
+        }
+        return map[key]!
+    }
+    
+    override func parseJSON(request: ServerRequest, json: NSDictionary) {
+        super.parseJSON(request, json: json)
+        let jsonArray = json["result"] as! NSArray
+        for eachJson in jsonArray {
+            let key = eachJson["keyword"] as! String
+            let value = eachJson["value"] as! String
+            map[key] = value
+        }
+        
     }
 }

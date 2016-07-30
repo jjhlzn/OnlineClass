@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreData
+import QorumLogs
 
 
 class KeyValueStore {
@@ -49,7 +50,7 @@ class KeyValueStore {
             try coreDataStack.saveChanges()
         }
         catch let error {
-            print("Core Data save failed: \(error)")
+            QL4("Core Data save failed: \(error)")
             return false
         }
         
@@ -60,7 +61,7 @@ class KeyValueStore {
     private func getKeyValuePair(key: String) throws -> KeyValueEntity?  {
         let fetchRequest = NSFetchRequest(entityName: "KeyValueEntity")
         fetchRequest.sortDescriptors = nil
-        fetchRequest.predicate = nil
+        fetchRequest.predicate = NSPredicate(format: "key = %@", key)
         
         let mainQueueContext = self.coreDataStack.mainQueueContext
         var mainQueueUsers: [KeyValueEntity]?
@@ -71,7 +72,7 @@ class KeyValueStore {
             }
             catch let error {
                 fetchRequestError = error
-                NSLog("isKeyExist()出现异常")
+                QL4("isKeyExist()出现异常")
             }
         }
         
@@ -88,14 +89,19 @@ class KeyValueStore {
     
     
     func get(key: String, defaultValue: String = "") -> String? {
+        var result : String?
         do {
             let pair = try getKeyValuePair(key)
+            
             if pair == nil {
-                return defaultValue
+                result = defaultValue
+            } else {
+                result = pair?.value
             }
-            return pair?.value
         } catch {
-            return defaultValue
+            result = defaultValue
         }
+        QL1("key = \(key), value = \(result)")
+        return result
     }
 }

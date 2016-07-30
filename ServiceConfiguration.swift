@@ -74,6 +74,12 @@ class ServiceConfiguration {
             return "\(http)://\(serverName):\(port)/app/getAds"
         }
     }
+    
+    static var GET_PARAMETER_INFO : String {
+        get {
+            return "\(http)://\(serverName):\(port)/app/getparameterinfo"
+        }
+    }
 
     
     //User
