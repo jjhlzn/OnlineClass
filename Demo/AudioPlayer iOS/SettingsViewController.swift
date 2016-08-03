@@ -48,7 +48,6 @@ class SettingsViewController: BaseUIViewController, UITableViewDataSource, UITab
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let section = indexPath.section
-        let row = indexPath.row
         switch section {
         case 0:
             let cell = tableView.dequeueReusableCellWithIdentifier("accountSecurityCell")!
@@ -72,9 +71,15 @@ class SettingsViewController: BaseUIViewController, UITableViewDataSource, UITab
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let section = indexPath.section
         let row = indexPath.row
-        tableView.deselectRowAtIndexPath(indexPath, animated: false)
+        
         if section == 0 && row == 0 {
+            tableView.deselectRowAtIndexPath(indexPath, animated: false)
             performSegueWithIdentifier("resetPasswordSegue", sender: nil)
+        } else if section == 1 {
+            let cell = tableView.cellForRowAtIndexPath(indexPath)
+            cell!.selectionStyle = .None
+        } else {
+            tableView.deselectRowAtIndexPath(indexPath, animated: false)
         }
     }
     
