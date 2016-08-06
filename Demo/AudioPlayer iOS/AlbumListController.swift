@@ -73,7 +73,6 @@ class AlbumListController: BaseUIViewController, UITableViewDataSource, UITableV
             let dest = segue.destinationViewController as! AlbumDetailController
             let row = (tableView.indexPathForSelectedRow?.row)!
             dest.album = pagableController.data[row]
-            dest.albumImageData = (tableView.cellForRowAtIndexPath(tableView.indexPathForSelectedRow!)! as! AlbumCell).albumImage.image!
         } else if segue.identifier == "bugVipSegue" {
             let dest = segue.destinationViewController as! WebPageViewController
             dest.url = NSURL(string: ServiceLinkManager.MyAgentUrl)
@@ -112,7 +111,7 @@ extension AlbumListController {
             cell.nameLabel.text = album.name
             cell.descLabel.text = album.desc
             cell.listenPeopleLabel.text = album.listenCount
-            if album.hasImage {
+            if album.hasImage  {
                 cell.albumImage.kf_setImageWithURL(NSURL(string: album.image)!)
             }
             return cell
@@ -124,9 +123,9 @@ extension AlbumListController {
             cell.authorLabel.text = album.author
             
             cell.listenCountAndCountLabel.text = "\(album.listenCount), \(album.count)集"
-            if album.hasImage {
-                cell.albumImage.downloadedFrom(link: album.image, contentMode: UIViewContentMode.ScaleAspectFit)
-            }
+            if album.hasImage  {
+                cell.albumImage.kf_setImageWithURL(NSURL(string: album.image)!)
+            }            
             return cell
 
         }

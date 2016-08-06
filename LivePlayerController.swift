@@ -32,6 +32,7 @@ class LivePlayerViewController : PlayerViewController {
         //获取直播的时间
         cell.playingLabel.text = Utils.getCurrentTime()
         cell.durationLabel.text = song.endTime
+        (cell as! LivePlayerCell).peopleCountLabel.text = song.listenPeople
         
         //- 获取直播的图片
         //cell.artImageView.downloadedFrom(link: song.imageUrl!, contentMode: .ScaleAspectFit)

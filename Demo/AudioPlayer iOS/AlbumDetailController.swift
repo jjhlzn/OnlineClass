@@ -19,8 +19,7 @@ class AlbumDetailController: BaseUIViewController, UIAlertViewDelegate {
     @IBOutlet weak var descLabel: UILabel!
     
     @IBOutlet weak var albumImage: UIImageView!
-    var albumImageData: UIImage!
-    
+
     @IBOutlet weak var tableView: UITableView!
     var album: Album?
     var songs: [Song]!
@@ -37,14 +36,14 @@ class AlbumDetailController: BaseUIViewController, UIAlertViewDelegate {
         if songs == nil {
             tableView.dataSource = self
             tableView.delegate = self
-            albumImage.image = albumImageData
+            
+            albumImage.kf_setImageWithURL(NSURL(string: (album?.image)!)!)
             nameLabel.text = album?.name
             descLabel.text = album?.author
             loadingOverlay.showOverlay(self.view)
             
             let request = GetAlbumSongsRequest(album: album!)
             request.pageSize = 200
-            let that = self
             BasicService().sendRequest(ServiceConfiguration.GET_ALBUM_SONGS,
                                        request: request) {
                 (resp: GetAlbumSongsResponse) -> Void in
@@ -236,7 +235,8 @@ extension AlbumDetailController : UITableViewDataSource, UITableViewDelegate {
         
         //cell.playBigImage.imageView!.image = albumImageData
         let playBigImage = cell.playBigImage
-        playBigImage.setImage(albumImageData, forState: .Normal)
+
+        playBigImage.kf_setImageWithURL(NSURL(string: (album?.image)!)!, forState: .Normal)
         
         playBigImage.layer.borderWidth = 0
         playBigImage.layer.masksToBounds = false

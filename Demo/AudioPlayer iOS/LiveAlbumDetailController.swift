@@ -53,7 +53,7 @@ class LiveAlbumDetailController: AlbumDetailController {
             cell.dateLabel.text = song.date
             //cell.playBigImage.imageView!.image = albumImageData
             let playBigImage = cell.playBigImage
-            playBigImage.setImage(albumImageData, forState: .Normal)
+            playBigImage.kf_setImageWithURL(NSURL(string: (album?.image)!)!, forState: .Normal)
             
             playBigImage.layer.borderWidth = 0
             playBigImage.layer.masksToBounds = false

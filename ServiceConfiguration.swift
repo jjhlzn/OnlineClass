@@ -22,8 +22,8 @@ class ServiceConfiguration {
     static let port3 = 80
     
     
-    static let serverName4 = "114.215.236.171"
-    static let port4 = 6012
+    static let serverName4 = "http://jf.yhkamani.com"
+    static let port4 = 80
     
     
     static var serverName: String {

@@ -254,7 +254,6 @@ extension  SearchCourseViewController :  UITableViewDataSource, UITableViewDeleg
             let dest = segue.destinationViewController as! AlbumDetailController
             let row = (tableView.indexPathForSelectedRow?.row)!
             dest.album = pagableController.data[row]
-            dest.albumImageData = (tableView.cellForRowAtIndexPath(tableView.indexPathForSelectedRow!)! as! AlbumCell).albumImage.image!
         }
     }
 }

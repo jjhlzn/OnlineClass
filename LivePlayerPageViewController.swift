@@ -57,9 +57,10 @@ class LivePlayerPageViewController : CommonPlayerPageViewController, LiveComment
         if comments.count > 0 {
             self.lastId = comments[0].id!
         }
-        for comment in comments {
-            self.comments.insert(comment, atIndex: 0)
+        for var arrayIndex = comments.count - 1 ; arrayIndex >= 0 ; arrayIndex-- {
+            self.comments.insert(comments[arrayIndex], atIndex: 0)
         }
+        
         viewController.tableView.reloadSections(NSIndexSet(index: 1), withRowAnimation: .None)
     }
     
@@ -169,7 +170,7 @@ class LivePlayerPageViewController : CommonPlayerPageViewController, LiveComment
     func updateListernerCount() {
         if audioPlayer.currentItem != nil {
             let item = audioPlayer.currentItem as! MyAudioItem
-            let song = item.song
+            let song = item.song as! LiveSong
             let request = GetLiveListernerCountRequest(song: song)
             BasicService().sendRequest(ServiceConfiguration.GET_LIVE_LISTERNER_COUNT, request: request) {
                 (resp: GetLiveListernerCountResponse) -> Void in
@@ -180,7 +181,7 @@ class LivePlayerPageViewController : CommonPlayerPageViewController, LiveComment
                     }
                     
                     self.livePlayerCell?.peopleCountLabel.text = "\(resp.count)人"
-                    
+                    song.listenPeople = "\(resp.count)人"
                 }
             }
         }
