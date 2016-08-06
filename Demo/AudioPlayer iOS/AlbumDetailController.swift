@@ -84,7 +84,7 @@ class AlbumDetailController: BaseUIViewController, UIAlertViewDelegate {
 
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        
+        super.prepareForSegue(segue, sender: sender)
         if segue.identifier == "songSegue" {
             if sender as! Bool {
                 //let dest = segue.destinationViewController as! SongViewController
