@@ -68,8 +68,11 @@ class Utils {
         return formatter.stringFromDate(currentDateTime)
     }
     
+    
+    
     static func addUserParams(url : String) -> String {
-        let loginUser = LoginUserStore().getLoginUser()
+        let loginUserStore = LoginUserStore()
+        let loginUser = loginUserStore.getLoginUser()
         if loginUser != nil {
             if url.indexOfCharacter("?") != nil {
                 return url + "&userid=\(loginUser!.userName!)&token=\(loginUser!.token!)"

@@ -73,6 +73,8 @@ class MyInfoVieController: BaseUIViewController, UITableViewDataSource, UITableV
         super.viewWillAppear(animated)
         
     }
+    
+    var loginUserStore = LoginUserStore()
 
 }
 
@@ -143,17 +145,19 @@ extension MyInfoVieController {
     }
     
 
+    
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let section = indexPath.section
         let row = indexPath.row
         switch section {
         case 0:
-            let loginUser : LoginUserEntity = LoginUserStore().getLoginUser()!
+            let loginUser : LoginUserEntity = loginUserStore.getLoginUser()!
             let cell = tableView.dequeueReusableCellWithIdentifier("myInfoMainCell") as! MyInfoMainCell
             
             
             if UserProfilePhotoStore().get() == nil {
-                let profilePhotoUrl = ServiceConfiguration.GET_PROFILE_IMAGE + "?userid=" + LoginUserStore().getLoginUser()!.userName!
+                QL1("userName = \(loginUser.userName)")
+                let profilePhotoUrl = ServiceConfiguration.GET_PROFILE_IMAGE + "?userid=" + loginUserStore.getLoginUser()!.userName!
                 cell.userImage.kf_setImageWithURL(NSURL(string: profilePhotoUrl)!,
                                                   placeholderImage: nil,
                                                   optionsInfo: nil,
