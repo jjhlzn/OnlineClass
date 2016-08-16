@@ -61,6 +61,8 @@
 		1C8620181D337AFB006C30BB /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C8620171D337AFB006C30BB /* CoreTelephony.framework */; };
 		1C8A2AD41CE4BEA60086C1B8 /* MallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C8A2AD31CE4BEA60086C1B8 /* MallViewController.swift */; };
 		1C8A2AD61CE5882A0086C1B8 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C8A2AD51CE5882A0086C1B8 /* SignupViewController.swift */; };
+		1C98A8921D61F71400ADF12B /* XinGeAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C98A8911D61F71400ADF12B /* XinGeAppDelegate.swift */; };
+		1C98A8941D61FB3100ADF12B /* libXG-SDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C98A8931D61FB3100ADF12B /* libXG-SDK.a */; };
 		1CA3B2101CD86B7800D0ABD8 /* MainPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA3B20F1CD86B7800D0ABD8 /* MainPageViewController.swift */; };
 		1CA3B2121CD86BD300D0ABD8 /* CourseTypeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA3B2111CD86BD300D0ABD8 /* CourseTypeCell.swift */; };
 		1CA3B2141CD8E83B00D0ABD8 /* FunctionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA3B2131CD8E83B00D0ABD8 /* FunctionCell.swift */; };
@@ -168,6 +170,10 @@
 		1C8620171D337AFB006C30BB /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		1C8A2AD31CE4BEA60086C1B8 /* MallViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MallViewController.swift; sourceTree = "<group>"; };
 		1C8A2AD51CE5882A0086C1B8 /* SignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
+		1C98A8911D61F71400ADF12B /* XinGeAppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XinGeAppDelegate.swift; sourceTree = "<group>"; };
+		1C98A8931D61FB3100ADF12B /* libXG-SDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libXG-SDK.a"; path = "xgpushsdk/libXG-SDK.a"; sourceTree = "<group>"; };
+		1C98A8971D62004600ADF12B /* XGPush.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = XGPush.h; path = xgpushsdk/XGPush.h; sourceTree = "<group>"; };
+		1C98A8981D62005300ADF12B /* XGSetting.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = XGSetting.h; path = xgpushsdk/XGSetting.h; sourceTree = "<group>"; };
 		1CA3B20F1CD86B7800D0ABD8 /* MainPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainPageViewController.swift; sourceTree = "<group>"; };
 		1CA3B2111CD86BD300D0ABD8 /* CourseTypeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseTypeCell.swift; sourceTree = "<group>"; };
 		1CA3B2131CD8E83B00D0ABD8 /* FunctionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FunctionCell.swift; sourceTree = "<group>"; };
@@ -237,6 +243,7 @@
 				1C86200F1D337954006C30BB /* libsqlite3.dylib in Frameworks */,
 				C8FD3BA5397761EB2BB46B45 /* Pods_AudioPlayer_iOS.framework in Frameworks */,
 				1CBF78711D33755A00B596BC /* libWeChatSDK.a in Frameworks */,
+				1C98A8941D61FB3100ADF12B /* libXG-SDK.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -410,6 +417,15 @@
 			name = store;
 			sourceTree = "<group>";
 		};
+		1C98A8991D62005900ADF12B /* xinge */ = {
+			isa = PBXGroup;
+			children = (
+				1C98A8981D62005300ADF12B /* XGSetting.h */,
+				1C98A8971D62004600ADF12B /* XGPush.h */,
+			);
+			name = xinge;
+			sourceTree = "<group>";
+		};
 		1CBF785F1D336CC300B596BC /* weixinsdk */ = {
 			isa = PBXGroup;
 			children = (
@@ -435,6 +451,7 @@
 		BC2131FE74CE2B0C14249E3D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1C98A8931D61FB3100ADF12B /* libXG-SDK.a */,
 				1C8620171D337AFB006C30BB /* CoreTelephony.framework */,
 				1C8620151D337ACE006C30BB /* libc++.1.dylib */,
 				1C8620131D337A8F006C30BB /* SystemConfiguration.framework */,
@@ -452,6 +469,7 @@
 		E2A9AF931C498E2900FE943A = {
 			isa = PBXGroup;
 			children = (
+				1C98A8991D62005900ADF12B /* xinge */,
 				1CBF78701D33727B00B596BC /* weixinshare_bridge.h */,
 				1CBF785F1D336CC300B596BC /* weixinsdk */,
 				1CBC1DBB1D08F74C00F140D3 /* XCGLogger.framework */,
@@ -482,6 +500,7 @@
 		E2A9AF9E1C498E2900FE943A /* AudioPlayer iOS */ = {
 			isa = PBXGroup;
 			children = (
+				1C98A8911D61F71400ADF12B /* XinGeAppDelegate.swift */,
 				E2A9AF9F1C498E2900FE943A /* AppDelegate.swift */,
 				1CEFF79D1CC21E98000DEFF7 /* BaseUIViewController.swift */,
 				E2A9AFAB1C498E2900FE943A /* Info.plist */,
@@ -750,6 +769,7 @@
 				1C451F681D01765F00DC29F9 /* ConfigurationCell.swift in Sources */,
 				1CEFF79C1CC20171000DEFF7 /* AudioPlayerExtension.swift in Sources */,
 				1C154A501CDACCA6003B900C /* MyUISlider.swift in Sources */,
+				1C98A8921D61F71400ADF12B /* XinGeAppDelegate.swift in Sources */,
 				1C33F03E1D07A8E200D3EE4C /* CodeImageViewController.swift in Sources */,
 				1CD349681CF9703700037F78 /* KeyValueCell.swift in Sources */,
 				1C3479BD1CF2F9BD003FEF05 /* FirstPageViewController.swift in Sources */,
@@ -931,6 +951,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/xgpushsdk",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.jufang.jfzs;
 				PRODUCT_NAME = AudioPlayer;
@@ -954,6 +975,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/xgpushsdk",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.jufang.jfzs;
 				PRODUCT_NAME = AudioPlayer;

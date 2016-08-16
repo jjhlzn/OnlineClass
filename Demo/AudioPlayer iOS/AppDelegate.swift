@@ -12,7 +12,7 @@ import QorumLogs
 
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate : XinGeAppDelegate {
 
     
     
@@ -22,8 +22,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var liveProgressTimer : NSTimer?
 
 
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-       QorumLogs.enabled = true
+    override func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        super.application(application, didFinishLaunchingWithOptions: launchOptions)
+        QorumLogs.enabled = true
         
         // Override point for customization after application launch.
         application.beginReceivingRemoteControlEvents()
@@ -53,14 +54,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         application.registerUserNotificationSettings(notificationSettings)
     }
     
-    func application(application: UIApplication, didRegisterUserNotificationSettings notificationSettings: UIUserNotificationSettings) {
+    override func application(application: UIApplication, didRegisterUserNotificationSettings notificationSettings: UIUserNotificationSettings) {
+        super.application(application, didRegisterUserNotificationSettings: notificationSettings)
         if notificationSettings.types != .None {
             application.registerForRemoteNotifications()
         }
     }
     
     var deviceTokenString = ""
-    func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
+    override func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
+        super.application(application, didRegisterForRemoteNotificationsWithDeviceToken: deviceToken)
+        
         let tokenChars = UnsafePointer<CChar>(deviceToken.bytes)
         var tokenString = ""
         
@@ -92,7 +96,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
     
-    func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
+    override func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
         print("Failed to register:", error)
     }
     

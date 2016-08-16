@@ -14,4 +14,7 @@
 #import <UIKit/UIKit.h>
 #import "WXApi.h"
 
+#import "XGSetting.h"
+#import "XGPush.h"
+
 #endif /* weixinshare_bridge_h */
