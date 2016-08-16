@@ -35,7 +35,7 @@ class PersonalInfoViewController: BaseUIViewController, UITableViewDataSource, U
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return 4
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -63,7 +63,12 @@ class PersonalInfoViewController: BaseUIViewController, UITableViewDataSource, U
                 cell.valueLabel.text = loginUser.sex!
             }
             return cell
-        
+            
+        case 3:
+            let cell = tableView.dequeueReusableCellWithIdentifier("personalItemCell") as! PersonalInfoCell
+            cell.nameLabel.text = "更多"
+            cell.valueLabel.text = ""
+            return cell
         
         default:
             return tableView.dequeueReusableCellWithIdentifier("personalItemCell")!
@@ -82,11 +87,22 @@ class PersonalInfoViewController: BaseUIViewController, UITableViewDataSource, U
         case 2:
             performSegueWithIdentifier("setSexSegue", sender: nil)
             break
-        
+        case 3:
+            performSegueWithIdentifier("moreSegue", sender: nil)
+            break
         default:
             break
         }
         tableView.deselectRowAtIndexPath(indexPath, animated: false)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        super.prepareForSegue(segue, sender: sender)
+        if segue.identifier == "moreSegue" {
+            let dest = segue.destinationViewController as! WebPageViewController
+            dest.title = "个人资料"
+            dest.url = NSURL(string: ServiceLinkManager.PersonalInfoUrl)
+        }
     }
     
     

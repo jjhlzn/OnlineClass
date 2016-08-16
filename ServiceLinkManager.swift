@@ -143,4 +143,10 @@ class ServiceLinkManager {
         }
     }
     
+    static var PersonalInfoUrl: String {
+        get {
+            return "http://\(ServiceConfiguration.serverName):\(ServiceConfiguration.port)/Center/PersonalInfo"
+        }
+    }
+    
 }
