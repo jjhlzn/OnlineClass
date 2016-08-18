@@ -46,6 +46,7 @@ class CommentController : NSObject, UITextViewDelegate {
     var lastCommentTime : NSDate?
     
     var emojiKeyboard : EmojiKeyboard!
+    var commentErrorMessage: String?
     
     func textViewDidChange(textView: UITextView) { //Handle the text changes here
         //print(textView.text); //the textView parameter is the textView where text was changed
@@ -70,7 +71,7 @@ class CommentController : NSObject, UITextViewDelegate {
     func initView(song: Song) {
         
         self.song = song
-        
+        commentErrorMessage = "评论失败"
         
         bottomView2.hidden = true
         commentFiled2.editable = true
@@ -171,10 +172,11 @@ class CommentController : NSObject, UITextViewDelegate {
     
     
     private func checkBeforeSend() -> Bool {
+        /*
         if !song.settings.canComment {
             viewController.displayMessage("对不起，已关闭评论！")
             return false
-        }
+        }*/
         
         let commentContent = getCommentContent()
         if commentContent.length == 0 {
@@ -182,10 +184,11 @@ class CommentController : NSObject, UITextViewDelegate {
             return false
         }
         
+        /*
         if commentContent.emojiUnescapedString.length > song.settings.maxCommentWord {
             viewController.displayMessage("评论不能超过\(song.settings.maxCommentWord)字")
             return false
-        }
+        } */
         
         //检查上次评论的时间
         if lastCommentTime != nil {
@@ -257,6 +260,7 @@ class CommentController : NSObject, UITextViewDelegate {
                 } else {
                     NSLog("%s: fail", self.TAG)
                     self.isCommentSuccess = false
+                    self.commentErrorMessage = resp.errorMessage
                 }
             }
             
@@ -280,7 +284,6 @@ class CommentController : NSObject, UITextViewDelegate {
                 self.viewController.dismissKeyboard()
                 self.lastCommentTime = NSDate()
                 if ( resp.status == ServerResponseStatus.Success.rawValue) {
-                    NSLog("%s: sucess", self.TAG)
                     self.commentFiled2.text = ""
                     self.disableSendButton()
                     
@@ -294,8 +297,8 @@ class CommentController : NSObject, UITextViewDelegate {
                     }
                     
                 } else {
-                    NSLog("%s: fail", self.TAG)
                     self.isCommentSuccess = false
+                    self.commentErrorMessage = resp.errorMessage
                 }
             }
             
@@ -388,7 +391,7 @@ class CommentController : NSObject, UITextViewDelegate {
     
     private func showComentResultTip() {
         isSendPressed = false
-        var message = "评论失败!"
+        var message = commentErrorMessage != nil ? commentErrorMessage! : "评论失败"
         if isCommentSuccess {
             message = "评论成功！"
         }
