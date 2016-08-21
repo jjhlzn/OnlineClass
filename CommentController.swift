@@ -220,7 +220,7 @@ class CommentController : NSObject, UITextViewDelegate {
         //关闭评论窗口
         closeCommentWindow()
         
-        if song.album.courseType == CourseType.Live {
+        if song.isLive {
             sendLiveComment()
         } else {
             sendCommonComment()
