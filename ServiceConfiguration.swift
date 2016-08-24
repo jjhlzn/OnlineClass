@@ -245,7 +245,8 @@ class ServiceConfiguration {
     
     static var GET_SERVICE_LOACTOR_URL : String {
         get {
-            return "http://servicelocator.hengdianworld.com:9000/servicelocator"
+            //return "http://servicelocator.hengdianworld.com:9000/servicelocator"
+            return "http://servicelocator.jinjunhang.com/servicelocator"
         }
     }
 

@@ -66,7 +66,6 @@ class SearchCourseViewController: BaseUIViewController, UITextFieldDelegate , Pa
             }
         }
         
-        
     }
     
     private func drawHotKeywordButtons() {

@@ -183,7 +183,7 @@ class BasicService {
         let version = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleShortVersionString") as! String
         let appBundle = NSBundle.mainBundle().objectForInfoDictionaryKey(kCFBundleVersionKey as String) as! String
         clientInfo["appversion"] = "\(version).\(appBundle)"
-        
+        QL1("version = \(clientInfo["appversion"])")
         return clientInfo
         
     }
