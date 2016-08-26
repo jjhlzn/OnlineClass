@@ -106,7 +106,7 @@ class SongViewController: BaseUIViewController, UIGestureRecognizerDelegate {
     override func viewWillDisappear(animated: Bool) {
         super.viewWillAppear(animated)
         commentController.removeKeyboardNotify()
-        
+        commentController.dispose()
         //dispose palyerPageViewController
         playerPageViewController.dispose()
         

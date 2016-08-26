@@ -24,7 +24,6 @@ class BasicService {
                      completion: (resp: T) -> Void) -> T {
         let serverResponse = T()
         QL1(url)
-        let finalParams = addMoreRequestInfo(params)
         
         let request = NSMutableURLRequest(URL: NSURL( string: url)!)
         request.HTTPMethod = "POST"
@@ -32,9 +31,7 @@ class BasicService {
         request.timeoutInterval = timeout
         
         do {
-            request.HTTPBody = try JSON(finalParams).rawData()
-            
-            
+            request.HTTPBody = try serverRequest.getJSON().rawData()
         } catch let error {
             QL4("catchException, ex = \(error)")
             serverResponse.status = -1
@@ -45,7 +42,6 @@ class BasicService {
         Alamofire.request(request)
             .responseJSON { response in
                 //print("---------------------------------StartRequest---------------------------------")
-                QL1(finalParams)
                 //debugPrint(response)
                 
                 //print("----------------------------------EndRequest----------------------------------")
@@ -162,40 +158,7 @@ class BasicService {
         return (Alamofire.ParameterEncoding.URL.encode(mutableURLRequest, parameters: nil).0, uploadData)
     }
     
-    private func addMoreRequestInfo(params: [String: AnyObject]?) -> [String: AnyObject] {
-        var newParams = [String: AnyObject]()
-        newParams["request"] = params
-        newParams["client"] = getClientInfo()
-        newParams["userInfo"] = getUserInfo()
-        return newParams
-        
-    }
-    
-    private func getClientInfo() -> [String: AnyObject]{
-        var clientInfo = [String: AnyObject]()
-        clientInfo["platform"] = "iphone"
-        clientInfo["model"] = UIDevice.currentDevice().model
-        clientInfo["osversion"] = UIDevice.currentDevice().systemVersion
-        
-        let screensize = UIScreen.mainScreen().bounds
-        clientInfo["screensize"] = "\(screensize.width)*\(screensize.height)"
-        
-        let version = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleShortVersionString") as! String
-        let appBundle = NSBundle.mainBundle().objectForInfoDictionaryKey(kCFBundleVersionKey as String) as! String
-        clientInfo["appversion"] = "\(version).\(appBundle)"
-        QL1("version = \(clientInfo["appversion"])")
-        return clientInfo
-        
-    }
-    
-    var loginUserStore = LoginUserStore()
-    private func getUserInfo() -> [String: AnyObject] {
-        var userInfo = [String: AnyObject]()
-        let loginUser = loginUserStore.getLoginUser()
-        userInfo["userid"] = loginUser?.userName!
-        userInfo["token"] = loginUser?.token!
-        return userInfo
-    }
+
     
 }
 

@@ -53,16 +53,15 @@ class LivePlayerPageViewController : CommonPlayerPageViewController, LiveComment
         createTimer()
     }
     
+    //comments是的长度总是为1
     func afterSendLiveComment(comments: [Comment]) {
         if comments.count > 0 {
             self.lastId = comments[0].id!
         }
-        for var arrayIndex = comments.count - 1 ; arrayIndex >= 0 ; arrayIndex-- {
-            self.comments.insert(comments[arrayIndex], atIndex: 0)
-        }
-        
+        self.comments.insert(comments[0], atIndex: 0)
         viewController.tableView.reloadSections(NSIndexSet(index: 1), withRowAnimation: .None)
     }
+    
     
     func getLastCommentId() -> String {
         return lastId
@@ -103,6 +102,7 @@ class LivePlayerPageViewController : CommonPlayerPageViewController, LiveComment
             return
         }
         
+        
         //如果在debug模式，则不去轮询comments
         if ServiceConfiguration.isDebug {
             return
@@ -110,6 +110,8 @@ class LivePlayerPageViewController : CommonPlayerPageViewController, LiveComment
         if audioPlayer.currentItem != nil {
             let item = audioPlayer.currentItem as! MyAudioItem
             let song = item.song
+            
+            /*
             let request = GetSongLiveCommentsRequest(song: song, lastId: lastId)
             isUpdateChat = true
             BasicService().sendRequest(ServiceConfiguration.GET_SONG_LIVE_COMMENTS, request: request) {
@@ -133,7 +135,7 @@ class LivePlayerPageViewController : CommonPlayerPageViewController, LiveComment
                     }
                     self.viewController.tableView.reloadSections(NSIndexSet(index: section), withRowAnimation: .None)
                 }
-            }
+            } */
             
             updateChatCount = updateChatCount + 1
             

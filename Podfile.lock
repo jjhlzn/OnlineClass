@@ -8,6 +8,7 @@ PODS:
   - Kingfisher (2.4.1)
   - moa (2.1.7)
   - QorumLogs (0.7.2)
+  - Socket.IO-Client-Swift (6.1.2)
   - SwiftyJSON (2.3.2)
 
 DEPENDENCIES:
@@ -18,6 +19,7 @@ DEPENDENCIES:
   - KDEAudioPlayer
   - Kingfisher (~> 2.4)
   - QorumLogs
+  - Socket.IO-Client-Swift
   - SwiftyJSON (from `https://github.com/SwiftyJSON/SwiftyJSON.git`)
 
 EXTERNAL SOURCES:
@@ -38,8 +40,9 @@ SPEC CHECKSUMS:
   Kingfisher: 41aed5b6c1ed8fa98cf6d75283ce89cf7890f517
   moa: bf5704e649973fdefbcebe7bfa1aa21cdd3292b4
   QorumLogs: c3178520a46dc940c1070388134524ab5996b55a
+  Socket.IO-Client-Swift: 60a60e8bfd7b16bc57c90ff6329e9f536b5eacdd
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
 
-PODFILE CHECKSUM: 179fee4a77c9719baea301713be6a84ae1cf2315
+PODFILE CHECKSUM: c65c0a6b969ec072948b34a163327af359270c9d
 
 COCOAPODS: 1.0.0

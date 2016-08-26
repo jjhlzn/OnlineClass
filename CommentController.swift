@@ -7,10 +7,12 @@
 //
 
 import UIKit
+import QorumLogs
+import SocketIOClientSwift
+import SwiftyJSON
 
 protocol CommentDelegate {
     func afterSendComment(comment: Comment)
-    
 }
 
 protocol LiveCommentDelegate {
@@ -47,6 +49,8 @@ class CommentController : NSObject, UITextViewDelegate {
     
     var emojiKeyboard : EmojiKeyboard!
     var commentErrorMessage: String?
+    
+    var socket: SocketIOClient?
     
     func textViewDidChange(textView: UITextView) { //Handle the text changes here
         //print(textView.text); //the textView parameter is the textView where text was changed
@@ -105,7 +109,42 @@ class CommentController : NSObject, UITextViewDelegate {
             emojiSwitchButton?.addTarget(self, action: #selector(emojiSwitchButtonPressed), forControlEvents: .TouchUpInside)
         }
         
+        initChat()
+    }
+    
+    let chat_message_cmd = "chat message"
+    
+    func initChat() {
+        if socket != nil {
+            return
+        }
+        socket = SocketIOClient(socketURL: NSURL(string: ServiceLinkManager.ChatUrl)!, options: [.Log(true), .ForcePolling(true)])
         
+        socket!.on("connect") {data, ack in
+            QL1("socket connected")
+        }
+        
+        socket!.on(chat_message_cmd) {data, ack in
+            //get new message
+            QL1("got a new message")
+            QL1(data)
+            let commentJson = JSON.parse(data[0] as! String)
+            let comment = Comment()
+            comment.content = commentJson["content"].stringValue
+            comment.nickName = commentJson["name"].stringValue
+            comment.userId = commentJson["userId"].stringValue
+            comment.id = commentJson["id"].stringValue
+            comment.time = commentJson["time"].stringValue
+            self.liveDelegate?.afterSendLiveComment([comment])
+            
+        }
+        socket!.connect()
+    }
+    
+    func dispose() {
+        if socket != nil {
+            socket!.disconnect()
+        }
     }
     
     
@@ -172,23 +211,12 @@ class CommentController : NSObject, UITextViewDelegate {
     
     
     private func checkBeforeSend() -> Bool {
-        /*
-        if !song.settings.canComment {
-            viewController.displayMessage("对不起，已关闭评论！")
-            return false
-        }*/
         
         let commentContent = getCommentContent()
         if commentContent.length == 0 {
             viewController.displayMessage("评论不能为空")
             return false
         }
-        
-        /*
-        if commentContent.emojiUnescapedString.length > song.settings.maxCommentWord {
-            viewController.displayMessage("评论不能超过\(song.settings.maxCommentWord)字")
-            return false
-        } */
         
         //检查上次评论的时间
         if lastCommentTime != nil {
@@ -268,7 +296,32 @@ class CommentController : NSObject, UITextViewDelegate {
 
     }
     
+    
     private func sendLiveComment() {
+        
+        //liveDelegate?.setUpdateChatFlag(true)
+        let sendCommentRequest = SendLiveCommentRequest()
+        sendCommentRequest.song = song
+        sendCommentRequest.lastId = liveDelegate!.getLastCommentId()
+        sendCommentRequest.comment = getCommentContent().emojiEscapedString
+        
+        //socket?.reconnect()
+        QL1("sendCommentRequest = \(sendCommentRequest.getJSON().rawString())")
+        socket?.emitWithAck(chat_message_cmd, sendCommentRequest.getJSON().rawString()!) (timeoutAfter: 0) { data in
+            QL1("emitWithAck callback")
+            self.viewController.dismissKeyboard()
+            self.lastCommentTime = NSDate()
+            self.commentFiled2.text = ""
+            self.disableSendButton()
+            self.isCommentSuccess = true
+            if !self.isKeyboardShow {
+                self.showComentResultTip()
+            }
+        }
+    }
+
+    
+    private func sendLiveComment1() {
         
         liveDelegate?.setUpdateChatFlag(true)
         let sendCommentRequest = SendLiveCommentRequest()
@@ -288,7 +341,6 @@ class CommentController : NSObject, UITextViewDelegate {
                     self.disableSendButton()
                     
                     self.isCommentSuccess = true
-                    
                     
                     self.liveDelegate?.afterSendLiveComment(resp.comments)
                     

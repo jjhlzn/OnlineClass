@@ -11,4 +11,5 @@ target 'AudioPlayer iOS' do
     pod 'Kingfisher', '~> 2.4'
     pod 'QorumLogs'
     pod 'ALCameraViewController'
+    pod 'Socket.IO-Client-Swift'
 end

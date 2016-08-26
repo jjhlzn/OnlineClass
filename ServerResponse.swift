@@ -8,6 +8,7 @@
 
 import Foundation
 import SwiftyJSON
+import QorumLogs
 
 enum ServerResponseStatus : Int {
     case Success = 0
@@ -24,6 +25,47 @@ class ServerRequest {
             return parameters
         }
     }
+    
+    private func addMoreRequestInfo(params: [String: AnyObject]?) -> [String: AnyObject] {
+        var newParams = [String: AnyObject]()
+        newParams["request"] = params
+        newParams["client"] = getClientInfo()
+        newParams["userInfo"] = getUserInfo()
+        return newParams
+        
+    }
+    
+    func getJSON() -> JSON {
+        let finalParams = addMoreRequestInfo(params)
+        return JSON(finalParams)
+    }
+    
+    private func getClientInfo() -> [String: AnyObject]{
+        var clientInfo = [String: AnyObject]()
+        clientInfo["platform"] = "iphone"
+        clientInfo["model"] = UIDevice.currentDevice().model
+        clientInfo["osversion"] = UIDevice.currentDevice().systemVersion
+        
+        let screensize = UIScreen.mainScreen().bounds
+        clientInfo["screensize"] = "\(screensize.width)*\(screensize.height)"
+        
+        let version = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleShortVersionString") as! String
+        let appBundle = NSBundle.mainBundle().objectForInfoDictionaryKey(kCFBundleVersionKey as String) as! String
+        clientInfo["appversion"] = "\(version).\(appBundle)"
+        return clientInfo
+        
+    }
+    
+    
+    private func getUserInfo() -> [String: AnyObject] {
+        let loginUserStore = LoginUserStore()
+        var userInfo = [String: AnyObject]()
+        let loginUser = loginUserStore.getLoginUser()
+        userInfo["userid"] = loginUser?.userName!
+        userInfo["token"] = loginUser?.token!
+        return userInfo
+    }
+
 }
 
 class PagedServerRequest: ServerRequest{
