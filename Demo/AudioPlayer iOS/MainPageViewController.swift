@@ -52,6 +52,10 @@ class CourseMainPageViewController: BaseUIViewController {
   
     }
     
+    private func updateCellForDesc(resp: GetParameterInfoResponse, key: String, cell: CourseTypeCell) {
+        
+    }
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         

@@ -13,13 +13,10 @@ class ServiceConfiguration {
     static let isUseConfig = true
     static let serviceLocatorStore = ServiceLocatorStore()
     
-    static let isDebug = false
-    
-    static let serverName2 = "localhost"
-    static let port2 =  3000 // 19540
+
     //114.80.101.27:6012/
-    static let serverName3 = "jjhaudio.hengdianworld.com"
-    static let port3 = 80
+    static let serverName3 = "localhost"
+    static let port3 = 3000
     
     
     static let serverName4 = "http://jf.yhkamani.com"
@@ -210,6 +207,12 @@ class ServiceConfiguration {
     static var GET_SONG_INFO : String {
         get {
             return "\(http)://\(serverName):\(port)/song/getsonginfo"
+        }
+    }
+    
+    static var SEND_HEARTBEAT : String {
+        get {
+            return "\(http)://\(serverName):\(port)/song/heartbeat"
         }
     }
     

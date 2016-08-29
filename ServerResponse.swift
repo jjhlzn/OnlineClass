@@ -894,3 +894,18 @@ class GetParameterInfoResponse : ServerResponse {
         
     }
 }
+
+class HeartbeatRequest : ServerRequest {
+    var song: Song!
+    override var params: [String : AnyObject] {
+        get {
+            var parameters = super.params
+            parameters["id"] = song.id
+            return parameters
+        }
+    }
+}
+
+class HeartbeatResponse : ServerResponse {
+    
+}

@@ -9,6 +9,7 @@
 import Foundation
 import KDEAudioPlayer
 import UIKit
+import QorumLogs
 
 class PlayerViewController : NSObject, AudioPlayerDelegate {
     
@@ -126,6 +127,7 @@ class PlayerViewController : NSObject, AudioPlayerDelegate {
     
     func updateBufferCircle() {
         let state = audioPlayer.state
+        QL1("updateBufferCircle: state = \(state)" )
         if state == AudioPlayerState.Buffering || state == AudioPlayerState.WaitingForConnection {
 
             cell.bufferCircle.hidden = false

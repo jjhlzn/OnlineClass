@@ -17,7 +17,7 @@ import QorumLogs
 class LivePlayerPageViewController : CommonPlayerPageViewController, LiveCommentDelegate {
     let maxCommentCount = 10 + 1
     //聊天刷新频率
-    let freshChatInterval: NSTimeInterval = 5
+    let freshChatInterval: NSTimeInterval = 10
     //人数更新频率
     let freshListernCountInterval: NSTimeInterval = 30
     var audioPlayer: AudioPlayer!
@@ -82,62 +82,19 @@ class LivePlayerPageViewController : CommonPlayerPageViewController, LiveComment
     
     func checkStatusAndUpdateChat() {
 
-        //如果直播在缓冲、失败，尝试重新连接
-        switch audioPlayer.state {
-        case .Buffering:
-            QL1("try to connect again")
-            audioPlayer.playItems(audioPlayer.items!, startAtIndex: audioPlayer.currentItemIndexInQueue!)
-            break
-        case .Failed(let error):
-            QL1("try to connect again")
-            print(error)
-            audioPlayer.playItems(audioPlayer.items!, startAtIndex: audioPlayer.currentItemIndexInQueue!)
-            break
-        default:
-            break
-        }
-
         
-        if isUpdateChat {
-            return
-        }
-        
-        
-        //如果在debug模式，则不去轮询comments
-        if ServiceConfiguration.isDebug {
-            return
-        }
         if audioPlayer.currentItem != nil {
             let item = audioPlayer.currentItem as! MyAudioItem
             let song = item.song
             
-            /*
-            let request = GetSongLiveCommentsRequest(song: song, lastId: lastId)
-            isUpdateChat = true
-            BasicService().sendRequest(ServiceConfiguration.GET_SONG_LIVE_COMMENTS, request: request) {
-                (resp: GetSongLiveCommentsResponse) -> Void in
-                dispatch_async(dispatch_get_main_queue()) {
-                    self.isUpdateChat = false
-                    if resp.status != 0 {
-                        print(resp.errorMessage)
-                        return
-                    }
-                    let newComments = resp.comments
-                    if newComments.count > 0 {
-                        self.lastId = newComments[0].id!
-                    }
-                    for comment in newComments {
-                        self.comments.insert(comment, atIndex: 0)
-                    }
-                    var section = 1
-                    if (song as! LiveSong).hasAdvImage!  {
-                        section = 2
-                    }
-                    self.viewController.tableView.reloadSections(NSIndexSet(index: section), withRowAnimation: .None)
-                }
-            } */
-            
             updateChatCount = updateChatCount + 1
+            
+            /*
+            if audioPlayer.state == AudioPlayerState.Buffering {
+                //QL1("current state is buffering, try to pause and resume")
+                //audioPlayer.pause()
+                //audioPlayer.resume()
+            } */
             
             if updateChatCount % 3 == 0 {
                 let request = GetSongInfoRequest()
@@ -162,6 +119,14 @@ class LivePlayerPageViewController : CommonPlayerPageViewController, LiveComment
                         liveSong.advUrl = newSong.advUrl
                         self.viewController.tableView.reloadData()
                     }
+                }
+            }
+            
+            if updateChatCount % 12 == 0 {
+                let request = HeartbeatRequest()
+                request.song = item.song
+                BasicService().sendRequest(ServiceConfiguration.SEND_HEARTBEAT, request: request) {
+                    (resp: HeartbeatResponse) -> Void in
                 }
             }
             

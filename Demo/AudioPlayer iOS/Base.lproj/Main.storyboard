@@ -2923,10 +2923,10 @@
         <image name="wave1" width="24" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="HJR-zD-bje"/>
         <segue reference="pCp-Ba-NtI"/>
+        <segue reference="HJR-zD-bje"/>
+        <segue reference="tVi-RP-0bn"/>
         <segue reference="gK4-D6-0Uz"/>
-        <segue reference="d3n-U5-XAy"/>
         <segue reference="3eS-Pl-zlw"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.94901960784313721" green="0.38039215686274508" blue="0.0" alpha="0.90000000000000002" colorSpace="calibratedRGB"/>

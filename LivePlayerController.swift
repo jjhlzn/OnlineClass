@@ -46,16 +46,17 @@ class LivePlayerViewController : PlayerViewController {
         cell.progressBar.enabled = true
     }
     
-    var stopItem: AudioItem?
     override func playOrPause() {
-        if audioPlayer.state == AudioPlayerState.Playing {
-            stopItem = audioPlayer.currentItem
-            audioPlayer.stop()
+        if audioPlayer.state == AudioPlayerState.Playing || audioPlayer.state == AudioPlayerState.Buffering {
+            audioPlayer.pause()
             
-        } else {
+        } else if audioPlayer.state == AudioPlayerState.Paused {
+            audioPlayer.resume()
             audioPlayer.seekToSeekableRangeEnd(0)
-            if stopItem != nil {
-                audioPlayer.playItem(stopItem!)
+        } else {
+            if audioPlayer.currentItem != nil {
+                QL1("player state is \(audioPlayer.state), try to play the item")
+                audioPlayer.playItem(audioPlayer.currentItem!)
             }
         }
     }
