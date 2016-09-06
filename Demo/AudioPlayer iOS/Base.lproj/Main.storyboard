@@ -620,7 +620,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="albumCell" rowHeight="74" id="jMg-kZ-gym" customClass="AlbumCell" customModule="AudioPlayer" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="92" width="320" height="74"/>
+                                <rect key="frame" x="0.0" y="28" width="320" height="74"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jMg-kZ-gym" id="eSJ-qm-QvQ">
                                     <rect key="frame" x="0.0" y="0.0" width="287" height="73"/>
@@ -661,7 +661,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="liveAlbumCell" rowHeight="74" id="1LG-bb-0ID" customClass="LiveAlbumCell" customModule="AudioPlayer" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="166" width="320" height="74"/>
+                                <rect key="frame" x="0.0" y="102" width="320" height="74"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1LG-bb-0ID" id="Cpa-bW-L7M">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="73"/>
@@ -1704,6 +1704,10 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="414"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="musicCover" id="hwy-W6-YMR">
+                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="320"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                </imageView>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="nSg-mE-Y2N">
                                                     <rect key="frame" x="140" y="355" width="40" height="40"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -1759,10 +1763,6 @@
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bufferCircle1" id="9lW-0F-dFq">
                                                     <rect key="frame" x="135" y="350" width="50" height="50"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                </imageView>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="musicCover" id="hwy-W6-YMR">
-                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="320"/>
-                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 </imageView>
                                             </subviews>
                                             <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="0.0"/>
@@ -2923,11 +2923,11 @@
         <image name="wave1" width="24" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="pCp-Ba-NtI"/>
         <segue reference="HJR-zD-bje"/>
-        <segue reference="tVi-RP-0bn"/>
+        <segue reference="pCp-Ba-NtI"/>
         <segue reference="gK4-D6-0Uz"/>
         <segue reference="3eS-Pl-zlw"/>
+        <segue reference="d3n-U5-XAy"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.94901960784313721" green="0.38039215686274508" blue="0.0" alpha="0.90000000000000002" colorSpace="calibratedRGB"/>
 </document>

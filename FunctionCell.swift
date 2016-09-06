@@ -196,7 +196,7 @@ class ExtendFunctionMananger : NSObject {
             //redirect to safari because the user doesn't have Instagram
             print("App not installed")
             //UIApplication.sharedApplication().openURL(NSURL(string: "https://itunes.apple.com/in/app/instagram/id389801252?m")!)
-            let params : [String: String] = ["url": "https://uenpay.com/downloadcopy/jfjr/down-jfjr.html?from=singlemessage&isappinstalled=0", "title": "巨方支付下载"]
+            let params : [String: String] = ["url": "http://jf.yhkamani.com/dlios.html", "title": "巨方支付下载"]
             controller.performSegueWithIdentifier("loadWebPageSegue", sender: params)
         }
 
