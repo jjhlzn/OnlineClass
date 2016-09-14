@@ -18,8 +18,6 @@ class CommonPlayerPageViewController : NSObject, UITableViewDataSource, UITableV
     var showHasMoreLink = true
     var playerViewController : PlayerViewController?
     
-    var heightCache = [String: CGFloat]()
-    
     
     func initController() {
         
@@ -146,27 +144,23 @@ class CommonPlayerPageViewController : NSObject, UITableViewDataSource, UITableV
                     let cell = tableView.dequeueReusableCellWithIdentifier("commentCell") as! CommentCell
                     let row = indexPath.row
                     let comment = comments![row - 1]
-                    if heightCache[comment.content] == nil {
-                        cell.userIdLabel.text = comment.userId
-                        cell.timeLabel.text = comment.time
-                        cell.contentLabel.text = comment.content.emojiUnescapedString
-                        print(comment.content)
-                        var frame = cell.contentLabel.frame;
-                        cell.contentLabel.numberOfLines = 0
-                        cell.contentLabel.sizeToFit()
-                        frame.size.height = cell.contentLabel.frame.size.height;
-                        cell.contentLabel.frame = frame;
-                        var height = 35 + cell.contentLabel.bounds.height + 10
-                        
-                        if height < 65 {
-                            height = 65
-                        }
-                        heightCache[comment.content] = height
-                        
-                        
+
+                    cell.userIdLabel.text = comment.userId
+                    cell.timeLabel.text = comment.time
+                    cell.contentLabel.text = comment.content.emojiUnescapedString
+                    print(comment.content)
+                    var frame = cell.contentLabel.frame;
+                    cell.contentLabel.numberOfLines = 0
+                    cell.contentLabel.sizeToFit()
+                    frame.size.height = cell.contentLabel.frame.size.height;
+                    cell.contentLabel.frame = frame;
+                    var height = 35 + cell.contentLabel.bounds.height + 10
+                    
+                    if height < 65 {
+                        height = 65
                     }
-                    //NSLog("row = \(row), height = \(heightCache[comment.content])" )
-                    return  heightCache[comment.content]!
+                
+                    return  height
                 }
             }
         default:

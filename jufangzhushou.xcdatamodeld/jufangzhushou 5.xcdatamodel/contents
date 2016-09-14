@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10174" systemVersion="15G1004" minimumToolsVersion="Xcode 7.0">
+    <entity name="KeyValueEntity" representedClassName=".KeyValueEntity" syncable="YES">
+        <attribute name="key" attributeType="String" syncable="YES"/>
+        <attribute name="value" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="LoginUserEntity" representedClassName=".LoginUserEntity" syncable="YES">
+        <attribute name="boss" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="codeImageUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lastLoginTime" attributeType="Date" syncable="YES"/>
+        <attribute name="level" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <attribute name="nickName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="password" attributeType="String" syncable="YES"/>
+        <attribute name="sex" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="token" attributeType="String" syncable="YES"/>
+        <attribute name="userName" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="PurchaseRecordEntity" representedClassName=".PurchaseRecordEntity" syncable="YES">
+        <attribute name="isnotify" attributeType="Boolean" syncable="YES"/>
+        <attribute name="payTime" attributeType="String" syncable="YES"/>
+        <attribute name="productId" attributeType="String" syncable="YES"/>
+        <attribute name="userid" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="ServiceLocatorEntity" representedClassName=".ServiceLocatorEntity" syncable="YES">
+        <attribute name="http" attributeType="String" syncable="YES"/>
+        <attribute name="isUseServiceLocator" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="port" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="serverName" attributeType="String" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="KeyValueEntity" positionX="-63" positionY="54" width="128" height="75"/>
+        <element name="LoginUserEntity" positionX="-63" positionY="-18" width="128" height="195"/>
+        <element name="ServiceLocatorEntity" positionX="-63" positionY="18" width="128" height="105"/>
+        <element name="PurchaseRecordEntity" positionX="-63" positionY="54" width="128" height="105"/>
+    </elements>
+</model>

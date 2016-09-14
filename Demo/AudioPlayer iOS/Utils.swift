@@ -10,6 +10,8 @@ import Foundation
 import UIKit
 import KDEAudioPlayer
 
+import QorumLogs
+
 extension String {
     var length: Int {
         return characters.count
@@ -81,6 +83,63 @@ class Utils {
             }
         }
         return url
+    }
+    
+    static func addDevcieParam(url : String) -> String {
+        let model = UIDevice.currentDevice().model
+        let osversion = UIDevice.currentDevice().systemVersion
+        
+        let screensize = UIScreen.mainScreen().bounds
+        let screenInfo = "\(screensize.width)*\(screensize.height)"
+        
+        let version = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleShortVersionString") as! String
+        let appBundle = NSBundle.mainBundle().objectForInfoDictionaryKey(kCFBundleVersionKey as String) as! String
+        let appversion = "\(version).\(appBundle)"
+
+        
+        
+        var newurl = url
+        
+        if url.indexOfCharacter("?") != nil {
+            newurl = url + "&"
+        } else {
+            newurl = url + "?"
+        }
+        
+        
+        var deviceParamsString  = "platform=iphone&model=\(model)&osversion=\(osversion)&screensize=\(screenInfo)&appversion=\(appversion)"
+        
+        deviceParamsString = deviceParamsString.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!
+        
+        newurl = newurl + deviceParamsString
+        
+        return newurl
+    }
+    
+    static func md5(string string: String) -> String {
+        var digest = [UInt8](count: Int(CC_MD5_DIGEST_LENGTH), repeatedValue: 0)
+        if let data = string.dataUsingEncoding(NSUTF8StringEncoding) {
+            CC_MD5(data.bytes, CC_LONG(data.length), &digest)
+        }
+        
+        var digestHex = ""
+        for index in 0..<Int(CC_MD5_DIGEST_LENGTH) {
+            digestHex += String(format: "%02x", digest[index])
+        }
+        
+        return digestHex
+    }
+    
+    static let secretkey = "jufangjituan987768898affbfsdfdfdfdf&^%fdfdf#@fdfdf1111"
+    static func createIPANotifySign(request: NotifyIAPSuccessRequest) -> String {
+        let loginUserStore = LoginUserStore()
+        let loginUser = loginUserStore.getLoginUser()
+        var string = request.productId  + request.payTime
+        string = string + loginUser!.userName! + secretkey
+        QL1("string = \(string)")
+        let sign = md5(string: string)
+        QL1("sign = \(sign)")
+        return sign
     }
 
 

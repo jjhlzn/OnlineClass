@@ -8,7 +8,7 @@
 
 import UIKit
 
-class WebPageViewController: BaseUIViewController, UIWebViewDelegate {
+class WebPageViewController2: BaseUIViewController, UIWebViewDelegate {
     
     var url : NSURL!
     @IBOutlet weak var closeButton: UIBarButtonItem!
@@ -27,6 +27,7 @@ class WebPageViewController: BaseUIViewController, UIWebViewDelegate {
         super.viewDidLoad()
         var url1 = url.absoluteString
         url1 = Utils.addUserParams(url1)
+        url1 = Utils.addDevcieParam(url1)
         print(url1)
         let myRequest = NSURLRequest(URL: NSURL(string: url1)!);
         webView.delegate = self

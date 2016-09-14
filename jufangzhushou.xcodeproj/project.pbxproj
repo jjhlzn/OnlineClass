@@ -50,6 +50,7 @@
 		1C50C7561D48D28C0022B952 /* SongAdvCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C50C7551D48D28C0022B952 /* SongAdvCell.swift */; };
 		1C5A6FC51CE99644000E7282 /* PlayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C5A6FC41CE99644000E7282 /* PlayerController.swift */; };
 		1C5A6FC71CE9A0D5000E7282 /* LivePlayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C5A6FC61CE9A0D5000E7282 /* LivePlayerController.swift */; };
+		1C62FF571D80587B00A97869 /* TestIAPController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C62FF561D80587B00A97869 /* TestIAPController.swift */; };
 		1C6420F61CD0605200119272 /* CommentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C6420F51CD0605200119272 /* CommentController.swift */; };
 		1C66ADFD1D38C2CE001A6525 /* QrCodeImageStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C66ADFC1D38C2CD001A6525 /* QrCodeImageStore.swift */; };
 		1C66ADFF1D38C312001A6525 /* ImageStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C66ADFE1D38C312001A6525 /* ImageStore.swift */; };
@@ -61,8 +62,12 @@
 		1C8620181D337AFB006C30BB /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C8620171D337AFB006C30BB /* CoreTelephony.framework */; };
 		1C8A2AD41CE4BEA60086C1B8 /* MallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C8A2AD31CE4BEA60086C1B8 /* MallViewController.swift */; };
 		1C8A2AD61CE5882A0086C1B8 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C8A2AD51CE5882A0086C1B8 /* SignupViewController.swift */; };
+		1C8E7DC11D87950F0022B0D2 /* PurchaseRecordEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C8E7DBF1D87950F0022B0D2 /* PurchaseRecordEntity+CoreDataProperties.swift */; };
+		1C8E7DC21D87950F0022B0D2 /* PurchaseRecordEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C8E7DC01D87950F0022B0D2 /* PurchaseRecordEntity.swift */; };
+		1C8E7DC41D8799F80022B0D2 /* PurchaseRecordStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C8E7DC31D8799F80022B0D2 /* PurchaseRecordStore.swift */; };
 		1C98A8921D61F71400ADF12B /* XinGeAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C98A8911D61F71400ADF12B /* XinGeAppDelegate.swift */; };
 		1C98A8941D61FB3100ADF12B /* libXG-SDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C98A8931D61FB3100ADF12B /* libXG-SDK.a */; };
+		1C9F20E61D823BA100E1B69F /* BuyWebPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C9F20E51D823BA100E1B69F /* BuyWebPageViewController.swift */; };
 		1CA3B2101CD86B7800D0ABD8 /* MainPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA3B20F1CD86B7800D0ABD8 /* MainPageViewController.swift */; };
 		1CA3B2121CD86BD300D0ABD8 /* CourseTypeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA3B2111CD86BD300D0ABD8 /* CourseTypeCell.swift */; };
 		1CA3B2141CD8E83B00D0ABD8 /* FunctionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA3B2131CD8E83B00D0ABD8 /* FunctionCell.swift */; };
@@ -159,6 +164,7 @@
 		1C50C7551D48D28C0022B952 /* SongAdvCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongAdvCell.swift; sourceTree = "<group>"; };
 		1C5A6FC41CE99644000E7282 /* PlayerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerController.swift; sourceTree = "<group>"; };
 		1C5A6FC61CE9A0D5000E7282 /* LivePlayerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LivePlayerController.swift; sourceTree = "<group>"; };
+		1C62FF561D80587B00A97869 /* TestIAPController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestIAPController.swift; sourceTree = "<group>"; };
 		1C6420F51CD0605200119272 /* CommentController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentController.swift; sourceTree = "<group>"; };
 		1C66ADFC1D38C2CD001A6525 /* QrCodeImageStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QrCodeImageStore.swift; sourceTree = "<group>"; };
 		1C66ADFE1D38C312001A6525 /* ImageStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageStore.swift; sourceTree = "<group>"; };
@@ -170,10 +176,15 @@
 		1C8620171D337AFB006C30BB /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		1C8A2AD31CE4BEA60086C1B8 /* MallViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MallViewController.swift; sourceTree = "<group>"; };
 		1C8A2AD51CE5882A0086C1B8 /* SignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
+		1C8E7DBA1D87942D0022B0D2 /* jufangzhushou 5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "jufangzhushou 5.xcdatamodel"; sourceTree = "<group>"; };
+		1C8E7DBF1D87950F0022B0D2 /* PurchaseRecordEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PurchaseRecordEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		1C8E7DC01D87950F0022B0D2 /* PurchaseRecordEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PurchaseRecordEntity.swift; sourceTree = "<group>"; };
+		1C8E7DC31D8799F80022B0D2 /* PurchaseRecordStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PurchaseRecordStore.swift; sourceTree = "<group>"; };
 		1C98A8911D61F71400ADF12B /* XinGeAppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XinGeAppDelegate.swift; sourceTree = "<group>"; };
 		1C98A8931D61FB3100ADF12B /* libXG-SDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libXG-SDK.a"; path = "xgpushsdk/libXG-SDK.a"; sourceTree = "<group>"; };
 		1C98A8971D62004600ADF12B /* XGPush.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = XGPush.h; path = xgpushsdk/XGPush.h; sourceTree = "<group>"; };
 		1C98A8981D62005300ADF12B /* XGSetting.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = XGSetting.h; path = xgpushsdk/XGSetting.h; sourceTree = "<group>"; };
+		1C9F20E51D823BA100E1B69F /* BuyWebPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuyWebPageViewController.swift; sourceTree = "<group>"; };
 		1CA3B20F1CD86B7800D0ABD8 /* MainPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainPageViewController.swift; sourceTree = "<group>"; };
 		1CA3B2111CD86BD300D0ABD8 /* CourseTypeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseTypeCell.swift; sourceTree = "<group>"; };
 		1CA3B2131CD8E83B00D0ABD8 /* FunctionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FunctionCell.swift; sourceTree = "<group>"; };
@@ -369,6 +380,7 @@
 				1C1E69181CC9079100CEA029 /* SongViewController.swift */,
 				1C1E68EE1CC65DF600CEA029 /* CommentListController.swift */,
 				1C33F0411D07DBF000D3EE4C /* AllFunctionViewController.swift */,
+				1C62FF561D80587B00A97869 /* TestIAPController.swift */,
 			);
 			name = song;
 			sourceTree = "<group>";
@@ -413,6 +425,9 @@
 				1C3C5EDC1D1E11DB000F0A39 /* KeyValueStore.swift */,
 				1C66ADFC1D38C2CD001A6525 /* QrCodeImageStore.swift */,
 				1C66ADFE1D38C312001A6525 /* ImageStore.swift */,
+				1C8E7DBF1D87950F0022B0D2 /* PurchaseRecordEntity+CoreDataProperties.swift */,
+				1C8E7DC01D87950F0022B0D2 /* PurchaseRecordEntity.swift */,
+				1C8E7DC31D8799F80022B0D2 /* PurchaseRecordStore.swift */,
 			);
 			name = store;
 			sourceTree = "<group>";
@@ -512,6 +527,7 @@
 				1CD349731CFA8DD700037F78 /* SearchCourseViewController.swift */,
 				1C3479BC1CF2F9BD003FEF05 /* FirstPageViewController.swift */,
 				1C451F651D0175FA00DC29F9 /* ConfigurationViewController.swift */,
+				1C9F20E51D823BA100E1B69F /* BuyWebPageViewController.swift */,
 				1C33F0391D071CC000D3EE4C /* login&signup */,
 				1C33F0381D071C8000D3EE4C /* song */,
 				1C33F0371D071C5300D3EE4C /* me */,
@@ -749,6 +765,8 @@
 				1C8A2AD41CE4BEA60086C1B8 /* MallViewController.swift in Sources */,
 				1C33F03C1D079DBE00D3EE4C /* SetSexViewController.swift in Sources */,
 				1CEFF7861CBFB9FD000DEFF7 /* BasicService.swift in Sources */,
+				1C8E7DC11D87950F0022B0D2 /* PurchaseRecordEntity+CoreDataProperties.swift in Sources */,
+				1C8E7DC41D8799F80022B0D2 /* PurchaseRecordStore.swift in Sources */,
 				1CEFF7831CBFB809000DEFF7 /* Model.swift in Sources */,
 				1C1E69191CC9079100CEA029 /* SongViewController.swift in Sources */,
 				1CD3496C1CF980D400037F78 /* ResetPasswordController.swift in Sources */,
@@ -759,6 +777,7 @@
 				1C6420F61CD0605200119272 /* CommentController.swift in Sources */,
 				1CEFF79E1CC21E98000DEFF7 /* BaseUIViewController.swift in Sources */,
 				1C2451D11CE89EB800F350DA /* CoreDataStack.swift in Sources */,
+				1C62FF571D80587B00A97869 /* TestIAPController.swift in Sources */,
 				1C5A6FC51CE99644000E7282 /* PlayerController.swift in Sources */,
 				1C1E68EF1CC65DF600CEA029 /* CommentListController.swift in Sources */,
 				1CA3B2121CD86BD300D0ABD8 /* CourseTypeCell.swift in Sources */,
@@ -769,10 +788,12 @@
 				1C451F681D01765F00DC29F9 /* ConfigurationCell.swift in Sources */,
 				1CEFF79C1CC20171000DEFF7 /* AudioPlayerExtension.swift in Sources */,
 				1C154A501CDACCA6003B900C /* MyUISlider.swift in Sources */,
+				1C8E7DC21D87950F0022B0D2 /* PurchaseRecordEntity.swift in Sources */,
 				1C98A8921D61F71400ADF12B /* XinGeAppDelegate.swift in Sources */,
 				1C33F03E1D07A8E200D3EE4C /* CodeImageViewController.swift in Sources */,
 				1CD349681CF9703700037F78 /* KeyValueCell.swift in Sources */,
 				1C3479BD1CF2F9BD003FEF05 /* FirstPageViewController.swift in Sources */,
+				1C9F20E61D823BA100E1B69F /* BuyWebPageViewController.swift in Sources */,
 				1C3479C01CF3EBEF003FEF05 /* LivePlayerCell.swift in Sources */,
 				1CEE8AF31CD4998A00865FB6 /* PagableController.swift in Sources */,
 				1C66ADFF1D38C312001A6525 /* ImageStore.swift in Sources */,
@@ -1090,12 +1111,13 @@
 		1C2451D21CE8A0BD00F350DA /* jufangzhushou.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				1C8E7DBA1D87942D0022B0D2 /* jufangzhushou 5.xcdatamodel */,
 				1C48D9C81D3F041300F810CA /* jufangzhushou 4.xcdatamodel */,
 				1C3C5ED71D1E0CA2000F0A39 /* jufangzhushou 3.xcdatamodel */,
 				1C33F03A1D0724A700D3EE4C /* jufangzhushou 2.xcdatamodel */,
 				1C2451D31CE8A0BD00F350DA /* jufangzhushou.xcdatamodel */,
 			);
-			currentVersion = 1C48D9C81D3F041300F810CA /* jufangzhushou 4.xcdatamodel */;
+			currentVersion = 1C8E7DBA1D87942D0022B0D2 /* jufangzhushou 5.xcdatamodel */;
 			path = jufangzhushou.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

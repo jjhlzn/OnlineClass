@@ -8,6 +8,7 @@
 
 import UIKit
 import KDEAudioPlayer
+import QorumLogs
 
 class AlbumListController: BaseUIViewController, UITableViewDataSource, UITableViewDelegate, PagableControllerDelegate {
     
@@ -17,6 +18,8 @@ class AlbumListController: BaseUIViewController, UITableViewDataSource, UITableV
     
     var pagableController = PagableController<Album>()
     var courseType : CourseType = CourseType.Common
+    var purchaseRecordStore = PurchaseRecordStore()
+    var loginUserStore = LoginUserStore()
 
     
     override func viewDidLoad() {
@@ -28,6 +31,28 @@ class AlbumListController: BaseUIViewController, UITableViewDataSource, UITableV
         tableView.dataSource = self
         tableView.delegate = self
         
+        setTitle()
+        
+        let loginUser = loginUserStore.getLoginUser()!
+        let purchaseRecord = purchaseRecordStore.getNotNotifyRecord(loginUser.userName!)
+        if courseType == .Vip && purchaseRecord != nil {
+            let request = NotifyIAPSuccessRequest()
+            request.payTime = purchaseRecord?.payTime!
+            request.productId = purchaseRecord?.productId!
+            request.sign = Utils.createIPANotifySign(request)
+            BasicService().sendRequest(ServiceConfiguration.NOTIFY_IAP_SUCCESS, request: request) {
+                (resp: NotifyIAPSuccessResponse) -> Void in
+                if resp.status != ServerResponseStatus.Success.rawValue {
+                    QL4("resp.status = \(resp.status), message = \(resp.errorMessage)")
+                    return;
+                }
+                if purchaseRecord != nil {
+                    purchaseRecord!.isnotify = true
+                    self.purchaseRecordStore.update()
+                }
+            }
+        }
+        
         //初始化PagableController
         pagableController.viewController = self
         pagableController.delegate = self
@@ -36,7 +61,7 @@ class AlbumListController: BaseUIViewController, UITableViewDataSource, UITableV
         pagableController.initController()
         pagableController.isShowLoadCompleteText = false
         //pagableController.loadMore()
-        setTitle()
+        
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -95,15 +120,10 @@ class AlbumListController: BaseUIViewController, UITableViewDataSource, UITableV
 
 extension AlbumListController {
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
         return pagableController.data.count
-
-        
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-
-        
         let album = pagableController.data[indexPath.row]
         
         if album.isLive {
