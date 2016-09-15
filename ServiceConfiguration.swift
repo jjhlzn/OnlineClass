@@ -15,12 +15,13 @@ class ServiceConfiguration {
     
 
     //114.80.101.27:6012/
-    static let serverName3 = "localhost"
-    static let port3 = 3000
+    static let serverName3 = "jf.jinjunhang.com"
+    static let port3 = 80
     
     
-    static let serverName4 = "http://jf.yhkamani.com"
+    static let serverName4 = "jf.yhkamani.com"
     static let port4 = 80
+    
     
     
     static var serverName: String {
@@ -75,6 +76,13 @@ class ServiceConfiguration {
     static var GET_PARAMETER_INFO : String {
         get {
             return "\(http)://\(serverName):\(port)/app/getparameterinfo"
+        }
+    }
+    
+    //通知IAP成功
+    static var NOTIFY_IAP_SUCCESS : String {
+        get {
+            return "\(http)://\(serverName):\(port)/app/notifyiap"
         }
     }
 
@@ -235,6 +243,8 @@ class ServiceConfiguration {
             return "\(http)://\(serverName):\(port)/song/livelistener"
         }
     }
+    
+    
     
     
     static let ImageUrlPrefix = "http://\(serverName):\(port)/"

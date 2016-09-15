@@ -122,15 +122,6 @@ class LivePlayerPageViewController : CommonPlayerPageViewController, LiveComment
                 }
             }
             
-            if updateChatCount % 12 == 0 {
-                let request = HeartbeatRequest()
-                request.song = item.song
-                BasicService().sendRequest(ServiceConfiguration.SEND_HEARTBEAT, request: request) {
-                    (resp: HeartbeatResponse) -> Void in
-                }
-            }
-            
-            
         }
     }
     
@@ -264,10 +255,14 @@ class LivePlayerPageViewController : CommonPlayerPageViewController, LiveComment
         
         
         cell.userImage.becomeCircle()
+        
+        
+        
         let profileImageUrl = ServiceConfiguration.GET_PROFILE_IMAGE + "?userid=" + comment.userId
         if let url = NSURL(string: profileImageUrl) {
-            cell.userImage.kf_setImageWithURL(url)
+            cell.userImage.kf_setImageWithURL(url, placeholderImage: UIImage(named: "user"))
         }
+ 
 
         //print("computeHeight")
         return cell
@@ -306,26 +301,24 @@ class LivePlayerPageViewController : CommonPlayerPageViewController, LiveComment
                 
                 let cell = tableView.dequeueReusableCellWithIdentifier("commentCell") as! CommentCell
                 let comment = comments![row - 1]
-                if heightCache[comment.content] == nil {
-                    cell.userIdLabel.text = comment.userId
-                    cell.timeLabel.text = comment.time
-                    cell.contentLabel.text = comment.content.emojiEscapedString
-                    var frame = cell.contentLabel.frame;
-                    cell.contentLabel.numberOfLines = 0
-                    cell.contentLabel.sizeToFit()
-                    frame.size.height = cell.contentLabel.frame.size.height;
-                    cell.contentLabel.frame = frame;
-                    var height = 25 + cell.contentLabel.bounds.height + 10
-                    
-                    if height < 65 {
-                        height = 65
-                    }
-                    heightCache[comment.content] = height
-                    
-                    
+
+                cell.userIdLabel.text = comment.userId
+                cell.timeLabel.text = comment.time
+                cell.contentLabel.text = comment.content.emojiUnescapedString
+                var frame = cell.contentLabel.frame;
+                cell.contentLabel.numberOfLines = 0
+                cell.contentLabel.sizeToFit()
+                frame.size.height = cell.contentLabel.frame.size.height;
+                cell.contentLabel.frame = frame;
+                var height = 25 + cell.contentLabel.bounds.height + 10
+                
+                if height < 65 {
+                    height = 65
                 }
+                
+                QL1("content = \(comment.content.emojiUnescapedString), height = \(height)")
                 //NSLog("row = \(row), height = \(heightCache[comment.content])" )
-                return  heightCache[comment.content]!
+                return  height
             }
         }
 

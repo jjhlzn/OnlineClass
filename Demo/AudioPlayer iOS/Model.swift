@@ -197,3 +197,10 @@ class ServiceLocator {
 
     
 }
+
+class PurchaseRecord {
+    var userid: String! //mobile
+    var productId: String!
+    var isNotify: Bool = false
+    var payTime: String!
+}

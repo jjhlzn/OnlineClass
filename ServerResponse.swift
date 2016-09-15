@@ -909,3 +909,35 @@ class HeartbeatRequest : ServerRequest {
 class HeartbeatResponse : ServerResponse {
     
 }
+
+class JoinRoomRequest : ServerRequest {
+    var song: Song!
+    override var params: [String : AnyObject] {
+        get {
+            var parameters = super.params
+            parameters["id"] = song.id
+            return parameters
+        }
+    }
+}
+
+
+class NotifyIAPSuccessRequest : ServerRequest {
+    var productId: String!
+    var sign: String!
+    var payTime: String!
+    override var params: [String : AnyObject] {
+        get {
+            var parameters = super.params
+            parameters["productId"] = productId
+            parameters["sign"] = sign
+            parameters["payTime"] = payTime
+            return parameters
+        }
+    }
+}
+
+class NotifyIAPSuccessResponse : ServerResponse {
+    
+}
+

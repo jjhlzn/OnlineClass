@@ -34,6 +34,18 @@ class CourseMainPageViewController: BaseUIViewController {
         extendFunctionMananger = ExtendFunctionMananger(controller: self, isNeedMore:  true, showMaxRows: maxRows)
         addPlayingButton(playingButton)
         
+        
+    }
+    
+    private func updateCellForDesc(resp: GetParameterInfoResponse, key: String, cell: CourseTypeCell) {
+        
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        updatePlayingButton(playingButton)
+        
         let request = GetParameterInfoRequest()
         request.keys.append(GetParameterInfoResponse.LIVE_DESCRIPTION)
         BasicService().sendRequest(ServiceConfiguration.GET_PARAMETER_INFO, request: request) {
@@ -49,17 +61,7 @@ class CourseMainPageViewController: BaseUIViewController {
             liveCell.courseDescription.text = liveDescription
             self.tableView.reloadData()
         }
-  
-    }
-    
-    private func updateCellForDesc(resp: GetParameterInfoResponse, key: String, cell: CourseTypeCell) {
-        
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        updatePlayingButton(playingButton)
+
     }
     
     
@@ -78,7 +80,12 @@ class CourseMainPageViewController: BaseUIViewController {
             dest.url = NSURL(string: params["url"]!)
             
             dest.title = params["title"]
+        } else if segue.identifier == "bugVipSegue" {
+            let dest = segue.destinationViewController as! WebPageViewController
+            dest.url = NSURL(string: ServiceLinkManager.MyAgentUrl)
+            dest.title = "Vip购买"
         }
+
     }
     
     override func audioPlayer(audioPlayer: AudioPlayer, didChangeStateFrom from: AudioPlayerState, toState to: AudioPlayerState) {

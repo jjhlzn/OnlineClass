@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="mtC-8X-XYd">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="mtC-8X-XYd">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -620,7 +620,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="albumCell" rowHeight="74" id="jMg-kZ-gym" customClass="AlbumCell" customModule="AudioPlayer" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="320" height="74"/>
+                                <rect key="frame" x="0.0" y="92" width="320" height="74"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jMg-kZ-gym" id="eSJ-qm-QvQ">
                                     <rect key="frame" x="0.0" y="0.0" width="287" height="73"/>
@@ -661,7 +661,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="liveAlbumCell" rowHeight="74" id="1LG-bb-0ID" customClass="LiveAlbumCell" customModule="AudioPlayer" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="102" width="320" height="74"/>
+                                <rect key="frame" x="0.0" y="166" width="320" height="74"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1LG-bb-0ID" id="Cpa-bW-L7M">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="73"/>
@@ -721,12 +721,12 @@
                         <outlet property="tableView" destination="TYt-sS-iBT" id="pfr-kG-k1n"/>
                         <segue destination="3ur-uT-JCP" kind="push" identifier="albumDetailSegue" id="VNd-S5-Rjk"/>
                         <segue destination="Xdz-Ta-yt3" kind="push" identifier="songSegue" id="SaH-Yu-nYI"/>
-                        <segue destination="qTJ-UI-98H" kind="push" identifier="bugVipSegue" id="OFk-Xz-NKv"/>
+                        <segue destination="qTJ-UI-98H" kind="push" identifier="bugVipSegue" id="6hW-Al-7Wc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3493" y="-422"/>
+            <point key="canvasLocation" x="4052" y="-366"/>
         </scene>
         <!--课列表-->
         <scene sceneID="URI-7O-Zhf">
@@ -1072,7 +1072,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wi0-7J-rWV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4747" y="-288"/>
+            <point key="canvasLocation" x="5279" y="-288"/>
         </scene>
         <!--Test Auk View Controller-->
         <scene sceneID="Jyr-eg-9us">
@@ -1114,7 +1114,43 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fKN-Zb-buE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1140" y="-250"/>
+            <point key="canvasLocation" x="-1144" y="-195"/>
+        </scene>
+        <!--TestIAP Controller-->
+        <scene sceneID="gbR-PC-mfc">
+            <objects>
+                <viewController id="6Jx-8C-jh9" customClass="TestIAPController" customModule="AudioPlayer" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="hNT-k4-mxW">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="58K-te-8dj">
+                                <rect key="frame" x="86" y="194" width="59" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="web页面"/>
+                                <connections>
+                                    <action selector="webPagePressed:" destination="6Jx-8C-jh9" eventType="touchUpInside" id="dgi-wu-Ydx"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="mQ7-PW-RcJ">
+                                <rect key="frame" x="56" y="132" width="118" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="购买"/>
+                                <connections>
+                                    <action selector="buyPressed:" destination="6Jx-8C-jh9" eventType="touchUpInside" id="kCX-C2-vyf"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="6fE-5S-qg9"/>
+                    <connections>
+                        <segue destination="qTJ-UI-98H" kind="push" identifier="bugVipSegue" id="93q-Cw-raC"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oFF-tq-awg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2787" y="-211"/>
         </scene>
         <!--登录-->
         <scene sceneID="in9-II-L7U">
@@ -1313,11 +1349,12 @@
                         <segue destination="nrh-Rw-P5G" kind="push" identifier="searchSegue" id="TBa-xp-hjj"/>
                         <segue destination="Zuy-cj-6pY" kind="push" identifier="liveCourseSegue" id="m7l-yQ-bGL"/>
                         <segue destination="SlY-yD-6L0" kind="push" identifier="moreFunctionSegue" id="nu7-5V-LHA"/>
+                        <segue destination="qTJ-UI-98H" kind="push" identifier="buyVipSegue" id="isv-R5-hdp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="laU-XU-h4Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2080" y="-1223"/>
+            <point key="canvasLocation" x="2528" y="-1302"/>
         </scene>
         <!--功能-->
         <scene sceneID="eyd-dN-buH">
@@ -1353,7 +1390,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SbC-uk-qm6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3045" y="-523"/>
+            <point key="canvasLocation" x="3577" y="-523"/>
         </scene>
         <!--搜索-->
         <scene sceneID="kOi-ZK-PgG">
@@ -1456,11 +1493,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <webView contentMode="scaleToFill" id="kya-yT-15b">
+                            <view contentMode="scaleToFill" id="NZi-Zv-8tP">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
-                            </webView>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                             <view contentMode="scaleToFill" id="DUM-xe-fuX">
                                 <rect key="frame" x="0.0" y="431" width="320" height="137"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
@@ -1470,7 +1507,7 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <state key="normal" title="Button" image="fasongpengyou"/>
                                         <connections>
-                                            <action selector="shareFriendsPressed:" destination="qTJ-UI-98H" eventType="touchUpInside" id="pRP-8N-AUP"/>
+                                            <action selector="shareFriendsPressed:" destination="qTJ-UI-98H" eventType="touchUpInside" id="NRm-jD-YQf"/>
                                             <action selector="shareToFriends:" destination="tlV-Sn-3a7" eventType="touchUpInside" id="ate-TZ-nvf"/>
                                         </connections>
                                     </button>
@@ -1479,7 +1516,7 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                         <state key="normal" title="Button" image="pengyouquan"/>
                                         <connections>
-                                            <action selector="sharePengyouquanPressed:" destination="qTJ-UI-98H" eventType="touchUpInside" id="xji-X4-VpU"/>
+                                            <action selector="sharePengyouquanPressed:" destination="qTJ-UI-98H" eventType="touchUpInside" id="Wnu-Bb-bmY"/>
                                             <action selector="shareToPengyouquan:" destination="tlV-Sn-3a7" eventType="touchUpInside" id="Oi1-Jd-YUt"/>
                                         </connections>
                                     </button>
@@ -1490,7 +1527,7 @@
                                         <state key="normal" title="取消"/>
                                         <connections>
                                             <action selector="cancelButtonPressed:" destination="tlV-Sn-3a7" eventType="touchUpInside" id="OUH-8O-xXv"/>
-                                            <action selector="cancelPressed:" destination="qTJ-UI-98H" eventType="touchUpInside" id="5Lt-O6-noU"/>
+                                            <action selector="cancelPressed:" destination="qTJ-UI-98H" eventType="touchUpInside" id="WpW-va-pes"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="微信好友" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="DUs-5t-Mrq">
@@ -1526,24 +1563,27 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button" image="share"/>
                                 <connections>
-                                    <action selector="shareButtonPressed:" destination="qTJ-UI-98H" eventType="touchUpInside" id="TfQ-4n-wxr"/>
+                                    <action selector="shareButtonPressed:" destination="qTJ-UI-98H" eventType="touchUpInside" id="axd-K0-Mge"/>
                                 </connections>
                             </button>
+                            <connections>
+                                <action selector="shareButtonPressed:" destination="qTJ-UI-98H" id="bWo-wK-KM2"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
-                        <outlet property="backButton" destination="ni2-53-BVe" id="8Mi-Vu-AYQ"/>
-                        <outlet property="cancelButton" destination="Hxv-L1-3RU" id="RlC-Vo-5RK"/>
-                        <outlet property="closeButton" destination="BTk-wt-pRR" id="WJ6-af-kqH"/>
-                        <outlet property="shareButton" destination="yXX-Fe-N97" id="7jk-VW-dmC"/>
-                        <outlet property="shareView" destination="DUM-xe-fuX" id="5TR-ZC-VKf"/>
-                        <outlet property="webView" destination="kya-yT-15b" id="dzb-NQ-MIh"/>
+                        <outlet property="backButton" destination="ni2-53-BVe" id="Jxa-Ij-hQt"/>
+                        <outlet property="cancelButton" destination="Hxv-L1-3RU" id="9Sx-9m-jPn"/>
+                        <outlet property="closeButton" destination="BTk-wt-pRR" id="ZeQ-Xq-I2F"/>
+                        <outlet property="shareButton" destination="yXX-Fe-N97" id="AmT-6T-ZlX"/>
+                        <outlet property="shareView" destination="DUM-xe-fuX" id="JoH-xA-gyi"/>
+                        <outlet property="webContainer" destination="NZi-Zv-8tP" id="wbz-PK-Vnl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IHP-Mp-DaU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2623" y="526"/>
+            <point key="canvasLocation" x="3066" y="-880"/>
         </scene>
         <!--我的-->
         <scene sceneID="oct-0p-3hq">
@@ -1941,14 +1981,14 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="听众点评" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hLT-x9-vFo">
-                                                    <rect key="frame" x="14" y="8" width="56" height="21"/>
+                                                    <rect key="frame" x="14" y="8" width="63" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="（0）" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="TC3-6X-jry">
-                                                    <rect key="frame" x="67" y="8" width="40" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="（0）" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="TC3-6X-jry">
+                                                    <rect key="frame" x="71" y="8" width="52" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -1986,7 +2026,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="在线聊天" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="zqv-N0-3M2">
-                                                    <rect key="frame" x="15" y="9" width="56" height="21"/>
+                                                    <rect key="frame" x="15" y="9" width="157" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -2151,7 +2191,6 @@
                         <outlet property="phoneCodeLabel" destination="ZXh-xP-uf6" id="3oB-DL-3mD"/>
                         <outlet property="phoneField" destination="S1r-9X-Qbf" id="KPw-Gx-PMt"/>
                         <segue destination="59B-S3-xkA" kind="modal" identifier="signupSuccessSegue" modalPresentationStyle="pageSheet" id="6YY-4Q-Fzm"/>
-                        <segue destination="qTJ-UI-98H" kind="push" identifier="webViewSegue" id="6jW-kq-E2K"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AAV-pC-GL4" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2175,7 +2214,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8PI-eW-0Up" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="213" y="855"/>
+            <point key="canvasLocation" x="265" y="598"/>
         </scene>
         <!--忘记密码-->
         <scene sceneID="GUZ-XU-krF">
@@ -2291,7 +2330,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MrD-aa-jPu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1233" y="-272"/>
+            <point key="canvasLocation" x="1827" y="-537"/>
         </scene>
         <!--直播课程-->
         <scene sceneID="jc6-v7-kIt">
@@ -2379,7 +2418,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GaB-TD-Wup" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4278" y="48"/>
+            <point key="canvasLocation" x="4810" y="48"/>
         </scene>
         <!--直播课列表-->
         <scene sceneID="8qh-ZD-epN">
@@ -2888,6 +2927,24 @@
             </objects>
             <point key="canvasLocation" x="1720" y="3515"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="6rN-hm-dr0">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="LL5-eA-w0V" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="FhJ-wl-qIu">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="6Jx-8C-jh9" kind="relationship" relationship="rootViewController" id="yz5-CY-bP1"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6gJ-WL-m4B" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2078" y="-145"/>
+        </scene>
     </scenes>
     <resources>
         <image name="audioUserIcon" width="50" height="50"/>
@@ -2923,11 +2980,11 @@
         <image name="wave1" width="24" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="HJR-zD-bje"/>
-        <segue reference="pCp-Ba-NtI"/>
         <segue reference="gK4-D6-0Uz"/>
-        <segue reference="3eS-Pl-zlw"/>
-        <segue reference="d3n-U5-XAy"/>
+        <segue reference="pCp-Ba-NtI"/>
+        <segue reference="Kp8-Nw-Lqb"/>
+        <segue reference="isv-R5-hdp"/>
+        <segue reference="VNd-S5-Rjk"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.94901960784313721" green="0.38039215686274508" blue="0.0" alpha="0.90000000000000002" colorSpace="calibratedRGB"/>
 </document>

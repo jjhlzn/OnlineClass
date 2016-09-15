@@ -38,27 +38,7 @@ public class LoadingOverlay{
         
         view.addSubview(overlayView)
     }
-    /*
-    public func showOverlayWithMessage(msg: String, view: UIView!) {
-        /*
-        overlayView = UIView(frame: UIScreen.mainScreen().bounds)
-        overlayView.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0)
-        
-        activityIndicator = UIActivityIndicatorView(frame: CGRectMake(0, 0, 80, 80))
-        activityIndicator.layer.cornerRadius = 05;
-        activityIndicator.backgroundColor = UIColor(white: 0, alpha: 0.5)
-        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.WhiteLarge
-        activityIndicator.center = overlayView.center
-        activityIndicator.color = UIColor.whiteColor()
-        overlayView.addSubview(activityIndicator)
-        
-        let text = makeLabel(msg, superView: overlayView)
-        overlayView.addSubview(text)
-        
-        activityIndicator.startAnimating()
-        
-        view.addSubview(overlayView)*/
-    }*/
+
     
     private func makeLabel(msg: String, superView: UIView) -> UILabel {
         let screenWidth = UIScreen.mainScreen().bounds.width

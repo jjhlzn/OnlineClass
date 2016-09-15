@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import QorumLogs
 
 public protocol PagableControllerDelegate : NSObjectProtocol {
     func searchHandler(respHandler: ((resp: ServerResponse) -> Void))
@@ -124,7 +125,12 @@ class PagableController<T> : NSObject {
         //目前这个逻辑之针对VIP课程权限够的情况
         if resp.status == ServerResponseStatus.NoEnoughAuthority.rawValue {
             self.hasMore = false
-            viewController.displayVipBuyMessage(resp.errorMessage!, delegate: confirmDelegate!)
+            QL1(viewController)
+            if viewController.view.window != nil {
+                viewController.displayVipBuyMessage(resp.errorMessage!, delegate: confirmDelegate!)
+            } else {
+                QL4("can't show alert message on ther view controller")
+            }
             return
         }
         
@@ -231,14 +237,27 @@ class PagableController<T> : NSObject {
 
 class ConfirmDelegate : NSObject, UIAlertViewDelegate {
     var controller : UIViewController
+    var parentController: UIViewController?
     init(controller: UIViewController) {
         self.controller = controller
+        QL1(controller.navigationController?.viewControllers)
+        let controllers = controller.navigationController?.viewControllers
+        if controllers?.count > 1 {
+            self.parentController = controller.navigationController?.viewControllers[0]
+        }
     }
     func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
         switch buttonIndex {
         case 0:
             print("button 0 pressed")
-            controller.performSegueWithIdentifier("bugVipSegue", sender: nil)
+            if controller.view.window != nil {
+                controller.performSegueWithIdentifier("bugVipSegue", sender: nil)
+            } else {
+                //QL1(parentController)
+                //if parentController as? CourseMainPageViewController != nil {
+                //parentController!.performSegueWithIdentifier("bugVipSegue", sender: nil)
+                //}
+            }
             break
         case 1:
             print("button 1 pressed")

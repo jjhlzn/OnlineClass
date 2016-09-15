@@ -17,4 +17,6 @@
 #import "XGSetting.h"
 #import "XGPush.h"
 
+#import <CommonCrypto/CommonCrypto.h>
+
 #endif /* weixinshare_bridge_h */

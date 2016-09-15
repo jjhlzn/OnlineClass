@@ -51,6 +51,7 @@ class CommentController : NSObject, UITextViewDelegate {
     var commentErrorMessage: String?
     
     var socket: SocketIOClient?
+    let loginUserStore = LoginUserStore()
     
     func textViewDidChange(textView: UITextView) { //Handle the text changes here
         //print(textView.text); //the textView parameter is the textView where text was changed
@@ -113,6 +114,7 @@ class CommentController : NSObject, UITextViewDelegate {
     }
     
     let chat_message_cmd = "chat message"
+    let join_room_cmd = "join room"
     
     func initChat() {
         if socket != nil {
@@ -122,6 +124,9 @@ class CommentController : NSObject, UITextViewDelegate {
         
         socket!.on("connect") {data, ack in
             QL1("socket connected")
+            let request = JoinRoomRequest()
+            request.song = self.song
+            self.socket?.emit(self.join_room_cmd, request.getJSON().rawString()!)
         }
         
         socket!.on(chat_message_cmd) {data, ack in
@@ -143,6 +148,8 @@ class CommentController : NSObject, UITextViewDelegate {
     
     func dispose() {
         if socket != nil {
+            socket!.off(chat_message_cmd)
+            socket!.off(join_room_cmd)
             socket!.disconnect()
         }
     }
@@ -195,11 +202,6 @@ class CommentController : NSObject, UITextViewDelegate {
         commentFiled2.resignFirstResponder()
     }
     
-    private func getLoginUser() -> User {
-        let user = User()
-        user.userName = "jjh"
-        return user
-    }
     
     private func getCommentContent() -> String {
         let commentContent = commentFiled2.text.emojiEscapedString
@@ -272,12 +274,14 @@ class CommentController : NSObject, UITextViewDelegate {
                     self.commentFiled2.text = ""
                     self.disableSendButton()
                     
+                    let loginUser = self.loginUserStore.getLoginUser()
+                    
                     self.isCommentSuccess = true
                     let comment = Comment()
                     comment.song = self.song
                     comment.time = "现在"
-                    comment.userId = self.getLoginUser().userName
-                    comment.nickName = LoginUserStore().getLoginUser()?.nickName!
+                    comment.userId = loginUser!.userName
+                    comment.nickName = loginUser!.nickName!
                     comment.content = sendCommentRequest.comment
                     self.delegate?.afterSendComment(comment)
                     
@@ -298,7 +302,7 @@ class CommentController : NSObject, UITextViewDelegate {
     
     
     private func sendLiveComment() {
-        
+
         //liveDelegate?.setUpdateChatFlag(true)
         let sendCommentRequest = SendLiveCommentRequest()
         sendCommentRequest.song = song
@@ -317,46 +321,25 @@ class CommentController : NSObject, UITextViewDelegate {
             if !self.isKeyboardShow {
                 self.showComentResultTip()
             }
+            
+            let dateFormatter = NSDateFormatter()
+            dateFormatter.dateFormat = "HH:mm:ss"
+            
+            
+            let loginUser = self.loginUserStore.getLoginUser()
+            
+            let comment = Comment()
+            comment.id = "1"
+            comment.song = self.song
+            comment.time = dateFormatter.stringFromDate(NSDate())
+            comment.userId = loginUser!.userName
+            comment.nickName = loginUser!.nickName!
+            comment.content = sendCommentRequest.comment
+            self.liveDelegate?.afterSendLiveComment([comment])
         }
     }
 
     
-    private func sendLiveComment1() {
-        
-        liveDelegate?.setUpdateChatFlag(true)
-        let sendCommentRequest = SendLiveCommentRequest()
-        sendCommentRequest.song = song
-        sendCommentRequest.lastId = liveDelegate!.getLastCommentId()
-        sendCommentRequest.comment = getCommentContent().emojiEscapedString
-        
-        BasicService().sendRequest(ServiceConfiguration.SEND_LIVE_COMMENT, request: sendCommentRequest) {
-            (resp: SendLiveCommentResponse) -> Void in
-            dispatch_async(dispatch_get_main_queue()) {
-                self.liveDelegate?.setUpdateChatFlag(false)
-                NSLog("%s: process send comment response", self.TAG)
-                self.viewController.dismissKeyboard()
-                self.lastCommentTime = NSDate()
-                if ( resp.status == ServerResponseStatus.Success.rawValue) {
-                    self.commentFiled2.text = ""
-                    self.disableSendButton()
-                    
-                    self.isCommentSuccess = true
-                    
-                    self.liveDelegate?.afterSendLiveComment(resp.comments)
-                    
-                    if !self.isKeyboardShow {
-                        self.showComentResultTip()
-                    }
-                    
-                } else {
-                    self.isCommentSuccess = false
-                    self.commentErrorMessage = resp.errorMessage
-                }
-            }
-            
-        }
-
-    }
     
     //注册键盘改变通知
     func addKeyboardNotify() {
