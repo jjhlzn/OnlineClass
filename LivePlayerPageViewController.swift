@@ -59,7 +59,7 @@ class LivePlayerPageViewController : CommonPlayerPageViewController, LiveComment
             self.lastId = comments[0].id!
         }
         self.comments.insert(comments[0], atIndex: 0)
-        viewController.tableView.reloadSections(NSIndexSet(index: 1), withRowAnimation: .None)
+        viewController.tableView.reloadData()
     }
     
     

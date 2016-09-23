@@ -189,7 +189,6 @@ class WebPageViewController: BaseUIViewController, WKScriptMessageHandler, SKPro
        
         let pay = SKPayment(product: product)
         SKPaymentQueue.defaultQueue().addTransactionObserver(self)
-        SKPaymentQueue.defaultQueue()
         SKPaymentQueue.defaultQueue().addPayment(pay as SKPayment);
         loadingOverlay.showOverlayWithMessage("支付中", view: self.view)
     }
@@ -222,8 +221,8 @@ class WebPageViewController: BaseUIViewController, WKScriptMessageHandler, SKPro
         loadingOverlay.hideOverlayView()
         for transaction:AnyObject in transactions {
             let trans = transaction as! SKPaymentTransaction
-            QL1(trans.error)
-            
+            QL1("error = \(trans.error)")
+            QL1("state = \(trans.transactionState.rawValue)")
             switch trans.transactionState {
             
             case .Purchased:
