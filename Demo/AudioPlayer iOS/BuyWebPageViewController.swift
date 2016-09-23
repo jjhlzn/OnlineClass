@@ -69,6 +69,16 @@ class WebPageViewController: BaseUIViewController, WKScriptMessageHandler, SKPro
 
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        SKPaymentQueue.defaultQueue().addTransactionObserver(self)
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        SKPaymentQueue.defaultQueue().removeTransactionObserver(self)
+    }
+    
     
     let contentController = WKUserContentController()
     private func initWebView() {
@@ -97,10 +107,7 @@ class WebPageViewController: BaseUIViewController, WKScriptMessageHandler, SKPro
         webView!.loadRequest(myRequest);
     }
     
-    override func viewWillDisappear(animated: Bool) {
-        super.viewWillDisappear(animated)
-    }
-    
+
 
     /****  webView相关的函数  ***/
     func webView(webView: WKWebView, didCommitNavigation navigation: WKNavigation!) {
@@ -188,7 +195,6 @@ class WebPageViewController: BaseUIViewController, WKScriptMessageHandler, SKPro
         }
        
         let pay = SKPayment(product: product)
-        SKPaymentQueue.defaultQueue().addTransactionObserver(self)
         SKPaymentQueue.defaultQueue().addPayment(pay as SKPayment);
         loadingOverlay.showOverlayWithMessage("支付中", view: self.view)
     }
@@ -217,7 +223,7 @@ class WebPageViewController: BaseUIViewController, WKScriptMessageHandler, SKPro
     
     
     func paymentQueue(queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
-        QL1("add paymnet")
+        QL1("paymentQueue(updatedTransactions)")
         loadingOverlay.hideOverlayView()
         for transaction:AnyObject in transactions {
             let trans = transaction as! SKPaymentTransaction
@@ -226,7 +232,7 @@ class WebPageViewController: BaseUIViewController, WKScriptMessageHandler, SKPro
             switch trans.transactionState {
             
             case .Purchased:
-                QL1("buy, ok unlock iap here")
+                QL1("Purchased")
                 QL1(trans.payment.productIdentifier)
                 let prodID = trans.payment.productIdentifier as String
                 QL1("prodid = \(prodID)")
@@ -277,9 +283,15 @@ class WebPageViewController: BaseUIViewController, WKScriptMessageHandler, SKPro
                 break;
             case .Failed:
                 notifyBrowserPayResult(false)
-                QL1("buy error")
+                QL1("buy failed")
                 queue.finishTransaction(trans)
                 break;
+            case .Purchasing:
+                QL1("purchasing")
+                break
+            case .Deferred:
+                QL1("defered")
+                break
             default:
                 //TODO: 通知浏览器支付失败
                 //notifyBrowserPayResult(false)

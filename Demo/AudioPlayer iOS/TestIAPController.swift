@@ -19,7 +19,7 @@ class TestIAPController: UIViewController, SKProductsRequestDelegate, SKPaymentT
         // Set IAPS
         if(SKPaymentQueue.canMakePayments()) {
             print("IAP is enabled, loading")
-            let productID:NSSet = NSSet(objects: "com.jufang.jfzs.testvipcourse")
+            let productID:NSSet = NSSet(objects: "com.jufang.onlineclass.oneyearvipcourse1")
             let request: SKProductsRequest = SKProductsRequest(productIdentifiers: productID as! Set<String>)
             request.delegate = self
             request.start()

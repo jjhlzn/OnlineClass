@@ -28,6 +28,7 @@ class StartupViewController: BaseUIViewController {
         
         //serviceLocator不应该为null，因为在AppDelegate会有一个初始化值
         if (serviceLocator?.needServieLocator)! {
+            
             BasicService().sendRequest(ServiceConfiguration.GET_SERVICE_LOACTOR_URL, request: GetServiceLocatorRequest()) {
                 (resp : GetServiceLocatorResponse) -> Void in
                 

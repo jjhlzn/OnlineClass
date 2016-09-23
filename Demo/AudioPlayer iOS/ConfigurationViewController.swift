@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import QorumLogs
 
 class ConfigurationController: BaseUIViewController, UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate {
     
@@ -24,15 +25,19 @@ class ConfigurationController: BaseUIViewController, UITableViewDataSource, UITa
         tableView.delegate = self
         
         let serviceLoator = serviceLocatorStore.GetServiceLocator()
+        
         if serviceLoator != nil {
             values[0] = (serviceLoator?.http)!
             values[1] = (serviceLoator?.serverName)!
             values[2] = "\((serviceLoator?.port)!)"
-            if serviceLoator?.isUseServiceLocator == nil {
+            if serviceLoator?.isUseServiceLocator == nil || serviceLoator?.isUseServiceLocator == "1" {
                 values[3] = "1"
             } else {
                 values[3] = "0"
             }
+            QL1("serviceLocator: \(values[0]) \(values[1]) \(values[2]) \(values[3])")
+        } else {
+            QL1("servicelocator is null")
         }
     }
     
@@ -96,6 +101,9 @@ class ConfigurationController: BaseUIViewController, UITableViewDataSource, UITa
         serviceLocator?.port = Int(port)
         serviceLocator?.serverName = serverName
         serviceLocator?.isUseServiceLocator = isUseServiceLocator
+        
+        QL1("newServiceLocator: \(http) \(port) \(serverName) \(isUseServiceLocator)")
+        
         if serviceLocatorStore.UpdateServiceLocator() {
             displayMessage("保存成功", delegate: self)
         } else {
