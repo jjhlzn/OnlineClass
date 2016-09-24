@@ -48,6 +48,8 @@ class Album : BaseModelObject {
     var count: Int = 0
     var listenCount : String = ""
     var courseType = CourseType.LiveCourse
+    var playing : Bool = false
+    var isReady : Bool = false
     var songs = [Song]()
     
     var hasImage: Bool {

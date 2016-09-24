@@ -124,6 +124,9 @@ extension AlbumListController {
             if album.hasImage  {
                 cell.albumImage.kf_setImageWithURL(NSURL(string: album.image)!)
             }
+            if album.playing {
+                cell.playingLabel.hidden = false
+            }
             return cell
 
             
@@ -143,7 +146,14 @@ extension AlbumListController {
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let request = GetAlbumSongsRequest(album: pagableController.data[indexPath.row])
+        let album = pagableController.data[indexPath.row]
+        if !album.isReady {
+            self.displayMessage("该课程未上线，敬请期待！")
+            tableView.deselectRowAtIndexPath(indexPath, animated: false)
+            return
+        }
+        
+        let request = GetAlbumSongsRequest(album: album)
         request.pageSize = 200
         BasicService().sendRequest(ServiceConfiguration.GET_ALBUM_SONGS, request: request) {
             (resp: GetAlbumSongsResponse) -> Void in
