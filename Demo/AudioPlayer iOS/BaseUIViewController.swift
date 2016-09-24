@@ -24,7 +24,7 @@ class BaseUIViewController: UIViewController, AudioPlayerDelegate {
    UIColor(red: 0xF2/255, green: 0x61/255, blue: 0, alpha: 0.9)
             self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
 
-           self.navigationController?.navigationBar.barStyle = UIBarStyle.Black
+            self.navigationController?.navigationBar.barStyle = UIBarStyle.Black
            
         }
         
@@ -48,7 +48,8 @@ class BaseUIViewController: UIViewController, AudioPlayerDelegate {
         super.viewWillDisappear(animated)
         getAudioPlayer().delegate = nil
         
-        if isNeedResetAudioPlayerDelegate() && self.navigationController?.viewControllers.indexOf(self) == nil {
+        if isNeedResetAudioPlayerDelegate()
+            && self.navigationController?.viewControllers.indexOf(self) == nil {
             if let navigatoinViewController = (self.parentViewController as? UINavigationController) {
                 if let delegate = navigatoinViewController.topViewController as? AudioPlayerDelegate {
                     getAudioPlayer().delegate = delegate
@@ -177,10 +178,21 @@ extension BaseUIViewController {
         //alertView.title = "系统提示"
         alertView.message = message
         alertView.addButtonWithTitle("购买")
+        alertView.addButtonWithTitle("取消")
+        alertView.delegate=delegate
+        alertView.show()
+    }
+    
+    func displayVipBuyMessage2(message : String, delegate: UIAlertViewDelegate) {
+        let alertView = UIAlertView()
+        //alertView.title = "系统提示"
+        alertView.message = message
+        alertView.addButtonWithTitle("购买")
         alertView.addButtonWithTitle("返回")
         alertView.delegate=delegate
         alertView.show()
     }
+
 
     
     func displayConfirmMessage(message : String, delegate: UIAlertViewDelegate) {

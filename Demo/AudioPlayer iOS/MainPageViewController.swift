@@ -33,8 +33,7 @@ class CourseMainPageViewController: BaseUIViewController {
         }
         extendFunctionMananger = ExtendFunctionMananger(controller: self, isNeedMore:  true, showMaxRows: maxRows)
         addPlayingButton(playingButton)
-        
-        
+
     }
     
     private func updateCellForDesc(resp: GetParameterInfoResponse, key: String, cell: CourseTypeCell) {
@@ -70,7 +69,7 @@ class CourseMainPageViewController: BaseUIViewController {
         if segue.identifier == "beforeCourseSegue" {
             let dest = segue.destinationViewController as! AlbumListController
             
-            dest.courseType = CourseType(rawValue: sender as! String)!
+            dest.courseType = sender as! CourseType
         } 
         else if segue.identifier == "loadWebPageSegue" {
             let dest = segue.destinationViewController as! WebPageViewController
@@ -114,7 +113,7 @@ extension CourseMainPageViewController : UITableViewDataSource, UITableViewDeleg
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
-            return 3
+            return 2
         } else {
             return extendFunctionMananger.getRowCount() + 1
         }
@@ -143,15 +142,6 @@ extension CourseMainPageViewController : UITableViewDataSource, UITableViewDeleg
                 let cell = tableView.dequeueReusableCellWithIdentifier("courseTypeCell") as! CourseTypeCell
                 cell.courseTypeName.text = "VIP课堂"
                 imageName = "vipCourse"
-                cell.courseTypeImageView.image = UIImage(named: imageName)
-                return cell
-
-                
-            case 2:
-                
-                let cell = tableView.dequeueReusableCellWithIdentifier("courseTypeCell") as! CourseTypeCell
-                cell.courseTypeName.text  = "往期课程内容"
-                imageName = "beforeCourse"
                 cell.courseTypeImageView.image = UIImage(named: imageName)
                 return cell
                 
@@ -187,8 +177,6 @@ extension CourseMainPageViewController : UITableViewDataSource, UITableViewDeleg
         if y < 0 {
             y = 0
         }
-        
-        //print("cellWidth = \(imageWidth), cellHeight = \(cellHeight), imageHeight = \(imageHeight), x = \(x), y = \(y)")
         
         let scrollView = UIScrollView(frame: CGRect(x: x, y: y, width: imageWidth, height: imageHeight ))
         
@@ -236,7 +224,7 @@ extension CourseMainPageViewController : UITableViewDataSource, UITableViewDeleg
     }
 
     private func computeAdCellHeight() -> CGFloat {
-        let section1Height = 3 * 53
+        let section1Height = 2 * 76
         let section2Height = extendFunctionMananger.getRowCount() * 79
         let total = section1Height + section2Height + 3 + 65 + 49 - 1
         var height = UIScreen.mainScreen().bounds.height - CGFloat(total)
@@ -258,7 +246,7 @@ extension CourseMainPageViewController : UITableViewDataSource, UITableViewDeleg
                 return 79
             }
         } else {
-            return 53
+            return 76
         }
     }
     
@@ -272,13 +260,10 @@ extension CourseMainPageViewController : UITableViewDataSource, UITableViewDeleg
             let row = indexPath.row
             switch row {
             case 0:
-                performSegueWithIdentifier("beforeCourseSegue", sender: CourseType.Live.rawValue)
+                performSegueWithIdentifier("beforeCourseSegue", sender: CourseType.LiveCourse)
                 break
             case 1:
-                performSegueWithIdentifier("beforeCourseSegue", sender: CourseType.Vip.rawValue)
-                break
-            case 2:
-                performSegueWithIdentifier("beforeCourseSegue", sender: CourseType.Common.rawValue)
+                performSegueWithIdentifier("beforeCourseSegue", sender: CourseType.PayCourse)
                 break
             default:
                 break

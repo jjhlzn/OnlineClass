@@ -60,6 +60,8 @@
 		1C8620141D337A8F006C30BB /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C8620131D337A8F006C30BB /* SystemConfiguration.framework */; };
 		1C8620161D337ACE006C30BB /* libc++.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C8620151D337ACE006C30BB /* libc++.1.dylib */; };
 		1C8620181D337AFB006C30BB /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C8620171D337AFB006C30BB /* CoreTelephony.framework */; };
+		1C8926621D96196800E0AEC6 /* ApplyBrowserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C8926611D96196800E0AEC6 /* ApplyBrowserController.swift */; };
+		1C8926641D961EA300E0AEC6 /* IapSupportWebPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C8926631D961EA300E0AEC6 /* IapSupportWebPageViewController.swift */; };
 		1C8A2AD41CE4BEA60086C1B8 /* MallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C8A2AD31CE4BEA60086C1B8 /* MallViewController.swift */; };
 		1C8A2AD61CE5882A0086C1B8 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C8A2AD51CE5882A0086C1B8 /* SignupViewController.swift */; };
 		1C8E7DC11D87950F0022B0D2 /* PurchaseRecordEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C8E7DBF1D87950F0022B0D2 /* PurchaseRecordEntity+CoreDataProperties.swift */; };
@@ -174,6 +176,8 @@
 		1C8620131D337A8F006C30BB /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		1C8620151D337ACE006C30BB /* libc++.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.1.dylib"; path = "../../../../usr/lib/libc++.1.dylib"; sourceTree = "<group>"; };
 		1C8620171D337AFB006C30BB /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		1C8926611D96196800E0AEC6 /* ApplyBrowserController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplyBrowserController.swift; sourceTree = "<group>"; };
+		1C8926631D961EA300E0AEC6 /* IapSupportWebPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IapSupportWebPageViewController.swift; sourceTree = "<group>"; };
 		1C8A2AD31CE4BEA60086C1B8 /* MallViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MallViewController.swift; sourceTree = "<group>"; };
 		1C8A2AD51CE5882A0086C1B8 /* SignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		1C8E7DBA1D87942D0022B0D2 /* jufangzhushou 5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "jufangzhushou 5.xcdatamodel"; sourceTree = "<group>"; };
@@ -528,6 +532,8 @@
 				1C3479BC1CF2F9BD003FEF05 /* FirstPageViewController.swift */,
 				1C451F651D0175FA00DC29F9 /* ConfigurationViewController.swift */,
 				1C9F20E51D823BA100E1B69F /* BuyWebPageViewController.swift */,
+				1C8926611D96196800E0AEC6 /* ApplyBrowserController.swift */,
+				1C8926631D961EA300E0AEC6 /* IapSupportWebPageViewController.swift */,
 				1C33F0391D071CC000D3EE4C /* login&signup */,
 				1C33F0381D071C8000D3EE4C /* song */,
 				1C33F0371D071C5300D3EE4C /* me */,
@@ -759,6 +765,7 @@
 				1CEFF7961CC0C4C9000DEFF7 /* SongCell.swift in Sources */,
 				1CC1ADBA1D1C17B7005AF856 /* SetProfilePhotoController.swift in Sources */,
 				1C09D3C11CD1D462004A8F9C /* CommonPlayerPageViewController.swift in Sources */,
+				1C8926641D961EA300E0AEC6 /* IapSupportWebPageViewController.swift in Sources */,
 				1CA3B2101CD86B7800D0ABD8 /* MainPageViewController.swift in Sources */,
 				1C1E69231CCA0F1700CEA029 /* CommentHeaderCell.swift in Sources */,
 				1C2684781CCB59210032C014 /* LoginViewController.swift in Sources */,
@@ -816,6 +823,7 @@
 				1C8A2AD61CE5882A0086C1B8 /* SignupViewController.swift in Sources */,
 				1CDCC8EF1CE72203001640CC /* logoutCell.swift in Sources */,
 				1C2451D41CE8A0BD00F350DA /* jufangzhushou.xcdatamodeld in Sources */,
+				1C8926621D96196800E0AEC6 /* ApplyBrowserController.swift in Sources */,
 				1C3C5EDF1D1E24FC000F0A39 /* SetNickNameViewController.swift in Sources */,
 				1C2684761CCA66040032C014 /* MyInfoMainCell.swift in Sources */,
 				1CD349701CF9AB1000037F78 /* PersonalInfoViewController.swift in Sources */,

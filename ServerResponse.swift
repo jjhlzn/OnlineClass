@@ -115,19 +115,7 @@ class GetAlbumsRequest : PagedServerRequest {
     
     override var params: [String : AnyObject] {
         get {
-            var parameters = super.params
-            switch courseType {
-            case .Common:
-                parameters = ["type": "Common"]
-                break
-            case .Live:
-                parameters = ["type": "Live"]
-                break
-            case .Vip:
-                parameters = ["type": "Vip"]
-                break
-                
-            }
+            let parameters = ["type": courseType.code]
             return parameters
 
         }
@@ -154,7 +142,7 @@ class GetAlbumsResponse : PageServerResponse<Album> {
             album.count = albumJson["count"] as! Int
             album.desc = albumJson["desc"] as! String
             album.listenCount = albumJson["listenCount"] as! String
-            album.courseType = CourseType(rawValue: albumJson["type"] as! String)!
+            album.courseType = CourseType.getCourseType(albumJson["type"] as! String)!
             albums.append(album)
         }
         self.resultSet = albums

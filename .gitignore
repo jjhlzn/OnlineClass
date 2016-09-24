@@ -6,3 +6,5 @@ OnlineClass.xcworkspace/xcuserdata/lzn.xcuserdatad/UserInterfaceState.xcuserstat
 .DS_Store
 
 .DS_Store
+
+*.xcbkptlist

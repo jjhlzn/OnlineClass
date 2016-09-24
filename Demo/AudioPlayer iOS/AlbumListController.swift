@@ -17,9 +17,12 @@ class AlbumListController: BaseUIViewController, UITableViewDataSource, UITableV
     @IBOutlet var tableView: UITableView!
     
     var pagableController = PagableController<Album>()
-    var courseType : CourseType = CourseType.Common
+    var courseType : CourseType = CourseType.LiveCourse
     var purchaseRecordStore = PurchaseRecordStore()
     var loginUserStore = LoginUserStore()
+    var loadingOverlay = LoadingOverlay()
+    var buyPayCourseDelegate : ConfirmDelegate2?
+    
 
     
     override func viewDidLoad() {
@@ -27,7 +30,7 @@ class AlbumListController: BaseUIViewController, UITableViewDataSource, UITableV
         print("viewDidLoad")
         addPlayingButton(playingButton)
         
-        
+        buyPayCourseDelegate = ConfirmDelegate2(controller: self)
         tableView.dataSource = self
         tableView.delegate = self
         
@@ -35,7 +38,7 @@ class AlbumListController: BaseUIViewController, UITableViewDataSource, UITableV
         
         let loginUser = loginUserStore.getLoginUser()!
         let purchaseRecord = purchaseRecordStore.getNotNotifyRecord(loginUser.userName!)
-        if courseType == .Vip && purchaseRecord != nil {
+        if courseType == CourseType.PayCourse && purchaseRecord != nil {
             let request = NotifyIAPSuccessRequest()
             request.payTime = purchaseRecord?.payTime!
             request.productId = purchaseRecord?.productId!
@@ -68,16 +71,16 @@ class AlbumListController: BaseUIViewController, UITableViewDataSource, UITableV
         updatePlayingButton(playingButton)
     }
     
+    //TODO: 这里的名称不能写死
     private func setTitle() {
-        switch courseType {
-        case .Common:
-            self.title = "往期课程"
+        switch courseType.code {
+        case "Live":
+            self.title = "直播课程"
             break
-        case .Live:
-            self.title = "在线直播"
+        case "Vip":
+            self.title = "会员专享课堂"
             break
-        case .Vip:
-            self.title = "VIP课程"
+        default:
             break
         }
     }
@@ -92,19 +95,6 @@ class AlbumListController: BaseUIViewController, UITableViewDataSource, UITableV
     }
     
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        super.prepareForSegue(segue, sender: sender)
-        if segue.identifier == "albumDetailSegue" {
-            let dest = segue.destinationViewController as! AlbumDetailController
-            let row = (tableView.indexPathForSelectedRow?.row)!
-            dest.album = pagableController.data[row]
-        } else if segue.identifier == "bugVipSegue" {
-            let dest = segue.destinationViewController as! WebPageViewController
-            dest.url = NSURL(string: ServiceLinkManager.MyAgentUrl)
-            dest.title = "Vip购买"
-        }
-
-    }
     
     override func audioPlayer(audioPlayer: AudioPlayer, didChangeStateFrom from: AudioPlayerState, toState to: AudioPlayerState) {
         super.audioPlayer(audioPlayer, didChangeStateFrom: from, toState: to)
@@ -153,10 +143,117 @@ extension AlbumListController {
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
-        performSegueWithIdentifier("albumDetailSegue", sender: nil)
-        tableView.deselectRowAtIndexPath(indexPath, animated: false)
+        let request = GetAlbumSongsRequest(album: pagableController.data[indexPath.row])
+        request.pageSize = 200
+        BasicService().sendRequest(ServiceConfiguration.GET_ALBUM_SONGS, request: request) {
+            (resp: GetAlbumSongsResponse) -> Void in
+            dispatch_async(dispatch_get_main_queue()) {
+                self.loadingOverlay.hideOverlayView()
+                if resp.status == ServerResponseStatus.TokenInvalid.rawValue {
+                    self.displayMessage("请重新登录")
+                    tableView.deselectRowAtIndexPath(indexPath, animated: false)
+                    return
+                }
+                
+                //目前这个逻辑之针对VIP课程权限够的情况
+                if resp.status == ServerResponseStatus.NoEnoughAuthority.rawValue {
+                    self.displayVipBuyMessage(resp.errorMessage!, delegate: self.buyPayCourseDelegate!)
+                    tableView.deselectRowAtIndexPath(indexPath, animated: false)
+                    return
+                }
+                
+                if resp.status != 0 {
+                    print(resp.errorMessage)
+                    self.displayMessage(resp.errorMessage!)
+                    tableView.deselectRowAtIndexPath(indexPath, animated: false)
+                    return
+                } else {
+                    let songs = resp.resultSet
+                    
+                    if songs.count == 0 {
+                        self.displayMessage("敬请期待")
+                        tableView.deselectRowAtIndexPath(indexPath, animated: false)
+                        return
+                    }
+                    
+                    if songs.count == 1 {
+                        self.performSegueWithIdentifier("songSegue1", sender: songs)
+                        tableView.deselectRowAtIndexPath(indexPath, animated: false)
+                        return
+                    }
+                    
+                    self.performSegueWithIdentifier("albumDetailSegue", sender: songs)
+                    tableView.deselectRowAtIndexPath(indexPath, animated: false)
+                }
+            }
+        }
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        super.prepareForSegue(segue, sender: sender)
+        if segue.identifier == "albumDetailSegue" {
+            let dest = segue.destinationViewController as! AlbumDetailController
+            let row = (tableView.indexPathForSelectedRow?.row)!
+            let songs = sender as! [Song]
+            dest.songs = songs
+            dest.album = pagableController.data[row]
+            
+            
+        } else if segue.identifier == "bugVipSegue" {
+            let dest = segue.destinationViewController as! WebPageViewController
+            dest.url = NSURL(string: ServiceLinkManager.MyAgentUrl)
+            dest.title = "Vip购买"
+        } else if segue.identifier == "songSegue1" {
+            //let dest = segue.destinationViewController as! SongViewController
+            let songs = sender as! [Song]
+            let song = songs[0]
+            
+            let audioPlayer = getAudioPlayer()
+            //如果当前歌曲已经在播放，就什么都不需要做
+            if audioPlayer.currentItem != nil {
+                if song.id == (audioPlayer.currentItem! as! MyAudioItem).song.id {
+                    return
+                }
+            }
+            
+            var audioItems = [AudioItem]()
+            for songItem in songs {
+                var url = NSURL(string: ServiceConfiguration.GetSongUrl(songItem.url))
+                if songItem.album.courseType == CourseType.LiveCourse {
+                    url = NSURL(string: songItem.url)
+                }
+                let audioItem = MyAudioItem(song: songItem, highQualitySoundURL: url)
+                //(audioItem as! MyAudioItem).song = item
+                audioItems.append(audioItem!)
+            }
+            
+            audioPlayer.delegate = nil
+            audioPlayer.playItems(audioItems, startAtIndex: 0)
+            
+        }
+
         
     }
 
+
+}
+
+class ConfirmDelegate2 : NSObject, UIAlertViewDelegate {
+    var controller : UIViewController
+    init(controller: UIViewController) {
+        self.controller = controller
+    }
+    func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
+        switch buttonIndex {
+        case 0:
+            controller.performSegueWithIdentifier("bugVipSegue", sender: nil)
+            break
+        case 1:
+            break
+        default:
+            break
+        }
+        
+    }
+    
 }

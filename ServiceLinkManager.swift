@@ -155,4 +155,10 @@ class ServiceLinkManager {
         }
     }
     
+    static var ApplyUrl : String {
+        get {
+            return "http://\(ServiceConfiguration.serverName):\(ServiceConfiguration.port)/shop/shopindex"
+        }
+    }
+    
 }
