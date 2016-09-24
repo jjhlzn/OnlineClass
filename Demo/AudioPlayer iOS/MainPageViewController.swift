@@ -18,6 +18,7 @@ class CourseMainPageViewController: BaseUIViewController {
     @IBOutlet weak var playingButton: UIButton!
     var extendFunctionMananger : ExtendFunctionMananger!
     var ads = [Advertise]()
+    var keyValueStore = KeyValueStore()
 
     
     override func viewDidLoad() {
@@ -54,10 +55,29 @@ class CourseMainPageViewController: BaseUIViewController {
                 return
             }
             
+            //设置liveDescription
             let liveDescription = resp.getValue(GetParameterInfoResponse.LIVE_DESCRIPTION)
-            KeyValueStore().save(GetParameterInfoResponse.LIVE_DESCRIPTION, value: liveDescription)
+            self.keyValueStore.save(GetParameterInfoResponse.LIVE_DESCRIPTION, value: liveDescription)
+            
+            //设置LiveCourseName
+            let liveName = resp.getValue(GetParameterInfoResponse.LIVE_COURSE_NAME)
+            self.keyValueStore.save(GetParameterInfoResponse.LIVE_COURSE_NAME, value: liveName)
             let liveCell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0)) as! CourseTypeCell
+            liveCell.courseTypeName.text = liveName
             liveCell.courseDescription.text = liveDescription
+            
+            //设置payDescription
+            let payDescription = resp.getValue(GetParameterInfoResponse.PAY_DESCRIPTION)
+            self.keyValueStore.save(GetParameterInfoResponse.PAY_DESCRIPTION, value: payDescription)
+            
+            //设置PayCourseName
+            let payCourseName = resp.getValue(GetParameterInfoResponse.PAY_COURSE_NAME)
+            self.keyValueStore.save(GetParameterInfoResponse.PAY_COURSE_NAME, value: payCourseName)
+            let payCourseCell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 1, inSection: 0)) as! CourseTypeCell
+            payCourseCell.courseTypeName.text = payCourseName
+            payCourseCell.courseDescription.text = payDescription
+            
+            
             self.tableView.reloadData()
         }
 
@@ -131,16 +151,16 @@ extension CourseMainPageViewController : UITableViewDataSource, UITableViewDeleg
             switch row {
             case 0:
                 let cell = tableView.dequeueReusableCellWithIdentifier("courseTypeCell") as! CourseTypeCell
-                cell.courseTypeName.text = "直播课程！"
+                cell.courseTypeName.text = keyValueStore.get(GetParameterInfoResponse.LIVE_COURSE_NAME, defaultValue: CourseType.LiveCourse.name)
                 imageName = "liveAudio"
                 cell.courseTypeImageView.image = UIImage(named: imageName)
-                QL2("liveDescription = \(KeyValueStore().get(GetParameterInfoResponse.LIVE_DESCRIPTION))")
                 cell.courseDescription.text = KeyValueStore().get(GetParameterInfoResponse.LIVE_DESCRIPTION)
                 return cell
                 
             case 1:
                 let cell = tableView.dequeueReusableCellWithIdentifier("courseTypeCell") as! CourseTypeCell
-                cell.courseTypeName.text = "VIP课堂"
+                cell.courseTypeName.text = keyValueStore.get(GetParameterInfoResponse.PAY_COURSE_NAME, defaultValue: CourseType.PayCourse.name)
+
                 imageName = "vipCourse"
                 cell.courseTypeImageView.image = UIImage(named: imageName)
                 return cell

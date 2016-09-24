@@ -35,6 +35,7 @@ class ApplyBrowserController : IapSupportWebPageViewController, WKNavigationDele
         
         backButton.target = self
         backButton.action = #selector(webViewBack)
+        //建立一个后退button的拷贝，不然执行下面这条语句后，backButton会被设置为nil
         backButtonCopy = backButton
         navigationItem.leftBarButtonItems = []
         

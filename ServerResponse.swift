@@ -861,6 +861,9 @@ class GetParameterInfoRequest : ServerRequest {
 
 class GetParameterInfoResponse : ServerResponse {
     static let LIVE_DESCRIPTION = "livedescription"
+    static let PAY_DESCRIPTION = "vipdescription"
+    static let LIVE_COURSE_NAME = "liveCourseName"
+    static let PAY_COURSE_NAME = "payCourseName"
     
     var map: [String: String] = [:]
     
