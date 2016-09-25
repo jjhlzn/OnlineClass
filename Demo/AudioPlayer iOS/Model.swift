@@ -74,6 +74,12 @@ class SongSetting : BaseModelObject {
     var canComment: Bool = true
 }
 
+class Advertise : BaseModelObject {
+    var imageUrl = ""
+    var clickUrl = ""
+    var title = ""
+}
+
 class Song : BaseModelObject {
     var id: String = ""
     var name: String = ""
@@ -164,6 +170,11 @@ class LiveSong : Song {
     var hasAdvImage : Bool!
     var advImageUrl: String?
     var advUrl: String?
+    var advScrollRate = 5
+    var scrollAds = [Advertise]()
+    
+    var advText = ""
+    
 }
 
 class Comment : BaseModelObject {

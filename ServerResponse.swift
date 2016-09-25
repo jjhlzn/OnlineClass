@@ -190,6 +190,18 @@ class GetAlbumSongsResponse : ServerResponse {
                     liveSong.advImageUrl = json["advImageUrl"] as? String
                     liveSong.advUrl = json["advUrl"] as? String
                 }
+                
+                liveSong.advScrollRate = json["advScrollRate"] as! Int
+                liveSong.advText = json["advText"] as! String
+                let adImages = json["advImages"] as! NSArray
+                for adImageJson in adImages {
+                    let adImage = Advertise()
+                    adImage.imageUrl = adImageJson["imageurl"] as! String
+                    adImage.clickUrl = adImageJson["link"] as! String
+                    adImage.title = adImageJson["title"] as! String
+                    liveSong.scrollAds.append(adImage)
+                }
+                
                 song = liveSong
             } else {
                 song = Song()
@@ -706,11 +718,7 @@ class SetSexResponse : ServerResponse {
 }
 
 
-class Advertise : BaseModelObject {
-    var imageUrl = ""
-    var clickUrl = ""
-    var title = ""
-}
+
 class GetAdsRequest : ServerRequest {
     
 }
@@ -823,6 +831,18 @@ class GetSongInfoResponse : ServerResponse {
                 liveSong.advImageUrl = jsonObject["advImageUrl"] as? String
                 liveSong.advUrl = jsonObject["advUrl"] as? String
             }
+            
+            liveSong.advScrollRate = jsonObject["advScrollRate"] as! Int
+            liveSong.advText = jsonObject["advText"] as! String
+            let adImages = jsonObject["advImages"] as! NSArray
+            for adImageJson in adImages {
+                let adImage = Advertise()
+                adImage.imageUrl = adImageJson["imageurl"] as! String
+                adImage.clickUrl = adImageJson["link"] as! String
+                adImage.title = adImageJson["title"] as! String
+                liveSong.scrollAds.append(adImage)
+            }
+
             song = liveSong
         } else {
             song = Song()

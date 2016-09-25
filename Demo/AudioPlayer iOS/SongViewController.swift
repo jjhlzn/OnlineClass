@@ -137,8 +137,9 @@ class SongViewController: BaseUIViewController, UIGestureRecognizerDelegate {
             navigationItem.backBarButtonItem = backItem
         } else if segue.identifier == "advWebView" {
             let dest = segue.destinationViewController as! WebPageViewController
-            dest.title = ""
-            dest.url = NSURL(string: sender as! String)
+            let params = sender as! [String: String]
+            dest.title = params["title"]
+            dest.url = NSURL(string: params["url"]!)
         }
     }
     

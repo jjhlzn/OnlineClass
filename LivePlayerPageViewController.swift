@@ -84,8 +84,7 @@ class LivePlayerPageViewController : CommonPlayerPageViewController, LiveComment
 
         
         if audioPlayer.currentItem != nil {
-            let item = audioPlayer.currentItem as! MyAudioItem
-            let song = item.song
+            let liveSong = getCurrentSong()
             
             updateChatCount = updateChatCount + 1
             
@@ -98,7 +97,7 @@ class LivePlayerPageViewController : CommonPlayerPageViewController, LiveComment
             
             if updateChatCount % 3 == 0 {
                 let request = GetSongInfoRequest()
-                request.song = item.song
+                request.song = liveSong
                 BasicService().sendRequest(ServiceConfiguration.GET_SONG_INFO, request: request) {
                     (resp: GetSongInfoResponse) -> Void in
                     dispatch_async(dispatch_get_main_queue()) {
@@ -106,17 +105,28 @@ class LivePlayerPageViewController : CommonPlayerPageViewController, LiveComment
                             QL4(resp.errorMessage)
                             return
                         }
-                        let liveSong = song as! LiveSong
+                        
+                        var hasChange = false
                         
                         let newSong = resp.song as! LiveSong
-                        if liveSong.hasAdvImage == newSong.hasAdvImage
-                           && liveSong.advImageUrl == newSong.advImageUrl
-                            && liveSong.advUrl == newSong.advUrl {
+                        if liveSong!.hasAdvImage != newSong.hasAdvImage
+                           || liveSong!.advImageUrl != newSong.advImageUrl
+                            || liveSong!.advUrl != newSong.advUrl {
+                            hasChange = true
+                        }
+                        
+                        if liveSong!.advText != newSong.advText {
+                            hasChange = true
+                        }
+                        
+                        if !hasChange {
                             return
                         }
-                        liveSong.hasAdvImage = newSong.hasAdvImage
-                        liveSong.advImageUrl = newSong.advImageUrl
-                        liveSong.advUrl = newSong.advUrl
+                        
+                        liveSong!.hasAdvImage = newSong.hasAdvImage
+                        liveSong!.advImageUrl = newSong.advImageUrl
+                        liveSong!.advUrl = newSong.advUrl
+                        liveSong!.advText = newSong.advText
                         self.viewController.tableView.reloadData()
                     }
                 }
@@ -157,61 +167,110 @@ class LivePlayerPageViewController : CommonPlayerPageViewController, LiveComment
     }
     
    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        if audioPlayer.currentItem != nil {
-            let item = audioPlayer.currentItem as! MyAudioItem
-            let song = item.song as! LiveSong
-            if song.hasAdvImage! {
-                return 3
-            }
-        }
         return 2
    }
 
     
    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let sections = numberOfSectionsInTableView(tableView)
     
         switch section{
             
         case 0:
             return 1
         case 1:
-            if sections == 3 {
-                 return 1
-            } else {
-                let count = (comments?.count)!
-                let result = count == 0 ? 2 : count + 1
-                return result > maxCommentCount ? maxCommentCount : result
-            }
-        default:
             let count = (comments?.count)!
-            let result = count == 0 ? 2 : count + 1
+            let result = count == 0 ? 1 : count
             return result > maxCommentCount ? maxCommentCount : result
+        default:
+            return 0
         }
     }
     
+    var advImages : [Advertise]?
+    func tapAdImageHandler(sender: UITapGestureRecognizer? = nil) {
+        if advImages == nil {
+            return
+        }
+        let scrollView = sender?.view as! UIScrollView
+        print(scrollView.auk.currentPageIndex)
+        let index = scrollView.auk.currentPageIndex
+        if index != nil {
+            let params : [String: String] = ["url": advImages![index!].clickUrl, "title": advImages![index!].title]
+            self.viewController.performSegueWithIdentifier("advWebView", sender: params)
+        }
+    }
     
+    func tapApplyButtonHandler(sender: UITapGestureRecognizer? = nil) {
+        let params : [String: String] = ["url": ServiceLinkManager.ApplyUrl, "title": "报名"]
+        self.viewController.performSegueWithIdentifier("advWebView", sender: params)
+    }
+    
+    //let adImageRatio : CGFloat = 0.45625
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let section = indexPath.section
         switch section {
         case 0:
+            let song = getCurrentSong()
             livePlayerCell = tableView.dequeueReusableCellWithIdentifier("livePlayerCell") as? LivePlayerCell
             livePlayerCell?.controller = viewController
             livePlayerCell?.initPalyer()
             self.playerViewController = livePlayerCell?.playerViewController
+            //设置广告
+            if song?.advText == "" || song?.advText == nil {
+                livePlayerCell!.advTextLabel.text = "欢迎大家收听"
+            } else {
+                livePlayerCell!.advTextLabel.text = song?.advText
+            }
+            
+            //设置报名按钮
+            let tapApplyButtonGesture = UITapGestureRecognizer(target: self, action: #selector(self.tapApplyButtonHandler))
+            livePlayerCell!.applyButton.addGestureRecognizer(tapApplyButtonGesture)
+            livePlayerCell!.applyButton.userInteractionEnabled = true
+            if (song?.hasAdvImage)! {
+                livePlayerCell!.applyButton.hidden = false
+                livePlayerCell!.handImage.hidden = false
+            } else {
+                livePlayerCell!.applyButton.hidden = true
+                livePlayerCell!.handImage.hidden = true
+            }
+
+            //创建滚动广告
+            let imageWidth = UIScreen.mainScreen().bounds.width
+            let imageHeight = getPlayerAdvHeight()
+            QL2("imageWidht = \(imageWidth), imageHeight = \(imageHeight)")
+            let scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: imageWidth, height: imageHeight ))
+            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.tapAdImageHandler))
+            scrollView.addGestureRecognizer(tapGesture)
+            scrollView.userInteractionEnabled = true
+            
+            livePlayerCell!.addSubview(scrollView)
+            
+            //人数需要叠在广告上面
+            let peopleLabel = livePlayerCell!.peopleCountLabel
+            let peopleCountImage = livePlayerCell!.peopleCountImage
+            let progressBar = livePlayerCell!.progressBar
+            peopleLabel.removeFromSuperview()
+            peopleCountImage.removeFromSuperview()
+            progressBar.removeFromSuperview()
+            livePlayerCell!.addSubview(peopleLabel)
+            livePlayerCell!.addSubview(peopleCountImage)
+            livePlayerCell!.addSubview(progressBar)
+            scrollView.auk.settings.pageControl.backgroundColor =  UIColor.grayColor().colorWithAlphaComponent(0)
+            scrollView.auk.settings.contentMode = UIViewContentMode.ScaleToFill
+            
+            
+            if song != nil {
+                advImages = song?.scrollAds
+                for ad in (song?.scrollAds)! {
+                    // Show remote image
+                    QL1("ad.imageUrl = \(ad.imageUrl)")
+                    scrollView.auk.show(url: ad.imageUrl)
+                }
+            }
+            scrollView.auk.startAutoScroll(delaySeconds: Double((song?.advScrollRate)!))
             return livePlayerCell!
         case 1:
-            if numberOfSectionsInTableView(tableView) == 3{
-                let cell = tableView.dequeueReusableCellWithIdentifier("songAdvCell") as? SongAdvCell
-                if getCurrentSong() != nil && getCurrentSong()?.advImageUrl != nil {
-                    if let url = NSURL(string: (getCurrentSong()?.advImageUrl!)!) {
-                        cell?.advImageView.kf_setImageWithURL(url)
-                    }
-                }
-                return cell!
-            } else {
-                return getCommentCell(tableView, row: indexPath.row)
-            }
+            return getCommentCell(tableView, row: indexPath.row)
             
         default:
             return getCommentCell(tableView, row: indexPath.row)
@@ -220,21 +279,19 @@ class LivePlayerPageViewController : CommonPlayerPageViewController, LiveComment
     
     private func getCommentCell(tableView: UITableView, row: Int) -> UITableViewCell {
         let rowCount = (comments?.count)!
+        /*
         if row == 0 {
             let cell = tableView.dequeueReusableCellWithIdentifier("chatHeaderCell") as! CommentHeaderCell
             return cell
             
-        } else   {
+        } else   { */
             if rowCount == 0 {
                 let cell = tableView.dequeueReusableCellWithIdentifier("noCommentCell")
-                return cell!
-            } else if row == rowCount + 1 {  //最后一行
-                let cell = tableView.dequeueReusableCellWithIdentifier("moreCommentCell")
                 return cell!
             } else {
                 return getCommonCell(tableView, row: row)
             }
-        }
+        //}
 
     }
     
@@ -242,7 +299,7 @@ class LivePlayerPageViewController : CommonPlayerPageViewController, LiveComment
     
     private func getCommonCell(tableView: UITableView, row: Int) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("commentCell") as! CommentCell
-        let comment = comments![row - 1]
+        let comment = comments![row]
         cell.userIdLabel.text = comment.nickName
         cell.timeLabel.text = comment.time
         cell.contentLabel.text = comment.content.emojiUnescapedString
@@ -270,19 +327,20 @@ class LivePlayerPageViewController : CommonPlayerPageViewController, LiveComment
     }
     
     
+    private func getPlayerAdvHeight() -> CGFloat {
+        let screenSize: CGRect = UIScreen.mainScreen().bounds
+        let screenWidth = screenSize.width
+        return screenWidth * 0.5 + 8
+    }
+    
+    
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         let section = indexPath.section
         switch section {
         case 0:
-            let screenSize: CGRect = UIScreen.mainScreen().bounds
-            let screenWidth = screenSize.width
-            return screenWidth * 0.5 + 95
+            return getPlayerAdvHeight() + 77
         case 1:
-            if section == 3 {
-                return 40
-            } else {
-                return getCommentCellHeight(tableView, row: indexPath.row)
-            }
+            return getCommentCellHeight(tableView, row: indexPath.row)
         default:
             return getCommentCellHeight(tableView, row: indexPath.row)
         }
@@ -290,37 +348,33 @@ class LivePlayerPageViewController : CommonPlayerPageViewController, LiveComment
     
     private func getCommentCellHeight(tableView: UITableView, row: Int) -> CGFloat {
         let rowCount = (comments?.count)!
-        if row == 0 { //点评头
-            return 40
-        } else {
-            if rowCount == 0 { //没有点评的情况
-                return 70
-            } else if row == rowCount + 1 { //最后一行
-                return 44
-            } else {   //评论行
-                
-                let cell = tableView.dequeueReusableCellWithIdentifier("commentCell") as! CommentCell
-                let comment = comments![row - 1]
 
-                cell.userIdLabel.text = comment.userId
-                cell.timeLabel.text = comment.time
-                cell.contentLabel.text = comment.content.emojiUnescapedString
-                var frame = cell.contentLabel.frame;
-                cell.contentLabel.numberOfLines = 0
-                cell.contentLabel.sizeToFit()
-                frame.size.height = cell.contentLabel.frame.size.height;
-                cell.contentLabel.frame = frame;
-                var height = 25 + cell.contentLabel.bounds.height + 10
-                
-                if height < 65 {
-                    height = 65
-                }
-                
-                QL1("content = \(comment.content.emojiUnescapedString), height = \(height)")
-                //NSLog("row = \(row), height = \(heightCache[comment.content])" )
-                return  height
+        if rowCount == 0 { //没有点评的情况
+            return 70
+        }  else {   //评论行
+            
+            let cell = tableView.dequeueReusableCellWithIdentifier("commentCell") as! CommentCell
+            let comment = comments![row]
+
+            cell.userIdLabel.text = comment.userId
+            cell.timeLabel.text = comment.time
+            cell.contentLabel.text = comment.content.emojiUnescapedString
+            var frame = cell.contentLabel.frame;
+            cell.contentLabel.numberOfLines = 0
+            cell.contentLabel.sizeToFit()
+            frame.size.height = cell.contentLabel.frame.size.height;
+            cell.contentLabel.frame = frame;
+            var height = 25 + cell.contentLabel.bounds.height + 10
+            
+            if height < 65 {
+                height = 65
             }
+            
+            QL1("content = \(comment.content.emojiUnescapedString), height = \(height)")
+            //NSLog("row = \(row), height = \(heightCache[comment.content])" )
+            return  height
         }
+        
 
     }
     
@@ -333,6 +387,7 @@ class LivePlayerPageViewController : CommonPlayerPageViewController, LiveComment
             cell?.selectionStyle = .None
             break;
         case 1:
+            /*
             if numberOfSectionsInTableView(tableView) == 3 {
                 if audioPlayer.currentItem != nil {
                     let item = audioPlayer.currentItem as! MyAudioItem
@@ -342,7 +397,7 @@ class LivePlayerPageViewController : CommonPlayerPageViewController, LiveComment
                     }
                 }
                 
-            }
+            } */
             break
         default:
             break
@@ -376,11 +431,11 @@ class LivePlayerPageViewController : CommonPlayerPageViewController, LiveComment
                                             }
 
                                             self.viewController.playerPageViewController.comments = resp.comments
-                                            var section = 1
-                                            if (song as! LiveSong).hasAdvImage!  {
-                                                section = 2
-                                            }
-                                            self.viewController.tableView.reloadSections(NSIndexSet(index: section), withRowAnimation: .None)
+                                            //var section = 1
+                                            //if (song as! LiveSong).hasAdvImage!  {
+                                            //    section = 2
+                                            //}
+                                            //self.viewController.tableView.reloadSections(NSIndexSet(index: section), withRowAnimation: .None)
                                             
                                         }
             }

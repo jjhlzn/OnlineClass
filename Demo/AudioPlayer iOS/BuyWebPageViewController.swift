@@ -130,6 +130,7 @@ class WebPageViewController: IapSupportWebPageViewController, WKNavigationDelega
     }
     
     func returnLastController() {
+        /*
         var controllers = navigationController?.viewControllers
         if controllers?.count >= 2 {
             let top = controllers![1] as? AlbumListController
@@ -138,7 +139,7 @@ class WebPageViewController: IapSupportWebPageViewController, WKNavigationDelega
                 navigationController?.setViewControllers(controllers!, animated: true)
                 return
             }
-        }
+        }*/
         navigationController?.popViewControllerAnimated(true)
         
     }

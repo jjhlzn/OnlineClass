@@ -182,7 +182,15 @@ extension CourseMainPageViewController : UITableViewDataSource, UITableViewDeleg
         }
     }
     
-    
+    func tapAdImageHandler(sender: UITapGestureRecognizer? = nil) {
+        let scrollView = sender?.view as! UIScrollView
+        print(scrollView.auk.currentPageIndex)
+        let index = scrollView.auk.currentPageIndex
+        if index != nil {
+            let params : [String: String] = ["url": ads[index!].clickUrl, "title": ads[index!].title]
+            performSegueWithIdentifier("loadWebPageSegue", sender: params)
+        }
+    }
     
     private func makeAdvCell() -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("functionCell")!
@@ -198,20 +206,15 @@ extension CourseMainPageViewController : UITableViewDataSource, UITableViewDeleg
             y = 0
         }
         
+        //创建滚动广告
         let scrollView = UIScrollView(frame: CGRect(x: x, y: y, width: imageWidth, height: imageHeight ))
-        
-        
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.tapAdImageHandler))
-        
         scrollView.addGestureRecognizer(tapGesture)
         scrollView.userInteractionEnabled = true
         
         cell.addSubview(scrollView)
-        //print("scrollView.superview = \(scrollView.superview)")
         scrollView.auk.settings.pageControl.backgroundColor =  UIColor.grayColor().colorWithAlphaComponent(0)
-        
         scrollView.auk.settings.contentMode = UIViewContentMode.ScaleToFill
-        
         BasicService().sendRequest(ServiceConfiguration.GET_ADS, request: GetAdsRequest()) {
             (resp : GetAdsResponse) -> Void in
             if resp.status != 0 {
@@ -233,15 +236,6 @@ extension CourseMainPageViewController : UITableViewDataSource, UITableViewDeleg
         return cell
     }
 
-    func tapAdImageHandler(sender: UITapGestureRecognizer? = nil) {
-        let scrollView = sender?.view as! UIScrollView
-        print(scrollView.auk.currentPageIndex)
-        let index = scrollView.auk.currentPageIndex
-        if index != nil {
-            let params : [String: String] = ["url": ads[index!].clickUrl, "title": ads[index!].title]
-            performSegueWithIdentifier("loadWebPageSegue", sender: params)
-        }
-    }
 
     private func computeAdCellHeight() -> CGFloat {
         let section1Height = 2 * 76
