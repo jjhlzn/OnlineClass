@@ -25,7 +25,7 @@ class WebPageViewController: BaseUIViewController, WKScriptMessageHandler, SKPro
     var loading = LoadingCircle()
     var loadingOverlay = LoadingOverlayWithMessage()
     
-    var productIDs : NSSet = NSSet(objects: "com.jufang.onlineclass.oneyearvipclass")
+    var productIDs : NSSet = NSSet(objects: "com.jufang.onlineclass.oneyearvipclass2")
     var buyAfterRequest = false
     
     @IBOutlet weak var shareButton: UIBarButtonItem!

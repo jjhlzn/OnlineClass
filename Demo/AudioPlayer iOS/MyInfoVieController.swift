@@ -158,6 +158,7 @@ extension MyInfoVieController {
             if UserProfilePhotoStore().get() == nil {
                 QL1("userName = \(loginUser.userName)")
                 let profilePhotoUrl = ServiceConfiguration.GET_PROFILE_IMAGE + "?userid=" + loginUserStore.getLoginUser()!.userName!
+                QL1("userimageurl = \(profilePhotoUrl)")
                 cell.userImage.kf_setImageWithURL(NSURL(string: profilePhotoUrl)!,
                                                   placeholderImage: nil,
                                                   optionsInfo: nil,
