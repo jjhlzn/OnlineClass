@@ -261,6 +261,7 @@ class GetSongLiveCommentsResponse : ServerResponse {
             comment.time = eachJSON["time"] as! String
             comment.content = eachJSON["content"] as! String
             comment.nickName = eachJSON["name"] as! String
+            comment.isManager = eachJSON["isManager"] as! Bool
             comments.append(comment)
         }
     }

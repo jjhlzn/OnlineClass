@@ -20,4 +20,5 @@ class AlbumCell: UITableViewCell {
     
     @IBOutlet weak var playingLabel: UILabel!
     
+    @IBOutlet weak var userIcon: UIImageView!
 }

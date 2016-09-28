@@ -15,8 +15,8 @@ class ServiceConfiguration {
     
 
     //114.80.101.27:6012/
-    static let serverName3 = "jf.jinjunhang.com"
-    static let port3 = 80
+    static let serverName3 = "192.168.31.146"
+    static let port3 = 3000
     
     
     static let serverName4 = "jf.yhkamani.com"

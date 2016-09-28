@@ -127,6 +127,11 @@ extension AlbumListController {
             if album.playing {
                 cell.playingLabel.hidden = false
             }
+            if album.isReady {
+                cell.userIcon.image = UIImage(named: "user1_0")
+            } else {
+                cell.userIcon.image = UIImage(named: "user1_1")
+            }
             return cell
 
             

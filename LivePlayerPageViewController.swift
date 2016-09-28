@@ -279,19 +279,13 @@ class LivePlayerPageViewController : CommonPlayerPageViewController, LiveComment
     
     private func getCommentCell(tableView: UITableView, row: Int) -> UITableViewCell {
         let rowCount = (comments?.count)!
-        /*
-        if row == 0 {
-            let cell = tableView.dequeueReusableCellWithIdentifier("chatHeaderCell") as! CommentHeaderCell
-            return cell
-            
-        } else   { */
-            if rowCount == 0 {
-                let cell = tableView.dequeueReusableCellWithIdentifier("noCommentCell")
-                return cell!
-            } else {
-                return getCommonCell(tableView, row: row)
-            }
-        //}
+
+        if rowCount == 0 {
+            let cell = tableView.dequeueReusableCellWithIdentifier("noCommentCell")
+            return cell!
+        } else {
+            return getCommonCell(tableView, row: row)
+        }
 
     }
     
@@ -311,17 +305,15 @@ class LivePlayerPageViewController : CommonPlayerPageViewController, LiveComment
         cell.contentLabel.frame = frame;
         
         
-        cell.userImage.becomeCircle()
-        
-        
-        
-        let profileImageUrl = ServiceConfiguration.GET_PROFILE_IMAGE + "?userid=" + comment.userId
-        if let url = NSURL(string: profileImageUrl) {
-            cell.userImage.kf_setImageWithURL(url, placeholderImage: UIImage(named: "user"))
-        }
- 
+        if comment.isManager {
+            cell.userImage.image = UIImage(named: "user2_0")
+            cell.userIdLabel.textColor = UIColor(red: 0xF2/255, green: 0x61/255, blue: 0, alpha: 0.9)
+        } else {
+            cell.userImage.image = UIImage(named: "user2_1")
+            cell.userIdLabel.textColor = UIColor.lightGrayColor()
 
-        //print("computeHeight")
+        }
+        
         return cell
         
     }
@@ -435,7 +427,7 @@ class LivePlayerPageViewController : CommonPlayerPageViewController, LiveComment
                                             //if (song as! LiveSong).hasAdvImage!  {
                                             //    section = 2
                                             //}
-                                            //self.viewController.tableView.reloadSections(NSIndexSet(index: section), withRowAnimation: .None)
+                                            self.viewController.tableView.reloadSections(NSIndexSet(index: 1), withRowAnimation: .None)
                                             
                                         }
             }

@@ -140,6 +140,7 @@ class CommentController : NSObject, UITextViewDelegate {
             comment.userId = commentJson["userId"].stringValue
             comment.id = commentJson["id"].stringValue
             comment.time = commentJson["time"].stringValue
+            comment.isManager = commentJson["isManager"].boolValue
             self.liveDelegate?.afterSendLiveComment([comment])
             
         }

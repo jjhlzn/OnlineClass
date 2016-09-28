@@ -184,6 +184,7 @@ class Comment : BaseModelObject {
     var nickName: String!
     var time: String!
     var content: String!
+    var isManager = false
     
 }
 
