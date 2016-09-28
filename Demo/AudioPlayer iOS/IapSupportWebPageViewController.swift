@@ -14,7 +14,7 @@ import QorumLogs
 class IapSupportWebPageViewController: BaseUIViewController, SKProductsRequestDelegate, SKPaymentTransactionObserver, WKScriptMessageHandler {
     var webView: WKWebView?
     
-     var productIDs : NSSet = NSSet(objects: "com.jufang.onlineclass.oneyearvipclass1")
+     var productIDs : NSSet = NSSet(objects: "com.jufang.onlineclass.oneyearvipclass2")
     
     var loadingOverlay = LoadingOverlayWithMessage()
     var buyAfterRequest = false

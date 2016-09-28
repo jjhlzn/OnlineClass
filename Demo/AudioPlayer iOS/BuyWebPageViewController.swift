@@ -23,6 +23,7 @@ class WebPageViewController: IapSupportWebPageViewController, WKNavigationDelega
 
     @IBOutlet weak var webContainer: UIView!
     var loading = LoadingCircle()
+
     
     @IBOutlet weak var shareButton: UIBarButtonItem!
     @IBOutlet weak var shareView: UIView!
