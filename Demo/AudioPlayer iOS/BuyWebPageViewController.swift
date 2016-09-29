@@ -64,22 +64,12 @@ class WebPageViewController: IapSupportWebPageViewController, WKNavigationDelega
     }
     
     
-    let contentController = WKUserContentController()
-    private func initWebView() {
+    override func initWebView() {
+        super.initWebView()
         var url1 = url.absoluteString
         url1 = Utils.addUserParams(url1)
         url1 = Utils.addDevcieParam(url1)
         print(url1)
-        
-        contentController.addScriptMessageHandler(
-            self,
-            name: "payCallbackHandler"
-        )
-        contentController.addScriptMessageHandler(
-            self,
-            name: "wechatpay"
-        )
-
         
         let config = WKWebViewConfiguration()
         config.userContentController = contentController

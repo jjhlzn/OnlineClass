@@ -28,7 +28,7 @@ class ApplyBrowserController : IapSupportWebPageViewController, WKNavigationDele
         super.viewDidLoad()
         self.title = "申请"
         url = NSURL(string: ServiceLinkManager.ApplyUrl)!
-        //url = NSURL(string: "http://192.168.1.67:3000/app/wechatpay")!
+        //url = NSURL(string: "http://192.168.31.146:3000/app/wechatpay")!
         
         
         initIAP()
@@ -55,21 +55,13 @@ class ApplyBrowserController : IapSupportWebPageViewController, WKNavigationDele
     }
     
     
-    let contentController = WKUserContentController()
-    private func initWebView() {
+    override func initWebView() {
+        super.initWebView()
+        
         var url1 = url.absoluteString
         url1 = Utils.addUserParams(url1)
         url1 = Utils.addDevcieParam(url1)
         print(url1)
-        
-        contentController.addScriptMessageHandler(
-            self,
-            name: "payCallbackHandler"
-        )
-        contentController.addScriptMessageHandler(
-            self,
-            name: "wechatpay"
-        )
 
         
         let config = WKWebViewConfiguration()

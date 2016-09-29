@@ -40,6 +40,20 @@ class IapSupportWebPageViewController: BaseUIViewController, SKProductsRequestDe
         SKPaymentQueue.defaultQueue().removeTransactionObserver(self)
     }
     
+    let contentController = WKUserContentController()
+    func initWebView() {
+        
+        contentController.addScriptMessageHandler(
+            self,
+            name: "payCallbackHandler"
+        )
+        contentController.addScriptMessageHandler(
+            self,
+            name: "openApp"
+        )
+        
+    }
+
     
     func userContentController(userContentController: WKUserContentController, didReceiveScriptMessage message: WKScriptMessage) {
         QL1("message.name = \(message.name)")
@@ -61,7 +75,7 @@ class IapSupportWebPageViewController: BaseUIViewController, SKProductsRequestDe
             
             buyProduct(theProduct)
             
-        } else if message.name == "wechatpay" {
+        } else if message.name == "openApp" {
             if UIApplication.sharedApplication().canOpenURL(NSURL(string: message.body as! String)!)
             {
                 UIApplication.sharedApplication().openURL(NSURL(string: message.body as! String)!)
