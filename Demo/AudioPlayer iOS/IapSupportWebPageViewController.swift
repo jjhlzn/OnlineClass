@@ -42,6 +42,7 @@ class IapSupportWebPageViewController: BaseUIViewController, SKProductsRequestDe
     
     
     func userContentController(userContentController: WKUserContentController, didReceiveScriptMessage message: WKScriptMessage) {
+        QL1("message.name = \(message.name)")
         if(message.name == "payCallbackHandler") {
             QL1("JavaScript is sending a message \(message.body)")
             let requestId = message.body
@@ -60,6 +61,11 @@ class IapSupportWebPageViewController: BaseUIViewController, SKProductsRequestDe
             
             buyProduct(theProduct)
             
+        } else if message.name == "wechatpay" {
+            if UIApplication.sharedApplication().canOpenURL(NSURL(string: message.body as! String)!)
+            {
+                UIApplication.sharedApplication().openURL(NSURL(string: message.body as! String)!)
+            }
         }
     }
 

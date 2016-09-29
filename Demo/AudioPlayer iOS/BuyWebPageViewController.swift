@@ -75,6 +75,11 @@ class WebPageViewController: IapSupportWebPageViewController, WKNavigationDelega
             self,
             name: "payCallbackHandler"
         )
+        contentController.addScriptMessageHandler(
+            self,
+            name: "wechatpay"
+        )
+
         
         let config = WKWebViewConfiguration()
         config.userContentController = contentController
