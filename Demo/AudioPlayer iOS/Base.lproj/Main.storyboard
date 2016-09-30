@@ -211,7 +211,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6HR-Q7-heN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="871" y="1984"/>
+            <point key="canvasLocation" x="915" y="1948"/>
         </scene>
         <!--个人资料-->
         <scene sceneID="ett-c2-aL0">
@@ -1282,8 +1282,8 @@
                                                     <rect key="frame" x="17" y="24" width="30" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="gLO-vg-hzY">
-                                                    <rect key="frame" x="168" y="28" width="125" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="gLO-vg-hzY">
+                                                    <rect key="frame" x="168" y="17" width="125" height="42"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -3023,11 +3023,11 @@
         <image name="wave1" width="24" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="SaH-Yu-nYI"/>
+        <segue reference="xmL-0a-HxS"/>
         <segue reference="xbm-kK-Zqp"/>
-        <segue reference="HJR-zD-bje"/>
+        <segue reference="gK4-D6-0Uz"/>
+        <segue reference="tVi-RP-0bn"/>
         <segue reference="VNd-S5-Rjk"/>
-        <segue reference="d3n-U5-XAy"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.94901960784313721" green="0.38039215686274508" blue="0.0" alpha="0.90000000000000002" colorSpace="calibratedRGB"/>
 </document>
