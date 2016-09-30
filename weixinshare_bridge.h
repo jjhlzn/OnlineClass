@@ -19,4 +19,6 @@
 
 #import <CommonCrypto/CommonCrypto.h>
 
+#import <tingyunApp/NBSAppAgent.h>
+
 #endif /* weixinshare_bridge_h */

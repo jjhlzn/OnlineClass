@@ -10,6 +10,7 @@
 		1C09D3BF1CD09FED004A8F9C /* ToastMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C09D3BE1CD09FED004A8F9C /* ToastMessage.swift */; };
 		1C09D3C11CD1D462004A8F9C /* CommonPlayerPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C09D3C01CD1D462004A8F9C /* CommonPlayerPageViewController.swift */; };
 		1C154A501CDACCA6003B900C /* MyUISlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C154A4F1CDACCA6003B900C /* MyUISlider.swift */; };
+		1C156D821D9E3584007A7F65 /* tingyunApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C156D811D9E3584007A7F65 /* tingyunApp.framework */; };
 		1C1E68EF1CC65DF600CEA029 /* CommentListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C1E68EE1CC65DF600CEA029 /* CommentListController.swift */; };
 		1C1E68F11CC65F7500CEA029 /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C1E68F01CC65F7500CEA029 /* CommentCell.swift */; };
 		1C1E69191CC9079100CEA029 /* SongViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C1E69181CC9079100CEA029 /* SongViewController.swift */; };
@@ -123,6 +124,8 @@
 		1C09D3BE1CD09FED004A8F9C /* ToastMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToastMessage.swift; sourceTree = "<group>"; };
 		1C09D3C01CD1D462004A8F9C /* CommonPlayerPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonPlayerPageViewController.swift; sourceTree = "<group>"; };
 		1C154A4F1CDACCA6003B900C /* MyUISlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyUISlider.swift; sourceTree = "<group>"; };
+		1C156D811D9E3584007A7F65 /* tingyunApp.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = tingyunApp.framework; sourceTree = "<group>"; };
+		1C156D831D9E38AE007A7F65 /* jfzs-prefix.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "jfzs-prefix.h"; sourceTree = "<group>"; };
 		1C1E68EE1CC65DF600CEA029 /* CommentListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentListController.swift; sourceTree = "<group>"; };
 		1C1E68F01CC65F7500CEA029 /* CommentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CommentCell.swift; path = "Demo/AudioPlayer iOS/CommentCell.swift"; sourceTree = "<group>"; };
 		1C1E69181CC9079100CEA029 /* SongViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongViewController.swift; sourceTree = "<group>"; };
@@ -253,6 +256,7 @@
 				1C8620181D337AFB006C30BB /* CoreTelephony.framework in Frameworks */,
 				1C8620161D337ACE006C30BB /* libc++.1.dylib in Frameworks */,
 				1C8620141D337A8F006C30BB /* SystemConfiguration.framework in Frameworks */,
+				1C156D821D9E3584007A7F65 /* tingyunApp.framework in Frameworks */,
 				1C8620121D337A7D006C30BB /* libz.1.dylib in Frameworks */,
 				1C8620101D3379D9006C30BB /* libstdc++.6.0.9.dylib in Frameworks */,
 				1C86200F1D337954006C30BB /* libsqlite3.dylib in Frameworks */,
@@ -488,6 +492,8 @@
 		E2A9AF931C498E2900FE943A = {
 			isa = PBXGroup;
 			children = (
+				1C156D831D9E38AE007A7F65 /* jfzs-prefix.h */,
+				1C156D811D9E3584007A7F65 /* tingyunApp.framework */,
 				1C98A8991D62005900ADF12B /* xinge */,
 				1CBF78701D33727B00B596BC /* weixinshare_bridge.h */,
 				1CBF785F1D336CC300B596BC /* weixinsdk */,
@@ -566,12 +572,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E2A9AFAE1C498E2900FE943A /* Build configuration list for PBXNativeTarget "AudioPlayer iOS" */;
 			buildPhases = (
-				6A38FF6F25AFC71B6A998B43 /* 📦 Check Pods Manifest.lock */,
+				6A38FF6F25AFC71B6A998B43 /* [CP] Check Pods Manifest.lock */,
 				E2A9AF981C498E2900FE943A /* Sources */,
 				E2A9AF991C498E2900FE943A /* Frameworks */,
 				E2A9AF9A1C498E2900FE943A /* Resources */,
-				63783D85F8B04DD6FFC5B7C3 /* 📦 Embed Pods Frameworks */,
-				60A30163376FEA35090F147B /* 📦 Copy Pods Resources */,
+				63783D85F8B04DD6FFC5B7C3 /* [CP] Embed Pods Frameworks */,
+				60A30163376FEA35090F147B /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -701,14 +707,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		60A30163376FEA35090F147B /* 📦 Copy Pods Resources */ = {
+		60A30163376FEA35090F147B /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -716,14 +722,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AudioPlayer iOS/Pods-AudioPlayer iOS-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		63783D85F8B04DD6FFC5B7C3 /* 📦 Embed Pods Frameworks */ = {
+		63783D85F8B04DD6FFC5B7C3 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -731,14 +737,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AudioPlayer iOS/Pods-AudioPlayer iOS-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		6A38FF6F25AFC71B6A998B43 /* 📦 Check Pods Manifest.lock */ = {
+		6A38FF6F25AFC71B6A998B43 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -974,6 +980,11 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				GCC_PREFIX_HEADER = "jufangzhushou/jfzs-prefix.h";
 				INFOPLIST_FILE = "$(SRCROOT)/Demo/AudioPlayer iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -998,6 +1009,11 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				GCC_PREFIX_HEADER = "jufangzhushou/jfzs-prefix.h";
 				INFOPLIST_FILE = "$(SRCROOT)/Demo/AudioPlayer iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
