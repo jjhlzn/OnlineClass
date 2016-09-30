@@ -211,7 +211,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6HR-Q7-heN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="915" y="1948"/>
+            <point key="canvasLocation" x="1226" y="2065"/>
         </scene>
         <!--个人资料-->
         <scene sceneID="ett-c2-aL0">
@@ -1915,7 +1915,7 @@
                                                         <action selector="playButtonPressed:" destination="tk5-cb-Z5Y" eventType="touchUpInside" id="Qbu-2i-PtS"/>
                                                     </connections>
                                                 </button>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="这是广告" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="NVA-Vv-ybf">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="这是广告" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="NVA-Vv-ybf" customClass="MarqueeLabel" customModule="MarqueeLabel">
                                                     <rect key="frame" x="0.0" y="148" width="320" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                     <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
@@ -1935,15 +1935,6 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="A27-0l-kzQ">
-                                                    <rect key="frame" x="210" y="181" width="35" height="35"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                    <state key="normal" title="&gt;&gt;" image="nextPlay"/>
-                                                    <connections>
-                                                        <action selector="nextButtonPressed:" destination="tk5-cb-Z5Y" eventType="touchUpInside" id="sZA-7M-9Vk"/>
-                                                        <action selector="nextSongPressed:" destination="Xdz-Ta-yt3" eventType="touchUpInside" id="mJR-c9-1Ta"/>
-                                                    </connections>
-                                                </button>
                                                 <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" id="Xmu-PK-eHa" customClass="MyUISlider" customModule="AudioPlayer" customModuleProvider="target">
                                                     <rect key="frame" x="0.0" y="132" width="324" height="31"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
@@ -1989,12 +1980,21 @@
                                                     <rect key="frame" x="238" y="186" width="20" height="20"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                                 </imageView>
+                                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="A27-0l-kzQ">
+                                                    <rect key="frame" x="214" y="181" width="35" height="35"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                    <state key="normal" title="&gt;&gt;" image="nextPlay"/>
+                                                    <connections>
+                                                        <action selector="nextButtonPressed:" destination="tk5-cb-Z5Y" eventType="touchUpInside" id="sZA-7M-9Vk"/>
+                                                        <action selector="nextSongPressed:" destination="Xdz-Ta-yt3" eventType="touchUpInside" id="mJR-c9-1Ta"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="0.0"/>
                                         </tableViewCellContentView>
                                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <connections>
-                                            <outlet property="advTextLabel" destination="NVA-Vv-ybf" id="EFb-nS-TZ6"/>
+                                            <outlet property="advTextLabel" destination="NVA-Vv-ybf" id="Ng9-Zi-gbe"/>
                                             <outlet property="applyButton" destination="qgN-yE-e6h" id="fqj-PY-Ib0"/>
                                             <outlet property="artImageView" destination="XTy-sw-Beu" id="zg2-G3-SCE"/>
                                             <outlet property="bufferCircle" destination="wpU-E0-GI7" id="LDE-7G-8Sn"/>
@@ -2100,7 +2100,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RQo-og-278" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4372" y="-1685"/>
+            <point key="canvasLocation" x="4262" y="-1628"/>
         </scene>
         <!--注册-->
         <scene sceneID="RAf-Nv-y6Q">
@@ -3025,9 +3025,9 @@
     <inferredMetricsTieBreakers>
         <segue reference="xmL-0a-HxS"/>
         <segue reference="xbm-kK-Zqp"/>
-        <segue reference="gK4-D6-0Uz"/>
-        <segue reference="tVi-RP-0bn"/>
+        <segue reference="SaH-Yu-nYI"/>
         <segue reference="VNd-S5-Rjk"/>
+        <segue reference="d3n-U5-XAy"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.94901960784313721" green="0.38039215686274508" blue="0.0" alpha="0.90000000000000002" colorSpace="calibratedRGB"/>
 </document>

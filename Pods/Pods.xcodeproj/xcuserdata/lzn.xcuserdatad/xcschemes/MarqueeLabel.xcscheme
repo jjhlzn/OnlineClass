@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'D41E32882107E122E3309E78A81E4D92'
-               BlueprintName = 'QorumLogs'
+               BlueprintIdentifier = '0E7D1EFF1D51CC9945FC56699E2019A3'
+               BlueprintName = 'MarqueeLabel'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'QorumLogs.framework'>
+               BuildableName = 'MarqueeLabel.framework'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

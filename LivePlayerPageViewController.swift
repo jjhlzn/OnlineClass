@@ -221,6 +221,8 @@ class LivePlayerPageViewController : CommonPlayerPageViewController, LiveComment
             } else {
                 livePlayerCell!.advTextLabel.text = song?.advText
             }
+            livePlayerCell!.advTextLabel.scrollDuration = 16
+            //livePlayerCell!.advTextLabel.fadeLength = 10
             
             //设置报名按钮
             let tapApplyButtonGesture = UITapGestureRecognizer(target: self, action: #selector(self.tapApplyButtonHandler))

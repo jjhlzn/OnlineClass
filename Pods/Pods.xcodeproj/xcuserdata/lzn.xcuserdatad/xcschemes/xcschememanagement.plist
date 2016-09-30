@@ -34,6 +34,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>MarqueeLabel.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-AudioPlayer iOS.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -62,6 +67,21 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>0495CBEFC4B9EBEF90A94DE5056ECDA3</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>0E7D1EFF1D51CC9945FC56699E2019A3</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>1F7C6AFBA8755C5D1F06DD843364982E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>2C9F8188802DB4395B862D4E5BC72FD3</key>
 		<dict>
 			<key>primary</key>
@@ -82,12 +102,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>83992328684F1955D20156C4E40EDE1A</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>89467156D50EE4E3DDBAB6964D0D0207</key>
+		<key>86AF9C5E906831D18D590E61F0E9E50A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -97,12 +112,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B23CD30FB03B44121A825B48ACFB9DE8</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>B87F961C11023CF49AC2DF965E029F8C</key>
+		<key>D41E32882107E122E3309E78A81E4D92</key>
 		<dict>
 			<key>primary</key>
 			<true/>

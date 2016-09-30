@@ -834,6 +834,7 @@ class GetSongInfoResponse : ServerResponse {
             }
             
             liveSong.advScrollRate = jsonObject["advScrollRate"] as! Int
+
             liveSong.advText = jsonObject["advText"] as! String
             let adImages = jsonObject["advImages"] as! NSArray
             for adImageJson in adImages {

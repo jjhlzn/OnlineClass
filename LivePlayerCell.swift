@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MarqueeLabel
 
 class LivePlayerCell: PlayerCell {
 
@@ -16,6 +17,6 @@ class LivePlayerCell: PlayerCell {
     
     @IBOutlet weak var handImage: UIImageView!
     
-    
-    @IBOutlet weak var advTextLabel: UILabel!
+
+    @IBOutlet weak var advTextLabel: MarqueeLabel!
 }

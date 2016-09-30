@@ -6,6 +6,7 @@ PODS:
   - Emoji-swift (0.0.3)
   - KDEAudioPlayer (0.9.0)
   - Kingfisher (2.4.1)
+  - MarqueeLabel/Swift (2.8.0)
   - moa (3.0.0)
   - QorumLogs (0.7.2)
   - Socket.IO-Client-Swift (6.1.2)
@@ -19,6 +20,7 @@ DEPENDENCIES:
   - Emoji-swift
   - KDEAudioPlayer
   - Kingfisher (~> 2.4)
+  - MarqueeLabel/Swift
   - QorumLogs
   - Socket.IO-Client-Swift
   - SwiftyJSON (from `https://github.com/SwiftyJSON/SwiftyJSON.git`)
@@ -40,12 +42,13 @@ SPEC CHECKSUMS:
   Emoji-swift: 1f9bbabce9aebace9fd9824b0dbb0d9eb31a746c
   KDEAudioPlayer: 67c2de50af38d045638b15f246113594b22a7ec2
   Kingfisher: 41aed5b6c1ed8fa98cf6d75283ce89cf7890f517
+  MarqueeLabel: 73b52d7558241ece6391e9c566edb56b269883e2
   moa: 32ca142e67accf6124087abba94ff5c288ad1d7e
   QorumLogs: c3178520a46dc940c1070388134524ab5996b55a
   Socket.IO-Client-Swift: 60a60e8bfd7b16bc57c90ff6329e9f536b5eacdd
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
   tingyunApp: bf9074313164f2b3595b5c2b422c8159cee03a58
 
-PODFILE CHECKSUM: 127767eb1c8106a76ce3a05877d61ae7e05ea1c1
+PODFILE CHECKSUM: de30e3df5138368281a8f10042ffa33d31cf2c1f
 
 COCOAPODS: 1.0.1
