@@ -28,12 +28,21 @@ class LivePlayerPageViewController : CommonPlayerPageViewController, LiveComment
     var livePlayerCell : LivePlayerCell?
     var lastId = "-1"
     var updateChatCount = 0
+    var scrollView : UIScrollView?
     
     override func initController() {
         super.initController()
         showHasMoreLink = false
         audioPlayer = Utils.getAudioPlayer()
         createTimer()
+        
+        let imageWidth = UIScreen.mainScreen().bounds.width
+        let imageHeight = getPlayerAdvHeight()
+        QL2("imageWidht = \(imageWidth), imageHeight = \(imageHeight)")
+        scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: imageWidth, height: imageHeight ))
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.tapAdImageHandler))
+        scrollView!.addGestureRecognizer(tapGesture)
+        scrollView!.userInteractionEnabled = true
     }
     
     override func dispose() {
@@ -210,6 +219,7 @@ class LivePlayerPageViewController : CommonPlayerPageViewController, LiveComment
         let section = indexPath.section
         switch section {
         case 0:
+            QL2("create Live Player Cell")
             let song = getCurrentSong()
             livePlayerCell = tableView.dequeueReusableCellWithIdentifier("livePlayerCell") as? LivePlayerCell
             livePlayerCell?.controller = viewController
@@ -237,15 +247,8 @@ class LivePlayerPageViewController : CommonPlayerPageViewController, LiveComment
             }
 
             //创建滚动广告
-            let imageWidth = UIScreen.mainScreen().bounds.width
-            let imageHeight = getPlayerAdvHeight()
-            QL2("imageWidht = \(imageWidth), imageHeight = \(imageHeight)")
-            let scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: imageWidth, height: imageHeight ))
-            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.tapAdImageHandler))
-            scrollView.addGestureRecognizer(tapGesture)
-            scrollView.userInteractionEnabled = true
-            
-            livePlayerCell!.addSubview(scrollView)
+            scrollView?.auk.removeAll()
+            livePlayerCell!.addSubview(scrollView!)
             
             //人数需要叠在广告上面
             let peopleLabel = livePlayerCell!.peopleCountLabel
@@ -257,8 +260,8 @@ class LivePlayerPageViewController : CommonPlayerPageViewController, LiveComment
             livePlayerCell!.addSubview(peopleLabel)
             livePlayerCell!.addSubview(peopleCountImage)
             livePlayerCell!.addSubview(progressBar)
-            scrollView.auk.settings.pageControl.backgroundColor =  UIColor.grayColor().colorWithAlphaComponent(0)
-            scrollView.auk.settings.contentMode = UIViewContentMode.ScaleToFill
+            scrollView!.auk.settings.pageControl.backgroundColor =  UIColor.grayColor().colorWithAlphaComponent(0)
+            scrollView!.auk.settings.contentMode = UIViewContentMode.ScaleToFill
             
             
             if song != nil {
@@ -266,10 +269,16 @@ class LivePlayerPageViewController : CommonPlayerPageViewController, LiveComment
                 for ad in (song?.scrollAds)! {
                     // Show remote image
                     QL1("ad.imageUrl = \(ad.imageUrl)")
-                    scrollView.auk.show(url: ad.imageUrl)
+                    scrollView!.auk.show(url: ad.imageUrl)
                 }
             }
-            scrollView.auk.startAutoScroll(delaySeconds: Double((song?.advScrollRate)!))
+            
+            var scrollRate : Int = 5
+            if (song?.advScrollRate)! > 0 {
+                scrollRate = (song?.advScrollRate)!
+            }
+            
+            scrollView!.auk.startAutoScroll(delaySeconds: Double(scrollRate))
             return livePlayerCell!
         case 1:
             return getCommentCell(tableView, row: indexPath.row)
