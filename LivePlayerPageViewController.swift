@@ -256,12 +256,18 @@ class LivePlayerPageViewController : CommonPlayerPageViewController, LiveComment
             let peopleLabel = livePlayerCell!.peopleCountLabel
             let peopleCountImage = livePlayerCell!.peopleCountImage
             let progressBar = livePlayerCell!.progressBar
+            let playingLabel = livePlayerCell!.playingLabel
+            let durationLabel = livePlayerCell!.durationLabel
             peopleLabel.removeFromSuperview()
             peopleCountImage.removeFromSuperview()
             progressBar.removeFromSuperview()
+            playingLabel.removeFromSuperview()
+            durationLabel.removeFromSuperview()
             livePlayerCell!.addSubview(peopleLabel)
             livePlayerCell!.addSubview(peopleCountImage)
             livePlayerCell!.addSubview(progressBar)
+            livePlayerCell!.addSubview(playingLabel)
+            livePlayerCell!.addSubview(durationLabel)
             scrollView!.auk.settings.pageControl.backgroundColor =  UIColor.grayColor().colorWithAlphaComponent(0)
             scrollView!.auk.settings.contentMode = UIViewContentMode.ScaleToFill
             
