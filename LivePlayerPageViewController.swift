@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import KDEAudioPlayer
 import QorumLogs
+import MarqueeLabel
 
 //1. 在线聊天最多显示100条
 //2. 控制聊天的自述
@@ -225,6 +226,8 @@ class LivePlayerPageViewController : CommonPlayerPageViewController, LiveComment
             livePlayerCell?.controller = viewController
             livePlayerCell?.initPalyer()
             self.playerViewController = livePlayerCell?.playerViewController
+            //let label = MarqueeLabel(frame: livePlayerCell!.advTextLabel.frame)
+            //livePlayerCell!.advTextLabel = label
             //设置广告
             if song?.advText == "" || song?.advText == nil {
                 livePlayerCell!.advTextLabel.text = "欢迎大家收听"
@@ -232,6 +235,9 @@ class LivePlayerPageViewController : CommonPlayerPageViewController, LiveComment
                 livePlayerCell!.advTextLabel.text = song?.advText
             }
             livePlayerCell!.advTextLabel.scrollDuration = 16
+            //livePlayerCell!.advTextLabel.triggerScrollStart()
+            //QL1("is Paused = \(livePlayerCell!.advTextLabel.isPaused)")
+            livePlayerCell!.advTextLabel.restartLabel()
             //livePlayerCell!.advTextLabel.fadeLength = 10
             
             //设置报名按钮
@@ -299,7 +305,6 @@ class LivePlayerPageViewController : CommonPlayerPageViewController, LiveComment
         }
 
     }
-    
     
     
     private func getCommonCell(tableView: UITableView, row: Int) -> UITableViewCell {
@@ -389,19 +394,6 @@ class LivePlayerPageViewController : CommonPlayerPageViewController, LiveComment
             let cell = tableView.cellForRowAtIndexPath(indexPath)
             cell?.selectionStyle = .None
             break;
-        case 1:
-            /*
-            if numberOfSectionsInTableView(tableView) == 3 {
-                if audioPlayer.currentItem != nil {
-                    let item = audioPlayer.currentItem as! MyAudioItem
-                    let song = item.song as! LiveSong
-                    if song.hasAdvImage && song.advUrl != nil {
-                        viewController.performSegueWithIdentifier("advWebView", sender: song.advUrl!)
-                    }
-                }
-                
-            } */
-            break
         default:
             break
         }
