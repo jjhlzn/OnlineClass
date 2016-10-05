@@ -226,8 +226,7 @@ class LivePlayerPageViewController : CommonPlayerPageViewController, LiveComment
             livePlayerCell?.controller = viewController
             livePlayerCell?.initPalyer()
             self.playerViewController = livePlayerCell?.playerViewController
-            //let label = MarqueeLabel(frame: livePlayerCell!.advTextLabel.frame)
-            //livePlayerCell!.advTextLabel = label
+
             //设置广告
             if song?.advText == "" || song?.advText == nil {
                 livePlayerCell!.advTextLabel.text = "欢迎大家收听"
@@ -235,10 +234,7 @@ class LivePlayerPageViewController : CommonPlayerPageViewController, LiveComment
                 livePlayerCell!.advTextLabel.text = song?.advText
             }
             livePlayerCell!.advTextLabel.scrollDuration = 16
-            //livePlayerCell!.advTextLabel.triggerScrollStart()
-            //QL1("is Paused = \(livePlayerCell!.advTextLabel.isPaused)")
             livePlayerCell!.advTextLabel.restartLabel()
-            //livePlayerCell!.advTextLabel.fadeLength = 10
             
             //设置报名按钮
             let tapApplyButtonGesture = UITapGestureRecognizer(target: self, action: #selector(self.tapApplyButtonHandler))

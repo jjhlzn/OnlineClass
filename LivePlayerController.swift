@@ -47,6 +47,7 @@ class LivePlayerViewController : PlayerViewController {
     }
     
     override func playOrPause() {
+         QL1("playOrPause: player state is \(audioPlayer.state)")
         if audioPlayer.state == AudioPlayerState.Playing || audioPlayer.state == AudioPlayerState.Buffering {
             audioPlayer.pause()
             
