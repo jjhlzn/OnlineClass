@@ -70,6 +70,7 @@
 		1C8E7DC41D8799F80022B0D2 /* PurchaseRecordStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C8E7DC31D8799F80022B0D2 /* PurchaseRecordStore.swift */; };
 		1C98A8921D61F71400ADF12B /* XinGeAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C98A8911D61F71400ADF12B /* XinGeAppDelegate.swift */; };
 		1C98A8941D61FB3100ADF12B /* libXG-SDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C98A8931D61FB3100ADF12B /* libXG-SDK.a */; };
+		1C9E808A1DA8D5D9006DD2C2 /* WXApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C9E80891DA8D5D9006DD2C2 /* WXApiManager.swift */; };
 		1C9F20E61D823BA100E1B69F /* BuyWebPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C9F20E51D823BA100E1B69F /* BuyWebPageViewController.swift */; };
 		1CA3B2101CD86B7800D0ABD8 /* MainPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA3B20F1CD86B7800D0ABD8 /* MainPageViewController.swift */; };
 		1CA3B2121CD86BD300D0ABD8 /* CourseTypeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA3B2111CD86BD300D0ABD8 /* CourseTypeCell.swift */; };
@@ -191,6 +192,7 @@
 		1C98A8931D61FB3100ADF12B /* libXG-SDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libXG-SDK.a"; path = "xgpushsdk/libXG-SDK.a"; sourceTree = "<group>"; };
 		1C98A8971D62004600ADF12B /* XGPush.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = XGPush.h; path = xgpushsdk/XGPush.h; sourceTree = "<group>"; };
 		1C98A8981D62005300ADF12B /* XGSetting.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = XGSetting.h; path = xgpushsdk/XGSetting.h; sourceTree = "<group>"; };
+		1C9E80891DA8D5D9006DD2C2 /* WXApiManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WXApiManager.swift; sourceTree = "<group>"; };
 		1C9F20E51D823BA100E1B69F /* BuyWebPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuyWebPageViewController.swift; sourceTree = "<group>"; };
 		1CA3B20F1CD86B7800D0ABD8 /* MainPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainPageViewController.swift; sourceTree = "<group>"; };
 		1CA3B2111CD86BD300D0ABD8 /* CourseTypeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseTypeCell.swift; sourceTree = "<group>"; };
@@ -359,6 +361,7 @@
 				1C2FC9261CFEE5BA0057EB93 /* EmojiKeyboard.swift */,
 				1C09D3BE1CD09FED004A8F9C /* ToastMessage.swift */,
 				1CB425A51D229E1600971F95 /* ServiceLinkManager.swift */,
+				1C9E80891DA8D5D9006DD2C2 /* WXApiManager.swift */,
 			);
 			name = lib;
 			sourceTree = "<group>";
@@ -828,6 +831,7 @@
 				E2A9AFA01C498E2900FE943A /* AppDelegate.swift in Sources */,
 				1C8A2AD61CE5882A0086C1B8 /* SignupViewController.swift in Sources */,
 				1CDCC8EF1CE72203001640CC /* logoutCell.swift in Sources */,
+				1C9E808A1DA8D5D9006DD2C2 /* WXApiManager.swift in Sources */,
 				1C2451D41CE8A0BD00F350DA /* jufangzhushou.xcdatamodeld in Sources */,
 				1C8926621D96196800E0AEC6 /* ApplyBrowserController.swift in Sources */,
 				1C3C5EDF1D1E24FC000F0A39 /* SetNickNameViewController.swift in Sources */,

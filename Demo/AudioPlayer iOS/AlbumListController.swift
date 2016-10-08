@@ -71,18 +71,8 @@ class AlbumListController: BaseUIViewController, UITableViewDataSource, UITableV
         updatePlayingButton(playingButton)
     }
     
-    //TODO: 这里的名称不能写死
     private func setTitle() {
-        switch courseType.code {
-        case "Live":
-            self.title = "直播课程"
-            break
-        case "Vip":
-            self.title = "会员专享课堂"
-            break
-        default:
-            break
-        }
+        self.title = courseType.name
     }
     
     //PageableControllerDelegate

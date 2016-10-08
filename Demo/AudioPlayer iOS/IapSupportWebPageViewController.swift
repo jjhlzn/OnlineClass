@@ -10,6 +10,7 @@ import UIKit
 import WebKit
 import StoreKit
 import QorumLogs
+import SwiftyJSON
 
 class IapSupportWebPageViewController: BaseUIViewController, SKProductsRequestDelegate, SKPaymentTransactionObserver, WKScriptMessageHandler {
     var webView: WKWebView?
@@ -51,6 +52,10 @@ class IapSupportWebPageViewController: BaseUIViewController, SKProductsRequestDe
             self,
             name: "openApp"
         )
+        contentController.addScriptMessageHandler(
+            self,
+            name: "wechatPay"
+        )
         
     }
 
@@ -59,6 +64,7 @@ class IapSupportWebPageViewController: BaseUIViewController, SKProductsRequestDe
         QL1("message.name = \(message.name)")
         if(message.name == "payCallbackHandler") {
             QL1("JavaScript is sending a message \(message.body)")
+            
             let requestId = message.body
             buyProductId = requestId as! String
             
@@ -75,7 +81,13 @@ class IapSupportWebPageViewController: BaseUIViewController, SKProductsRequestDe
             
             buyProduct(theProduct)
             
-        } else if message.name == "openApp" {
+        } else if message.name == "wechatPay" {
+            QL1("JavaScript is sending a message \(message.body)")
+            //let json = JSON.parse(message.body as! String)
+            wechatPay(message.body as! NSDictionary)
+        }
+        
+        else if message.name == "openApp" {
             if UIApplication.sharedApplication().canOpenURL(NSURL(string: message.body as! String)!)
             {
                 UIApplication.sharedApplication().openURL(NSURL(string: message.body as! String)!)
@@ -219,4 +231,20 @@ class IapSupportWebPageViewController: BaseUIViewController, SKProductsRequestDe
     {
         print("remove trans");
     }
+    
+    /*********** 微信支付 ****************/
+    func wechatPay(json: NSDictionary) {
+        
+        let request = PayReq()
+        request.partnerId = json["partnerid"] as! String
+        request.package = json["package"] as! String
+        
+        request.nonceStr = json["noncestr"] as! String
+        request.prepayId = json["prepayid"] as! String
+        request.timeStamp = UInt32(json["timestamp"] as! String)!
+        request.sign = json["sign"] as! String
+        WXApi.sendReq(request)
+    }
+    
+        
 }

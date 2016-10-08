@@ -22,6 +22,7 @@ class AppDelegate : XinGeAppDelegate {
     var loginUserStore = LoginUserStore()
     var audioPlayer = AudioPlayer()
     var liveProgressTimer : NSTimer?
+    var wxApiManager = WXApiManager()
 
 
     override func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
@@ -136,13 +137,14 @@ class AppDelegate : XinGeAppDelegate {
 
     }
     
+    
     func application(application: UIApplication, handleOpenURL url: NSURL) -> Bool {
         
-        return WXApi.handleOpenURL(url, delegate: nil)
+        return WXApi.handleOpenURL(url, delegate: wxApiManager)
     }
     
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
-        return WXApi.handleOpenURL(url, delegate: nil)
+        return WXApi.handleOpenURL(url, delegate: wxApiManager)
     }
     
     
