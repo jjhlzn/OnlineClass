@@ -3,6 +3,12 @@ OnlineClass.xcworkspace/xcuserdata/lzn.xcuserdatad/UserInterfaceState.xcuserstat
 
 *.xcbkptlist
 
+**/.DS_Store
+*.DS_Store
 .DS_Store
 
-.DS_Store
+*.xcbkptlist
+
+Demo/AudioPlayer iOS/Assets.xcassets/tabbar/.DS_Store
+
+assets/.DS_Store

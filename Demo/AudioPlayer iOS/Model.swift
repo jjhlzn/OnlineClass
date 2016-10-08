@@ -13,9 +13,29 @@ class BaseModelObject : NSObject {
     
 }
 
-
-enum CourseType: String {
-    case Common, Vip, Live
+class CourseType: BaseModelObject {
+    //case Common, Vip, Live
+    static let LiveCourse = CourseType(name: "直播课程", code: "Live")
+    static let PayCourse = CourseType(name: "会员专享课程", code: "Vip")
+    var name : String
+    var code : String
+    init(name: String, code: String) {
+        self.name = name
+        self.code = code
+    }
+    
+    var isLive : Bool {
+        return true
+    }
+    
+    static func getCourseType(code: String) -> CourseType? {
+        if code ==  LiveCourse.code {
+            return LiveCourse
+        } else if code == PayCourse.code {
+            return PayCourse
+        }
+        return nil
+    }
 }
 
 
@@ -27,7 +47,9 @@ class Album : BaseModelObject {
     var image: String = ""
     var count: Int = 0
     var listenCount : String = ""
-    var courseType = CourseType.Common
+    var courseType = CourseType.LiveCourse
+    var playing : Bool = false
+    var isReady : Bool = false
     var songs = [Song]()
     
     var hasImage: Bool {
@@ -43,17 +65,19 @@ class Album : BaseModelObject {
     }
     
     var isLive: Bool {
-            if courseType == CourseType.Live || courseType == CourseType.Vip {
-                return true
-            } else {
-                return false
-            }
+        return courseType.isLive
     }
 }
 
 class SongSetting : BaseModelObject {
     var maxCommentWord: Int = 30
     var canComment: Bool = true
+}
+
+class Advertise : BaseModelObject {
+    var imageUrl = ""
+    var clickUrl = ""
+    var title = ""
 }
 
 class Song : BaseModelObject {
@@ -146,6 +170,11 @@ class LiveSong : Song {
     var hasAdvImage : Bool!
     var advImageUrl: String?
     var advUrl: String?
+    var advScrollRate = 5
+    var scrollAds = [Advertise]()
+    
+    var advText = ""
+    
 }
 
 class Comment : BaseModelObject {
@@ -155,6 +184,7 @@ class Comment : BaseModelObject {
     var nickName: String!
     var time: String!
     var content: String!
+    var isManager = false
     
 }
 

@@ -7,8 +7,16 @@
 //
 
 import UIKit
+import MarqueeLabel
 
 class LivePlayerCell: PlayerCell {
 
+    @IBOutlet weak var applyButton: UIButton!
+    @IBOutlet weak var peopleCountImage: UIImageView!
     @IBOutlet weak var peopleCountLabel: UILabel!
+    
+    @IBOutlet weak var handImage: UIImageView!
+    
+
+    @IBOutlet weak var advTextLabel: MarqueeLabel!
 }

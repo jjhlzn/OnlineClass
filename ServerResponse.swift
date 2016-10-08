@@ -115,19 +115,7 @@ class GetAlbumsRequest : PagedServerRequest {
     
     override var params: [String : AnyObject] {
         get {
-            var parameters = super.params
-            switch courseType {
-            case .Common:
-                parameters = ["type": "Common"]
-                break
-            case .Live:
-                parameters = ["type": "Live"]
-                break
-            case .Vip:
-                parameters = ["type": "Vip"]
-                break
-                
-            }
+            let parameters = ["type": courseType.code]
             return parameters
 
         }
@@ -154,7 +142,9 @@ class GetAlbumsResponse : PageServerResponse<Album> {
             album.count = albumJson["count"] as! Int
             album.desc = albumJson["desc"] as! String
             album.listenCount = albumJson["listenCount"] as! String
-            album.courseType = CourseType(rawValue: albumJson["type"] as! String)!
+            album.courseType = CourseType.getCourseType(albumJson["type"] as! String)!
+            album.playing = albumJson["playing"] as! Bool
+            album.isReady = albumJson["isReady"] as! Bool
             albums.append(album)
         }
         self.resultSet = albums
@@ -200,6 +190,18 @@ class GetAlbumSongsResponse : ServerResponse {
                     liveSong.advImageUrl = json["advImageUrl"] as? String
                     liveSong.advUrl = json["advUrl"] as? String
                 }
+                
+                liveSong.advScrollRate = json["advScrollRate"] as! Int
+                liveSong.advText = json["advText"] as! String
+                let adImages = json["advImages"] as! NSArray
+                for adImageJson in adImages {
+                    let adImage = Advertise()
+                    adImage.imageUrl = adImageJson["imageurl"] as! String
+                    adImage.clickUrl = adImageJson["link"] as! String
+                    adImage.title = adImageJson["title"] as! String
+                    liveSong.scrollAds.append(adImage)
+                }
+                
                 song = liveSong
             } else {
                 song = Song()
@@ -259,6 +261,7 @@ class GetSongLiveCommentsResponse : ServerResponse {
             comment.time = eachJSON["time"] as! String
             comment.content = eachJSON["content"] as! String
             comment.nickName = eachJSON["name"] as! String
+            comment.isManager = eachJSON["isManager"] as! Bool
             comments.append(comment)
         }
     }
@@ -716,11 +719,7 @@ class SetSexResponse : ServerResponse {
 }
 
 
-class Advertise : BaseModelObject {
-    var imageUrl = ""
-    var clickUrl = ""
-    var title = ""
-}
+
 class GetAdsRequest : ServerRequest {
     
 }
@@ -833,6 +832,19 @@ class GetSongInfoResponse : ServerResponse {
                 liveSong.advImageUrl = jsonObject["advImageUrl"] as? String
                 liveSong.advUrl = jsonObject["advUrl"] as? String
             }
+            
+            liveSong.advScrollRate = jsonObject["advScrollRate"] as! Int
+
+            liveSong.advText = jsonObject["advText"] as! String
+            let adImages = jsonObject["advImages"] as! NSArray
+            for adImageJson in adImages {
+                let adImage = Advertise()
+                adImage.imageUrl = adImageJson["imageurl"] as! String
+                adImage.clickUrl = adImageJson["link"] as! String
+                adImage.title = adImageJson["title"] as! String
+                liveSong.scrollAds.append(adImage)
+            }
+
             song = liveSong
         } else {
             song = Song()
@@ -873,6 +885,9 @@ class GetParameterInfoRequest : ServerRequest {
 
 class GetParameterInfoResponse : ServerResponse {
     static let LIVE_DESCRIPTION = "livedescription"
+    static let PAY_DESCRIPTION = "vipdescription"
+    static let LIVE_COURSE_NAME = "liveCourseName"
+    static let PAY_COURSE_NAME = "payCourseName"
     
     var map: [String: String] = [:]
     

@@ -43,6 +43,7 @@ Simply add two files to your project:
 If you are using CocoaPods add this text to your Podfile and run `pod install`.
 
     use_frameworks!
+    target 'Your target name'
     pod 'Auk', '~> 2.1'
 
 
@@ -158,13 +159,21 @@ scrollView.auk.show(url: "http://site.com/bird.jpg")
 
 ## Preloading remote images
 
-By default remote images are loaded when they become visible to user. One can preload remote images before the user sees them by changing the setting property `preloadRemoteImagesAround`. The property defines the number of remote images to preload around the current page.
+By default remote images are loaded after they become visible to user. One can ask the library to preload remote images  by setting the property `preloadRemoteImagesAround`.
 
 ```Swift
+// Set the property before showing remote images
 scrollView.auk.settings.preloadRemoteImagesAround = 1
+
+// Add remote images. The first two images will start loading simultaneously.
+scrollView.auk.show(url: "http://site.com/finch.jpg")
+scrollView.auk.show(url: "http://site.com/auk.jpg")
+
+// The third image will start loading when the user scrolls to the second page.
+scrollView.auk.show(url: "http://site.com/moa.jpg")
 ```
 
-For example, if `preloadRemoteImagesAround = 2` and we are viewing the first page it will preload images on the second and third pages. If we are viewing 5th page then it will preload images on pages 3, 4, 6 and 7 (unless they are already loaded). The default value is 0.
+The `preloadRemoteImagesAround` property defines the number of remote images to preload around the current page. For example, if `preloadRemoteImagesAround = 2` and we are viewing the first page it will preload images on the second and third pages. If we are viewing 5th page then it will preload images on pages 3, 4, 6 and 7 (unless they are already loaded). The default value is 0.
 
 Note that images are loaded all at the same time, therefore, using large values for `preloadRemoteImagesAround` may result in the first image being delayed on slow networks because the limited bandwidth will be shared by many image downloads.
 

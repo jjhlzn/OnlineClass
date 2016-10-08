@@ -12,6 +12,7 @@ import KDEAudioPlayer
 import QorumLogs
 
 
+
 @UIApplicationMain
 class AppDelegate : XinGeAppDelegate {
 
@@ -42,9 +43,11 @@ class AppDelegate : XinGeAppDelegate {
 
         
         registerForPushNotifications(application)
-        
+        NBSAppAgent.startWithAppID("a200c16a118f4f99891ab5645fa2a13d")
         WXApi.registerApp("wx73653b5260b24787", withDescription: "AudioPlayer iOS")
         
+       // [NBSAppAgent startWithAppID:@"a200c16a118f4f99891ab5645fa2a13d"];
+
         return true
     }
 

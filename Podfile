@@ -12,4 +12,6 @@ target 'AudioPlayer iOS' do
     pod 'QorumLogs'
     pod 'ALCameraViewController'
     pod 'Socket.IO-Client-Swift'
+    pod 'tingyunApp'
+    pod 'MarqueeLabel/Swift'
 end

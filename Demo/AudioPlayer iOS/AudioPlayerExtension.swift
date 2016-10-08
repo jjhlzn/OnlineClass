@@ -22,7 +22,7 @@ extension AudioPlayer {
                 startIndex = idx
             }
             var audioItem = MyAudioItem(song: eachSong, highQualitySoundURL: NSURL(string: eachSong.wholeUrl))!
-            if eachSong.album.courseType == CourseType.Live {
+            if eachSong.album.courseType == CourseType.LiveCourse {
                 let url = NSURL(string: eachSong.wholeUrl)
                 audioItem = MyAudioItem(song: eachSong, highQualitySoundURL: url)!
             }

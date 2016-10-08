@@ -33,45 +33,15 @@ class AlbumDetailController: BaseUIViewController, UIAlertViewDelegate {
         super.viewWillAppear(animated)
         addPlayingButton(playingButton)
         //getAudioPlayer().delegate = self
-        if songs == nil {
-            tableView.dataSource = self
-            tableView.delegate = self
-            
-            albumImage.kf_setImageWithURL(NSURL(string: (album?.image)!)!)
-            nameLabel.text = album?.name
-            descLabel.text = album?.author
-            loadingOverlay.showOverlay(self.view)
-            
-            let request = GetAlbumSongsRequest(album: album!)
-            request.pageSize = 200
-            BasicService().sendRequest(ServiceConfiguration.GET_ALBUM_SONGS,
-                                       request: request) {
-                (resp: GetAlbumSongsResponse) -> Void in
-                dispatch_async(dispatch_get_main_queue()) {
-                    self.loadingOverlay.hideOverlayView()
-                    if resp.status == ServerResponseStatus.TokenInvalid.rawValue {
-                        self.displayMessage("请重新登录")
-                        return
-                    }
-                    
-                    if resp.status != 0 {
-                        print(resp.errorMessage)
-                        return
-                    } else {
-                        self.songs = resp.resultSet
-                        self.tableView.reloadData()
-                        self.updateCellPlayingButtons()
-                    }
-                    
-                    if self.songs.count == 0 {
-                        self.displayMessage("敬请期待", delegate: self)
-                    }
-                }
-            }
-            
-        } else {
-            updateCellPlayingButtons()
-        }
+        tableView.dataSource = self
+        tableView.delegate = self
+        
+        albumImage.kf_setImageWithURL(NSURL(string: (album?.image)!)!)
+        nameLabel.text = album?.name
+        descLabel.text = album?.author
+
+        updateCellPlayingButtons()
+        
         
         updatePlayingButton(playingButton)
         
@@ -96,7 +66,7 @@ class AlbumDetailController: BaseUIViewController, UIAlertViewDelegate {
                 var index = 0
                 for songItem in album!.songs {
                     var url = NSURL(string: ServiceConfiguration.GetSongUrl(songItem.url))
-                    if songItem.album.courseType == CourseType.Live {
+                    if songItem.album.courseType == CourseType.LiveCourse {
                         url = NSURL(string: songItem.url)
                     }
                     let audioItem = MyAudioItem(song: songItem, highQualitySoundURL: url)

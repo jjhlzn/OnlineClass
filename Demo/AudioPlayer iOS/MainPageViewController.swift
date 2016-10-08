@@ -18,6 +18,7 @@ class CourseMainPageViewController: BaseUIViewController {
     @IBOutlet weak var playingButton: UIButton!
     var extendFunctionMananger : ExtendFunctionMananger!
     var ads = [Advertise]()
+    var keyValueStore = KeyValueStore()
 
     
     override func viewDidLoad() {
@@ -33,8 +34,7 @@ class CourseMainPageViewController: BaseUIViewController {
         }
         extendFunctionMananger = ExtendFunctionMananger(controller: self, isNeedMore:  true, showMaxRows: maxRows)
         addPlayingButton(playingButton)
-        
-        
+
     }
     
     private func updateCellForDesc(resp: GetParameterInfoResponse, key: String, cell: CourseTypeCell) {
@@ -55,10 +55,29 @@ class CourseMainPageViewController: BaseUIViewController {
                 return
             }
             
+            //设置liveDescription
             let liveDescription = resp.getValue(GetParameterInfoResponse.LIVE_DESCRIPTION)
-            KeyValueStore().save(GetParameterInfoResponse.LIVE_DESCRIPTION, value: liveDescription)
+            self.keyValueStore.save(GetParameterInfoResponse.LIVE_DESCRIPTION, value: liveDescription)
+            
+            //设置LiveCourseName
+            let liveName = resp.getValue(GetParameterInfoResponse.LIVE_COURSE_NAME)
+            self.keyValueStore.save(GetParameterInfoResponse.LIVE_COURSE_NAME, value: liveName)
             let liveCell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0)) as! CourseTypeCell
+            liveCell.courseTypeName.text = liveName
             liveCell.courseDescription.text = liveDescription
+            
+            //设置payDescription
+            let payDescription = resp.getValue(GetParameterInfoResponse.PAY_DESCRIPTION)
+            self.keyValueStore.save(GetParameterInfoResponse.PAY_DESCRIPTION, value: payDescription)
+            
+            //设置PayCourseName
+            let payCourseName = resp.getValue(GetParameterInfoResponse.PAY_COURSE_NAME)
+            self.keyValueStore.save(GetParameterInfoResponse.PAY_COURSE_NAME, value: payCourseName)
+            let payCourseCell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 1, inSection: 0)) as! CourseTypeCell
+            payCourseCell.courseTypeName.text = payCourseName
+            payCourseCell.courseDescription.text = payDescription
+            
+            
             self.tableView.reloadData()
         }
 
@@ -70,7 +89,7 @@ class CourseMainPageViewController: BaseUIViewController {
         if segue.identifier == "beforeCourseSegue" {
             let dest = segue.destinationViewController as! AlbumListController
             
-            dest.courseType = CourseType(rawValue: sender as! String)!
+            dest.courseType = sender as! CourseType
         } 
         else if segue.identifier == "loadWebPageSegue" {
             let dest = segue.destinationViewController as! WebPageViewController
@@ -114,7 +133,7 @@ extension CourseMainPageViewController : UITableViewDataSource, UITableViewDeleg
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
-            return 3
+            return 2
         } else {
             return extendFunctionMananger.getRowCount() + 1
         }
@@ -132,26 +151,17 @@ extension CourseMainPageViewController : UITableViewDataSource, UITableViewDeleg
             switch row {
             case 0:
                 let cell = tableView.dequeueReusableCellWithIdentifier("courseTypeCell") as! CourseTypeCell
-                cell.courseTypeName.text = "直播课程！"
+                cell.courseTypeName.text = keyValueStore.get(GetParameterInfoResponse.LIVE_COURSE_NAME, defaultValue: CourseType.LiveCourse.name)
                 imageName = "liveAudio"
                 cell.courseTypeImageView.image = UIImage(named: imageName)
-                QL2("liveDescription = \(KeyValueStore().get(GetParameterInfoResponse.LIVE_DESCRIPTION))")
                 cell.courseDescription.text = KeyValueStore().get(GetParameterInfoResponse.LIVE_DESCRIPTION)
                 return cell
                 
             case 1:
                 let cell = tableView.dequeueReusableCellWithIdentifier("courseTypeCell") as! CourseTypeCell
-                cell.courseTypeName.text = "VIP课堂"
-                imageName = "vipCourse"
-                cell.courseTypeImageView.image = UIImage(named: imageName)
-                return cell
+                cell.courseTypeName.text = keyValueStore.get(GetParameterInfoResponse.PAY_COURSE_NAME, defaultValue: CourseType.PayCourse.name)
 
-                
-            case 2:
-                
-                let cell = tableView.dequeueReusableCellWithIdentifier("courseTypeCell") as! CourseTypeCell
-                cell.courseTypeName.text  = "往期课程内容"
-                imageName = "beforeCourse"
+                imageName = "vipCourse"
                 cell.courseTypeImageView.image = UIImage(named: imageName)
                 return cell
                 
@@ -172,7 +182,15 @@ extension CourseMainPageViewController : UITableViewDataSource, UITableViewDeleg
         }
     }
     
-    
+    func tapAdImageHandler(sender: UITapGestureRecognizer? = nil) {
+        let scrollView = sender?.view as! UIScrollView
+        print(scrollView.auk.currentPageIndex)
+        let index = scrollView.auk.currentPageIndex
+        if index != nil {
+            let params : [String: String] = ["url": ads[index!].clickUrl, "title": ads[index!].title]
+            performSegueWithIdentifier("loadWebPageSegue", sender: params)
+        }
+    }
     
     private func makeAdvCell() -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("functionCell")!
@@ -188,22 +206,15 @@ extension CourseMainPageViewController : UITableViewDataSource, UITableViewDeleg
             y = 0
         }
         
-        //print("cellWidth = \(imageWidth), cellHeight = \(cellHeight), imageHeight = \(imageHeight), x = \(x), y = \(y)")
-        
+        //创建滚动广告
         let scrollView = UIScrollView(frame: CGRect(x: x, y: y, width: imageWidth, height: imageHeight ))
-        
-        
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.tapAdImageHandler))
-        
         scrollView.addGestureRecognizer(tapGesture)
         scrollView.userInteractionEnabled = true
         
         cell.addSubview(scrollView)
-        //print("scrollView.superview = \(scrollView.superview)")
         scrollView.auk.settings.pageControl.backgroundColor =  UIColor.grayColor().colorWithAlphaComponent(0)
-        
         scrollView.auk.settings.contentMode = UIViewContentMode.ScaleToFill
-        
         BasicService().sendRequest(ServiceConfiguration.GET_ADS, request: GetAdsRequest()) {
             (resp : GetAdsResponse) -> Void in
             if resp.status != 0 {
@@ -225,18 +236,9 @@ extension CourseMainPageViewController : UITableViewDataSource, UITableViewDeleg
         return cell
     }
 
-    func tapAdImageHandler(sender: UITapGestureRecognizer? = nil) {
-        let scrollView = sender?.view as! UIScrollView
-        print(scrollView.auk.currentPageIndex)
-        let index = scrollView.auk.currentPageIndex
-        if index != nil {
-            let params : [String: String] = ["url": ads[index!].clickUrl, "title": ads[index!].title]
-            performSegueWithIdentifier("loadWebPageSegue", sender: params)
-        }
-    }
 
     private func computeAdCellHeight() -> CGFloat {
-        let section1Height = 3 * 53
+        let section1Height = 2 * 76
         let section2Height = extendFunctionMananger.getRowCount() * 79
         let total = section1Height + section2Height + 3 + 65 + 49 - 1
         var height = UIScreen.mainScreen().bounds.height - CGFloat(total)
@@ -258,7 +260,7 @@ extension CourseMainPageViewController : UITableViewDataSource, UITableViewDeleg
                 return 79
             }
         } else {
-            return 53
+            return 76
         }
     }
     
@@ -272,13 +274,10 @@ extension CourseMainPageViewController : UITableViewDataSource, UITableViewDeleg
             let row = indexPath.row
             switch row {
             case 0:
-                performSegueWithIdentifier("beforeCourseSegue", sender: CourseType.Live.rawValue)
+                performSegueWithIdentifier("beforeCourseSegue", sender: CourseType.LiveCourse)
                 break
             case 1:
-                performSegueWithIdentifier("beforeCourseSegue", sender: CourseType.Vip.rawValue)
-                break
-            case 2:
-                performSegueWithIdentifier("beforeCourseSegue", sender: CourseType.Common.rawValue)
+                performSegueWithIdentifier("beforeCourseSegue", sender: CourseType.PayCourse)
                 break
             default:
                 break

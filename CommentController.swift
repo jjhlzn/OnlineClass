@@ -140,9 +140,11 @@ class CommentController : NSObject, UITextViewDelegate {
             comment.userId = commentJson["userId"].stringValue
             comment.id = commentJson["id"].stringValue
             comment.time = commentJson["time"].stringValue
+            comment.isManager = commentJson["isManager"].boolValue
             self.liveDelegate?.afterSendLiveComment([comment])
             
         }
+        
         socket!.connect()
     }
     
@@ -309,6 +311,8 @@ class CommentController : NSObject, UITextViewDelegate {
         sendCommentRequest.lastId = liveDelegate!.getLastCommentId()
         sendCommentRequest.comment = getCommentContent().emojiEscapedString
         
+        //在每次发送评论之前，都尝试重新连接
+        socket?.connect()
         //socket?.reconnect()
         QL1("sendCommentRequest = \(sendCommentRequest.getJSON().rawString())")
         socket?.emitWithAck(chat_message_cmd, sendCommentRequest.getJSON().rawString()!) (timeoutAfter: 0) { data in
