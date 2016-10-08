@@ -52,6 +52,7 @@ class WebPageViewController: IapSupportWebPageViewController, WKNavigationDelega
             navigationItem.rightBarButtonItems = []
         }
         
+        
     }
     
     
