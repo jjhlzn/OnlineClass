@@ -317,6 +317,14 @@ class CommentController : NSObject, UITextViewDelegate {
         QL1("sendCommentRequest = \(sendCommentRequest.getJSON().rawString())")
         socket?.emitWithAck(chat_message_cmd, sendCommentRequest.getJSON().rawString()!) (timeoutAfter: 0) { data in
             QL1("emitWithAck callback")
+            QL1(data)
+
+            let result = data[0] as! NSDictionary
+            if result["status"] as! Int != 0 {
+                self.viewController.displayMessage(result["errorMessage"] as! String )
+                return
+            }
+            
             self.viewController.dismissKeyboard()
             self.lastCommentTime = NSDate()
             self.commentFiled2.text = ""
