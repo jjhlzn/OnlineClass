@@ -199,7 +199,6 @@
 		1CA3B2131CD8E83B00D0ABD8 /* FunctionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FunctionCell.swift; sourceTree = "<group>"; };
 		1CB2D7E71D0D9918007FE507 /* LiveAlbumCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiveAlbumCell.swift; sourceTree = "<group>"; };
 		1CB425A51D229E1600971F95 /* ServiceLinkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceLinkManager.swift; sourceTree = "<group>"; };
-		1CBC1DBB1D08F74C00F140D3 /* XCGLogger.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = XCGLogger.framework; path = "/Users/lzn/Library/Developer/Xcode/DerivedData/jufangzhushou-gwlwmlecjbhnzsegqgsoeihdcszi/Build/Products/Debug-iphonesimulator/XCGLogger/XCGLogger.framework"; sourceTree = "<absolute>"; };
 		1CBF78651D336CF200B596BC /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
 		1CBF78661D336CF200B596BC /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
 		1CBF78671D336CF200B596BC /* WechatAuthSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WechatAuthSDK.h; sourceTree = "<group>"; };
@@ -500,7 +499,6 @@
 				1C98A8991D62005900ADF12B /* xinge */,
 				1CBF78701D33727B00B596BC /* weixinshare_bridge.h */,
 				1CBF785F1D336CC300B596BC /* weixinsdk */,
-				1CBC1DBB1D08F74C00F140D3 /* XCGLogger.framework */,
 				1C154A4E1CDACC89003B900C /* ui */,
 				1C2684721CCA5CA80032C014 /* lib */,
 				1C09D3BB1CD083A0004A8F9C /* model */,
@@ -752,7 +750,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
