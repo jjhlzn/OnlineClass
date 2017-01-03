@@ -50,6 +50,7 @@ class StartupViewController: BaseUIViewController {
     }
     
     private func checkLoginUser() {
+        
         //检查一下是否已经登录，如果登录，则直接进入后面的页面
         let loginUser = loginUserStore.getLoginUser()
         if  loginUser != nil {

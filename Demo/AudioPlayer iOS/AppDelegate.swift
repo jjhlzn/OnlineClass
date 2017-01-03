@@ -23,6 +23,8 @@ class AppDelegate : XinGeAppDelegate {
     var audioPlayer = AudioPlayer()
     var liveProgressTimer : NSTimer?
     var wxApiManager = WXApiManager()
+    
+    let wbAppKey = "901768017"
 
 
     override func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
@@ -46,6 +48,9 @@ class AppDelegate : XinGeAppDelegate {
         registerForPushNotifications(application)
         NBSAppAgent.startWithAppID("a200c16a118f4f99891ab5645fa2a13d")
         WXApi.registerApp("wx73653b5260b24787", withDescription: "AudioPlayer iOS")
+        
+        WeiboSDK.enableDebugMode(true)
+        WeiboSDK.registerApp(wbAppKey)
         
        // [NBSAppAgent startWithAppID:@"a200c16a118f4f99891ab5645fa2a13d"];
 
@@ -139,11 +144,12 @@ class AppDelegate : XinGeAppDelegate {
     
     
     func application(application: UIApplication, handleOpenURL url: NSURL) -> Bool {
-        
+        //QL1("application(UIApplication, url): ", )
         return WXApi.handleOpenURL(url, delegate: wxApiManager)
     }
     
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
+        //QL1("application(UIApplication, url): ", url)
         return WXApi.handleOpenURL(url, delegate: wxApiManager)
     }
     

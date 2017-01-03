@@ -35,7 +35,7 @@ class BasicService {
         } catch let error {
             QL4("catchException, ex = \(error)")
             serverResponse.status = -1
-            serverResponse.errorMessage = "客户端错误，解析Request出错"
+            serverResponse.errorMessage = "您的网络不给力，请检查网络是否正常"
             return serverResponse
         }
         
@@ -49,7 +49,7 @@ class BasicService {
                 if response.result.isFailure {
                     QL4("服务器出错了")
                     serverResponse.status = -1
-                    serverResponse.errorMessage = "服务器返回出错"
+                    serverResponse.errorMessage = "您的网络不给力，请检查网络是否正常"
                     completion(resp: serverResponse)
                     
                 } else {

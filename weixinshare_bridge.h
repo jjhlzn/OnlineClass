@@ -21,4 +21,6 @@
 
 #import <tingyunApp/NBSAppAgent.h>
 
+#import "WeiboSDK.h"
+
 #endif /* weixinshare_bridge_h */

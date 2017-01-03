@@ -528,6 +528,16 @@ THE SOFTWARE.
 		</dict>
 		<dict>
 			<key>FooterText</key>
+			<string></string>
+			<key>License</key>
+			<string>MIT</string>
+			<key>Title</key>
+			<string>WeiboSDK</string>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+		</dict>
+		<dict>
+			<key>FooterText</key>
 			<string>MIT License
 
 Copyright (c) 2015 Evgenii Neumerzhitckii

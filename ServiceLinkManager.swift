@@ -28,6 +28,13 @@ class ServiceLinkManager {
         get {
             return "http://\(ServiceConfiguration.serverName):\(ServiceConfiguration.port)/Center/MyAgent"
         }
+        
+    }
+    
+    static var MyAgentUrl2 : String {
+        get {
+            return "http://\(ServiceConfiguration.serverName):\(ServiceConfiguration.port)/Center/MyLevel2.aspx"
+        }
     }
     
     static var MyExchangeUrl : String {
@@ -158,6 +165,12 @@ class ServiceLinkManager {
     static var ApplyUrl : String {
         get {
             return "http://\(ServiceConfiguration.serverName):\(ServiceConfiguration.port)/shop/shopindex"
+        }
+    }
+    
+    static var ShenqingUrl : String {
+        get {
+            return "http://\(ServiceConfiguration.serverName):\(ServiceConfiguration.port)/app/shenqing"
         }
     }
     

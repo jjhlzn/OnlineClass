@@ -27,8 +27,7 @@ class ApplyBrowserController : IapSupportWebPageViewController, WKNavigationDele
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "申请"
-        url = NSURL(string: ServiceLinkManager.ApplyUrl)!
-        //url = NSURL(string: "http://192.168.31.146:3000/app/wechatpay")!
+        url = NSURL(string: ServiceLinkManager.ShenqingUrl)!
         
         
         initIAP()

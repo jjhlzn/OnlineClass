@@ -211,7 +211,7 @@ class LivePlayerPageViewController : CommonPlayerPageViewController, LiveComment
     }
     
     func tapApplyButtonHandler(sender: UITapGestureRecognizer? = nil) {
-        let params : [String: String] = ["url": ServiceLinkManager.ApplyUrl, "title": "报名"]
+        let params : [String: String] = ["url": ServiceLinkManager.MyAgentUrl2, "title": "报名"]
         self.viewController.performSegueWithIdentifier("advWebView", sender: params)
     }
     

@@ -178,6 +178,9 @@ class WebPageViewController: IapSupportWebPageViewController, WKNavigationDelega
         share(true)
     }
     
+    @IBAction func shareWeiboPressed(sender: AnyObject) {
+        weiboShare()
+    }
     @IBAction func cancelPressed(sender: AnyObject) {
         shareView.hidden = true
         shareView.removeFromSuperview()
@@ -214,7 +217,15 @@ class WebPageViewController: IapSupportWebPageViewController, WKNavigationDelega
         
         
     }
-
+    
+    private func weiboShare() {
+        let req = WBSendMessageToWeiboRequest()
+        req.message = Utils.getWebpageObject()
+        
+        WeiboSDK.sendRequest(req)
+    }
+    
+   
 
 
 }
