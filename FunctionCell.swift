@@ -199,10 +199,7 @@ class ExtendFunctionMananger : NSObject {
             let params : [String: String] = ["url": "http://jf.yhkamani.com/dlios.html", "title": "巨方支付下载"]
             controller.performSegueWithIdentifier("loadWebPageSegue", sender: params)
         }
-
     }
-    
-    
 }
 
 class ExtendFunction {

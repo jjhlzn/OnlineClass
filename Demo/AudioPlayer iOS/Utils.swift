@@ -150,12 +150,15 @@ class Utils {
         webpage.objectID = "\(NSDate().timeIntervalSince1970 * 1000)"
         webpage.title = "扫一扫下载安装【巨方助手】，即可免费在线学习、提额、办卡、贷款！"
         webpage.description =  "扫一扫下载安装【巨方助手】"
+        
         //webpage.thumbnailData = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"image_2" ofType:@"jpg"]];
+        webpage.thumbnailData = UIImagePNGRepresentation(UIImage(named: "me_qrcode")!)
         
         let loginUser = LoginUserStore().getLoginUser()!
         
         webpage.webpageUrl = ServiceLinkManager.ShareTiEMijueUrl + "?userid=\(loginUser.userName!)"
         message.mediaObject = webpage;
+        
         
         return message
     }

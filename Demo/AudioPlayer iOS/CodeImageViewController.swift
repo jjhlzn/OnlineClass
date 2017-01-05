@@ -73,6 +73,8 @@ class CodeImageViewController: BaseUIViewController {
         req.message = Utils.getWebpageObject()
         WeiboSDK.sendRequest(req)
     }
+    
+    
     private func share(isPengyouquan: Bool) {
         let message = WXMediaMessage()
         message.title = "扫一扫下载安装【巨方助手】，即可免费在线学习、提额、办卡、贷款！"

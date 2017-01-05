@@ -220,7 +220,9 @@ class WebPageViewController: IapSupportWebPageViewController, WKNavigationDelega
     
     private func weiboShare() {
         let req = WBSendMessageToWeiboRequest()
+        
         req.message = Utils.getWebpageObject()
+        
         
         WeiboSDK.sendRequest(req)
     }
