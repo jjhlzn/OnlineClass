@@ -17,19 +17,19 @@ class StartupViewController: BaseUIViewController {
     var isSkipUpgradeCheck = false
     var upgradeUrl : String!
     
-    var optionalUpgradeAlertViewDelegate : OptionalUpgradeAlertViewDelegate!
+    //var optionalUpgradeAlertViewDelegate : OptionalUpgradeAlertViewDelegate!
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
-        optionalUpgradeAlertViewDelegate = OptionalUpgradeAlertViewDelegate(controller: self)
+       // optionalUpgradeAlertViewDelegate = OptionalUpgradeAlertViewDelegate(controller: self)
 
         let serviceLocator = serviceLocatorStore.GetServiceLocator()
         
         //serviceLocator不应该为null，因为在AppDelegate会有一个初始化值
         if (serviceLocator?.needServieLocator)! {
             
-            BasicService().sendRequest(ServiceConfiguration.GET_SERVICE_LOACTOR_URL, request: GetServiceLocatorRequest()) {
+            BasicService().sendRequest(ServiceConfiguration.GET_SERVICE_LOACTOR_URL, request: GetServiceLocatorRequest(), timeout: 3) {
                 (resp : GetServiceLocatorResponse) -> Void in
                 
                 if resp.status == ServerResponseStatus.Success.rawValue {
@@ -40,11 +40,11 @@ class StartupViewController: BaseUIViewController {
                     self.serviceLocatorStore.UpdateServiceLocator()
                 }
                 
-                self.checkUpgrade()
+                self.checkLoginUser()
                 
             }
         } else {
-            checkUpgrade()
+            checkLoginUser()
         }
         
     }
@@ -97,6 +97,7 @@ class StartupViewController: BaseUIViewController {
         }
     }
     
+    /*
     func checkUpgrade() {
         if isSkipUpgradeCheck {
             checkLoginUser()
@@ -104,7 +105,7 @@ class StartupViewController: BaseUIViewController {
             BasicService().sendRequest(ServiceConfiguration.CHECK_UPGRADE, request: CheckUpgradeRequest()) {
                 (resp : CheckUpgradeResponse) -> Void in
                 if resp.status != 0 {
-                    self.displayMessage(resp.errorMessage!)
+                    //self.displayMessage(resp.errorMessage!)
                     self.checkLoginUser()
                     return
                 }
@@ -125,9 +126,9 @@ class StartupViewController: BaseUIViewController {
             
         }
 
-    }
+    }*/
     
-    
+    /*
     class OptionalUpgradeAlertViewDelegate : NSObject, UIAlertViewDelegate {
         
         var controller : StartupViewController
@@ -149,7 +150,7 @@ class StartupViewController: BaseUIViewController {
                 break;
             }
         }
-    }
+    }*/
     
 
 }
