@@ -68,6 +68,13 @@ class CodeImageViewController: BaseUIViewController {
         share(true)
     }
     
+    @IBAction func shareToWeibo(sender: AnyObject) {
+        let req = WBSendMessageToWeiboRequest()
+        req.message = Utils.getWebpageObject()
+        WeiboSDK.sendRequest(req)
+    }
+    
+    
     private func share(isPengyouquan: Bool) {
         let message = WXMediaMessage()
         message.title = "扫一扫下载安装【巨方助手】，即可免费在线学习、提额、办卡、贷款！"

@@ -12,6 +12,7 @@ PODS:
   - Socket.IO-Client-Swift (6.1.2)
   - SwiftyJSON (2.3.2)
   - tingyunApp (2.4.1)
+  - WeiboSDK (3.1.4)
 
 DEPENDENCIES:
   - Alamofire (~> 3.3)
@@ -25,15 +26,21 @@ DEPENDENCIES:
   - Socket.IO-Client-Swift
   - SwiftyJSON (from `https://github.com/SwiftyJSON/SwiftyJSON.git`)
   - tingyunApp
+  - WeiboSDK (from `https://github.com/sinaweibosdk/weibo_ios_sdk.git`)
 
 EXTERNAL SOURCES:
   SwiftyJSON:
     :git: https://github.com/SwiftyJSON/SwiftyJSON.git
+  WeiboSDK:
+    :git: https://github.com/sinaweibosdk/weibo_ios_sdk.git
 
 CHECKOUT OPTIONS:
   SwiftyJSON:
     :commit: 2a5b70f06001316d4fb54501edc70b4084705da0
     :git: https://github.com/SwiftyJSON/SwiftyJSON.git
+  WeiboSDK:
+    :commit: 3daf7147ddd0fde3b04a61d8d94327d41d0c239c
+    :git: https://github.com/sinaweibosdk/weibo_ios_sdk.git
 
 SPEC CHECKSUMS:
   Alamofire: c19a627cefd6a95f840401c49ab1f124e07f54ee
@@ -48,7 +55,8 @@ SPEC CHECKSUMS:
   Socket.IO-Client-Swift: 60a60e8bfd7b16bc57c90ff6329e9f536b5eacdd
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
   tingyunApp: bf9074313164f2b3595b5c2b422c8159cee03a58
+  WeiboSDK: bceab625ec59b7039ba721cc4ba9f5868804f63e
 
-PODFILE CHECKSUM: de30e3df5138368281a8f10042ffa33d31cf2c1f
+PODFILE CHECKSUM: 03d8f7941389f28746c0f1508c013464d6812c5b
 
 COCOAPODS: 1.1.1
