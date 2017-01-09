@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import QorumLogs
 
 class FunctionCell: UITableViewCell {
  
@@ -31,28 +32,30 @@ class ExtendFunctionMananger : NSObject {
                                       selector: #selector(moreHanlder))
         
         functions = [
-            ExtendFunction(imageName: "commonCard", name: "去刷卡", url: "http://www.baidu.com",
+            ExtendFunction(imageName: "commonCard", name: "刷卡", url: "http://www.baidu.com",
                 selector:  #selector(openApp)),
-            ExtendFunction(imageName: "up", name: "提额秘诀", url: ServiceLinkManager.FunctionUpUrl,
+            ExtendFunction(imageName: "liveclass", name: "直播课堂", url: ServiceLinkManager.FunctionUpUrl,
                 selector:  #selector(imageHandler)),
-            ExtendFunction(imageName: "visa", name: "一键办卡", url: ServiceLinkManager.FunctionFastCardUrl,
+            ExtendFunction(imageName: "visa", name: "快速办卡", url: ServiceLinkManager.FunctionFastCardUrl,
+                selector:  #selector(imageHandler)),
+            ExtendFunction(imageName: "dollar", name: "快速贷款", url: ServiceLinkManager.FunctionDaiKuangUrl,
+                selector:  #selector(imageHandler)),
+            
+            ExtendFunction(imageName: "shopcart", name: "商城",  url: ServiceLinkManager.FunctionShopUrl,
+                selector:  #selector(imageHandler)),
+            ExtendFunction(imageName: "car", name: "汽车分期", url: ServiceLinkManager.FunctionCarLoanUrl,
                 selector:  #selector(imageHandler)),
             ExtendFunction(imageName: "cardManage", name: "卡片管理", url: ServiceLinkManager.FunctionCardManagerUrl,
                 selector:  #selector(imageHandler)),
-            ExtendFunction(imageName: "creditSearch", name: "信用查询", url: ServiceLinkManager.FunctionCreditSearchUrl,
+            ExtendFunction(imageName: "rmb", name: "我要充值",  url: ServiceLinkManager.FunctionJiaoFeiUrl,
                 selector:  #selector(imageHandler)),
-            ExtendFunction(imageName: "mmcSearch", name: "mcc查询",  url: ServiceLinkManager.FunctionMccSearchUrl,
-                selector:  #selector(imageHandler)),
-            ExtendFunction(imageName: "shopcart", name: "商城",  url: ServiceLinkManager.FunctionShopUrl,
-                selector:  #selector(imageHandler)),
-            ExtendFunction(imageName: "rmb", name: "缴费",  url: ServiceLinkManager.FunctionJiaoFeiUrl,
-                 selector:  #selector(imageHandler)),
-            ExtendFunction(imageName: "dollar", name: "贷款", url: ServiceLinkManager.FunctionDaiKuangUrl,
-                 selector:  #selector(imageHandler)),
-            ExtendFunction(imageName: "car", name: "汽车分期", url: ServiceLinkManager.FunctionCarLoanUrl,
+            
+            ExtendFunction(imageName: "share", name: "分享",  url: ServiceLinkManager.FunctionMccSearchUrl,
                 selector:  #selector(imageHandler)),
             ExtendFunction(imageName: "customerservice", name: "客服", url: ServiceLinkManager.FunctionCustomerServiceUrl,
                 selector:  #selector(imageHandler)),
+
+
             moreFunction!
         ]
         
@@ -86,8 +89,6 @@ class ExtendFunctionMananger : NSObject {
                 break
             }
             
-            // print("index = \(index)")
-            
             var function = functions[index]
             
             if isNeedMoreButton() && index == getLastIndex() {
@@ -101,7 +102,6 @@ class ExtendFunctionMananger : NSObject {
             //print("cell.width = \(cell.bounds.width)")
             addCellView(row, column: i, index: index, function: function, cell: cell)
             
-           
             index = index + 1
             
         }
@@ -134,13 +134,42 @@ class ExtendFunctionMananger : NSObject {
 
     }
     
+    private func getImageWidth() -> CGFloat {
+        let screenWidth = UIScreen.mainScreen().bounds.width
+        return screenWidth / 4 * 0.7
+        
+    }
     
-    let imageWidth : CGFloat = 40
-    let cellHeight = 79
+    var cellHeight:CGFloat {
+        get {
+            let screenWidth = UIScreen.mainScreen().bounds.width
+            QL1("screen width: \(screenWidth)")
+            return screenWidth / 4 - 5
+        }
+    }
+    
+    var isiPhonePlusScreen: Bool {
+        get {
+            return abs(UIScreen.mainScreen().bounds.width - 414) < 1;
+        }
+    }
+    
+    var isiPhone6Screen: Bool {
+        get {
+            return abs(UIScreen.mainScreen().bounds.width - 375) < 1;
+        }
+    }
+    
     private func makeImage(index: Int, function: ExtendFunction, superView: UIView) -> UIImageView {
-        let imageView = UIImageView(frame: CGRectMake(0, 0, imageWidth, imageWidth))
+        let imageView = UIImageView(frame: CGRectMake(0, 0, getImageWidth(), getImageWidth()))
         imageView.center.x = superView.bounds.width / 2
-        imageView.center.y = superView.bounds.height / 2 - 10
+        if isiPhonePlusScreen {
+           imageView.center.y = superView.bounds.height / 2 + 4
+        } else if isiPhone6Screen {
+           imageView.center.y = superView.bounds.height / 2
+        } else {
+           imageView.center.y = superView.bounds.height / 2 - 6
+        }
         //print("superView.center.x = \(superView.center.x), superView.center.y - 10 = \(superView.center.y - 10)")
         imageView.image = UIImage(named: function.imageName)
         imageView.tag = index
@@ -156,7 +185,13 @@ class ExtendFunctionMananger : NSObject {
         label.tag = index
         
         label.center.x = superView.bounds.width / 2
-        label.center.y = superView.bounds.height / 2 + imageWidth / 2 + 5
+        if isiPhonePlusScreen {
+            label.center.y = superView.bounds.height / 2 + getImageWidth() / 2 + 14
+        } else if isiPhone6Screen {
+            label.center.y = superView.bounds.height / 2 + getImageWidth() / 2 + 7
+        } else {
+            label.center.y = superView.bounds.height / 2 + getImageWidth() / 2 + 1
+        }
 
         label.textAlignment = .Center
         label.font = label.font.fontWithSize(13)
@@ -164,10 +199,7 @@ class ExtendFunctionMananger : NSObject {
         label.text = function.name
         
         return label
-        
     }
-    
-    
     
     func imageHandler(sender: UITapGestureRecognizer? = nil) {
         let index = sender?.view?.tag
@@ -193,9 +225,6 @@ class ExtendFunctionMananger : NSObject {
             UIApplication.sharedApplication().openURL(jfzfUrl!)
             
         } else {
-            //redirect to safari because the user doesn't have Instagram
-            print("App not installed")
-            //UIApplication.sharedApplication().openURL(NSURL(string: "https://itunes.apple.com/in/app/instagram/id389801252?m")!)
             let params : [String: String] = ["url": "http://jf.yhkamani.com/dlios.html", "title": "巨方支付下载"]
             controller.performSegueWithIdentifier("loadWebPageSegue", sender: params)
         }

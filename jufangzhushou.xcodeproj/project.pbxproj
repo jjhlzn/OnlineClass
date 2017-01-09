@@ -117,6 +117,7 @@
 		E2B2FA0F1C4BB64F00ABF3C5 /* sound2.caf in Resources */ = {isa = PBXBuildFile; fileRef = E2C6FAE01C4B01D80055A1BF /* sound2.caf */; };
 		E2C6FAE11C4B01D80055A1BF /* sound1.caf in Resources */ = {isa = PBXBuildFile; fileRef = E2C6FADF1C4B01D80055A1BF /* sound1.caf */; };
 		E2C6FAE21C4B01D80055A1BF /* sound2.caf in Resources */ = {isa = PBXBuildFile; fileRef = E2C6FAE01C4B01D80055A1BF /* sound2.caf */; };
+		EFB004231E236CD800B9272A /* HeaderAdvCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFB004221E236CD800B9272A /* HeaderAdvCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -247,6 +248,7 @@
 		E2B2F9FB1C4BB5DC00ABF3C5 /* AudioPlayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AudioPlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2C6FADF1C4B01D80055A1BF /* sound1.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = sound1.caf; path = ../Sounds/sound1.caf; sourceTree = "<group>"; };
 		E2C6FAE01C4B01D80055A1BF /* sound2.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = sound2.caf; path = ../Sounds/sound2.caf; sourceTree = "<group>"; };
+		EFB004221E236CD800B9272A /* HeaderAdvCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderAdvCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -346,6 +348,7 @@
 				1C3CC4BF1CFBE3FE007D3EBC /* SongListCell.swift */,
 				1C451F671D01765F00DC29F9 /* ConfigurationCell.swift */,
 				1C50C7551D48D28C0022B952 /* SongAdvCell.swift */,
+				EFB004221E236CD800B9272A /* HeaderAdvCell.swift */,
 			);
 			name = customCell;
 			sourceTree = "<group>";
@@ -845,6 +848,7 @@
 				1C33F0421D07DBF000D3EE4C /* AllFunctionViewController.swift in Sources */,
 				1CDCC8ED1CE717F3001640CC /* ForgetPasswordViewController.swift in Sources */,
 				1C451F6C1D01787B00DC29F9 /* ServiceLocatorEntity+CoreDataProperties.swift in Sources */,
+				EFB004231E236CD800B9272A /* HeaderAdvCell.swift in Sources */,
 				1C33F0341D07195700D3EE4C /* TextFieldCell.swift in Sources */,
 				1C2451DA1CE8A28B00F350DA /* LoginUserEntity.swift in Sources */,
 				1CEFF78A1CBFBA70000DEFF7 /* ServerResponse.swift in Sources */,
