@@ -956,3 +956,62 @@ class NotifyIAPSuccessResponse : ServerResponse {
     
 }
 
+class GetHeaderAdvRequest : ServerRequest {
+
+}
+
+class HeaderAdv {
+    static let Type_Song = "song"
+    static let Type_AlbumList = "albumlist"
+    static let Param_Key_Song = "songid"
+    
+    var imageUrl: String! = ""
+    var type: String! = ""
+    var songId: String! = ""
+}
+
+class GetHeaderAdvResponse : ServerResponse {
+    var headerAdv: HeaderAdv?
+    
+    override func parseJSON(request: ServerRequest, json: NSDictionary) {
+        super.parseJSON(request, json: json)
+        let jsonArray = json["result"] as! NSArray
+        for eachJson in jsonArray {
+            self.headerAdv = HeaderAdv()
+            self.headerAdv?.imageUrl = eachJson["imageUrl"] as! String
+            self.headerAdv?.type = eachJson["type"] as! String
+            
+            let paramsArr = eachJson["params"] as! NSArray;
+            if self.headerAdv?.type == HeaderAdv.Type_Song {
+                for eachParamJson in paramsArr {
+                    if eachParamJson["key"] as! String == HeaderAdv.Param_Key_Song {
+                        self.headerAdv?.songId = eachParamJson["value"] as! String
+                    }
+                }
+            }
+        }
+    }
+}
+
+class GetFooterAdvsRequest : ServerRequest {}
+class FooterAdv {
+    var imageUrl: String! = ""
+    var title: String! = ""
+    var url: String! = ""
+
+}
+class GetFooterAdvsResponse : ServerResponse {
+    var advList = [FooterAdv]()
+    override func parseJSON(request: ServerRequest, json: NSDictionary) {
+        super.parseJSON(request, json: json)
+        let jsonArray = json["result"] as! NSArray
+        for eachJson in jsonArray {
+            let adv = FooterAdv()
+            adv.imageUrl = eachJson["imageUrl"] as! String
+            adv.title = eachJson["title"] as! String
+            adv.url = eachJson["url"] as! String
+            self.advList.append(adv)
+        }
+    }
+}
+

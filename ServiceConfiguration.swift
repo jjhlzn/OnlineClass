@@ -10,13 +10,13 @@ import Foundation
 
 class ServiceConfiguration {
     static let PageSize = 20
-    static let isUseConfig = true
+    static let isUseConfig = false
     static let serviceLocatorStore = ServiceLocatorStore()
     
 
     //114.80.101.27:6012/
-    static let serverName3 = "192.168.31.146"
-    static let port3 = 3000
+    static let serverName3 = "192.168.31.175"
+    static let port3 = 5000
     
     
     static let serverName4 = "jf.yhkamani.com"
@@ -244,7 +244,18 @@ class ServiceConfiguration {
         }
     }
     
-    
+    //首页
+    static var GET_HEADER_ADV: String {
+        get {
+            return "\(http)://\(serverName):\(port)/app/getheaderadvs"
+        }
+    }
+    static var GET_FOOTER_ADV: String {
+        get {
+            return "\(http)://\(serverName):\(port)/app/getfooteradvs"
+        }
+    }
+
     
     
     static let ImageUrlPrefix = "http://\(serverName):\(port)/"

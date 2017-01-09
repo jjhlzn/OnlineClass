@@ -1,5 +1,5 @@
 //
-//  HeaderAdvCell.swift
+//  FooterAdvCell.swift
 //  jufangzhushou
 //
 //  Created by 金军航 on 17/1/9.
@@ -8,11 +8,6 @@
 
 import UIKit
 
-class HeaderAdvCell: UITableViewCell {
-
-    @IBOutlet weak var advImage: UIImageView!
-
-    
-    
+class FooterAdvCell: UITableViewCell {
 
 }

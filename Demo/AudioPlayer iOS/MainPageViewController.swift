@@ -19,6 +19,9 @@ class CourseMainPageViewController: BaseUIViewController {
     var extendFunctionMananger : ExtendFunctionMananger!
     var ads = [Advertise]()
     var keyValueStore = KeyValueStore()
+    var freshHeaderAdvTimer: NSTimer!
+    var footerAdvs = [FooterAdv]()
+    var headerAdv: HeaderAdv?
 
     
     override func viewDidLoad() {
@@ -27,23 +30,69 @@ class CourseMainPageViewController: BaseUIViewController {
         tableView.delegate = self
         
         let screenWidth = UIScreen.mainScreen().bounds.height
-        print("screenWidth = \(screenWidth)")
         var maxRows = 100
         if screenWidth < 667 {
             maxRows = 2
         }
         extendFunctionMananger = ExtendFunctionMananger(controller: self, isNeedMore:  true, showMaxRows: maxRows)
         addPlayingButton(playingButton)
-
     }
     
-    private func updateCellForDesc(resp: GetParameterInfoResponse, key: String, cell: CourseTypeCell) {
-        
-    }
+
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         updatePlayingButton(playingButton)
+        loadHeaderAdv()
+        loadFooterAdvs()
+        createTimer()
+        
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        freshHeaderAdvTimer.invalidate()
+    }
+    
+    private func createTimer() {
+        freshHeaderAdvTimer = NSTimer.scheduledTimerWithTimeInterval(60, target: self,
+                                                                selector: #selector(loadHeaderAdv), userInfo: nil, repeats: true)
+    }
+    
+
+    func loadHeaderAdv() {
+        BasicService().sendRequest(ServiceConfiguration.GET_HEADER_ADV, request: GetHeaderAdvRequest()) {
+            (resp: GetHeaderAdvResponse) -> Void in
+            if resp.status != ServerResponseStatus.Success.rawValue {
+                QL4("server return error: \(resp.errorMessage!)")
+                return
+            }
+            
+            if resp.headerAdv != nil {
+                let headerCell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0)) as! HeaderAdvCell
+
+                self.headerAdv = resp.headerAdv
+                if let imageUrl = NSURL(string: (resp.headerAdv?.imageUrl)!) {
+                    headerCell.advImage.kf_setImageWithURL(imageUrl)
+                }
+            }
+        }
+    }
+    
+    func loadFooterAdvs() {
+        BasicService().sendRequest(ServiceConfiguration.GET_FOOTER_ADV, request: GetFooterAdvsRequest() ) {
+            (resp: GetFooterAdvsResponse) -> Void in
+            if resp.status != ServerResponseStatus.Success.rawValue {
+                QL4("server return error: \(resp.errorMessage!)")
+                return
+            }
+            if resp.advList.count == 4 {
+                
+                self.footerAdvs = resp.advList
+                self.tableView.reloadData()
+            }
+        }
     }
     
     
@@ -71,7 +120,6 @@ class CourseMainPageViewController: BaseUIViewController {
     override func audioPlayer(audioPlayer: AudioPlayer, didChangeStateFrom from: AudioPlayerState, toState to: AudioPlayerState) {
         let audioItem = getAudioPlayer().currentItem
         if audioItem == nil {
-            print("audioItem is nil")
             return
         }
         updatePlayingButton(playingButton)
@@ -120,7 +168,6 @@ extension CourseMainPageViewController : UITableViewDataSource, UITableViewDeleg
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        let section = indexPath.section
         let row = indexPath.row
         if row == 0 {
             return getHeaderAdvHeight()
@@ -133,7 +180,18 @@ extension CourseMainPageViewController : UITableViewDataSource, UITableViewDeleg
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: false)
-        let section = indexPath.section
+
+        let row = indexPath.row
+        if row == 0 {
+            let cell = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0)) as! HeaderAdvCell
+            if headerAdv != nil {
+                if (headerAdv?.type)! == HeaderAdv.Type_Song {
+                    performSegueWithIdentifier("beforeCourseSegue", sender: CourseType.LiveCourse)
+                } else {
+                    print()
+                }
+            }
+        }
         
         
         /*
@@ -157,7 +215,6 @@ extension CourseMainPageViewController : UITableViewDataSource, UITableViewDeleg
     
     func tapAdImageHandler(sender: UITapGestureRecognizer? = nil) {
         let scrollView = sender?.view as! UIScrollView
-        print(scrollView.auk.currentPageIndex)
         let index = scrollView.auk.currentPageIndex
         if index != nil {
             let params : [String: String] = ["url": ads[index!].clickUrl, "title": ads[index!].title]
@@ -165,13 +222,10 @@ extension CourseMainPageViewController : UITableViewDataSource, UITableViewDeleg
         }
     }
     
-    
-    
     var footerImageWidth:CGFloat {
         get {
             let screenWidth = UIScreen.mainScreen().bounds.width;
             let width = (screenWidth - CGFloat(footerImageInterWidth * 3)) / 4
-            QL1("footer width: \(width)")
             return width
         }
     }
@@ -182,7 +236,7 @@ extension CourseMainPageViewController : UITableViewDataSource, UITableViewDeleg
         }
     }
     
-    private func makeImage(index: Int) -> UIImageView {
+    private func makeImage(index: Int, adv: FooterAdv) -> UIImageView {
         let x = CGFloat(index) * footerImageWidth + CGFloat(index * footerImageInterWidth);
         var y =  computeAdCellHeight() - footerImageHeight
     
@@ -191,18 +245,34 @@ extension CourseMainPageViewController : UITableViewDataSource, UITableViewDeleg
         }
 
         let imageView = UIImageView(frame: CGRectMake(x, y, footerImageWidth, footerImageHeight))
-        imageView.image = UIImage(named: "footer_ditu")
-        imageView.tag = index
+        if adv.imageUrl != "" {
+            if let imageUrl = NSURL(string: adv.imageUrl) {
+                QL1("imageUrl: \(adv.imageUrl)")
+                imageView.kf_setImageWithURL(imageUrl)
+                //imageView.
+            }
+        } else {
+            imageView.image = UIImage(named: "footer_ditu")
+        }
         
         return imageView
     }
     
     private func makeAdvCell() -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("functionCell")!
-        cell.addSubview(makeImage(0))
-        cell.addSubview(makeImage(1))
-        cell.addSubview(makeImage(2))
-        cell.addSubview(makeImage(3))
+        let cell = tableView.dequeueReusableCellWithIdentifier("footerAdvCell") as! FooterAdvCell
+        if footerAdvs.count != 4 {
+            footerAdvs = [FooterAdv]()
+            footerAdvs.append(FooterAdv())
+            footerAdvs.append(FooterAdv())
+            footerAdvs.append(FooterAdv())
+            footerAdvs.append(FooterAdv())
+        }
+        var i = 0
+        footerAdvs.forEach() {
+            (adv: FooterAdv) -> Void in
+            cell.addSubview(makeImage(i, adv: adv))
+            i = i + 1
+        }
         return cell
     }
 

@@ -143,7 +143,6 @@ class ExtendFunctionMananger : NSObject {
     var cellHeight:CGFloat {
         get {
             let screenWidth = UIScreen.mainScreen().bounds.width
-            QL1("screen width: \(screenWidth)")
             return screenWidth / 4 - 5
         }
     }
