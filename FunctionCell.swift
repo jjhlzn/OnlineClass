@@ -35,7 +35,7 @@ class ExtendFunctionMananger : NSObject {
             ExtendFunction(imageName: "commonCard", name: "刷卡", url: "http://www.baidu.com",
                 selector:  #selector(openApp)),
             ExtendFunction(imageName: "liveclass", name: "直播课堂", url: ServiceLinkManager.FunctionUpUrl,
-                selector:  #selector(imageHandler)),
+                selector:  #selector(liveClassHandler)),
             ExtendFunction(imageName: "visa", name: "快速办卡", url: ServiceLinkManager.FunctionFastCardUrl,
                 selector:  #selector(imageHandler)),
             ExtendFunction(imageName: "dollar", name: "快速贷款", url: ServiceLinkManager.FunctionDaiKuangUrl,
@@ -227,6 +227,10 @@ class ExtendFunctionMananger : NSObject {
             let params : [String: String] = ["url": "http://jf.yhkamani.com/dlios.html", "title": "巨方支付下载"]
             controller.performSegueWithIdentifier("loadWebPageSegue", sender: params)
         }
+    }
+    
+    func liveClassHandler() {
+        controller.performSegueWithIdentifier("beforeCourseSegue", sender: CourseType.LiveCourse)
     }
 }
 

@@ -236,6 +236,16 @@ extension CourseMainPageViewController : UITableViewDataSource, UITableViewDeleg
         }
     }
     
+    func footerAdvImageHandler(sender: UITapGestureRecognizer? = nil) {
+        let index = sender?.view?.tag
+        if self.footerAdvs.count != 4 {
+            return
+        }
+        let footerAdv = self.footerAdvs[index!]
+        let params : [String: String] = ["url": footerAdv.url, "title": footerAdv.title]
+        performSegueWithIdentifier("loadWebPageSegue", sender: params)
+    }
+    
     private func makeImage(index: Int, adv: FooterAdv) -> UIImageView {
         let x = CGFloat(index) * footerImageWidth + CGFloat(index * footerImageInterWidth);
         var y =  computeAdCellHeight() - footerImageHeight
@@ -245,11 +255,14 @@ extension CourseMainPageViewController : UITableViewDataSource, UITableViewDeleg
         }
 
         let imageView = UIImageView(frame: CGRectMake(x, y, footerImageWidth, footerImageHeight))
+        imageView.tag = index
         if adv.imageUrl != "" {
             if let imageUrl = NSURL(string: adv.imageUrl) {
                 QL1("imageUrl: \(adv.imageUrl)")
                 imageView.kf_setImageWithURL(imageUrl)
-                //imageView.
+                imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(footerAdvImageHandler) ))
+                imageView.userInteractionEnabled = true
+
             }
         } else {
             imageView.image = UIImage(named: "footer_ditu")
