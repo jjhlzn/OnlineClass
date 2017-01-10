@@ -17,12 +17,12 @@ class CourseMainPageViewController: BaseUIViewController {
     
     @IBOutlet weak var playingButton: UIButton!
     var extendFunctionMananger : ExtendFunctionMananger!
+    var functionMessageMananger = ExtendFunctionMessageManager.instance
     var ads = [Advertise]()
     var keyValueStore = KeyValueStore()
     var freshHeaderAdvTimer: NSTimer!
     var footerAdvs = [FooterAdv]()
     var headerAdv: HeaderAdv?
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,15 +36,15 @@ class CourseMainPageViewController: BaseUIViewController {
         }
         extendFunctionMananger = ExtendFunctionMananger(controller: self, isNeedMore:  true, showMaxRows: maxRows)
         addPlayingButton(playingButton)
+        loadFunctionMessage()
     }
-    
-
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         updatePlayingButton(playingButton)
         loadHeaderAdv()
         loadFooterAdvs()
+        
         createTimer()
         
     }
@@ -92,6 +92,22 @@ class CourseMainPageViewController: BaseUIViewController {
                 self.footerAdvs = resp.advList
                 self.tableView.reloadData()
             }
+        }
+    }
+    
+    func loadFunctionMessage() {
+        BasicService().sendRequest(ServiceConfiguration.GET_FUNCTION_MESSAGE, request: GetFunctionMessageRequest()) {
+            (resp: GetFunctionMessageResponse) -> Void in
+            if resp.status != ServerResponseStatus.Success.rawValue {
+                QL4("server return error: \(resp.errorMessage!)")
+                return
+            }
+            
+            for (k, v) in resp.map {
+                self.functionMessageMananger.update(k, value: v)
+            }
+            
+            self.tableView.reloadData()
         }
     }
     
@@ -178,7 +194,6 @@ extension CourseMainPageViewController : UITableViewDataSource, UITableViewDeleg
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: false)
-
         let row = indexPath.row
         if row == 0 {
             if headerAdv != nil {
@@ -231,15 +246,12 @@ extension CourseMainPageViewController : UITableViewDataSource, UITableViewDeleg
         if y < 0 {
             y = 0
         }
-       // y = 0
-        
-        QL1("image: x=\(x), y=\(y)")
 
         let imageView = UIImageView(frame: CGRectMake(x, y, footerImageWidth, footerImageHeight))
         imageView.tag = index
         if adv.imageUrl != "" {
             if let imageUrl = NSURL(string: adv.imageUrl) {
-                QL1("imageUrl: \(adv.imageUrl)")
+                //QL1("imageUrl: \(adv.imageUrl)")
                 imageView.kf_setImageWithURL(imageUrl)
                 imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(footerAdvImageHandler) ))
                 imageView.userInteractionEnabled = true
@@ -288,8 +300,5 @@ extension CourseMainPageViewController : UITableViewDataSource, UITableViewDeleg
         let screenWidth = UIScreen.mainScreen().bounds.width
         return screenWidth * 140 / 320
     }
-
-    
-
 
 }

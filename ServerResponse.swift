@@ -1015,3 +1015,15 @@ class GetFooterAdvsResponse : ServerResponse {
     }
 }
 
+class GetFunctionMessageRequest : ServerRequest {}
+class GetFunctionMessageResponse : ServerResponse {
+    var map = [String: Int]()
+    override func parseJSON(request: ServerRequest, json: NSDictionary) {
+        super.parseJSON(request, json: json)
+        let jsonArray = json["result"] as! NSArray
+        for eachJson in jsonArray {
+            map[eachJson["code"] as! String] = eachJson["value"] as! Int
+        }
+    }
+}
+

@@ -15,23 +15,19 @@ class FunctionCell: UITableViewCell {
 
 class ExtendFunctionMananger : NSObject {
     
-    var controller : BaseUIViewController
+    var controller : BaseUIViewController!
     var showMaxRows : Int
     var moreFunction : ExtendFunction?
     var isNeedMore = false
+    var functionMessageManager = ExtendFunctionMessageManager.instance
     
     var functions : [ExtendFunction] = [ExtendFunction]()
     
-    init(controller: BaseUIViewController, isNeedMore: Bool = true, showMaxRows : Int = 100) {
-        self.controller = controller
-        self.showMaxRows = showMaxRows
-        self.isNeedMore = isNeedMore
-        
-        super.init()
+    func getAllFunctions() -> [ExtendFunction] {
         moreFunction = ExtendFunction(imageName: "moreFunction", name: "更多", code: "f_more", url: "",
                                       selector: #selector(moreHanlder))
         
-        functions = [
+        return [
             ExtendFunction(imageName: "commonCard", name: "刷卡", code: "f_paybycard", url: "http://www.baidu.com",
                 selector:  #selector(openApp)),
             ExtendFunction(imageName: "liveclass", name: "直播课堂", code: "f_class", url: ServiceLinkManager.FunctionUpUrl,
@@ -54,12 +50,29 @@ class ExtendFunctionMananger : NSObject {
                 selector:  #selector(imageHandler)),
             ExtendFunction(imageName: "customerservice", name: "客服", code: "f_user", url: ServiceLinkManager.FunctionCustomerServiceUrl,
                 selector:  #selector(imageHandler)),
-
-
-            moreFunction!
+            ExtendFunction(imageName: "moreFunction", name: "更多", code: "f_more", url: "",
+                selector: #selector(moreHanlder))
         ]
-        
+
     }
+    
+    init(controller: BaseUIViewController, isNeedMore: Bool = true, showMaxRows : Int = 100) {
+        self.controller = controller
+        self.showMaxRows = showMaxRows
+        self.isNeedMore = isNeedMore
+        
+        super.init()
+        self.functions = getAllFunctions()
+    }
+    
+    init(isNeedMore: Bool = true, showMaxRows : Int = 100) {
+        self.showMaxRows = showMaxRows
+        self.isNeedMore = isNeedMore
+        
+        super.init()
+        self.functions = getAllFunctions()
+    }
+
     
     let buttonCountEachRow = 4
     func getRowCount() -> Int {
@@ -81,11 +94,12 @@ class ExtendFunctionMananger : NSObject {
     func getFunctionCell(tableView: UITableView, row: Int) -> FunctionCell {
         var index = row * buttonCountEachRow
         let cell = tableView.dequeueReusableCellWithIdentifier("functionCell") as! FunctionCell
-        //print("row = \(row)")
+        cell.subviews.forEach() { subView in
+            subView.removeFromSuperview()
+        }
         for i in 0...(buttonCountEachRow - 1) {
             
             if index >= functions.count {
-                //print("index = \(index), functions.count = \(functions.count)")
                 break
             }
             
@@ -111,8 +125,10 @@ class ExtendFunctionMananger : NSObject {
         let interval : CGFloat = UIScreen.mainScreen().bounds.width / 4
         let x = interval  * CGFloat(column)
         let cellView = UIView(frame: CGRectMake(x, 0, interval, 79))
-        cellView.tag = index
         
+        
+        
+        cellView.tag = index
         cell.addSubview(cellView)
         
         let imageView = makeImage(index, function: function, superView: cellView)
@@ -127,7 +143,6 @@ class ExtendFunctionMananger : NSObject {
         }
         
         return cellView
-
     }
     
     private func getImageWidth() -> CGFloat {
@@ -137,8 +152,6 @@ class ExtendFunctionMananger : NSObject {
         } else {
             return screenWidth / 4 * 0.7
         }
-        
-        
     }
     
     var cellHeight:CGFloat {
@@ -174,7 +187,7 @@ class ExtendFunctionMananger : NSObject {
     private func makeImage(index: Int, function: ExtendFunction, superView: UIView) -> UIImageView {
         let imageView = UIImageView(frame: CGRectMake(0, 0, getImageWidth(), getImageWidth()))
         imageView.center.x = superView.bounds.width / 2
-        QL1("isiPhone6Screen: \(isiPhone6Screen)")
+        //QL1("isiPhone6Screen: \(isiPhone6Screen)")
         if isiPhonePlusScreen {
            imageView.center.y = cellHeight / 2 - 1
         } else if isiPhone6Screen {
@@ -239,21 +252,28 @@ class ExtendFunctionMananger : NSObject {
     
     func imageHandler(sender: UITapGestureRecognizer? = nil) {
         let index = sender?.view?.tag
+        clearFunctionMessage(index!)
         let function = functions[index!]
         let params : [String: String] = ["url": function.url, "title": function.name]
         controller.performSegueWithIdentifier("loadWebPageSegue", sender: params)
     }
     
     func unSupportHandler(sender: UITapGestureRecognizer? = nil) {
+        let index = sender?.view?.tag
+        clearFunctionMessage(index!)
         controller.displayMessage("敬请期待")
     }
     
     func moreHanlder(sender: UITapGestureRecognizer? = nil) {
+        let index = sender?.view?.tag
+        clearFunctionMessage(index!)
         controller.performSegueWithIdentifier("moreFunctionSegue", sender: nil)
     }
     
     func openApp(sender: UITapGestureRecognizer? = nil) {
-        
+        let index = sender?.view?.tag
+        clearFunctionMessage(index!)
+
         let jfzfHooks = "com.uen.jfzfxpush://"
         let jfzfUrl = NSURL(string: jfzfHooks)
         if UIApplication.sharedApplication().canOpenURL(NSURL(string: jfzfHooks)!)
@@ -266,8 +286,15 @@ class ExtendFunctionMananger : NSObject {
         }
     }
     
-    func liveClassHandler() {
+    func liveClassHandler(sender: UITapGestureRecognizer? = nil) {
+        let index = sender?.view?.tag
+        clearFunctionMessage(index!)
         controller.performSegueWithIdentifier("beforeCourseSegue", sender: CourseType.LiveCourse)
+    }
+    
+    private func clearFunctionMessage(index: Int) {
+        let function = functions[index]
+        functionMessageManager.clearMessage(function.code, value: 0)
     }
 }
 

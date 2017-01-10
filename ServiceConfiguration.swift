@@ -255,6 +255,12 @@ class ServiceConfiguration {
             return "\(http)://\(serverName):\(port)/app/getfooteradvs"
         }
     }
+    
+    static var GET_FUNCTION_MESSAGE: String {
+        get {
+            return "\(http)://\(serverName):\(port)/app/getfunctionmessage"
+        }
+    }
 
     
     
