@@ -29,9 +29,9 @@ class CourseMainPageViewController: BaseUIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         
-        let screenWidth = UIScreen.mainScreen().bounds.height
-        var maxRows = 100
-        if screenWidth < 667 {
+        let screenHeight = UIScreen.mainScreen().bounds.height
+        var maxRows = 3
+        if screenHeight < 568 {  //568
             maxRows = 2
         }
         extendFunctionMananger = ExtendFunctionMananger(controller: self, isNeedMore:  true, showMaxRows: maxRows)
@@ -130,8 +130,6 @@ class CourseMainPageViewController: BaseUIViewController {
     }
     
     
-    let adImageWidth = UIScreen.mainScreen().bounds.width
-    let adImageRatio : CGFloat = 0.3
     
     var footerImageInterWidth = 2
 }
@@ -183,7 +181,6 @@ extension CourseMainPageViewController : UITableViewDataSource, UITableViewDeleg
 
         let row = indexPath.row
         if row == 0 {
-            let cell = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0)) as! HeaderAdvCell
             if headerAdv != nil {
                 if (headerAdv?.type)! == HeaderAdv.Type_Song {
                     performSegueWithIdentifier("beforeCourseSegue", sender: CourseType.LiveCourse)
@@ -192,25 +189,6 @@ extension CourseMainPageViewController : UITableViewDataSource, UITableViewDeleg
                 }
             }
         }
-        
-        
-        /*
-         if section == 1 {
-         let cell = tableView.cellForRowAtIndexPath(indexPath)
-         cell?.selectionStyle = .None
-         } else {
-         let row = indexPath.row
-         switch row {
-         case 0:
-         performSegueWithIdentifier("beforeCourseSegue", sender: CourseType.LiveCourse)
-         break
-         case 1:
-         performSegueWithIdentifier("beforeCourseSegue", sender: CourseType.PayCourse)
-         break
-         default:
-         break
-         }
-         }*/
     }
     
     func tapAdImageHandler(sender: UITapGestureRecognizer? = nil) {
@@ -249,10 +227,13 @@ extension CourseMainPageViewController : UITableViewDataSource, UITableViewDeleg
     private func makeImage(index: Int, adv: FooterAdv) -> UIImageView {
         let x = CGFloat(index) * footerImageWidth + CGFloat(index * footerImageInterWidth);
         var y =  computeAdCellHeight() - footerImageHeight
-    
+        
         if y < 0 {
             y = 0
         }
+       // y = 0
+        
+        QL1("image: x=\(x), y=\(y)")
 
         let imageView = UIImageView(frame: CGRectMake(x, y, footerImageWidth, footerImageHeight))
         imageView.tag = index
@@ -296,8 +277,8 @@ extension CourseMainPageViewController : UITableViewDataSource, UITableViewDeleg
         let total = section1Height + section2Height + 3 + 65 + 49 - 3
         var height = UIScreen.mainScreen().bounds.height - CGFloat(total)
         
-        if height < adImageWidth * adImageRatio  {
-            height = adImageWidth * adImageRatio + 10
+        if height < footerImageHeight  {
+            height = footerImageHeight
         }
         return height
     }
