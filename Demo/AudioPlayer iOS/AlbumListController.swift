@@ -23,7 +23,6 @@ class AlbumListController: BaseUIViewController, UITableViewDataSource, UITableV
     var loadingOverlay = LoadingOverlay()
     var buyPayCourseDelegate : ConfirmDelegate2?
     
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,7 +62,7 @@ class AlbumListController: BaseUIViewController, UITableViewDataSource, UITableV
         pagableController.isNeedRefresh = true
         pagableController.initController()
         pagableController.isShowLoadCompleteText = false
-        //pagableController.loadMore()
+        pagableController.loadMore()
         
     }
     
@@ -77,14 +76,12 @@ class AlbumListController: BaseUIViewController, UITableViewDataSource, UITableV
     
     //PageableControllerDelegate
     func searchHandler(respHandler: ((resp: ServerResponse) -> Void)) {
-        let request = GetAlbumsRequest(courseType: courseType)
+        let request = GetAlbumsRequest(code: "Live_Vip")
         request.pageNo = pagableController.page
         BasicService().sendRequest(ServiceConfiguration.GET_ALBUMS, request: request,
                                    completion: respHandler as ((resp: GetAlbumsResponse) -> Void))
 
     }
-    
-    
     
     override func audioPlayer(audioPlayer: AudioPlayer, didChangeStateFrom from: AudioPlayerState, toState to: AudioPlayerState) {
         super.audioPlayer(audioPlayer, didChangeStateFrom: from, toState: to)
@@ -95,16 +92,63 @@ class AlbumListController: BaseUIViewController, UITableViewDataSource, UITableV
     func scrollViewDidScroll(scrollView: UIScrollView){
         pagableController.scrollViewDidScroll(scrollView)
     }
-
+    
 }
 
 extension AlbumListController {
+    var freeAlbumCount:Int {
+        get {
+            if pagableController.data.count == 0 {
+                return 0
+            }
+            let freeAlbums = pagableController.data.filter() {
+                album -> Bool in
+                if album.courseType.code == CourseType.LiveCourse.code {
+                    return true
+                }
+                return false
+            }
+            return freeAlbums.count
+        }
+    }
+    
+    var paidAlbumCount: Int {
+        get {
+            if pagableController.data.count == 0 {
+                return 0
+            }
+            return pagableController.data.count - freeAlbumCount
+        }
+    }
+    
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        if pagableController.data.count == 0 {
+            return 1
+        }
+        return 2
+    }
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return pagableController.data.count
+        if section == 0 {
+            return freeAlbumCount
+        } else {
+            return paidAlbumCount
+        }
+    }
+    
+    private func getAlbum(indexPath: NSIndexPath) -> Album {
+        let section = indexPath.section
+        var album: Album!
+        if section == 0 {
+            album = pagableController.data[indexPath.row]
+        } else {
+            album = pagableController.data[freeAlbumCount + indexPath.row]
+        }
+        return album
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let album = pagableController.data[indexPath.row]
+        let album = getAlbum(indexPath)
         
         if album.isLive {
             let cell = tableView.dequeueReusableCellWithIdentifier("liveAlbumCell") as! LiveAlbumCell
@@ -135,13 +179,34 @@ extension AlbumListController {
                 cell.albumImage.kf_setImageWithURL(NSURL(string: album.image)!)
             }            
             return cell
-
         }
-        
     }
     
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 74
+    }
+    
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if pagableController.data.count == 0 {
+            return 1
+        }
+        return 45
+    }
+    
+    func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        if pagableController.data.count == 0 {
+            return 18
+        }
+        return 1
+    }
+    
+    
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let album = pagableController.data[indexPath.row]
+        let section = indexPath.section
+        let row = indexPath.row
+        QL1("section: \(section), row: \(row)")
+        
+        let album = getAlbum(indexPath)
         if !album.isReady {
             self.displayMessage("该课程未上线，敬请期待！")
             tableView.deselectRowAtIndexPath(indexPath, animated: false)
@@ -192,6 +257,37 @@ extension AlbumListController {
                 }
             }
         }
+    }
+    
+    
+    
+    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+        if pagableController.data.count == 0 {
+            return nil
+        }
+        
+        /*
+        let cell = tableView.headerViewForSection(section)
+        QL1("cell: \(cell)")
+        if section == 0 {
+            cell?.textLabel?.text = "会员专享课程";
+        } else {
+            cell?.textLabel?.text = "每日课堂";
+        } */
+        
+        let  headerCell = tableView.dequeueReusableCellWithIdentifier("albumHeaderCell") as! AlbumHeaderCell
+        headerCell.userInteractionEnabled = false
+        
+        switch (section) {
+        case 1:
+            headerCell.titleLabel.text = "会员专享课程";
+        default:
+            headerCell.titleLabel.text = "每日课堂";
+        }
+        
+
+        return headerCell
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

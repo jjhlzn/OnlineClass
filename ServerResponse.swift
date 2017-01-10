@@ -105,25 +105,24 @@ public class PageServerResponse<T> : ServerResponse{
     
 }
 
-
 class GetAlbumsRequest : PagedServerRequest {
-    var courseType : CourseType
+    var code : String
     
     required init(courseType: CourseType) {
-        self.courseType = courseType
+        self.code = courseType.code
+    }
+    
+    required init(code: String) {
+        self.code = code
     }
     
     override var params: [String : AnyObject] {
         get {
-            let parameters = ["type": courseType.code]
+            let parameters = ["type": self.code]
             return parameters
-
         }
     }
-    
-    
 }
-
 
 
 class GetAlbumsResponse : PageServerResponse<Album> {
@@ -981,7 +980,7 @@ class GetHeaderAdvResponse : ServerResponse {
             self.headerAdv?.imageUrl = eachJson["imageUrl"] as! String
             self.headerAdv?.type = eachJson["type"] as! String
             
-            let paramsArr = eachJson["params"] as! NSArray;
+            let paramsArr = eachJson["Params"] as! NSArray;
             if self.headerAdv?.type == HeaderAdv.Type_Song {
                 for eachParamJson in paramsArr {
                     if eachParamJson["key"] as! String == HeaderAdv.Param_Key_Song {

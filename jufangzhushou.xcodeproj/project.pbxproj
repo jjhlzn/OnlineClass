@@ -119,6 +119,7 @@
 		E2C6FAE21C4B01D80055A1BF /* sound2.caf in Resources */ = {isa = PBXBuildFile; fileRef = E2C6FAE01C4B01D80055A1BF /* sound2.caf */; };
 		EF22C2751E23D7C500EA0F5A /* FooterAdvCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF22C2741E23D7C500EA0F5A /* FooterAdvCell.swift */; };
 		EF22C2771E23E65E00EA0F5A /* ExtendFunctionMessageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF22C2761E23E65E00EA0F5A /* ExtendFunctionMessageManager.swift */; };
+		EF67C0431E24A901004EEAF0 /* AlbumHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF67C0421E24A901004EEAF0 /* AlbumHeaderCell.swift */; };
 		EFB004231E236CD800B9272A /* HeaderAdvCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFB004221E236CD800B9272A /* HeaderAdvCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -252,6 +253,7 @@
 		E2C6FAE01C4B01D80055A1BF /* sound2.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = sound2.caf; path = ../Sounds/sound2.caf; sourceTree = "<group>"; };
 		EF22C2741E23D7C500EA0F5A /* FooterAdvCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FooterAdvCell.swift; sourceTree = "<group>"; };
 		EF22C2761E23E65E00EA0F5A /* ExtendFunctionMessageManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtendFunctionMessageManager.swift; sourceTree = "<group>"; };
+		EF67C0421E24A901004EEAF0 /* AlbumHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumHeaderCell.swift; sourceTree = "<group>"; };
 		EFB004221E236CD800B9272A /* HeaderAdvCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderAdvCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -354,6 +356,7 @@
 				1C50C7551D48D28C0022B952 /* SongAdvCell.swift */,
 				EFB004221E236CD800B9272A /* HeaderAdvCell.swift */,
 				EF22C2741E23D7C500EA0F5A /* FooterAdvCell.swift */,
+				EF67C0421E24A901004EEAF0 /* AlbumHeaderCell.swift */,
 			);
 			name = customCell;
 			sourceTree = "<group>";
@@ -847,6 +850,7 @@
 				1C2684761CCA66040032C014 /* MyInfoMainCell.swift in Sources */,
 				1CD349701CF9AB1000037F78 /* PersonalInfoViewController.swift in Sources */,
 				1C33A5701D059A5D00E87803 /* StartupViewController.swift in Sources */,
+				EF67C0431E24A901004EEAF0 /* AlbumHeaderCell.swift in Sources */,
 				1CB425A61D229E1600971F95 /* ServiceLinkManager.swift in Sources */,
 				1CEFF7811CBFB73D000DEFF7 /* AlbumListController.swift in Sources */,
 				1C09D3BF1CD09FED004A8F9C /* ToastMessage.swift in Sources */,
