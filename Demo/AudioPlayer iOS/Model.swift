@@ -50,11 +50,18 @@ class Album : BaseModelObject {
     var courseType = CourseType.LiveCourse
     var playing : Bool = false
     var isReady : Bool = false
+    var playTimeDesc: String = ""
     var songs = [Song]()
     
     var hasImage: Bool {
         get {
             return !image.isEmpty
+        }
+    }
+    
+    var hasPlayTimeDesc: Bool {
+        get {
+            return !playTimeDesc.isEmpty
         }
     }
     

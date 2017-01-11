@@ -154,7 +154,7 @@ extension AlbumListController {
         if album.isLive {
             let cell = tableView.dequeueReusableCellWithIdentifier("liveAlbumCell") as! LiveAlbumCell
             cell.nameLabel.text = album.name
-            cell.descLabel.text = album.desc
+            
             cell.listenPeopleLabel.text = album.listenCount
             if album.hasImage  {
                 cell.albumImage.kf_setImageWithURL(NSURL(string: album.image)!)
@@ -162,6 +162,15 @@ extension AlbumListController {
             if album.playing {
                 cell.playingLabel.hidden = false
             }
+            
+            if album.hasPlayTimeDesc {
+                cell.descLabel.textColor = UIColor.redColor()
+                cell.descLabel.text = album.playTimeDesc
+            } else {
+               cell.descLabel.textColor = UIColor.lightGrayColor()
+                cell.descLabel.text = album.desc
+            }
+            
             if album.isReady {
                 cell.userIcon.image = UIImage(named: "user1_0")
             } else {

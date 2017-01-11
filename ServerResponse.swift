@@ -155,6 +155,7 @@ class GetAlbumsResponse : PageServerResponse<Album> {
             album.courseType = CourseType.getCourseType(albumJson["type"] as! String)!
             album.playing = albumJson["playing"] as! Bool
             album.isReady = albumJson["isReady"] as! Bool
+            album.playTimeDesc = albumJson["playTimeDesc"] as! String
             albums.append(album)
         }
         self.resultSet = albums

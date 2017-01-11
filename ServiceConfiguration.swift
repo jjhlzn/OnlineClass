@@ -10,7 +10,7 @@ import Foundation
 
 class ServiceConfiguration {
     static let PageSize = 20
-    static let isUseConfig = true
+    static let isUseConfig = false
     static let serviceLocatorStore = ServiceLocatorStore()
     
 
