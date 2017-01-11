@@ -47,7 +47,7 @@ class ExtendFunctionMananger : NSObject {
                 selector:  #selector(imageHandler)),
             
             ExtendFunction(imageName: "share", name: "分享", code: "f_share",  url: ServiceLinkManager.FunctionMccSearchUrl,
-                selector:  #selector(imageHandler)),
+                selector:  #selector(shareHanlder)),
             ExtendFunction(imageName: "customerservice", name: "客服", code: "f_user", url: ServiceLinkManager.FunctionCustomerServiceUrl,
                 selector:  #selector(imageHandler)),
             ExtendFunction(imageName: "moreFunction", name: "更多", code: "f_more", url: "",
@@ -284,6 +284,13 @@ class ExtendFunctionMananger : NSObject {
             let params : [String: String] = ["url": "http://jf.yhkamani.com/dlios.html", "title": "巨方支付下载"]
             controller.performSegueWithIdentifier("loadWebPageSegue", sender: params)
         }
+    }
+    
+    func shareHanlder(sender: UITapGestureRecognizer? = nil) {
+        let index = sender?.view?.tag
+        clearFunctionMessage(index!)
+        
+        controller.performSegueWithIdentifier("codeImageSegue", sender: nil)
     }
     
     func liveClassHandler(sender: UITapGestureRecognizer? = nil) {

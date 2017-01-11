@@ -305,7 +305,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="CbA-f3-TaB">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="footer_ditu" id="CbA-f3-TaB">
                                 <rect key="frame" x="20" y="119" width="280" height="280"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                             </imageView>
@@ -389,7 +389,7 @@
                     </connections>
                 </button>
             </objects>
-            <point key="canvasLocation" x="2732" y="2972"/>
+            <point key="canvasLocation" x="1914" y="-2146"/>
         </scene>
         <!--性别-->
         <scene sceneID="gtX-7i-YBV">
@@ -1439,11 +1439,12 @@
                         <segue destination="Zuy-cj-6pY" kind="push" identifier="liveCourseSegue" id="m7l-yQ-bGL"/>
                         <segue destination="SlY-yD-6L0" kind="push" identifier="moreFunctionSegue" id="nu7-5V-LHA"/>
                         <segue destination="qTJ-UI-98H" kind="push" identifier="buyVipSegue" id="isv-R5-hdp"/>
+                        <segue destination="tlV-Sn-3a7" kind="push" identifier="codeImageSegue" id="ciV-s1-kgf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="laU-XU-h4Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2199" y="-1486"/>
+            <point key="canvasLocation" x="2615" y="-1274"/>
         </scene>
         <!--功能-->
         <scene sceneID="eyd-dN-buH">
@@ -1475,11 +1476,12 @@
                     <connections>
                         <outlet property="tableView" destination="gw7-b7-gJF" id="ZaS-E1-tdF"/>
                         <segue destination="qTJ-UI-98H" kind="push" identifier="loadWebPageSegue" id="tvc-Xd-SA1"/>
+                        <segue destination="tlV-Sn-3a7" kind="push" identifier="codeImageSegue" id="yd8-5Q-bIa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SbC-uk-qm6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4238" y="248"/>
+            <point key="canvasLocation" x="2168" y="-2031"/>
         </scene>
         <!--搜索-->
         <scene sceneID="kOi-ZK-PgG">
@@ -3114,6 +3116,7 @@
         <image name="course-filled" width="25" height="25"/>
         <image name="emojiSwitchButton2" width="50" height="50"/>
         <image name="fasongpengyou" width="48" height="48"/>
+        <image name="footer_ditu" width="690" height="709"/>
         <image name="hand" width="48" height="48"/>
         <image name="header_ditu" width="1634" height="709"/>
         <image name="icon" width="270" height="270"/>
@@ -3145,9 +3148,10 @@
     <inferredMetricsTieBreakers>
         <segue reference="xbm-kK-Zqp"/>
         <segue reference="HJR-zD-bje"/>
-        <segue reference="Q3U-7n-t25"/>
-        <segue reference="TXo-S1-pau"/>
+        <segue reference="gK4-D6-0Uz"/>
         <segue reference="VNd-S5-Rjk"/>
+        <segue reference="yd8-5Q-bIa"/>
+        <segue reference="tvc-Xd-SA1"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.94901960784313721" green="0.38039215686274508" blue="0.0" alpha="0.90000000000000002" colorSpace="calibratedRGB"/>
 </document>
