@@ -644,7 +644,7 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="74" sectionHeaderHeight="18" sectionFooterHeight="18" id="ekl-tv-QSf">
                                 <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="albumCell" rowHeight="74" id="cxd-vn-3rR" customClass="AlbumCell" customModule="AudioPlayer" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="55.5" width="320" height="74"/>
@@ -781,13 +781,13 @@
                         <outlet property="tableView" destination="ekl-tv-QSf" id="NgM-0D-3Jc"/>
                         <segue destination="3ur-uT-JCP" kind="push" identifier="albumDetailSegue" id="VNd-S5-Rjk"/>
                         <segue destination="Xdz-Ta-yt3" kind="push" identifier="songSegue" id="SaH-Yu-nYI"/>
-                        <segue destination="qTJ-UI-98H" kind="push" identifier="bugVipSegue" id="6hW-Al-7Wc"/>
+                        <segue destination="qTJ-UI-98H" kind="push" identifier="buyVipSegue" id="6hW-Al-7Wc"/>
                         <segue destination="Xdz-Ta-yt3" kind="push" identifier="songSegue1" id="TXo-S1-pau"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2522" y="-1486"/>
+            <point key="canvasLocation" x="2806" y="-2018"/>
         </scene>
         <!--课列表-->
         <scene sceneID="URI-7O-Zhf">
@@ -1217,7 +1217,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="6fE-5S-qg9"/>
                     <connections>
-                        <segue destination="qTJ-UI-98H" kind="push" identifier="bugVipSegue" id="93q-Cw-raC"/>
+                        <segue destination="qTJ-UI-98H" kind="push" identifier="buyVipSegue" id="93q-Cw-raC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oFF-tq-awg" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1347,7 +1347,7 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="53" sectionHeaderHeight="1" sectionFooterHeight="1" id="7RG-7p-n8W">
                                 <rect key="frame" x="0.0" y="29" width="320" height="508"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="courseTypeCell" rowHeight="74" id="O1L-wT-K4X" customClass="CourseTypeCell" customModule="AudioPlayer" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="55.5" width="320" height="74"/>
@@ -1459,7 +1459,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="functionCell" id="nMx-i2-zh4" customClass="FunctionCell" customModule="AudioPlayer" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="320" height="79"/>
+                                        <rect key="frame" x="0.0" y="92" width="320" height="79"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nMx-i2-zh4" id="KV1-bG-Y2O">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="79"/>
@@ -1479,7 +1479,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SbC-uk-qm6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4070" y="-128"/>
+            <point key="canvasLocation" x="4238" y="248"/>
         </scene>
         <!--搜索-->
         <scene sceneID="kOi-ZK-PgG">
@@ -1687,7 +1687,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IHP-Mp-DaU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3683" y="-46"/>
+            <point key="canvasLocation" x="4012" y="-593"/>
         </scene>
         <!--我的-->
         <scene sceneID="oct-0p-3hq">
@@ -3143,11 +3143,11 @@
         <image name="weibo" width="48" height="48"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="HJR-zD-bje"/>
         <segue reference="xbm-kK-Zqp"/>
-        <segue reference="VNd-S5-Rjk"/>
+        <segue reference="HJR-zD-bje"/>
+        <segue reference="Q3U-7n-t25"/>
         <segue reference="TXo-S1-pau"/>
-        <segue reference="6hW-Al-7Wc"/>
+        <segue reference="VNd-S5-Rjk"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.94901960784313721" green="0.38039215686274508" blue="0.0" alpha="0.90000000000000002" colorSpace="calibratedRGB"/>
 </document>

@@ -251,7 +251,7 @@ class ConfirmDelegate : NSObject, UIAlertViewDelegate {
         case 0:
             print("button 0 pressed")
             if controller.view.window != nil {
-                controller.performSegueWithIdentifier("bugVipSegue", sender: nil)
+                controller.performSegueWithIdentifier("buyVipSegue", sender: nil)
             } else {
                 //QL1(parentController)
                 //if parentController as? CourseMainPageViewController != nil {

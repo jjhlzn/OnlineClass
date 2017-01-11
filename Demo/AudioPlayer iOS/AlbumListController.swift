@@ -54,6 +54,7 @@ class AlbumListController: BaseUIViewController, UITableViewDataSource, UITableV
                 }
             }
         }
+
         
         //初始化PagableController
         pagableController.viewController = self
@@ -267,15 +268,6 @@ extension AlbumListController {
             return nil
         }
         
-        /*
-        let cell = tableView.headerViewForSection(section)
-        QL1("cell: \(cell)")
-        if section == 0 {
-            cell?.textLabel?.text = "会员专享课程";
-        } else {
-            cell?.textLabel?.text = "每日课堂";
-        } */
-        
         let  headerCell = tableView.dequeueReusableCellWithIdentifier("albumHeaderCell") as! AlbumHeaderCell
         headerCell.userInteractionEnabled = false
         
@@ -300,7 +292,7 @@ extension AlbumListController {
             dest.album = pagableController.data[row]
             
             
-        } else if segue.identifier == "bugVipSegue" {
+        } else if segue.identifier == "buyVipSegue" {
             let dest = segue.destinationViewController as! WebPageViewController
             dest.url = NSURL(string: ServiceLinkManager.MyAgentUrl)
             dest.title = "Vip购买"
@@ -347,7 +339,7 @@ class ConfirmDelegate2 : NSObject, UIAlertViewDelegate {
     func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
         switch buttonIndex {
         case 0:
-            controller.performSegueWithIdentifier("bugVipSegue", sender: nil)
+            controller.performSegueWithIdentifier("buyVipSegue", sender: nil)
             break
         case 1:
             break

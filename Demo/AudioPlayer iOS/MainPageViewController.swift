@@ -24,10 +24,18 @@ class CourseMainPageViewController: BaseUIViewController {
     var footerAdvs = [FooterAdv]()
     var headerAdv: HeaderAdv?
     
+    var loading = LoadingOverlay()
+    
+    var refreshControl:UIRefreshControl!
+    var refreshing = false
+    
+    var buyPayCourseDelegate: ConfirmDelegate2!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = self
         tableView.delegate = self
+        buyPayCourseDelegate = ConfirmDelegate2(controller: self)
         
         let screenHeight = UIScreen.mainScreen().bounds.height
         var maxRows = 3
@@ -37,6 +45,12 @@ class CourseMainPageViewController: BaseUIViewController {
         extendFunctionMananger = ExtendFunctionMananger(controller: self, isNeedMore:  true, showMaxRows: maxRows)
         addPlayingButton(playingButton)
         loadFunctionMessage()
+        
+        //下拉刷新设置
+        refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(refresh), forControlEvents: UIControlEvents.ValueChanged)
+        tableView.addSubview(refreshControl)
+        refreshing = false
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -64,6 +78,11 @@ class CourseMainPageViewController: BaseUIViewController {
     func loadHeaderAdv() {
         BasicService().sendRequest(ServiceConfiguration.GET_HEADER_ADV, request: GetHeaderAdvRequest()) {
             (resp: GetHeaderAdvResponse) -> Void in
+            if self.refreshing {
+                self.refreshControl.endRefreshing()
+            }
+            self.refreshing = false
+            
             if resp.status != ServerResponseStatus.Success.rawValue {
                 QL4("server return error: \(resp.errorMessage!)")
                 return
@@ -126,7 +145,7 @@ class CourseMainPageViewController: BaseUIViewController {
             dest.url = NSURL(string: params["url"]!)
             
             dest.title = params["title"]
-        } else if segue.identifier == "bugVipSegue" {
+        } else if segue.identifier == "buyVipSegue" {
             let dest = segue.destinationViewController as! WebPageViewController
             dest.url = NSURL(string: ServiceLinkManager.MyAgentUrl)
             dest.title = "Vip购买"
@@ -145,7 +164,16 @@ class CourseMainPageViewController: BaseUIViewController {
         performSegueWithIdentifier("searchSegue", sender: nil)
     }
     
-    
+    func refresh() {
+        if (refreshing) {
+            refreshControl.endRefreshing()
+            return
+        }
+        
+        refreshing = true
+        loadHeaderAdv()
+        
+    }
     
     var footerImageInterWidth = 2
 }
@@ -198,9 +226,57 @@ extension CourseMainPageViewController : UITableViewDataSource, UITableViewDeleg
         if row == 0 {
             if headerAdv != nil {
                 if (headerAdv?.type)! == HeaderAdv.Type_Song {
-                    performSegueWithIdentifier("beforeCourseSegue", sender: CourseType.LiveCourse)
+                    loading.showOverlay(view)
+                    let request = GetSongInfoRequest()
+                    let album = Album()
+                    album.courseType = CourseType.LiveCourse
+                    let reqSong = Song()
+                    reqSong.album = album
+                    reqSong.id = (headerAdv?.songId)!
+                    request.song = reqSong
+                    BasicService().sendRequest(ServiceConfiguration.GET_SONG_INFO, request: request) {
+                        (resp : GetSongInfoResponse) -> Void in
+                        self.loading.hideOverlayView()
+                        if resp.status == ServerResponseStatus.NoEnoughAuthority.rawValue {
+                            self.displayVipBuyMessage(resp.errorMessage!, delegate: self.buyPayCourseDelegate!)
+                            return
+                        }
+                        
+                        if resp.isFail {
+                            self.displayMessage(resp.errorMessage!)
+                            return
+                        }
+                        
+                        let song = resp.song
+                        if song == nil {
+                            return
+                        }
+                        
+                        let audioPlayer = self.getAudioPlayer()
+                        //如果当前歌曲已经在播放，就什么都不需要做
+                        if audioPlayer.currentItem != nil {
+                            if song.id == (audioPlayer.currentItem! as! MyAudioItem).song.id {
+                                self.performSegueWithIdentifier("songSegue", sender: false)
+                                return
+                            }
+                        }
+                        
+                        var audioItems = [AudioItem]()
+                        let songs = [song]
+                        for songItem in songs {
+                            var url = NSURL(string: songItem.url)
+                            let audioItem = MyAudioItem(song: songItem, highQualitySoundURL: url)
+                            audioItems.append(audioItem!)
+                        }
+                        
+                        audioPlayer.delegate = nil
+                        audioPlayer.playItems(audioItems, startAtIndex: 0)
+                        self.performSegueWithIdentifier("songSegue", sender: false)
+                        
+                    }
                 } else {
-                    print()
+                    performSegueWithIdentifier("beforeCourseSegue", sender: CourseType.LiveCourse)
+                    
                 }
             }
         }

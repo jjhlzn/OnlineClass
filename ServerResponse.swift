@@ -90,6 +90,17 @@ public class ServerResponse  {
         status = json["status"] as! Int
         errorMessage = json["errorMessage"] as? String
     }
+    var isSuccess:Bool {
+        get {
+            return status == ServerResponseStatus.Success.rawValue
+        }
+    }
+    
+    var isFail:Bool {
+        get {
+            return !isSuccess
+        }
+    }
 }
 
 public class PageServerResponse<T> : ServerResponse{
@@ -815,13 +826,29 @@ class GetSongInfoRequest : ServerRequest {
 class GetSongInfoResponse : ServerResponse {
     var song: Song!
     
+    private func parseAlbum(albumJson: NSDictionary) -> Album {
+        let album = Album()
+        album.id = "\(albumJson["id"] as! NSNumber)"
+        album.name = albumJson["name"] as! String
+        album.author = albumJson["author"] as! String
+        album.image = albumJson["image"] as! String
+        album.count = albumJson["count"] as! Int
+        album.desc = albumJson["desc"] as! String
+        album.listenCount = albumJson["listenCount"] as! String
+        album.courseType = CourseType.getCourseType(albumJson["type"] as! String)!
+        album.playing = albumJson["playing"] as! Bool
+        album.isReady = albumJson["isReady"] as! Bool
+        return album
+
+    }
+    
     override func parseJSON(request: ServerRequest, json: NSDictionary) {
         super.parseJSON(request, json: json)
         let req = request as! GetSongInfoRequest
         let jsonObject = json["song"] as! NSDictionary
 
         let album = req.song.album
-        if album.isLive {
+        if album.isLive  {
             let liveSong = LiveSong()
             liveSong.startDateTime = jsonObject["startTime"] as? String
             liveSong.endDateTime = jsonObject["endTime"] as? String
@@ -848,7 +875,7 @@ class GetSongInfoResponse : ServerResponse {
         } else {
             song = Song()
         }
-        song.album = album
+        song.album = parseAlbum(jsonObject["album"] as! NSDictionary)
         song.name = jsonObject["name"] as! String
         song.desc = jsonObject["desc"] as! String
         song.date = jsonObject["date"] as! String
