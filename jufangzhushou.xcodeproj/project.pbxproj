@@ -117,6 +117,14 @@
 		E2B2FA0F1C4BB64F00ABF3C5 /* sound2.caf in Resources */ = {isa = PBXBuildFile; fileRef = E2C6FAE01C4B01D80055A1BF /* sound2.caf */; };
 		E2C6FAE11C4B01D80055A1BF /* sound1.caf in Resources */ = {isa = PBXBuildFile; fileRef = E2C6FADF1C4B01D80055A1BF /* sound1.caf */; };
 		E2C6FAE21C4B01D80055A1BF /* sound2.caf in Resources */ = {isa = PBXBuildFile; fileRef = E2C6FAE01C4B01D80055A1BF /* sound2.caf */; };
+		EF21740E1E2753B10035C960 /* TencentOpenApi_IOS_Bundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = EF21740C1E2753B10035C960 /* TencentOpenApi_IOS_Bundle.bundle */; };
+		EF21740F1E2753B10035C960 /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF21740D1E2753B10035C960 /* TencentOpenAPI.framework */; };
+		EF2174111E2753DB0035C960 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF2174101E2753DB0035C960 /* Security.framework */; };
+		EF2174131E2753FB0035C960 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = EF2174121E2753FB0035C960 /* libiconv.tbd */; };
+		EF2174151E27540D0035C960 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF2174141E27540D0035C960 /* CoreGraphics.framework */; };
+		EF2174161E275BCF0035C960 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CBF786C1D336DDE00B596BC /* libsqlite3.tbd */; };
+		EF2174181E275BEF0035C960 /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = EF2174171E275BEF0035C960 /* libstdc++.tbd */; };
+		EF21741A1E275BFA0035C960 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = EF2174191E275BFA0035C960 /* libz.tbd */; };
 		EF22C2751E23D7C500EA0F5A /* FooterAdvCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF22C2741E23D7C500EA0F5A /* FooterAdvCell.swift */; };
 		EF22C2771E23E65E00EA0F5A /* ExtendFunctionMessageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF22C2761E23E65E00EA0F5A /* ExtendFunctionMessageManager.swift */; };
 		EF67C0431E24A901004EEAF0 /* AlbumHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF67C0421E24A901004EEAF0 /* AlbumHeaderCell.swift */; };
@@ -251,6 +259,13 @@
 		E2B2F9FB1C4BB5DC00ABF3C5 /* AudioPlayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AudioPlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2C6FADF1C4B01D80055A1BF /* sound1.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = sound1.caf; path = ../Sounds/sound1.caf; sourceTree = "<group>"; };
 		E2C6FAE01C4B01D80055A1BF /* sound2.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = sound2.caf; path = ../Sounds/sound2.caf; sourceTree = "<group>"; };
+		EF21740C1E2753B10035C960 /* TencentOpenApi_IOS_Bundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = TencentOpenApi_IOS_Bundle.bundle; sourceTree = "<group>"; };
+		EF21740D1E2753B10035C960 /* TencentOpenAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TencentOpenAPI.framework; sourceTree = "<group>"; };
+		EF2174101E2753DB0035C960 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		EF2174121E2753FB0035C960 /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
+		EF2174141E27540D0035C960 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		EF2174171E275BEF0035C960 /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
+		EF2174191E275BFA0035C960 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		EF22C2741E23D7C500EA0F5A /* FooterAdvCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FooterAdvCell.swift; sourceTree = "<group>"; };
 		EF22C2761E23E65E00EA0F5A /* ExtendFunctionMessageManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtendFunctionMessageManager.swift; sourceTree = "<group>"; };
 		EF67C0421E24A901004EEAF0 /* AlbumHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumHeaderCell.swift; sourceTree = "<group>"; };
@@ -262,6 +277,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EF21741A1E275BFA0035C960 /* libz.tbd in Frameworks */,
+				EF2174181E275BEF0035C960 /* libstdc++.tbd in Frameworks */,
+				EF2174161E275BCF0035C960 /* libsqlite3.tbd in Frameworks */,
+				EF2174151E27540D0035C960 /* CoreGraphics.framework in Frameworks */,
+				EF2174131E2753FB0035C960 /* libiconv.tbd in Frameworks */,
+				EF2174111E2753DB0035C960 /* Security.framework in Frameworks */,
 				1C8620181D337AFB006C30BB /* CoreTelephony.framework in Frameworks */,
 				1C8620161D337ACE006C30BB /* libc++.1.dylib in Frameworks */,
 				1C8620141D337A8F006C30BB /* SystemConfiguration.framework in Frameworks */,
@@ -270,6 +291,7 @@
 				1C8620101D3379D9006C30BB /* libstdc++.6.0.9.dylib in Frameworks */,
 				1C86200F1D337954006C30BB /* libsqlite3.dylib in Frameworks */,
 				C8FD3BA5397761EB2BB46B45 /* Pods_AudioPlayer_iOS.framework in Frameworks */,
+				EF21740F1E2753B10035C960 /* TencentOpenAPI.framework in Frameworks */,
 				1CBF78711D33755A00B596BC /* libWeChatSDK.a in Frameworks */,
 				1C98A8941D61FB3100ADF12B /* libXG-SDK.a in Frameworks */,
 			);
@@ -488,6 +510,11 @@
 		BC2131FE74CE2B0C14249E3D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EF2174191E275BFA0035C960 /* libz.tbd */,
+				EF2174171E275BEF0035C960 /* libstdc++.tbd */,
+				EF2174141E27540D0035C960 /* CoreGraphics.framework */,
+				EF2174121E2753FB0035C960 /* libiconv.tbd */,
+				EF2174101E2753DB0035C960 /* Security.framework */,
 				1C98A8931D61FB3100ADF12B /* libXG-SDK.a */,
 				1C8620171D337AFB006C30BB /* CoreTelephony.framework */,
 				1C8620151D337ACE006C30BB /* libc++.1.dylib */,
@@ -506,6 +533,8 @@
 		E2A9AF931C498E2900FE943A = {
 			isa = PBXGroup;
 			children = (
+				EF21740C1E2753B10035C960 /* TencentOpenApi_IOS_Bundle.bundle */,
+				EF21740D1E2753B10035C960 /* TencentOpenAPI.framework */,
 				1C156D831D9E38AE007A7F65 /* jfzs-prefix.h */,
 				1C156D811D9E3584007A7F65 /* tingyunApp.framework */,
 				1C98A8991D62005900ADF12B /* xinge */,
@@ -694,6 +723,7 @@
 				E2A9AFAA1C498E2900FE943A /* LaunchScreen.storyboard in Resources */,
 				E2A9AFA71C498E2900FE943A /* Assets.xcassets in Resources */,
 				E2C6FAE21C4B01D80055A1BF /* sound2.caf in Resources */,
+				EF21740E1E2753B10035C960 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				1CBF786B1D336CF200B596BC /* README.txt in Resources */,
 				E2A9AFA51C498E2900FE943A /* Main.storyboard in Resources */,
 			);
@@ -1011,6 +1041,56 @@
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/xgpushsdk",
 				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-l\"WeiboSDK\"",
+					"-l\"sqlite3\"",
+					"-l\"z\"",
+					"-framework",
+					"\"ALCameraViewController\"",
+					"-framework",
+					"\"Alamofire\"",
+					"-framework",
+					"\"Auk\"",
+					"-framework",
+					"\"CoreGraphics\"",
+					"-framework",
+					"\"CoreTelephony\"",
+					"-framework",
+					"\"CoreText\"",
+					"-framework",
+					"\"Emoji\"",
+					"-framework",
+					"\"Foundation\"",
+					"-framework",
+					"\"ImageIO\"",
+					"-framework",
+					"\"KDEAudioPlayer\"",
+					"-framework",
+					"\"Kingfisher\"",
+					"-framework",
+					"\"MarqueeLabel\"",
+					"-framework",
+					"\"QorumLogs\"",
+					"-framework",
+					"\"QuartzCore\"",
+					"-framework",
+					"\"Security\"",
+					"-framework",
+					"\"SocketIOClientSwift\"",
+					"-framework",
+					"\"SwiftyJSON\"",
+					"-framework",
+					"\"SystemConfiguration\"",
+					"-framework",
+					"\"UIKit\"",
+					"-framework",
+					"\"moa\"",
+					"-framework",
+					"\"tingyunApp\"",
+					"-fobjc-arc",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.jufang.jfzs;
 				PRODUCT_NAME = AudioPlayer;
 				PROVISIONING_PROFILE = "";
@@ -1039,6 +1119,56 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/xgpushsdk",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-l\"WeiboSDK\"",
+					"-l\"sqlite3\"",
+					"-l\"z\"",
+					"-framework",
+					"\"ALCameraViewController\"",
+					"-framework",
+					"\"Alamofire\"",
+					"-framework",
+					"\"Auk\"",
+					"-framework",
+					"\"CoreGraphics\"",
+					"-framework",
+					"\"CoreTelephony\"",
+					"-framework",
+					"\"CoreText\"",
+					"-framework",
+					"\"Emoji\"",
+					"-framework",
+					"\"Foundation\"",
+					"-framework",
+					"\"ImageIO\"",
+					"-framework",
+					"\"KDEAudioPlayer\"",
+					"-framework",
+					"\"Kingfisher\"",
+					"-framework",
+					"\"MarqueeLabel\"",
+					"-framework",
+					"\"QorumLogs\"",
+					"-framework",
+					"\"QuartzCore\"",
+					"-framework",
+					"\"Security\"",
+					"-framework",
+					"\"SocketIOClientSwift\"",
+					"-framework",
+					"\"SwiftyJSON\"",
+					"-framework",
+					"\"SystemConfiguration\"",
+					"-framework",
+					"\"UIKit\"",
+					"-framework",
+					"\"moa\"",
+					"-framework",
+					"\"tingyunApp\"",
+					"-fobjc-arc",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.jufang.jfzs;
 				PRODUCT_NAME = AudioPlayer;

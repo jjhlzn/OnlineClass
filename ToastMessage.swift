@@ -17,7 +17,7 @@ class ToastMessage {
         
         let label = UILabel(frame: CGRectMake(0, 0, 160, 60))
         label.layer.cornerRadius = 05
-        label.backgroundColor = UIColor(white: 0.3, alpha: 0.5)
+        label.backgroundColor = UIColor(white: 0.3, alpha: 0.65)
         label.textAlignment = NSTextAlignment.Center
         
         label.text = message
@@ -27,7 +27,7 @@ class ToastMessage {
         label.font = UIFont(name: "System", size: CGFloat(16))
         
         view.addSubview(label)
-        Utils.delay(1.5) {
+        Utils.delay(1) {
             label.removeFromSuperview()
         }
         

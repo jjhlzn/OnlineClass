@@ -24,7 +24,8 @@ class AppDelegate : XinGeAppDelegate {
     var liveProgressTimer : NSTimer?
     var wxApiManager = WXApiManager()
     
-    let wbAppKey = "901768017"
+    static let wbAppKey = "901768017"
+    static let qqAppId = "1105796307"
 
 
     override func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
@@ -50,7 +51,7 @@ class AppDelegate : XinGeAppDelegate {
         WXApi.registerApp("wx73653b5260b24787", withDescription: "AudioPlayer iOS")
         
         WeiboSDK.enableDebugMode(true)
-        WeiboSDK.registerApp(wbAppKey)
+        WeiboSDK.registerApp(AppDelegate.wbAppKey)
         
        // [NBSAppAgent startWithAppID:@"a200c16a118f4f99891ab5645fa2a13d"];
 
