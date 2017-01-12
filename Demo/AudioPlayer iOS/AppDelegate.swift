@@ -38,7 +38,7 @@ class AppDelegate : XinGeAppDelegate {
         if serviceLocatorStore.GetServiceLocator() == nil {
             let serviceLocator = ServiceLocator()
             serviceLocator.http = "http"
-            serviceLocator.serverName = "http://jf.yhkamani.com"
+            serviceLocator.serverName = "jf.yhkamani.com"
             serviceLocator.port = 80
             serviceLocator.isUseServiceLocator = "1"
             serviceLocatorStore.saveServiceLocator(serviceLocator)

@@ -21,12 +21,20 @@ class AllFunctionViewController: BaseUIViewController, UITableViewDataSource, UI
         tableView.delegate = self
     }
     
+    override func viewWillAppear(animated: Bool) {
+        tableView.reloadData()
+    }
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return extendFunctionMananger.getRowCount()
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         return extendFunctionMananger.getFunctionCell(tableView, row: indexPath.row)
+    }
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return  extendFunctionMananger.cellHeight
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

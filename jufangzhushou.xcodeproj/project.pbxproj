@@ -117,6 +117,10 @@
 		E2B2FA0F1C4BB64F00ABF3C5 /* sound2.caf in Resources */ = {isa = PBXBuildFile; fileRef = E2C6FAE01C4B01D80055A1BF /* sound2.caf */; };
 		E2C6FAE11C4B01D80055A1BF /* sound1.caf in Resources */ = {isa = PBXBuildFile; fileRef = E2C6FADF1C4B01D80055A1BF /* sound1.caf */; };
 		E2C6FAE21C4B01D80055A1BF /* sound2.caf in Resources */ = {isa = PBXBuildFile; fileRef = E2C6FAE01C4B01D80055A1BF /* sound2.caf */; };
+		EF22C2751E23D7C500EA0F5A /* FooterAdvCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF22C2741E23D7C500EA0F5A /* FooterAdvCell.swift */; };
+		EF22C2771E23E65E00EA0F5A /* ExtendFunctionMessageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF22C2761E23E65E00EA0F5A /* ExtendFunctionMessageManager.swift */; };
+		EF67C0431E24A901004EEAF0 /* AlbumHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF67C0421E24A901004EEAF0 /* AlbumHeaderCell.swift */; };
+		EFB004231E236CD800B9272A /* HeaderAdvCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFB004221E236CD800B9272A /* HeaderAdvCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -247,6 +251,10 @@
 		E2B2F9FB1C4BB5DC00ABF3C5 /* AudioPlayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AudioPlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2C6FADF1C4B01D80055A1BF /* sound1.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = sound1.caf; path = ../Sounds/sound1.caf; sourceTree = "<group>"; };
 		E2C6FAE01C4B01D80055A1BF /* sound2.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = sound2.caf; path = ../Sounds/sound2.caf; sourceTree = "<group>"; };
+		EF22C2741E23D7C500EA0F5A /* FooterAdvCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FooterAdvCell.swift; sourceTree = "<group>"; };
+		EF22C2761E23E65E00EA0F5A /* ExtendFunctionMessageManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtendFunctionMessageManager.swift; sourceTree = "<group>"; };
+		EF67C0421E24A901004EEAF0 /* AlbumHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumHeaderCell.swift; sourceTree = "<group>"; };
+		EFB004221E236CD800B9272A /* HeaderAdvCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderAdvCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -346,6 +354,9 @@
 				1C3CC4BF1CFBE3FE007D3EBC /* SongListCell.swift */,
 				1C451F671D01765F00DC29F9 /* ConfigurationCell.swift */,
 				1C50C7551D48D28C0022B952 /* SongAdvCell.swift */,
+				EFB004221E236CD800B9272A /* HeaderAdvCell.swift */,
+				EF22C2741E23D7C500EA0F5A /* FooterAdvCell.swift */,
+				EF67C0421E24A901004EEAF0 /* AlbumHeaderCell.swift */,
 			);
 			name = customCell;
 			sourceTree = "<group>";
@@ -361,6 +372,7 @@
 				1C09D3BE1CD09FED004A8F9C /* ToastMessage.swift */,
 				1CB425A51D229E1600971F95 /* ServiceLinkManager.swift */,
 				1C9E80891DA8D5D9006DD2C2 /* WXApiManager.swift */,
+				EF22C2761E23E65E00EA0F5A /* ExtendFunctionMessageManager.swift */,
 			);
 			name = lib;
 			sourceTree = "<group>";
@@ -776,10 +788,12 @@
 				1CA3B2101CD86B7800D0ABD8 /* MainPageViewController.swift in Sources */,
 				1C1E69231CCA0F1700CEA029 /* CommentHeaderCell.swift in Sources */,
 				1C2684781CCB59210032C014 /* LoginViewController.swift in Sources */,
+				EF22C2751E23D7C500EA0F5A /* FooterAdvCell.swift in Sources */,
 				1C8A2AD41CE4BEA60086C1B8 /* MallViewController.swift in Sources */,
 				1C33F03C1D079DBE00D3EE4C /* SetSexViewController.swift in Sources */,
 				1CEFF7861CBFB9FD000DEFF7 /* BasicService.swift in Sources */,
 				1C8E7DC11D87950F0022B0D2 /* PurchaseRecordEntity+CoreDataProperties.swift in Sources */,
+				EF22C2771E23E65E00EA0F5A /* ExtendFunctionMessageManager.swift in Sources */,
 				1C8E7DC41D8799F80022B0D2 /* PurchaseRecordStore.swift in Sources */,
 				1CEFF7831CBFB809000DEFF7 /* Model.swift in Sources */,
 				1C1E69191CC9079100CEA029 /* SongViewController.swift in Sources */,
@@ -836,6 +850,7 @@
 				1C2684761CCA66040032C014 /* MyInfoMainCell.swift in Sources */,
 				1CD349701CF9AB1000037F78 /* PersonalInfoViewController.swift in Sources */,
 				1C33A5701D059A5D00E87803 /* StartupViewController.swift in Sources */,
+				EF67C0431E24A901004EEAF0 /* AlbumHeaderCell.swift in Sources */,
 				1CB425A61D229E1600971F95 /* ServiceLinkManager.swift in Sources */,
 				1CEFF7811CBFB73D000DEFF7 /* AlbumListController.swift in Sources */,
 				1C09D3BF1CD09FED004A8F9C /* ToastMessage.swift in Sources */,
@@ -845,6 +860,7 @@
 				1C33F0421D07DBF000D3EE4C /* AllFunctionViewController.swift in Sources */,
 				1CDCC8ED1CE717F3001640CC /* ForgetPasswordViewController.swift in Sources */,
 				1C451F6C1D01787B00DC29F9 /* ServiceLocatorEntity+CoreDataProperties.swift in Sources */,
+				EFB004231E236CD800B9272A /* HeaderAdvCell.swift in Sources */,
 				1C33F0341D07195700D3EE4C /* TextFieldCell.swift in Sources */,
 				1C2451DA1CE8A28B00F350DA /* LoginUserEntity.swift in Sources */,
 				1CEFF78A1CBFBA70000DEFF7 /* ServerResponse.swift in Sources */,

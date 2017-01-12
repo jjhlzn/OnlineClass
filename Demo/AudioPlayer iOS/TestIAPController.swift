@@ -36,7 +36,7 @@ class TestIAPController: UIViewController, SKProductsRequestDelegate, SKPaymentT
     }
     
     @IBAction func webPagePressed(sender: UIButton) {
-        performSegueWithIdentifier("bugVipSegue", sender: nil)
+        performSegueWithIdentifier("buyVipSegue", sender: nil)
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

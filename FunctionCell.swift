@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import QorumLogs
 
 class FunctionCell: UITableViewCell {
  
@@ -14,12 +15,46 @@ class FunctionCell: UITableViewCell {
 
 class ExtendFunctionMananger : NSObject {
     
-    var controller : BaseUIViewController
+    var controller : BaseUIViewController!
     var showMaxRows : Int
     var moreFunction : ExtendFunction?
     var isNeedMore = false
+    var functionMessageManager = ExtendFunctionMessageManager.instance
     
     var functions : [ExtendFunction] = [ExtendFunction]()
+    
+    func getAllFunctions() -> [ExtendFunction] {
+        moreFunction = ExtendFunction(imageName: "moreFunction", name: "更多", code: "f_more", url: "",
+                                      selector: #selector(moreHanlder))
+        
+        return [
+            ExtendFunction(imageName: "commonCard", name: "刷卡", code: "f_paybycard", url: "http://www.baidu.com",
+                selector:  #selector(openApp)),
+            ExtendFunction(imageName: "liveclass", name: "直播课堂", code: "f_class", url: ServiceLinkManager.FunctionUpUrl,
+                selector:  #selector(liveClassHandler)),
+            ExtendFunction(imageName: "visa", name: "快速办卡", code: "f_makecard", url: ServiceLinkManager.FunctionFastCardUrl,
+                selector:  #selector(imageHandler)),
+            ExtendFunction(imageName: "dollar", name: "快速贷款", code: "f_loan", url: ServiceLinkManager.FunctionDaiKuangUrl,
+                selector:  #selector(imageHandler)),
+            
+            ExtendFunction(imageName: "shopcart", name: "商城", code: "f_market",  url: ServiceLinkManager.FunctionShopUrl,
+                selector:  #selector(imageHandler)),
+            ExtendFunction(imageName: "car", name: "汽车分期", code: "f_car", url: ServiceLinkManager.FunctionCarLoanUrl,
+                selector:  #selector(imageHandler)),
+            ExtendFunction(imageName: "cardManage", name: "卡片管理", code: "f_cardmanager", url: ServiceLinkManager.FunctionCardManagerUrl,
+                selector:  #selector(imageHandler)),
+            ExtendFunction(imageName: "rmb", name: "我要充值", code: "f_chongzhi",  url: ServiceLinkManager.FunctionJiaoFeiUrl,
+                selector:  #selector(imageHandler)),
+            
+            ExtendFunction(imageName: "share", name: "分享", code: "f_share",  url: ServiceLinkManager.FunctionMccSearchUrl,
+                selector:  #selector(shareHanlder)),
+            ExtendFunction(imageName: "customerservice", name: "客服", code: "f_user", url: ServiceLinkManager.FunctionCustomerServiceUrl,
+                selector:  #selector(imageHandler)),
+            ExtendFunction(imageName: "moreFunction", name: "更多", code: "f_more", url: "",
+                selector: #selector(moreHanlder))
+        ]
+
+    }
     
     init(controller: BaseUIViewController, isNeedMore: Bool = true, showMaxRows : Int = 100) {
         self.controller = controller
@@ -27,36 +62,17 @@ class ExtendFunctionMananger : NSObject {
         self.isNeedMore = isNeedMore
         
         super.init()
-        moreFunction = ExtendFunction(imageName: "moreFunction", name: "更多",  url: "",
-                                      selector: #selector(moreHanlder))
-        
-        functions = [
-            ExtendFunction(imageName: "commonCard", name: "去刷卡", url: "http://www.baidu.com",
-                selector:  #selector(openApp)),
-            ExtendFunction(imageName: "up", name: "提额秘诀", url: ServiceLinkManager.FunctionUpUrl,
-                selector:  #selector(imageHandler)),
-            ExtendFunction(imageName: "visa", name: "一键办卡", url: ServiceLinkManager.FunctionFastCardUrl,
-                selector:  #selector(imageHandler)),
-            ExtendFunction(imageName: "cardManage", name: "卡片管理", url: ServiceLinkManager.FunctionCardManagerUrl,
-                selector:  #selector(imageHandler)),
-            ExtendFunction(imageName: "creditSearch", name: "信用查询", url: ServiceLinkManager.FunctionCreditSearchUrl,
-                selector:  #selector(imageHandler)),
-            ExtendFunction(imageName: "mmcSearch", name: "mcc查询",  url: ServiceLinkManager.FunctionMccSearchUrl,
-                selector:  #selector(imageHandler)),
-            ExtendFunction(imageName: "shopcart", name: "商城",  url: ServiceLinkManager.FunctionShopUrl,
-                selector:  #selector(imageHandler)),
-            ExtendFunction(imageName: "rmb", name: "缴费",  url: ServiceLinkManager.FunctionJiaoFeiUrl,
-                 selector:  #selector(imageHandler)),
-            ExtendFunction(imageName: "dollar", name: "贷款", url: ServiceLinkManager.FunctionDaiKuangUrl,
-                 selector:  #selector(imageHandler)),
-            ExtendFunction(imageName: "car", name: "汽车分期", url: ServiceLinkManager.FunctionCarLoanUrl,
-                selector:  #selector(imageHandler)),
-            ExtendFunction(imageName: "customerservice", name: "客服", url: ServiceLinkManager.FunctionCustomerServiceUrl,
-                selector:  #selector(imageHandler)),
-            moreFunction!
-        ]
-        
+        self.functions = getAllFunctions()
     }
+    
+    init(isNeedMore: Bool = true, showMaxRows : Int = 100) {
+        self.showMaxRows = showMaxRows
+        self.isNeedMore = isNeedMore
+        
+        super.init()
+        self.functions = getAllFunctions()
+    }
+
     
     let buttonCountEachRow = 4
     func getRowCount() -> Int {
@@ -78,18 +94,16 @@ class ExtendFunctionMananger : NSObject {
     func getFunctionCell(tableView: UITableView, row: Int) -> FunctionCell {
         var index = row * buttonCountEachRow
         let cell = tableView.dequeueReusableCellWithIdentifier("functionCell") as! FunctionCell
-        //print("row = \(row)")
+        cell.subviews.forEach() { subView in
+            subView.removeFromSuperview()
+        }
         for i in 0...(buttonCountEachRow - 1) {
             
             if index >= functions.count {
-                //print("index = \(index), functions.count = \(functions.count)")
                 break
             }
             
-            // print("index = \(index)")
-            
             var function = functions[index]
-            
             if isNeedMoreButton() && index == getLastIndex() {
                 function = moreFunction!
             }
@@ -98,12 +112,8 @@ class ExtendFunctionMananger : NSObject {
                 break
             }
             
-            //print("cell.width = \(cell.bounds.width)")
             addCellView(row, column: i, index: index, function: function, cell: cell)
-            
-           
             index = index + 1
-            
         }
         
         cell.separatorInset = UIEdgeInsetsMake(0, UIScreen.mainScreen().bounds.width, 0, 0);
@@ -115,8 +125,10 @@ class ExtendFunctionMananger : NSObject {
         let interval : CGFloat = UIScreen.mainScreen().bounds.width / 4
         let x = interval  * CGFloat(column)
         let cellView = UIView(frame: CGRectMake(x, 0, interval, 79))
-        cellView.tag = index
         
+        
+        
+        cellView.tag = index
         cell.addSubview(cellView)
         
         let imageView = makeImage(index, function: function, superView: cellView)
@@ -131,21 +143,87 @@ class ExtendFunctionMananger : NSObject {
         }
         
         return cellView
-
     }
     
+    private func getImageWidth() -> CGFloat {
+        let screenWidth = UIScreen.mainScreen().bounds.width
+        if isiPhone4Screen {
+            return screenWidth / 4 * 0.6
+        } else {
+            return screenWidth / 4 * 0.7
+        }
+    }
     
-    let imageWidth : CGFloat = 40
-    let cellHeight = 79
+    var cellHeight:CGFloat {
+        get {
+            let screenWidth = UIScreen.mainScreen().bounds.width
+            if isiPhone4Screen {
+                return screenWidth / 4 * 0.95
+            } else {
+                return screenWidth / 4
+            }
+            
+        }
+    }
+    
+    var isiPhonePlusScreen: Bool {
+        get {
+            return abs(UIScreen.mainScreen().bounds.width - 414) < 1;
+        }
+    }
+    
+    var isiPhone6Screen: Bool {
+        get {
+            return abs(UIScreen.mainScreen().bounds.width - 375) < 1;
+        }
+    }
+    
+    var isiPhone4Screen: Bool {
+        get {
+            return abs(UIScreen.mainScreen().bounds.width - 320) < 1;
+        }
+    }
+    
     private func makeImage(index: Int, function: ExtendFunction, superView: UIView) -> UIImageView {
-        let imageView = UIImageView(frame: CGRectMake(0, 0, imageWidth, imageWidth))
+        let imageView = UIImageView(frame: CGRectMake(0, 0, getImageWidth(), getImageWidth()))
         imageView.center.x = superView.bounds.width / 2
-        imageView.center.y = superView.bounds.height / 2 - 10
+        //QL1("isiPhone6Screen: \(isiPhone6Screen)")
+        if isiPhonePlusScreen {
+           imageView.center.y = cellHeight / 2 - 1
+        } else if isiPhone6Screen {
+           imageView.center.y = cellHeight / 2 - 2
+        } else {
+           imageView.center.y = cellHeight / 2 - 5
+        }
         //print("superView.center.x = \(superView.center.x), superView.center.y - 10 = \(superView.center.y - 10)")
-        imageView.image = UIImage(named: function.imageName)
+        imageView.image = overlayImage(function) //UIImage(named: function.imageName)
         imageView.tag = index
         
         return imageView
+    }
+    
+    func overlayImage(function: ExtendFunction) -> UIImage {
+        if !ExtendFunctionMessageManager.instance.hasMessage(function.code) {
+            return UIImage(named: function.imageName)!
+        }
+        
+        let bottomImage = UIImage(named: function.imageName)!
+        let topImage = UIImage(named: "message_one")!
+        
+        let newSize = CGSizeMake(getImageWidth(), getImageWidth()) // set this to what you need
+        let ratio : CGFloat = 0.32
+        let messageSize = CGSizeMake(getImageWidth() * ratio, getImageWidth() * ratio)
+        UIGraphicsBeginImageContextWithOptions(newSize, false, 0.0)
+        
+        let x = getImageWidth() - abs(getImageWidth() - getImageWidth() * ratio) * 0.9 / 2
+        let y = getImageWidth() * ratio / 5 - 4
+        
+        bottomImage.drawInRect(CGRect(origin: CGPointZero, size: newSize))
+        topImage.drawInRect(CGRect(origin: CGPoint(x: x, y: CGFloat(y)), size: messageSize))
+        
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return newImage
     }
     
     private func makeLabel(index: Int, function: ExtendFunction, superView: UIView) -> UILabel {
@@ -156,7 +234,13 @@ class ExtendFunctionMananger : NSObject {
         label.tag = index
         
         label.center.x = superView.bounds.width / 2
-        label.center.y = superView.bounds.height / 2 + imageWidth / 2 + 5
+        if isiPhonePlusScreen {
+            label.center.y = cellHeight / 2 + getImageWidth() / 2 + 9
+        } else if isiPhone6Screen {
+            label.center.y = cellHeight / 2 + getImageWidth() / 2 + 3
+        } else {
+            label.center.y = cellHeight / 2 + getImageWidth() / 2 + 3
+        }
 
         label.textAlignment = .Center
         label.font = label.font.fontWithSize(13)
@@ -164,28 +248,32 @@ class ExtendFunctionMananger : NSObject {
         label.text = function.name
         
         return label
-        
     }
-    
-    
     
     func imageHandler(sender: UITapGestureRecognizer? = nil) {
         let index = sender?.view?.tag
+        clearFunctionMessage(index!)
         let function = functions[index!]
         let params : [String: String] = ["url": function.url, "title": function.name]
         controller.performSegueWithIdentifier("loadWebPageSegue", sender: params)
     }
     
     func unSupportHandler(sender: UITapGestureRecognizer? = nil) {
+        let index = sender?.view?.tag
+        clearFunctionMessage(index!)
         controller.displayMessage("敬请期待")
     }
     
     func moreHanlder(sender: UITapGestureRecognizer? = nil) {
+        let index = sender?.view?.tag
+        clearFunctionMessage(index!)
         controller.performSegueWithIdentifier("moreFunctionSegue", sender: nil)
     }
     
     func openApp(sender: UITapGestureRecognizer? = nil) {
-        
+        let index = sender?.view?.tag
+        clearFunctionMessage(index!)
+
         let jfzfHooks = "com.uen.jfzfxpush://"
         let jfzfUrl = NSURL(string: jfzfHooks)
         if UIApplication.sharedApplication().canOpenURL(NSURL(string: jfzfHooks)!)
@@ -193,11 +281,35 @@ class ExtendFunctionMananger : NSObject {
             UIApplication.sharedApplication().openURL(jfzfUrl!)
             
         } else {
-            //redirect to safari because the user doesn't have Instagram
-            print("App not installed")
-            //UIApplication.sharedApplication().openURL(NSURL(string: "https://itunes.apple.com/in/app/instagram/id389801252?m")!)
             let params : [String: String] = ["url": "http://jf.yhkamani.com/dlios.html", "title": "巨方支付下载"]
             controller.performSegueWithIdentifier("loadWebPageSegue", sender: params)
+        }
+    }
+    
+    func shareHanlder(sender: UITapGestureRecognizer? = nil) {
+        let index = sender?.view?.tag
+        clearFunctionMessage(index!)
+        
+        controller.performSegueWithIdentifier("codeImageSegue", sender: nil)
+    }
+    
+    func liveClassHandler(sender: UITapGestureRecognizer? = nil) {
+        let index = sender?.view?.tag
+        clearFunctionMessage(index!)
+        controller.performSegueWithIdentifier("beforeCourseSegue", sender: CourseType.LiveCourse)
+    }
+    
+    private func clearFunctionMessage(index: Int) {
+        let function = functions[index]
+        functionMessageManager.clearMessage(function.code, value: 0)
+        let request = ClearFunctionMessageRequest()
+        request.code = function.code
+        BasicService().sendRequest(ServiceConfiguration.CLEAR_FUNCTION_MESSAGE, request: request) {
+            (resp: ClearFunctionMessageResponse) -> Void in
+            if resp.isFail {
+                QL4(resp.errorMessage)
+                return
+            }
         }
     }
 }
@@ -206,13 +318,15 @@ class ExtendFunction {
     var imageName = ""
     var name = ""
     var url = ""
+    var code = ""
     var isSupport = false
     var action : Selector
     
-    init(imageName: String, name: String, url: String, selector: Selector) {
+    init(imageName: String, name: String, code: String, url: String, selector: Selector) {
         self.imageName = imageName
         self.name = name
         self.url = url
         self.action = selector
+        self.code = code
     }
 }

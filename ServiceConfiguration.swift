@@ -15,8 +15,8 @@ class ServiceConfiguration {
     
 
     //114.80.101.27:6012/
-    static let serverName3 = "192.168.31.146"
-    static let port3 = 3000
+    static let serverName3 = "192.168.1.108"
+    static let port3 = 5000
     
     
     static let serverName4 = "jf.yhkamani.com"
@@ -244,7 +244,29 @@ class ServiceConfiguration {
         }
     }
     
+    //首页
+    static var GET_HEADER_ADV: String {
+        get {
+            return "\(http)://\(serverName):\(port)/app/getheaderadvs"
+        }
+    }
+    static var GET_FOOTER_ADV: String {
+        get {
+            return "\(http)://\(serverName):\(port)/app/getfooteradvs"
+        }
+    }
     
+    static var GET_FUNCTION_MESSAGE: String {
+        get {
+            return "\(http)://\(serverName):\(port)/app/getfunctionmessage"
+        }
+    }
+
+    static var CLEAR_FUNCTION_MESSAGE: String {
+        get {
+            return "\(http)://\(serverName):\(port)/app/clearfunctionmessage"
+        }
+    }
     
     
     static let ImageUrlPrefix = "http://\(serverName):\(port)/"

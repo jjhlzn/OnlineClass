@@ -90,6 +90,17 @@ public class ServerResponse  {
         status = json["status"] as! Int
         errorMessage = json["errorMessage"] as? String
     }
+    var isSuccess:Bool {
+        get {
+            return status == ServerResponseStatus.Success.rawValue
+        }
+    }
+    
+    var isFail:Bool {
+        get {
+            return !isSuccess
+        }
+    }
 }
 
 public class PageServerResponse<T> : ServerResponse{
@@ -105,25 +116,24 @@ public class PageServerResponse<T> : ServerResponse{
     
 }
 
-
 class GetAlbumsRequest : PagedServerRequest {
-    var courseType : CourseType
+    var code : String
     
     required init(courseType: CourseType) {
-        self.courseType = courseType
+        self.code = courseType.code
+    }
+    
+    required init(code: String) {
+        self.code = code
     }
     
     override var params: [String : AnyObject] {
         get {
-            let parameters = ["type": courseType.code]
+            let parameters = ["type": self.code]
             return parameters
-
         }
     }
-    
-    
 }
-
 
 
 class GetAlbumsResponse : PageServerResponse<Album> {
@@ -145,6 +155,7 @@ class GetAlbumsResponse : PageServerResponse<Album> {
             album.courseType = CourseType.getCourseType(albumJson["type"] as! String)!
             album.playing = albumJson["playing"] as! Bool
             album.isReady = albumJson["isReady"] as! Bool
+            album.playTimeDesc = albumJson["playTimeDesc"] as! String
             albums.append(album)
         }
         self.resultSet = albums
@@ -816,13 +827,29 @@ class GetSongInfoRequest : ServerRequest {
 class GetSongInfoResponse : ServerResponse {
     var song: Song!
     
+    private func parseAlbum(albumJson: NSDictionary) -> Album {
+        let album = Album()
+        album.id = "\(albumJson["id"] as! NSNumber)"
+        album.name = albumJson["name"] as! String
+        album.author = albumJson["author"] as! String
+        album.image = albumJson["image"] as! String
+        album.count = albumJson["count"] as! Int
+        album.desc = albumJson["desc"] as! String
+        album.listenCount = albumJson["listenCount"] as! String
+        album.courseType = CourseType.getCourseType(albumJson["type"] as! String)!
+        album.playing = albumJson["playing"] as! Bool
+        album.isReady = albumJson["isReady"] as! Bool
+        return album
+
+    }
+    
     override func parseJSON(request: ServerRequest, json: NSDictionary) {
         super.parseJSON(request, json: json)
         let req = request as! GetSongInfoRequest
         let jsonObject = json["song"] as! NSDictionary
 
         let album = req.song.album
-        if album.isLive {
+        if album.isLive  {
             let liveSong = LiveSong()
             liveSong.startDateTime = jsonObject["startTime"] as? String
             liveSong.endDateTime = jsonObject["endTime"] as? String
@@ -849,7 +876,7 @@ class GetSongInfoResponse : ServerResponse {
         } else {
             song = Song()
         }
-        song.album = album
+        song.album = parseAlbum(jsonObject["album"] as! NSDictionary)
         song.name = jsonObject["name"] as! String
         song.desc = jsonObject["desc"] as! String
         song.date = jsonObject["date"] as! String
@@ -953,6 +980,93 @@ class NotifyIAPSuccessRequest : ServerRequest {
 }
 
 class NotifyIAPSuccessResponse : ServerResponse {
+    
+}
+
+class GetHeaderAdvRequest : ServerRequest {
+
+}
+
+class HeaderAdv {
+    static let Type_Song = "song"
+    static let Type_AlbumList = "albumlist"
+    static let Param_Key_Song = "songid"
+    
+    var imageUrl: String! = ""
+    var type: String! = ""
+    var songId: String! = ""
+}
+
+class GetHeaderAdvResponse : ServerResponse {
+    var headerAdv: HeaderAdv?
+    
+    override func parseJSON(request: ServerRequest, json: NSDictionary) {
+        super.parseJSON(request, json: json)
+        let jsonArray = json["result"] as! NSArray
+        for eachJson in jsonArray {
+            self.headerAdv = HeaderAdv()
+            self.headerAdv?.imageUrl = eachJson["imageUrl"] as! String
+            self.headerAdv?.type = eachJson["type"] as! String
+            
+            let paramsArr = eachJson["Params"] as! NSArray;
+            if self.headerAdv?.type == HeaderAdv.Type_Song {
+                for eachParamJson in paramsArr {
+                    if eachParamJson["key"] as! String == HeaderAdv.Param_Key_Song {
+                        self.headerAdv?.songId = eachParamJson["value"] as! String
+                    }
+                }
+            }
+        }
+    }
+}
+
+class GetFooterAdvsRequest : ServerRequest {}
+class FooterAdv {
+    var imageUrl: String! = ""
+    var title: String! = ""
+    var url: String! = ""
+
+}
+class GetFooterAdvsResponse : ServerResponse {
+    var advList = [FooterAdv]()
+    override func parseJSON(request: ServerRequest, json: NSDictionary) {
+        super.parseJSON(request, json: json)
+        let jsonArray = json["result"] as! NSArray
+        for eachJson in jsonArray {
+            let adv = FooterAdv()
+            adv.imageUrl = eachJson["imageUrl"] as! String
+            adv.title = eachJson["title"] as! String
+            adv.url = eachJson["url"] as! String
+            self.advList.append(adv)
+        }
+    }
+}
+
+class GetFunctionMessageRequest : ServerRequest {}
+class GetFunctionMessageResponse : ServerResponse {
+    var map = [String: Int]()
+    override func parseJSON(request: ServerRequest, json: NSDictionary) {
+        super.parseJSON(request, json: json)
+        let jsonArray = json["result"] as! NSArray
+        for eachJson in jsonArray {
+            map[eachJson["code"] as! String] = eachJson["value"] as! Int
+        }
+    }
+}
+
+class ClearFunctionMessageRequest : ServerRequest {
+    var code: String! = ""
+    
+    override var params: [String : AnyObject] {
+        get {
+            var parameters = super.params
+            parameters["codes"] = [code]
+            return parameters
+        }
+    }
+}
+
+class ClearFunctionMessageResponse : ServerResponse {
     
 }
 
