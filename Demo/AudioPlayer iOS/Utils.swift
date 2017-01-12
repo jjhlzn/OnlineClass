@@ -162,6 +162,21 @@ class Utils {
         
         return message
     }
+    
+    static func hasInstalledWeixin() -> Bool {
+        return hasInstalledApp("weixin")    }
+
+    static func hasInstalledQQ() -> Bool {
+        return hasInstalledApp("mqq")
+    }
+
+    static func hasInstalledApp(scheme: String) -> Bool {
+        let url = "\(scheme)://"
+        if UIApplication.sharedApplication().canOpenURL(NSURL(string: url)!) {
+            return true
+        }
+        return false
+    }
 
 
 

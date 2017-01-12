@@ -60,15 +60,21 @@ class CodeImageViewController: BaseUIViewController {
 
     
     @IBAction func shareToFriends(sender: AnyObject) {
-        print("share to friends")
-        share(false)
-        
-        
+        if !Utils.hasInstalledWeixin() {
+            self.displayMessage("请先安装微信客户端")
+        } else {
+            print("share to friends")
+            share(false)
+        }
     }
 
     @IBAction func shareToPengyouquan(sender: AnyObject) {
-        print("share to pengyouquan")
-        share(true)
+        if !Utils.hasInstalledWeixin() {
+            self.displayMessage("请先安装微信客户端")
+        } else {
+            print("share to pengyouquan")
+            share(true)
+        }
     }
     
     @IBAction func shareToWeibo(sender: AnyObject) {
@@ -78,12 +84,20 @@ class CodeImageViewController: BaseUIViewController {
     }
     
     @IBAction func shareToQQFriends(sender: AnyObject) {
-        shareToQQ(false)
+        if !Utils.hasInstalledQQ() {
+            self.displayMessage("请先安装QQ客户端")
+        } else {
+            shareToQQ(false)
+        }
     }
     
     
     @IBAction func shareToQzone(sender: AnyObject) {
-        shareToQQ(true)
+        if !Utils.hasInstalledQQ() {
+            self.displayMessage("请先安装QQ客户端")
+        } else {
+            shareToQQ(true)
+        }
     }
     
     @IBAction func copyLink(sender: AnyObject) {
