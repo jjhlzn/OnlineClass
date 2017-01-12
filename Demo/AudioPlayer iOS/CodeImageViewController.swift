@@ -16,12 +16,15 @@ class CodeImageViewController: BaseUIViewController {
     @IBOutlet weak var pengyouquanButton: UIButton!
     @IBOutlet weak var wechatButton: UIButton!
     
+    var tencentOAuth:TencentOAuth!
+    
     @IBOutlet weak var codeImageView: UIImageView!
     var qrCodeImageStore: QrCodeImageStore!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tencentOAuth = TencentOAuth.init(appId: AppDelegate.qqAppId, andDelegate: nil)
         
         let loginUser = LoginUserStore().getLoginUser()!
         
@@ -74,6 +77,21 @@ class CodeImageViewController: BaseUIViewController {
         WeiboSDK.sendRequest(req)
     }
     
+    @IBAction func shareToQQFriends(sender: AnyObject) {
+        shareToQQ(false)
+    }
+    
+    
+    @IBAction func shareToQzone(sender: AnyObject) {
+        shareToQQ(true)
+    }
+    
+    @IBAction func copyLink(sender: AnyObject) {
+        let loginUser = LoginUserStore().getLoginUser()!
+        UIPasteboard.generalPasteboard().string =  ServiceLinkManager.ShareQrImageUrl + "?userid=\(loginUser.userName!)"
+        ToastMessage.showMessage(self.view, message: "复制成功")
+    }
+    
     
     private func share(isPengyouquan: Bool) {
         let message = WXMediaMessage()
@@ -92,8 +110,27 @@ class CodeImageViewController: BaseUIViewController {
         req.scene = (isPengyouquan ? 1 : 0)
         
         WXApi.sendReq(req)
+    }
+    
+    
+    
+    
+    private func shareToQQ(isToQZone: Bool) {
+        let loginUser = LoginUserStore().getLoginUser()!
+        let newsUrl = NSURL(string: ServiceLinkManager.ShareQrImageUrl + "?userid=\(loginUser.userName!)")
+        let title = "扫一扫下载安装【巨方助手】，即可免费在线学习、提额、办卡、贷款！"
+        let description = ""
+        let newsObj = QQApiNewsObject(URL: newsUrl!, title: title, description: description, previewImageData: UIImagePNGRepresentation(UIImage(named: "me_qrcode")!), targetContentType: QQApiURLTargetTypeNews)
         
+        let req = SendMessageToQQReq(content: newsObj)
         
+        if isToQZone {
+            QQApiInterface.SendReqToQZone(req)
+        } else {
+            QQApiInterface.sendReq(req)
+        }
+        
+    
     }
 
 }
