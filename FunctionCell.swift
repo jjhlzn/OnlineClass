@@ -302,6 +302,15 @@ class ExtendFunctionMananger : NSObject {
     private func clearFunctionMessage(index: Int) {
         let function = functions[index]
         functionMessageManager.clearMessage(function.code, value: 0)
+        let request = ClearFunctionMessageRequest()
+        request.code = function.code
+        BasicService().sendRequest(ServiceConfiguration.CLEAR_FUNCTION_MESSAGE, request: request) {
+            (resp: ClearFunctionMessageResponse) -> Void in
+            if resp.isFail {
+                QL4(resp.errorMessage)
+                return
+            }
+        }
     }
 }
 

@@ -10,7 +10,7 @@ import Foundation
 
 class ServiceConfiguration {
     static let PageSize = 20
-    static let isUseConfig = false
+    static let isUseConfig = true
     static let serviceLocatorStore = ServiceLocatorStore()
     
 
@@ -262,6 +262,11 @@ class ServiceConfiguration {
         }
     }
 
+    static var CLEAR_FUNCTION_MESSAGE: String {
+        get {
+            return "\(http)://\(serverName):\(port)/app/clearfunctionmessage"
+        }
+    }
     
     
     static let ImageUrlPrefix = "http://\(serverName):\(port)/"

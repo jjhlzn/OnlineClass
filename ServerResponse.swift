@@ -1054,3 +1054,19 @@ class GetFunctionMessageResponse : ServerResponse {
     }
 }
 
+class ClearFunctionMessageRequest : ServerRequest {
+    var code: String! = ""
+    
+    override var params: [String : AnyObject] {
+        get {
+            var parameters = super.params
+            parameters["codes"] = [code]
+            return parameters
+        }
+    }
+}
+
+class ClearFunctionMessageResponse : ServerResponse {
+    
+}
+
