@@ -101,7 +101,7 @@ class KeyValueStore {
         } catch {
             result = defaultValue
         }
-        QL1("key = \(key), value = \(result)")
+        //QL1("key = \(key), default: \(defaultValue), result = \(result != nil ? result! : "nil")")
         return result
     }
 }

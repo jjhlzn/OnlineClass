@@ -17,7 +17,7 @@ class CourseMainPageViewController: BaseUIViewController {
     
     @IBOutlet weak var playingButton: UIButton!
     var extendFunctionMananger : ExtendFunctionMananger!
-    var functionMessageMananger = ExtendFunctionMessageManager.instance
+    var extendFunctionStore = ExtendFunctionStore.instance
     var ads = [Advertise]()
     var keyValueStore = KeyValueStore()
     var freshHeaderAdvTimer: NSTimer!
@@ -44,7 +44,7 @@ class CourseMainPageViewController: BaseUIViewController {
         }
         extendFunctionMananger = ExtendFunctionMananger(controller: self, isNeedMore:  true, showMaxRows: maxRows)
         addPlayingButton(playingButton)
-        loadFunctionMessage()
+        loadFunctionInfos()
         
         //下拉刷新设置
         refreshControl = UIRefreshControl()
@@ -113,21 +113,23 @@ class CourseMainPageViewController: BaseUIViewController {
             }
         }
     }
+
     
-    func loadFunctionMessage() {
-        BasicService().sendRequest(ServiceConfiguration.GET_FUNCTION_MESSAGE, request: GetFunctionMessageRequest()) {
-            (resp: GetFunctionMessageResponse) -> Void in
+    func loadFunctionInfos() {
+        BasicService().sendRequest(ServiceConfiguration.GET_FUNCTION_INFO, request: GetFunctionInfosRequest()) {
+            (resp: GetFunctionInfosResponse) -> Void in
             if resp.status != ServerResponseStatus.Success.rawValue {
                 QL4("server return error: \(resp.errorMessage!)")
                 return
             }
-            
-            for (k, v) in resp.map {
-                self.functionMessageMananger.update(k, value: v)
+            //更新消息
+            for function in resp.functions {
+                self.extendFunctionStore.updateMessageCount(function.code, value: function.messageCount)
+                self.extendFunctionStore.updateShow(function.code, value: function.isShowDefault)
             }
-            
             self.tableView.reloadData()
         }
+
     }
     
     
@@ -312,6 +314,10 @@ extension CourseMainPageViewController : UITableViewDataSource, UITableViewDeleg
         }
         let footerAdv = self.footerAdvs[index!]
         let params : [String: String] = ["url": footerAdv.url, "title": footerAdv.title]
+        if footerAdv.url == "" {
+            QL3("footer adv is empty, no jump to other page")
+            return
+        }
         performSegueWithIdentifier("loadWebPageSegue", sender: params)
     }
     

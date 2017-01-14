@@ -1070,3 +1070,16 @@ class ClearFunctionMessageResponse : ServerResponse {
     
 }
 
+class GetFunctionInfosRequest : ServerRequest {}
+class GetFunctionInfosResponse : ServerResponse {
+    var functions = [ExtendFunction]()
+    override func parseJSON(request: ServerRequest, json: NSDictionary) {
+        super.parseJSON(request, json: json)
+        let jsonArray = json["result"] as! NSArray
+        for eachJson in jsonArray {
+            let function = ExtendFunction(code: eachJson["code"] as! String, isShowDefault: eachJson["isShow"] as! Bool, messageCount: eachJson["message"] as! Int)
+    functions.append(function)
+        }
+    }
+}
+

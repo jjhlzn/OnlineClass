@@ -17,43 +17,52 @@ class ExtendFunctionMananger : NSObject {
     
     var controller : BaseUIViewController!
     var showMaxRows : Int
-    var moreFunction : ExtendFunction?
+    static var moreFunction : ExtendFunction?
     var isNeedMore = false
-    var functionMessageManager = ExtendFunctionMessageManager.instance
+    var extendFunctionStore = ExtendFunctionStore.instance
     
-    var functions : [ExtendFunction] = [ExtendFunction]()
+    static var allFunctions = ExtendFunctionMananger.getAllFunctions()
+    var functions: [ExtendFunction] {
+        get {
+            return ExtendFunctionMananger.allFunctions.filter({
+                (function: ExtendFunction) -> Bool in
+                return extendFunctionStore.isShow(function.code, defaultValue: false)
+            });
+        }
+    }
     
-    func getAllFunctions() -> [ExtendFunction] {
-        moreFunction = ExtendFunction(imageName: "moreFunction", name: "更多", code: "f_more", url: "",
-                                      selector: #selector(moreHanlder))
+    static func getAllFunctions() -> [ExtendFunction] {
+        
+        ExtendFunctionMananger.moreFunction = ExtendFunction(imageName: "moreFunction", name: "更多", code: "f_more", url: "",
+                                      selector: #selector(moreHanlder), isShowDefault: true)
         
         return [
             ExtendFunction(imageName: "commonCard", name: "刷卡", code: "f_paybycard", url: "http://www.baidu.com",
-                selector:  #selector(openApp)),
+                selector:  #selector(openApp), isShowDefault: true),
             ExtendFunction(imageName: "liveclass", name: "直播课堂", code: "f_class", url: ServiceLinkManager.FunctionUpUrl,
-                selector:  #selector(liveClassHandler)),
+                selector:  #selector(liveClassHandler), isShowDefault: true),
             ExtendFunction(imageName: "visa", name: "快速办卡", code: "f_makecard", url: ServiceLinkManager.FunctionFastCardUrl,
-                selector:  #selector(imageHandler)),
+                selector:  #selector(imageHandler), isShowDefault: false),
             ExtendFunction(imageName: "dollar", name: "快速贷款", code: "f_loan", url: ServiceLinkManager.FunctionDaiKuangUrl,
-                selector:  #selector(imageHandler)),
+                selector:  #selector(imageHandler), isShowDefault: false),
             
             ExtendFunction(imageName: "shopcart", name: "商城", code: "f_market",  url: ServiceLinkManager.FunctionShopUrl,
-                selector:  #selector(imageHandler)),
+                selector:  #selector(imageHandler), isShowDefault: false),
             ExtendFunction(imageName: "car", name: "汽车分期", code: "f_car", url: ServiceLinkManager.FunctionCarLoanUrl,
-                selector:  #selector(imageHandler)),
+                selector:  #selector(imageHandler), isShowDefault: false),
             ExtendFunction(imageName: "cardManage", name: "卡片管理", code: "f_cardmanager", url: ServiceLinkManager.FunctionCardManagerUrl,
-                selector:  #selector(imageHandler)),
+                selector:  #selector(imageHandler), isShowDefault: true),
             ExtendFunction(imageName: "rmb", name: "我要充值", code: "f_chongzhi",  url: ServiceLinkManager.FunctionJiaoFeiUrl,
-                selector:  #selector(imageHandler)),
+                selector:  #selector(imageHandler), isShowDefault: false),
             
             ExtendFunction(imageName: "share", name: "分享", code: "f_share",  url: ServiceLinkManager.FunctionMccSearchUrl,
-                selector:  #selector(shareHanlder)),
+                selector:  #selector(shareHanlder), isShowDefault: true),
             ExtendFunction(imageName: "customerservice", name: "客服", code: "f_user", url: ServiceLinkManager.FunctionCustomerServiceUrl,
-                selector:  #selector(imageHandler)),
+                selector:  #selector(imageHandler), isShowDefault: true),
             ExtendFunction(imageName: "moreFunction", name: "更多", code: "f_more", url: "",
-                selector: #selector(moreHanlder))
+                selector: #selector(moreHanlder), isShowDefault: true)
         ]
-
+        
     }
     
     init(controller: BaseUIViewController, isNeedMore: Bool = true, showMaxRows : Int = 100) {
@@ -62,7 +71,17 @@ class ExtendFunctionMananger : NSObject {
         self.isNeedMore = isNeedMore
         
         super.init()
-        self.functions = getAllFunctions()
+        ExtendFunctionMananger.allFunctions = ExtendFunctionMananger.getAllFunctions()
+    }
+    
+    
+    private func getFunction(code: String) -> ExtendFunction? {
+        for function in ExtendFunctionMananger.allFunctions {
+            if function.code == code {
+                return function
+            }
+        }
+        return nil
     }
     
     init(isNeedMore: Bool = true, showMaxRows : Int = 100) {
@@ -70,7 +89,6 @@ class ExtendFunctionMananger : NSObject {
         self.isNeedMore = isNeedMore
         
         super.init()
-        self.functions = getAllFunctions()
     }
 
     
@@ -105,10 +123,10 @@ class ExtendFunctionMananger : NSObject {
             
             var function = functions[index]
             if isNeedMoreButton() && index == getLastIndex() {
-                function = moreFunction!
+                function = ExtendFunctionMananger.moreFunction!
             }
             
-            if !isNeedMoreButton() && function.name == moreFunction!.name {
+            if !isNeedMoreButton() && function.name == ExtendFunctionMananger.moreFunction!.name {
                 break
             }
             
@@ -203,7 +221,7 @@ class ExtendFunctionMananger : NSObject {
     }
     
     func overlayImage(function: ExtendFunction) -> UIImage {
-        if !ExtendFunctionMessageManager.instance.hasMessage(function.code) {
+        if !ExtendFunctionStore.instance.hasMessage(function.code) {
             return UIImage(named: function.imageName)!
         }
         
@@ -301,7 +319,7 @@ class ExtendFunctionMananger : NSObject {
     
     private func clearFunctionMessage(index: Int) {
         let function = functions[index]
-        functionMessageManager.clearMessage(function.code, value: 0)
+        extendFunctionStore.clearMessage(function.code, value: 0)
         let request = ClearFunctionMessageRequest()
         request.code = function.code
         BasicService().sendRequest(ServiceConfiguration.CLEAR_FUNCTION_MESSAGE, request: request) {
@@ -319,14 +337,30 @@ class ExtendFunction {
     var name = ""
     var url = ""
     var code = ""
+    var isShowDefault = true
     var isSupport = false
+    var messageCount = 0
     var action : Selector
     
-    init(imageName: String, name: String, code: String, url: String, selector: Selector) {
+    var hasMessage: Bool {
+        get {
+            return self.messageCount > 0
+        }
+    }
+    
+    init(imageName: String, name: String, code: String, url: String, selector: Selector, isShowDefault: Bool) {
         self.imageName = imageName
         self.name = name
         self.url = url
         self.action = selector
         self.code = code
+        self.isShowDefault = isShowDefault
+    }
+    
+    init(code: String, isShowDefault: Bool, messageCount: Int) {
+        self.code = code
+        self.isShowDefault = isShowDefault
+        self.messageCount = messageCount
+        self.action = Selector()
     }
 }

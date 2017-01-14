@@ -126,7 +126,7 @@
 		EF2174181E275BEF0035C960 /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = EF2174171E275BEF0035C960 /* libstdc++.tbd */; };
 		EF21741A1E275BFA0035C960 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = EF2174191E275BFA0035C960 /* libz.tbd */; };
 		EF22C2751E23D7C500EA0F5A /* FooterAdvCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF22C2741E23D7C500EA0F5A /* FooterAdvCell.swift */; };
-		EF22C2771E23E65E00EA0F5A /* ExtendFunctionMessageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF22C2761E23E65E00EA0F5A /* ExtendFunctionMessageManager.swift */; };
+		EF22C2771E23E65E00EA0F5A /* ExtendFunctionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF22C2761E23E65E00EA0F5A /* ExtendFunctionStore.swift */; };
 		EF67C0431E24A901004EEAF0 /* AlbumHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF67C0421E24A901004EEAF0 /* AlbumHeaderCell.swift */; };
 		EFB004231E236CD800B9272A /* HeaderAdvCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFB004221E236CD800B9272A /* HeaderAdvCell.swift */; };
 /* End PBXBuildFile section */
@@ -267,7 +267,7 @@
 		EF2174171E275BEF0035C960 /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
 		EF2174191E275BFA0035C960 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		EF22C2741E23D7C500EA0F5A /* FooterAdvCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FooterAdvCell.swift; sourceTree = "<group>"; };
-		EF22C2761E23E65E00EA0F5A /* ExtendFunctionMessageManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtendFunctionMessageManager.swift; sourceTree = "<group>"; };
+		EF22C2761E23E65E00EA0F5A /* ExtendFunctionStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtendFunctionStore.swift; sourceTree = "<group>"; };
 		EF67C0421E24A901004EEAF0 /* AlbumHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumHeaderCell.swift; sourceTree = "<group>"; };
 		EFB004221E236CD800B9272A /* HeaderAdvCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderAdvCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -394,7 +394,7 @@
 				1C09D3BE1CD09FED004A8F9C /* ToastMessage.swift */,
 				1CB425A51D229E1600971F95 /* ServiceLinkManager.swift */,
 				1C9E80891DA8D5D9006DD2C2 /* WXApiManager.swift */,
-				EF22C2761E23E65E00EA0F5A /* ExtendFunctionMessageManager.swift */,
+				EF22C2761E23E65E00EA0F5A /* ExtendFunctionStore.swift */,
 			);
 			name = lib;
 			sourceTree = "<group>";
@@ -823,7 +823,7 @@
 				1C33F03C1D079DBE00D3EE4C /* SetSexViewController.swift in Sources */,
 				1CEFF7861CBFB9FD000DEFF7 /* BasicService.swift in Sources */,
 				1C8E7DC11D87950F0022B0D2 /* PurchaseRecordEntity+CoreDataProperties.swift in Sources */,
-				EF22C2771E23E65E00EA0F5A /* ExtendFunctionMessageManager.swift in Sources */,
+				EF22C2771E23E65E00EA0F5A /* ExtendFunctionStore.swift in Sources */,
 				1C8E7DC41D8799F80022B0D2 /* PurchaseRecordStore.swift in Sources */,
 				1CEFF7831CBFB809000DEFF7 /* Model.swift in Sources */,
 				1C1E69191CC9079100CEA029 /* SongViewController.swift in Sources */,
