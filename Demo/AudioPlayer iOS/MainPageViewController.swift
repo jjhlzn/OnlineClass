@@ -35,6 +35,8 @@ class CourseMainPageViewController: BaseUIViewController {
         super.viewDidLoad()
         tableView.dataSource = self
         tableView.delegate = self
+
+        
         buyPayCourseDelegate = ConfirmDelegate2(controller: self)
         
         let screenHeight = UIScreen.mainScreen().bounds.height
@@ -222,6 +224,15 @@ extension CourseMainPageViewController : UITableViewDataSource, UITableViewDeleg
         }
     }
     
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 1
+    }
+    
+    func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 1
+    }
+    
+    
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: false)
         let row = indexPath.row
@@ -368,7 +379,7 @@ extension CourseMainPageViewController : UITableViewDataSource, UITableViewDeleg
     private func computeAdCellHeight() -> CGFloat {
         let section1Height = getHeaderAdvHeight()
         let section2Height = CGFloat(extendFunctionMananger.getRowCount()) * extendFunctionMananger.cellHeight
-        let total = section1Height + section2Height + 3 + 65 + 49 - 3
+        let total = section1Height + section2Height + 3 + 65 + 49 - 5
         var height = UIScreen.mainScreen().bounds.height - CGFloat(total)
         
         if height < footerImageHeight  {
