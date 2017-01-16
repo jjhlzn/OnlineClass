@@ -105,5 +105,13 @@ class PersonalInfoViewController: BaseUIViewController, UITableViewDataSource, U
         }
     }
     
+    func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 1
+    }
+    
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 1
+    }
+    
     
 }
