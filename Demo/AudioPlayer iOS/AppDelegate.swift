@@ -83,7 +83,7 @@ class AppDelegate : XinGeAppDelegate {
             tokenString += String(format: "%02.2hhx", arguments: [tokenChars[i]])
         }
         
-        QL1("Device Token: \(tokenString)")
+        NSLog("devicetoken: \(tokenString)")
         
         deviceTokenString = tokenString
         

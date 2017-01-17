@@ -32,6 +32,7 @@ class BasicService {
         
         do {
             request.HTTPBody = try serverRequest.getJSON().rawData()
+            QL1(serverRequest.getJSON())
         } catch let error {
             QL4("catchException, ex = \(error)")
             serverResponse.status = -1
