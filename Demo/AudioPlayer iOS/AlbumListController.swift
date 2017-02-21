@@ -161,6 +161,8 @@ extension AlbumListController {
             }
             if album.playing {
                 cell.playingLabel.hidden = false
+            } else {
+                cell.playingLabel.hidden = true
             }
             
             if album.hasPlayTimeDesc {

@@ -1083,3 +1083,16 @@ class GetFunctionInfosResponse : ServerResponse {
     }
 }
 
+class GetCourseNotifyRequest : ServerRequest {}
+class GetCourseNotifyResponse : ServerResponse {
+    var notifies = [String]()
+    override func parseJSON(request: ServerRequest, json: NSDictionary) {
+        super.parseJSON(request, json: json)
+        let jsonArray = json["notifies"] as! NSArray
+        for eachJson in jsonArray {
+            notifies.append(eachJson as! String)
+        }
+
+    }
+}
+

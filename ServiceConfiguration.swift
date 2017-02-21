@@ -274,6 +274,12 @@ class ServiceConfiguration {
         }
     }
     
+    static var GET_COURSE_NOTIFY: String {
+        get {
+            return "\(http)://\(serverName):\(port)/app/getcoursenotify"
+        }
+    }
+    
     
     static let ImageUrlPrefix = "http://\(serverName):\(port)/"
     static func GetSongUrl(urlSuffix: String) -> String {

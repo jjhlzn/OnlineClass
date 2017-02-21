@@ -129,6 +129,7 @@
 		EF22C2771E23E65E00EA0F5A /* ExtendFunctionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF22C2761E23E65E00EA0F5A /* ExtendFunctionStore.swift */; };
 		EF67C0431E24A901004EEAF0 /* AlbumHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF67C0421E24A901004EEAF0 /* AlbumHeaderCell.swift */; };
 		EFB004231E236CD800B9272A /* HeaderAdvCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFB004221E236CD800B9272A /* HeaderAdvCell.swift */; };
+		EFED76191E5C61B200CB3C9A /* CourseNotifyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFED76181E5C61B200CB3C9A /* CourseNotifyCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -271,6 +272,7 @@
 		EF67C0421E24A901004EEAF0 /* AlbumHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumHeaderCell.swift; sourceTree = "<group>"; };
 		EFB004221E236CD800B9272A /* HeaderAdvCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderAdvCell.swift; sourceTree = "<group>"; };
 		EFBFF6A51E2F4AAC00CDFB6F /* AudioPlayer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AudioPlayer.entitlements; sourceTree = SOURCE_ROOT; };
+		EFED76181E5C61B200CB3C9A /* CourseNotifyCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseNotifyCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -380,6 +382,7 @@
 				EFB004221E236CD800B9272A /* HeaderAdvCell.swift */,
 				EF22C2741E23D7C500EA0F5A /* FooterAdvCell.swift */,
 				EF67C0421E24A901004EEAF0 /* AlbumHeaderCell.swift */,
+				EFED76181E5C61B200CB3C9A /* CourseNotifyCell.swift */,
 			);
 			name = customCell;
 			sourceTree = "<group>";
@@ -873,6 +876,7 @@
 				1CD349741CFA8DD700037F78 /* SearchCourseViewController.swift in Sources */,
 				1CEFF7881CBFBA1B000DEFF7 /* ServiceConfiguration.swift in Sources */,
 				E2A9AFA01C498E2900FE943A /* AppDelegate.swift in Sources */,
+				EFED76191E5C61B200CB3C9A /* CourseNotifyCell.swift in Sources */,
 				1C8A2AD61CE5882A0086C1B8 /* SignupViewController.swift in Sources */,
 				1CDCC8EF1CE72203001640CC /* logoutCell.swift in Sources */,
 				1C9E808A1DA8D5D9006DD2C2 /* WXApiManager.swift in Sources */,

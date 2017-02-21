@@ -10,6 +10,7 @@ import UIKit
 import KDEAudioPlayer
 import QorumLogs
 import Auk
+import MarqueeLabel
 
 class CourseMainPageViewController: BaseUIViewController {
 
@@ -23,6 +24,7 @@ class CourseMainPageViewController: BaseUIViewController {
     var freshHeaderAdvTimer: NSTimer!
     var footerAdvs = [FooterAdv]()
     var headerAdv: HeaderAdv?
+    var courseNotifies = [String]()
     
     var loading = LoadingOverlay()
     
@@ -60,6 +62,7 @@ class CourseMainPageViewController: BaseUIViewController {
         updatePlayingButton(playingButton)
         loadHeaderAdv()
         loadFooterAdvs()
+        loadCourseNotify()
         
         createTimer()
         
@@ -109,13 +112,23 @@ class CourseMainPageViewController: BaseUIViewController {
                 return
             }
             if resp.advList.count == 4 {
-                
                 self.footerAdvs = resp.advList
                 self.tableView.reloadData()
             }
         }
     }
-
+    
+    func loadCourseNotify() {
+        BasicService().sendRequest(ServiceConfiguration.GET_COURSE_NOTIFY, request: GetCourseNotifyRequest() ) { (resp: GetCourseNotifyResponse) -> Void in
+            if resp.isFail {
+                QL4("server return error: \(resp.errorMessage!)")
+                return
+            }
+            self.courseNotifies = resp.notifies;
+            self.tableView.reloadData()
+        }
+    }
+    
     
     func loadFunctionInfos() {
         BasicService().sendRequest(ServiceConfiguration.GET_FUNCTION_INFO, request: GetFunctionInfosRequest()) {
@@ -193,7 +206,7 @@ extension CourseMainPageViewController : UITableViewDataSource, UITableViewDeleg
     }
     
     private func getRowCount() -> Int {
-        return 1 + extendFunctionMananger.getRowCount() + 1
+        return 2 + extendFunctionMananger.getRowCount() + 1
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -204,10 +217,27 @@ extension CourseMainPageViewController : UITableViewDataSource, UITableViewDeleg
             let cell = tableView.dequeueReusableCellWithIdentifier("mainpageHeaderAdvCell") as! HeaderAdvCell
             return cell
 
+        } else if row == 1 {
+            let cell = tableView.dequeueReusableCellWithIdentifier("courseNotifyCell") as! CourseNotifyCell
+            
+            if courseNotifies.count == 0 {
+                cell.courseNotifyLabel.hidden = true
+            } else {
+                cell.courseNotifyLabel.hidden = false
+                var notifyString = ""
+                for notify in self.courseNotifies {
+                    notifyString = notifyString + notify + " "
+                }
+                cell.courseNotifyLabel.text = notifyString
+                cell.courseNotifyLabel.scrollDuration = 16
+                cell.courseNotifyLabel.restartLabel()
+            }
+            
+            return cell
         } else if row == getRowCount() - 1 {
              return makeAdvCell()
         } else {
-            let cell = extendFunctionMananger.getFunctionCell(tableView, row: row - 1)
+            let cell = extendFunctionMananger.getFunctionCell(tableView, row: row - 2)
             return cell
 
         }
@@ -217,7 +247,9 @@ extension CourseMainPageViewController : UITableViewDataSource, UITableViewDeleg
         let row = indexPath.row
         if row == 0 {
             return getHeaderAdvHeight()
-        } else if row == getRowCount() - 1 {
+        } else if row == 1 {
+            return 18
+        }else if row == getRowCount() - 1 {
             return computeAdCellHeight()
         } else {
             return extendFunctionMananger.cellHeight
