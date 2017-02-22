@@ -156,6 +156,9 @@ class GetAlbumsResponse : PageServerResponse<Album> {
             album.playing = albumJson["playing"] as! Bool
             album.isReady = albumJson["isReady"] as! Bool
             album.playTimeDesc = albumJson["playTimeDesc"] as! String
+            if let isAgent = albumJson["isAgent"] {
+                album.isAgent = isAgent as! Bool
+            }
             albums.append(album)
         }
         self.resultSet = albums

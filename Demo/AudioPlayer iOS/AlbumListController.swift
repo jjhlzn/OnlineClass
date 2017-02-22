@@ -77,8 +77,10 @@ class AlbumListController: BaseUIViewController, UITableViewDataSource, UITableV
     
     //PageableControllerDelegate
     func searchHandler(respHandler: ((resp: ServerResponse) -> Void)) {
-        let request = GetAlbumsRequest(code: "Live_Vip")
+        let request = GetAlbumsRequest(code: "Live_Vip_Agent")
         request.pageNo = pagableController.page
+        //重新设置albumDataArray
+        albumDataArray = [Int]()
         BasicService().sendRequest(ServiceConfiguration.GET_ALBUMS, request: request,
                                    completion: respHandler as ((resp: GetAlbumsResponse) -> Void))
 
@@ -94,9 +96,49 @@ class AlbumListController: BaseUIViewController, UITableViewDataSource, UITableV
         pagableController.scrollViewDidScroll(scrollView)
     }
     
+    
+    var albumDataArray = [Int]()
+    
+    
 }
 
 extension AlbumListController {
+    
+    private func makeAlbumDataArray() {
+        if pagableController.data.count == 0 {
+            return
+        }
+        let freeAlbums = pagableController.data.filter() {
+            album -> Bool in
+            if album.courseType.code == CourseType.LiveCourse.code {
+                return true
+            }
+            return false
+        }
+        albumDataArray.append(freeAlbums.count)
+       
+        let paidCount = pagableController.data.count - agentAlbumCount - freeAlbumCount
+        if paidCount > 0 {
+            albumDataArray.append(paidCount)
+        }
+        
+        if agentAlbumCount > 0 {
+            albumDataArray.append(agentAlbumCount)
+        }
+        
+    }
+    
+    func getCount(section: Int) -> Int {
+        if albumDataArray.count == 0 {
+            makeAlbumDataArray()
+        }
+        if pagableController.data.count == 0 {
+            
+            return 0
+        }
+        return albumDataArray[section]
+    }
+    
     var freeAlbumCount:Int {
         get {
             if pagableController.data.count == 0 {
@@ -118,7 +160,23 @@ extension AlbumListController {
             if pagableController.data.count == 0 {
                 return 0
             }
-            return pagableController.data.count - freeAlbumCount
+            return pagableController.data.count - agentAlbumCount - freeAlbumCount
+        }
+    }
+    
+    var agentAlbumCount: Int {
+        get {
+            if pagableController.data.count == 0 {
+                return 0
+            }
+            let agentAlubms = pagableController.data.filter() {
+                album -> Bool in
+                if album.isAgent {
+                    return true
+                }
+                return false
+            }
+            return agentAlubms.count
         }
     }
     
@@ -126,15 +184,14 @@ extension AlbumListController {
         if pagableController.data.count == 0 {
             return 1
         }
-        return 2
+        if  pagableController.data.count > 0 {
+            makeAlbumDataArray()
+        }
+        return albumDataArray.count
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0 {
-            return freeAlbumCount
-        } else {
-            return paidAlbumCount
-        }
+        return getCount(section)
     }
     
     private func getAlbum(indexPath: NSIndexPath) -> Album {
@@ -142,8 +199,10 @@ extension AlbumListController {
         var album: Album!
         if section == 0 {
             album = pagableController.data[indexPath.row]
-        } else {
+        } else if section == 1 {
             album = pagableController.data[freeAlbumCount + indexPath.row]
+        } else {
+            album = pagableController.data[freeAlbumCount + paidAlbumCount + indexPath.row]
         }
         return album
     }
@@ -285,6 +344,8 @@ extension AlbumListController {
         switch (section) {
         case 1:
             headerCell.titleLabel.text = "会员专享课程";
+        case 2:
+            headerCell.titleLabel.text = "代理商课程";
         default:
             headerCell.titleLabel.text = "每日课堂";
         }

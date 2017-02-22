@@ -411,7 +411,7 @@ extension CourseMainPageViewController : UITableViewDataSource, UITableViewDeleg
     private func computeAdCellHeight() -> CGFloat {
         let section1Height = getHeaderAdvHeight()
         let section2Height = CGFloat(extendFunctionMananger.getRowCount()) * extendFunctionMananger.cellHeight
-        let total = section1Height + section2Height + 3 + 65 + 49 - 5
+        let total = section1Height + section2Height + 18 + 3 + 65 + 49 - 5
         var height = UIScreen.mainScreen().bounds.height - CGFloat(total)
         
         if height < footerImageHeight  {
@@ -423,7 +423,7 @@ extension CourseMainPageViewController : UITableViewDataSource, UITableViewDeleg
     
     private func getHeaderAdvHeight() -> CGFloat {
         let screenWidth = UIScreen.mainScreen().bounds.width
-        return screenWidth * 140 / 320
+        return screenWidth * 122 / 320
     }
 
 }

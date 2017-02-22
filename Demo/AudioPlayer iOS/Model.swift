@@ -50,6 +50,7 @@ class Album : BaseModelObject {
     var courseType = CourseType.LiveCourse
     var playing : Bool = false
     var isReady : Bool = false
+    var isAgent: Bool = false
     var playTimeDesc: String = ""
     var songs = [Song]()
     
