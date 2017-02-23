@@ -31,6 +31,7 @@ class CommentController : NSObject, UITextViewDelegate {
     
     var bottomView2: UIView!
     var commentFiled2: UITextView!
+    var shareView: UIView!
     
      var commentInputButton: UIButton!
     var emojiSwitchButton : UIButton?
@@ -372,7 +373,6 @@ class CommentController : NSObject, UITextViewDelegate {
 
     
     var isKeyboardShow = false
-    var isCommenting = false
     
     func keyboardWillShow(notification: NSNotification) {
  
@@ -387,6 +387,10 @@ class CommentController : NSObject, UITextViewDelegate {
     
     //显示评论窗口，如果键盘大小发生变化，也需要调整窗口的位置
     private func showOrAdjustCommentWindow(keyboardSize: CGRect) {
+        //如果分享页面打开，则不要弹出键盘
+        if !shareView.hidden {
+            return
+        }
         
         let screenHeight = UIScreen.mainScreen().bounds.height
         print("keyboardHeight = \(keyboardSize.height)")

@@ -16,15 +16,17 @@ class CodeImageViewController: BaseUIViewController {
     @IBOutlet weak var pengyouquanButton: UIButton!
     @IBOutlet weak var wechatButton: UIButton!
     
-    var tencentOAuth:TencentOAuth!
+    
     
     @IBOutlet weak var codeImageView: UIImageView!
     var qrCodeImageStore: QrCodeImageStore!
     
+    var shareManager : ShareManager!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tencentOAuth = TencentOAuth.init(appId: AppDelegate.qqAppId, andDelegate: nil)
+        
         
         let loginUser = LoginUserStore().getLoginUser()!
         
@@ -43,6 +45,8 @@ class CodeImageViewController: BaseUIViewController {
             })
         }
         
+        shareManager = ShareManager(controller: self)
+        
         if WXApi.isWXAppInstalled() && WXApi.isWXAppSupportApi() {
             print("winxin share is OK")
         } else {
@@ -60,91 +64,29 @@ class CodeImageViewController: BaseUIViewController {
 
     
     @IBAction func shareToFriends(sender: AnyObject) {
-        if !Utils.hasInstalledWeixin() {
-            self.displayMessage("请先安装微信客户端")
-        } else {
-            print("share to friends")
-            share(false)
-        }
+        shareManager.shareToWeixinFriend()
     }
 
     @IBAction func shareToPengyouquan(sender: AnyObject) {
-        if !Utils.hasInstalledWeixin() {
-            self.displayMessage("请先安装微信客户端")
-        } else {
-            print("share to pengyouquan")
-            share(true)
-        }
+        shareManager.shareToWeixinPengyouquan()
     }
     
     @IBAction func shareToWeibo(sender: AnyObject) {
-        let req = WBSendMessageToWeiboRequest()
-        req.message = Utils.getWebpageObject()
-        WeiboSDK.sendRequest(req)
+        shareManager.shareToWeibo()
     }
     
     @IBAction func shareToQQFriends(sender: AnyObject) {
-        if !Utils.hasInstalledQQ() {
-            self.displayMessage("请先安装QQ客户端")
-        } else {
-            shareToQQ(false)
-        }
+        shareManager.shareToQQFriend()
     }
     
     
     @IBAction func shareToQzone(sender: AnyObject) {
-        if !Utils.hasInstalledQQ() {
-            self.displayMessage("请先安装QQ客户端")
-        } else {
-            shareToQQ(true)
-        }
+        shareManager.shareToQzone()
     }
     
     @IBAction func copyLink(sender: AnyObject) {
-        let loginUser = LoginUserStore().getLoginUser()!
-        UIPasteboard.generalPasteboard().string =  ServiceLinkManager.ShareQrImageUrl + "?userid=\(loginUser.userName!)"
-        ToastMessage.showMessage(self.view, message: "复制成功")
+        shareManager.copyLink()
     }
     
     
-    private func share(isPengyouquan: Bool) {
-        let message = WXMediaMessage()
-        message.title = "扫一扫下载安装【巨方助手】，即可免费在线学习、提额、办卡、贷款！"
-        message.description = "扫一扫下载安装【巨方助手】"
-        message.setThumbImage(UIImage(named: "me_qrcode"))
-        
-        let webPageObject = WXWebpageObject()
-        let loginUser = LoginUserStore().getLoginUser()!
-        webPageObject.webpageUrl = ServiceLinkManager.ShareQrImageUrl + "?userid=\(loginUser.userName!)"
-        message.mediaObject = webPageObject
-        
-        let req = SendMessageToWXReq()
-        req.bText = false
-        req.message = message
-        req.scene = (isPengyouquan ? 1 : 0)
-        
-        WXApi.sendReq(req)
-    }
-    
-    
-    
-    
-    private func shareToQQ(isToQZone: Bool) {
-        let loginUser = LoginUserStore().getLoginUser()!
-        let newsUrl = NSURL(string: ServiceLinkManager.ShareQrImageUrl + "?userid=\(loginUser.userName!)")
-        let title = "扫一扫下载安装【巨方助手】，即可免费在线学习、提额、办卡、贷款！"
-        let description = ""
-        let newsObj = QQApiNewsObject(URL: newsUrl!, title: title, description: description, previewImageData: UIImagePNGRepresentation(UIImage(named: "me_qrcode")!), targetContentType: QQApiURLTargetTypeNews)
-        
-        let req = SendMessageToQQReq(content: newsObj)
-        
-        if isToQZone {
-            QQApiInterface.SendReqToQZone(req)
-        } else {
-            QQApiInterface.sendReq(req)
-        }
-        
-    
-    }
-
 }

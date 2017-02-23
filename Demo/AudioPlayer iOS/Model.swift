@@ -95,6 +95,8 @@ class Song : BaseModelObject {
     var date: String = ""
     var url: String = ""
     var imageUrl: String = ""
+    var shareTitle: String = ""
+    var shareUrl : String = ""
     var settings = SongSetting()
     var album: Album!
     var wholeUrl : String {

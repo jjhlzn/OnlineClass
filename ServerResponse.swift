@@ -227,6 +227,9 @@ class GetAlbumSongsResponse : ServerResponse {
             song.url = json["url"] as! String
             song.id = json["id"] as! String
             song.imageUrl = json["image"] as! String
+            song.shareTitle = json["shareTitle"] as! String
+            song.shareUrl = json["shareUrl"] as! String
+            
             let settings = SongSetting()
             song.settings = settings
             let settingsJson = json["settings"] as! NSDictionary
@@ -333,9 +336,7 @@ class SendCommentRequest : ServerRequest {
 }
 
 class SendCommentResponse : ServerResponse {
-    
-    
-    
+
 }
 
 class SendLiveCommentRequest : ServerRequest {
@@ -886,6 +887,8 @@ class GetSongInfoResponse : ServerResponse {
         song.url = jsonObject["url"] as! String
         song.id = jsonObject["id"] as! String
         song.imageUrl = jsonObject["image"] as! String
+        song.shareTitle = jsonObject["shareTitle"] as! String
+        song.shareUrl = jsonObject["shareUrl"] as! String
         let settings = SongSetting()
         song.settings = settings
         let settingsJson = jsonObject["settings"] as! NSDictionary

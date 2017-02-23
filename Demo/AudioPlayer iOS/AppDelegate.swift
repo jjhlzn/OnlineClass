@@ -145,13 +145,19 @@ class AppDelegate : XinGeAppDelegate {
     
     
     func application(application: UIApplication, handleOpenURL url: NSURL) -> Bool {
-        //QL1("application(UIApplication, url): ", )
+        QL1("application(UIApplication, url): ", url.absoluteString)
         return WXApi.handleOpenURL(url, delegate: wxApiManager)
     }
     
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
-        //QL1("application(UIApplication, url): ", url)
+        QL1("application(UIApplication, url): \(url.absoluteString)")
+        QL1("sourceApplication: \(sourceApplication == nil ? "nil" : sourceApplication!)")
+        //tencent1105796307://response_from_qq
+        
+        //WeiboSDK.handleOpenURL(url, delegate: nil)
         return WXApi.handleOpenURL(url, delegate: wxApiManager)
+        
+        
     }
     
     

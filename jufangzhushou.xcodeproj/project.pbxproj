@@ -127,6 +127,7 @@
 		EF21741A1E275BFA0035C960 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = EF2174191E275BFA0035C960 /* libz.tbd */; };
 		EF22C2751E23D7C500EA0F5A /* FooterAdvCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF22C2741E23D7C500EA0F5A /* FooterAdvCell.swift */; };
 		EF22C2771E23E65E00EA0F5A /* ExtendFunctionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF22C2761E23E65E00EA0F5A /* ExtendFunctionStore.swift */; };
+		EF3046271E5D7B6A00A6E7AE /* ShareManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3046261E5D7B6A00A6E7AE /* ShareManager.swift */; };
 		EF67C0431E24A901004EEAF0 /* AlbumHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF67C0421E24A901004EEAF0 /* AlbumHeaderCell.swift */; };
 		EFB004231E236CD800B9272A /* HeaderAdvCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFB004221E236CD800B9272A /* HeaderAdvCell.swift */; };
 		EFED76191E5C61B200CB3C9A /* CourseNotifyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFED76181E5C61B200CB3C9A /* CourseNotifyCell.swift */; };
@@ -269,6 +270,7 @@
 		EF2174191E275BFA0035C960 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		EF22C2741E23D7C500EA0F5A /* FooterAdvCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FooterAdvCell.swift; sourceTree = "<group>"; };
 		EF22C2761E23E65E00EA0F5A /* ExtendFunctionStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtendFunctionStore.swift; sourceTree = "<group>"; };
+		EF3046261E5D7B6A00A6E7AE /* ShareManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareManager.swift; sourceTree = "<group>"; };
 		EF67C0421E24A901004EEAF0 /* AlbumHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumHeaderCell.swift; sourceTree = "<group>"; };
 		EFB004221E236CD800B9272A /* HeaderAdvCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderAdvCell.swift; sourceTree = "<group>"; };
 		EFBFF6A51E2F4AAC00CDFB6F /* AudioPlayer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AudioPlayer.entitlements; sourceTree = SOURCE_ROOT; };
@@ -399,6 +401,7 @@
 				1CB425A51D229E1600971F95 /* ServiceLinkManager.swift */,
 				1C9E80891DA8D5D9006DD2C2 /* WXApiManager.swift */,
 				EF22C2761E23E65E00EA0F5A /* ExtendFunctionStore.swift */,
+				EF3046261E5D7B6A00A6E7AE /* ShareManager.swift */,
 			);
 			name = lib;
 			sourceTree = "<group>";
@@ -834,6 +837,7 @@
 				1C1E69191CC9079100CEA029 /* SongViewController.swift in Sources */,
 				1CD3496C1CF980D400037F78 /* ResetPasswordController.swift in Sources */,
 				1C1E68F11CC65F7500CEA029 /* CommentCell.swift in Sources */,
+				EF3046271E5D7B6A00A6E7AE /* ShareManager.swift in Sources */,
 				1C5A6FC71CE9A0D5000E7282 /* LivePlayerController.swift in Sources */,
 				1C3479C21CF4236A003FEF05 /* LivePlayerPageViewController.swift in Sources */,
 				1CEFF7921CC07838000DEFF7 /* UIImageView.swift in Sources */,

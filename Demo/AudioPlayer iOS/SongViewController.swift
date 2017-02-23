@@ -8,6 +8,7 @@
 
 import UIKit
 import KDEAudioPlayer
+import QorumLogs
 
 class SongViewController: BaseUIViewController, UIGestureRecognizerDelegate {
     
@@ -35,12 +36,26 @@ class SongViewController: BaseUIViewController, UIGestureRecognizerDelegate {
     var audioPlayer: AudioPlayer!
     var song: Song!
     
+    
+    var shareManager : ShareManager!
+    @IBOutlet weak var shareView: UIView!
+    @IBOutlet weak var closeShareViewButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         
 
         audioPlayer = getAudioPlayer()
         song = (audioPlayer.currentItem as! MyAudioItem).song
+        
+        //设置分享相关
+        shareView.hidden = true
+        shareManager = ShareManager(controller: self)
+        closeShareViewButton.addBorder(viewBorder.Top, color: UIColor(white: 0.65, alpha: 0.5), width: 1)
+        shareManager.shareTitle = song.shareTitle
+        shareManager.shareUrl = song.shareUrl
+        shareManager.isUseQrImage = false
 
         //设置评论controller
         commentController.bottomView = bottomView
@@ -50,13 +65,13 @@ class SongViewController: BaseUIViewController, UIGestureRecognizerDelegate {
         commentController.cancelButton = cancelButton
         commentController.sendButton = sendButton
         commentController.emojiSwitchButton = emojiSwithButton
+        commentController.shareView = shareView
         commentController.viewController = self
         
         commentController.initView(song)
         
-
         //用来阻止向右滑的手势
-       self.navigationController?.interactivePopGestureRecognizer!.delegate = self
+       //self.navigationController?.interactivePopGestureRecognizer!.delegate = self
         
         if audioPlayer.currentItem != nil {
             let item = audioPlayer.currentItem as! MyAudioItem
@@ -90,14 +105,17 @@ class SongViewController: BaseUIViewController, UIGestureRecognizerDelegate {
         songListDataSource = SongListDataSource(controller: self)
         songListTableView.dataSource = songListDataSource
         songListTableView.delegate = songListDataSource
+
     
         playerPageViewController.reload()
     }
+    
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         commentController.addKeyboardNotify()
         
+        QL1("SongViewController: viewWillAppear")
         
         //初始化playerPageViewController
         playerPageViewController.initController()
@@ -127,6 +145,69 @@ class SongViewController: BaseUIViewController, UIGestureRecognizerDelegate {
          playerPageViewController.reload()
     }
     
+
+    @IBAction func shareButtonPressed(sender: AnyObject) {
+        //如果正在评论，关闭评论的窗口
+        if !bottomView2.hidden {
+            commentController.closeComment()
+        }
+        if shareView.hidden {
+            shareView.becomeFirstResponder()
+            showShareView()
+        } else {
+            hideShareView()
+        }
+    }
+    
+    func showShareView() {
+        print("showOverlay")
+        overlay = UIView(frame: UIScreen.mainScreen().bounds)
+        overlay.backgroundColor = UIColor(white: 0, alpha: 0.65)
+        
+        shareView.removeFromSuperview()
+        shareView.hidden = false
+        overlay.addSubview(shareView)
+        self.view.addSubview(overlay)
+    }
+    
+    func hideShareView() {
+        print("hideOverlay")
+        shareView.removeFromSuperview()
+        self.view.addSubview(shareView)
+        shareView.hidden = true
+        overlay.removeFromSuperview()
+    }
+    
+    
+    @IBAction func closeShareViewButtonPressed(sender: AnyObject) {
+        hideShareView()
+    }
+    
+    @IBAction func shareToFriends(sender: AnyObject) {
+        shareManager.shareToWeixinFriend()
+    }
+    
+    @IBAction func shareToPengyouquan(sender: AnyObject) {
+        shareManager.shareToWeixinPengyouquan()
+    }
+    
+    @IBAction func shareToWeibo(sender: AnyObject) {
+        shareManager.shareToWeibo()
+    }
+    
+    @IBAction func shareToQQFriends(sender: AnyObject) {
+        shareManager.shareToQQFriend()
+    }
+    
+    
+    @IBAction func shareToQzone(sender: AnyObject) {
+        shareManager.shareToQzone()
+    }
+    
+    @IBAction func copyLink(sender: AnyObject) {
+        shareManager.copyLink()
+    }
+
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "commentListSegue" {

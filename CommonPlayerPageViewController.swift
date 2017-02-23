@@ -32,7 +32,7 @@ class CommonPlayerPageViewController : NSObject, UITableViewDataSource, UITableV
     }
     
     func enterForhand() {
-        print("CommonPlayerPageViewController: enterForhand")
+        print("CommonPlayerPageViewController: enterForehand")
     }
     
     

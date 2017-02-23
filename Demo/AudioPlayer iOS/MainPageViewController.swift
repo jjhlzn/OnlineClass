@@ -219,9 +219,10 @@ extension CourseMainPageViewController : UITableViewDataSource, UITableViewDeleg
 
         } else if row == 1 {
             let cell = tableView.dequeueReusableCellWithIdentifier("courseNotifyCell") as! CourseNotifyCell
-            
+            //courseNotifies = [String]()
             if courseNotifies.count == 0 {
                 cell.courseNotifyLabel.hidden = true
+                cell.separatorInset = UIEdgeInsetsMake(0, UIScreen.mainScreen().bounds.width, 0, 0);
             } else {
                 cell.courseNotifyLabel.hidden = false
                 var notifyString = ""
