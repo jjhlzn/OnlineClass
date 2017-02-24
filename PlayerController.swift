@@ -160,12 +160,14 @@ class PlayerViewController : NSObject, AudioPlayerDelegate {
     }
     
     func loadArtImage() {
+         /*
         let item = audioPlayer.currentItem
         if item != nil {
             let song = (item as! MyAudioItem).song
             cell.controller?.title = song.name
             cell.artImageView.kf_setImageWithURL(NSURL(string: song.imageUrl)!, placeholderImage: UIImage(named: getPlaceHolderMusicImageName()))
         }
+        */
     }
     
     func getPlaceHolderMusicImageName() -> String {

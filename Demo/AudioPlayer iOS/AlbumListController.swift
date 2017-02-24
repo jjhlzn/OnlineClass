@@ -22,6 +22,8 @@ class AlbumListController: BaseUIViewController, UITableViewDataSource, UITableV
     var loginUserStore = LoginUserStore()
     var loadingOverlay = LoadingOverlay()
     var buyPayCourseDelegate : ConfirmDelegate2?
+    var loading = LoadingOverlay()
+    var isDisapeared = false
     
     
     override func viewDidLoad() {
@@ -69,6 +71,12 @@ class AlbumListController: BaseUIViewController, UITableViewDataSource, UITableV
     
     override func viewWillAppear(animated: Bool) {
         updatePlayingButton(playingButton)
+        isDisapeared = false
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        isDisapeared = true
     }
     
     private func setTitle() {
@@ -284,22 +292,31 @@ extension AlbumListController {
             return
         }
         
+        loading.showOverlay(self.view)
+        
         let request = GetAlbumSongsRequest(album: album)
         request.pageSize = 200
         BasicService().sendRequest(ServiceConfiguration.GET_ALBUM_SONGS, request: request) {
             (resp: GetAlbumSongsResponse) -> Void in
             dispatch_async(dispatch_get_main_queue()) {
-                self.loadingOverlay.hideOverlayView()
+                //self.loadingOverlay.hideOverlayView()
+                self.loading.hideOverlayView()
                 if resp.status == ServerResponseStatus.TokenInvalid.rawValue {
                     self.displayMessage("请重新登录")
                     tableView.deselectRowAtIndexPath(indexPath, animated: false)
                     return
                 }
                 
+                
+                
                 //目前这个逻辑之针对VIP课程权限够的情况
                 if resp.status == ServerResponseStatus.NoEnoughAuthority.rawValue {
                     self.displayVipBuyMessage(resp.errorMessage!, delegate: self.buyPayCourseDelegate!)
                     tableView.deselectRowAtIndexPath(indexPath, animated: false)
+                    return
+                }
+                
+                if self.isDisapeared {
                     return
                 }
                 

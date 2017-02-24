@@ -84,6 +84,7 @@ class PlayerCell: UITableViewCell {
         }
         
         //update image
+        
         if !isLive {
             if audioPlayer.state == AudioPlayerState.Playing || audioPlayer.state == AudioPlayerState.Paused || audioPlayer.state == AudioPlayerState.Buffering {
                 if audioPlayer.currentItem != nil && audioPlayer.currentItem?.artworkImage != nil {
@@ -142,12 +143,15 @@ class PlayerCell: UITableViewCell {
     }
     
     private func setMusicDefaultImage() {
+
+        
         let song = (audioPlayer.currentItem as! MyAudioItem).song
         if song.isLive {
             artImageView.image = UIImage(named: "liveMusicCover")
         } else {
             artImageView.image = UIImage(named: "musicCover")
         }
+        
     }
     
     
