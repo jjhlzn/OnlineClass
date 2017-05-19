@@ -205,7 +205,7 @@ class ExtendFunctionMananger : NSObject {
     private func makeImage(index: Int, function: ExtendFunction, superView: UIView) -> UIImageView {
         let imageView = UIImageView(frame: CGRectMake(0, 0, getImageWidth(), getImageWidth()))
         imageView.center.x = superView.bounds.width / 2
-        //QL1("isiPhone6Screen: \(isiPhone6Screen)")
+    
         if isiPhonePlusScreen {
            imageView.center.y = cellHeight / 2 - 1
         } else if isiPhone6Screen {

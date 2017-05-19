@@ -43,6 +43,10 @@ class ExtendFunctionStore {
         return "\(code)_is_show"
     }
     
+    private func getNameKey(code: String) -> String {
+        return "\(code)_name"
+    }
+    
     func hasMessage(code: String) -> Bool {
         //QL1("code: \(code), hasMessage: \(map[code]!)")
         if let value = map[code] {
@@ -72,5 +76,13 @@ class ExtendFunctionStore {
         keyValueDao.save(getIsShowKey(code), value: "\(value ? "1" : "0")")
         isShowMap[code] = value
 
+    }
+    
+    func updateFunctionName(code: String, value: String) {
+        keyValueDao.save(getNameKey(code), value: value)
+    }
+    
+    func getFunctionName(code: String, defaultValue: String) -> String {
+        return keyValueDao.get(getNameKey(code), defaultValue: defaultValue)!
     }
 }

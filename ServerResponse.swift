@@ -155,9 +155,12 @@ class GetAlbumsResponse : PageServerResponse<Album> {
             album.courseType = CourseType.getCourseType(albumJson["type"] as! String)!
             album.playing = albumJson["playing"] as! Bool
             album.isReady = albumJson["isReady"] as! Bool
-            album.playTimeDesc = albumJson["playTimeDesc"] as! String
+            
+            if let playTimeDesc = albumJson["playTimeDesc"] {
+                album.playTimeDesc = playTimeDesc != nil ? playTimeDesc as! String : ""
+            }
             if let isAgent = albumJson["isAgent"] {
-                album.isAgent = isAgent as! Bool
+                album.isAgent = isAgent != nil ? isAgent as! Bool : false
             }
             albums.append(album)
         }
@@ -1076,15 +1079,36 @@ class ClearFunctionMessageResponse : ServerResponse {
     
 }
 
+class ExtendFunctionResponseObject {
+    var code = ""
+    var name = ""
+    var imageUrl = ""
+    var messageCount = 0
+    var isShow = false
+    init(code: String, name: String, imageUrl: String, messageCount: Int, isShow: Bool) {
+        self.code = code
+        self.name = name
+        self.imageUrl = imageUrl
+        self.messageCount = messageCount
+        self.isShow = isShow
+    }
+}
+
 class GetFunctionInfosRequest : ServerRequest {}
 class GetFunctionInfosResponse : ServerResponse {
-    var functions = [ExtendFunction]()
+    
+    var functions = [ExtendFunctionResponseObject]()
     override func parseJSON(request: ServerRequest, json: NSDictionary) {
         super.parseJSON(request, json: json)
         let jsonArray = json["result"] as! NSArray
         for eachJson in jsonArray {
-            let function = ExtendFunction(code: eachJson["code"] as! String, isShowDefault: eachJson["isShow"] as! Bool, messageCount: eachJson["message"] as! Int)
-    functions.append(function)
+            let function = ExtendFunctionResponseObject(code: eachJson["code"] as! String,
+                    name: eachJson["name"] as! String,
+                    imageUrl: eachJson["imageUrl"] as! String,
+                    messageCount: eachJson["message"] as! Int,
+                    isShow: eachJson["isShow"] as! Bool)
+            functions.append(function)
+
         }
     }
 }

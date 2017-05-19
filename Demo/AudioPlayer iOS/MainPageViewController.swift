@@ -140,7 +140,8 @@ class CourseMainPageViewController: BaseUIViewController {
             //更新消息
             for function in resp.functions {
                 self.extendFunctionStore.updateMessageCount(function.code, value: function.messageCount)
-                self.extendFunctionStore.updateShow(function.code, value: function.isShowDefault)
+                self.extendFunctionStore.updateShow(function.code, value: function.isShow)
+                self.extendFunctionStore.updateFunctionName(function.code, value: function.name)
             }
             self.tableView.reloadData()
         }
