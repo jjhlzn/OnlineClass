@@ -26,7 +26,7 @@ class CodeImageViewController: BaseUIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+      
         
         let loginUser = LoginUserStore().getLoginUser()!
         

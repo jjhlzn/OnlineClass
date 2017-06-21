@@ -113,7 +113,7 @@ class WeixinShareService {
     private func share(isPengyouquan: Bool) {
         let message = WXMediaMessage()
         message.title = shareManager.shareTitle
-        message.description = ""
+        message.description = shareManager.shareTitle
         
         if shareManager.isUseQrImage {
             message.setThumbImage(UIImage(named: "me_qrcode"))

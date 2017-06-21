@@ -221,11 +221,22 @@ class ExtendFunctionMananger : NSObject {
     }
     
     func overlayImage(function: ExtendFunction) -> UIImage {
+        var bottomImage = UIImage(named: function.imageName)!
+        let extendFunctionImageStore = ExtendFunctionImageStore()
+        QL1("\(function.code):  \(function.name), \(function.imageUrl)")
+        if function.imageUrl != "" {
+            let image = extendFunctionImageStore.getImage(function.imageUrl)
+            if image != nil {
+                bottomImage = image!
+            }
+        }
+
+        
         if !ExtendFunctionStore.instance.hasMessage(function.code) {
-            return UIImage(named: function.imageName)!
+            return bottomImage
         }
         
-        let bottomImage = UIImage(named: function.imageName)!
+        
         let topImage = UIImage(named: "message_one")!
         
         let newSize = CGSizeMake(getImageWidth(), getImageWidth()) // set this to what you need
@@ -334,7 +345,7 @@ class ExtendFunctionMananger : NSObject {
 
 class ExtendFunction {
     var imageName = ""
-    var name = ""
+    var _name = ""
     var url = ""
     var code = ""
     var isShowDefault = true
@@ -348,9 +359,21 @@ class ExtendFunction {
         }
     }
     
+    var name: String {
+        get {
+            return ExtendFunctionStore.instance.getFunctionName(self.code, defaultValue: _name)
+        }
+    }
+    
+    var imageUrl: String {
+        get {
+            return ExtendFunctionStore.instance.getImageUrl(self.code)
+        }
+    }
+    
     init(imageName: String, name: String, code: String, url: String, selector: Selector, isShowDefault: Bool) {
         self.imageName = imageName
-        self.name = name
+        self._name = name
         self.url = url
         self.action = selector
         self.code = code

@@ -19,6 +19,7 @@ class CourseMainPageViewController: BaseUIViewController {
     @IBOutlet weak var playingButton: UIButton!
     var extendFunctionMananger : ExtendFunctionMananger!
     var extendFunctionStore = ExtendFunctionStore.instance
+    var extendFunctionImageStore = ExtendFunctionImageStore()
     var ads = [Advertise]()
     var keyValueStore = KeyValueStore()
     var freshHeaderAdvTimer: NSTimer!
@@ -138,14 +139,40 @@ class CourseMainPageViewController: BaseUIViewController {
                 return
             }
             //更新消息
+            var imageUrls = [String]()
             for function in resp.functions {
                 self.extendFunctionStore.updateMessageCount(function.code, value: function.messageCount)
                 self.extendFunctionStore.updateShow(function.code, value: function.isShow)
                 self.extendFunctionStore.updateFunctionName(function.code, value: function.name)
+                self.extendFunctionStore.updateImageUrl(function.code, value: function.imageUrl)
+                if function.imageUrl != "" {
+                   imageUrls.append(function.imageUrl)
+                }
             }
             self.tableView.reloadData()
+            self.downloadFunctionImages(imageUrls)
         }
 
+    }
+    
+    func downloadFunctionImages(imageUrls: [String]) {
+        for imageUrl in imageUrls {
+            
+            let image = extendFunctionImageStore.getImage(imageUrl)
+            if image == nil {
+                let imageView = UIImageView()
+                imageView.kf_setImageWithURL(NSURL(string: imageUrl)!,
+                                                 placeholderImage: nil,
+                                                 optionsInfo: [.ForceRefresh],
+                                                 completionHandler: { (image, error, cacheType, imageURL) -> () in
+                                                    if image != nil {
+                                                        self.extendFunctionImageStore.saveOrUpdate(imageUrl, image: image!)
+                                                        self.tableView.reloadData()
+                                                    }
+                })
+
+            }
+        }
     }
     
     
@@ -190,7 +217,7 @@ class CourseMainPageViewController: BaseUIViewController {
         
         refreshing = true
         loadHeaderAdv()
-        
+        loadFunctionInfos()
     }
     
     var footerImageInterWidth = 2
@@ -363,7 +390,13 @@ extension CourseMainPageViewController : UITableViewDataSource, UITableViewDeleg
             QL3("footer adv is empty, no jump to other page")
             return
         }
-        performSegueWithIdentifier("loadWebPageSegue", sender: params)
+        
+        //如果是快速下款，通过使用外部浏览器打开
+        if footerAdv.title == "快速下卡" {
+            UIApplication.sharedApplication().openURL(NSURL(string: footerAdv.url)!)
+        } else {
+            performSegueWithIdentifier("loadWebPageSegue", sender: params)
+        }
     }
     
     private func makeImage(index: Int, adv: FooterAdv) -> UIImageView {

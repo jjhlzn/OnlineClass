@@ -10,12 +10,12 @@ import Foundation
 
 class ServiceConfiguration {
     static let PageSize = 20
-    static let isUseConfig = false
+    static let isUseConfig = true
     static let serviceLocatorStore = ServiceLocatorStore()
     
 
     //114.80.101.27:6012/
-    static let serverName3 = "192.168.31.175"
+    static let serverName3 = "localhost"
     static let port3 = 5000
     
     

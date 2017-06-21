@@ -117,6 +117,7 @@
 		E2B2FA0F1C4BB64F00ABF3C5 /* sound2.caf in Resources */ = {isa = PBXBuildFile; fileRef = E2C6FAE01C4B01D80055A1BF /* sound2.caf */; };
 		E2C6FAE11C4B01D80055A1BF /* sound1.caf in Resources */ = {isa = PBXBuildFile; fileRef = E2C6FADF1C4B01D80055A1BF /* sound1.caf */; };
 		E2C6FAE21C4B01D80055A1BF /* sound2.caf in Resources */ = {isa = PBXBuildFile; fileRef = E2C6FAE01C4B01D80055A1BF /* sound2.caf */; };
+		EF1EA4E31ED3B9DA00B2616F /* ExtendFunctionImageStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF1EA4E21ED3B9DA00B2616F /* ExtendFunctionImageStore.swift */; };
 		EF21740E1E2753B10035C960 /* TencentOpenApi_IOS_Bundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = EF21740C1E2753B10035C960 /* TencentOpenApi_IOS_Bundle.bundle */; };
 		EF21740F1E2753B10035C960 /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF21740D1E2753B10035C960 /* TencentOpenAPI.framework */; };
 		EF2174111E2753DB0035C960 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF2174101E2753DB0035C960 /* Security.framework */; };
@@ -261,6 +262,7 @@
 		E2B2F9FB1C4BB5DC00ABF3C5 /* AudioPlayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AudioPlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2C6FADF1C4B01D80055A1BF /* sound1.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = sound1.caf; path = ../Sounds/sound1.caf; sourceTree = "<group>"; };
 		E2C6FAE01C4B01D80055A1BF /* sound2.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = sound2.caf; path = ../Sounds/sound2.caf; sourceTree = "<group>"; };
+		EF1EA4E21ED3B9DA00B2616F /* ExtendFunctionImageStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtendFunctionImageStore.swift; sourceTree = "<group>"; };
 		EF21740C1E2753B10035C960 /* TencentOpenApi_IOS_Bundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = TencentOpenApi_IOS_Bundle.bundle; sourceTree = "<group>"; };
 		EF21740D1E2753B10035C960 /* TencentOpenAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TencentOpenAPI.framework; sourceTree = "<group>"; };
 		EF2174101E2753DB0035C960 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -462,6 +464,7 @@
 		1C451F691D0176E500DC29F9 /* store */ = {
 			isa = PBXGroup;
 			children = (
+				EF1EA4E21ED3B9DA00B2616F /* ExtendFunctionImageStore.swift */,
 				1C2451D21CE8A0BD00F350DA /* jufangzhushou.xcdatamodeld */,
 				1C3C5ED81D1E11B0000F0A39 /* KeyValueEntity+CoreDataProperties.swift */,
 				1C3C5ED91D1E11B0000F0A39 /* KeyValueEntity.swift */,
@@ -812,6 +815,7 @@
 			files = (
 				1C451F6D1D01787B00DC29F9 /* ServiceLocatorEntity.swift in Sources */,
 				1C1E69251CCA0F3E00CEA029 /* NoCommentCell.swift in Sources */,
+				EF1EA4E31ED3B9DA00B2616F /* ExtendFunctionImageStore.swift in Sources */,
 				1CD349641CF8167C00037F78 /* WebPageViewController.swift in Sources */,
 				1CD349721CF9AC7D00037F78 /* PersonalInfoCell2.swift in Sources */,
 				1C3C5EDA1D1E11B0000F0A39 /* KeyValueEntity+CoreDataProperties.swift in Sources */,

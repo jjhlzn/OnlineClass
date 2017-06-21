@@ -47,6 +47,10 @@ class ExtendFunctionStore {
         return "\(code)_name"
     }
     
+    private func getImageUrlKey(code: String) -> String {
+        return "\(code)_imageUrl"
+    }
+    
     func hasMessage(code: String) -> Bool {
         //QL1("code: \(code), hasMessage: \(map[code]!)")
         if let value = map[code] {
@@ -84,5 +88,13 @@ class ExtendFunctionStore {
     
     func getFunctionName(code: String, defaultValue: String) -> String {
         return keyValueDao.get(getNameKey(code), defaultValue: defaultValue)!
+    }
+    
+    func updateImageUrl(code: String, value: String) {
+        keyValueDao.save(getImageUrlKey(code), value: value)
+    }
+    
+    func getImageUrl(code: String) -> String{
+        return keyValueDao.get(getImageUrlKey(code), defaultValue: "")!
     }
 }
