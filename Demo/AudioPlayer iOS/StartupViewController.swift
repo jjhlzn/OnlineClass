@@ -28,6 +28,14 @@ class StartupViewController: BaseUIViewController {
         return true
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        advImageView.hidden = true
+        skipAdvButton.hidden = true
+        advTip.hidden = true
+        
+    }
+    
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
@@ -35,9 +43,6 @@ class StartupViewController: BaseUIViewController {
         
         let serviceLocator = serviceLocatorStore.GetServiceLocator()
         
-        advImageView.hidden = true
-        skipAdvButton.hidden = true
-        advTip.hidden = true
         
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
         

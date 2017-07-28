@@ -1258,7 +1258,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fKN-Zb-buE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="181" y="-565"/>
+            <point key="canvasLocation" x="97" y="-579"/>
         </scene>
         <!--TestIAP Controller-->
         <scene sceneID="gbR-PC-mfc">
@@ -3340,8 +3340,9 @@
         <!--Navigation Controller-->
         <scene sceneID="jeE-WS-jKw">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="TOO-0G-gko" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="TOO-0G-gko" sceneMemberID="viewController">
                     <toolbarItems/>
+                    <nil key="simulatedTopBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="dTL-1Z-peG">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -3400,12 +3401,12 @@
         <image name="weibo" width="95" height="95"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="dRn-tj-MbL"/>
+        <segue reference="YDx-ix-HXt"/>
+        <segue reference="pCp-Ba-NtI"/>
         <segue reference="ZDX-wF-ovX"/>
-        <segue reference="7p7-B3-e4E"/>
+        <segue reference="Kp8-Nw-Lqb"/>
         <segue reference="gK4-D6-0Uz"/>
         <segue reference="VNd-S5-Rjk"/>
-        <segue reference="YDx-ix-HXt"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.94901960784313721" green="0.38039215686274508" blue="0.0" alpha="0.90000000000000002" colorSpace="calibratedRGB"/>
 </document>
