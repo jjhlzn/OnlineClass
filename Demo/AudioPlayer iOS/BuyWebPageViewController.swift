@@ -14,16 +14,19 @@ import QorumLogs
 class WebPageViewController: IapSupportWebPageViewController, WKNavigationDelegate {
     
     var url : NSURL!
+    var isBackToMainController = false
     @IBOutlet weak var closeButton: UIBarButtonItem!
     @IBOutlet weak var backButton: UIBarButtonItem!
     var canShowCloseButton = true
     //var backButton: UIBarButtonItem!
     
+    var loginUserStore = LoginUserStore()
+    
     var leftBarButtonItems: [UIBarButtonItem]?
-
+    
     @IBOutlet weak var webContainer: UIView!
     var loading = LoadingCircle()
-
+    
     
     @IBOutlet weak var shareButton: UIBarButtonItem!
     @IBOutlet weak var shareView: UIView!
@@ -31,6 +34,8 @@ class WebPageViewController: IapSupportWebPageViewController, WKNavigationDelega
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
         
         initIAP()
         initWebView()
@@ -41,8 +46,8 @@ class WebPageViewController: IapSupportWebPageViewController, WKNavigationDelega
         backButton.target = self
         backButton.action = #selector(webViewBack)
         leftBarButtonItems = navigationItem.leftBarButtonItems
-
-  
+        
+        
         navigationItem.leftBarButtonItems = [backButton]
         addLineBorder(cancelButton)
         shareView.hidden = true
@@ -87,8 +92,8 @@ class WebPageViewController: IapSupportWebPageViewController, WKNavigationDelega
         webView!.loadRequest(myRequest);
     }
     
-
-
+    
+    
     /****  webView相关的函数  ***/
     func webView(webView: WKWebView, didCommitNavigation navigation: WKNavigation!) {
         loading.show(view)
@@ -98,7 +103,7 @@ class WebPageViewController: IapSupportWebPageViewController, WKNavigationDelega
             backButton.action = #selector(webViewBack)
         }
     }
-
+    
     func webView(webView: WKWebView, didFinishNavigation navigation: WKNavigation!) {
         loading.hide()
         QL1("webView.canGoBack = \(webView.canGoBack)")
@@ -115,7 +120,7 @@ class WebPageViewController: IapSupportWebPageViewController, WKNavigationDelega
     func webView(webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: NSError) {
         loading.hide()
     }
-
+    
     
     func webViewBack() {
         if webView!.canGoBack {
@@ -126,23 +131,43 @@ class WebPageViewController: IapSupportWebPageViewController, WKNavigationDelega
         }
     }
     
-    func returnLastController() {
-        /*
-        var controllers = navigationController?.viewControllers
-        if controllers?.count >= 2 {
-            let top = controllers![1] as? AlbumListController
-            if top != nil {
-                controllers?.removeLast(2)
-                navigationController?.setViewControllers(controllers!, animated: true)
-                return
-            }
-        }*/
-        navigationController?.popViewControllerAnimated(true)
+    private func checkLoginUser() {
+        
+        //检查一下是否已经登录，如果登录，则直接进入后面的页面
+        let loginUser = loginUserStore.getLoginUser()
+        if  loginUser != nil {
+            QL1("found login user")
+            QL1("userid = \(loginUser?.userName), password = \(loginUser?.password), token = \(loginUser?.token)")
+            self.performSegueWithIdentifier("hasLoginSegue", sender: self)
+        } else {
+            QL1("no login user")
+            self.performSegueWithIdentifier("notLoginSegue", sender: self)
+        }
         
     }
     
-
+    
+    func returnLastController() {
+        /*
+         var controllers = navigationController?.viewControllers
+         if controllers?.count >= 2 {
+         let top = controllers![1] as? AlbumListController
+         if top != nil {
+         controllers?.removeLast(2)
+         navigationController?.setViewControllers(controllers!, animated: true)
+         return
+         }
+         }*/
+        if isBackToMainController {
+            checkLoginUser()
+        } else {
+            navigationController?.popViewControllerAnimated(true)
+        }
         
+    }
+    
+    
+    
     /******************* 分享 *************************************************/
     var shareViewOverlay : UIView!
     @IBAction func shareButtonPressed(sender: AnyObject) {
@@ -227,7 +252,7 @@ class WebPageViewController: IapSupportWebPageViewController, WKNavigationDelega
         WeiboSDK.sendRequest(req)
     }
     
-   
-
-
+    
+    
+    
 }

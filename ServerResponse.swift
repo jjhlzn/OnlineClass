@@ -1126,3 +1126,17 @@ class GetCourseNotifyResponse : ServerResponse {
     }
 }
 
+class GetLaunchAdvRequest : ServerRequest {}
+class GetLaunchAdvResponse : ServerResponse {
+    var advTitle : String! = ""
+    var imageUrl : String! = ""
+    var advUrl : String! = ""
+    override func parseJSON(request: ServerRequest, json: NSDictionary) {
+        super.parseJSON(request, json: json)
+        let jsonObject = json["result"] as! NSDictionary
+        advTitle = jsonObject["advTitle"] as! String
+        advUrl = jsonObject["advUrl"] as! String
+        imageUrl = jsonObject["imageUrl"] as! String
+    }
+}
+

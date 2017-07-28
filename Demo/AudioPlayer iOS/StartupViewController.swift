@@ -11,6 +11,11 @@ import QorumLogs
 
 class StartupViewController: BaseUIViewController {
     
+    @IBOutlet weak var advImageView: UIImageView!
+    @IBOutlet weak var skipAdvButton: UILabel!
+    @IBOutlet weak var advTip: UILabel!
+    
+    
     var loginUserStore = LoginUserStore()
     var serviceLocatorStore = ServiceLocatorStore()
     var isForceUpgrade = false
@@ -19,12 +24,23 @@ class StartupViewController: BaseUIViewController {
     
     //var optionalUpgradeAlertViewDelegate : OptionalUpgradeAlertViewDelegate!
     
+    override func prefersStatusBarHidden() -> Bool {
+        return true
+    }
+    
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
-       // optionalUpgradeAlertViewDelegate = OptionalUpgradeAlertViewDelegate(controller: self)
-
+        // optionalUpgradeAlertViewDelegate = OptionalUpgradeAlertViewDelegate(controller: self)
+        
         let serviceLocator = serviceLocatorStore.GetServiceLocator()
+        
+        advImageView.hidden = true
+        skipAdvButton.hidden = true
+        advTip.hidden = true
+        
+        self.navigationController?.setNavigationBarHidden(true, animated: animated)
+        
         
         //serviceLocator不应该为null，因为在AppDelegate会有一个初始化值
         if (serviceLocator?.needServieLocator)! {
@@ -40,13 +56,31 @@ class StartupViewController: BaseUIViewController {
                     self.serviceLocatorStore.UpdateServiceLocator()
                 }
                 
-                self.checkLoginUser()
+                //self.checkLoginUser()
+                self.checkLaunchAdv()
                 
             }
         } else {
-            checkLoginUser()
+            //checkLoginUser()
+            self.checkLaunchAdv()
         }
         
+        goToNextControllerTimer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(self.skipAdvWhenTimeOut), userInfo: nil, repeats: true)
+        
+    }
+    
+    var goToNextControllerTimer : NSTimer?
+    var skipAdvTimeCount = 7
+    func skipAdvWhenTimeOut() {
+        skipAdvTimeCount = skipAdvTimeCount - 1
+        if skipAdvTimeCount <= 0 {
+            goToNextControllerTimer?.invalidate()
+            checkLoginUser()
+        }
+    }
+    
+    override func viewDidDisappear(animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(false, animated: animated)
     }
     
     private func checkLoginUser() {
@@ -61,10 +95,87 @@ class StartupViewController: BaseUIViewController {
             QL1("no login user")
             self.performSegueWithIdentifier("notLoginSegue", sender: self)
         }
-
+        
     }
     
-
+    func skipAdv() {
+        QL1("skip adv")
+        goToNextControllerTimer?.invalidate()
+        skipAdvTimer?.invalidate()
+        checkLoginUser()
+    }
+    
+    var advUrl = ""
+    var advTitle = ""
+    func goToAdvPage() {
+        QL1("go to adv page")
+        if "" != advUrl {
+            goToNextControllerTimer?.invalidate()
+            skipAdvTimer?.invalidate()
+            performSegueWithIdentifier("webViewSegue", sender: ["url": advUrl, "title": advTitle])
+        }
+    }
+    
+    private func setAdvImage(imageUrl: String, advUrl: String, advTitle: String) {
+        self.advUrl = advUrl
+        self.advTitle = advTitle
+        
+        let imageView = UIImageView()
+        imageView.kf_setImageWithURL(NSURL(string: imageUrl)!,
+                                     placeholderImage: nil,
+                                     optionsInfo: [.ForceRefresh],
+                                     completionHandler: { (image, error, cacheType, imageURL) -> () in
+                                        if image != nil {
+                                            self.advImageView.image = image
+                                            self.advImageView.hidden = false
+                                            self.advTip.hidden = false
+                                            self.skipAdvButton.hidden = false
+                                            
+                                            
+                                            self.skipAdvButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.skipAdv)))
+                                            self.skipAdvButton.userInteractionEnabled = true
+                                            
+                                            self.advImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.goToAdvPage)))
+                                            self.advImageView.userInteractionEnabled = true
+                                            
+                                            //设置timer
+                                            self.skipAdvTimer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(self.updateSkipAdvButtonText), userInfo: nil, repeats: true)
+                                            
+                                        }
+        })
+    }
+    
+    var timerCount = 3
+    var skipAdvTimer: NSTimer?
+    func updateSkipAdvButtonText() {
+        timerCount = timerCount - 1
+        self.skipAdvButton.text = "跳过广告 \(timerCount)"
+        
+        if timerCount <= 0 {
+            skipAdvTimer?.invalidate()
+            timerCount = 4
+            checkLoginUser()
+        }
+    }
+    
+    
+    private func checkLaunchAdv() {
+        BasicService().sendRequest(ServiceConfiguration.GET_LAUNCH_ADV, request: GetLaunchAdvRequest(), timeout: 3) {
+            (resp: GetLaunchAdvResponse) -> Void in
+            
+            if resp.status == ServerResponseStatus.Success.rawValue {
+                if "" != resp.imageUrl {
+                    self.setAdvImage(resp.imageUrl, advUrl: resp.advUrl, advTitle: resp.advTitle)
+                } else {
+                    self.checkLoginUser()
+                }
+            } else {
+                self.checkLoginUser()
+            }
+        }
+    }
+    
+    
     
     func displayOptionUpgradeConfirmMessage(message : String, delegate: UIAlertViewDelegate) {
         let alertView = UIAlertView()
@@ -85,7 +196,7 @@ class StartupViewController: BaseUIViewController {
         alertView.delegate=delegate
         alertView.show()
     }
-
+    
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         super.prepareForSegue(segue, sender: sender)
@@ -94,63 +205,69 @@ class StartupViewController: BaseUIViewController {
             dest.isForceUpgrade = isForceUpgrade
             //TODO 链接要换成真是的升级链接
             dest.url = NSURL(string: upgradeUrl )
+        } else if segue.identifier == "webViewSegue" {
+            let params = sender as! [String : String]
+            let dest = segue.destinationViewController as! WebPageViewController
+            dest.title =  params["title"]
+            dest.url = NSURL(string: params["url"]!)
+            dest.isBackToMainController = true
         }
     }
     
     /*
-    func checkUpgrade() {
-        if isSkipUpgradeCheck {
-            checkLoginUser()
-        } else {
-            BasicService().sendRequest(ServiceConfiguration.CHECK_UPGRADE, request: CheckUpgradeRequest()) {
-                (resp : CheckUpgradeResponse) -> Void in
-                if resp.status != 0 {
-                    //self.displayMessage(resp.errorMessage!)
-                    self.checkLoginUser()
-                    return
-                }
-                
-                if resp.isNeedUpgrade {
-                    self.isForceUpgrade = ("force" == resp.upgradeType)
-                    self.upgradeUrl = resp.upgradeUrl
-                    if self.isForceUpgrade {
-                        self.displayForceUpgradeConfirmMessage ("请升级新版本", delegate: self.optionalUpgradeAlertViewDelegate)
-                    } else {
-                        self.displayOptionUpgradeConfirmMessage("有新版本，去升级吗？", delegate: self.optionalUpgradeAlertViewDelegate)
-                    }
-                } else {
-                    self.checkLoginUser()
-                }
-            }
-            
-            
-        }
-
-    }*/
+     func checkUpgrade() {
+     if isSkipUpgradeCheck {
+     checkLoginUser()
+     } else {
+     BasicService().sendRequest(ServiceConfiguration.CHECK_UPGRADE, request: CheckUpgradeRequest()) {
+     (resp : CheckUpgradeResponse) -> Void in
+     if resp.status != 0 {
+     //self.displayMessage(resp.errorMessage!)
+     self.checkLoginUser()
+     return
+     }
+     
+     if resp.isNeedUpgrade {
+     self.isForceUpgrade = ("force" == resp.upgradeType)
+     self.upgradeUrl = resp.upgradeUrl
+     if self.isForceUpgrade {
+     self.displayForceUpgradeConfirmMessage ("请升级新版本", delegate: self.optionalUpgradeAlertViewDelegate)
+     } else {
+     self.displayOptionUpgradeConfirmMessage("有新版本，去升级吗？", delegate: self.optionalUpgradeAlertViewDelegate)
+     }
+     } else {
+     self.checkLoginUser()
+     }
+     }
+     
+     
+     }
+     
+     }*/
     
     /*
-    class OptionalUpgradeAlertViewDelegate : NSObject, UIAlertViewDelegate {
-        
-        var controller : StartupViewController
-        
-        init(controller: StartupViewController) {
-            self.controller = controller
-        }
+     class OptionalUpgradeAlertViewDelegate : NSObject, UIAlertViewDelegate {
+     
+     var controller : StartupViewController
+     
+     init(controller: StartupViewController) {
+     self.controller = controller
+     }
+     
+     func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
+     switch buttonIndex {
+     case 0:
+     
+     controller.performSegueWithIdentifier("upgradeSegue", sender: nil)
+     break;
+     case 1:
+     controller.checkLoginUser()
+     break;
+     default:
+     break;
+     }
+     }
+     }*/
     
-        func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
-            switch buttonIndex {
-            case 0:
-
-                controller.performSegueWithIdentifier("upgradeSegue", sender: nil)
-                break;
-            case 1:
-                controller.checkLoginUser()
-                break;
-            default:
-                break;
-            }
-        }
-    }*/
     
-
 }
