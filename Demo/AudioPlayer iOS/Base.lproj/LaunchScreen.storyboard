@@ -51,7 +51,6 @@
                             <constraint firstAttribute="centerX" secondItem="dVJ-un-ZKo" secondAttribute="centerX" id="tLi-zg-51J"/>
                         </constraints>
                     </view>
-                    <nil key="simulatedStatusBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

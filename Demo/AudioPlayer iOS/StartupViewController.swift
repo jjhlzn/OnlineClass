@@ -15,6 +15,7 @@ class StartupViewController: BaseUIViewController {
     @IBOutlet weak var skipAdvButton: UILabel!
     @IBOutlet weak var advTip: UILabel!
     
+    
     var loginUserStore = LoginUserStore()
     var serviceLocatorStore = ServiceLocatorStore()
     var isForceUpgrade = false
@@ -30,8 +31,8 @@ class StartupViewController: BaseUIViewController {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
-       // optionalUpgradeAlertViewDelegate = OptionalUpgradeAlertViewDelegate(controller: self)
-
+        // optionalUpgradeAlertViewDelegate = OptionalUpgradeAlertViewDelegate(controller: self)
+        
         let serviceLocator = serviceLocatorStore.GetServiceLocator()
         
         advImageView.hidden = true
@@ -39,7 +40,7 @@ class StartupViewController: BaseUIViewController {
         advTip.hidden = true
         
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
- 
+        
         
         //serviceLocator不应该为null，因为在AppDelegate会有一个初始化值
         if (serviceLocator?.needServieLocator)! {
@@ -94,7 +95,7 @@ class StartupViewController: BaseUIViewController {
             QL1("no login user")
             self.performSegueWithIdentifier("notLoginSegue", sender: self)
         }
-
+        
     }
     
     func skipAdv() {
@@ -118,29 +119,29 @@ class StartupViewController: BaseUIViewController {
     private func setAdvImage(imageUrl: String, advUrl: String, advTitle: String) {
         self.advUrl = advUrl
         self.advTitle = advTitle
-
+        
         let imageView = UIImageView()
         imageView.kf_setImageWithURL(NSURL(string: imageUrl)!,
-                                    placeholderImage: nil,
-                                    optionsInfo: [.ForceRefresh],
-                                    completionHandler: { (image, error, cacheType, imageURL) -> () in
-                                    if image != nil {
-                                        self.advImageView.image = image
-                                        self.advImageView.hidden = false
-                                        self.advTip.hidden = false
-                                        self.skipAdvButton.hidden = false
-                                    
-                                        
-                                        self.skipAdvButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.skipAdv)))
-                                        self.skipAdvButton.userInteractionEnabled = true
-                                        
-                                        self.advImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.goToAdvPage)))
-                                        self.advImageView.userInteractionEnabled = true
-                                        
-                                        //设置timer
-                                        self.skipAdvTimer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(self.updateSkipAdvButtonText), userInfo: nil, repeats: true)
-                                        
-                                    }
+                                     placeholderImage: nil,
+                                     optionsInfo: [.ForceRefresh],
+                                     completionHandler: { (image, error, cacheType, imageURL) -> () in
+                                        if image != nil {
+                                            self.advImageView.image = image
+                                            self.advImageView.hidden = false
+                                            self.advTip.hidden = false
+                                            self.skipAdvButton.hidden = false
+                                            
+                                            
+                                            self.skipAdvButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.skipAdv)))
+                                            self.skipAdvButton.userInteractionEnabled = true
+                                            
+                                            self.advImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.goToAdvPage)))
+                                            self.advImageView.userInteractionEnabled = true
+                                            
+                                            //设置timer
+                                            self.skipAdvTimer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(self.updateSkipAdvButtonText), userInfo: nil, repeats: true)
+                                            
+                                        }
         })
     }
     
@@ -156,7 +157,7 @@ class StartupViewController: BaseUIViewController {
             checkLoginUser()
         }
     }
-
+    
     
     private func checkLaunchAdv() {
         BasicService().sendRequest(ServiceConfiguration.GET_LAUNCH_ADV, request: GetLaunchAdvRequest(), timeout: 3) {
@@ -171,10 +172,10 @@ class StartupViewController: BaseUIViewController {
             } else {
                 self.checkLoginUser()
             }
-         }
+        }
     }
     
-
+    
     
     func displayOptionUpgradeConfirmMessage(message : String, delegate: UIAlertViewDelegate) {
         let alertView = UIAlertView()
@@ -195,7 +196,7 @@ class StartupViewController: BaseUIViewController {
         alertView.delegate=delegate
         alertView.show()
     }
-
+    
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         super.prepareForSegue(segue, sender: sender)
@@ -214,59 +215,59 @@ class StartupViewController: BaseUIViewController {
     }
     
     /*
-    func checkUpgrade() {
-        if isSkipUpgradeCheck {
-            checkLoginUser()
-        } else {
-            BasicService().sendRequest(ServiceConfiguration.CHECK_UPGRADE, request: CheckUpgradeRequest()) {
-                (resp : CheckUpgradeResponse) -> Void in
-                if resp.status != 0 {
-                    //self.displayMessage(resp.errorMessage!)
-                    self.checkLoginUser()
-                    return
-                }
-                
-                if resp.isNeedUpgrade {
-                    self.isForceUpgrade = ("force" == resp.upgradeType)
-                    self.upgradeUrl = resp.upgradeUrl
-                    if self.isForceUpgrade {
-                        self.displayForceUpgradeConfirmMessage ("请升级新版本", delegate: self.optionalUpgradeAlertViewDelegate)
-                    } else {
-                        self.displayOptionUpgradeConfirmMessage("有新版本，去升级吗？", delegate: self.optionalUpgradeAlertViewDelegate)
-                    }
-                } else {
-                    self.checkLoginUser()
-                }
-            }
-            
-            
-        }
-
-    }*/
+     func checkUpgrade() {
+     if isSkipUpgradeCheck {
+     checkLoginUser()
+     } else {
+     BasicService().sendRequest(ServiceConfiguration.CHECK_UPGRADE, request: CheckUpgradeRequest()) {
+     (resp : CheckUpgradeResponse) -> Void in
+     if resp.status != 0 {
+     //self.displayMessage(resp.errorMessage!)
+     self.checkLoginUser()
+     return
+     }
+     
+     if resp.isNeedUpgrade {
+     self.isForceUpgrade = ("force" == resp.upgradeType)
+     self.upgradeUrl = resp.upgradeUrl
+     if self.isForceUpgrade {
+     self.displayForceUpgradeConfirmMessage ("请升级新版本", delegate: self.optionalUpgradeAlertViewDelegate)
+     } else {
+     self.displayOptionUpgradeConfirmMessage("有新版本，去升级吗？", delegate: self.optionalUpgradeAlertViewDelegate)
+     }
+     } else {
+     self.checkLoginUser()
+     }
+     }
+     
+     
+     }
+     
+     }*/
     
     /*
-    class OptionalUpgradeAlertViewDelegate : NSObject, UIAlertViewDelegate {
-        
-        var controller : StartupViewController
-        
-        init(controller: StartupViewController) {
-            self.controller = controller
-        }
+     class OptionalUpgradeAlertViewDelegate : NSObject, UIAlertViewDelegate {
+     
+     var controller : StartupViewController
+     
+     init(controller: StartupViewController) {
+     self.controller = controller
+     }
+     
+     func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
+     switch buttonIndex {
+     case 0:
+     
+     controller.performSegueWithIdentifier("upgradeSegue", sender: nil)
+     break;
+     case 1:
+     controller.checkLoginUser()
+     break;
+     default:
+     break;
+     }
+     }
+     }*/
     
-        func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
-            switch buttonIndex {
-            case 0:
-
-                controller.performSegueWithIdentifier("upgradeSegue", sender: nil)
-                break;
-            case 1:
-                controller.checkLoginUser()
-                break;
-            default:
-                break;
-            }
-        }
-    }*/
     
-
 }

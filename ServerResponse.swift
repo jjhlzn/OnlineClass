@@ -1126,7 +1126,6 @@ class GetCourseNotifyResponse : ServerResponse {
     }
 }
 
-
 class GetLaunchAdvRequest : ServerRequest {}
 class GetLaunchAdvResponse : ServerResponse {
     var advTitle : String! = ""
