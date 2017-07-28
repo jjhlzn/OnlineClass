@@ -81,7 +81,7 @@ class SignupViewController : BaseUIViewController, UIAlertViewDelegate {
         }
         
         //设置timer
-        timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(updateButtonTitle), userInfo: nil, repeats: true)
+        timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "updateButtonTitle", userInfo: nil, repeats: true)
         
         getPhoneCodeButton.hidden = true
         phoneCodeLabel.hidden = false

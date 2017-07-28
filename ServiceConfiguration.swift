@@ -280,12 +280,6 @@ class ServiceConfiguration {
         }
     }
     
-    static var GET_LAUNCH_ADV : String {
-        get {
-            return "\(http)://\(serverName):\(port)/app/getlaunchadv"
-        }
-    }
-    
     
     static let ImageUrlPrefix = "http://\(serverName):\(port)/"
     static func GetSongUrl(urlSuffix: String) -> String {

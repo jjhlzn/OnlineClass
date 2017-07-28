@@ -14,13 +14,10 @@ import QorumLogs
 class WebPageViewController: IapSupportWebPageViewController, WKNavigationDelegate {
     
     var url : NSURL!
-    var isBackToMainController = false
     @IBOutlet weak var closeButton: UIBarButtonItem!
     @IBOutlet weak var backButton: UIBarButtonItem!
     var canShowCloseButton = true
     //var backButton: UIBarButtonItem!
-    
-    var loginUserStore = LoginUserStore()
     
     var leftBarButtonItems: [UIBarButtonItem]?
 
@@ -34,8 +31,6 @@ class WebPageViewController: IapSupportWebPageViewController, WKNavigationDelega
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-      
         
         initIAP()
         initWebView()
@@ -131,22 +126,6 @@ class WebPageViewController: IapSupportWebPageViewController, WKNavigationDelega
         }
     }
     
-    private func checkLoginUser() {
-        
-        //检查一下是否已经登录，如果登录，则直接进入后面的页面
-        let loginUser = loginUserStore.getLoginUser()
-        if  loginUser != nil {
-            QL1("found login user")
-            QL1("userid = \(loginUser?.userName), password = \(loginUser?.password), token = \(loginUser?.token)")
-            self.performSegueWithIdentifier("hasLoginSegue", sender: self)
-        } else {
-            QL1("no login user")
-            self.performSegueWithIdentifier("notLoginSegue", sender: self)
-        }
-        
-    }
-
-    
     func returnLastController() {
         /*
         var controllers = navigationController?.viewControllers
@@ -158,11 +137,7 @@ class WebPageViewController: IapSupportWebPageViewController, WKNavigationDelega
                 return
             }
         }*/
-        if isBackToMainController {
-            checkLoginUser()
-        } else {
-            navigationController?.popViewControllerAnimated(true)
-        }
+        navigationController?.popViewControllerAnimated(true)
         
     }
     
