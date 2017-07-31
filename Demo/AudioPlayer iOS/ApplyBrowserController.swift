@@ -22,6 +22,12 @@ class ApplyBrowserController : IapSupportWebPageViewController, WKNavigationDele
     var loading = LoadingCircle()
     
     @IBOutlet weak var webContainer: UIView!
+    
+    
+    var overlay = UIView()
+    var shareManager : ShareManager!
+    @IBOutlet weak var shareView: UIView!
+    @IBOutlet weak var closeShareViewButton: UIButton!
 
     
     override func viewDidLoad() {
@@ -41,6 +47,13 @@ class ApplyBrowserController : IapSupportWebPageViewController, WKNavigationDele
         navigationItem.leftBarButtonItems = []
         
         //navigationItem.leftBarButtonItems = [backButton]
+        //设置分享相关
+        shareView.hidden = true
+        shareManager = ShareManager(controller: self)
+        closeShareViewButton.addBorder(viewBorder.Top, color: UIColor(white: 0.65, alpha: 0.5), width: 1)
+        shareManager.shareTitle = "test"
+        shareManager.shareUrl = "http://www.baidu.com"
+        shareManager.isUseQrImage = false
         
     }
     
@@ -117,6 +130,66 @@ class ApplyBrowserController : IapSupportWebPageViewController, WKNavigationDele
             navigationItem.leftBarButtonItems = []
         }
     }
+    
+    @IBAction func shareButtonPressed(sender: AnyObject) {
+        //如果正在评论，关闭评论的窗口
+        if shareView.hidden {
+            shareView.becomeFirstResponder()
+            showShareView()
+        } else {
+            hideShareView()
+        }
+    }
+    
+    func showShareView() {
+        print("showOverlay")
+        overlay = UIView(frame: UIScreen.mainScreen().bounds)
+        overlay.backgroundColor = UIColor(white: 0, alpha: 0.65)
+        
+        shareView.removeFromSuperview()
+        shareView.hidden = false
+        overlay.addSubview(shareView)
+        self.view.addSubview(overlay)
+    }
+    
+    func hideShareView() {
+        print("hideOverlay")
+        shareView.removeFromSuperview()
+        self.view.addSubview(shareView)
+        shareView.hidden = true
+        overlay.removeFromSuperview()
+    }
+    
+    
+    @IBAction func closeShareViewButtonPressed(sender: AnyObject) {
+        hideShareView()
+    }
+    
+    @IBAction func shareToFriends(sender: AnyObject) {
+        shareManager.shareToWeixinFriend()
+    }
+    
+    @IBAction func shareToPengyouquan(sender: AnyObject) {
+        shareManager.shareToWeixinPengyouquan()
+    }
+    
+    @IBAction func shareToWeibo(sender: AnyObject) {
+        shareManager.shareToWeibo()
+    }
+    
+    @IBAction func shareToQQFriends(sender: AnyObject) {
+        shareManager.shareToQQFriend()
+    }
+    
+    
+    @IBAction func shareToQzone(sender: AnyObject) {
+        shareManager.shareToQzone()
+    }
+    
+    @IBAction func copyLink(sender: AnyObject) {
+        shareManager.copyLink()
+    }
+
     
     
 }
