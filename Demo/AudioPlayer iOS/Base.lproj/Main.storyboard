@@ -1554,7 +1554,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="functionCell" id="nMx-i2-zh4" customClass="FunctionCell" customModule="AudioPlayer" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="320" height="79"/>
+                                        <rect key="frame" x="0.0" y="92" width="320" height="79"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nMx-i2-zh4" id="KV1-bG-Y2O">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="79"/>
@@ -1679,71 +1679,124 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" id="NZi-Zv-8tP">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
-                            <view contentMode="scaleToFill" id="DUM-xe-fuX">
-                                <rect key="frame" x="0.0" y="431" width="320" height="137"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="C0K-eJ-OF1">
-                                        <rect key="frame" x="43" y="8" width="46" height="46"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <state key="normal" title="Button" image="fasongpengyou"/>
-                                        <connections>
-                                            <action selector="shareFriendsPressed:" destination="qTJ-UI-98H" eventType="touchUpInside" id="NRm-jD-YQf"/>
-                                            <action selector="shareToFriends:" destination="tlV-Sn-3a7" eventType="touchUpInside" id="ate-TZ-nvf"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="HL5-KI-1dJ">
-                                        <rect key="frame" x="125" y="5" width="70" height="52"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <state key="normal" title="Button" image="pengyouquan"/>
-                                        <connections>
-                                            <action selector="sharePengyouquanPressed:" destination="qTJ-UI-98H" eventType="touchUpInside" id="Wnu-Bb-bmY"/>
-                                            <action selector="shareToPengyouquan:" destination="tlV-Sn-3a7" eventType="touchUpInside" id="Oi1-Jd-YUt"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="VGo-oT-3Yv">
-                                        <rect key="frame" x="236" y="4" width="46" height="46"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                                        <state key="normal" title="Button" image="weibo"/>
-                                        <connections>
-                                            <action selector="shareWeiboPressed:" destination="qTJ-UI-98H" eventType="touchUpInside" id="XAC-ms-N1X"/>
-                                        </connections>
-                                    </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="微信好友" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="DUs-5t-Mrq">
-                                        <rect key="frame" x="32" y="52" width="68" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="朋友圈" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jR7-NO-g6m">
-                                        <rect key="frame" x="126" y="52" width="68" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="新浪微博" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="PUg-cw-uC6">
-                                        <rect key="frame" x="225" y="52" width="68" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Hxv-L1-3RU">
-                                        <rect key="frame" x="0.0" y="88" width="320" height="49"/>
+                                    <view contentMode="scaleToFill" id="O8E-Yp-ahf">
+                                        <rect key="frame" x="0.0" y="336" width="320" height="231"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <state key="normal" title="取消"/>
-                                        <connections>
-                                            <action selector="cancelButtonPressed:" destination="tlV-Sn-3a7" eventType="touchUpInside" id="OUH-8O-xXv"/>
-                                            <action selector="cancelPressed:" destination="qTJ-UI-98H" eventType="touchUpInside" id="WpW-va-pes"/>
-                                        </connections>
-                                    </button>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="ftI-lI-8SK">
+                                                <rect key="frame" x="36" y="42" width="45" height="45"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                <state key="normal" title="Button" image="fasongpengyou"/>
+                                                <connections>
+                                                    <action selector="shareToFriends:" destination="qTJ-UI-98H" eventType="touchUpInside" id="4oJ-Sz-rcZ"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="fJR-56-D3n">
+                                                <rect key="frame" x="137" y="42" width="45" height="45"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                <state key="normal" title="Button" image="pengyouquan"/>
+                                                <connections>
+                                                    <action selector="shareToPengyouquan:" destination="qTJ-UI-98H" eventType="touchUpInside" id="0uv-7l-8kr"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Ueh-Ch-6Gc">
+                                                <rect key="frame" x="139" y="113" width="45" height="45"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                <state key="normal" title="Button" image="weibo"/>
+                                                <connections>
+                                                    <action selector="shareToWeibo:" destination="qTJ-UI-98H" eventType="touchUpInside" id="iTw-QH-QOT"/>
+                                                </connections>
+                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="微信好友" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hXr-j0-rE8">
+                                                <rect key="frame" x="25" y="87" width="68" height="21"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="11"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="微信朋友圈" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7wz-ri-95r">
+                                                <rect key="frame" x="128" y="87" width="68" height="21"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="11"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="新浪微博" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="leS-ga-6WX">
+                                                <rect key="frame" x="127" y="160" width="68" height="21"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="11"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="DRE-GL-76t">
+                                                <rect key="frame" x="243" y="42" width="45" height="45"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                                                <state key="normal" title="Button" image="qq_pengyou"/>
+                                                <connections>
+                                                    <action selector="shareToQQFriends:" destination="qTJ-UI-98H" eventType="touchUpInside" id="soJ-4k-lWh"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="XpY-4a-Iqw">
+                                                <rect key="frame" x="36" y="114" width="45" height="45"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                <state key="normal" title="Button" image="qzone"/>
+                                                <connections>
+                                                    <action selector="shareToQzone:" destination="qTJ-UI-98H" eventType="touchUpInside" id="q2a-Kc-ABR"/>
+                                                </connections>
+                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="QQ好友" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="4Mh-bX-vzm">
+                                                <rect key="frame" x="246" y="87" width="42" height="21"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="11"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="QQ空间" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Jf3-my-n4j">
+                                                <rect key="frame" x="40" y="160" width="42" height="21"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="11"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="F2D-YS-97C">
+                                                <rect key="frame" x="243" y="113" width="45" height="45"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                                                <state key="normal" title="Button" image="copy"/>
+                                                <connections>
+                                                    <action selector="copyLink:" destination="qTJ-UI-98H" eventType="touchUpInside" id="qeN-Sj-MkZ"/>
+                                                </connections>
+                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="复制链接" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="exR-UM-w94">
+                                                <rect key="frame" x="244" y="160" width="49" height="21"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="11"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Aon-du-52I">
+                                                <rect key="frame" x="0.0" y="189" width="320" height="43"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
+                                                <state key="normal" title="取消">
+                                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="closeShareViewButtonPressed:" destination="qTJ-UI-98H" eventType="touchUpInside" id="NUp-0G-vgK"/>
+                                                </connections>
+                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="马上通过以下方式分享给朋友" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="opV-mG-Zwe">
+                                                <rect key="frame" x="31" y="10" width="281" height="21"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
@@ -1757,27 +1810,23 @@
                             </barButtonItem>
                             <barButtonItem title="关闭" id="BTk-wt-pRR"/>
                         </leftBarButtonItems>
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="yXX-Fe-N97">
+                        <barButtonItem key="rightBarButtonItem" image="shareicon" style="plain" id="yXX-Fe-N97">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Eap-n6-X4u">
                                 <rect key="frame" x="274" y="7" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button" image="share"/>
+                                <state key="normal" title="Button" image="shareicon"/>
                                 <connections>
-                                    <action selector="shareButtonPressed:" destination="qTJ-UI-98H" eventType="touchUpInside" id="axd-K0-Mge"/>
+                                    <action selector="shareButtonPressed:" destination="qTJ-UI-98H" eventType="touchUpInside" id="VUJ-FP-nzE"/>
                                 </connections>
                             </button>
-                            <connections>
-                                <action selector="shareButtonPressed:" destination="qTJ-UI-98H" id="bWo-wK-KM2"/>
-                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="backButton" destination="ni2-53-BVe" id="Jxa-Ij-hQt"/>
-                        <outlet property="cancelButton" destination="Hxv-L1-3RU" id="9Sx-9m-jPn"/>
                         <outlet property="closeButton" destination="BTk-wt-pRR" id="ZeQ-Xq-I2F"/>
-                        <outlet property="shareButton" destination="yXX-Fe-N97" id="AmT-6T-ZlX"/>
-                        <outlet property="shareView" destination="DUM-xe-fuX" id="JoH-xA-gyi"/>
+                        <outlet property="closeShareViewButton" destination="Aon-du-52I" id="7hC-np-E2X"/>
+                        <outlet property="shareView" destination="O8E-Yp-ahf" id="sWJ-uP-8mL"/>
                         <outlet property="webContainer" destination="NZi-Zv-8tP" id="wbz-PK-Vnl"/>
                         <segue destination="59B-S3-xkA" kind="modal" identifier="notLoginSegue" id="7p7-B3-e4E"/>
                         <segue destination="IeE-13-KTg" kind="modal" identifier="hasLoginSegue" id="dRn-tj-MbL"/>
@@ -1785,7 +1834,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IHP-Mp-DaU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="422" y="633"/>
+            <point key="canvasLocation" x="393" y="591"/>
         </scene>
         <!--我的-->
         <scene sceneID="oct-0p-3hq">
@@ -2309,7 +2358,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Rnd-Aj-bCp">
-                                        <rect key="frame" x="143" y="42" width="45" height="45"/>
+                                        <rect key="frame" x="141" y="42" width="45" height="45"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <state key="normal" title="Button" image="pengyouquan"/>
                                         <connections>
@@ -2318,7 +2367,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="ZCG-TV-Zb7">
-                                        <rect key="frame" x="143" y="113" width="45" height="45"/>
+                                        <rect key="frame" x="141" y="113" width="45" height="45"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <state key="normal" title="Button" image="weibo"/>
                                         <connections>
@@ -2334,14 +2383,14 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="微信朋友圈" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="8mt-Kb-CuZ">
-                                        <rect key="frame" x="132" y="87" width="68" height="21"/>
+                                        <rect key="frame" x="130" y="87" width="68" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="11"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="新浪微博" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="R2v-WR-tLp">
-                                        <rect key="frame" x="133" y="160" width="68" height="21"/>
+                                        <rect key="frame" x="130" y="160" width="68" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="11"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -3315,7 +3364,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" id="TfB-j0-khZ">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="557"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="520"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
@@ -3389,7 +3438,6 @@
         <image name="search-filled" width="25" height="25"/>
         <image name="setting" width="25" height="25"/>
         <image name="setting-filled" width="25" height="25"/>
-        <image name="share" width="90" height="90"/>
         <image name="shareicon" width="50" height="50"/>
         <image name="smallPlayIcon" width="50" height="50"/>
         <image name="soundup" width="40" height="40"/>
@@ -3402,11 +3450,11 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="YDx-ix-HXt"/>
-        <segue reference="pCp-Ba-NtI"/>
-        <segue reference="ZDX-wF-ovX"/>
-        <segue reference="Kp8-Nw-Lqb"/>
-        <segue reference="gK4-D6-0Uz"/>
+        <segue reference="dRn-tj-MbL"/>
+        <segue reference="d3n-U5-XAy"/>
+        <segue reference="YYP-Ho-b8S"/>
         <segue reference="VNd-S5-Rjk"/>
+        <segue reference="7p7-B3-e4E"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.94901960784313721" green="0.38039215686274508" blue="0.0" alpha="0.90000000000000002" colorSpace="calibratedRGB"/>
 </document>

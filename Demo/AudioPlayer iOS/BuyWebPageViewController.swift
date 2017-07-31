@@ -28,9 +28,12 @@ class WebPageViewController: IapSupportWebPageViewController, WKNavigationDelega
     var loading = LoadingCircle()
     
     
-    @IBOutlet weak var shareButton: UIBarButtonItem!
+
+    var overlay = UIView()
+    var shareManager : ShareManager!
     @IBOutlet weak var shareView: UIView!
-    @IBOutlet weak var cancelButton: UIButton!
+    @IBOutlet weak var closeShareViewButton: UIButton!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,13 +52,21 @@ class WebPageViewController: IapSupportWebPageViewController, WKNavigationDelega
         
         
         navigationItem.leftBarButtonItems = [backButton]
-        addLineBorder(cancelButton)
-        shareView.hidden = true
+
         if title == "提额秘诀" {
             
         } else {
-            navigationItem.rightBarButtonItems = []
+            //navigationItem.rightBarButtonItems = []
         }
+        
+        
+        //设置分享相关
+        shareView.hidden = true
+        shareManager = ShareManager(controller: self)
+        closeShareViewButton.addBorder(viewBorder.Top, color: UIColor(white: 0.65, alpha: 0.5), width: 1)
+        shareManager.shareTitle = "test"
+        shareManager.shareUrl = "http://www.baidu.com"
+        shareManager.isUseQrImage = false
         
         
     }
@@ -169,88 +180,68 @@ class WebPageViewController: IapSupportWebPageViewController, WKNavigationDelega
     
     
     /******************* 分享 *************************************************/
-    var shareViewOverlay : UIView!
+
     @IBAction func shareButtonPressed(sender: AnyObject) {
-        QL1("Share Button Pressed")
-        if !shareView.hidden {
-            return
-        }
-        print("showShareView")
-        shareViewOverlay = UIView(frame: UIScreen.mainScreen().bounds)
-        shareViewOverlay.backgroundColor = UIColor(white: 0, alpha: 0.65)
+        //如果正在评论，关闭评论的窗口
+        QL1("shareButton Pressed")
         
-        shareView.removeFromSuperview()
-        shareViewOverlay.addSubview(shareView)
-        
-        view.addSubview(shareViewOverlay)
-        
-        shareView.hidden = false
-        
-        if WXApi.isWXAppInstalled() && WXApi.isWXAppSupportApi() {
-            print("winxin share is OK")
+        if shareView.hidden {
+            shareView.becomeFirstResponder()
+            showShareView()
         } else {
-            print("winxin share is  NOT OK")
+            hideShareView()
         }
     }
     
-    @IBAction func shareFriendsPressed(sender: AnyObject) {
-        print("share to friends")
-        share(false)
-    }
-    
-    @IBAction func sharePengyouquanPressed(sender: AnyObject) {
-        print("share to pengyouquan")
-        share(true)
-    }
-    
-    @IBAction func shareWeiboPressed(sender: AnyObject) {
-        weiboShare()
-    }
-    @IBAction func cancelPressed(sender: AnyObject) {
-        shareView.hidden = true
+    func showShareView() {
+        print("showOverlay")
+        overlay = UIView(frame: UIScreen.mainScreen().bounds)
+        overlay.backgroundColor = UIColor(white: 0, alpha: 0.65)
+        
         shareView.removeFromSuperview()
-        view.addSubview(shareView)
-        shareViewOverlay.removeFromSuperview()
+        shareView.hidden = false
+        overlay.addSubview(shareView)
+        self.view.addSubview(overlay)
     }
     
-    func addLineBorder(field: UIButton) {
-        let bottomBorder = CALayer()
-        bottomBorder.frame = CGRectMake(0.0, 0, field.frame.size.width, 1.0);
-        bottomBorder.backgroundColor = UIColor.lightGrayColor().CGColor
-        field.layer.addSublayer(bottomBorder)
+    func hideShareView() {
+        print("hideOverlay")
+        shareView.removeFromSuperview()
+        self.view.addSubview(shareView)
+        shareView.hidden = true
+        overlay.removeFromSuperview()
     }
     
     
-    
-    private func share(isPengyouquan: Bool) {
-        let message = WXMediaMessage()
-        message.title = "扫一扫下载安装【巨方助手】，即可免费在线学习、提额、办卡、贷款！"
-        message.description = "扫一扫下载安装【巨方助手】"
-        message.setThumbImage(UIImage(named: "me_qrcode"))
-        
-        let webPageObject = WXWebpageObject()
-        let loginUser = LoginUserStore().getLoginUser()!
-        webPageObject.webpageUrl = ServiceLinkManager.ShareTiEMijueUrl + "?userid=\(loginUser.userName!)"
-        message.mediaObject = webPageObject
-        
-        let req = SendMessageToWXReq()
-        req.bText = false
-        req.message = message
-        req.scene = (isPengyouquan ? 1 : 0)
-        
-        WXApi.sendReq(req)
-        
-        
+    @IBAction func closeShareViewButtonPressed(sender: AnyObject) {
+        hideShareView()
     }
     
-    private func weiboShare() {
-        let req = WBSendMessageToWeiboRequest()
-        
-        req.message = Utils.getWebpageObject()
-        
-        
-        WeiboSDK.sendRequest(req)
+    @IBAction func shareToFriends(sender: AnyObject) {
+        shareManager.shareToWeixinFriend()
     }
+    
+    @IBAction func shareToPengyouquan(sender: AnyObject) {
+        shareManager.shareToWeixinPengyouquan()
+    }
+    
+    @IBAction func shareToWeibo(sender: AnyObject) {
+        shareManager.shareToWeibo()
+    }
+    
+    @IBAction func shareToQQFriends(sender: AnyObject) {
+        shareManager.shareToQQFriend()
+    }
+    
+    
+    @IBAction func shareToQzone(sender: AnyObject) {
+        shareManager.shareToQzone()
+    }
+    
+    @IBAction func copyLink(sender: AnyObject) {
+        shareManager.copyLink()
+    }
+
     
     
     
