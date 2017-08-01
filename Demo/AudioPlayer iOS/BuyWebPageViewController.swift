@@ -10,6 +10,8 @@ import UIKit
 import WebKit
 import StoreKit
 import QorumLogs
+import Alamofire
+import Kanna
 
 class WebPageViewController: IapSupportWebPageViewController, WKNavigationDelegate {
     
@@ -39,7 +41,6 @@ class WebPageViewController: IapSupportWebPageViewController, WKNavigationDelega
         super.viewDidLoad()
         
         
-        
         initIAP()
         initWebView()
         
@@ -64,10 +65,34 @@ class WebPageViewController: IapSupportWebPageViewController, WKNavigationDelega
         shareView.hidden = true
         shareManager = ShareManager(controller: self)
         closeShareViewButton.addBorder(viewBorder.Top, color: UIColor(white: 0.65, alpha: 0.5), width: 1)
-        shareManager.shareTitle = "test"
-        shareManager.shareUrl = "http://www.baidu.com"
         shareManager.isUseQrImage = false
         
+        let request = NSMutableURLRequest(URL: url)
+        request.HTTPMethod = "GET"
+        request.setValue("text/html", forHTTPHeaderField: "Content-Type")
+        
+        Alamofire.request(request)
+            .responseString { response in
+                QL1("\(response)")
+                if let doc = HTML(html: response.result.value!, encoding: NSUTF8StringEncoding) {
+                    print(doc.title)
+                    
+                    if  doc.title != nil {
+                        self.shareManager.shareTitle = doc.title!
+                    }
+                    
+                    // Search for nodes by XPath
+                    for meta in doc.xpath("//meta") {
+                        print(meta.text)
+                        print(meta["name"])
+                        print(meta["content"])
+                        
+                        if meta["name"] != nil && meta["name"]! == "shareurl" &&
+                            meta["content"] != nil{
+                            self.shareManager.shareUrl = meta["content"]!
+                        }                    }
+                }
+        }
         
     }
     
@@ -118,6 +143,7 @@ class WebPageViewController: IapSupportWebPageViewController, WKNavigationDelega
     func webView(webView: WKWebView, didFinishNavigation navigation: WKNavigation!) {
         loading.hide()
         QL1("webView.canGoBack = \(webView.canGoBack)")
+        
         if !webView.canGoBack {
             navigationItem.leftBarButtonItems = [backButton]
             backButton.action = #selector(returnLastController)

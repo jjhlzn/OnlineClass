@@ -15,4 +15,5 @@ target 'AudioPlayer iOS' do
     pod 'tingyunApp'
     pod 'MarqueeLabel/Swift'
     pod 'WeiboSDK', :git => 'https://github.com/sinaweibosdk/weibo_ios_sdk.git'
+	pod 'Kanna', '~> 1.1.0'
 end
