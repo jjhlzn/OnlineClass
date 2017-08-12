@@ -67,34 +67,10 @@ class WebPageViewController: IapSupportWebPageViewController, WKNavigationDelega
         closeShareViewButton.addBorder(viewBorder.Top, color: UIColor(white: 0.65, alpha: 0.5), width: 1)
         shareManager.isUseQrImage = false
         
-        let request = NSMutableURLRequest(URL: url)
-        request.HTTPMethod = "GET"
-        request.setValue("text/html", forHTTPHeaderField: "Content-Type")
         
-        Alamofire.request(request)
-            .responseString { response in
-                QL1("\(response)")
-                if let doc = HTML(html: response.result.value!, encoding: NSUTF8StringEncoding) {
-                    print(doc.title)
-                    
-                    if  doc.title != nil {
-                        self.shareManager.shareTitle = doc.title!
-                    }
-                    
-                    // Search for nodes by XPath
-                    for meta in doc.xpath("//meta") {
-                        print(meta.text)
-                        print(meta["name"])
-                        print(meta["content"])
-                        
-                        if meta["name"] != nil && meta["name"]! == "shareurl" &&
-                            meta["content"] != nil{
-                            self.shareManager.shareUrl = meta["content"]!
-                        }                    }
-                }
-        }
-        
+        shareManager.loadShareInfo(url)
     }
+    
     
     
     override func viewWillAppear(animated: Bool) {
@@ -133,7 +109,13 @@ class WebPageViewController: IapSupportWebPageViewController, WKNavigationDelega
     /****  webView相关的函数  ***/
     func webView(webView: WKWebView, didCommitNavigation navigation: WKNavigation!) {
         loading.show(view)
+        QL1("didCommitNavigation called")
         QL1("webView.canGoBack = \(webView.canGoBack)")
+        if webView.URL != nil {
+            QL1("url = \(webView.URL!)")
+            shareManager.loadShareInfo(webView.URL!)
+        }
+
         if webView.canGoBack {
             navigationItem.leftBarButtonItems = [backButton, closeButton]
             backButton.action = #selector(webViewBack)
@@ -143,6 +125,13 @@ class WebPageViewController: IapSupportWebPageViewController, WKNavigationDelega
     func webView(webView: WKWebView, didFinishNavigation navigation: WKNavigation!) {
         loading.hide()
         QL1("webView.canGoBack = \(webView.canGoBack)")
+        
+        QL1("didFinishNavigation called")
+        if webView.URL != nil {
+            QL1("url = \(webView.URL!)")
+            shareManager.loadShareInfo(webView.URL!)
+        }
+
         
         if !webView.canGoBack {
             navigationItem.leftBarButtonItems = [backButton]
@@ -158,10 +147,15 @@ class WebPageViewController: IapSupportWebPageViewController, WKNavigationDelega
         loading.hide()
     }
     
-    
+  
+
     func webViewBack() {
         if webView!.canGoBack {
             webView!.goBack()
+            if webView!.URL != nil {
+                QL1("url = \(webView!.URL!)")
+                shareManager.loadShareInfo(webView!.URL!)
+            }
             
         } else {
             navigationController?.popViewControllerAnimated(true)
@@ -185,16 +179,7 @@ class WebPageViewController: IapSupportWebPageViewController, WKNavigationDelega
     
     
     func returnLastController() {
-        /*
-         var controllers = navigationController?.viewControllers
-         if controllers?.count >= 2 {
-         let top = controllers![1] as? AlbumListController
-         if top != nil {
-         controllers?.removeLast(2)
-         navigationController?.setViewControllers(controllers!, animated: true)
-         return
-         }
-         }*/
+
         if isBackToMainController {
             checkLoginUser()
         } else {

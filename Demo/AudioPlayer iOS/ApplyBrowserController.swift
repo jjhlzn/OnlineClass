@@ -41,6 +41,7 @@ class ApplyBrowserController : IapSupportWebPageViewController, WKNavigationDele
         initIAP()
         initWebView()
 
+        overlay.hidden = true
         
         backButton.target = self
         backButton.action = #selector(webViewBack)
@@ -56,34 +57,7 @@ class ApplyBrowserController : IapSupportWebPageViewController, WKNavigationDele
 
         shareManager.isUseQrImage = false
         
-        let request = NSMutableURLRequest(URL: url)
-        request.HTTPMethod = "GET"
-        request.setValue("text/html", forHTTPHeaderField: "Content-Type")
-        
-        Alamofire.request(request)
-            .responseString { response in
-                QL1("\(response)")
-                if let doc = HTML(html: response.result.value!, encoding: NSUTF8StringEncoding) {
-                    print(doc.title)
-                    
-                    if  doc.title != nil {
-                        self.shareManager.shareTitle = doc.title!
-                    }
-                    
-                    // Search for nodes by XPath
-                    for meta in doc.xpath("//meta") {
-                        print(meta.text)
-                        print(meta["name"])
-                        print(meta["content"])
-                        
-                        if meta["name"] != nil && meta["name"]! == "shareurl" &&
-                           meta["content"] != nil{
-                            self.shareManager.shareUrl = meta["content"]!
-                        }
-                    }
-                }
-        }
-
+        shareManager.loadShareInfo(url)
         
     }
     
@@ -109,7 +83,11 @@ class ApplyBrowserController : IapSupportWebPageViewController, WKNavigationDele
         let config = WKWebViewConfiguration()
         config.userContentController = contentController
         
-        self.webView = WKWebView(frame: self.view.frame, configuration: config)
+        let tabbarHegith = self.tabBarController?.tabBar.frame.height;
+        QL1("tabbarHegith = \(tabbarHegith!)")
+        let fullScreen = UIScreen.mainScreen().bounds
+        let rect = CGRect(x: fullScreen.origin.x, y: fullScreen.origin.y, width: fullScreen.width, height: fullScreen.height - tabbarHegith! * 2)
+        self.webView = WKWebView(frame: rect, configuration: config)
         
         self.webContainer.addSubview(self.webView!)
         self.webView?.navigationDelegate = self
@@ -127,6 +105,12 @@ class ApplyBrowserController : IapSupportWebPageViewController, WKNavigationDele
     func webView(webView: WKWebView, didCommitNavigation navigation: WKNavigation!) {
         loading.show(view)
         QL1("webView.canGoBack = \(webView.canGoBack)")
+        
+        if webView.URL != nil {
+            QL1("url = \(webView.URL!)")
+            shareManager.loadShareInfo(webView.URL!)
+        }
+        
         if webView.canGoBack {
             navigationItem.leftBarButtonItems = [backButton]
         } else {
@@ -137,6 +121,11 @@ class ApplyBrowserController : IapSupportWebPageViewController, WKNavigationDele
     func webView(webView: WKWebView, didFinishNavigation navigation: WKNavigation!) {
         loading.hide()
         QL1("webView.canGoBack = \(webView.canGoBack)")
+        
+        if webView.URL != nil {
+            QL1("url = \(webView.URL!)")
+            shareManager.loadShareInfo(webView.URL!)
+        }
         if webView.canGoBack {
             navigationItem.leftBarButtonItems = [backButton]
         } else {
@@ -156,6 +145,10 @@ class ApplyBrowserController : IapSupportWebPageViewController, WKNavigationDele
     func webViewBack() {
         if webView!.canGoBack {
             webView!.goBack()
+            if webView!.URL != nil {
+                QL1("url = \(webView!.URL!)")
+                shareManager.loadShareInfo(webView!.URL!)
+            }
         } else {
             navigationItem.leftBarButtonItems = []
         }
@@ -163,7 +156,7 @@ class ApplyBrowserController : IapSupportWebPageViewController, WKNavigationDele
     
     @IBAction func shareButtonPressed(sender: AnyObject) {
         //如果正在评论，关闭评论的窗口
-        if shareView.hidden {
+        if overlay.hidden {
             shareView.becomeFirstResponder()
             showShareView()
         } else {
@@ -171,23 +164,38 @@ class ApplyBrowserController : IapSupportWebPageViewController, WKNavigationDele
         }
     }
     
+    var shareViewHasCreated = false;
     func showShareView() {
-        print("showOverlay")
-        overlay = UIView(frame: UIScreen.mainScreen().bounds)
-        overlay.backgroundColor = UIColor(white: 0, alpha: 0.65)
+        if !shareViewHasCreated {
+            let navHeight = self.navigationController?.navigationBar.frame.height;
+            
+            let fullScreen = UIScreen.mainScreen().bounds
+            let rect = CGRect(x: fullScreen.origin.x, y: fullScreen.origin.y + navHeight!, width: fullScreen.width, height: fullScreen.height)
+            
+            print("showOverlay")
+
+            overlay = UIView(frame: rect)
+            overlay.backgroundColor = UIColor(white: 0, alpha: 0.65)
         
-        shareView.removeFromSuperview()
-        shareView.hidden = false
-        overlay.addSubview(shareView)
-        self.view.addSubview(overlay)
+            shareView.removeFromSuperview()
+            shareView.hidden = false
+            overlay.addSubview(shareView)
+            self.view.addSubview(overlay)
+            shareViewHasCreated = true
+        
+        }
+        overlay.hidden = false
+        
     }
     
     func hideShareView() {
         print("hideOverlay")
+        /*
         shareView.removeFromSuperview()
         self.view.addSubview(shareView)
         shareView.hidden = true
-        overlay.removeFromSuperview()
+        overlay.removeFromSuperview()*/
+        overlay.hidden = true
     }
     
     

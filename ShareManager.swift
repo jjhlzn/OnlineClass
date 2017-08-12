@@ -7,7 +7,9 @@
 //
 
 import Foundation
-
+import Alamofire
+import QorumLogs
+import Kanna
 
 class ShareManager {
     
@@ -19,6 +21,7 @@ class ShareManager {
     
     private var _shareTitle = ""
     private var _shareUrl = ""
+    private var _shareDescription = ""
     var isUseQrImage = true
     
     var tencentOAuth:TencentOAuth!
@@ -46,9 +49,70 @@ class ShareManager {
         }
     }
     
+    var shareDescription : String {
+        get {
+            return _shareDescription
+        }
+        
+        set {
+            if newValue != "" {
+                _shareDescription = newValue
+            }
+        }
+    }
+    
+    func loadShareInfo(url: NSURL) {
+        
+        QL1("load share info url: \(url)")
+        
+        let request = NSMutableURLRequest(URL: url)
+        request.HTTPMethod = "GET"
+        request.setValue("text/html", forHTTPHeaderField: "Content-Type")
+        
+        Alamofire.request(request)
+            .responseString { response in
+                //QL1("\(response)")
+                if let doc = HTML(html: response.result.value!, encoding: NSUTF8StringEncoding) {
+                    QL1(doc.title)
+                    
+                    if  doc.title != nil {
+                        self.shareTitle = doc.title!
+                    }
+                    
+                    // Search for nodes by XPath
+                    for meta in doc.xpath("//meta") {
+                        //print(meta.text)
+                        //print(meta["name"])
+                        //print(meta["content"])
+                        
+                        if meta["name"] != nil && meta["name"]! == "shareurl" && meta["content"] != nil{
+                            self.shareUrl = meta["content"]!
+                            QL1(self.shareUrl)
+                        }
+                        
+                        if meta["name"] != nil && meta["name"]! == "description" && meta["content"] != nil{
+                            self.shareDescription = meta["content"]!
+                            QL1(self.shareDescription)
+                        }
+                        
+                    }
+                }
+        }
+    }
+
+    
+    func resetDefaultSetting()  {
+        _shareTitle = "扫一扫下载安装【巨方助手】，即可免费在线学习、提额、办卡、贷款！"
+        let loginUser = LoginUserStore().getLoginUser()!
+        _shareUrl = ServiceLinkManager.ShareQrImageUrl + "?userid=\(loginUser.userName!)"
+        _shareDescription = ""
+        
+    }
+    
     init(controller : BaseUIViewController) {
         self.controller = controller
         _shareTitle = "扫一扫下载安装【巨方助手】，即可免费在线学习、提额、办卡、贷款！"
+        _shareDescription = ""
         let loginUser = LoginUserStore().getLoginUser()!
         _shareUrl = ServiceLinkManager.ShareQrImageUrl + "?userid=\(loginUser.userName!)"
         weixin = WeixinShareService(controller: controller, shareManager: self)
@@ -113,7 +177,7 @@ class WeixinShareService {
     private func share(isPengyouquan: Bool) {
         let message = WXMediaMessage()
         message.title = shareManager.shareTitle
-        message.description = shareManager.shareTitle
+        message.description = shareManager.shareDescription
         
         if shareManager.isUseQrImage {
             message.setThumbImage(UIImage(named: "me_qrcode"))
@@ -158,7 +222,7 @@ class WeiboShareService {
         let webpage = WBWebpageObject()
         webpage.objectID = "\(NSDate().timeIntervalSince1970 * 1000)"
         webpage.title = shareManager.shareTitle
-        webpage.description =  ""
+        webpage.description =  shareManager.shareDescription
         
         //webpage.thumbnailData = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"image_2" ofType:@"jpg"]];
         if shareManager.isUseQrImage {
@@ -204,7 +268,7 @@ class QQShareService {
     private func shareToQQ(isToQZone: Bool) {
         let newsUrl = NSURL(string: shareManager.shareUrl)
         let title = shareManager.shareTitle
-        let description = ""
+        let description = shareManager.shareDescription
         
         var imageName = "me_qrcode"
         if !shareManager.isUseQrImage {

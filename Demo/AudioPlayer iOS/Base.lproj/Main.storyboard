@@ -3364,11 +3364,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" id="TfB-j0-khZ">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="520"/>
+                                <rect key="frame" x="0.0" y="63" width="320" height="457"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" id="oik-iH-pS2">
-                                        <rect key="frame" x="0.0" y="291" width="320" height="231"/>
+                                        <rect key="frame" x="0.0" y="235" width="320" height="229"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="MlW-er-vvD">
@@ -3498,7 +3498,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="shareicon"/>
                                 <connections>
-                                    <action selector="shareButtonPressed:" destination="Omf-Kp-1wt" eventType="touchUpInside" id="YIU-eY-8Ze"/>
+                                    <action selector="shareButtonPressed:" destination="Omf-Kp-1wt" eventType="touchUpInside" id="Fpc-6i-2U2"/>
                                 </connections>
                             </button>
                             <connections>
@@ -3509,14 +3509,14 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="backButton" destination="WoQ-2N-XI0" id="j15-2O-L0J"/>
-                        <outlet property="closeShareViewButton" destination="zok-Bd-9WQ" id="rSV-Yf-XQt"/>
-                        <outlet property="shareView" destination="oik-iH-pS2" id="txG-wN-dDF"/>
+                        <outlet property="closeShareViewButton" destination="zok-Bd-9WQ" id="sft-8y-gEu"/>
+                        <outlet property="shareView" destination="oik-iH-pS2" id="Rp3-QF-90E"/>
                         <outlet property="webContainer" destination="TfB-j0-khZ" id="NAn-uQ-Gxz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="88V-31-WYA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3188" y="686"/>
+            <point key="canvasLocation" x="3264" y="486"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="jeE-WS-jKw">
@@ -3584,7 +3584,7 @@
         <segue reference="YDx-ix-HXt"/>
         <segue reference="dRn-tj-MbL"/>
         <segue reference="d3n-U5-XAy"/>
-        <segue reference="YYP-Ho-b8S"/>
+        <segue reference="MPd-di-4DT"/>
         <segue reference="VNd-S5-Rjk"/>
         <segue reference="7p7-B3-e4E"/>
     </inferredMetricsTieBreakers>

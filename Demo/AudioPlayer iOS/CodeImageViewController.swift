@@ -46,6 +46,7 @@ class CodeImageViewController: BaseUIViewController {
         }
         
         shareManager = ShareManager(controller: self)
+        shareManager.shareDescription = "扫一扫下载安装【巨方助手】，即可免费在线学习、提额、办卡、贷款！"
         
         if WXApi.isWXAppInstalled() && WXApi.isWXAppSupportApi() {
             print("winxin share is OK")
