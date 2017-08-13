@@ -74,10 +74,15 @@ class ShareManager {
             .responseString { response in
                 //QL1("\(response)")
                 if let doc = HTML(html: response.result.value!, encoding: NSUTF8StringEncoding) {
-                    QL1(doc.title)
-                    
                     if  doc.title != nil {
-                        self.shareTitle = doc.title!
+                        
+                        var title = doc.title!
+                        title = title.stringByTrimmingCharactersInSet(
+                            NSCharacterSet.whitespaceAndNewlineCharacterSet()
+                        )
+
+                        self.shareTitle = title
+                        QL1("title = \(title)")
                     }
                     
                     // Search for nodes by XPath
