@@ -122,10 +122,13 @@ class ApplyBrowserController : IapSupportWebPageViewController, WKNavigationDele
         loading.hide()
         QL1("webView.canGoBack = \(webView.canGoBack)")
         
+        /*
         if webView.URL != nil {
             QL1("url = \(webView.URL!)")
             shareManager.loadShareInfo(webView.URL!)
-        }
+        }*/
+        
+        
         if webView.canGoBack {
             navigationItem.leftBarButtonItems = [backButton]
         } else {

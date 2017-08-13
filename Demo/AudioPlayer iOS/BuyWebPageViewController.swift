@@ -127,10 +127,12 @@ class WebPageViewController: IapSupportWebPageViewController, WKNavigationDelega
         QL1("webView.canGoBack = \(webView.canGoBack)")
         
         QL1("didFinishNavigation called")
+        
+        /*
         if webView.URL != nil {
             QL1("url = \(webView.URL!)")
             shareManager.loadShareInfo(webView.URL!)
-        }
+        }*/
 
         
         if !webView.canGoBack {

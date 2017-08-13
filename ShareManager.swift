@@ -63,6 +63,7 @@ class ShareManager {
     
     func loadShareInfo(url: NSURL) {
         
+        self.resetDefaultSetting()
         QL1("load share info url: \(url)")
         
         let request = NSMutableURLRequest(URL: url)
@@ -105,7 +106,7 @@ class ShareManager {
         _shareTitle = "扫一扫下载安装【巨方助手】，即可免费在线学习、提额、办卡、贷款！"
         let loginUser = LoginUserStore().getLoginUser()!
         _shareUrl = ServiceLinkManager.ShareQrImageUrl + "?userid=\(loginUser.userName!)"
-        _shareDescription = ""
+        _shareDescription = "巨方助手"
         
     }
     
