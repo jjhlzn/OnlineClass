@@ -29,32 +29,32 @@ class AlbumDetailController: BaseUIViewController, UIAlertViewDelegate {
     
     
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        addPlayingButton(playingButton)
+        addPlayingButton(button: playingButton)
         //getAudioPlayer().delegate = self
         tableView.dataSource = self
         tableView.delegate = self
         
-        albumImage.kf_setImageWithURL(NSURL(string: (album?.image)!)!)
+        //albumImage.kf_setImageWithURL(NSURL(string: (album?.image)!)!)
         nameLabel.text = album?.name
         descLabel.text = album?.author
 
         updateCellPlayingButtons()
         
         
-        updatePlayingButton(playingButton)
+        updatePlayingButton(button: playingButton)
         
     }
     
     
     func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
-        self.navigationController?.popViewControllerAnimated(true)
+        self.navigationController?.popViewController(animated: true)
     }
 
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        super.prepareForSegue(segue, sender: sender)
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
         if segue.identifier == "songSegue" {
             if sender as! Bool {
                 //let dest = segue.destinationViewController as! SongViewController
@@ -65,9 +65,9 @@ class AlbumDetailController: BaseUIViewController, UIAlertViewDelegate {
                 var startIndex = 0
                 var index = 0
                 for songItem in album!.songs {
-                    var url = NSURL(string: ServiceConfiguration.GetSongUrl(songItem.url))
+                    var url = URL(string: ServiceConfiguration.GetSongUrl(urlSuffix: songItem.url))
                     if songItem.album.courseType == CourseType.LiveCourse {
-                        url = NSURL(string: songItem.url)
+                        url = URL(string: songItem.url)
                     }
                     let audioItem = MyAudioItem(song: songItem, highQualitySoundURL: url)
                     //(audioItem as! MyAudioItem).song = item
@@ -81,7 +81,8 @@ class AlbumDetailController: BaseUIViewController, UIAlertViewDelegate {
                 
                 let audioPlayer = getAudioPlayer()
                 audioPlayer.delegate = nil
-                audioPlayer.playItems(audioItems, startAtIndex: startIndex)
+                //TODO:
+                //audioPlayer.playItems(audioItems, startAtIndex: startIndex)
             }
         }
     }
@@ -95,21 +96,21 @@ class AlbumDetailController: BaseUIViewController, UIAlertViewDelegate {
         //找到按钮所在的行
         let view = sender.superview!
         let cell = view.superview as! SongCell
-        let row = (tableView.indexPathForCell(cell)?.row)!
+        let row = (tableView.indexPath(for: cell)?.row)!
         let song = songs[row]
 
         
-        if audioPlayer.state == AudioPlayerState.Buffering || audioPlayer.state == AudioPlayerState.Playing || audioPlayer.state == AudioPlayerState.WaitingForConnection {
-            if audioPlayer.isPlayThisSong(song) {
+        if audioPlayer.state == AudioPlayerState.buffering || audioPlayer.state == AudioPlayerState.playing || audioPlayer.state == AudioPlayerState.waitingForConnection {
+            if audioPlayer.isPlayThisSong(song: song) {
                 audioPlayer.pause()
             } else {
-                audioPlayer.playThisSong(song)
+                audioPlayer.playThisSong(song: song)
             }
         } else {
-            if audioPlayer.isPlayThisSong(song) {
+            if audioPlayer.isPlayThisSong(song: song) {
                 audioPlayer.resume()
             } else {
-                audioPlayer.playThisSong(song)
+                audioPlayer.playThisSong(song: song)
             }
         }
         updateCellPlayingButtons()
@@ -142,10 +143,10 @@ class AlbumDetailController: BaseUIViewController, UIAlertViewDelegate {
         
         var idx = 0
         for cell in cells {
-            idx = (tableView.indexPathForCell(cell)?.row)!
+            idx = (tableView.indexPath(for: cell)?.row)!
             cell.playImage.image = UIImage(named: "smallPlayIcon")
             let song = songs[idx]
-            if audioPlayer.isPlayThisSong(song) {
+            if audioPlayer.isPlayThisSong(song: song) {
                 founded = true
             }
         }
@@ -154,15 +155,15 @@ class AlbumDetailController: BaseUIViewController, UIAlertViewDelegate {
             return
         }
         
-        if    audioPlayer.state == AudioPlayerState.Buffering
-           || audioPlayer.state == AudioPlayerState.Playing
-           || audioPlayer.state == AudioPlayerState.WaitingForConnection {
+        if    audioPlayer.state == AudioPlayerState.buffering
+            || audioPlayer.state == AudioPlayerState.playing
+           || audioPlayer.state == AudioPlayerState.waitingForConnection {
             
             idx = 0
             for cell in cells {
-                idx = (tableView.indexPathForCell(cell)?.row)!
+                idx = (tableView.indexPath(for: cell)?.row)!
                 let song = songs[idx]
-                if audioPlayer.isPlayThisSong(song) {
+                if audioPlayer.isPlayThisSong(song: song) {
                     cell.playImage.image = UIImage(named: "smallPauseIcon")
                 }
             }
@@ -177,12 +178,12 @@ class AlbumDetailController: BaseUIViewController, UIAlertViewDelegate {
             return
         }
         updateCellPlayingButtons()
-        updatePlayingButton(playingButton)
+        updatePlayingButton(button: playingButton)
     }
 }
 
 extension AlbumDetailController : UITableViewDataSource, UITableViewDelegate {
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if songs == nil {
             return 0
         }
@@ -190,14 +191,14 @@ extension AlbumDetailController : UITableViewDataSource, UITableViewDelegate {
     }
     
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let song = songs[indexPath.row]
         var cell : SongCell!
         if album!.isLive {
-            cell  = tableView.dequeueReusableCellWithIdentifier("liveSongCell") as! SongCell
+            cell  = tableView.dequeueReusableCell(withIdentifier: "liveSongCell") as! SongCell
             cell.listenPeopleLabel.text = (song as! LiveSong).listenPeople
         } else {
-            cell  = tableView.dequeueReusableCellWithIdentifier("songCell") as! SongCell
+            cell  = tableView.dequeueReusableCell(withIdentifier: "songCell") as! SongCell
             cell.dateLabel.text = song.date
         }
         cell.nameLabel.text = song.name
@@ -206,13 +207,13 @@ extension AlbumDetailController : UITableViewDataSource, UITableViewDelegate {
         //cell.playBigImage.imageView!.image = albumImageData
         let playBigImage = cell.playBigImage
 
-        playBigImage.kf_setImageWithURL(NSURL(string: (album?.image)!)!, forState: .Normal)
+        //playBigImage.kf_setImageWithURL(NSURL(string: (album?.image)!)!, forState: .Normal)
         
-        playBigImage.layer.borderWidth = 0
-        playBigImage.layer.masksToBounds = false
-        playBigImage.layer.borderColor = UIColor.whiteColor().CGColor
-        playBigImage.layer.cornerRadius = playBigImage.frame.height/2
-        playBigImage.clipsToBounds = true
+        playBigImage?.layer.borderWidth = 0
+        playBigImage?.layer.masksToBounds = false
+        playBigImage?.layer.borderColor = UIColor.white as! CGColor
+        playBigImage?.layer.cornerRadius = (playBigImage?.frame.height)!/2
+        playBigImage?.clipsToBounds = true
         
         return cell
     }
@@ -226,12 +227,12 @@ extension AlbumDetailController : UITableViewDataSource, UITableViewDelegate {
         
         if audioPlayer.currentItem != nil {
             if song.id == (audioPlayer.currentItem! as! MyAudioItem).song.id {
-                performSegueWithIdentifier("songSegue", sender: false)
+                performSegue(withIdentifier: "songSegue", sender: false)
                 return
             }
         }
-        performSegueWithIdentifier("songSegue", sender: true)
-        tableView.deselectRowAtIndexPath(indexPath, animated: false)
+        performSegue(withIdentifier: "songSegue", sender: true)
+        tableView.deselectRow(at: indexPath as IndexPath, animated: false)
     }
     
 

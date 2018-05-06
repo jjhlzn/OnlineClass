@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SearchCourseViewController: BaseUIViewController, UITextFieldDelegate , PagableControllerDelegate {
+class SearchCourseViewController: BaseUIViewController {
 
     @IBOutlet weak var tableView: UITableView!
 
@@ -23,10 +23,11 @@ class SearchCourseViewController: BaseUIViewController, UITextFieldDelegate , Pa
     
     var request : SearchRequest?
     
-    var hotSearchKeywords = []
+    var hotSearchKeywords : [String] = []
     
     var pagableController = PagableController<Album>()
     
+    /*
     override func viewDidLoad() {
 
         //故意不掉用父类的viewDidLoad()
@@ -114,7 +115,7 @@ class SearchCourseViewController: BaseUIViewController, UITextFieldDelegate , Pa
         field.leftViewMode = UITextFieldViewMode.Always
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if self.navigationController != nil {
             self.navigationController?.navigationBarHidden = true
@@ -125,7 +126,7 @@ class SearchCourseViewController: BaseUIViewController, UITextFieldDelegate , Pa
         
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         
         cancleHideKeybaordWhenTappedAround()
         self.navigationController?.navigationBarHidden = false
@@ -134,14 +135,14 @@ class SearchCourseViewController: BaseUIViewController, UITextFieldDelegate , Pa
 
 
     
-    func searchHandler(respHandler: ((resp: ServerResponse) -> Void)) {
+    func searchHandler(respHandler: ((_ resp: ServerResponse) -> Void)) {
     
         if request == nil {
             return
         }
     
         BasicService().sendRequest(ServiceConfiguration.SEARCH,
-                                   request: request!, completion: respHandler as ((resp: SearchResponse) -> Void))
+                                   request: request!, completion: respHandler as ((_ resp: SearchResponse) -> Void))
         
 
     }
@@ -254,5 +255,5 @@ extension  SearchCourseViewController :  UITableViewDataSource, UITableViewDeleg
             let row = (tableView.indexPathForSelectedRow?.row)!
             dest.album = pagableController.data[row]
         }
-    }
+    } */
 }

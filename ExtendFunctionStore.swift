@@ -27,8 +27,8 @@ class ExtendFunctionStore {
         let functions = ExtendFunctionMananger.getAllFunctions()
         functions.forEach() {
             function in
-            map[function.code] = Int(keyValueDao.get(getHasMessageKey(function.code), defaultValue: "0")!)
-            isShowMap[function.code] = Int(keyValueDao.get(getIsShowKey(function.code), defaultValue: function.isShowDefault ? "1" : "0")!) > 0
+            map[function.code] = Int(keyValueDao.get(key: getHasMessageKey(code: function.code), defaultValue: "0")!)
+            isShowMap[function.code] = Int(keyValueDao.get(key: getIsShowKey(code: function.code), defaultValue: function.isShowDefault ? "1" : "0")!)! > 0
             
             
         }
@@ -60,12 +60,12 @@ class ExtendFunctionStore {
     }
     
     func updateMessageCount(code: String, value: Int) {
-        keyValueDao.save(getHasMessageKey(code), value: "\(value)")
+        keyValueDao.save(key: getHasMessageKey(code: code), value: "\(value)")
         map[code] = value
     }
     
     func clearMessage(code: String, value: Int) {
-        updateMessageCount(code, value: 0)
+        updateMessageCount(code: code, value: 0)
     }
     
     func isShow(code: String, defaultValue: Bool) -> Bool {
@@ -77,24 +77,24 @@ class ExtendFunctionStore {
     }
     
     func updateShow(code: String, value: Bool) {
-        keyValueDao.save(getIsShowKey(code), value: "\(value ? "1" : "0")")
+        keyValueDao.save(key: getIsShowKey(code: code), value: "\(value ? "1" : "0")")
         isShowMap[code] = value
 
     }
     
     func updateFunctionName(code: String, value: String) {
-        keyValueDao.save(getNameKey(code), value: value)
+        keyValueDao.save(key: getNameKey(code: code), value: value)
     }
     
     func getFunctionName(code: String, defaultValue: String) -> String {
-        return keyValueDao.get(getNameKey(code), defaultValue: defaultValue)!
+        return keyValueDao.get(key: getNameKey(code: code), defaultValue: defaultValue)!
     }
     
     func updateImageUrl(code: String, value: String) {
-        keyValueDao.save(getImageUrlKey(code), value: value)
+        keyValueDao.save(key: getImageUrlKey(code: code), value: value)
     }
     
     func getImageUrl(code: String) -> String{
-        return keyValueDao.get(getImageUrlKey(code), defaultValue: "")!
+        return keyValueDao.get(key: getImageUrlKey(code: code), defaultValue: "")!
     }
 }

@@ -26,34 +26,40 @@ class LoginViewController: BaseUIViewController {
         super.viewDidLoad()
         super.hideKeyboardWhenTappedAround()
         
-        setTextFieldHeight(userNameField, height: 45)
-        setTextFieldHeight(passwordField, height: 45)
+        setTextFieldHeight(field: userNameField, height: 45)
+        setTextFieldHeight(field: passwordField, height: 45)
         
 
         
-        becomeLineBorder(userNameField)
-        becomeLineBorder(passwordField)
+        becomeLineBorder(field: userNameField)
+        becomeLineBorder(field: passwordField)
         
-        addIconToField(userNameField, imageName: "userIcon")
-        addIconToField(passwordField, imageName: "password")
+        addIconToField(field: userNameField, imageName: "userIcon")
+        addIconToField(field: passwordField, imageName: "password")
         
-        let screenSize: CGRect = UIScreen.mainScreen().bounds
+        let screenSize: CGRect = UIScreen.main.bounds
         
         let screenWidth = screenSize.width
         let screenHeight = screenSize.height
         print("width = \(screenWidth), height = \(screenHeight)")
         if screenHeight < 667 {
-            
-            NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
-            NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
+            //TODO: 参数
+            NotificationCenter.default.addObserver(self,
+                                                           selector: #selector(keyboardWillShow),
+                                                           name: NSNotification.Name.UIKeyboardWillShow,
+                                                           object: nil)
+            NotificationCenter.default.addObserver(self,
+                                                           selector: #selector(keyboardWillHide),
+                                                           name: NSNotification.Name.UIKeyboardWillHide,
+                                                           object: nil)
         }
         
         
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        let screenSize: CGRect = UIScreen.mainScreen().bounds
+        let screenSize: CGRect = UIScreen.main.bounds
 
         let screenWidth = screenSize.width
         let screenHeight = screenSize.height
@@ -61,8 +67,8 @@ class LoginViewController: BaseUIViewController {
 
         if screenHeight < 667 {
             
-            NSNotificationCenter.defaultCenter().removeObserver(self,  name: UIKeyboardWillShowNotification, object: nil)
-            NSNotificationCenter.defaultCenter().removeObserver(self,  name: UIKeyboardWillHideNotification, object: nil)
+            NotificationCenter.default.removeObserver(self,  name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+            NotificationCenter.default.removeObserver(self,  name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         }
     }
     
@@ -83,16 +89,17 @@ class LoginViewController: BaseUIViewController {
         
         //field.leftViewMode = UITextFieldViewMode.Always
         
-        let paddingView = UIView(frame: CGRectMake(0, 0, 40, 25))
+        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 40, height: 25))
         paddingView.addSubview(imageView)
         field.leftView = paddingView;
-        field.leftViewMode = UITextFieldViewMode.Always
+        field.leftViewMode = UITextFieldViewMode.always
     }
     
     
     var originFrame: CGRect?
     var originCenter: CGPoint?
-    func keyboardWillShow(notification: NSNotification) {
+    
+    @objc func keyboardWillShow(notification: NSNotification) {
         
         if !isKeyboardShow {
             view.frame.origin.y -= 35
@@ -106,11 +113,9 @@ class LoginViewController: BaseUIViewController {
             logImage.center.y = originCenter!.y + 10
             isKeyboardShow = true
         }
-        
-        
     }
     
-    func keyboardWillHide(notification: NSNotification) {
+    @objc func keyboardWillHide(notification: NSNotification) {
         if isKeyboardShow {
             isKeyboardShow = false
         
@@ -129,15 +134,15 @@ class LoginViewController: BaseUIViewController {
         let password = (passwordField.text)!
         
         if userName.isEmpty || password.isEmpty {
-            displayMessage("用户名和密码不能为空")
+            displayMessage(message: "用户名和密码不能为空")
             return
         }
         
-        loadingOverlay.showOverlay(self.view)
+        loadingOverlay.showOverlay(view: self.view)
         
-        let request = LoginRequest(userName: userName, password: password, deviceToken: (UIApplication.sharedApplication().delegate as! AppDelegate).deviceTokenString)
-        BasicService().sendRequest(ServiceConfiguration.LOGIN, request: request) { (response: LoginResponse) -> Void in
-            dispatch_async(dispatch_get_main_queue()) {
+        let request = LoginRequest(userName: userName, password: password, deviceToken: (UIApplication.shared.delegate as! AppDelegate).deviceTokenString)
+        BasicService().sendRequest(url:  ServiceConfiguration.LOGIN, request: request) { (response: LoginResponse) -> Void in
+            DispatchQueue.main.async() {
                 self.loadingOverlay.hideOverlayView()
                 if response.status == 0 {
                         let loginUser = LoginUser()
@@ -150,14 +155,14 @@ class LoginViewController: BaseUIViewController {
                         loginUser.nickName = response.nickName
                         loginUser.level = response.level
                         loginUser.boss = response.boss
-                        if self.loginUserStore.saveLoginUser(loginUser) {
-                            self.performSegueWithIdentifier("loginSuccessSegue", sender: self)
+                    if self.loginUserStore.saveLoginUser(loginUser: loginUser) {
+                        self.performSegue(withIdentifier: "loginSuccessSegue", sender: self)
                         } else {
-                            self.displayMessage("登录失败")
+                        self.displayMessage(message: "登录失败")
                         }
                         
                 } else {
-                    self.displayMessage(response.errorMessage!)
+                    self.displayMessage(message: response.errorMessage!)
                 }
 
             }

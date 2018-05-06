@@ -17,21 +17,21 @@ For logging into Xcode console you can use MoaConsoleLogger function.
     Moa.logger = MoaConsoleLogger
 
 */
-public func MoaLoggerText(type: MoaLogType, url: String, statusCode: Int?,
-  error: NSError?) -> String {
+public func MoaLoggerText(_ type: MoaLogType, url: String, statusCode: Int?,
+  error: Error?) -> String {
   
   let time = MoaTime.nowLogTime
   var text = "[moa] \(time) "
   var suffix = ""
   
   switch type {
-  case .RequestSent:
+  case .requestSent:
     text += "GET "
-  case .RequestCancelled:
+  case .requestCancelled:
     text += "Cancelled "
-  case .ResponseSuccess:
+  case .responseSuccess:
     text += "Received "
-  case .ResponseError:
+  case .responseError:
     text += "Error "
     
     if let statusCode = statusCode {
@@ -39,7 +39,11 @@ public func MoaLoggerText(type: MoaLogType, url: String, statusCode: Int?,
     }
     
     if let error = error {
-      suffix = error.localizedDescription
+      if let moaError = error as? MoaError {
+        suffix = moaError.localizedDescription
+      } else {
+        suffix = error.localizedDescription
+      }
     }
   }
   

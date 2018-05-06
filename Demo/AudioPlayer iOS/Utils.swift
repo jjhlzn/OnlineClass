@@ -14,14 +14,14 @@ import QorumLogs
 
 extension String {
     var length: Int {
-        return characters.count
+        return count
     }
 }
 
 extension String {
     public func indexOfCharacter(char: Character) -> Int? {
-        if let idx = self.characters.indexOf(char) {
-            return self.startIndex.distanceTo(idx)
+        if let idx = index(of: char) {
+            return distance(from: startIndex, to: idx)
         }
         return nil
     }
@@ -30,13 +30,13 @@ extension String {
 class Utils {
     static let Model_Name = "jufangzhushou"
     
-    static func getDataFromUrl(url:NSURL, completion: ((data: NSData?, response: NSURLResponse?, error: NSError? ) -> Void)) {
-        NSURLSession.sharedSession().dataTaskWithURL(url) { (data, response, error) in
-            completion(data: data, response: response, error: error)
+    static func getDataFromUrl(url:NSURL, completion: @escaping ((_ data: NSData?, _ response: URLResponse?, _ error: NSError? ) -> Void)) {
+        URLSession.shared.dataTask(with: url as URL) { (data, response, error) in
+            completion(data as! NSData, response, error as! NSError)
             }.resume()
     }
     
-    static func stringFromTimeInterval(interval: NSTimeInterval) -> String {
+    static func stringFromTimeInterval(interval: TimeInterval) -> String {
         let interval = Int(interval)
         let seconds = interval % 60
         let minutes = (interval / 60) % 60
@@ -50,24 +50,27 @@ class Utils {
     }
     
     static func getAudioPlayer() -> AudioPlayer {
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
         return appDelegate.audioPlayer
     }
     
     static func delay(delay:Double, closure:()->()) {
+        
+        //TODO: 临时去掉
+        /*
         dispatch_after(
             dispatch_time(
                 DISPATCH_TIME_NOW,
                 Int64(delay * Double(NSEC_PER_SEC))
             ),
-            dispatch_get_main_queue(), closure)
+            dispatch_get_main_queue(), closure) */
     }
     
     static func getCurrentTime() -> String {
         let currentDateTime = NSDate()
-        let formatter = NSDateFormatter()
+        let formatter = DateFormatter()
         formatter.dateFormat = "HH:mm:ss"
-        return formatter.stringFromDate(currentDateTime)
+        return formatter.string(from: currentDateTime as Date)
     }
     
     
@@ -76,7 +79,7 @@ class Utils {
         let loginUserStore = LoginUserStore()
         let loginUser = loginUserStore.getLoginUser()
         if loginUser != nil {
-            if url.indexOfCharacter("?") != nil {
+            if url.indexOfCharacter(char: "?") != nil {
                 return url + "&userid=\(loginUser!.userName!)&token=\(loginUser!.token!)"
             } else {
                 return url + "?userid=\(loginUser!.userName!)&token=\(loginUser!.token!)"
@@ -86,21 +89,21 @@ class Utils {
     }
     
     static func addDevcieParam(url : String) -> String {
-        let model = UIDevice.currentDevice().model
-        let osversion = UIDevice.currentDevice().systemVersion
+        let model = UIDevice.current.model
+        let osversion = UIDevice.current.systemVersion
         
-        let screensize = UIScreen.mainScreen().bounds
+        let screensize = UIScreen.main.bounds
         let screenInfo = "\(screensize.width)*\(screensize.height)"
         
-        let version = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleShortVersionString") as! String
-        let appBundle = NSBundle.mainBundle().objectForInfoDictionaryKey(kCFBundleVersionKey as String) as! String
+        let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
+        let appBundle = Bundle.main.object(forInfoDictionaryKey: kCFBundleVersionKey as String) as! String
         let appversion = "\(version).\(appBundle)"
 
         
         
         var newurl = url
         
-        if url.indexOfCharacter("?") != nil {
+        if url.indexOfCharacter(char: "?") != nil {
             newurl = url + "&"
         } else {
             newurl = url + "?"
@@ -109,25 +112,27 @@ class Utils {
         
         var deviceParamsString  = "platform=iphone&model=\(model)&osversion=\(osversion)&screensize=\(screenInfo)&appversion=\(appversion)"
         
-        deviceParamsString = deviceParamsString.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!
-        
+        //TODO:
+        //deviceParamsString = deviceParamsString.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!
+        deviceParamsString = deviceParamsString.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
         newurl = newurl + deviceParamsString
         
         return newurl
     }
     
-    static func md5(string string: String) -> String {
-        var digest = [UInt8](count: Int(CC_MD5_DIGEST_LENGTH), repeatedValue: 0)
-        if let data = string.dataUsingEncoding(NSUTF8StringEncoding) {
-            CC_MD5(data.bytes, CC_LONG(data.length), &digest)
+    static func md5(_ string: String) -> String {
+        let context = UnsafeMutablePointer<CC_MD5_CTX>.allocate(capacity: 1)
+        var digest = Array<UInt8>(repeating:0, count:Int(CC_MD5_DIGEST_LENGTH))
+        CC_MD5_Init(context)
+        CC_MD5_Update(context, string, CC_LONG(string.lengthOfBytes(using: String.Encoding.utf8)))
+        CC_MD5_Final(&digest, context)
+        context.deallocate(capacity: 1)
+        var hexString = ""
+        for byte in digest {
+            hexString += String(format:"%02x", byte)
         }
         
-        var digestHex = ""
-        for index in 0..<Int(CC_MD5_DIGEST_LENGTH) {
-            digestHex += String(format: "%02x", digest[index])
-        }
-        
-        return digestHex
+        return hexString
     }
     
     static let secretkey = "jufangjituan987768898affbfsdfdfdfdf&^%fdfdf#@fdfdf1111"
@@ -137,7 +142,7 @@ class Utils {
         var string = request.productId  + request.payTime
         string = string + loginUser!.userName! + secretkey
         QL1("string = \(string)")
-        let sign = md5(string: string)
+        let sign = md5(string)
         QL1("sign = \(sign)")
         return sign
     }
@@ -164,15 +169,15 @@ class Utils {
     }
     
     static func hasInstalledWeixin() -> Bool {
-        return hasInstalledApp("weixin")    }
+        return hasInstalledApp(scheme: "weixin")    }
 
     static func hasInstalledQQ() -> Bool {
-        return hasInstalledApp("mqq")
+        return hasInstalledApp(scheme: "mqq")
     }
 
     static func hasInstalledApp(scheme: String) -> Bool {
         let url = "\(scheme)://"
-        if UIApplication.sharedApplication().canOpenURL(NSURL(string: url)!) {
+        if UIApplication.shared.canOpenURL(NSURL(string: url)! as URL) {
             return true
         }
         return false
@@ -188,7 +193,7 @@ extension UIImageView {
     func becomeCircle() {
         self.layer.borderWidth = 0
         self.layer.masksToBounds = false
-        self.layer.borderColor = UIColor.whiteColor().CGColor
+        self.layer.borderColor = UIColor.white.cgColor
         self.layer.cornerRadius = self.frame.height/2
         self.clipsToBounds = true
 
@@ -198,8 +203,8 @@ extension UIImageView {
 extension UIImage{
     func scaledToSize(size: CGSize) -> UIImage{
         UIGraphicsBeginImageContextWithOptions(size, false, 0.0);
-        self.drawInRect(CGRectMake(0, 0, size.width, size.height))
-        let newImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()
+        self.draw(in: CGRect(x:0, y:0, width: size.width, height: size.height))
+        let newImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
         return newImage
     }
@@ -218,17 +223,17 @@ extension UIView {
     
     func addBorder(vBorder: viewBorder, color: UIColor, width: CGFloat) {
         let border = CALayer()
-        border.backgroundColor = color.CGColor
+        border.backgroundColor = color.cgColor
         border.name = vBorder.rawValue
         switch vBorder {
         case .Left:
-            border.frame = CGRectMake(0, 0, width, self.frame.size.height)
+            border.frame = CGRect(x: 0, y: 0, width: width, height: self.frame.size.height)
         case .Right:
-            border.frame = CGRectMake(self.frame.size.width - width, 0, width, self.frame.size.height)
+            border.frame = CGRect(x: self.frame.size.width - width, y: 0, width: width, height: self.frame.size.height)
         case .Top:
-            border.frame = CGRectMake(0, 0, self.frame.size.width, width)
+            border.frame = CGRect(x: 0, y: 0, width: self.frame.size.width, height: width)
         case .Bottom:
-            border.frame = CGRectMake(0, self.frame.size.height - width, self.frame.size.width, width)
+            border.frame = CGRect(x: 0, y: self.frame.size.height - width, width: self.frame.size.width, height: width)
         }
         self.layer.addSublayer(border)
     }

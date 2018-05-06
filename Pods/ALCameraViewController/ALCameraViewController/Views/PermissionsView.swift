@@ -29,17 +29,17 @@ internal class PermissionsView: UIView {
         commonInit()
     }
     
-    func configureInView(view: UIView, title: String, descriptiom: String, completion: () -> Void) {
+    func configureInView(_ view: UIView, title: String, description: String, completion: @escaping ButtonAction) {
         let closeButton = UIButton(frame: CGRect(x: 0, y: 0, width: 44, height: 44))
         
         view.addSubview(self)
         addSubview(closeButton)
         
         titleLabel.text = title
-        descriptionLabel.text = descriptiom
+        descriptionLabel.text = description
         
         closeButton.action = completion
-        closeButton.setImage(UIImage(named: "retakeButton", inBundle: CameraGlobals.shared.bundle, compatibleWithTraitCollection: nil), forState: UIControlState.Normal)
+        closeButton.setImage(UIImage(named: "retakeButton", in: CameraGlobals.shared.bundle, compatibleWith: nil), for: UIControlState())
         closeButton.sizeToFit()
         
         let size = view.frame.size
@@ -54,28 +54,28 @@ internal class PermissionsView: UIView {
         
         backgroundColor = UIColor(white: 0.2, alpha: 1)
         
-        titleLabel.textColor = UIColor.whiteColor()
+        titleLabel.textColor = UIColor.white
         titleLabel.numberOfLines = 0
-        titleLabel.textAlignment = NSTextAlignment.Center
+        titleLabel.textAlignment = NSTextAlignment.center
         titleLabel.font = UIFont(name: "AppleSDGothicNeo-Light", size: 22)
         titleLabel.text = localizedString("permissions.title")
         
-        descriptionLabel.textColor = UIColor.lightGrayColor()
+        descriptionLabel.textColor = UIColor.lightGray
         descriptionLabel.numberOfLines = 0
-        descriptionLabel.textAlignment = NSTextAlignment.Center
+        descriptionLabel.textAlignment = NSTextAlignment.center
         descriptionLabel.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 16)
         descriptionLabel.text = localizedString("permissions.description")
         
-        let icon = UIImage(named: "permissionsIcon", inBundle: CameraGlobals.shared.bundle, compatibleWithTraitCollection: nil)!
+        let icon = UIImage(named: "permissionsIcon", in: CameraGlobals.shared.bundle, compatibleWith: nil)!
         iconView.image = icon
         
         settingsButton.contentEdgeInsets = UIEdgeInsetsMake(6, 12, 6, 12)
-        settingsButton.setTitle(localizedString("permissions.settings"), forState: UIControlState.Normal)
-        settingsButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
+        settingsButton.setTitle(localizedString("permissions.settings"), for: UIControlState())
+        settingsButton.setTitleColor(UIColor.white, for: UIControlState())
         settingsButton.layer.cornerRadius = 4
         settingsButton.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 14)
         settingsButton.backgroundColor = UIColor(red: 52.0/255.0, green: 183.0/255.0, blue: 250.0/255.0, alpha: 1)
-        settingsButton.addTarget(self, action: #selector(PermissionsView.openSettings), forControlEvents: UIControlEvents.TouchUpInside)
+        settingsButton.addTarget(self, action: #selector(PermissionsView.openSettings), for: UIControlEvents.touchUpInside)
         
         addSubview(iconView)
         addSubview(titleLabel)
@@ -83,9 +83,9 @@ internal class PermissionsView: UIView {
         addSubview(settingsButton)
     }
     
-    func openSettings() {
-        if let appSettings = NSURL(string: UIApplicationOpenSettingsURLString) {
-            UIApplication.sharedApplication().openURL(appSettings)
+    @objc func openSettings() {
+        if let appSettings = URL(string: UIApplicationOpenSettingsURLString) {
+            UIApplication.shared.openURL(appSettings)
         }
     }
     
@@ -95,7 +95,7 @@ internal class PermissionsView: UIView {
         let maxLabelWidth = frame.width - horizontalPadding * 2
         
         let iconSize = iconView.image!.size
-        let constrainedTextSize = CGSize(width: maxLabelWidth, height: CGFloat.max)
+        let constrainedTextSize = CGSize(width: maxLabelWidth, height: CGFloat.greatestFiniteMagnitude)
         let titleSize = titleLabel.sizeThatFits(constrainedTextSize)
         let descriptionSize = descriptionLabel.sizeThatFits(constrainedTextSize)
         let settingsSize = settingsButton.sizeThatFits(constrainedTextSize)

@@ -27,7 +27,7 @@ class CodeImageViewController: BaseUIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
       
-        
+        /*
         let loginUser = LoginUserStore().getLoginUser()!
         
         qrCodeImageStore = QrCodeImageStore()
@@ -52,14 +52,16 @@ class CodeImageViewController: BaseUIViewController {
             print("winxin share is OK")
         } else {
             print("winxin share is  NOT OK")
-        }
+        }*/
     }
     
     func addLineBorder(field: UIButton) {
+        /*
         let bottomBorder = CALayer()
         bottomBorder.frame = CGRectMake(0.0, 0, field.frame.size.width, 1.0);
         bottomBorder.backgroundColor = UIColor.lightGrayColor().CGColor
         field.layer.addSublayer(bottomBorder)
+ */
     }
     
 

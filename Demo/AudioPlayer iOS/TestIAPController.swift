@@ -9,7 +9,7 @@
 import UIKit
 import StoreKit
 
-class TestIAPController: UIViewController, SKProductsRequestDelegate, SKPaymentTransactionObserver {
+class TestIAPController: UIViewController, SKProductsRequestDelegate {
     var list = [SKProduct]()
     var p = SKProduct()
     
@@ -31,33 +31,25 @@ class TestIAPController: UIViewController, SKProductsRequestDelegate, SKPaymentT
     @IBAction func buyPressed(sender: UIButton) {
         if list.count > 0 {
             p = list[0]
-            buyProduct(p)
+            buyProduct(product: p)
         }
     }
     
     @IBAction func webPagePressed(sender: UIButton) {
-        performSegueWithIdentifier("buyVipSegue", sender: nil)
+        performSegue(withIdentifier: "buyVipSegue", sender: nil)
     }
 
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        let dest = segue.destinationViewController as! WebPageViewController
-        if segue.identifier == "bugVipSegue" {
-            dest.title = "购买VIP"
-            dest.url = NSURL(string: "http://192.168.1.68:3000/app/buyvip.html")
-            //dest.url = NSURL(string: "http://www.baidu.com")
 
-        }
-    }
     
     private func buyProduct(product: SKProduct) {
         let p = product
         print("buy " + p.productIdentifier)
         let pay = SKPayment(product: p)
-        SKPaymentQueue.defaultQueue().addTransactionObserver(self)
-        SKPaymentQueue.defaultQueue().addPayment(pay as SKPayment);
+        SKPaymentQueue.default().add(self as! SKPaymentTransactionObserver)
+        SKPaymentQueue.default().add(pay as SKPayment);
     }
     
-    func productsRequest(request: SKProductsRequest, didReceiveResponse response: SKProductsResponse) {
+    func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
         print("product request")
         let myProduct = response.products
         
@@ -87,7 +79,7 @@ class TestIAPController: UIViewController, SKProductsRequestDelegate, SKPaymentT
     func finishTransaction(trans:SKPaymentTransaction)
     {
         print("finish trans")
-        SKPaymentQueue.defaultQueue().finishTransaction(trans)
+        SKPaymentQueue.default().finishTransaction(trans)
     }
     
     func paymentQueue(queue: SKPaymentQueue, removedTransactions transactions: [SKPaymentTransaction])

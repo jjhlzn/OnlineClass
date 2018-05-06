@@ -12,7 +12,8 @@ import StoreKit
 import QorumLogs
 import SwiftyJSON
 
-class IapSupportWebPageViewController: BaseUIViewController, SKProductsRequestDelegate, SKPaymentTransactionObserver, WKScriptMessageHandler {
+class IapSupportWebPageViewController: BaseUIViewController, SKProductsRequestDelegate, SKPaymentTransactionObserver,
+    WKScriptMessageHandler {
     var webView: WKWebView?
     
      var productIDs : NSSet = NSSet(objects: "com.jufang.onlineclass.oneyearvipclass2")
@@ -31,28 +32,28 @@ class IapSupportWebPageViewController: BaseUIViewController, SKProductsRequestDe
         
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        SKPaymentQueue.defaultQueue().addTransactionObserver(self)
+        SKPaymentQueue.default().add(self)
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        SKPaymentQueue.defaultQueue().removeTransactionObserver(self)
+        SKPaymentQueue.default().remove(self)
     }
     
     let contentController = WKUserContentController()
     func initWebView() {
         
-        contentController.addScriptMessageHandler(
+        contentController.add(
             self,
             name: "payCallbackHandler"
         )
-        contentController.addScriptMessageHandler(
+        contentController.add(
             self,
             name: "openApp"
         )
-        contentController.addScriptMessageHandler(
+        contentController.add(
             self,
             name: "wechatPay"
         )
@@ -60,7 +61,7 @@ class IapSupportWebPageViewController: BaseUIViewController, SKProductsRequestDe
     }
 
     
-    func userContentController(userContentController: WKUserContentController, didReceiveScriptMessage message: WKScriptMessage) {
+    func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
         QL1("message.name = \(message.name)")
         if(message.name == "payCallbackHandler") {
             QL1("JavaScript is sending a message \(message.body)")
@@ -68,29 +69,29 @@ class IapSupportWebPageViewController: BaseUIViewController, SKProductsRequestDe
             let requestId = message.body
             buyProductId = requestId as! String
             
-            if (!productIDs.containsObject(requestId) || theProduct.productIdentifier != buyProductId ){
+            if (!productIDs.contains(requestId) || theProduct.productIdentifier != buyProductId ){
                 productIDs = NSSet(objects: requestId)
                 QL1(productIDs)
                 self.buyAfterRequest = true
-                loadingOverlay.showOverlayWithMessage("支付加载中", view: self.view)
+                loadingOverlay.showOverlayWithMessage(msg:  "支付加载中", view: self.view)
                 let request: SKProductsRequest = SKProductsRequest(productIdentifiers: productIDs as! Set<String>)
                 request.delegate = self
                 request.start()
                 return;
             }
             
-            buyProduct(theProduct)
+            buyProduct(product: theProduct)
             
         } else if message.name == "wechatPay" {
             QL1("JavaScript is sending a message \(message.body)")
             //let json = JSON.parse(message.body as! String)
-            wechatPay(message.body as! NSDictionary)
+            wechatPay(json: message.body as! NSDictionary)
         }
         
         else if message.name == "openApp" {
-            if UIApplication.sharedApplication().canOpenURL(NSURL(string: message.body as! String)!)
+            if UIApplication.shared.canOpenURL(NSURL(string: message.body as! String)! as URL)
             {
-                UIApplication.sharedApplication().openURL(NSURL(string: message.body as! String)!)
+                UIApplication.shared.openURL(NSURL(string: message.body as! String)! as URL)
             }
         }
     }
@@ -106,11 +107,11 @@ class IapSupportWebPageViewController: BaseUIViewController, SKProductsRequestDe
         }
         
         let pay = SKPayment(product: product)
-        SKPaymentQueue.defaultQueue().addPayment(pay as SKPayment);
-        loadingOverlay.showOverlayWithMessage("支付中", view: self.view)
+        SKPaymentQueue.default().add(pay as SKPayment);
+        loadingOverlay.showOverlayWithMessage(msg: "支付中", view: self.view)
     }
     
-    func productsRequest(request: SKProductsRequest, didReceiveResponse response: SKProductsResponse) {
+    func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
         print("product request")
         let myProduct = response.products
         for product in myProduct {
@@ -124,7 +125,7 @@ class IapSupportWebPageViewController: BaseUIViewController, SKProductsRequestDe
         
         if buyAfterRequest {
             loadingOverlay.hideOverlayView()
-            buyProduct(theProduct)
+            buyProduct(product: theProduct)
         }
     }
     
@@ -133,7 +134,7 @@ class IapSupportWebPageViewController: BaseUIViewController, SKProductsRequestDe
     }
     
     
-    func paymentQueue(queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
+    func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
         QL1("paymentQueue(updatedTransactions)")
         loadingOverlay.hideOverlayView()
         for transaction:AnyObject in transactions {
@@ -142,13 +143,13 @@ class IapSupportWebPageViewController: BaseUIViewController, SKProductsRequestDe
             QL1("state = \(trans.transactionState.rawValue)")
             switch trans.transactionState {
                 
-            case .Purchased:
+            case .purchased:
                 QL1("Purchased")
                 QL1(trans.payment.productIdentifier)
                 let prodID = trans.payment.productIdentifier as String
                 QL1("prodid = \(prodID)")
                 
-                let dateFormat = NSDateFormatter()
+                let dateFormat = DateFormatter()
                 dateFormat.dateFormat = "yyyy-MM-dd HH:mm:ss"
                 
                 //将购买记录保存到本地数据库中
@@ -156,11 +157,11 @@ class IapSupportWebPageViewController: BaseUIViewController, SKProductsRequestDe
                 let purchaseRecordStore = PurchaseRecordStore()
                 let purchaseRecord = PurchaseRecord()
                 purchaseRecord.isNotify = false
-                purchaseRecord.payTime = dateFormat.stringFromDate(NSDate())
+                purchaseRecord.payTime = dateFormat.string(from: NSDate() as Date)
                 purchaseRecord.productId = prodID
                 purchaseRecord.userid = loginUserStore.getLoginUser()?.userName!
                 
-                let purchaseRecordEntity = purchaseRecordStore.save(purchaseRecord)
+                let purchaseRecordEntity = purchaseRecordStore.save(record: purchaseRecord)
                 if purchaseRecordEntity == nil {
                     QL4("save purchase record entity error")
                 } else {
@@ -174,9 +175,9 @@ class IapSupportWebPageViewController: BaseUIViewController, SKProductsRequestDe
                 request.payTime = purchaseRecord.payTime
                 
                 //sign必须最后一个进行赋值
-                request.sign = Utils.createIPANotifySign(request)
+                request.sign = Utils.createIPANotifySign(request: request)
                 
-                BasicService().sendRequest(ServiceConfiguration.NOTIFY_IAP_SUCCESS, request: request) {
+                BasicService().sendRequest(url: ServiceConfiguration.NOTIFY_IAP_SUCCESS, request: request) {
                     (resp : NotifyIAPSuccessResponse) -> Void in
                     if resp.status != ServerResponseStatus.Success.rawValue {
                         QL4("resp.status = \(resp.status), message = \(resp.errorMessage)")
@@ -189,18 +190,18 @@ class IapSupportWebPageViewController: BaseUIViewController, SKProductsRequestDe
                 }
                 
                 
-                notifyBrowserPayResult(true)
+                notifyBrowserPayResult(result: true)
                 queue.finishTransaction(trans)
                 break;
-            case .Failed:
-                notifyBrowserPayResult(false)
+            case .failed:
+                notifyBrowserPayResult(result: false)
                 QL1("buy failed")
                 queue.finishTransaction(trans)
                 break;
-            case .Purchasing:
+            case .purchasing:
                 QL1("purchasing")
                 break
-            case .Deferred:
+            case .deferred:
                 QL1("defered")
                 break
             default:
@@ -224,13 +225,9 @@ class IapSupportWebPageViewController: BaseUIViewController, SKProductsRequestDe
     func finishTransaction(trans:SKPaymentTransaction)
     {
         print("finish trans")
-        SKPaymentQueue.defaultQueue().finishTransaction(trans)
+        SKPaymentQueue.default().finishTransaction(trans)
     }
-    
-    func paymentQueue(queue: SKPaymentQueue, removedTransactions transactions: [SKPaymentTransaction])
-    {
-        print("remove trans");
-    }
+
     
     /*********** 微信支付 ****************/
     func wechatPay(json: NSDictionary) {
@@ -243,7 +240,7 @@ class IapSupportWebPageViewController: BaseUIViewController, SKProductsRequestDe
         request.prepayId = json["prepayid"] as! String
         request.timeStamp = UInt32(json["timestamp"] as! String)!
         request.sign = json["sign"] as! String
-        WXApi.sendReq(request)
+        WXApi.send(request)
     }
     
         

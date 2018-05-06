@@ -26,19 +26,19 @@ class SignupViewController : BaseUIViewController, UIAlertViewDelegate {
         super.viewDidLoad()
         super.hideKeyboardWhenTappedAround()
         
-        setTextFieldHeight(phoneField, height: 45)
-        setTextFieldHeight(passwordField, height: 45)
-        setTextFieldHeight(phoneCheckCode, height: 45)
-        setTextFieldHeight(otherPhoneField, height: 45)
+        setTextFieldHeight(field: phoneField, height: 45)
+        setTextFieldHeight(field: passwordField, height: 45)
+        setTextFieldHeight(field: phoneCheckCode, height: 45)
+        setTextFieldHeight(field: otherPhoneField, height: 45)
         
         
         
-        becomeLineBorder(phoneField)
-        becomeLineBorder(passwordField)
-        becomeLineBorder(phoneCheckCode)
-        becomeLineBorder(otherPhoneField)
+        becomeLineBorder(field: phoneField)
+        becomeLineBorder(field: passwordField)
+        becomeLineBorder(field: phoneCheckCode)
+        becomeLineBorder(field: otherPhoneField)
         
-        phoneCodeLabel.hidden = true
+        phoneCodeLabel.isHidden = true
         
         
     }
@@ -54,10 +54,10 @@ class SignupViewController : BaseUIViewController, UIAlertViewDelegate {
         
         //field.leftViewMode = UITextFieldViewMode.Always
         
-        let paddingView = UIView(frame: CGRectMake(0, 0, 40, 25))
+        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 40, height: 25))
         paddingView.addSubview(imageView)
         field.leftView = paddingView;
-        field.leftViewMode = UITextFieldViewMode.Always
+        field.leftViewMode = UITextFieldViewMode.always
     }
 
     
@@ -66,7 +66,7 @@ class SignupViewController : BaseUIViewController, UIAlertViewDelegate {
         //手机号码不能为空
         let phoneNumber = phoneField.text
         if phoneNumber == nil || phoneNumber == "" {
-            displayMessage("手机号不能为空")
+            displayMessage(message: "手机号不能为空")
             return
         }
         
@@ -74,28 +74,28 @@ class SignupViewController : BaseUIViewController, UIAlertViewDelegate {
         
         //发送请求
         let request = GetPhoneCheckCodeRequest(phoneNumber: phoneNumber!)
-        BasicService().sendRequest(ServiceConfiguration.GET_PHONE_CHECK_CODE, request: request) { (response: GetPhoneCheckCodeResponse) -> Void in
+        BasicService().sendRequest(url: ServiceConfiguration.GET_PHONE_CHECK_CODE, request: request) { (response: GetPhoneCheckCodeResponse) -> Void in
             if response.status != 0 {
-                self.displayMessage(response.errorMessage!)
+                self.displayMessage(message: response.errorMessage!)
             }
         }
         
         //设置timer
-        timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(updateButtonTitle), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateButtonTitle), userInfo: nil, repeats: true)
         
-        getPhoneCodeButton.hidden = true
-        phoneCodeLabel.hidden = false
+        getPhoneCodeButton.isHidden = true
+        phoneCodeLabel.isHidden = false
     }
     
     var timerCount = 59
-    var timer: NSTimer?
-    func updateButtonTitle() {
+    var timer: Timer?
+    @objc func updateButtonTitle() {
         phoneCodeLabel.text = "\(timerCount)秒后重新获取"
         timerCount = timerCount - 1
         if timerCount <= 0 {
             timer?.invalidate()
-            getPhoneCodeButton.hidden = false
-            phoneCodeLabel.hidden = true
+            getPhoneCodeButton.isHidden = false
+            phoneCodeLabel.isHidden = true
             timerCount = 59
         }
     }
@@ -115,15 +115,15 @@ class SignupViewController : BaseUIViewController, UIAlertViewDelegate {
         let password = passwordField.text
         
         //发送注册请求
-        loadingOverlay.showOverlay(self.view)
+        loadingOverlay.showOverlay(view: self.view)
 
         let request = SignupRequest(phoneNumber: phoneNumber!, checkCode: checkCode!, invitePhone: otherPhone!, password: password!)
-        BasicService().sendRequest(ServiceConfiguration.SIGNUP, request: request) { (response: SignupResponse) -> Void in
+        BasicService().sendRequest(url: ServiceConfiguration.SIGNUP, request: request) { (response: SignupResponse) -> Void in
             self.loadingOverlay.hideOverlayView()
             if response.status != 0 {
-                self.displayMessage(response.errorMessage!)
+                self.displayMessage(message: response.errorMessage!)
             } else {
-                self.displayMessage("注册成功", delegate: self)
+                self.displayMessage(message: "注册成功", delegate: self)
             }
             
         }
@@ -131,16 +131,16 @@ class SignupViewController : BaseUIViewController, UIAlertViewDelegate {
     }
     
     func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
-        self.performSegueWithIdentifier("signupSuccessSegue", sender: nil)
+        self.performSegue(withIdentifier: "signupSuccessSegue", sender: nil)
     }
     
     @IBAction func showAgreementButtonPressed(sender: AnyObject) {
-        performSegueWithIdentifier("webViewSegue", sender: nil)
+        performSegue(withIdentifier: "webViewSegue", sender: nil)
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "webViewSegue" {
-            let dest = segue.destinationViewController as! WebPageViewController
+            let dest = segue.destination as! WebPageViewController
             dest.title = "巨方助手APP服务协议"
             dest.url = NSURL(string: ServiceLinkManager.AgreementUrl)
         }

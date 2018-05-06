@@ -20,7 +20,7 @@ class SetNickNameViewController: BaseUIViewController, UITableViewDataSource, UI
     override func viewDidLoad() {
         super.viewDidLoad()
         //self.navigationController?.title = "昵称"
-        saveButton.enabled = false
+        saveButton.isEnabled = false
         
         tableView.dataSource = self
         tableView.delegate = self
@@ -30,38 +30,38 @@ class SetNickNameViewController: BaseUIViewController, UITableViewDataSource, UI
         return 1
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("textFieldCell") as! TextFieldCell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "textFieldCell") as! TextFieldCell
         let loginUser = loginUserStore.getLoginUser()!
         cell.textField.text = loginUser.nickName
         print ("loginUser.nickName = \(loginUser.nickName)")
-        cell.textField.addTarget(self, action: #selector(textFieldDidChange), forControlEvents: UIControlEvents.EditingChanged)
+        cell.textField.addTarget(self, action: #selector(textFieldDidChange), for: UIControlEvents.editingChanged)
         return cell
     }
     
-    func textFieldDidChange(textField: UITextField) {
+    @objc func textFieldDidChange(textField: UITextField) {
         if loginUserStore.getLoginUser()?.name != textField.text && textField.text?.length != 0 {
-            saveButton.enabled = true
+            saveButton.isEnabled = true
         } else {
-            saveButton.enabled = false
+            saveButton.isEnabled = false
         }
     }
     
     
     @IBAction func savePressed(sender: AnyObject) {
         
-        loading.showOverlay(view)
+        loading.showOverlay(view: view)
         let request = SetNickNameRequest()
-        request.newNickName = (tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0)) as! TextFieldCell).textField.text!
-        BasicService().sendRequest(ServiceConfiguration.SET_NICK_NAME, request: request) {
+        request.newNickName = (tableView.cellForRow(at: NSIndexPath(row: 0, section: 0) as IndexPath) as! TextFieldCell).textField.text!
+        BasicService().sendRequest(url: ServiceConfiguration.SET_NICK_NAME, request: request) {
             (resp : SetNickNameResponse) -> Void in
             self.loading.hideOverlayView()
             if resp.status != 0 {
-                self.displayMessage(resp.errorMessage!)
+                self.displayMessage(message: resp.errorMessage!)
                 return
             }
             
@@ -71,9 +71,9 @@ class SetNickNameViewController: BaseUIViewController, UITableViewDataSource, UI
                 loginUser = self.loginUserStore.getLoginUser()!
                 print("nickname = \(loginUser.nickName)" )
                 (self.navigationController?.viewControllers[1] as! PersonalInfoViewController).tableView.reloadData()
-                self.navigationController?.popViewControllerAnimated(true)
+                self.navigationController?.popViewController(animated: true)
             } else {
-                self.displayMessage("保存失败")
+                self.displayMessage(message: "保存失败")
                 return
             }
             

@@ -19,7 +19,7 @@ class SetNameViewController: BaseUIViewController, UITableViewDataSource, UITabl
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        saveButton.enabled = false
+        saveButton.isEnabled = false
         
         tableView.dataSource = self
         tableView.delegate = self
@@ -29,36 +29,36 @@ class SetNameViewController: BaseUIViewController, UITableViewDataSource, UITabl
         return 1
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("textFieldCell") as! TextFieldCell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "textFieldCell") as! TextFieldCell
         cell.textField.text = loginUserStore.getLoginUser()?.name
-        cell.textField.addTarget(self, action: #selector(textFieldDidChange), forControlEvents: UIControlEvents.EditingChanged)
+        cell.textField.addTarget(self, action: #selector(textFieldDidChange), for: UIControlEvents.editingChanged)
         return cell
     }
     
-    func textFieldDidChange(textField: UITextField) {
+    @objc func textFieldDidChange(textField: UITextField) {
         if loginUserStore.getLoginUser()?.name != textField.text && textField.text?.length != 0 {
-            saveButton.enabled = true
+            saveButton.isEnabled = true
         } else {
-            saveButton.enabled = false
+            saveButton.isEnabled = false
         }
     }
     
     
     @IBAction func savePressed(sender: AnyObject) {
         
-        loading.showOverlay(view)
+        loading.showOverlay(view: view)
         let request = SetNameRequest()
-        request.newName = (tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0)) as! TextFieldCell).textField.text!
-        BasicService().sendRequest(ServiceConfiguration.SET_NAME, request: request) {
+        request.newName = (tableView.cellForRow(at: NSIndexPath(row: 0, section: 0) as IndexPath) as! TextFieldCell).textField.text!
+        BasicService().sendRequest(url: ServiceConfiguration.SET_NAME, request: request) {
             (resp : SetNameResponse) -> Void in
             self.loading.hideOverlayView()
             if resp.status != 0 {
-                self.displayMessage(resp.errorMessage!)
+                self.displayMessage(message: resp.errorMessage!)
                 return
             }
             
@@ -66,9 +66,9 @@ class SetNameViewController: BaseUIViewController, UITableViewDataSource, UITabl
             loginUser.name = request.newName
             if self.loginUserStore.updateLoginUser() {
                 (self.navigationController?.viewControllers[1] as! PersonalInfoViewController).tableView.reloadData()
-                self.navigationController?.popViewControllerAnimated(true)
+                self.navigationController?.popViewController(animated: true)
             } else {
-                self.displayMessage("保存失败")
+                self.displayMessage(message: "保存失败")
                 return
             }
             

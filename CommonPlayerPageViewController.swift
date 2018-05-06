@@ -36,11 +36,11 @@ class CommonPlayerPageViewController : NSObject, UITableViewDataSource, UITableV
     }
     
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section{
         case 0:
             return 1
@@ -57,11 +57,11 @@ class CommonPlayerPageViewController : NSObject, UITableViewDataSource, UITableV
         }
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let section = indexPath.section
         switch section {
         case 0:
-            let cell = tableView.dequeueReusableCellWithIdentifier("playerCell") as! PlayerCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "playerCell") as! PlayerCell
             cell.controller = viewController
             cell.initPalyer()
             self.playerViewController = cell.playerViewController
@@ -71,31 +71,31 @@ class CommonPlayerPageViewController : NSObject, UITableViewDataSource, UITableV
             let rowCount = (comments?.count)!
             if row == 0 {
                 
-                let cell = tableView.dequeueReusableCellWithIdentifier("commentHeaderCell") as! CommentHeaderCell
+                let cell = tableView.dequeueReusableCell(withIdentifier: "commentHeaderCell") as! CommentHeaderCell
                 cell.countLabel.text = "(" + "\(self.totalCommentCount)" + ")"
                 return cell
                 
             } else   {
                 if rowCount == 0 {
-                    let cell = tableView.dequeueReusableCellWithIdentifier("noCommentCell")
+                    let cell = tableView.dequeueReusableCell(withIdentifier: "noCommentCell")
                     return cell!
                 } else if row == rowCount + 1 {  //最后一行
-                    let cell = tableView.dequeueReusableCellWithIdentifier("moreCommentCell") as! MoreLinkCell
+                    let cell = tableView.dequeueReusableCell(withIdentifier: "moreCommentCell") as! MoreLinkCell
                     cell.moreCommentLabel.text = "查看全部\(self.totalCommentCount)条评论 >"
                     return cell
                 } else {
-                    return getCommonCell(tableView, row: row)
+                    return getCommonCell(tableView: tableView, row: row)
                 }
             }
         default:
             break
         }
-        return tableView.dequeueReusableCellWithIdentifier("playerCell")!
+        return tableView.dequeueReusableCell(withIdentifier: "playerCell")!
         
     }
     
     private func getCommonCell(tableView: UITableView, row: Int) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("commentCell") as! CommentCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "commentCell") as! CommentCell
         
         let comment = comments![row - 1]
         cell.userIdLabel.text = comment.nickName
@@ -112,9 +112,9 @@ class CommonPlayerPageViewController : NSObject, UITableViewDataSource, UITableV
         
         let profileImageUrl = ServiceConfiguration.GET_PROFILE_IMAGE + "?userid=" + comment.userId
         //print(profileImageUrl)
-        if let url = NSURL(string: profileImageUrl) {
+        if let url = URL(string: profileImageUrl) {
             //print("download image")
-            cell.userImage.kf_setImageWithURL(url)
+            cell.userImage.kf.setImage(with: url)
         }
 
         return cell
@@ -122,11 +122,11 @@ class CommonPlayerPageViewController : NSObject, UITableViewDataSource, UITableV
     }
 
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let section = indexPath.section
         switch section {
         case 0:
-            let screenSize: CGRect = UIScreen.mainScreen().bounds
+            let screenSize: CGRect = UIScreen.main.bounds
             let screenWidth = screenSize.width
             return screenWidth + 95
         case 1:
@@ -141,7 +141,7 @@ class CommonPlayerPageViewController : NSObject, UITableViewDataSource, UITableV
                     return 44
                 } else {   //评论行
                     
-                    let cell = tableView.dequeueReusableCellWithIdentifier("commentCell") as! CommentCell
+                    let cell = tableView.dequeueReusableCell(withIdentifier: "commentCell") as! CommentCell
                     let row = indexPath.row
                     let comment = comments![row - 1]
 
@@ -169,21 +169,21 @@ class CommonPlayerPageViewController : NSObject, UITableViewDataSource, UITableV
     }
     
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let section = indexPath.section
         let row = indexPath.row
-        tableView.deselectRowAtIndexPath(indexPath, animated: false)
+        tableView.deselectRow(at: indexPath as IndexPath, animated: false)
         switch section {
         case 0:
-            let cell = tableView.cellForRowAtIndexPath(indexPath)
-            cell?.selectionStyle = .None
+            let cell = tableView.cellForRow(at: indexPath as IndexPath)
+            cell?.selectionStyle = .none
             break;
         case 1:
             let rowCount = (comments?.count)!
             if rowCount > 0 {
                 if row == rowCount + 1 {
-                    tableView.cellForRowAtIndexPath(indexPath)?.selected = false
-                    viewController.performSegueWithIdentifier("commentListSegue", sender: nil)
+                    tableView.cellForRow(at: indexPath as IndexPath)?.isSelected = false
+                    viewController.performSegue(withIdentifier: "commentListSegue", sender: nil)
                 }
             }
             break
@@ -205,13 +205,13 @@ class CommonPlayerPageViewController : NSObject, UITableViewDataSource, UITableV
             }
             
             viewController.commentController.song = song
-            QL1("reload: song.id = \(song.id)")
-            let request = GetSongCommentsRequest(song: song)
+            QL1("reload: song.id = \(song?.id)")
+            let request = GetSongCommentsRequest(song: song!)
             request.pageSize = 5
-            BasicService().sendRequest(ServiceConfiguration.GET_SONG_COMMENTS,
+            BasicService().sendRequest(url: ServiceConfiguration.GET_SONG_COMMENTS,
                                        request: request) {
                                         (resp: GetSongCommentsResponse) -> Void in
-                                        dispatch_async(dispatch_get_main_queue()) {
+                                        DispatchQueue.main.async() {
                                             if resp.status != 0 {
                                                 print(resp.errorMessage)
                                                 return
@@ -219,15 +219,15 @@ class CommonPlayerPageViewController : NSObject, UITableViewDataSource, UITableV
                                             
                                             self.totalCommentCount = resp.totalNumber
                                             self.viewController.playerPageViewController.comments = resp.resultSet
-                                            self.viewController.tableView.reloadSections(NSIndexSet(index: 1), withRowAnimation: .None)
+                                            self.viewController.tableView.reloadSections(NSIndexSet(index: 1) as IndexSet, with: .none)
                                         }
             }
         }
     }
     
     func afterSendComment(comment: Comment) {
-        comments.insert(comment, atIndex: 0)
-        viewController.tableView.reloadSections(NSIndexSet(index: 1), withRowAnimation: .None)
+        comments.insert(comment, at: 0)
+        viewController.tableView.reloadSections(NSIndexSet(index: 1) as IndexSet, with: .none)
     }
     
     

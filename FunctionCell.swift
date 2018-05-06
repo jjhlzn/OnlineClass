@@ -26,7 +26,7 @@ class ExtendFunctionMananger : NSObject {
         get {
             return ExtendFunctionMananger.allFunctions.filter({
                 (function: ExtendFunction) -> Bool in
-                return extendFunctionStore.isShow(function.code, defaultValue: false)
+                return extendFunctionStore.isShow(code: function.code, defaultValue: false)
             });
         }
     }
@@ -111,7 +111,7 @@ class ExtendFunctionMananger : NSObject {
     
     func getFunctionCell(tableView: UITableView, row: Int) -> FunctionCell {
         var index = row * buttonCountEachRow
-        let cell = tableView.dequeueReusableCellWithIdentifier("functionCell") as! FunctionCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "functionCell") as! FunctionCell
         cell.subviews.forEach() { subView in
             subView.removeFromSuperview()
         }
@@ -130,41 +130,41 @@ class ExtendFunctionMananger : NSObject {
                 break
             }
             
-            addCellView(row, column: i, index: index, function: function, cell: cell)
+            addCellView(row: row, column: i, index: index, function: function, cell: cell)
             index = index + 1
         }
         
-        cell.separatorInset = UIEdgeInsetsMake(0, UIScreen.mainScreen().bounds.width, 0, 0);
+        cell.separatorInset = UIEdgeInsetsMake(0, UIScreen.main.bounds.width, 0, 0);
         return cell
     }
     
     
     private func addCellView(row : Int, column : Int, index: Int, function: ExtendFunction, cell: UITableViewCell) -> UIView {
-        let interval : CGFloat = UIScreen.mainScreen().bounds.width / 4
+        let interval : CGFloat = UIScreen.main.bounds.width / 4
         let x = interval  * CGFloat(column)
-        let cellView = UIView(frame: CGRectMake(x, 0, interval, 79))
+        let cellView = UIView(frame: CGRect(x: x, y: 0, width: interval, height: 79))
         
         
         
         cellView.tag = index
         cell.addSubview(cellView)
         
-        let imageView = makeImage(index, function: function, superView: cellView)
-        let label =     makeLabel(index, function: function, superView: cellView)
+        let imageView = makeImage(index: index, function: function, superView: cellView)
+        let label =     makeLabel(index: index, function: function, superView: cellView)
         
         cellView.addSubview(imageView)
         cellView.addSubview(label)
         
         if function.action != nil {
             cellView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: function.action ))
-            cellView.userInteractionEnabled = true
+            cellView.isUserInteractionEnabled = true
         }
         
         return cellView
     }
     
     private func getImageWidth() -> CGFloat {
-        let screenWidth = UIScreen.mainScreen().bounds.width
+        let screenWidth = UIScreen.main.bounds.width
         if isiPhone4Screen {
             return screenWidth / 4 * 0.6
         } else {
@@ -174,7 +174,7 @@ class ExtendFunctionMananger : NSObject {
     
     var cellHeight:CGFloat {
         get {
-            let screenWidth = UIScreen.mainScreen().bounds.width
+            let screenWidth = UIScreen.main.bounds.width
             if isiPhone4Screen {
                 return screenWidth / 4 * 0.95
             } else {
@@ -186,24 +186,24 @@ class ExtendFunctionMananger : NSObject {
     
     var isiPhonePlusScreen: Bool {
         get {
-            return abs(UIScreen.mainScreen().bounds.width - 414) < 1;
+            return abs(UIScreen.main.bounds.width - 414) < 1;
         }
     }
     
     var isiPhone6Screen: Bool {
         get {
-            return abs(UIScreen.mainScreen().bounds.width - 375) < 1;
+            return abs(UIScreen.main.bounds.width - 375) < 1;
         }
     }
     
     var isiPhone4Screen: Bool {
         get {
-            return abs(UIScreen.mainScreen().bounds.width - 320) < 1;
+            return abs(UIScreen.main.bounds.width - 320) < 1;
         }
     }
     
     private func makeImage(index: Int, function: ExtendFunction, superView: UIView) -> UIImageView {
-        let imageView = UIImageView(frame: CGRectMake(0, 0, getImageWidth(), getImageWidth()))
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: getImageWidth(), height: getImageWidth()))
         imageView.center.x = superView.bounds.width / 2
     
         if isiPhonePlusScreen {
@@ -214,7 +214,7 @@ class ExtendFunctionMananger : NSObject {
            imageView.center.y = cellHeight / 2 - 5
         }
         //print("superView.center.x = \(superView.center.x), superView.center.y - 10 = \(superView.center.y - 10)")
-        imageView.image = overlayImage(function) //UIImage(named: function.imageName)
+        imageView.image = overlayImage(function: function) //UIImage(named: function.imageName)
         imageView.tag = index
         
         return imageView
@@ -225,41 +225,41 @@ class ExtendFunctionMananger : NSObject {
         let extendFunctionImageStore = ExtendFunctionImageStore()
         QL1("\(function.code):  \(function.name), \(function.imageUrl)")
         if function.imageUrl != "" {
-            let image = extendFunctionImageStore.getImage(function.imageUrl)
+            let image = extendFunctionImageStore.getImage(imageUrl: function.imageUrl)
             if image != nil {
                 bottomImage = image!
             }
         }
 
         
-        if !ExtendFunctionStore.instance.hasMessage(function.code) {
+        if !ExtendFunctionStore.instance.hasMessage(code: function.code) {
             return bottomImage
         }
         
         
         let topImage = UIImage(named: "message_one")!
         
-        let newSize = CGSizeMake(getImageWidth(), getImageWidth()) // set this to what you need
+        let newSize = CGSize(width: getImageWidth(), height: getImageWidth()) // set this to what you need
         let ratio : CGFloat = 0.32
-        let messageSize = CGSizeMake(getImageWidth() * ratio, getImageWidth() * ratio)
+        let messageSize = CGSize(width: getImageWidth() * ratio, height: getImageWidth() * ratio)
         UIGraphicsBeginImageContextWithOptions(newSize, false, 0.0)
         
         let x = getImageWidth() - abs(getImageWidth() - getImageWidth() * ratio) * 0.9 / 2
         let y = getImageWidth() * ratio / 5 - 4
         
-        bottomImage.drawInRect(CGRect(origin: CGPointZero, size: newSize))
-        topImage.drawInRect(CGRect(origin: CGPoint(x: x, y: CGFloat(y)), size: messageSize))
+        bottomImage.draw(in: CGRect(origin: CGPoint.zero, size: newSize))
+        topImage.draw(in: CGRect(origin: CGPoint(x: x, y: CGFloat(y)), size: messageSize))
         
         let newImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
-        return newImage
+        return newImage!
     }
     
     private func makeLabel(index: Int, function: ExtendFunction, superView: UIView) -> UILabel {
-        let screenWidth = UIScreen.mainScreen().bounds.width
+        let screenWidth = UIScreen.main.bounds.width
         let labelWidth =  screenWidth / 4
         
-        let label = UILabel(frame: CGRectMake(0, 0, labelWidth, 21))
+        let label = UILabel(frame: CGRect(x: 0, y: 0, width: labelWidth, height: 21))
         label.tag = index
         
         label.center.x = superView.bounds.width / 2
@@ -271,69 +271,69 @@ class ExtendFunctionMananger : NSObject {
             label.center.y = cellHeight / 2 + getImageWidth() / 2 + 3
         }
 
-        label.textAlignment = .Center
-        label.font = label.font.fontWithSize(13)
-        label.textColor = UIColor.blackColor()
+        label.textAlignment = .center
+        label.font = label.font.withSize(13)
+        label.textColor = UIColor.black
         label.text = function.name
         
         return label
     }
     
-    func imageHandler(sender: UITapGestureRecognizer? = nil) {
+    @objc func imageHandler(sender: UITapGestureRecognizer? = nil) {
         let index = sender?.view?.tag
-        clearFunctionMessage(index!)
+        clearFunctionMessage(index: index!)
         let function = functions[index!]
         let params : [String: String] = ["url": function.url, "title": function.name]
-        controller.performSegueWithIdentifier("loadWebPageSegue", sender: params)
+        controller.performSegue(withIdentifier: "loadWebPageSegue", sender: params)
     }
     
     func unSupportHandler(sender: UITapGestureRecognizer? = nil) {
         let index = sender?.view?.tag
-        clearFunctionMessage(index!)
-        controller.displayMessage("敬请期待")
+        clearFunctionMessage(index: index!)
+        controller.displayMessage(message: "敬请期待")
     }
     
-    func moreHanlder(sender: UITapGestureRecognizer? = nil) {
+    @objc func moreHanlder(sender: UITapGestureRecognizer? = nil) {
         let index = sender?.view?.tag
-        clearFunctionMessage(index!)
-        controller.performSegueWithIdentifier("moreFunctionSegue", sender: nil)
+        clearFunctionMessage(index: index!)
+        controller.performSegue(withIdentifier: "moreFunctionSegue", sender: nil)
     }
     
-    func openApp(sender: UITapGestureRecognizer? = nil) {
+    @objc func openApp(sender: UITapGestureRecognizer? = nil) {
         let index = sender?.view?.tag
-        clearFunctionMessage(index!)
+        clearFunctionMessage(index: index!)
 
         let jfzfHooks = "com.uen.jfzfxpush://"
         let jfzfUrl = NSURL(string: jfzfHooks)
-        if UIApplication.sharedApplication().canOpenURL(NSURL(string: jfzfHooks)!)
+        if UIApplication.shared.canOpenURL(NSURL(string: jfzfHooks)! as URL)
         {
-            UIApplication.sharedApplication().openURL(jfzfUrl!)
+            UIApplication.shared.openURL(jfzfUrl! as URL)
             
         } else {
             let params : [String: String] = ["url": "http://jf.yhkamani.com/dlios.html", "title": "巨方支付下载"]
-            controller.performSegueWithIdentifier("loadWebPageSegue", sender: params)
+            controller.performSegue(withIdentifier: "loadWebPageSegue", sender: params)
         }
     }
     
-    func shareHanlder(sender: UITapGestureRecognizer? = nil) {
+    @objc func shareHanlder(sender: UITapGestureRecognizer? = nil) {
         let index = sender?.view?.tag
-        clearFunctionMessage(index!)
+        clearFunctionMessage(index: index!)
         
-        controller.performSegueWithIdentifier("codeImageSegue", sender: nil)
+        controller.performSegue(withIdentifier: "codeImageSegue", sender: nil)
     }
     
-    func liveClassHandler(sender: UITapGestureRecognizer? = nil) {
+    @objc func liveClassHandler(sender: UITapGestureRecognizer? = nil) {
         let index = sender?.view?.tag
-        clearFunctionMessage(index!)
-        controller.performSegueWithIdentifier("beforeCourseSegue", sender: CourseType.LiveCourse)
+        clearFunctionMessage(index: index!)
+        controller.performSegue(withIdentifier: "beforeCourseSegue", sender: CourseType.LiveCourse)
     }
     
     private func clearFunctionMessage(index: Int) {
         let function = functions[index]
-        extendFunctionStore.clearMessage(function.code, value: 0)
+        extendFunctionStore.clearMessage(code: function.code, value: 0)
         let request = ClearFunctionMessageRequest()
         request.code = function.code
-        BasicService().sendRequest(ServiceConfiguration.CLEAR_FUNCTION_MESSAGE, request: request) {
+        BasicService().sendRequest(url: ServiceConfiguration.CLEAR_FUNCTION_MESSAGE, request: request) {
             (resp: ClearFunctionMessageResponse) -> Void in
             if resp.isFail {
                 QL4(resp.errorMessage)
@@ -361,13 +361,13 @@ class ExtendFunction {
     
     var name: String {
         get {
-            return ExtendFunctionStore.instance.getFunctionName(self.code, defaultValue: _name)
+            return ExtendFunctionStore.instance.getFunctionName(code: self.code, defaultValue: _name)
         }
     }
     
     var imageUrl: String {
         get {
-            return ExtendFunctionStore.instance.getImageUrl(self.code)
+            return ExtendFunctionStore.instance.getImageUrl(code: self.code)
         }
     }
     
@@ -380,10 +380,15 @@ class ExtendFunction {
         self.isShowDefault = isShowDefault
     }
     
+    func dummy() {
+        
+    }
+    
     init(code: String, isShowDefault: Bool, messageCount: Int) {
         self.code = code
         self.isShowDefault = isShowDefault
         self.messageCount = messageCount
-        self.action = Selector()
+        //TODO:  
+        self.action = Selector("")
     }
 }

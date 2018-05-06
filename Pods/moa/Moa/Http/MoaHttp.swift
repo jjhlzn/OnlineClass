@@ -2,29 +2,29 @@ import Foundation
 
 /**
 
-Shortcut function for creating NSURLSessionDataTask.
+Shortcut function for creating URLSessionDataTask.
 
 */
 struct MoaHttp {
-  static func createDataTask(url: String,
-    onSuccess: (NSData?, NSHTTPURLResponse)->(),
-    onError: (NSError?, NSHTTPURLResponse?)->()) -> NSURLSessionDataTask? {
+  static func createDataTask(_ url: String,
+    onSuccess: @escaping (Data?, HTTPURLResponse)->(),
+    onError: @escaping (Error?, HTTPURLResponse?)->()) -> URLSessionDataTask? {
       
-    if let nsUrl = NSURL(string: url) {
-      return createDataTask(nsUrl, onSuccess: onSuccess, onError: onError)
+    if let urlObject = URL(string: url) {
+      return createDataTask(urlObject: urlObject, onSuccess: onSuccess, onError: onError)
     }
     
     // Error converting string to NSURL
-    onError(MoaError.InvalidUrlString.nsError, nil)
+    onError(MoaError.invalidUrlString, nil)
     return nil
   }
   
-  private static func createDataTask(nsUrl: NSURL,
-    onSuccess: (NSData?, NSHTTPURLResponse)->(),
-    onError: (NSError?, NSHTTPURLResponse?)->()) -> NSURLSessionDataTask? {
+  private static func createDataTask(urlObject: URL,
+    onSuccess: @escaping (Data?, HTTPURLResponse)->(),
+    onError: @escaping (Error?, HTTPURLResponse?)->()) -> URLSessionDataTask? {
       
-    return MoaHttpSession.session?.dataTaskWithURL(nsUrl) { (data, response, error) in
-      if let httpResponse = response as? NSHTTPURLResponse {
+    return MoaHttpSession.session?.dataTask(with: urlObject) { (data, response, error) in
+      if let httpResponse = response as? HTTPURLResponse {
         if error == nil {
           onSuccess(data, httpResponse)
         } else {

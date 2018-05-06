@@ -21,37 +21,37 @@ class ServerRequest {
     var params: [String: AnyObject] {
         get {
             var parameters = [String: AnyObject]()
-            parameters["test"] = test
+            parameters["test"] = test as AnyObject
             return parameters
         }
     }
     
     private func addMoreRequestInfo(params: [String: AnyObject]?) -> [String: AnyObject] {
         var newParams = [String: AnyObject]()
-        newParams["request"] = params
-        newParams["client"] = getClientInfo()
-        newParams["userInfo"] = getUserInfo()
+        newParams["request"] = params as AnyObject
+        newParams["client"] = getClientInfo() as AnyObject
+        newParams["userInfo"] = getUserInfo() as AnyObject
         return newParams
         
     }
     
     func getJSON() -> JSON {
-        let finalParams = addMoreRequestInfo(params)
+        let finalParams = addMoreRequestInfo(params: params)
         return JSON(finalParams)
     }
     
     private func getClientInfo() -> [String: AnyObject]{
         var clientInfo = [String: AnyObject]()
-        clientInfo["platform"] = "iphone"
-        clientInfo["model"] = UIDevice.currentDevice().model
-        clientInfo["osversion"] = UIDevice.currentDevice().systemVersion
+        clientInfo["platform"] = "iphone" as AnyObject
+        clientInfo["model"] = UIDevice.current.model as AnyObject
+        clientInfo["osversion"] = UIDevice.current.systemVersion as AnyObject
         
-        let screensize = UIScreen.mainScreen().bounds
-        clientInfo["screensize"] = "\(screensize.width)*\(screensize.height)"
+        let screensize = UIScreen.main.bounds
+        clientInfo["screensize"] = "\(screensize.width)*\(screensize.height)" as AnyObject
         
-        let version = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleShortVersionString") as! String
-        let appBundle = NSBundle.mainBundle().objectForInfoDictionaryKey(kCFBundleVersionKey as String) as! String
-        clientInfo["appversion"] = "\(version).\(appBundle)"
+        let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
+        let appBundle = Bundle.main.object(forInfoDictionaryKey: kCFBundleVersionKey as String) as! String
+        clientInfo["appversion"] = "\(version).\(appBundle)" as AnyObject
         return clientInfo
         
     }
@@ -61,8 +61,8 @@ class ServerRequest {
         let loginUserStore = LoginUserStore()
         var userInfo = [String: AnyObject]()
         let loginUser = loginUserStore.getLoginUser()
-        userInfo["userid"] = loginUser?.userName!
-        userInfo["token"] = loginUser?.token!
+        userInfo["userid"] = loginUser?.userName! as AnyObject
+        userInfo["token"] = loginUser?.token! as AnyObject
         return userInfo
     }
 
@@ -74,8 +74,8 @@ class PagedServerRequest: ServerRequest{
     override var params: [String : AnyObject] {
         get {
             var parameters = super.params
-            parameters["pageno"] = pageNo
-            parameters["pagesize"] = pageSize
+            parameters["pageno"] = pageNo as AnyObject
+            parameters["pagesize"] = pageSize as AnyObject
             return parameters
         }
     }
@@ -108,7 +108,7 @@ public class PageServerResponse<T> : ServerResponse{
     var resultSet: [T] = [T]()
     public required init() {}
     override func parseJSON(request: ServerRequest, json: NSDictionary) {
-        super.parseJSON(request, json: json)
+        super.parseJSON(request: request, json: json)
         if status == 0 {
             totalNumber = json["totalNumber"] as! Int
         }
@@ -130,7 +130,7 @@ class GetAlbumsRequest : PagedServerRequest {
     override var params: [String : AnyObject] {
         get {
             let parameters = ["type": self.code]
-            return parameters
+            return parameters as [String : AnyObject]
         }
     }
 }
@@ -139,11 +139,12 @@ class GetAlbumsRequest : PagedServerRequest {
 class GetAlbumsResponse : PageServerResponse<Album> {
     required init() {}
     override func parseJSON(request: ServerRequest, json: NSDictionary)  {
-        super.parseJSON(request, json: json)
+        super.parseJSON(request: request, json: json)
         let jsonArray = json["albums"] as! NSArray
         var albums = [Album]()
         
-        for albumJson in jsonArray {
+        for albumJson1 in jsonArray {
+            let albumJson = albumJson1 as! [String:AnyObject]
             let album = Album()
             album.id = "\(albumJson["id"] as! NSNumber)"
             album.name = albumJson["name"] as! String
@@ -152,7 +153,7 @@ class GetAlbumsResponse : PageServerResponse<Album> {
             album.count = albumJson["count"] as! Int
             album.desc = albumJson["desc"] as! String
             album.listenCount = albumJson["listenCount"] as! String
-            album.courseType = CourseType.getCourseType(albumJson["type"] as! String)!
+            album.courseType = CourseType.getCourseType(code: albumJson["type"] as! String)!
             album.playing = albumJson["playing"] as! Bool
             album.isReady = albumJson["isReady"] as! Bool
             
@@ -176,7 +177,9 @@ class GetAlbumSongsRequest : PagedServerRequest {
     override var params: [String : AnyObject] {
         get {
             var parameters = super.params
-            parameters["album"] = ["id": album.id]
+            var a = [String:Any]()
+            a["id"] = album.id as AnyObject
+            parameters["album"] = a as AnyObject
             return parameters
             
         }
@@ -189,12 +192,13 @@ class GetAlbumSongsResponse : ServerResponse {
     var resultSet: [Song] = [Song]()
     required init() {}
     override func parseJSON(request: ServerRequest, json: NSDictionary) {
-        super.parseJSON(request, json: json)
+        super.parseJSON(request: request, json: json)
         let req = request as! GetAlbumSongsRequest
         let jsonArray = json["songs"] as! NSArray
         var songs = [Song]()
         
-        for json in jsonArray {
+        for json1 in jsonArray {
+            let json = json1 as! [String: AnyObject]
             var song : Song!
             let album = req.album
             if album.isLive {
@@ -211,7 +215,8 @@ class GetAlbumSongsResponse : ServerResponse {
                 liveSong.advScrollRate = json["advScrollRate"] as! Int
                 liveSong.advText = json["advText"] as! String
                 let adImages = json["advImages"] as! NSArray
-                for adImageJson in adImages {
+                for adImageJson1 in adImages {
+                    let adImageJson = adImageJson1 as! [String: AnyObject]
                     let adImage = Advertise()
                     adImage.imageUrl = adImageJson["imageurl"] as! String
                     adImage.clickUrl = adImageJson["link"] as! String
@@ -257,8 +262,10 @@ class GetSongLiveCommentsRequest : ServerRequest {
     override var params: [String : AnyObject] {
         get {
             var parameters = super.params
-            parameters["song"] = ["id": song.id]
-            parameters["lastId"] = lastId
+            var a = [String:AnyObject]()
+            a["id"] = song.id as AnyObject
+            parameters["song"] = a as AnyObject
+            parameters["lastId"] = lastId as AnyObject
             return parameters
         }
     }
@@ -268,12 +275,13 @@ class GetSongLiveCommentsResponse : ServerResponse {
     var comments = [Comment]()
     required init() {}
     override func parseJSON(request: ServerRequest, json: NSDictionary) {
-        super.parseJSON(request, json: json)
+        super.parseJSON(request: request, json: json)
         
         let jsonArray = json["comments"] as! NSArray
         comments = [Comment]()
         
-        for eachJSON in jsonArray {
+        for eachJSON1 in jsonArray {
+            let eachJSON = eachJSON1 as! [String:AnyObject]
             let comment = Comment()
             comment.id = "\(eachJSON["id"] as! Int)"
             comment.song = (request as! GetSongLiveCommentsRequest).song
@@ -296,7 +304,9 @@ class GetSongCommentsRequest : PagedServerRequest {
     override var params: [String : AnyObject] {
         get {
             var parameters = super.params
-            parameters["song"] = ["id": song.id]
+            var a = [String:AnyObject]()
+            a["id"] = song.id as AnyObject
+            parameters["song"] = a as AnyObject
             return parameters
         }
     }
@@ -306,11 +316,12 @@ class GetSongCommentsRequest : PagedServerRequest {
 class GetSongCommentsResponse : PageServerResponse<Comment> {
     required init() {}
     override func parseJSON(request: ServerRequest, json: NSDictionary) {
-        super.parseJSON(request, json: json)
+        super.parseJSON(request: request, json: json)
         let jsonArray = json["comments"] as! NSArray
         var comments = [Comment]()
         
-        for json in jsonArray {
+        for json1 in jsonArray {
+            let json = json1 as! [String:AnyObject]
             let comment = Comment()
             comment.id = "\(json["id"] as? Int)"
             comment.song = (request as! GetSongCommentsRequest).song
@@ -324,6 +335,11 @@ class GetSongCommentsResponse : PageServerResponse<Comment> {
     }
 }
 
+func makeDict(key key: String, value value: AnyObject) -> AnyObject {
+    var a = [String:AnyObject]()
+    a[key] = value
+    return a as AnyObject
+}
 
 class SendCommentRequest : ServerRequest {
     var song: Song!
@@ -331,8 +347,8 @@ class SendCommentRequest : ServerRequest {
     override var params: [String : AnyObject] {
         get {
             var parameters = super.params
-            parameters["song"] = ["id": song.id]
-            parameters["comment"] = comment
+            parameters["song"] = makeDict(key: "id", value: song.id as AnyObject)
+            parameters["comment"] = comment as AnyObject
             return parameters
         }
     }
@@ -349,9 +365,9 @@ class SendLiveCommentRequest : ServerRequest {
     override var params: [String : AnyObject] {
         get {
             var parameters = super.params
-            parameters["song"] = ["id": song.id]
-            parameters["lastId"] = lastId
-            parameters["comment"] = comment
+            parameters["song"] = makeDict(key: "id", value: song.id as AnyObject)
+            parameters["lastId"] = lastId as AnyObject
+            parameters["comment"] = comment as AnyObject
             return parameters
         }
     }
@@ -361,12 +377,13 @@ class SendLiveCommentResponse : ServerResponse {
     var comments = [Comment]()
     required init() {}
     override func parseJSON(request: ServerRequest, json: NSDictionary) {
-        super.parseJSON(request, json: json)
+        super.parseJSON(request: request, json: json)
         
         let jsonArray = json["comments"] as! NSArray
         comments = [Comment]()
         
-        for eachJSON in jsonArray {
+        for eachJSON1 in jsonArray {
+            let eachJSON = eachJSON1 as! [String:AnyObject]
             let comment = Comment()
             comment.id = "\(eachJSON["id"] as! Int)"
             comment.song = (request as! SendLiveCommentRequest).song
@@ -394,9 +411,9 @@ class LoginRequest : ServerRequest {
     override var params: [String : AnyObject] {
         get {
             var parameters = super.params
-            parameters["userName"] = userName
-            parameters["password"] = password
-            parameters["deviceToken"] = deviceToken
+            parameters["userName"] = userName as AnyObject
+            parameters["password"] = password as AnyObject
+            parameters["deviceToken"] = deviceToken as AnyObject
             return parameters
         }
     }
@@ -416,7 +433,7 @@ class LoginResponse : ServerResponse {
     }
     
     override func parseJSON(request: ServerRequest, json: NSDictionary) {
-        super.parseJSON(request, json: json)
+        super.parseJSON(request: request, json: json)
 
         if status == 0 {
             name = json["name"] as? String
@@ -443,8 +460,8 @@ class UpdateTokenRequest : ServerRequest {
     override var params: [String : AnyObject] {
         get {
             var parameters = super.params
-            parameters["userName"] = userName
-            parameters["password"] = password
+            parameters["userName"] = userName as AnyObject
+            parameters["password"] = password as AnyObject
             return parameters
         }
     }
@@ -461,7 +478,7 @@ class UpdateTokenResponse : ServerResponse {
     }
     
     override func parseJSON(request: ServerRequest, json: NSDictionary) {
-        super.parseJSON(request, json: json)
+        super.parseJSON(request: request, json: json)
         
         if status == 0 {
             name = json["name"] as? String
@@ -488,7 +505,7 @@ class GetPhoneCheckCodeRequest : ServerRequest {
     override var params: [String : AnyObject] {
         get {
             var parameters = super.params
-            parameters["phoneNumber"] = phoneNumber
+            parameters["phoneNumber"] = phoneNumber as AnyObject
             return parameters
         }
     }
@@ -516,10 +533,10 @@ class SignupRequest : ServerRequest {
     override var params: [String : AnyObject] {
         get {
             var parameters = super.params
-            parameters["phoneNumber"] = phoneNumber
-            parameters["checkCode"] = checkCode
-            parameters["invitePhone"] = invitePhone
-            parameters["password"] = password
+            parameters["phoneNumber"] = phoneNumber as AnyObject
+            parameters["checkCode"] = checkCode as AnyObject
+            parameters["invitePhone"] = invitePhone as AnyObject
+            parameters["password"] = password as AnyObject
             return parameters
         }
     }
@@ -543,9 +560,9 @@ class GetPasswordRequest : ServerRequest {
     override var params: [String : AnyObject] {
         get {
             var parameters = super.params
-            parameters["phoneNumber"] = phoneNumber
-            parameters["checkCode"] = checkCode
-            parameters["password"] = password
+            parameters["phoneNumber"] = phoneNumber as AnyObject
+            parameters["checkCode"] = checkCode as AnyObject
+            parameters["password"] = password as AnyObject
             return parameters
         }
     }
@@ -563,7 +580,7 @@ class GetLiveListernerCountRequest : ServerRequest {
     override var params: [String : AnyObject] {
         get {
             var parameters = super.params
-            parameters["song"] = ["id": song.id]
+            parameters["song"] = makeDict(key: "id", value: song.id as AnyObject)
             return parameters
         }
     }
@@ -573,7 +590,7 @@ class GetLiveListernerCountResponse : ServerResponse {
     var count = 0
     
     override func parseJSON(request: ServerRequest, json: NSDictionary) {
-        super.parseJSON(request, json: json)
+        super.parseJSON(request: request, json: json)
         if status == 0 {
             count = json["listerCount"] as! Int
         }
@@ -592,8 +609,8 @@ class ResetPasswordRequest : ServerRequest {
     override var params: [String : AnyObject] {
         get {
             var parameters = super.params
-            parameters["oldPassword"] = oldPassword
-            parameters["newPassword"] = newPassword
+            parameters["oldPassword"] = oldPassword as AnyObject
+            parameters["newPassword"] = newPassword as AnyObject
             return parameters
         }
     }
@@ -612,7 +629,7 @@ class GetClientNumberRequest : ServerRequest {
 class GetClientNumberResponse : ServerResponse {
     var peopleCount = 0
     override func parseJSON(request: ServerRequest, json: NSDictionary) {
-        super.parseJSON(request, json: json)
+        super.parseJSON(request: request, json: json)
         if status == 0 {
             peopleCount = json["peopleCount"] as! Int
         }
@@ -626,7 +643,7 @@ class SearchRequest : PagedServerRequest {
     override var params: [String : AnyObject] {
         get {
             var parameters = super.params
-            parameters["keyword"] = keyword
+            parameters["keyword"] = keyword as AnyObject
             return parameters
         }
     }
@@ -644,7 +661,7 @@ class GetHotSearchWordsResponse : ServerResponse {
     var keywords = [String]()
     
     override func parseJSON(request: ServerRequest, json: NSDictionary) {
-        super.parseJSON(request, json: json)
+        super.parseJSON(request: request, json: json)
         if status == 0 {
             keywords = json["keywords"]  as! [String]
         }
@@ -661,7 +678,7 @@ class CheckUpgradeResponse : ServerResponse {
     var upgradeType = "optional"
     var upgradeUrl = "http://www.baidu.com"
     override func parseJSON(request: ServerRequest, json: NSDictionary) {
-        super.parseJSON(request, json: json)
+        super.parseJSON(request: request, json: json)
         if status == 0 {
             isNeedUpgrade = json["isNeedUpgrade"]  as! Bool
             if json["newestVersion"] != nil && !(json["newestVersion"] is NSNull) {
@@ -681,7 +698,7 @@ class RegisterDeviceRequest : ServerRequest {
     override var params: [String : AnyObject] {
         get {
             var parameters = super.params
-            parameters["deviceToken"] = deviceToken
+            parameters["deviceToken"] = deviceToken as AnyObject
             return parameters
         }
     }
@@ -696,7 +713,7 @@ class SetNameRequest : ServerRequest {
     override var params: [String : AnyObject] {
         get {
             var parameters = super.params
-            parameters["newName"] = newName
+            parameters["newName"] = newName as AnyObject
             return parameters
         }
     }
@@ -711,7 +728,7 @@ class SetNickNameRequest : ServerRequest {
     override var params: [String : AnyObject] {
         get {
             var parameters = super.params
-            parameters["newNickName"] = newNickName
+            parameters["newNickName"] = newNickName as AnyObject
             return parameters
         }
     }
@@ -726,7 +743,7 @@ class SetSexRequest : ServerRequest {
     override var params: [String : AnyObject] {
         get {
             var parameters = super.params
-            parameters["newSex"] = newSex
+            parameters["newSex"] = newSex as AnyObject
             return parameters
         }
     }
@@ -746,10 +763,11 @@ class GetAdsResponse : ServerResponse {
     var ads = [Advertise]()
     
     override func parseJSON(request: ServerRequest, json: NSDictionary) {
-        super.parseJSON(request, json: json)
+        super.parseJSON(request: request, json: json)
         if status == 0 {
             let adsJson = json["ads"] as! NSArray
-            for adJson in adsJson {
+            for adJson1 in adsJson {
+                let adJson = adJson1 as! [String:AnyObject]
                 let ad = Advertise()
                 ad.imageUrl = adJson["imageUrl"] as! String
                 ad.clickUrl = adJson["clickUrl"] as! String
@@ -780,7 +798,7 @@ class GetUserStatDataResponse : ServerResponse {
 
     
     override func parseJSON(request: ServerRequest, json: NSDictionary) {
-        super.parseJSON(request, json: json)
+        super.parseJSON(request: request, json: json)
         jifen = json["jifen"] as! String
         chaifu = json["chaifu"] as! String
         teamPeople = json["teamPeople"] as! String
@@ -812,7 +830,7 @@ class GetServiceLocatorResponse : ServerResponse {
     var port: Int!
     
     override func parseJSON(request: ServerRequest, json: NSDictionary) {
-        super.parseJSON(request, json: json)
+        super.parseJSON(request: request, json: json)
         let jsonObject = json["result"] as! NSDictionary
         http = jsonObject["http"] as! String
         serverName = jsonObject["serverName"] as! String
@@ -825,7 +843,7 @@ class GetSongInfoRequest : ServerRequest {
     override var params: [String : AnyObject] {
         get {
             var parameters = super.params
-            parameters["id"] = song.id
+            parameters["id"] = song.id as AnyObject
             return parameters
         }
     }
@@ -843,7 +861,7 @@ class GetSongInfoResponse : ServerResponse {
         album.count = albumJson["count"] as! Int
         album.desc = albumJson["desc"] as! String
         album.listenCount = albumJson["listenCount"] as! String
-        album.courseType = CourseType.getCourseType(albumJson["type"] as! String)!
+        album.courseType = CourseType.getCourseType(code: albumJson["type"] as! String)!
         album.playing = albumJson["playing"] as! Bool
         album.isReady = albumJson["isReady"] as! Bool
         return album
@@ -851,12 +869,12 @@ class GetSongInfoResponse : ServerResponse {
     }
     
     override func parseJSON(request: ServerRequest, json: NSDictionary) {
-        super.parseJSON(request, json: json)
+        super.parseJSON(request: request, json: json)
         let req = request as! GetSongInfoRequest
         let jsonObject = json["song"] as! NSDictionary
 
         let album = req.song.album
-        if album.isLive  {
+        if (album?.isLive)!  {
             let liveSong = LiveSong()
             liveSong.startDateTime = jsonObject["startTime"] as? String
             liveSong.endDateTime = jsonObject["endTime"] as? String
@@ -871,7 +889,8 @@ class GetSongInfoResponse : ServerResponse {
 
             liveSong.advText = jsonObject["advText"] as! String
             let adImages = jsonObject["advImages"] as! NSArray
-            for adImageJson in adImages {
+            for adImageJson1 in adImages {
+                let adImageJson = adImageJson1 as! [String: AnyObject]
                 let adImage = Advertise()
                 adImage.imageUrl = adImageJson["imageurl"] as! String
                 adImage.clickUrl = adImageJson["link"] as! String
@@ -883,7 +902,7 @@ class GetSongInfoResponse : ServerResponse {
         } else {
             song = Song()
         }
-        song.album = parseAlbum(jsonObject["album"] as! NSDictionary)
+        song.album = parseAlbum(albumJson: jsonObject["album"] as! NSDictionary)
         song.name = jsonObject["name"] as! String
         song.desc = jsonObject["desc"] as! String
         song.date = jsonObject["date"] as! String
@@ -908,8 +927,8 @@ class GetParameterInfoRequest : ServerRequest {
             var parameters = super.params
             do {
                 let paramsJSON = JSON(keys)
-                let paramsString = paramsJSON.rawString(NSUTF8StringEncoding)
-                parameters["keywords"] = paramsString
+                let paramsString = paramsJSON.rawString(String.Encoding.utf8)
+                parameters["keywords"] = paramsString as AnyObject
 
             }catch let error as NSError{
                 print(error.description)
@@ -935,9 +954,10 @@ class GetParameterInfoResponse : ServerResponse {
     }
     
     override func parseJSON(request: ServerRequest, json: NSDictionary) {
-        super.parseJSON(request, json: json)
+        super.parseJSON(request: request, json: json)
         let jsonArray = json["result"] as! NSArray
-        for eachJson in jsonArray {
+        for eachJson1 in jsonArray {
+            let eachJson = eachJson1 as! [String:AnyObject]
             let key = eachJson["keyword"] as! String
             let value = eachJson["value"] as! String
             map[key] = value
@@ -951,7 +971,7 @@ class HeartbeatRequest : ServerRequest {
     override var params: [String : AnyObject] {
         get {
             var parameters = super.params
-            parameters["id"] = song.id
+            parameters["id"] = song.id as AnyObject
             return parameters
         }
     }
@@ -966,7 +986,7 @@ class JoinRoomRequest : ServerRequest {
     override var params: [String : AnyObject] {
         get {
             var parameters = super.params
-            parameters["id"] = song.id
+            parameters["id"] = song.id as AnyObject
             return parameters
         }
     }
@@ -980,9 +1000,9 @@ class NotifyIAPSuccessRequest : ServerRequest {
     override var params: [String : AnyObject] {
         get {
             var parameters = super.params
-            parameters["productId"] = productId
-            parameters["sign"] = sign
-            parameters["payTime"] = payTime
+            parameters["productId"] = productId as AnyObject
+            parameters["sign"] = sign as AnyObject
+            parameters["payTime"] = payTime as AnyObject
             return parameters
         }
     }
@@ -1010,16 +1030,18 @@ class GetHeaderAdvResponse : ServerResponse {
     var headerAdv: HeaderAdv?
     
     override func parseJSON(request: ServerRequest, json: NSDictionary) {
-        super.parseJSON(request, json: json)
+        super.parseJSON(request: request, json: json)
         let jsonArray = json["result"] as! NSArray
-        for eachJson in jsonArray {
+        for eachJson1 in jsonArray {
+            let eachJson = eachJson1 as! [String:AnyObject]
             self.headerAdv = HeaderAdv()
             self.headerAdv?.imageUrl = eachJson["imageUrl"] as! String
             self.headerAdv?.type = eachJson["type"] as! String
             
             let paramsArr = eachJson["Params"] as! NSArray;
             if self.headerAdv?.type == HeaderAdv.Type_Song {
-                for eachParamJson in paramsArr {
+                for eachParamJson1 in paramsArr {
+                    let eachParamJson = eachParamJson1 as! [String:AnyObject]
                     if eachParamJson["key"] as! String == HeaderAdv.Param_Key_Song {
                         self.headerAdv?.songId = eachParamJson["value"] as! String
                     }
@@ -1039,9 +1061,10 @@ class FooterAdv {
 class GetFooterAdvsResponse : ServerResponse {
     var advList = [FooterAdv]()
     override func parseJSON(request: ServerRequest, json: NSDictionary) {
-        super.parseJSON(request, json: json)
+        super.parseJSON(request: request, json: json)
         let jsonArray = json["result"] as! NSArray
-        for eachJson in jsonArray {
+        for eachJson1 in jsonArray {
+            let eachJson = eachJson1 as! [String:AnyObject]
             let adv = FooterAdv()
             adv.imageUrl = eachJson["imageUrl"] as! String
             adv.title = eachJson["title"] as! String
@@ -1055,9 +1078,10 @@ class GetFunctionMessageRequest : ServerRequest {}
 class GetFunctionMessageResponse : ServerResponse {
     var map = [String: Int]()
     override func parseJSON(request: ServerRequest, json: NSDictionary) {
-        super.parseJSON(request, json: json)
+        super.parseJSON(request: request, json: json)
         let jsonArray = json["result"] as! NSArray
-        for eachJson in jsonArray {
+        for eachJson1 in jsonArray {
+            let eachJson = eachJson1 as! [String:AnyObject]
             map[eachJson["code"] as! String] = eachJson["value"] as! Int
         }
     }
@@ -1069,7 +1093,9 @@ class ClearFunctionMessageRequest : ServerRequest {
     override var params: [String : AnyObject] {
         get {
             var parameters = super.params
-            parameters["codes"] = [code]
+            var a = [String]()
+            a.append(code)
+            parameters["codes"] = a as AnyObject
             return parameters
         }
     }
@@ -1099,9 +1125,10 @@ class GetFunctionInfosResponse : ServerResponse {
     
     var functions = [ExtendFunctionResponseObject]()
     override func parseJSON(request: ServerRequest, json: NSDictionary) {
-        super.parseJSON(request, json: json)
+        super.parseJSON(request: request, json: json)
         let jsonArray = json["result"] as! NSArray
-        for eachJson in jsonArray {
+        for eachJson1 in jsonArray {
+            let eachJson = eachJson1 as! [String:AnyObject]
             let function = ExtendFunctionResponseObject(code: eachJson["code"] as! String,
                     name: eachJson["name"] as! String,
                     imageUrl: eachJson["imageUrl"] as! String,
@@ -1117,7 +1144,7 @@ class GetCourseNotifyRequest : ServerRequest {}
 class GetCourseNotifyResponse : ServerResponse {
     var notifies = [String]()
     override func parseJSON(request: ServerRequest, json: NSDictionary) {
-        super.parseJSON(request, json: json)
+        super.parseJSON(request: request, json: json)
         let jsonArray = json["notifies"] as! NSArray
         for eachJson in jsonArray {
             notifies.append(eachJson as! String)
@@ -1132,7 +1159,7 @@ class GetLaunchAdvResponse : ServerResponse {
     var imageUrl : String! = ""
     var advUrl : String! = ""
     override func parseJSON(request: ServerRequest, json: NSDictionary) {
-        super.parseJSON(request, json: json)
+        super.parseJSON(request: request, json: json)
         let jsonObject = json["result"] as! NSDictionary
         advTitle = jsonObject["advTitle"] as! String
         advUrl = jsonObject["advUrl"] as! String

@@ -57,36 +57,36 @@ class PlayerCell: UITableViewCell {
         
         //setup progressbar
         var sliderImage = UIImage(named: "sliderImage")!
-        sliderImage = sliderImage.scaledToSize(CGSize(width: 14, height: 14))
-        progressBar.setThumbImage(sliderImage, forState: .Normal)
+        sliderImage = sliderImage.scaledToSize(size: CGSize(width: 14, height: 14))
+        progressBar.setThumbImage(sliderImage, for: [])
         
         UIGraphicsBeginImageContextWithOptions(CGSize(width: 1, height: 1), false, 0.0)
         let transparentImage = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext()
         //progressBar.setMinimumTrackImage(transparentImage, forState: .Normal)
-        progressBar.setMaximumTrackImage(transparentImage, forState: .Normal)
-        progressBar.continuous = true
-        progressBar.addTarget(self, action: #selector(progressBarValueChanged), forControlEvents: .ValueChanged)
-        progressBar.addTarget(self, action: #selector(progressBarTouchUp), forControlEvents: .TouchUpInside)
-        progressBar.addTarget(self, action: #selector(progressBarTouchUp), forControlEvents: .TouchUpOutside)
-        progressBar.addTarget(self, action: #selector(progressBarTouchDown), forControlEvents: .TouchDown)
+        progressBar.setMaximumTrackImage(transparentImage, for: [])
+        progressBar.isContinuous = true
+        progressBar.addTarget(self, action: #selector(progressBarValueChanged), for: .valueChanged)
+        progressBar.addTarget(self, action: #selector(progressBarTouchUp), for: .touchUpInside)
+        progressBar.addTarget(self, action: #selector(progressBarTouchUp), for: .touchUpOutside)
+        progressBar.addTarget(self, action: #selector(progressBarTouchDown), for: .touchDown)
         //progressBar.enabled = false
         
         //hidden bufferCircle
-        bufferCircle.hidden = true
+        bufferCircle.isHidden = true
         
         if !inited {
             bufferProgress.layer.transform = CATransform3DScale(bufferProgress.layer.transform, 1.0, 2.0, 1.5)
         }
         
         if audioPlayer.currentItemDuration != nil {
-            durationLabel.text = Utils.stringFromTimeInterval(audioPlayer.currentItemDuration!)
+            durationLabel.text = Utils.stringFromTimeInterval(interval: audioPlayer.currentItemDuration!)
         }
         
         //update image
         
         if !isLive {
-            if audioPlayer.state == AudioPlayerState.Playing || audioPlayer.state == AudioPlayerState.Paused || audioPlayer.state == AudioPlayerState.Buffering {
+            if audioPlayer.state == AudioPlayerState.playing || audioPlayer.state == AudioPlayerState.paused || audioPlayer.state == AudioPlayerState.buffering {
                 if audioPlayer.currentItem != nil && audioPlayer.currentItem?.artworkImage != nil {
                     artImageView!.image = audioPlayer.currentItem?.artworkImage!
                 }
@@ -107,7 +107,7 @@ class PlayerCell: UITableViewCell {
         if songListImage != nil {
             let songListTap = UITapGestureRecognizer(target: self, action: #selector(songListButtonPressed))
             self.songListImage.addGestureRecognizer(songListTap)
-            self.songListImage.userInteractionEnabled = true
+            self.songListImage.isUserInteractionEnabled = true
         }
     }
     
@@ -125,7 +125,7 @@ class PlayerCell: UITableViewCell {
     func handlePrevSong() {
         audioPlayer.previous()
         playerViewController.resetButtonAndProgress()
-        playButton.setImage(UIImage(named: "pause"), forState: .Normal)
+        playButton.setImage(UIImage(named: "pause"), for: [])
         setMusicDefaultImage()
         controller?.playerPageViewController.reload()
     }
@@ -137,7 +137,7 @@ class PlayerCell: UITableViewCell {
     func handleNextSong() {
         audioPlayer.next()
         playerViewController.resetButtonAndProgress()
-        playButton.setImage(UIImage(named: "pause"), forState: .Normal)
+        playButton.setImage(UIImage(named: "pause"), for: [])
         setMusicDefaultImage()
         controller?.playerPageViewController.reload()
     }
@@ -146,7 +146,7 @@ class PlayerCell: UITableViewCell {
 
         
         let song = (audioPlayer.currentItem as! MyAudioItem).song
-        if song.isLive {
+        if (song?.isLive)! {
             artImageView.image = UIImage(named: "liveMusicCover")
         } else {
             artImageView.image = UIImage(named: "musicCover")
@@ -162,13 +162,13 @@ class PlayerCell: UITableViewCell {
     }
 
     
-    func progressBarValueChanged() {
+    @objc func progressBarValueChanged() {
         if audioPlayer.currentItemDuration != nil {
-            playingLabel.text = Utils.stringFromTimeInterval((audioPlayer.currentItemDuration)! * Double(progressBar.value))
+            playingLabel.text = Utils.stringFromTimeInterval(interval: (audioPlayer.currentItemDuration)! * Double(progressBar.value))
         }
     }
 
-    func progressBarTouchUp() {
+    @objc func progressBarTouchUp() {
         
         if audioPlayer.currentItemDuration == nil {
             return
@@ -181,14 +181,14 @@ class PlayerCell: UITableViewCell {
         } else {
             oldProgress = startDragProgress
         }
-        playingLabel.text = Utils.stringFromTimeInterval(newProgress)
+        playingLabel.text = Utils.stringFromTimeInterval(interval: newProgress)
         
-        audioPlayer.seekToTime(newProgress)
+        audioPlayer.seek(to: newProgress)
 
         updateProgressBar = true
     }
     
-    func progressBarTouchDown() {
+    @objc func progressBarTouchDown() {
         updateProgressBar = false
         startDragProgress = progressBar.value
     }

@@ -22,7 +22,7 @@ class CourseMainPageViewController: BaseUIViewController {
     var extendFunctionImageStore = ExtendFunctionImageStore()
     var ads = [Advertise]()
     var keyValueStore = KeyValueStore()
-    var freshHeaderAdvTimer: NSTimer!
+    var freshHeaderAdvTimer: Timer!
     var footerAdvs = [FooterAdv]()
     var headerAdv: HeaderAdv?
     var courseNotifies = [String]()
@@ -36,31 +36,42 @@ class CourseMainPageViewController: BaseUIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        if #available(iOS 11.0, *) {
+            tableView.contentInsetAdjustmentBehavior = .never
+            //tableView.contentInset = UIEdgeInsetsMake(0, 0, 49, 0)//导航栏如果使用系统原生半透明的，top设置为64
+            //tableView.scrollIndicatorInsets = tableView.contentInset
+            tableView.contentInset = UIEdgeInsetsMake(22, 0, 49, 0)
+            tableView.estimatedRowHeight = 0
+            UITableView.appearance().estimatedRowHeight = 0
+        }
+        
         tableView.dataSource = self
         tableView.delegate = self
 
         
         buyPayCourseDelegate = ConfirmDelegate2(controller: self)
         
-        let screenHeight = UIScreen.mainScreen().bounds.height
+        let screenHeight = UIScreen.main.bounds.height
         var maxRows = 3
         if screenHeight < 568 {  //568
             maxRows = 2
         }
         extendFunctionMananger = ExtendFunctionMananger(controller: self, isNeedMore:  true, showMaxRows: maxRows)
-        addPlayingButton(playingButton)
+        addPlayingButton(button: playingButton)
         loadFunctionInfos()
         
         //下拉刷新设置
         refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: #selector(refresh), forControlEvents: UIControlEvents.ValueChanged)
+        refreshControl.addTarget(self, action: #selector(refresh), for: UIControlEvents.valueChanged)
         tableView.addSubview(refreshControl)
         refreshing = false
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        updatePlayingButton(playingButton)
+        updatePlayingButton(button: playingButton)
         loadHeaderAdv()
         loadFooterAdvs()
         loadCourseNotify()
@@ -69,20 +80,20 @@ class CourseMainPageViewController: BaseUIViewController {
         
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
         freshHeaderAdvTimer.invalidate()
     }
     
     private func createTimer() {
-        freshHeaderAdvTimer = NSTimer.scheduledTimerWithTimeInterval(60, target: self,
+        freshHeaderAdvTimer = Timer.scheduledTimer(timeInterval: 60, target: self,
                                                                 selector: #selector(loadHeaderAdv), userInfo: nil, repeats: true)
     }
     
 
-    func loadHeaderAdv() {
-        BasicService().sendRequest(ServiceConfiguration.GET_HEADER_ADV, request: GetHeaderAdvRequest()) {
+    @objc func loadHeaderAdv() {
+        BasicService().sendRequest(url: ServiceConfiguration.GET_HEADER_ADV, request: GetHeaderAdvRequest()) {
             (resp: GetHeaderAdvResponse) -> Void in
             if self.refreshing {
                 self.refreshControl.endRefreshing()
@@ -95,18 +106,18 @@ class CourseMainPageViewController: BaseUIViewController {
             }
             
             if resp.headerAdv != nil {
-                let headerCell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0)) as! HeaderAdvCell
+                let headerCell = self.tableView.cellForRow(at: NSIndexPath(row: 0, section: 0) as IndexPath) as! HeaderAdvCell
 
                 self.headerAdv = resp.headerAdv
-                if let imageUrl = NSURL(string: (resp.headerAdv?.imageUrl)!) {
-                    headerCell.advImage.kf_setImageWithURL(imageUrl)
+                if let imageUrl = URL(string: (resp.headerAdv?.imageUrl)!) {
+                    headerCell.advImage.kf.setImage(with: imageUrl)
                 }
             }
         }
     }
     
     func loadFooterAdvs() {
-        BasicService().sendRequest(ServiceConfiguration.GET_FOOTER_ADV, request: GetFooterAdvsRequest() ) {
+        BasicService().sendRequest(url: ServiceConfiguration.GET_FOOTER_ADV, request: GetFooterAdvsRequest() ) {
             (resp: GetFooterAdvsResponse) -> Void in
             if resp.status != ServerResponseStatus.Success.rawValue {
                 QL4("server return error: \(resp.errorMessage!)")
@@ -120,7 +131,7 @@ class CourseMainPageViewController: BaseUIViewController {
     }
     
     func loadCourseNotify() {
-        BasicService().sendRequest(ServiceConfiguration.GET_COURSE_NOTIFY, request: GetCourseNotifyRequest() ) { (resp: GetCourseNotifyResponse) -> Void in
+        BasicService().sendRequest(url: ServiceConfiguration.GET_COURSE_NOTIFY, request: GetCourseNotifyRequest() ) { (resp: GetCourseNotifyResponse) -> Void in
             if resp.isFail {
                 QL4("server return error: \(resp.errorMessage!)")
                 return
@@ -132,7 +143,7 @@ class CourseMainPageViewController: BaseUIViewController {
     
     
     func loadFunctionInfos() {
-        BasicService().sendRequest(ServiceConfiguration.GET_FUNCTION_INFO, request: GetFunctionInfosRequest()) {
+        BasicService().sendRequest(url: ServiceConfiguration.GET_FUNCTION_INFO, request: GetFunctionInfosRequest()) {
             (resp: GetFunctionInfosResponse) -> Void in
             if resp.status != ServerResponseStatus.Success.rawValue {
                 QL4("server return error: \(resp.errorMessage!)")
@@ -141,16 +152,16 @@ class CourseMainPageViewController: BaseUIViewController {
             //更新消息
             var imageUrls = [String]()
             for function in resp.functions {
-                self.extendFunctionStore.updateMessageCount(function.code, value: function.messageCount)
-                self.extendFunctionStore.updateShow(function.code, value: function.isShow)
-                self.extendFunctionStore.updateFunctionName(function.code, value: function.name)
-                self.extendFunctionStore.updateImageUrl(function.code, value: function.imageUrl)
+                self.extendFunctionStore.updateMessageCount(code: function.code, value: function.messageCount)
+                self.extendFunctionStore.updateShow(code: function.code, value: function.isShow)
+                self.extendFunctionStore.updateFunctionName(code: function.code, value: function.name)
+                self.extendFunctionStore.updateImageUrl(code: function.code, value: function.imageUrl)
                 if function.imageUrl != "" {
                    imageUrls.append(function.imageUrl)
                 }
             }
             self.tableView.reloadData()
-            self.downloadFunctionImages(imageUrls)
+            self.downloadFunctionImages(imageUrls: imageUrls)
         }
 
     }
@@ -158,9 +169,12 @@ class CourseMainPageViewController: BaseUIViewController {
     func downloadFunctionImages(imageUrls: [String]) {
         for imageUrl in imageUrls {
             
-            let image = extendFunctionImageStore.getImage(imageUrl)
+            let image = extendFunctionImageStore.getImage(imageUrl: imageUrl)
             if image == nil {
                 let imageView = UIImageView()
+                imageView.kf.setImage(with: URL(string: imageUrl)!)
+                
+                /*
                 imageView.kf_setImageWithURL(NSURL(string: imageUrl)!,
                                                  placeholderImage: nil,
                                                  optionsInfo: [.ForceRefresh],
@@ -169,29 +183,29 @@ class CourseMainPageViewController: BaseUIViewController {
                                                         self.extendFunctionImageStore.saveOrUpdate(imageUrl, image: image!)
                                                         self.tableView.reloadData()
                                                     }
-                })
+                }) */
 
             }
         }
     }
     
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        super.prepareForSegue(segue, sender: sender)
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
         if segue.identifier == "beforeCourseSegue" {
-            let dest = segue.destinationViewController as! AlbumListController
+            let dest = segue.destination as! AlbumListController
             
             dest.courseType = sender as! CourseType
         } 
         else if segue.identifier == "loadWebPageSegue" {
-            let dest = segue.destinationViewController as! WebPageViewController
+            let dest = segue.destination as! WebPageViewController
             
             let params = sender as! [String: String]
             dest.url = NSURL(string: params["url"]!)
             
             dest.title = params["title"]
         } else if segue.identifier == "buyVipSegue" {
-            let dest = segue.destinationViewController as! WebPageViewController
+            let dest = segue.destination as! WebPageViewController
             dest.url = NSURL(string: ServiceLinkManager.MyAgentUrl)
             dest.title = "Vip购买"
         }
@@ -202,14 +216,14 @@ class CourseMainPageViewController: BaseUIViewController {
         if audioItem == nil {
             return
         }
-        updatePlayingButton(playingButton)
+        updatePlayingButton(button: playingButton)
     }
     
     @IBAction func searchPressed(sender: AnyObject) {
-        performSegueWithIdentifier("searchSegue", sender: nil)
+        performSegue(withIdentifier: "searchSegue", sender: nil)
     }
     
-    func refresh() {
+    @objc func refresh() {
         if (refreshing) {
             refreshControl.endRefreshing()
             return
@@ -225,11 +239,11 @@ class CourseMainPageViewController: BaseUIViewController {
 
 
 extension CourseMainPageViewController : UITableViewDataSource, UITableViewDelegate {
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return getRowCount()
     }
     
@@ -237,22 +251,22 @@ extension CourseMainPageViewController : UITableViewDataSource, UITableViewDeleg
         return 2 + extendFunctionMananger.getRowCount() + 1
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let row = indexPath.row
         
         if row == 0 {
-            let cell = tableView.dequeueReusableCellWithIdentifier("mainpageHeaderAdvCell") as! HeaderAdvCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "mainpageHeaderAdvCell") as! HeaderAdvCell
             return cell
 
         } else if row == 1 {
-            let cell = tableView.dequeueReusableCellWithIdentifier("courseNotifyCell") as! CourseNotifyCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "courseNotifyCell") as! CourseNotifyCell
             //courseNotifies = [String]()
             if courseNotifies.count == 0 {
-                cell.courseNotifyLabel.hidden = true
-                cell.separatorInset = UIEdgeInsetsMake(0, UIScreen.mainScreen().bounds.width, 0, 0);
+                cell.courseNotifyLabel.isHidden = true
+                cell.separatorInset = UIEdgeInsetsMake(0, UIScreen.main.bounds.width, 0, 0);
             } else {
-                cell.courseNotifyLabel.hidden = false
+                cell.courseNotifyLabel.isHidden = false
                 var notifyString = ""
                 for notify in self.courseNotifies {
                     notifyString = notifyString + notify + " "
@@ -266,13 +280,13 @@ extension CourseMainPageViewController : UITableViewDataSource, UITableViewDeleg
         } else if row == getRowCount() - 1 {
              return makeAdvCell()
         } else {
-            let cell = extendFunctionMananger.getFunctionCell(tableView, row: row - 2)
+            let cell = extendFunctionMananger.getFunctionCell(tableView: tableView, row: row - 2)
             return cell
 
         }
     }
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let row = indexPath.row
         if row == 0 {
             return getHeaderAdvHeight()
@@ -285,22 +299,22 @@ extension CourseMainPageViewController : UITableViewDataSource, UITableViewDeleg
         }
     }
     
-    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 1
     }
     
-    func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 1
     }
     
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.deselectRowAtIndexPath(indexPath, animated: false)
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath as IndexPath, animated: false)
         let row = indexPath.row
         if row == 0 {
             if headerAdv != nil {
                 if (headerAdv?.type)! == HeaderAdv.Type_Song {
-                    loading.showOverlay(view)
+                    loading.showOverlay(view: view)
                     let request = GetSongInfoRequest()
                     let album = Album()
                     album.courseType = CourseType.LiveCourse
@@ -308,16 +322,16 @@ extension CourseMainPageViewController : UITableViewDataSource, UITableViewDeleg
                     reqSong.album = album
                     reqSong.id = (headerAdv?.songId)!
                     request.song = reqSong
-                    BasicService().sendRequest(ServiceConfiguration.GET_SONG_INFO, request: request) {
+                    BasicService().sendRequest(url: ServiceConfiguration.GET_SONG_INFO, request: request) {
                         (resp : GetSongInfoResponse) -> Void in
                         self.loading.hideOverlayView()
                         if resp.status == ServerResponseStatus.NoEnoughAuthority.rawValue {
-                            self.displayVipBuyMessage(resp.errorMessage!, delegate: self.buyPayCourseDelegate!)
+                            self.displayVipBuyMessage(message: resp.errorMessage!, delegate: self.buyPayCourseDelegate!)
                             return
                         }
                         
                         if resp.isFail {
-                            self.displayMessage(resp.errorMessage!)
+                            self.displayMessage(message: resp.errorMessage!)
                             return
                         }
                         
@@ -329,8 +343,8 @@ extension CourseMainPageViewController : UITableViewDataSource, UITableViewDeleg
                         let audioPlayer = self.getAudioPlayer()
                         //如果当前歌曲已经在播放，就什么都不需要做
                         if audioPlayer.currentItem != nil {
-                            if song.id == (audioPlayer.currentItem! as! MyAudioItem).song.id {
-                                self.performSegueWithIdentifier("songSegue", sender: false)
+                            if song?.id == (audioPlayer.currentItem! as! MyAudioItem).song.id {
+                                self.performSegue(withIdentifier: "songSegue", sender: false)
                                 return
                             }
                         }
@@ -338,18 +352,19 @@ extension CourseMainPageViewController : UITableViewDataSource, UITableViewDeleg
                         var audioItems = [AudioItem]()
                         let songs = [song]
                         for songItem in songs {
-                            var url = NSURL(string: songItem.url)
-                            let audioItem = MyAudioItem(song: songItem, highQualitySoundURL: url)
+                            var url = URL(string: (songItem?.url)!)
+                            let audioItem = MyAudioItem(song: songItem!, highQualitySoundURL: url)
                             audioItems.append(audioItem!)
                         }
                         
                         audioPlayer.delegate = nil
-                        audioPlayer.playItems(audioItems, startAtIndex: 0)
-                        self.performSegueWithIdentifier("songSegue", sender: false)
+                        //TODO: play
+                        //audioPlayer.playItems(audioItems, startAtIndex: 0)
+                        self.performSegue(withIdentifier: "songSegue", sender: false)
                         
                     }
                 } else {
-                    performSegueWithIdentifier("beforeCourseSegue", sender: CourseType.LiveCourse)
+                    performSegue(withIdentifier: "beforeCourseSegue", sender: CourseType.LiveCourse)
                     
                 }
             }
@@ -361,13 +376,13 @@ extension CourseMainPageViewController : UITableViewDataSource, UITableViewDeleg
         let index = scrollView.auk.currentPageIndex
         if index != nil {
             let params : [String: String] = ["url": ads[index!].clickUrl, "title": ads[index!].title]
-            performSegueWithIdentifier("loadWebPageSegue", sender: params)
+            performSegue(withIdentifier: "loadWebPageSegue", sender: params)
         }
     }
     
     var footerImageWidth:CGFloat {
         get {
-            let screenWidth = UIScreen.mainScreen().bounds.width;
+            let screenWidth = UIScreen.main.bounds.width;
             let width = (screenWidth - CGFloat(footerImageInterWidth * 3)) / 4
             return width
         }
@@ -379,7 +394,7 @@ extension CourseMainPageViewController : UITableViewDataSource, UITableViewDeleg
         }
     }
     
-    func footerAdvImageHandler(sender: UITapGestureRecognizer? = nil) {
+    @objc func footerAdvImageHandler(sender: UITapGestureRecognizer? = nil) {
         let index = sender?.view?.tag
         if self.footerAdvs.count != 4 {
             return
@@ -393,9 +408,9 @@ extension CourseMainPageViewController : UITableViewDataSource, UITableViewDeleg
         
         //如果是快速下款，通过使用外部浏览器打开
         if footerAdv.title == "快速下卡" {
-            UIApplication.sharedApplication().openURL(NSURL(string: footerAdv.url)!)
+            UIApplication.shared.openURL(NSURL(string: footerAdv.url)! as URL)
         } else {
-            performSegueWithIdentifier("loadWebPageSegue", sender: params)
+            performSegue(withIdentifier: "loadWebPageSegue", sender: params)
         }
     }
     
@@ -407,14 +422,15 @@ extension CourseMainPageViewController : UITableViewDataSource, UITableViewDeleg
             y = 0
         }
 
-        let imageView = UIImageView(frame: CGRectMake(x, y, footerImageWidth, footerImageHeight))
+        let imageView = UIImageView(frame: CGRect(x: x, y: y, width: footerImageWidth, height: footerImageHeight))
         imageView.tag = index
         if adv.imageUrl != "" {
-            if let imageUrl = NSURL(string: adv.imageUrl) {
+            if let imageUrl = URL(string: adv.imageUrl) {
                 //QL1("imageUrl: \(adv.imageUrl)")
-                imageView.kf_setImageWithURL(imageUrl)
+                //imageView.kf_setImageWithURL(imageUrl)
+                imageView.kf.setImage(with: imageUrl)
                 imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(footerAdvImageHandler) ))
-                imageView.userInteractionEnabled = true
+                imageView.isUserInteractionEnabled = true
 
             }
         } else {
@@ -425,7 +441,7 @@ extension CourseMainPageViewController : UITableViewDataSource, UITableViewDeleg
     }
     
     private func makeAdvCell() -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("footerAdvCell") as! FooterAdvCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "footerAdvCell") as! FooterAdvCell
         if footerAdvs.count != 4 {
             footerAdvs = [FooterAdv]()
             footerAdvs.append(FooterAdv())
@@ -436,7 +452,7 @@ extension CourseMainPageViewController : UITableViewDataSource, UITableViewDeleg
         var i = 0
         footerAdvs.forEach() {
             (adv: FooterAdv) -> Void in
-            cell.addSubview(makeImage(i, adv: adv))
+            cell.addSubview(makeImage(index: i, adv: adv))
             i = i + 1
         }
         return cell
@@ -447,7 +463,7 @@ extension CourseMainPageViewController : UITableViewDataSource, UITableViewDeleg
         let section1Height = getHeaderAdvHeight()
         let section2Height = CGFloat(extendFunctionMananger.getRowCount()) * extendFunctionMananger.cellHeight
         let total = section1Height + section2Height + 18 + 3 + 65 + 49 - 5
-        var height = UIScreen.mainScreen().bounds.height - CGFloat(total)
+        var height = UIScreen.main.bounds.height - CGFloat(total)
         
         if height < footerImageHeight  {
             height = footerImageHeight
@@ -457,7 +473,7 @@ extension CourseMainPageViewController : UITableViewDataSource, UITableViewDeleg
     
     
     private func getHeaderAdvHeight() -> CGFloat {
-        let screenWidth = UIScreen.mainScreen().bounds.width
+        let screenWidth = UIScreen.main.bounds.width
         return screenWidth * 122 / 320
     }
 

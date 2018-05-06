@@ -11,7 +11,7 @@ import WebKit
 import StoreKit
 import QorumLogs
 import Alamofire
-import Kanna
+//mport Kanna
 
 class WebPageViewController: IapSupportWebPageViewController, WKNavigationDelegate {
     
@@ -62,22 +62,22 @@ class WebPageViewController: IapSupportWebPageViewController, WKNavigationDelega
         
         
         //设置分享相关
-        shareView.hidden = true
+        shareView.isHidden = true
         shareManager = ShareManager(controller: self)
-        closeShareViewButton.addBorder(viewBorder.Top, color: UIColor(white: 0.65, alpha: 0.5), width: 1)
+        closeShareViewButton.addBorder(vBorder: viewBorder.Top, color: UIColor(white: 0.65, alpha: 0.5), width: 1)
         shareManager.isUseQrImage = false
         
         
-        shareManager.loadShareInfo(url)
+        shareManager.loadShareInfo(url: url)
     }
     
     
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
     }
     
@@ -85,8 +85,8 @@ class WebPageViewController: IapSupportWebPageViewController, WKNavigationDelega
     override func initWebView() {
         super.initWebView()
         var url1 = url.absoluteString
-        url1 = Utils.addUserParams(url1)
-        url1 = Utils.addDevcieParam(url1)
+        url1 = Utils.addUserParams(url: url1!)
+        url1 = Utils.addDevcieParam(url: url1!)
         print(url1)
         
         let config = WKWebViewConfiguration()
@@ -97,23 +97,23 @@ class WebPageViewController: IapSupportWebPageViewController, WKNavigationDelega
         self.webContainer.addSubview(self.webView!)
         self.webView?.navigationDelegate = self
         
-        let nsurl = NSURL(string: url1)
-        QL1("NSUrl = \(nsurl)")
-        let myRequest = NSURLRequest(URL: nsurl!);
+        let nsurl = NSURL(string: url1!)
+        QL1("NSUrl = \(String(describing: nsurl))")
+        let myRequest = NSURLRequest(url: nsurl! as URL);
         //webView.delegate = self
-        webView!.loadRequest(myRequest);
+        webView!.load(myRequest as URLRequest);
     }
     
     
     
     /****  webView相关的函数  ***/
-    func webView(webView: WKWebView, didCommitNavigation navigation: WKNavigation!) {
-        loading.show(view)
+    func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) {
+        loading.show(view: view)
         QL1("didCommitNavigation called")
         QL1("webView.canGoBack = \(webView.canGoBack)")
-        if webView.URL != nil {
-            QL1("url = \(webView.URL!)")
-            shareManager.loadShareInfo(webView.URL!)
+        if webView.url != nil {
+            QL1("url = \(webView.url!)")
+            shareManager.loadShareInfo(url: webView.url! as NSURL)
         }
 
         if webView.canGoBack {
@@ -122,7 +122,7 @@ class WebPageViewController: IapSupportWebPageViewController, WKNavigationDelega
         }
     }
     
-    func webView(webView: WKWebView, didFinishNavigation navigation: WKNavigation!) {
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         loading.hide()
         QL1("webView.canGoBack = \(webView.canGoBack)")
         
@@ -141,26 +141,26 @@ class WebPageViewController: IapSupportWebPageViewController, WKNavigationDelega
         }
     }
     
-    func webView(webView: WKWebView, didFailNavigation navigation: WKNavigation!, withError error: NSError) {
+    func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
         loading.hide()
     }
     
-    func webView(webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: NSError) {
+    func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
         loading.hide()
     }
     
   
 
-    func webViewBack() {
+    @objc func webViewBack() {
         if webView!.canGoBack {
             webView!.goBack()
-            if webView!.URL != nil {
-                QL1("url = \(webView!.URL!)")
-                shareManager.loadShareInfo(webView!.URL!)
+            if webView!.url != nil {
+                QL1("url = \(webView!.url!)")
+                shareManager.loadShareInfo(url: webView!.url! as NSURL)
             }
             
         } else {
-            navigationController?.popViewControllerAnimated(true)
+            navigationController?.popViewController(animated: true)
         }
     }
     
@@ -171,21 +171,21 @@ class WebPageViewController: IapSupportWebPageViewController, WKNavigationDelega
         if  loginUser != nil {
             QL1("found login user")
             QL1("userid = \(loginUser?.userName), password = \(loginUser?.password), token = \(loginUser?.token)")
-            self.performSegueWithIdentifier("hasLoginSegue", sender: self)
+            self.performSegue(withIdentifier: "hasLoginSegue", sender: self)
         } else {
             QL1("no login user")
-            self.performSegueWithIdentifier("notLoginSegue", sender: self)
+            self.performSegue(withIdentifier: "notLoginSegue", sender: self)
         }
         
     }
     
     
-    func returnLastController() {
+    @objc func returnLastController() {
 
         if isBackToMainController {
             checkLoginUser()
         } else {
-            navigationController?.popViewControllerAnimated(true)
+            navigationController?.popViewController(animated: true)
         }
         
     }
@@ -198,7 +198,7 @@ class WebPageViewController: IapSupportWebPageViewController, WKNavigationDelega
         //如果正在评论，关闭评论的窗口
         QL1("shareButton Pressed")
         
-        if shareView.hidden {
+        if shareView.isHidden {
             shareView.becomeFirstResponder()
             showShareView()
         } else {
@@ -208,11 +208,11 @@ class WebPageViewController: IapSupportWebPageViewController, WKNavigationDelega
     
     func showShareView() {
         print("showOverlay")
-        overlay = UIView(frame: UIScreen.mainScreen().bounds)
+        overlay = UIView(frame: UIScreen.main.bounds)
         overlay.backgroundColor = UIColor(white: 0, alpha: 0.65)
         
         shareView.removeFromSuperview()
-        shareView.hidden = false
+        shareView.isHidden = false
         overlay.addSubview(shareView)
         self.view.addSubview(overlay)
     }
@@ -221,7 +221,7 @@ class WebPageViewController: IapSupportWebPageViewController, WKNavigationDelega
         print("hideOverlay")
         shareView.removeFromSuperview()
         self.view.addSubview(shareView)
-        shareView.hidden = true
+        shareView.isHidden = true
         overlay.removeFromSuperview()
     }
     

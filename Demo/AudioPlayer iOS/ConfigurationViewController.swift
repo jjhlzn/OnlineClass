@@ -47,21 +47,21 @@ class ConfigurationController: BaseUIViewController, UITableViewDataSource, UITa
     }
     
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return names.count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let row = indexPath.row
         
         if row == 3 {
-            let cell = tableView.dequeueReusableCellWithIdentifier("configurationCell2") as! ConfigurationCell2
+            let cell = tableView.dequeueReusableCell(withIdentifier: "configurationCell2") as! ConfigurationCell2
             cell.nameInfoLabel?.text = names[indexPath.row][0]
-            cell.switchButton.on = values[row] == "1"
+            cell.switchButton.isOn = values[row] == "1"
             return cell
         } else {
-            let cell = tableView.dequeueReusableCellWithIdentifier("configurationCell") as! ConfigurationCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "configurationCell") as! ConfigurationCell
             cell.nameInfoLabel?.text = names[indexPath.row][0]
             cell.editView.placeholder = names[indexPath.row][1]
             cell.editView.text = values[indexPath.row]
@@ -74,47 +74,47 @@ class ConfigurationController: BaseUIViewController, UITableViewDataSource, UITa
     
     
     @IBAction func backPressed(sender: UIBarButtonItem) {
-        performSegueWithIdentifier("loginSegue", sender: nil)
+        performSegue(withIdentifier: "loginSegue", sender: nil)
     }
     
     @IBAction func savePressed(sender: UIBarButtonItem) {
         //TODO 检查服务器设置是否正确
         
-        let http = (tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0)) as!ConfigurationCell).editView.text!
-        let serverName = (tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 1, inSection: 0)) as!ConfigurationCell).editView.text!
-        let port = (tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 2, inSection: 0)) as!ConfigurationCell).editView.text!
-        let isUseServiceLocator = (tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 3, inSection: 0)) as! ConfigurationCell2).switchButton.on ? "1" : "0"
+        let http = (tableView.cellForRow(at: NSIndexPath(row: 0, section: 0) as IndexPath) as!ConfigurationCell).editView.text!
+        let serverName = (tableView.cellForRow(at: NSIndexPath(row: 1, section: 0) as IndexPath) as!ConfigurationCell).editView.text!
+        let port = (tableView.cellForRow(at: NSIndexPath(row: 2, section: 0) as IndexPath) as!ConfigurationCell).editView.text!
+        let isUseServiceLocator = (tableView.cellForRow(at: NSIndexPath(row: 3, section: 0) as IndexPath) as! ConfigurationCell2).switchButton.isOn ? "1" : "0"
         
         if Int(port) == nil {
-            displayMessage("端口号必须为数字")
+            displayMessage(message: "端口号必须为数字")
             return
         }
         
         if http != "http" && http != "https" {
-            displayMessage("协议必须为http或https")
+            displayMessage(message: "协议必须为http或https")
             return
         }
         
         let serviceLocator = serviceLocatorStore.GetServiceLocator()
 
         serviceLocator?.http = http
-        serviceLocator?.port = Int(port)
+        serviceLocator?.port = Int(port) as! NSNumber
         serviceLocator?.serverName = serverName
         serviceLocator?.isUseServiceLocator = isUseServiceLocator
         
         QL1("newServiceLocator: \(http) \(port) \(serverName) \(isUseServiceLocator)")
         
         if serviceLocatorStore.UpdateServiceLocator() {
-            displayMessage("保存成功", delegate: self)
+            displayMessage(message: "保存成功", delegate: self)
         } else {
-            displayMessage("保存失败")
+            displayMessage(message: "保存失败")
         }
         
         
     }
     
     func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
-        performSegueWithIdentifier("loginSegue", sender: nil)
+        performSegue(withIdentifier: "loginSegue", sender: nil)
     }
     
     

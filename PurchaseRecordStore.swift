@@ -19,12 +19,12 @@ class PurchaseRecordStore {
         //存储登录的信息
         let context = coreDataStack.mainQueueContext
         var recordEntity: PurchaseRecordEntity!
-        context.performBlockAndWait() {
-            recordEntity = NSEntityDescription.insertNewObjectForEntityForName("PurchaseRecordEntity", inManagedObjectContext: context) as! PurchaseRecordEntity
+        context.performAndWait() {
+            recordEntity = NSEntityDescription.insertNewObject(forEntityName: "PurchaseRecordEntity", into: context) as! PurchaseRecordEntity
             recordEntity.productId = record.productId
             recordEntity.payTime = record.payTime
             recordEntity.userid = record.userid
-            recordEntity.isnotify = record.isNotify
+            recordEntity.isnotify = record.isNotify as NSNumber
         }
         
         do {
@@ -51,19 +51,19 @@ class PurchaseRecordStore {
     }
     
     func getNotNotifyRecord(userid: String) -> PurchaseRecordEntity? {
-        let fetchRequest = NSFetchRequest(entityName: "PurchaseRecordEntity")
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "PurchaseRecordEntity")
         fetchRequest.sortDescriptors = nil
         let predict1 = NSPredicate(format: "userid = %@", userid)
-        let predict2 = NSPredicate(format: "isnotify = %@", false)
+        let predict2 = NSPredicate(format: "isnotify = %@", false as CVarArg)
         let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [predict1, predict2])
         fetchRequest.predicate = predicate
         
         let mainQueueContext = self.coreDataStack.mainQueueContext
         var mainQueueUsers: [PurchaseRecordEntity]?
-        var fetchRequestError: ErrorType?
-        mainQueueContext.performBlockAndWait() {
+        var fetchRequestError: Error?
+        mainQueueContext.performAndWait() {
             do {
-                mainQueueUsers = try mainQueueContext.executeFetchRequest(fetchRequest) as? [PurchaseRecordEntity]
+                mainQueueUsers = try mainQueueContext.fetch(fetchRequest) as? [PurchaseRecordEntity]
             }
             catch let error {
                 fetchRequestError = error
@@ -83,17 +83,17 @@ class PurchaseRecordStore {
     }
     
     func getAllNotifyRecord(userid: String) {
-        let fetchRequest = NSFetchRequest(entityName: "PurchaseRecordEntity")
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "PurchaseRecordEntity")
         fetchRequest.sortDescriptors = nil
         let predict1 = NSPredicate(format: "userid = %@", userid)
         fetchRequest.predicate = predict1
         
         let mainQueueContext = self.coreDataStack.mainQueueContext
         var mainQueueUsers: [PurchaseRecordEntity]?
-        var fetchRequestError: ErrorType?
-        mainQueueContext.performBlockAndWait() {
+        var fetchRequestError: Error?
+        mainQueueContext.performAndWait() {
             do {
-                mainQueueUsers = try mainQueueContext.executeFetchRequest(fetchRequest) as? [PurchaseRecordEntity]
+                mainQueueUsers = try mainQueueContext.fetch(fetchRequest) as? [PurchaseRecordEntity]
             }
             catch let error {
                 fetchRequestError = error

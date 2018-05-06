@@ -22,17 +22,17 @@ class BaseUIViewController: UIViewController, AudioPlayerDelegate {
 
             self.navigationController?.navigationBar.barTintColor =
    UIColor(red: 0xF2/255, green: 0x61/255, blue: 0, alpha: 0.9)
-            self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
+            self.navigationController?.navigationBar.tintColor = UIColor.white
 
-            self.navigationController?.navigationBar.barStyle = UIBarStyle.Black
+            self.navigationController?.navigationBar.barStyle = UIBarStyle.black
            
         }
         
         
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        super.prepareForSegue(segue, sender: sender)
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
         let backItem = UIBarButtonItem()
         backItem.title = ""
         navigationItem.backBarButtonItem = backItem
@@ -44,13 +44,13 @@ class BaseUIViewController: UIViewController, AudioPlayerDelegate {
         return true
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         getAudioPlayer().delegate = nil
         
         if isNeedResetAudioPlayerDelegate()
-            && self.navigationController?.viewControllers.indexOf(self) == nil {
-            if let navigatoinViewController = (self.parentViewController as? UINavigationController) {
+            && self.navigationController?.viewControllers.index(of: self) == nil {
+            if let navigatoinViewController = (self.parent as? UINavigationController) {
                 if let delegate = navigatoinViewController.topViewController as? AudioPlayerDelegate {
                     getAudioPlayer().delegate = delegate
                 }
@@ -62,21 +62,21 @@ class BaseUIViewController: UIViewController, AudioPlayerDelegate {
         
     
     func getAudioPlayer() -> AudioPlayer {
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
         return appDelegate.audioPlayer
     }
     
     func addPlayingButton(button: UIButton) {
-        button.addTarget(self, action: #selector(playingButtonPressed), forControlEvents: .TouchUpInside)
+        button.addTarget(self, action: #selector(playingButtonPressed), for: .touchUpInside)
     }
     
-    func playingButtonPressed(sender: UIButton) {
+    @objc func playingButtonPressed(sender: UIButton) {
         if hasCurrentItem() {
-            performSegueWithIdentifier("songSegue", sender: false)
+            performSegue(withIdentifier: "songSegue", sender: false)
         }
     }
     
-    func stringFromTimeInterval(interval: NSTimeInterval) -> String {
+    func stringFromTimeInterval(interval: TimeInterval) -> String {
         let interval = Int(interval)
         let seconds = interval % 60
         let minutes = (interval / 60) % 60
@@ -96,16 +96,16 @@ class BaseUIViewController: UIViewController, AudioPlayerDelegate {
     func updatePlayingButton(button: UIButton) {
         let audioPlayer = getAudioPlayer()
         QL1("audioPlayer.state = \(audioPlayer.state)")
-        if audioPlayer.state == AudioPlayerState.Playing {
+        if audioPlayer.state == AudioPlayerState.playing {
             
-            let image = UIImage.animatedImageWithImages([UIImage(named: "wave1")!,
+            let image = UIImage.animatedImage(with: [UIImage(named: "wave1")!,
                 UIImage(named: "wave2")!,
                 UIImage(named: "wave3")!,
                 UIImage(named: "wave4")!,
-                UIImage(named: "wave5")!], duration: NSTimeInterval(0.8))
-            button.setImage(image, forState: .Normal)
+                UIImage(named: "wave5")!], duration: TimeInterval(0.8))
+            button.setImage(image, for: [])
         } else {
-            button.setImage(UIImage(named: "wave1"), forState: .Normal)
+            button.setImage(UIImage(named: "wave1"), for: [])
         }
     }
 
@@ -117,11 +117,11 @@ class BaseUIViewController: UIViewController, AudioPlayerDelegate {
         QL1("audioPlayer:willStartPlayingItem called")
     }
     
-    func audioPlayer(audioPlayer: AudioPlayer, didUpdateProgressionToTime time: NSTimeInterval, percentageRead: Float) {
+    func audioPlayer(audioPlayer: AudioPlayer, didUpdateProgressionToTime time: TimeInterval, percentageRead: Float) {
         
     }
     
-    func audioPlayer(audioPlayer: AudioPlayer, didFindDuration duration: NSTimeInterval, forItem item: AudioItem) {
+    func audioPlayer(audioPlayer: AudioPlayer, didFindDuration duration: TimeInterval, forItem item: AudioItem) {
 
     }
     
@@ -129,15 +129,16 @@ class BaseUIViewController: UIViewController, AudioPlayerDelegate {
         QL1("audioPlayer:didUpdateEmptyMetadataOnItem called, metaData = \(data)")
     }
     
+    /*
     func audioPlayer(audioPlayer: AudioPlayer, didLoadRange range: AudioPlayer.TimeRange, forItem item: AudioItem){
 
-    }
+    }*/
     
     func becomeLineBorder(field: UITextField) {
-        field.borderStyle = .None
+        field.borderStyle = .none
         let bottomBorder = CALayer()
-        bottomBorder.frame = CGRectMake(0.0, field.frame.size.height - 1, field.frame.size.width, 1.0);
-        bottomBorder.backgroundColor = UIColor.lightGrayColor().CGColor
+        bottomBorder.frame = CGRect(x: 0.0, y: field.frame.size.height - 1, width: field.frame.size.width, height: 1.0);
+        bottomBorder.backgroundColor = UIColor.lightGray.cgColor
         field.layer.addSublayer(bottomBorder)
     }
     
@@ -156,7 +157,7 @@ extension BaseUIViewController {
         let alertView = UIAlertView()
         //alertView.title = "系统提示"
         alertView.message = message
-        alertView.addButtonWithTitle("好的")
+        alertView.addButton(withTitle: "好的")
         alertView.cancelButtonIndex=0
         alertView.show()
         
@@ -166,7 +167,7 @@ extension BaseUIViewController {
         let alertView = UIAlertView()
         //alertView.title = "系统提示"
         alertView.message = message
-        alertView.addButtonWithTitle("好的")
+        alertView.addButton(withTitle: "好的")
         alertView.cancelButtonIndex=0
         alertView.delegate=delegate
         alertView.show()
@@ -177,8 +178,8 @@ extension BaseUIViewController {
         let alertView = UIAlertView()
         //alertView.title = "系统提示"
         alertView.message = message
-        alertView.addButtonWithTitle("购买")
-        alertView.addButtonWithTitle("取消")
+        alertView.addButton(withTitle: "购买")
+        alertView.addButton(withTitle: "取消")
         alertView.delegate=delegate
         alertView.show()
     }
@@ -187,8 +188,8 @@ extension BaseUIViewController {
         let alertView = UIAlertView()
         //alertView.title = "系统提示"
         alertView.message = message
-        alertView.addButtonWithTitle("购买")
-        alertView.addButtonWithTitle("返回")
+        alertView.addButton(withTitle: "购买")
+        alertView.addButton(withTitle: "返回")
         alertView.delegate=delegate
         alertView.show()
     }
@@ -199,8 +200,8 @@ extension BaseUIViewController {
         let alertView = UIAlertView()
         //alertView.title = "系统提示"
         alertView.message = message
-        alertView.addButtonWithTitle("确认")
-        alertView.addButtonWithTitle("取消")
+        alertView.addButton(withTitle: "确认")
+        alertView.addButton(withTitle: "取消")
         alertView.delegate=delegate
         alertView.show()
     }
@@ -214,7 +215,7 @@ extension BaseUIViewController {
         view.removeGestureRecognizer(tap)
     }
     
-    func dismissKeyboard() {
+    @objc func dismissKeyboard() {
         view.endEditing(true)
     }
 

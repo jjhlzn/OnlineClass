@@ -22,40 +22,40 @@ class PersonalInfoViewController: BaseUIViewController, UITableViewDataSource, U
         
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         loginUserStore = LoginUserStore()
         loginUser = loginUserStore.getLoginUser()!
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
         (self.navigationController?.viewControllers[0] as! MyInfoVieController).tableView.reloadData()
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 4
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let row = indexPath.row
         
         switch row {
         case 0:
-            let cell = tableView.dequeueReusableCellWithIdentifier("personalItemCell") as! PersonalInfoCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "personalItemCell") as! PersonalInfoCell
             cell.nameLabel.text = "姓名"
             cell.valueLabel.text = loginUser.name
             return cell
         
         case 1:
-            let cell = tableView.dequeueReusableCellWithIdentifier("personalItemCell") as! PersonalInfoCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "personalItemCell") as! PersonalInfoCell
             cell.nameLabel.text = "昵称"
             cell.valueLabel.text = loginUser.nickName
             return cell
             
         case 2:
-            let cell = tableView.dequeueReusableCellWithIdentifier("personalItemCell") as! PersonalInfoCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "personalItemCell") as! PersonalInfoCell
             cell.nameLabel.text = "性别"
             if loginUser.sex == nil {
                 cell.valueLabel.text = "保密"
@@ -65,41 +65,41 @@ class PersonalInfoViewController: BaseUIViewController, UITableViewDataSource, U
             return cell
             
         case 3:
-            let cell = tableView.dequeueReusableCellWithIdentifier("personalItemCell") as! PersonalInfoCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "personalItemCell") as! PersonalInfoCell
             cell.nameLabel.text = "更多"
             cell.valueLabel.text = ""
             return cell
         
         default:
-            return tableView.dequeueReusableCellWithIdentifier("personalItemCell")!
+            return tableView.dequeueReusableCell(withIdentifier: "personalItemCell")!
         }
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: IndexPath) {
         let row = indexPath.row
         switch row {
         case 0:
-            performSegueWithIdentifier("setNameSegue", sender: nil)
+            performSegue(withIdentifier: "setNameSegue", sender: nil)
             break
         case 1:
-            performSegueWithIdentifier("setNickNameSegue", sender: nil)
+            performSegue(withIdentifier: "setNickNameSegue", sender: nil)
             break
         case 2:
-            performSegueWithIdentifier("setSexSegue", sender: nil)
+            performSegue(withIdentifier: "setSexSegue", sender: nil)
             break
         case 3:
-            performSegueWithIdentifier("moreSegue", sender: nil)
+            performSegue(withIdentifier: "moreSegue", sender: nil)
             break
         default:
             break
         }
-        tableView.deselectRowAtIndexPath(indexPath, animated: false)
+        tableView.deselectRow(at: indexPath as IndexPath, animated: false)
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        super.prepareForSegue(segue, sender: sender)
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
         if segue.identifier == "moreSegue" {
-            let dest = segue.destinationViewController as! WebPageViewController
+            let dest = segue.destination as! WebPageViewController
             dest.title = "个人资料"
             dest.url = NSURL(string: ServiceLinkManager.PersonalInfoUrl)
         }

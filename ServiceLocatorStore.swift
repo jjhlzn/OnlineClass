@@ -13,16 +13,16 @@ class ServiceLocatorStore {
     var coreDataStack = CoreDataStack(modelName: "jufangzhushou")
     
     func GetServiceLocator() -> ServiceLocatorEntity? {
-        let fetchRequest = NSFetchRequest(entityName: "ServiceLocatorEntity")
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "ServiceLocatorEntity")
         fetchRequest.sortDescriptors = nil
         fetchRequest.predicate = nil
         
         let mainQueueContext = self.coreDataStack.mainQueueContext
         var mainQueueUsers: [ServiceLocatorEntity]?
-        var fetchRequestError: ErrorType?
-        mainQueueContext.performBlockAndWait() {
+        var fetchRequestError: Error?
+        mainQueueContext.performAndWait() {
             do {
-                mainQueueUsers = try mainQueueContext.executeFetchRequest(fetchRequest) as? [ServiceLocatorEntity]
+                mainQueueUsers = try mainQueueContext.fetch(fetchRequest) as? [ServiceLocatorEntity]
             }
             catch let error {
                 fetchRequestError = error
@@ -46,11 +46,11 @@ class ServiceLocatorStore {
         //存储登录的信息
         let context = coreDataStack.mainQueueContext
         var entity: ServiceLocatorEntity!
-        context.performBlockAndWait() {
-            entity = NSEntityDescription.insertNewObjectForEntityForName("ServiceLocatorEntity", inManagedObjectContext: context) as! ServiceLocatorEntity
+        context.performAndWait() {
+            entity = NSEntityDescription.insertNewObject(forEntityName: "ServiceLocatorEntity", into: context) as! ServiceLocatorEntity
             entity.http = serviceLocator.http
             entity.serverName = serviceLocator.serverName
-            entity.port = serviceLocator.port
+            entity.port = serviceLocator.port as! NSNumber
             entity.isUseServiceLocator = serviceLocator.isUseServiceLocator
         }
         

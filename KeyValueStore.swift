@@ -27,7 +27,7 @@ class KeyValueStore {
         let oldKeyValuePair: KeyValueEntity?
         
         do {
-            oldKeyValuePair = try getKeyValuePair(key)  //error happens
+            oldKeyValuePair = try getKeyValuePair(key: key)  //error happens
         } catch {
             return false
         }
@@ -36,8 +36,8 @@ class KeyValueStore {
         if oldKeyValuePair == nil {  //the key is not exist
             let context = coreDataStack.mainQueueContext
             var entity: KeyValueEntity!
-            context.performBlockAndWait() {
-                entity = NSEntityDescription.insertNewObjectForEntityForName("KeyValueEntity", inManagedObjectContext: context) as! KeyValueEntity
+            context.performAndWait() {
+                entity = NSEntityDescription.insertNewObject(forEntityName: "KeyValueEntity", into: context) as! KeyValueEntity
                 entity.key = key
                 entity.value = value
             }
@@ -59,16 +59,16 @@ class KeyValueStore {
     }
     
     private func getKeyValuePair(key: String) throws -> KeyValueEntity?  {
-        let fetchRequest = NSFetchRequest(entityName: "KeyValueEntity")
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "KeyValueEntity")
         fetchRequest.sortDescriptors = nil
         fetchRequest.predicate = NSPredicate(format: "key = %@", key)
         
         let mainQueueContext = self.coreDataStack.mainQueueContext
         var mainQueueUsers: [KeyValueEntity]?
-        var fetchRequestError: ErrorType?
-        mainQueueContext.performBlockAndWait() {
+        var fetchRequestError: Error?
+        mainQueueContext.performAndWait() {
             do {
-                mainQueueUsers = try mainQueueContext.executeFetchRequest(fetchRequest) as? [KeyValueEntity]
+                mainQueueUsers = try mainQueueContext.fetch(fetchRequest) as? [KeyValueEntity]
             }
             catch let error {
                 fetchRequestError = error
@@ -91,7 +91,7 @@ class KeyValueStore {
     func get(key: String, defaultValue: String = "") -> String? {
         var result : String?
         do {
-            let pair = try getKeyValuePair(key)
+            let pair = try getKeyValuePair(key: key)
             
             if pair == nil {
                 result = defaultValue

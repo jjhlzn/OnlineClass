@@ -25,14 +25,14 @@ class SettingsViewController: BaseUIViewController, UITableViewDataSource, UITab
     }
     
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
             return 1
         }
         return 1
     }
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: IndexPath) -> CGFloat {
         let section = indexPath.section
         switch section {
         case 0:
@@ -46,25 +46,25 @@ class SettingsViewController: BaseUIViewController, UITableViewDataSource, UITab
         }
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let section = indexPath.section
         switch section {
         case 0:
-            let cell = tableView.dequeueReusableCellWithIdentifier("accountSecurityCell")!
+            let cell = tableView.dequeueReusableCell(withIdentifier: "accountSecurityCell")!
             cell.textLabel?.text = "重设密码"
             return cell
         case 1:
-            let cell = tableView.dequeueReusableCellWithIdentifier("keyValueCell") as! KeyValueCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "keyValueCell") as! KeyValueCell
             cell.nameLabel.text = "版本号"
-            let version = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleShortVersionString") as! String
-            let appBundle = NSBundle.mainBundle().objectForInfoDictionaryKey(kCFBundleVersionKey as String) as! String
+            let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
+            let appBundle = Bundle.main.object(forInfoDictionaryKey: kCFBundleVersionKey as String) as! String
             
             cell.valueLabel.text = "\(version) (\(appBundle))"
             return cell
         case 2:
-            return tableView.dequeueReusableCellWithIdentifier("logoutCell")!
+            return tableView.dequeueReusableCell(withIdentifier: "logoutCell")!
         default:
-            return tableView.dequeueReusableCellWithIdentifier("keyValueCell")!
+            return tableView.dequeueReusableCell(withIdentifier: "keyValueCell")!
         }
     }
     
@@ -73,30 +73,30 @@ class SettingsViewController: BaseUIViewController, UITableViewDataSource, UITab
         let row = indexPath.row
         
         if section == 0 && row == 0 {
-            tableView.deselectRowAtIndexPath(indexPath, animated: false)
-            performSegueWithIdentifier("resetPasswordSegue", sender: nil)
+            tableView.deselectRow(at: indexPath as IndexPath, animated: false)
+            performSegue(withIdentifier: "resetPasswordSegue", sender: nil)
         } else if section == 1 {
-            let cell = tableView.cellForRowAtIndexPath(indexPath)
-            cell!.selectionStyle = .None
+            let cell = tableView.cellForRow(at: indexPath as IndexPath)
+            cell!.selectionStyle = .none
         } else {
-            tableView.deselectRowAtIndexPath(indexPath, animated: false)
+            tableView.deselectRow(at: indexPath as IndexPath, animated: false)
         }
     }
     
 
     @IBAction func logoutPressed(sender: UIButton) {
-        displayConfirmMessage("确认退出登录吗？", delegate: self)
+        displayConfirmMessage(message: "确认退出登录吗？", delegate: self)
     }
     
     func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
         switch buttonIndex {
         case 0:
             
-            BasicService().sendRequest(ServiceConfiguration.LOGOUT,request: LogoutRequest())  {
+            BasicService().sendRequest(url: ServiceConfiguration.LOGOUT,request: LogoutRequest())  {
                 (response : LogoutResponse) -> Void in
                 self.loginUserStore.removeLoginUser()
                 UserProfilePhotoStore().delete()
-                self.performSegueWithIdentifier("logoutSegue", sender: nil)
+                self.performSegue(withIdentifier: "logoutSegue", sender: nil)
             }
             
             break;

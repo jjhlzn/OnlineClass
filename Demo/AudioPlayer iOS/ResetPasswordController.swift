@@ -23,12 +23,12 @@ class ResetPasswordController: BaseUIViewController, UITableViewDataSource, UITa
         tableView.delegate = self
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 3
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("formCell") as! FormCell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "formCell") as! FormCell
         let row = indexPath.row
         
         cell.nameLabel.text = nameAndDescs[row][0]
@@ -43,47 +43,47 @@ class ResetPasswordController: BaseUIViewController, UITableViewDataSource, UITa
             return
         }
         
-        let originPassword = (tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0)) as!FormCell).valueField.text!
-        let newPassword = (tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 1, inSection: 0)) as!FormCell).valueField.text!
+        let originPassword = (tableView.cellForRow(at: NSIndexPath(row: 0, section: 0) as IndexPath) as!FormCell).valueField.text!
+        let newPassword = (tableView.cellForRow(at: NSIndexPath(row: 1, section: 0) as IndexPath) as!FormCell).valueField.text!
         
         let request = ResetPasswordRequest(oldPassword: originPassword, newPassword: newPassword)
-        loading.showOverlay(view)
-        BasicService().sendRequest(ServiceConfiguration.RESET_PASSWORD, request: request) {
+        loading.showOverlay(view: view)
+        BasicService().sendRequest(url: ServiceConfiguration.RESET_PASSWORD, request: request) {
             (resp : ResetPasswordResponse) -> Void in
             self.loading.hideOverlayView()
             if resp.status != 0 {
-                self.displayMessage(resp.errorMessage!)
+                self.displayMessage(message: resp.errorMessage!)
                 return
             }
             
-            self.displayMessage("密码修改成功")
+            self.displayMessage(message: "密码修改成功")
         }
     }
     
     private func checkBeforeSubmit() -> Bool  {
         
-        let originPassword = (tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0)) as!FormCell).valueField.text!
-        let newPassword = (tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 1, inSection: 0)) as!FormCell).valueField.text!
-        let newPassword2 = (tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 2, inSection: 0)) as!FormCell).valueField.text!
+        let originPassword = (tableView.cellForRow(at: NSIndexPath(row: 0, section: 0) as IndexPath) as!FormCell).valueField.text!
+        let newPassword = (tableView.cellForRow(at: NSIndexPath(row: 1, section: 0) as IndexPath) as!FormCell).valueField.text!
+        let newPassword2 = (tableView.cellForRow(at: NSIndexPath(row: 2, section: 0) as IndexPath) as!FormCell).valueField.text!
         
         if originPassword.length == 0 {
-            displayMessage("原密码不能为空")
+            displayMessage(message: "原密码不能为空")
             return false
         }
         
         if newPassword.length == 0 {
-            displayMessage("新密码不能为空")
+            displayMessage(message: "新密码不能为空")
             return false
         }
 
         
         if newPassword2.length == 0 {
-            displayMessage("新密码不能为空")
+            displayMessage(message: "新密码不能为空")
             return false
         }
         
         if newPassword != newPassword2 {
-            displayMessage("两次输入的新密码不一样")
+            displayMessage(message: "两次输入的新密码不一样")
             return false
         }
 

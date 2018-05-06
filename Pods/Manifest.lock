@@ -1,65 +1,63 @@
 PODS:
-  - Alamofire (3.4.0)
-  - ALCameraViewController (1.2.0)
-  - Auk (2.1.5):
-    - moa (~> 3.0)
-  - Emoji-swift (0.0.3)
-  - Kanna (1.1.1)
-  - KDEAudioPlayer (0.9.0)
-  - Kingfisher (2.4.1)
-  - MarqueeLabel/Swift (2.8.0)
-  - moa (3.0.0)
-  - QorumLogs (0.7.2)
-  - Socket.IO-Client-Swift (6.1.2)
-  - SwiftyJSON (2.3.2)
+  - Alamofire (4.7.2)
+  - ALCameraViewController (3.0.3)
+  - Auk (8.0.2):
+    - moa
+  - Emoji-swift (0.2.2)
+  - KDEAudioPlayer (1.1.0)
+  - Kingfisher (4.1.1)
+  - MarqueeLabel/Swift (3.1.4)
+  - moa (9.0.2)
+  - QorumLogs (0.9)
+  - Socket.IO-Client-Swift (13.1.3):
+    - Starscream (~> 3.0.2)
+  - Starscream (3.0.5)
+  - SwiftyBeaver (1.5.2)
+  - SwiftyJSON (4.1.0)
   - tingyunApp (2.4.1)
   - WeiboSDK (3.1.4)
 
 DEPENDENCIES:
-  - Alamofire (~> 3.3)
-  - ALCameraViewController
-  - Auk (~> 2.1)
-  - Emoji-swift
-  - Kanna (~> 1.1.0)
-  - KDEAudioPlayer
-  - Kingfisher (~> 2.4)
-  - MarqueeLabel/Swift
-  - QorumLogs
-  - Socket.IO-Client-Swift
-  - SwiftyJSON (from `https://github.com/SwiftyJSON/SwiftyJSON.git`)
+  - Alamofire (~> 4.7)
+  - ALCameraViewController (~> 3.0.3)
+  - Auk (~> 8.0)
+  - Emoji-swift (~> 0.2.2)
+  - KDEAudioPlayer (~> 1.1.0)
+  - Kingfisher (~> 4.1.0)
+  - MarqueeLabel/Swift (~> 3.1.4)
+  - QorumLogs (~> 0.9)
+  - Socket.IO-Client-Swift (~> 13.1.0)
+  - SwiftyBeaver (~> 1.5.2)
+  - SwiftyJSON (~> 4.0)
   - tingyunApp
   - WeiboSDK (from `https://github.com/sinaweibosdk/weibo_ios_sdk.git`)
 
 EXTERNAL SOURCES:
-  SwiftyJSON:
-    :git: https://github.com/SwiftyJSON/SwiftyJSON.git
   WeiboSDK:
     :git: https://github.com/sinaweibosdk/weibo_ios_sdk.git
 
 CHECKOUT OPTIONS:
-  SwiftyJSON:
-    :commit: 2a5b70f06001316d4fb54501edc70b4084705da0
-    :git: https://github.com/SwiftyJSON/SwiftyJSON.git
   WeiboSDK:
     :commit: 3daf7147ddd0fde3b04a61d8d94327d41d0c239c
     :git: https://github.com/sinaweibosdk/weibo_ios_sdk.git
 
 SPEC CHECKSUMS:
-  Alamofire: c19a627cefd6a95f840401c49ab1f124e07f54ee
-  ALCameraViewController: 03b480d0b41d3afc21fca48fc45345893ce2680a
-  Auk: 25fe0c1ac0d22b387eca4c5ea9de48c9caea5c05
-  Emoji-swift: 1f9bbabce9aebace9fd9824b0dbb0d9eb31a746c
-  Kanna: 9d3118cff609bd21eb374be5be590b544941160f
-  KDEAudioPlayer: 67c2de50af38d045638b15f246113594b22a7ec2
-  Kingfisher: 41aed5b6c1ed8fa98cf6d75283ce89cf7890f517
-  MarqueeLabel: 73b52d7558241ece6391e9c566edb56b269883e2
-  moa: 32ca142e67accf6124087abba94ff5c288ad1d7e
-  QorumLogs: c3178520a46dc940c1070388134524ab5996b55a
-  Socket.IO-Client-Swift: 60a60e8bfd7b16bc57c90ff6329e9f536b5eacdd
-  SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
+  Alamofire: e4fa87002c137ba2d8d634d2c51fabcda0d5c223
+  ALCameraViewController: 6398a9282057f709b87a1ecc52a83b48028ade64
+  Auk: 82be62a2cf650437fe745c81b12ac2440a0f682c
+  Emoji-swift: d118ef9be36f02b4bfa702ffde08a4b07a9e1d3d
+  KDEAudioPlayer: b3787f02b6718c2416589a7726f2633cde2cd60e
+  Kingfisher: 6793a473357b5dbee42b0068ef203fe8325f259e
+  MarqueeLabel: bf768455fe88d427f71476ebb23f9092b660f40b
+  moa: b73dc5e0efa1fad00711c4608e41b197f4d15b12
+  QorumLogs: 9a484df6973a3697ac79fe2273140fde6b36dccc
+  Socket.IO-Client-Swift: d30d6fd08a38ad2a182b090936a043bf512ab2de
+  Starscream: faf918b2f2eff7d5dd21180646bf015a669673bd
+  SwiftyBeaver: 85daaaa2b3ae6e31b7b55c99430e8b91dac088af
+  SwiftyJSON: c29297daf073d2aa016295d5809cdd68045c39b3
   tingyunApp: bf9074313164f2b3595b5c2b422c8159cee03a58
   WeiboSDK: bceab625ec59b7039ba721cc4ba9f5868804f63e
 
-PODFILE CHECKSUM: 6627d2cdf3849df00e1d2089073b4b2b3d994280
+PODFILE CHECKSUM: b28253e3a2a6db4eab11a50fd5f6f0f532ad1b6c
 
 COCOAPODS: 1.1.1

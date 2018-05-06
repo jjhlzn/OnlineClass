@@ -18,13 +18,13 @@ import MarqueeLabel
 class LivePlayerPageViewController : CommonPlayerPageViewController, LiveCommentDelegate {
     let maxCommentCount = 10 + 1
     //聊天刷新频率
-    let freshChatInterval: NSTimeInterval = 10
+    let freshChatInterval: TimeInterval = 10
     //人数更新频率
-    let freshListernCountInterval: NSTimeInterval = 30
+    let freshListernCountInterval: TimeInterval = 30
     var audioPlayer: AudioPlayer!
     
-    var freshChatTimer: NSTimer!
-    var updateListernerCountTimer: NSTimer!
+    var freshChatTimer: Timer!
+    var updateListernerCountTimer: Timer!
     var isUpdateChat = false
     var livePlayerCell : LivePlayerCell?
     var lastId = "-1"
@@ -37,13 +37,13 @@ class LivePlayerPageViewController : CommonPlayerPageViewController, LiveComment
         audioPlayer = Utils.getAudioPlayer()
         createTimer()
         
-        let imageWidth = UIScreen.mainScreen().bounds.width
+        let imageWidth = UIScreen.main.bounds.width
         let imageHeight = getPlayerAdvHeight()
         QL2("imageWidht = \(imageWidth), imageHeight = \(imageHeight)")
         scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: imageWidth, height: imageHeight ))
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.tapAdImageHandler))
         scrollView!.addGestureRecognizer(tapGesture)
-        scrollView!.userInteractionEnabled = true
+        scrollView!.isUserInteractionEnabled = true
     }
     
     override func dispose() {
@@ -68,7 +68,7 @@ class LivePlayerPageViewController : CommonPlayerPageViewController, LiveComment
         if comments.count > 0 {
             self.lastId = comments[0].id!
         }
-        self.comments.insert(comments[0], atIndex: 0)
+        self.comments.insert(comments[0], at: 0)
         viewController.tableView.reloadData()
     }
     
@@ -82,15 +82,15 @@ class LivePlayerPageViewController : CommonPlayerPageViewController, LiveComment
     }
     
     private func createTimer() {
-        freshChatTimer = NSTimer.scheduledTimerWithTimeInterval(freshChatInterval, target: self,
+        freshChatTimer = Timer.scheduledTimer(timeInterval: freshChatInterval, target: self,
                                                                 selector: #selector(checkStatusAndUpdateChat), userInfo: nil, repeats: true)
         
-        updateListernerCountTimer = NSTimer.scheduledTimerWithTimeInterval(freshListernCountInterval, target: self,
+        updateListernerCountTimer = Timer.scheduledTimer(timeInterval: freshListernCountInterval, target: self,
                                                                            selector: #selector(updateListernerCount), userInfo: nil, repeats: true)
     }
     
     
-    func checkStatusAndUpdateChat() {
+    @objc func checkStatusAndUpdateChat() {
 
         
         if audioPlayer.currentItem != nil {
@@ -108,9 +108,9 @@ class LivePlayerPageViewController : CommonPlayerPageViewController, LiveComment
             if updateChatCount % 3 == 0 {
                 let request = GetSongInfoRequest()
                 request.song = liveSong
-                BasicService().sendRequest(ServiceConfiguration.GET_SONG_INFO, request: request) {
+                BasicService().sendRequest(url: ServiceConfiguration.GET_SONG_INFO, request: request) {
                     (resp: GetSongInfoResponse) -> Void in
-                    dispatch_async(dispatch_get_main_queue()) {
+                    DispatchQueue.main.async() {
                         if resp.status != ServerResponseStatus.Success.rawValue {
                             QL4(resp.errorMessage)
                             return
@@ -145,14 +145,14 @@ class LivePlayerPageViewController : CommonPlayerPageViewController, LiveComment
         }
     }
     
-    func updateListernerCount() {
+    @objc func updateListernerCount() {
         if audioPlayer.currentItem != nil {
             let item = audioPlayer.currentItem as! MyAudioItem
             let song = item.song as! LiveSong
             let request = GetLiveListernerCountRequest(song: song)
-            BasicService().sendRequest(ServiceConfiguration.GET_LIVE_LISTERNER_COUNT, request: request) {
+            BasicService().sendRequest(url: ServiceConfiguration.GET_LIVE_LISTERNER_COUNT, request: request) {
                 (resp: GetLiveListernerCountResponse) -> Void in
-                dispatch_async(dispatch_get_main_queue()) {
+                DispatchQueue.main.async() {
                     if resp.status != 0 {
                         print(resp.errorMessage)
                         return
@@ -176,12 +176,12 @@ class LivePlayerPageViewController : CommonPlayerPageViewController, LiveComment
         
     }
     
-   override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+   override func numberOfSections(in tableView: UITableView) -> Int {
         return 2
    }
 
     
-   override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     
         switch section{
             
@@ -197,7 +197,7 @@ class LivePlayerPageViewController : CommonPlayerPageViewController, LiveComment
     }
     
     var advImages : [Advertise]?
-    func tapAdImageHandler(sender: UITapGestureRecognizer? = nil) {
+    @objc func tapAdImageHandler(sender: UITapGestureRecognizer? = nil) {
         if advImages == nil {
             return
         }
@@ -206,23 +206,23 @@ class LivePlayerPageViewController : CommonPlayerPageViewController, LiveComment
         let index = scrollView.auk.currentPageIndex
         if index != nil {
             let params : [String: String] = ["url": advImages![index!].clickUrl, "title": advImages![index!].title]
-            self.viewController.performSegueWithIdentifier("advWebView", sender: params)
+            self.viewController.performSegue(withIdentifier: "advWebView", sender: params)
         }
     }
     
-    func tapApplyButtonHandler(sender: UITapGestureRecognizer? = nil) {
+    @objc func tapApplyButtonHandler(sender: UITapGestureRecognizer? = nil) {
         let params : [String: String] = ["url": ServiceLinkManager.MyAgentUrl2, "title": "报名"]
-        self.viewController.performSegueWithIdentifier("advWebView", sender: params)
+        self.viewController.performSegue(withIdentifier: "advWebView", sender: params)
     }
     
     //let adImageRatio : CGFloat = 0.45625
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let section = indexPath.section
         switch section {
         case 0:
             QL2("create Live Player Cell")
             let song = getCurrentSong()
-            livePlayerCell = tableView.dequeueReusableCellWithIdentifier("livePlayerCell") as? LivePlayerCell
+            livePlayerCell = tableView.dequeueReusableCell(withIdentifier: "livePlayerCell") as? LivePlayerCell
             livePlayerCell?.controller = viewController
             livePlayerCell?.initPalyer()
             self.playerViewController = livePlayerCell?.playerViewController
@@ -239,13 +239,13 @@ class LivePlayerPageViewController : CommonPlayerPageViewController, LiveComment
             //设置报名按钮
             let tapApplyButtonGesture = UITapGestureRecognizer(target: self, action: #selector(self.tapApplyButtonHandler))
             livePlayerCell!.applyButton.addGestureRecognizer(tapApplyButtonGesture)
-            livePlayerCell!.applyButton.userInteractionEnabled = true
+            livePlayerCell!.applyButton.isUserInteractionEnabled = true
             if (song?.hasAdvImage)! {
-                livePlayerCell!.applyButton.hidden = false
-                livePlayerCell!.handImage.hidden = false
+                livePlayerCell!.applyButton.isHidden = false
+                livePlayerCell!.handImage.isHidden = false
             } else {
-                livePlayerCell!.applyButton.hidden = true
-                livePlayerCell!.handImage.hidden = true
+                livePlayerCell!.applyButton.isHidden = true
+                livePlayerCell!.handImage.isHidden = true
             }
 
             //创建滚动广告
@@ -258,18 +258,18 @@ class LivePlayerPageViewController : CommonPlayerPageViewController, LiveComment
             let progressBar = livePlayerCell!.progressBar
             let playingLabel = livePlayerCell!.playingLabel
             let durationLabel = livePlayerCell!.durationLabel
-            peopleLabel.removeFromSuperview()
-            peopleCountImage.removeFromSuperview()
-            progressBar.removeFromSuperview()
-            playingLabel.removeFromSuperview()
-            durationLabel.removeFromSuperview()
-            livePlayerCell!.addSubview(peopleLabel)
-            livePlayerCell!.addSubview(peopleCountImage)
-            livePlayerCell!.addSubview(progressBar)
-            livePlayerCell!.addSubview(playingLabel)
-            livePlayerCell!.addSubview(durationLabel)
-            scrollView!.auk.settings.pageControl.backgroundColor =  UIColor.grayColor().colorWithAlphaComponent(0)
-            scrollView!.auk.settings.contentMode = UIViewContentMode.ScaleToFill
+            peopleLabel?.removeFromSuperview()
+            peopleCountImage?.removeFromSuperview()
+            progressBar?.removeFromSuperview()
+            playingLabel?.removeFromSuperview()
+            durationLabel?.removeFromSuperview()
+            livePlayerCell!.addSubview(peopleLabel!)
+            livePlayerCell!.addSubview(peopleCountImage!)
+            livePlayerCell!.addSubview(progressBar!)
+            livePlayerCell!.addSubview(playingLabel!)
+            livePlayerCell!.addSubview(durationLabel!)
+            scrollView!.auk.settings.pageControl.backgroundColor =  UIColor.gray.withAlphaComponent(0)
+            scrollView!.auk.settings.contentMode = UIViewContentMode.scaleToFill
             
             
             if song != nil {
@@ -289,10 +289,10 @@ class LivePlayerPageViewController : CommonPlayerPageViewController, LiveComment
             scrollView!.auk.startAutoScroll(delaySeconds: Double(scrollRate))
             return livePlayerCell!
         case 1:
-            return getCommentCell(tableView, row: indexPath.row)
+            return getCommentCell(tableView: tableView, row: indexPath.row)
             
         default:
-            return getCommentCell(tableView, row: indexPath.row)
+            return getCommentCell(tableView: tableView, row: indexPath.row)
         }
     }
     
@@ -300,17 +300,17 @@ class LivePlayerPageViewController : CommonPlayerPageViewController, LiveComment
         let rowCount = (comments?.count)!
 
         if rowCount == 0 {
-            let cell = tableView.dequeueReusableCellWithIdentifier("noCommentCell")
+            let cell = tableView.dequeueReusableCell(withIdentifier: "noCommentCell")
             return cell!
         } else {
-            return getCommonCell(tableView, row: row)
+            return getCommonCell(tableView: tableView, row: row)
         }
 
     }
     
     
     private func getCommonCell(tableView: UITableView, row: Int) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("commentCell") as! CommentCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "commentCell") as! CommentCell
         let comment = comments![row]
         cell.userIdLabel.text = comment.nickName
         cell.timeLabel.text = comment.time
@@ -328,7 +328,7 @@ class LivePlayerPageViewController : CommonPlayerPageViewController, LiveComment
             cell.userIdLabel.textColor = UIColor(red: 0xF2/255, green: 0x61/255, blue: 0, alpha: 0.9)
         } else {
             cell.userImage.image = UIImage(named: "user2_1")
-            cell.userIdLabel.textColor = UIColor.lightGrayColor()
+            cell.userIdLabel.textColor = UIColor.lightGray
 
         }
         
@@ -338,21 +338,21 @@ class LivePlayerPageViewController : CommonPlayerPageViewController, LiveComment
     
     
     private func getPlayerAdvHeight() -> CGFloat {
-        let screenSize: CGRect = UIScreen.mainScreen().bounds
+        let screenSize: CGRect = UIScreen.main.bounds
         let screenWidth = screenSize.width
         return screenWidth * 0.5 + 8
     }
     
     
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let section = indexPath.section
         switch section {
         case 0:
             return getPlayerAdvHeight() + 77
         case 1:
-            return getCommentCellHeight(tableView, row: indexPath.row)
+            return getCommentCellHeight(tableView: tableView, row: indexPath.row)
         default:
-            return getCommentCellHeight(tableView, row: indexPath.row)
+            return getCommentCellHeight(tableView: tableView, row: indexPath.row)
         }
     }
     
@@ -363,7 +363,7 @@ class LivePlayerPageViewController : CommonPlayerPageViewController, LiveComment
             return 70
         }  else {   //评论行
             
-            let cell = tableView.dequeueReusableCellWithIdentifier("commentCell") as! CommentCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "commentCell") as! CommentCell
             let comment = comments![row]
 
             cell.userIdLabel.text = comment.userId
@@ -388,13 +388,13 @@ class LivePlayerPageViewController : CommonPlayerPageViewController, LiveComment
 
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let section = indexPath.section
-        tableView.deselectRowAtIndexPath(indexPath, animated: false)
+        tableView.deselectRow(at: indexPath as IndexPath, animated: false)
         switch section {
         case 0:
-            let cell = tableView.cellForRowAtIndexPath(indexPath)
-            cell?.selectionStyle = .None
+            let cell = tableView.cellForRow(at: indexPath as IndexPath)
+            cell?.selectionStyle = .none
             break;
         default:
             break
@@ -407,17 +407,17 @@ class LivePlayerPageViewController : CommonPlayerPageViewController, LiveComment
             let item = audioPlayer.currentItem as! MyAudioItem
             
             let song = item.song
-            QL1("reload: song.id = \(song.id), song.name = \(song.name)")
+            QL1("reload: song.id = \(song?.id), song.name = \(song?.name)")
             viewController.commentController.song = song
             
             playerViewController?.loadArtImage()
             
             //update comments
-            let request = GetSongLiveCommentsRequest(song: song, lastId: "-1")
-            BasicService().sendRequest(ServiceConfiguration.GET_SONG_LIVE_COMMENTS,
+            let request = GetSongLiveCommentsRequest(song: song!, lastId: "-1")
+            BasicService().sendRequest(url: ServiceConfiguration.GET_SONG_LIVE_COMMENTS,
                                        request: request) {
                                         (resp: GetSongLiveCommentsResponse) -> Void in
-                                        dispatch_async(dispatch_get_main_queue()) {
+                                        DispatchQueue.main.async() {
                                             if resp.status != 0 {
                                                 print(resp.errorMessage)
                                                 return
@@ -432,7 +432,7 @@ class LivePlayerPageViewController : CommonPlayerPageViewController, LiveComment
                                             //if (song as! LiveSong).hasAdvImage!  {
                                             //    section = 2
                                             //}
-                                            self.viewController.tableView.reloadSections(NSIndexSet(index: 1), withRowAnimation: .None)
+                                            self.viewController.tableView.reloadSections(NSIndexSet(index: 1) as IndexSet, with: .none)
                                             
                                         }
             }

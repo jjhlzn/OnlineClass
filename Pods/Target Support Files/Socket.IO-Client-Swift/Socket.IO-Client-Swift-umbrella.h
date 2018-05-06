@@ -3,6 +3,6 @@
 #endif
 
 
-FOUNDATION_EXPORT double SocketIOClientSwiftVersionNumber;
-FOUNDATION_EXPORT const unsigned char SocketIOClientSwiftVersionString[];
+FOUNDATION_EXPORT double SocketIOVersionNumber;
+FOUNDATION_EXPORT const unsigned char SocketIOVersionString[];
 

@@ -40,15 +40,15 @@ class EmojiKeyboard: NSObject {
             return view!
         }
         
-        let screenWidth = UIScreen.mainScreen().bounds.width
-        let screenHight = UIScreen.mainScreen().bounds.height
+        let screenWidth = UIScreen.main.bounds.width
+        let screenHight = UIScreen.main.bounds.height
         let frame = CGRect(x: 0, y: Int(screenHight) - keyboardHeight, width: Int(screenWidth), height: keyboardHeight)
         
         let xx = screenWidth - CGFloat((size * 7 + 15 * 2))
         let interval = xx / 6
         
         view = UIView(frame: frame)
-        view?.backgroundColor = UIColor.whiteColor()
+        view?.backgroundColor = UIColor.white
         
         var i = 0
         for emojiKey in emojiKeys {
@@ -64,13 +64,13 @@ class EmojiKeyboard: NSObject {
             
             let emojiFrame = CGRect(x: Int(x), y: y, width: Int(size), height: Int(size))
             let label = UILabel(frame: emojiFrame)
-            label.font = label.font.fontWithSize(25)
+            label.font = label.font.withSize(25)
             label.tag = i
             label.text = emojiKey.emojiUnescapedString
             
             let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapAction))
             label.addGestureRecognizer(tapGesture)
-            label.userInteractionEnabled = true
+            label.isUserInteractionEnabled = true
             
             print(label.text)
             view?.addSubview(label)
@@ -87,7 +87,7 @@ class EmojiKeyboard: NSObject {
     }
     
     
-    func tapAction(sender: UITapGestureRecognizer?) {
+    @objc func tapAction(sender: UITapGestureRecognizer?) {
         let index = sender?.view?.tag
         editText.text = editText.text! + emojiKeys[index!].emojiUnescapedString
         if editText.delegate != nil {

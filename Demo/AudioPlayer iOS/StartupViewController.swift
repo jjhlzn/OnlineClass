@@ -24,19 +24,19 @@ class StartupViewController: BaseUIViewController {
     
     //var optionalUpgradeAlertViewDelegate : OptionalUpgradeAlertViewDelegate!
     
-    override func prefersStatusBarHidden() -> Bool {
+    override var prefersStatusBarHidden: Bool {
         return true
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        advImageView.hidden = true
-        skipAdvButton.hidden = true
-        advTip.hidden = true
+        advImageView.isHidden = true
+        skipAdvButton.isHidden = true
+        advTip.isHidden = true
         
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         // optionalUpgradeAlertViewDelegate = OptionalUpgradeAlertViewDelegate(controller: self)
@@ -48,14 +48,16 @@ class StartupViewController: BaseUIViewController {
         
         
         //serviceLocator不应该为null，因为在AppDelegate会有一个初始化值
+         self.checkLaunchAdv()
+        /*
         if (serviceLocator?.needServieLocator)! {
             
-            BasicService().sendRequest(ServiceConfiguration.GET_SERVICE_LOACTOR_URL, request: GetServiceLocatorRequest(), timeout: 3) {
+            BasicService().sendRequest(url: ServiceConfiguration.GET_SERVICE_LOACTOR_URL, request: GetServiceLocatorRequest(), timeout: 3) {
                 (resp : GetServiceLocatorResponse) -> Void in
                 
                 if resp.status == ServerResponseStatus.Success.rawValue {
                     serviceLocator?.http = resp.http
-                    serviceLocator?.port = resp.port
+                    serviceLocator?.port = resp.port as! NSNumber
                     serviceLocator?.serverName = resp.serverName
                     
                     self.serviceLocatorStore.UpdateServiceLocator()
@@ -69,14 +71,14 @@ class StartupViewController: BaseUIViewController {
             //checkLoginUser()
             self.checkLaunchAdv()
         }
-        
-        goToNextControllerTimer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(self.skipAdvWhenTimeOut), userInfo: nil, repeats: true)
+        */
+        goToNextControllerTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.skipAdvWhenTimeOut), userInfo: nil, repeats: true)
         
     }
     
-    var goToNextControllerTimer : NSTimer?
+    var goToNextControllerTimer : Timer?
     var skipAdvTimeCount = 7
-    func skipAdvWhenTimeOut() {
+    @objc func skipAdvWhenTimeOut() {
         skipAdvTimeCount = skipAdvTimeCount - 1
         if skipAdvTimeCount <= 0 {
             goToNextControllerTimer?.invalidate()
@@ -84,7 +86,7 @@ class StartupViewController: BaseUIViewController {
         }
     }
     
-    override func viewDidDisappear(animated: Bool) {
+    override func viewDidDisappear(_ animated: Bool) {
         self.navigationController?.setNavigationBarHidden(false, animated: animated)
     }
     
@@ -95,10 +97,10 @@ class StartupViewController: BaseUIViewController {
         if  loginUser != nil {
             QL1("found login user")
             QL1("userid = \(loginUser?.userName), password = \(loginUser?.password), token = \(loginUser?.token)")
-            self.performSegueWithIdentifier("hasLoginSegue", sender: self)
+            self.performSegue(withIdentifier: "hasLoginSegue", sender: self)
         } else {
             QL1("no login user")
-            self.performSegueWithIdentifier("notLoginSegue", sender: self)
+            self.performSegue(withIdentifier: "notLoginSegue", sender: self)
         }
         
     }
@@ -117,7 +119,7 @@ class StartupViewController: BaseUIViewController {
         if "" != advUrl {
             goToNextControllerTimer?.invalidate()
             skipAdvTimer?.invalidate()
-            performSegueWithIdentifier("webViewSegue", sender: ["url": advUrl, "title": advTitle])
+            performSegue(withIdentifier: "webViewSegue", sender: ["url": advUrl, "title": advTitle])
         }
     }
     
@@ -126,6 +128,7 @@ class StartupViewController: BaseUIViewController {
         self.advTitle = advTitle
         
         let imageView = UIImageView()
+        /*
         imageView.kf_setImageWithURL(NSURL(string: imageUrl)!,
                                      placeholderImage: nil,
                                      optionsInfo: [.ForceRefresh],
@@ -147,11 +150,11 @@ class StartupViewController: BaseUIViewController {
                                             self.skipAdvTimer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(self.updateSkipAdvButtonText), userInfo: nil, repeats: true)
                                             
                                         }
-        })
+        }) */
     }
     
     var timerCount = 3
-    var skipAdvTimer: NSTimer?
+    var skipAdvTimer: Timer?
     func updateSkipAdvButtonText() {
         timerCount = timerCount - 1
         self.skipAdvButton.text = "跳过广告 \(timerCount)"
@@ -165,12 +168,12 @@ class StartupViewController: BaseUIViewController {
     
     
     private func checkLaunchAdv() {
-        BasicService().sendRequest(ServiceConfiguration.GET_LAUNCH_ADV, request: GetLaunchAdvRequest(), timeout: 3) {
+        BasicService().sendRequest(url: ServiceConfiguration.GET_LAUNCH_ADV, request: GetLaunchAdvRequest(), timeout: 3) {
             (resp: GetLaunchAdvResponse) -> Void in
             
             if resp.status == ServerResponseStatus.Success.rawValue {
                 if "" != resp.imageUrl {
-                    self.setAdvImage(resp.imageUrl, advUrl: resp.advUrl, advTitle: resp.advTitle)
+                    self.setAdvImage(imageUrl: resp.imageUrl, advUrl: resp.advUrl, advTitle: resp.advTitle)
                 } else {
                     self.checkLoginUser()
                 }
@@ -186,8 +189,8 @@ class StartupViewController: BaseUIViewController {
         let alertView = UIAlertView()
         //alertView.title = "系统提示"
         alertView.message = message
-        alertView.addButtonWithTitle("去升级")
-        alertView.addButtonWithTitle("取消")
+        alertView.addButton(withTitle: "去升级")
+        alertView.addButton(withTitle: "取消")
         alertView.delegate=delegate
         alertView.show()
     }
@@ -197,22 +200,22 @@ class StartupViewController: BaseUIViewController {
         let alertView = UIAlertView()
         //alertView.title = "系统提示"
         alertView.message = message
-        alertView.addButtonWithTitle("去升级")
+        alertView.addButton(withTitle: "去升级")
         alertView.delegate=delegate
         alertView.show()
     }
     
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        super.prepareForSegue(segue, sender: sender)
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
         if segue.identifier == "upgradeSegue" {
-            let dest = segue.destinationViewController as! UpgradeViewController
+            let dest = segue.destination as! UpgradeViewController
             dest.isForceUpgrade = isForceUpgrade
             //TODO 链接要换成真是的升级链接
             dest.url = NSURL(string: upgradeUrl )
         } else if segue.identifier == "webViewSegue" {
             let params = sender as! [String : String]
-            let dest = segue.destinationViewController as! WebPageViewController
+            let dest = segue.destination as! WebPageViewController
             dest.title =  params["title"]
             dest.url = NSURL(string: params["url"]!)
             dest.isBackToMainController = true

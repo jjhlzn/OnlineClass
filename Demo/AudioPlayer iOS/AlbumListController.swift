@@ -29,22 +29,24 @@ class AlbumListController: BaseUIViewController, UITableViewDataSource, UITableV
     override func viewDidLoad() {
         super.viewDidLoad()
         print("viewDidLoad")
-        addPlayingButton(playingButton)
+        addPlayingButton(button: playingButton)
         
         buyPayCourseDelegate = ConfirmDelegate2(controller: self)
         tableView.dataSource = self
         tableView.delegate = self
         
+        
+       
         setTitle()
         
         let loginUser = loginUserStore.getLoginUser()!
-        let purchaseRecord = purchaseRecordStore.getNotNotifyRecord(loginUser.userName!)
+        let purchaseRecord = purchaseRecordStore.getNotNotifyRecord(userid: loginUser.userName!)
         if courseType == CourseType.PayCourse && purchaseRecord != nil {
             let request = NotifyIAPSuccessRequest()
             request.payTime = purchaseRecord?.payTime!
             request.productId = purchaseRecord?.productId!
-            request.sign = Utils.createIPANotifySign(request)
-            BasicService().sendRequest(ServiceConfiguration.NOTIFY_IAP_SUCCESS, request: request) {
+            request.sign = Utils.createIPANotifySign(request: request)
+            BasicService().sendRequest(url: ServiceConfiguration.NOTIFY_IAP_SUCCESS, request: request) {
                 (resp: NotifyIAPSuccessResponse) -> Void in
                 if resp.status != ServerResponseStatus.Success.rawValue {
                     QL4("resp.status = \(resp.status), message = \(resp.errorMessage)")
@@ -67,14 +69,24 @@ class AlbumListController: BaseUIViewController, UITableViewDataSource, UITableV
         pagableController.isShowLoadCompleteText = false
         pagableController.loadMore()
         
+        if #available(iOS 11.0, *) {
+            tableView.contentInsetAdjustmentBehavior = .never
+            //tableView.contentInset = UIEdgeInsetsMake(0, 0, 49, 0)//导航栏如果使用系统原生半透明的，top设置为64
+            //tableView.scrollIndicatorInsets = tableView.contentInset
+            tableView.contentInset = UIEdgeInsetsMake(22, 0, 49, 0)
+            tableView.estimatedRowHeight = 0
+            UITableView.appearance().estimatedRowHeight = 0
+        }
+        
+        
     }
     
-    override func viewWillAppear(animated: Bool) {
-        updatePlayingButton(playingButton)
+    override func viewWillAppear(_ animated: Bool) {
+        updatePlayingButton(button: playingButton)
         isDisapeared = false
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         isDisapeared = true
     }
@@ -84,24 +96,26 @@ class AlbumListController: BaseUIViewController, UITableViewDataSource, UITableV
     }
     
     //PageableControllerDelegate
-    func searchHandler(respHandler: ((resp: ServerResponse) -> Void)) {
+    func searchHandler(respHandler: @escaping ((_ resp: ServerResponse) -> Void)) {
+        
+        
         let request = GetAlbumsRequest(code: "Live_Vip_Agent")
         request.pageNo = pagableController.page
         //重新设置albumDataArray
         albumDataArray = [Int]()
-        BasicService().sendRequest(ServiceConfiguration.GET_ALBUMS, request: request,
-                                   completion: respHandler as ((resp: GetAlbumsResponse) -> Void))
-
+        BasicService().sendRequest(url: ServiceConfiguration.GET_ALBUMS, request: request,
+                                   completion: respHandler as ((_ resp: GetAlbumsResponse) -> Void))
+        
     }
     
     override func audioPlayer(audioPlayer: AudioPlayer, didChangeStateFrom from: AudioPlayerState, toState to: AudioPlayerState) {
-        super.audioPlayer(audioPlayer, didChangeStateFrom: from, toState: to)
-        updatePlayingButton(playingButton)
+        super.audioPlayer(audioPlayer: audioPlayer, didChangeStateFrom: from, toState: to)
+        updatePlayingButton(button: playingButton)
     }
     
     //开始上拉到特定位置后改变列表底部的提示
-    func scrollViewDidScroll(scrollView: UIScrollView){
-        pagableController.scrollViewDidScroll(scrollView)
+    func scrollViewDidScroll(_ scrollView: UIScrollView){
+        pagableController.scrollViewDidScroll(scrollView: scrollView)
     }
     
     
@@ -188,7 +202,7 @@ extension AlbumListController {
         }
     }
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         if pagableController.data.count == 0 {
             return 1
         }
@@ -198,8 +212,8 @@ extension AlbumListController {
         return albumDataArray.count
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return getCount(section)
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return getCount(section: section)
     }
     
     private func getAlbum(indexPath: NSIndexPath) -> Album {
@@ -215,28 +229,28 @@ extension AlbumListController {
         return album
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let album = getAlbum(indexPath)
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let album = getAlbum(indexPath: indexPath as NSIndexPath)
         
         if album.isLive {
-            let cell = tableView.dequeueReusableCellWithIdentifier("liveAlbumCell") as! LiveAlbumCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "liveAlbumCell") as! LiveAlbumCell
             cell.nameLabel.text = album.name
             
             cell.listenPeopleLabel.text = album.listenCount
             if album.hasImage  {
-                cell.albumImage.kf_setImageWithURL(NSURL(string: album.image)!)
+                cell.albumImage.kf.setImage(with: URL(string: album.image)!)
             }
             if album.playing {
-                cell.playingLabel.hidden = false
+                cell.playingLabel.isHidden = false
             } else {
-                cell.playingLabel.hidden = true
+                cell.playingLabel.isHidden = true
             }
             
             if album.hasPlayTimeDesc {
-                cell.descLabel.textColor = UIColor.redColor()
+                cell.descLabel.textColor = UIColor.red
                 cell.descLabel.text = album.playTimeDesc
             } else {
-               cell.descLabel.textColor = UIColor.lightGrayColor()
+               cell.descLabel.textColor = UIColor.lightGray
                 cell.descLabel.text = album.desc
             }
             
@@ -249,30 +263,30 @@ extension AlbumListController {
 
             
         } else {
-            let cell = tableView.dequeueReusableCellWithIdentifier("albumCell") as! AlbumCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "albumCell") as! AlbumCell
             cell.nameLabel.text = album.name
             cell.authorLabel.text = album.author
             
             cell.listenCountAndCountLabel.text = "\(album.listenCount), \(album.count)集"
             if album.hasImage  {
-                cell.albumImage.kf_setImageWithURL(NSURL(string: album.image)!)
+                cell.albumImage.kf.setImage(with: URL(string: album.image)!)
             }            
             return cell
         }
     }
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: IndexPath) -> CGFloat {
         return 74
     }
     
-    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if pagableController.data.count == 0 {
             return 1
         }
         return 45
     }
     
-    func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         if pagableController.data.count == 0 {
             return 18
         }
@@ -280,30 +294,30 @@ extension AlbumListController {
     }
     
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let section = indexPath.section
         let row = indexPath.row
         QL1("section: \(section), row: \(row)")
         
-        let album = getAlbum(indexPath)
+        let album = getAlbum(indexPath: indexPath as NSIndexPath)
         if !album.isReady {
-            self.displayMessage("该课程未上线，敬请期待！")
-            tableView.deselectRowAtIndexPath(indexPath, animated: false)
+            self.displayMessage(message: "该课程未上线，敬请期待！")
+            tableView.deselectRow(at: indexPath as IndexPath, animated: false)
             return
         }
         
-        loading.showOverlay(self.view)
+        loading.showOverlay(view: self.view)
         
         let request = GetAlbumSongsRequest(album: album)
         request.pageSize = 200
-        BasicService().sendRequest(ServiceConfiguration.GET_ALBUM_SONGS, request: request) {
+        BasicService().sendRequest(url: ServiceConfiguration.GET_ALBUM_SONGS, request: request) {
             (resp: GetAlbumSongsResponse) -> Void in
-            dispatch_async(dispatch_get_main_queue()) {
+            DispatchQueue.main.async() {
                 //self.loadingOverlay.hideOverlayView()
                 self.loading.hideOverlayView()
                 if resp.status == ServerResponseStatus.TokenInvalid.rawValue {
-                    self.displayMessage("请重新登录")
-                    tableView.deselectRowAtIndexPath(indexPath, animated: false)
+                    self.displayMessage(message: "请重新登录")
+                    tableView.deselectRow(at: indexPath as IndexPath, animated: false)
                     return
                 }
                 
@@ -311,8 +325,8 @@ extension AlbumListController {
                 
                 //目前这个逻辑之针对VIP课程权限够的情况
                 if resp.status == ServerResponseStatus.NoEnoughAuthority.rawValue {
-                    self.displayVipBuyMessage(resp.errorMessage!, delegate: self.buyPayCourseDelegate!)
-                    tableView.deselectRowAtIndexPath(indexPath, animated: false)
+                    self.displayVipBuyMessage(message: resp.errorMessage!, delegate: self.buyPayCourseDelegate!)
+                    tableView.deselectRow(at: indexPath as IndexPath, animated: false)
                     return
                 }
                 
@@ -321,27 +335,27 @@ extension AlbumListController {
                 }
                 
                 if resp.status != 0 {
-                    print(resp.errorMessage)
-                    self.displayMessage(resp.errorMessage!)
-                    tableView.deselectRowAtIndexPath(indexPath, animated: false)
+                    //print(resp.errorMessage)
+                    self.displayMessage(message: resp.errorMessage!)
+                    tableView.deselectRow(at: indexPath as IndexPath, animated: false)
                     return
                 } else {
                     let songs = resp.resultSet
                     
                     if songs.count == 0 {
-                        self.displayMessage("敬请期待")
-                        tableView.deselectRowAtIndexPath(indexPath, animated: false)
+                        self.displayMessage(message: "敬请期待")
+                        tableView.deselectRow(at: indexPath as IndexPath as IndexPath, animated: false)
                         return
                     }
                     
                     if songs.count == 1 {
-                        self.performSegueWithIdentifier("songSegue1", sender: songs)
-                        tableView.deselectRowAtIndexPath(indexPath, animated: false)
+                        self.performSegue(withIdentifier: "songSegue1", sender: songs)
+                        tableView.deselectRow(at: indexPath as IndexPath, animated: false)
                         return
                     }
                     
-                    self.performSegueWithIdentifier("albumDetailSegue", sender: songs)
-                    tableView.deselectRowAtIndexPath(indexPath, animated: false)
+                    self.performSegue(withIdentifier: "albumDetailSegue", sender: songs)
+                    tableView.deselectRow(at: indexPath as IndexPath as IndexPath, animated: false)
                 }
             }
         }
@@ -349,14 +363,14 @@ extension AlbumListController {
     
     
     
-    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
         if pagableController.data.count == 0 {
             return nil
         }
         
-        let  headerCell = tableView.dequeueReusableCellWithIdentifier("albumHeaderCell") as! AlbumHeaderCell
-        headerCell.userInteractionEnabled = false
+        let  headerCell = tableView.dequeueReusableCell(withIdentifier: "albumHeaderCell") as! AlbumHeaderCell
+        headerCell.isUserInteractionEnabled = false
         
         switch (section) {
         case 1:
@@ -367,14 +381,13 @@ extension AlbumListController {
             headerCell.titleLabel.text = "每日课堂";
         }
         
-
         return headerCell
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        super.prepareForSegue(segue, sender: sender)
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
         if segue.identifier == "albumDetailSegue" {
-            let dest = segue.destinationViewController as! AlbumDetailController
+            let dest = segue.destination as! AlbumDetailController
             let row = (tableView.indexPathForSelectedRow?.row)!
             let songs = sender as! [Song]
             dest.songs = songs
@@ -382,7 +395,7 @@ extension AlbumListController {
             
             
         } else if segue.identifier == "buyVipSegue" {
-            let dest = segue.destinationViewController as! WebPageViewController
+            let dest = segue.destination as! WebPageViewController
             dest.url = NSURL(string: ServiceLinkManager.MyAgentUrl)
             dest.title = "Vip购买"
         } else if segue.identifier == "songSegue1" {
@@ -400,17 +413,18 @@ extension AlbumListController {
             
             var audioItems = [AudioItem]()
             for songItem in songs {
-                var url = NSURL(string: ServiceConfiguration.GetSongUrl(songItem.url))
+                var url = URL(string: ServiceConfiguration.GetSongUrl(urlSuffix: songItem.url))
                 if songItem.album.courseType == CourseType.LiveCourse {
-                    url = NSURL(string: songItem.url)
+                    url = URL(string: songItem.url)
                 }
                 let audioItem = MyAudioItem(song: songItem, highQualitySoundURL: url)
                 //(audioItem as! MyAudioItem).song = item
+            
                 audioItems.append(audioItem!)
             }
             
             audioPlayer.delegate = nil
-            audioPlayer.playItems(audioItems, startAtIndex: 0)
+            audioPlayer.play(items: audioItems, startAtIndex: 0)
             
         }
 
@@ -425,10 +439,10 @@ class ConfirmDelegate2 : NSObject, UIAlertViewDelegate {
     init(controller: UIViewController) {
         self.controller = controller
     }
-    func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
+    func alertView(_ alertView: UIAlertView, clickedButtonAt buttonIndex: Int) {
         switch buttonIndex {
         case 0:
-            controller.performSegueWithIdentifier("buyVipSegue", sender: nil)
+            controller.performSegue(withIdentifier: "buyVipSegue", sender: nil)
             break
         case 1:
             break

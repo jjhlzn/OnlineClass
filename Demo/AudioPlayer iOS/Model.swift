@@ -100,7 +100,7 @@ class Song : BaseModelObject {
     var settings = SongSetting()
     var album: Album!
     var wholeUrl : String {
-        return ServiceConfiguration.GetSongUrl(url)
+        return ServiceConfiguration.GetSongUrl(urlSuffix: url)
     }
     var isLive : Bool {
         return album.isLive
@@ -115,8 +115,8 @@ class Song : BaseModelObject {
 }
 
 class LiveSong : Song {
-    let dateFormatter = NSDateFormatter()
-    let dateFormatter2 = NSDateFormatter()
+    let dateFormatter = DateFormatter()
+    let dateFormatter2 = DateFormatter()
     override init() {
         super.init()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
@@ -132,7 +132,7 @@ class LiveSong : Song {
             if startDateTime == nil {
                 return ""
             }
-            return (startDateTime! as NSString).substringFromIndex(10)
+            return (startDateTime! as NSString).substring(from: 10)
         }
     }
     var endDateTime: String?
@@ -141,30 +141,35 @@ class LiveSong : Song {
             if startDateTime == nil {
                 return ""
             }
-            return (endDateTime! as NSString).substringFromIndex(10)
+            return (endDateTime! as NSString).substring(from: 10)
         }
     }
     
-    var totalTime: NSTimeInterval {
+    var totalTime: TimeInterval {
+        //TODO:
+        return TimeInterval(0)
+        
+        /*
         if startDateTime == nil || endDateTime == nil {
-            return NSTimeInterval(0)
+            return TimeInterval(0)
         }
         return dateFormatter.dateFromString(endDateTime!)!.timeIntervalSinceDate(dateFormatter.dateFromString(startDateTime!)!)
-    }
+        */
+ }
     
-    var leftTime : NSTimeInterval {
+    var leftTime : TimeInterval {
         get {
             if startDateTime == nil || endDateTime == nil {
-                return NSTimeInterval(0)
+                return TimeInterval(0)
             }
-            return dateFormatter.dateFromString(endDateTime!)!.timeIntervalSinceNow
+            return dateFormatter.date(from: endDateTime!)!.timeIntervalSinceNow
         }
     }
     
-    var playedTime : NSTimeInterval {
+    var playedTime : TimeInterval {
         get {
             if startDateTime == nil || endDateTime == nil {
-                return NSTimeInterval(0)
+                return TimeInterval(0)
             }
             return totalTime - leftTime
 

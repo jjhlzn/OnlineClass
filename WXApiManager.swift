@@ -30,7 +30,7 @@ class WXApiManager: NSObject, WXApiDelegate {
      * @param resp具体的回应内容，是自动释放的
      */
     func onResp(resp: BaseResp) {
-        if resp.isKindOfClass(PayResp) {
+        if resp is PayResp {
             //支付返回结果，实际支付结果需要去微信服务器端查询
             var message = ""
             switch (resp.errCode) {
@@ -52,7 +52,7 @@ class WXApiManager: NSObject, WXApiDelegate {
             let alertView = UIAlertView()
             //alertView.title = "系统提示"
             alertView.message = message
-            alertView.addButtonWithTitle("好的")
+            alertView.addButton(withTitle: "好的")
             alertView.cancelButtonIndex=0
             alertView.show()
             

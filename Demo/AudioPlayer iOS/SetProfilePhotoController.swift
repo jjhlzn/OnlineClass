@@ -20,12 +20,12 @@ class SetProfilePhotoController: BaseUIViewController {
         imageView.image = UserProfilePhotoStore().get()
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
         (self.navigationController?.viewControllers[0] as! MyInfoVieController).tableView.reloadData()
@@ -40,20 +40,22 @@ class SetProfilePhotoController: BaseUIViewController {
     }
     
     private func presentSettingsActionSheet() {
-        let settingsActionSheet: UIAlertController = UIAlertController(title:nil, message:nil, preferredStyle:UIAlertControllerStyle.ActionSheet)
-        settingsActionSheet.addAction(UIAlertAction(title:"拍照", style:UIAlertActionStyle.Default, handler:{ action in
+        let settingsActionSheet: UIAlertController = UIAlertController(title:nil, message:nil, preferredStyle:UIAlertControllerStyle.actionSheet)
+        settingsActionSheet.addAction(UIAlertAction(title:"拍照", style:UIAlertActionStyle.default, handler:{ action in
             self.openCamera()
         }))
-        settingsActionSheet.addAction(UIAlertAction(title:"从相册中获取", style:UIAlertActionStyle.Default, handler:{ action in
+        settingsActionSheet.addAction(UIAlertAction(title:"从相册中获取", style:UIAlertActionStyle.default, handler:{ action in
             self.openLibrary()
         }))
-        settingsActionSheet.addAction(UIAlertAction(title:"取消", style:UIAlertActionStyle.Cancel, handler:nil))
-        presentViewController(settingsActionSheet, animated:true, completion:nil)
+        settingsActionSheet.addAction(UIAlertAction(title:"取消", style:UIAlertActionStyle.cancel, handler:nil))
+        present(settingsActionSheet, animated:true, completion:nil)
     }
     
     func openLibrary() {
+        //TODO:
+        /*
         let croppingEnabled = true
-        let libraryViewController = CameraViewController.imagePickerViewController(croppingEnabled) { image, asset in
+        let libraryViewController = CameraViewController.imagePickerViewController(croppingParameters: croppingEnabled) { image, asset in
             if image != nil {
                 self.imageView.image = image
                 self.uploadImage(UIImageJPEGRepresentation(image!, 1)!)
@@ -62,11 +64,14 @@ class SetProfilePhotoController: BaseUIViewController {
             self.dismissViewControllerAnimated(true, completion: nil)
         }
         
-        presentViewController(libraryViewController, animated: true, completion: nil)
+        presentViewController(libraryViewController, animated: true, completion: nil) */
     }
     
     func openCamera() {
-        let cameraViewController = CameraViewController(croppingEnabled: true, allowsLibraryAccess: true) { [weak self] image, asset in
+        
+        //TODO:
+        /*
+        let cameraViewController = CameraViewController(croppingParameters: true, allowsLibraryAccess: true) { [weak self] image, asset in
             if image != nil {
                 self!.imageView.image = image
                 self!.uploadImage(UIImageJPEGRepresentation(image!, 1)!)
@@ -75,13 +80,16 @@ class SetProfilePhotoController: BaseUIViewController {
             self?.dismissViewControllerAnimated(true, completion: nil)
         }
         
-        presentViewController(cameraViewController, animated: true, completion: nil)
+        presentViewController(cameraViewController, animated: true, completion: nil) */
     }
     
     
     private func uploadImage(imageData: NSData) {
+        
+        //TODO:
+        /*
         let loginUser = LoginUserStore().getLoginUser()!
-        loading.showOverlayWithMessage("正在上传头像", view: view)
+        loading.showOverlayWithMessage(msg: "正在上传头像", view: view)
         Alamofire.upload(
             .POST,
             ServiceConfiguration.UPLOAD_PROFILE_IMAGE,
@@ -118,7 +126,7 @@ class SetProfilePhotoController: BaseUIViewController {
                     ToastMessage.showMessage(self.view, message: "头像上传失败")
                 }
             }
-        );
+        ); */
     }
     
     

@@ -10,28 +10,28 @@ import Foundation
 import Alamofire
 import SwiftyJSON
 import QorumLogs
+//import SwiftyBeaver
 
 
 class BasicService {
     
-    private func sendRequest<T: ServerResponse>(url: String,
-                     method: Alamofire.Method = .POST,
+    private func sendRequest0<T: ServerResponse>(url: String,
+                     method: Alamofire.HTTPMethod = Alamofire.HTTPMethod.post,
                      serverRequest: ServerRequest,
                      params: [String: AnyObject]? = [String: AnyObject](),
                      hasResendForTokenInvalid: Bool = false,
-                     timeout: NSTimeInterval = 5,
+                     timeout: TimeInterval = 5,
                      //controller中定义的处理函数
-                     completion: (resp: T) -> Void) -> T {
+        completion: @escaping (_ resp: T) -> Void) -> T {
         let serverResponse = T()
         QL1(url)
         
-        let request = NSMutableURLRequest(URL: NSURL( string: url)!)
-        request.HTTPMethod = "POST"
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.timeoutInterval = timeout
         
+        var request = URLRequest(url: URL(string: url)!)
+        request.httpMethod = HTTPMethod.post.rawValue
+        request.setValue("application/json; charset=UTF-8", forHTTPHeaderField: "Content-Type")
         do {
-            request.HTTPBody = try serverRequest.getJSON().rawData()
+            request.httpBody = try serverRequest.getJSON().rawData()
             QL1(serverRequest.getJSON())
         } catch let error {
             QL4("catchException, ex = \(error)")
@@ -39,8 +39,8 @@ class BasicService {
             serverResponse.errorMessage = "您的网络不给力，请检查网络是否正常"
             return serverResponse
         }
-        
         Alamofire.request(request)
+        //Alamofire.request(url, method: method, parameters: serverRequest.params, encoding: JSONEncoding.default)
             .responseJSON { response in
                 //print("---------------------------------StartRequest---------------------------------")
                 //debugPrint(response)
@@ -51,7 +51,7 @@ class BasicService {
                     QL4("服务器出错了")
                     serverResponse.status = -1
                     serverResponse.errorMessage = "您的网络不给力，请检查网络是否正常"
-                    completion(resp: serverResponse)
+                    completion(serverResponse)
                     
                 } else {
                     let json = response.result.value as! NSDictionary
@@ -65,12 +65,12 @@ class BasicService {
                             let fatherCompletion = completion
                             let fatherUrl = url
                             let fatherRequest = serverRequest
-                            self.sendRequest(ServiceConfiguration.UPDATE_TOKEN, serverRequest: updateTokenReq, hasResendForTokenInvalid: true) {
+                            self.sendRequest(url: ServiceConfiguration.UPDATE_TOKEN, request: updateTokenReq, timeout: timeout) {
                                 (updateTokenResp : UpdateTokenResponse) -> Void in
                                 QL1("handle update token response")
                                 if updateTokenResp.status != 0  {
                                     serverResponse.errorMessage = "登录已过期，请重新登录"
-                                    fatherCompletion(resp: serverResponse)
+                                    fatherCompletion(serverResponse)
                                     return
                                 }
                                 
@@ -81,7 +81,7 @@ class BasicService {
                                 QL1("set token")
                                 if !LoginUserStore().updateLoginUser() {
                                     serverResponse.errorMessage = "登录已过期，请重新登录"
-                                    fatherCompletion(resp: serverResponse)
+                                    fatherCompletion(serverResponse)
                                     return
                                 }
                                 
@@ -89,24 +89,24 @@ class BasicService {
                                 QL1("重新发送请求")
                                 QL1(fatherRequest)
                                 fatherRequest.test = "resend"
-                                self.sendRequest(fatherUrl, serverRequest: fatherRequest, params: fatherRequest.params, hasResendForTokenInvalid: true, completion: fatherCompletion)
+                                self.sendRequest0(url: fatherUrl, serverRequest: fatherRequest, params: fatherRequest.params, timeout: timeout, completion: fatherCompletion)
                             }
                         }
                     }
                     
                     if serverResponse.status == 0 {
-                        serverResponse.parseJSON(serverRequest, json: response.result.value as! NSDictionary)
-                        completion(resp: serverResponse)
+                        serverResponse.parseJSON(request: serverRequest, json: response.result.value as! NSDictionary)
+                        completion(serverResponse)
                     } else if serverResponse.status == ServerResponseStatus.TokenInvalid.rawValue {
                         //在上面的代理处理，推迟resp处理
                         QL1("handle invalid token")
                         if hasResendForTokenInvalid {
                             serverResponse.errorMessage = "请重新登录"
-                            completion(resp: serverResponse)
+                            completion(serverResponse)
                         }
                     } else  {
                         serverResponse.errorMessage = json["errorMessage"] as? String
-                        completion(resp: serverResponse)
+                        completion(serverResponse)
                     }
                 }
         }
@@ -117,19 +117,21 @@ class BasicService {
     
     func sendRequest<T: ServerResponse>(url: String,
                      request: ServerRequest,
-                     timeout: NSTimeInterval = 5,
-                     method: Alamofire.Method = .POST,
+                     timeout: TimeInterval = 5,
+                     method: Alamofire.HTTPMethod = Alamofire.HTTPMethod.post,
                      //controller中定义的处理函数
-        completion: (resp: T) -> Void) -> T {
-        return sendRequest(url, method: method, serverRequest: request, params: request.params, timeout: timeout, completion: completion)
+        completion: @escaping (_ resp: T) -> Void) -> T {
+        return sendRequest0(url: url, method: method, serverRequest: request, params: request.params, timeout: timeout, completion: completion)
     }
     
     
     // this function creates the required URLRequestConvertible and NSData we need to use Alamofire.upload
-    func uploadImageRequest(url:String, parameters:Dictionary<String, String>, imageData:NSData) -> (URLRequestConvertible, NSData) {
+    func uploadImageRequest(url:String, parameters:Dictionary<String, String>, imageData:NSData)  {
+         //return (URLRequestConvertible(), nil)
+        /*
         ///////
         // create url request to send
-        var mutableURLRequest = NSMutableURLRequest(URL: NSURL(string: url)!)
+        var mutableURLRequest = NSMutableURLRequest(url: NSURL(string: url)! as URL)
         mutableURLRequest.HTTPMethod = Alamofire.Method.POST.rawValue
         let boundaryConstant = "myRandomBoundary12345";
         let contentType = "multipart/form-data;boundary="+boundaryConstant
@@ -141,22 +143,24 @@ class BasicService {
         let uploadData = NSMutableData()
         
         // add image
-        uploadData.appendData("\r\n--\(boundaryConstant)\r\n".dataUsingEncoding(NSUTF8StringEncoding)!)
-        uploadData.appendData("Content-Disposition: form-data; name=\"file\"; filename=\"file.png\"\r\n".dataUsingEncoding(NSUTF8StringEncoding)!)
-        uploadData.appendData("Content-Type: image/png\r\n\r\n".dataUsingEncoding(NSUTF8StringEncoding)!)
-        uploadData.appendData(imageData)
+        uploadData.append("\r\n--\(boundaryConstant)\r\n".data(using: String.Encoding.utf8)!)
+        uploadData.append("Content-Disposition: form-data; name=\"file\"; filename=\"file.png\"\r\n".data(using: String.Encoding.utf8)!)
+        uploadData.append("Content-Type: image/png\r\n\r\n".data(using: String.Encoding.utf8)!)
+        uploadData.append(imageData as Data)
         
         // add parameters
         for (key, value) in parameters {
-            uploadData.appendData("\r\n--\(boundaryConstant)\r\n".dataUsingEncoding(NSUTF8StringEncoding)!)
-            uploadData.appendData("Content-Disposition: form-data; name=\"\(key)\"\r\n\r\n\(value)".dataUsingEncoding(NSUTF8StringEncoding)!)
+            uploadData.append("\r\n--\(boundaryConstant)\r\n".data(using: String.Encoding.utf8)!)
+            uploadData.append("Content-Disposition: form-data; name=\"\(key)\"\r\n\r\n\(value)".data(using: String.Encoding.utf8)!)
         }
-        uploadData.appendData("\r\n--\(boundaryConstant)--\r\n".dataUsingEncoding(NSUTF8StringEncoding)!)
+        uploadData.append("\r\n--\(boundaryConstant)--\r\n".data(using: String.Encoding.utf8)!)
         
         
         
         // return URLRequestConvertible and NSData
         return (Alamofire.ParameterEncoding.URL.encode(mutableURLRequest, parameters: nil).0, uploadData)
+ 
+ */
     }
     
 

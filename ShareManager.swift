@@ -9,7 +9,7 @@
 import Foundation
 import Alamofire
 import QorumLogs
-import Kanna
+//import Kanna
 
 class ShareManager {
     
@@ -62,18 +62,19 @@ class ShareManager {
     }
     
     func loadShareInfo(url: NSURL) {
-        
+        //TODO: 临时删掉
+        /*
         self.resetDefaultSetting()
         QL1("load share info url: \(url)")
         
-        let request = NSMutableURLRequest(URL: url)
-        request.HTTPMethod = "GET"
+        let request = NSMutableURLRequest(url: url as URL)
+        request.httpMethod = "GET"
         request.setValue("text/html", forHTTPHeaderField: "Content-Type")
         
-        Alamofire.request(request)
+        Alamofire.request(request as! URLRequestConvertible as! URLRequestConvertible)
             .responseString { response in
                 //QL1("\(response)")
-                if let doc = HTML(html: response.result.value!, encoding: NSUTF8StringEncoding) {
+                if let doc = HTML(html: response.result.value!, encoding: String.Encoding.utf8) {
                     if  doc.title != nil {
                         
                         var title = doc.title!
@@ -103,7 +104,7 @@ class ShareManager {
                         
                     }
                 }
-        }
+        } */
     }
 
     
@@ -148,8 +149,8 @@ class ShareManager {
     }
     
     func copyLink() {
-        UIPasteboard.generalPasteboard().string =  shareUrl
-        ToastMessage.showMessage(controller.view, message: "复制成功")
+        UIPasteboard.general.string =  shareUrl
+        ToastMessage.showMessage(view: controller.view, message: "复制成功")
     }
 }
 
@@ -165,18 +166,18 @@ class WeixinShareService {
     
     func shareToFriend(){
         if !Utils.hasInstalledWeixin() {
-            controller.displayMessage("请先安装微信客户端")
+            controller.displayMessage(message: "请先安装微信客户端")
         } else {
-            share(false)
+            share(isPengyouquan: false)
         }
     }
     
     func shareToPengyouquan() {
         if !Utils.hasInstalledWeixin() {
-            controller.displayMessage("请先安装微信客户端")
+            controller.displayMessage(message: "请先安装微信客户端")
         } else {
             print("share to pengyouquan")
-            share(true)
+            share(isPengyouquan: true)
         }
     }
     
@@ -200,7 +201,7 @@ class WeixinShareService {
         req.message = message
         req.scene = (isPengyouquan ? 1 : 0)
         
-        WXApi.sendReq(req)
+        WXApi.send(req)
     }
 
 }
@@ -218,7 +219,7 @@ class WeiboShareService {
     func share() {
         let req = WBSendMessageToWeiboRequest()
         req.message = getWebpageObject()
-        WeiboSDK.sendRequest(req)
+        WeiboSDK.send(req)
     }
     
     private func getWebpageObject()-> WBMessageObject
@@ -257,21 +258,23 @@ class QQShareService {
     
     func shareToFriends() {
         if !Utils.hasInstalledQQ() {
-            controller.displayMessage("请先安装QQ客户端")
+            controller.displayMessage(message: "请先安装QQ客户端")
         } else {
-            shareToQQ(false)
+            shareToQQ(isToQZone: false)
         }
     }
     
     @IBAction func shareToQzone() {
         if !Utils.hasInstalledQQ() {
-            controller.displayMessage("请先安装QQ客户端")
+            controller.displayMessage(message: "请先安装QQ客户端")
         } else {
-            shareToQQ(true)
+            shareToQQ(isToQZone: true)
         }
     }
 
     private func shareToQQ(isToQZone: Bool) {
+        //TODO: 临时删掉
+        /*
         let newsUrl = NSURL(string: shareManager.shareUrl)
         let title = shareManager.shareTitle
         let description = shareManager.shareDescription
@@ -291,7 +294,7 @@ class QQShareService {
             QQApiInterface.sendReq(req)
         }
         
-        
+        */
     }
 
 

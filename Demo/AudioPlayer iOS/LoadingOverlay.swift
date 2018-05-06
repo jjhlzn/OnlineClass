@@ -24,15 +24,15 @@ public class LoadingOverlay{
     }
     
     public func showOverlay(view: UIView!) {
-        overlayView = UIView(frame: UIScreen.mainScreen().bounds)
+        overlayView = UIView(frame: UIScreen.main.bounds)
         overlayView.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0)
         
-        activityIndicator = UIActivityIndicatorView(frame: CGRectMake(0, 0, 80, 80))
+        activityIndicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 80, height: 80))
         activityIndicator.layer.cornerRadius = 05;
         activityIndicator.backgroundColor = UIColor(white: 0, alpha: 0.5)
-        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.WhiteLarge
+        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.whiteLarge
         activityIndicator.center = overlayView.center
-        activityIndicator.color = UIColor.whiteColor()
+        activityIndicator.color = UIColor.white
         overlayView.addSubview(activityIndicator)
         activityIndicator.startAnimating()
         
@@ -41,17 +41,17 @@ public class LoadingOverlay{
 
     
     private func makeLabel(msg: String, superView: UIView) -> UILabel {
-        let screenWidth = UIScreen.mainScreen().bounds.width
+        let screenWidth = UIScreen.main.bounds.width
         let labelWidth =  screenWidth / 4
         
-        let label = UILabel(frame: CGRectMake(0, 0, labelWidth, 21))
+        let label = UILabel(frame: CGRect(x: 0, y: 0, width: labelWidth, height: 21))
         
         label.center.x = superView.bounds.width / 2
         label.center.y = superView.bounds.height / 2 + 20 + 5
         
-        label.textAlignment = .Center
-        label.font = label.font.fontWithSize(13)
-        label.textColor = UIColor.blackColor()
+        label.textAlignment = .center
+        label.font = label.font.withSize(13)
+        label.textColor = UIColor.black
         label.text = msg
         
         return label
@@ -80,37 +80,37 @@ public class LoadingOverlayWithMessage{
     
      public func showOverlayWithMessage(msg: String, view: UIView!) {
      
-     overlayView = UIView(frame: UIScreen.mainScreen().bounds)
-     overlayView.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0)
-     
-     activityIndicator = UIActivityIndicatorView(frame: CGRectMake(0, 0, 80, 80))
-     activityIndicator.layer.cornerRadius = 05;
-     activityIndicator.backgroundColor = UIColor(white: 0, alpha: 0.5)
-     activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.WhiteLarge
-     activityIndicator.center = overlayView.center
-     activityIndicator.color = UIColor.whiteColor()
-     overlayView.addSubview(activityIndicator)
-     
-     let text = makeLabel(msg, superView: overlayView)
-     overlayView.addSubview(text)
-     
-     activityIndicator.startAnimating()
-     
-     view.addSubview(overlayView)
+         overlayView = UIView(frame: UIScreen.main.bounds)
+         overlayView.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0)
+        
+         activityIndicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 80, height: 80))
+         activityIndicator.layer.cornerRadius = 05;
+         activityIndicator.backgroundColor = UIColor(white: 0, alpha: 0.5)
+         activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.whiteLarge
+         activityIndicator.center = overlayView.center
+         activityIndicator.color = UIColor.white
+         overlayView.addSubview(activityIndicator)
+        
+         let text = makeLabel(msg: msg, superView: overlayView)
+         overlayView.addSubview(text)
+        
+         activityIndicator.startAnimating()
+        
+         view.addSubview(overlayView)
      }
     
     private func makeLabel(msg: String, superView: UIView) -> UILabel {
-        let screenWidth = UIScreen.mainScreen().bounds.width
+        let screenWidth = UIScreen.main.bounds.width
         let labelWidth =  screenWidth / 4
         
-        let label = UILabel(frame: CGRectMake(0, 0, labelWidth, 21))
+        let label = UILabel(frame: CGRect(x: 0, y: 0, width: labelWidth, height: 21))
         
         label.center.x = superView.bounds.width / 2
         label.center.y = superView.bounds.height / 2 + 20 + 5
         
-        label.textAlignment = .Center
-        label.font = label.font.fontWithSize(13)
-        label.textColor = UIColor.whiteColor()
+        label.textAlignment = .center
+        label.font = label.font.withSize(13)
+        label.textColor = UIColor.white
         label.text = msg
         
         return label
@@ -129,12 +129,12 @@ public class LoadingCircle {
     
     public func show(view: UIView!) {
 
-        activityIndicator = UIActivityIndicatorView(frame: CGRectMake(0, 0, 40, 40))
+        activityIndicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
         activityIndicator.layer.cornerRadius = 05;
         activityIndicator.backgroundColor = nil
-        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.WhiteLarge
+        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.whiteLarge
         activityIndicator.center = view.center
-        activityIndicator.color = UIColor.grayColor()
+        activityIndicator.color = UIColor.gray
         view.addSubview(activityIndicator)
         activityIndicator.startAnimating()
         

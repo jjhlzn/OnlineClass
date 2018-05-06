@@ -14,30 +14,30 @@ class CoreDataStack {
     let managedObjectModelName : String
     
     private lazy var managedObjectModel: NSManagedObjectModel = {
-        let modelURL = NSBundle.mainBundle().URLForResource(self.managedObjectModelName, withExtension: "momd")!
-        return NSManagedObjectModel(contentsOfURL: modelURL)!
+        let modelURL = Bundle.main.url(forResource: self.managedObjectModelName, withExtension: "momd")!
+        return NSManagedObjectModel(contentsOf: modelURL)!
     }()
     
     private var applicationDocumentDirectory: NSURL = {
-        let urls = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
-        return urls.first!
+        let urls = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        return urls.first! as NSURL
     }()
     
     private lazy var persistentStoreCoordinator: NSPersistentStoreCoordinator = {
         var coordinator = NSPersistentStoreCoordinator(managedObjectModel: self.managedObjectModel)
         
         let pathComponent = "\(self.managedObjectModelName).sqlite"
-        let url = self.applicationDocumentDirectory.URLByAppendingPathComponent(pathComponent)
+        let url = self.applicationDocumentDirectory.appendingPathComponent(pathComponent)
         let options = [ NSMigratePersistentStoresAutomaticallyOption : true, NSInferMappingModelAutomaticallyOption : true ]
         
-        let store = try! coordinator.addPersistentStoreWithType(NSSQLiteStoreType,
-                                                                configuration: nil,
-                                                                URL: url, options: options)
+        let store = try! coordinator.addPersistentStore(ofType: NSSQLiteStoreType,
+                                                        configurationName: nil,
+                                                        at: url, options: options)
         return coordinator
     }()
     
     lazy var mainQueueContext: NSManagedObjectContext = {
-        let moc = NSManagedObjectContext(concurrencyType: .MainQueueConcurrencyType)
+        let moc = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
         moc.persistentStoreCoordinator = self.persistentStoreCoordinator
         //moc.name = "Main Queue Context (UI Context)"
         
@@ -45,8 +45,8 @@ class CoreDataStack {
     }()
     
     lazy var privateQueueContext: NSManagedObjectContext = {
-        let moc = NSManagedObjectContext(concurrencyType: .PrivateQueueConcurrencyType)
-        moc.parentContext = self.mainQueueContext
+        let moc = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
+        moc.parent = self.mainQueueContext
         //moc.name = "Primary Private Queue Context"
         return moc
     }()
@@ -56,9 +56,9 @@ class CoreDataStack {
     }
     
     func saveChanges() throws {
-        var error: ErrorType?
+        var error: Error?
         
-        privateQueueContext.performBlockAndWait { () -> Void in
+        privateQueueContext.performAndWait { () -> Void in
             if self.privateQueueContext.hasChanges {
                 print("privateQueueContext has change")
                 do {
@@ -74,7 +74,7 @@ class CoreDataStack {
             throw error
         }
         
-        mainQueueContext.performBlockAndWait() {
+        mainQueueContext.performAndWait() {
             do {
                 try self.mainQueueContext.save()
             }

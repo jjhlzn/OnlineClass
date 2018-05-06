@@ -17,6 +17,7 @@ class ImageStore : NSObject {
     }
     
     func saveOrUpdate(image : UIImage) {
+        /*
         if let data = UIImagePNGRepresentation(image) {
             print("imageName = \(imageName)")
             let filename = fileInDocumentsDirectory(imageName)
@@ -31,17 +32,18 @@ class ImageStore : NSObject {
                 }
             }
             data.writeToFile(filename, atomically: true)
-        }
+        } */
     }
     
     func delete() {
+        /*
         let fileManager = NSFileManager.defaultManager()
         let filePath = fileInDocumentsDirectory(imageName)
         do {
             try fileManager.removeItemAtPath(filePath)
         } catch let error as NSError {
             print(error.debugDescription)
-        }
+        } */
     }
     
     private func loadImageFromPath(path: String) -> UIImage? {
@@ -54,6 +56,7 @@ class ImageStore : NSObject {
         
     }
     
+    /*
     private func getDocumentsURL() -> NSURL {
         let documentsURL = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)[0]
         return documentsURL
@@ -65,14 +68,16 @@ class ImageStore : NSObject {
         let fileURL = getDocumentsURL().URLByAppendingPathComponent(filename)
         return fileURL.path!
         
-    }
+    } */
     
     func get() -> UIImage? {
+        return nil
+        /*
         print("get()")
         let image = loadImageFromPath(fileInDocumentsDirectory(imageName))
         if image == nil {
             return nil
         }
-        return image!
+        return image! */
     }
 }
