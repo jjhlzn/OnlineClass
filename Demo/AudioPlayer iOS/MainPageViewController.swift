@@ -11,12 +11,13 @@ import KDEAudioPlayer
 import QorumLogs
 import Auk
 import MarqueeLabel
+import Gifu
 
 class CourseMainPageViewController: BaseUIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
-    @IBOutlet weak var playingButton: UIButton!
+    //@IBOutlet weak var playingButton: UIButton!
     var extendFunctionMananger : ExtendFunctionMananger!
     var extendFunctionStore = ExtendFunctionStore.instance
     var extendFunctionImageStore = ExtendFunctionImageStore()
@@ -31,21 +32,27 @@ class CourseMainPageViewController: BaseUIViewController {
     
     var refreshControl:UIRefreshControl!
     var refreshing = false
+    var imageView: GIFImageView!
     
     var buyPayCourseDelegate: ConfirmDelegate2!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         if #available(iOS 11.0, *) {
             tableView.contentInsetAdjustmentBehavior = .never
             //tableView.contentInset = UIEdgeInsetsMake(0, 0, 49, 0)//导航栏如果使用系统原生半透明的，top设置为64
             //tableView.scrollIndicatorInsets = tableView.contentInset
-            tableView.contentInset = UIEdgeInsetsMake(22, 0, 49, 0)
+            if UIDevice().isX() {
+                tableView.contentInset = UIEdgeInsetsMake(22, 0, 49, 0)
+            } else {
+                tableView.contentInset = UIEdgeInsetsMake(0, 0, 49, 0)
+            }
             tableView.estimatedRowHeight = 0
             UITableView.appearance().estimatedRowHeight = 0
         }
+        
+        tableView.separatorStyle = .none
         
         tableView.dataSource = self
         tableView.delegate = self
@@ -59,7 +66,7 @@ class CourseMainPageViewController: BaseUIViewController {
             maxRows = 2
         }
         extendFunctionMananger = ExtendFunctionMananger(controller: self, isNeedMore:  true, showMaxRows: maxRows)
-        addPlayingButton(button: playingButton)
+        //addPlayingButton(button: playingButton)
         loadFunctionInfos()
         
         //下拉刷新设置
@@ -67,79 +74,111 @@ class CourseMainPageViewController: BaseUIViewController {
         refreshControl.addTarget(self, action: #selector(refresh), for: UIControlEvents.valueChanged)
         tableView.addSubview(refreshControl)
         refreshing = false
+        
+        self.imageView = GIFImageView(frame: CGRect(x: -10, y: 0, width: 36, height: 80))
+        self.imageView.backgroundColor = nil
+        self.imageView.animate(withGIFNamed: "demo") {
+            print("It's animating!")
+        }
+        self.imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tapMusicBtnHandler(sender:))))
+        //imageView.stopAnimatingGIF()
+        let button2 = UIBarButtonItem(customView: self.imageView)
+        //let button1 = UIBarButtonItem(image: UIImage(named: "imagename"), style: .plain, target: self, action: Selector("action")) // action:#selector(Class.MethodName) for swift 3
+        //self.navigationItem.rightBarButtonItems?.append(button2)
+        self.navigationItem.rightBarButtonItem  = button2
+        
+        let searchLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 30))
+        searchLabel.layer.masksToBounds = true
+        searchLabel.layer.cornerRadius = 15
+        searchLabel.backgroundColor =  UIColor(white: 0.9, alpha: 0.8)
+        searchLabel.text = "融资、信用卡、关键词"
+        searchLabel.textColor =  UIColor.lightGray
+        searchLabel.font = searchLabel.font.withSize(13)
+        
+        searchLabel.textAlignment = .center
+        
+        self.navigationItem.titleView = searchLabel
+     
+    }
+    
+    @objc func tapMusicBtnHandler(sender: UITapGestureRecognizer? = nil) {
+        if self.imageView.isAnimatingGIF {
+            self.imageView.stopAnimatingGIF()
+          
+        } else {
+            self.imageView.startAnimatingGIF()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        updatePlayingButton(button: playingButton)
-        loadHeaderAdv()
-        loadFooterAdvs()
-        loadCourseNotify()
+        //updatePlayingButton(button: playingButton)
+        loadHeadAds()
+        //loadFooterAdvs()
+        //loadCourseNotify()
         
         createTimer()
+      
+        //let button1 = UIBarButtonItem(image: UIImage(named: "imagename"), style: .plain, target: self, action: Selector("action")) // action:#selector(Class.MethodName) for swift 3
+        //self.navigationItem.rightBarButtonItems?.append(button2)
+       
         
+        self.imageView = GIFImageView(frame: CGRect(x: -10, y: 0, width: 36, height: 80))
+        self.imageView.backgroundColor = nil
+        self.imageView.animate(withGIFNamed: "demo") {
+            print("It's animating!")
+        }
+        self.imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tapMusicBtnHandler(sender:))))
+        //imageView.stopAnimatingGIF()
+        let button2 = UIBarButtonItem(customView: self.imageView)
+        //let button1 = UIBarButtonItem(image: UIImage(named: "imagename"), style: .plain, target: self, action: Selector("action")) // action:#selector(Class.MethodName) for swift 3
+        //self.navigationItem.rightBarButtonItems?.append(button2)
+        self.navigationItem.rightBarButtonItem  = button2
+        
+        let searchLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 30))
+        searchLabel.layer.masksToBounds = true
+        searchLabel.layer.cornerRadius = 15
+        searchLabel.backgroundColor =  UIColor(white: 0.9, alpha: 0.8)
+        searchLabel.text = "融资、信用卡、关键词"
+        searchLabel.textColor =  UIColor.lightGray
+        searchLabel.font = searchLabel.font.withSize(13)
+        
+        searchLabel.textAlignment = .center
+        
+        self.navigationItem.titleView = searchLabel
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
         freshHeaderAdvTimer.invalidate()
+        imageView.prepareForReuse()
+        self.navigationItem.rightBarButtonItem  = nil
     }
     
     private func createTimer() {
         freshHeaderAdvTimer = Timer.scheduledTimer(timeInterval: 60, target: self,
-                                                                selector: #selector(loadHeaderAdv), userInfo: nil, repeats: true)
+                                                   selector: #selector(loadHeadAds), userInfo: nil, repeats: true)
     }
-    
 
-    @objc func loadHeaderAdv() {
-        BasicService().sendRequest(url: ServiceConfiguration.GET_HEADER_ADV, request: GetHeaderAdvRequest()) {
-            (resp: GetHeaderAdvResponse) -> Void in
+    @objc func loadHeadAds() {
+        BasicService().sendRequest(url: ServiceConfiguration.GET_MAIN_PAGE_ADS, request: GetMainPageAdsRequest()) {
+            (resp: GetMainPageAdsResponse) -> Void in
             if self.refreshing {
                 self.refreshControl.endRefreshing()
             }
             self.refreshing = false
             
-            if resp.status != ServerResponseStatus.Success.rawValue {
-                QL4("server return error: \(resp.errorMessage!)")
-                return
-            }
-            
-            if resp.headerAdv != nil {
-                let headerCell = self.tableView.cellForRow(at: NSIndexPath(row: 0, section: 0) as IndexPath) as! HeaderAdvCell
-
-                self.headerAdv = resp.headerAdv
-                if let imageUrl = URL(string: (resp.headerAdv?.imageUrl)!) {
-                    headerCell.advImage.kf.setImage(with: imageUrl)
-                }
-            }
+            let ads = resp.ads
+            let headerCell = self.tableView.cellForRow(at: NSIndexPath(row: 0, section: 0) as IndexPath) as! HeaderAdvCell
+            headerCell.ads = ads
+            headerCell.update()
         }
     }
     
-    func loadFooterAdvs() {
-        BasicService().sendRequest(url: ServiceConfiguration.GET_FOOTER_ADV, request: GetFooterAdvsRequest() ) {
-            (resp: GetFooterAdvsResponse) -> Void in
-            if resp.status != ServerResponseStatus.Success.rawValue {
-                QL4("server return error: \(resp.errorMessage!)")
-                return
-            }
-            if resp.advList.count == 4 {
-                self.footerAdvs = resp.advList
-                self.tableView.reloadData()
-            }
-        }
-    }
     
-    func loadCourseNotify() {
-        BasicService().sendRequest(url: ServiceConfiguration.GET_COURSE_NOTIFY, request: GetCourseNotifyRequest() ) { (resp: GetCourseNotifyResponse) -> Void in
-            if resp.isFail {
-                QL4("server return error: \(resp.errorMessage!)")
-                return
-            }
-            self.courseNotifies = resp.notifies;
-            self.tableView.reloadData()
-        }
-    }
+    
+ 
     
     
     func loadFunctionInfos() {
@@ -216,7 +255,7 @@ class CourseMainPageViewController: BaseUIViewController {
         if audioItem == nil {
             return
         }
-        updatePlayingButton(button: playingButton)
+        //updatePlayingButton(button: playingButton)
     }
     
     @IBAction func searchPressed(sender: AnyObject) {
@@ -230,7 +269,7 @@ class CourseMainPageViewController: BaseUIViewController {
         }
         
         refreshing = true
-        loadHeaderAdv()
+        loadHeadAds()
         loadFunctionInfos()
     }
     
@@ -248,7 +287,7 @@ extension CourseMainPageViewController : UITableViewDataSource, UITableViewDeleg
     }
     
     private func getRowCount() -> Int {
-        return 2 + extendFunctionMananger.getRowCount() + 1
+        return 1 + extendFunctionMananger.getRowCount() + 1 + 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -257,46 +296,41 @@ extension CourseMainPageViewController : UITableViewDataSource, UITableViewDeleg
         
         if row == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "mainpageHeaderAdvCell") as! HeaderAdvCell
+            cell.initialize()
             return cell
-
         } else if row == 1 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "courseNotifyCell") as! CourseNotifyCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "seperatorCell")
             //courseNotifies = [String]()
-            if courseNotifies.count == 0 {
-                cell.courseNotifyLabel.isHidden = true
-                cell.separatorInset = UIEdgeInsetsMake(0, UIScreen.main.bounds.width, 0, 0);
-            } else {
-                cell.courseNotifyLabel.isHidden = false
-                var notifyString = ""
-                for notify in self.courseNotifies {
-                    notifyString = notifyString + notify + " "
-                }
-                cell.courseNotifyLabel.text = notifyString
-                cell.courseNotifyLabel.scrollDuration = 16
-                cell.courseNotifyLabel.restartLabel()
-            }
-            
-            return cell
-        } else if row == getRowCount() - 1 {
-             return makeAdvCell()
-        } else {
+            return cell!
+        } else if row == 2 || row == 3  {
             let cell = extendFunctionMananger.getFunctionCell(tableView: tableView, row: row - 2)
             return cell
-
+        } else if row == 4 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "seperatorCell")
+            return cell!
+        } else {
+            return tableView.dequeueReusableCell(withIdentifier: "seperatorCell")!
         }
-    }
+     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let row = indexPath.row
         if row == 0 {
             return getHeaderAdvHeight()
         } else if row == 1 {
-            return 18
-        }else if row == getRowCount() - 1 {
-            return computeAdCellHeight()
+            return 8
+        } else if row == 2 || row == 3 {
+            return extendFunctionMananger.cellHeight
+        } else if row == 4 {
+            return 8
         } else {
             return extendFunctionMananger.cellHeight
         }
+    }
+    
+    func tableView(_ tableView: UITableView,
+                   viewForHeaderInSection section: Int) -> UIView? {
+        return nil
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -440,25 +474,6 @@ extension CourseMainPageViewController : UITableViewDataSource, UITableViewDeleg
         return imageView
     }
     
-    private func makeAdvCell() -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "footerAdvCell") as! FooterAdvCell
-        if footerAdvs.count != 4 {
-            footerAdvs = [FooterAdv]()
-            footerAdvs.append(FooterAdv())
-            footerAdvs.append(FooterAdv())
-            footerAdvs.append(FooterAdv())
-            footerAdvs.append(FooterAdv())
-        }
-        var i = 0
-        footerAdvs.forEach() {
-            (adv: FooterAdv) -> Void in
-            cell.addSubview(makeImage(index: i, adv: adv))
-            i = i + 1
-        }
-        return cell
-    }
-
-
     private func computeAdCellHeight() -> CGFloat {
         let section1Height = getHeaderAdvHeight()
         let section2Height = CGFloat(extendFunctionMananger.getRowCount()) * extendFunctionMananger.cellHeight
@@ -474,7 +489,8 @@ extension CourseMainPageViewController : UITableViewDataSource, UITableViewDeleg
     
     private func getHeaderAdvHeight() -> CGFloat {
         let screenWidth = UIScreen.main.bounds.width
-        return screenWidth * 122 / 320
+        return screenWidth * 122 / 320 + 10
+        //return 172
     }
 
 }

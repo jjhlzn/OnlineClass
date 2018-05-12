@@ -1167,3 +1167,45 @@ class GetLaunchAdvResponse : ServerResponse {
     }
 }
 
+class GetShareImagesRequest : ServerRequest {}
+class GetShareImagesResponse : ServerResponse {
+    var shareImages : [String] = [String]()
+    override func parseJSON(request: ServerRequest, json: NSDictionary) {
+        super.parseJSON(request: request, json: json)
+        let jsonArray = json["urls"] as! NSArray
+        for eachJson in jsonArray {
+            shareImages.append(eachJson as! String)
+        }
+    }
+}
+
+class GetMainPageAdsRequest : ServerRequest {
+    var type: String! = ""
+    override var params: [String : AnyObject] {
+        get {
+            var parameters = super.params
+            parameters["type"] = type as AnyObject
+            return parameters
+        }
+    }
+}
+class GetMainPageAdsResponse : ServerResponse {
+    var ads = [Advertise]()
+    
+    override func parseJSON(request: ServerRequest, json: NSDictionary) {
+        super.parseJSON(request: request, json: json)
+        if status == 0 {
+            let adsJson = json["ads"] as! NSArray
+            for adJson1 in adsJson {
+                let adJson = adJson1 as! [String:AnyObject]
+                let ad = Advertise()
+                ad.imageUrl = adJson["imageUrl"] as! String
+                ad.clickUrl = adJson["clickUrl"] as! String
+                ad.title = adJson["title"] as! String
+                ads.append(ad)
+            }
+            
+        }
+    }
+}
+

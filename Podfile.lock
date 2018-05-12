@@ -4,9 +4,13 @@ PODS:
   - Auk (8.0.2):
     - moa
   - Emoji-swift (0.2.2)
+  - FSPagerView (0.7.1)
+  - Gifu (3.0.0)
   - KDEAudioPlayer (1.1.0)
   - Kingfisher (4.1.1)
+  - LTScrollView (0.1.4)
   - MarqueeLabel/Swift (3.1.4)
+  - MJRefresh (3.1.14.1)
   - moa (9.0.2)
   - QorumLogs (0.9)
   - Socket.IO-Client-Swift (13.1.3):
@@ -22,9 +26,13 @@ DEPENDENCIES:
   - ALCameraViewController (~> 3.0.3)
   - Auk (~> 8.0)
   - Emoji-swift (~> 0.2.2)
+  - FSPagerView (~> 0.7.1)
+  - Gifu (~> 3.0.0)
   - KDEAudioPlayer (~> 1.1.0)
   - Kingfisher (~> 4.1.0)
+  - LTScrollView (~> 0.1.4)
   - MarqueeLabel/Swift (~> 3.1.4)
+  - MJRefresh (~> 3.1.14.1)
   - QorumLogs (~> 0.9)
   - Socket.IO-Client-Swift (~> 13.1.0)
   - SwiftyBeaver (~> 1.5.2)
@@ -46,9 +54,13 @@ SPEC CHECKSUMS:
   ALCameraViewController: 6398a9282057f709b87a1ecc52a83b48028ade64
   Auk: 82be62a2cf650437fe745c81b12ac2440a0f682c
   Emoji-swift: d118ef9be36f02b4bfa702ffde08a4b07a9e1d3d
+  FSPagerView: 958aba39684e1573755ddcfcc29f7eebb8413cee
+  Gifu: 6543ca2056a3d697097c09fe543ef49348ccc892
   KDEAudioPlayer: b3787f02b6718c2416589a7726f2633cde2cd60e
   Kingfisher: 6793a473357b5dbee42b0068ef203fe8325f259e
+  LTScrollView: c29d1ab2596d39a6518b2b16b5a24156d49bcb91
   MarqueeLabel: bf768455fe88d427f71476ebb23f9092b660f40b
+  MJRefresh: 238e6a37e2dba12160ee3b79f6d2a2b26abcab42
   moa: b73dc5e0efa1fad00711c4608e41b197f4d15b12
   QorumLogs: 9a484df6973a3697ac79fe2273140fde6b36dccc
   Socket.IO-Client-Swift: d30d6fd08a38ad2a182b090936a043bf512ab2de
@@ -58,6 +70,6 @@ SPEC CHECKSUMS:
   tingyunApp: bf9074313164f2b3595b5c2b422c8159cee03a58
   WeiboSDK: bceab625ec59b7039ba721cc4ba9f5868804f63e
 
-PODFILE CHECKSUM: b28253e3a2a6db4eab11a50fd5f6f0f532ad1b6c
+PODFILE CHECKSUM: 04b3960cd180999a9cc12badc02ed53118b57213
 
 COCOAPODS: 1.1.1

@@ -96,7 +96,7 @@ class ExtendFunctionMananger : NSObject {
     func getRowCount() -> Int {
         let rows = (functions.count + buttonCountEachRow - 1) / buttonCountEachRow
         let result = rows > showMaxRows ? showMaxRows : rows
-        //print("result = \(result)")
+        print("result = \(result)")
         return result
     }
     

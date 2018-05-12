@@ -10,6 +10,7 @@ import UIKit
 import KDEAudioPlayer
 import QorumLogs
 
+
 class BaseUIViewController: UIViewController, AudioPlayerDelegate {
 
     
@@ -19,16 +20,14 @@ class BaseUIViewController: UIViewController, AudioPlayerDelegate {
         tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         
         if  self.navigationController != nil {
-
             self.navigationController?.navigationBar.barTintColor =
-   UIColor(red: 0xF2/255, green: 0x61/255, blue: 0, alpha: 0.9)
-            self.navigationController?.navigationBar.tintColor = UIColor.white
-
-            self.navigationController?.navigationBar.barStyle = UIBarStyle.black
-           
+   UIColor(red: 0xFF/255, green: 0xFF/255, blue: 0xFF, alpha: 0.8)
+            
+      
+            
+            self.navigationController?.navigationBar.barStyle = UIBarStyle.default
+            
         }
-        
-        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
