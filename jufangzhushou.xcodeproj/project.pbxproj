@@ -148,6 +148,11 @@
 		EF23459020A6794D002E2F30 /* NewCommentHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF23458E20A6794D002E2F30 /* NewCommentHeaderCell.xib */; };
 		EF23459320A67961002E2F30 /* NewCommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF23459120A67961002E2F30 /* NewCommentCell.swift */; };
 		EF23459420A67961002E2F30 /* NewCommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF23459220A67961002E2F30 /* NewCommentCell.xib */; };
+		EF23459F20A6BE4C002E2F30 /* ShareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF23459E20A6BE4C002E2F30 /* ShareView.swift */; };
+		EF2345A220A6C25D002E2F30 /* ShareView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF2345A120A6C25D002E2F30 /* ShareView.xib */; };
+		EF2345A420A6C6FD002E2F30 /* CommentKeyboard.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF2345A320A6C6FD002E2F30 /* CommentKeyboard.xib */; };
+		EF2345A620A6C710002E2F30 /* CommentKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF2345A520A6C710002E2F30 /* CommentKeyboard.swift */; };
+		EF2345A820A6C923002E2F30 /* BaseCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF2345A720A6C923002E2F30 /* BaseCustomView.swift */; };
 		EF3046271E5D7B6A00A6E7AE /* ShareManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3046261E5D7B6A00A6E7AE /* ShareManager.swift */; };
 		EF422C69209ECD5300419FCA /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF422C68209ECD5300419FCA /* LaunchViewController.swift */; };
 		EF67C0431E24A901004EEAF0 /* AlbumHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF67C0421E24A901004EEAF0 /* AlbumHeaderCell.swift */; };
@@ -316,6 +321,11 @@
 		EF23458E20A6794D002E2F30 /* NewCommentHeaderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = NewCommentHeaderCell.xib; path = cells/NewCommentHeaderCell.xib; sourceTree = "<group>"; };
 		EF23459120A67961002E2F30 /* NewCommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NewCommentCell.swift; path = cells/NewCommentCell.swift; sourceTree = "<group>"; };
 		EF23459220A67961002E2F30 /* NewCommentCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = NewCommentCell.xib; path = cells/NewCommentCell.xib; sourceTree = "<group>"; };
+		EF23459E20A6BE4C002E2F30 /* ShareView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareView.swift; sourceTree = "<group>"; };
+		EF2345A120A6C25D002E2F30 /* ShareView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShareView.xib; sourceTree = "<group>"; };
+		EF2345A320A6C6FD002E2F30 /* CommentKeyboard.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentKeyboard.xib; sourceTree = "<group>"; };
+		EF2345A520A6C710002E2F30 /* CommentKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentKeyboard.swift; sourceTree = "<group>"; };
+		EF2345A720A6C923002E2F30 /* BaseCustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCustomView.swift; sourceTree = "<group>"; };
 		EF3046261E5D7B6A00A6E7AE /* ShareManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareManager.swift; sourceTree = "<group>"; };
 		EF422C68209ECD5300419FCA /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
 		EF67C0421E24A901004EEAF0 /* AlbumHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumHeaderCell.swift; sourceTree = "<group>"; };
@@ -698,6 +708,11 @@
 		EF23459520A6840A002E2F30 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				EF23459E20A6BE4C002E2F30 /* ShareView.swift */,
+				EF2345A120A6C25D002E2F30 /* ShareView.xib */,
+				EF2345A320A6C6FD002E2F30 /* CommentKeyboard.xib */,
+				EF2345A520A6C710002E2F30 /* CommentKeyboard.swift */,
+				EF2345A720A6C923002E2F30 /* BaseCustomView.swift */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -826,7 +841,9 @@
 				EF23457D20A57585002E2F30 /* CourseOverviewCell.xib in Resources */,
 				1CBF786B1D336CF200B596BC /* README.txt in Resources */,
 				EF13937B20A42EC200E32D20 /* small.gif in Resources */,
+				EF2345A220A6C25D002E2F30 /* ShareView.xib in Resources */,
 				EF13937D20A42FE400E32D20 /* demo.gif in Resources */,
+				EF2345A420A6C6FD002E2F30 /* CommentKeyboard.xib in Resources */,
 				EF23457920A57267002E2F30 /* CourseOverviewHeaderCell.xib in Resources */,
 				E2A9AFA51C498E2900FE943A /* Main.storyboard in Resources */,
 			);
@@ -929,6 +946,7 @@
 				EF23458420A66986002E2F30 /* BeforeCourseCell.swift in Sources */,
 				EF23458020A66914002E2F30 /* BeforeCourseHeaderCell.swift in Sources */,
 				1CEFF7861CBFB9FD000DEFF7 /* BasicService.swift in Sources */,
+				EF23459F20A6BE4C002E2F30 /* ShareView.swift in Sources */,
 				1C8E7DC11D87950F0022B0D2 /* PurchaseRecordEntity+CoreDataProperties.swift in Sources */,
 				EF22C2771E23E65E00EA0F5A /* ExtendFunctionStore.swift in Sources */,
 				1C8E7DC41D8799F80022B0D2 /* PurchaseRecordStore.swift in Sources */,
@@ -942,6 +960,7 @@
 				EF3046271E5D7B6A00A6E7AE /* ShareManager.swift in Sources */,
 				1C5A6FC71CE9A0D5000E7282 /* LivePlayerController.swift in Sources */,
 				1C3479C21CF4236A003FEF05 /* LivePlayerPageViewController.swift in Sources */,
+				EF2345A820A6C923002E2F30 /* BaseCustomView.swift in Sources */,
 				1CEFF7921CC07838000DEFF7 /* UIImageView.swift in Sources */,
 				1C6420F61CD0605200119272 /* CommentController.swift in Sources */,
 				EF422C69209ECD5300419FCA /* LaunchViewController.swift in Sources */,
@@ -958,6 +977,7 @@
 				1C451F681D01765F00DC29F9 /* ConfigurationCell.swift in Sources */,
 				1CEFF79C1CC20171000DEFF7 /* AudioPlayerExtension.swift in Sources */,
 				1C154A501CDACCA6003B900C /* MyUISlider.swift in Sources */,
+				EF2345A620A6C710002E2F30 /* CommentKeyboard.swift in Sources */,
 				1C8E7DC21D87950F0022B0D2 /* PurchaseRecordEntity.swift in Sources */,
 				1C98A8921D61F71400ADF12B /* XinGeAppDelegate.swift in Sources */,
 				1C33F03E1D07A8E200D3EE4C /* CodeImageViewController.swift in Sources */,

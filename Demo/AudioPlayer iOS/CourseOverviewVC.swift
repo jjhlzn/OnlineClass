@@ -16,6 +16,7 @@ class CourseOverviewVC: UIViewController, LTTableViewProtocal {
         let H: CGFloat = glt_iphoneX ? (view.bounds.height - 64 - 24 - 34) : view.bounds.height  - 64
         let tableView = tableViewConfig(CGRect(x: 0, y: 0, width: view.bounds.width, height: H), self, self, nil)
         tableView.separatorStyle = .none
+        tableView.bounces = false
         return tableView
     }()
     
@@ -30,7 +31,7 @@ class CourseOverviewVC: UIViewController, LTTableViewProtocal {
             automaticallyAdjustsScrollViewInsets = false
         }
         
-        tableView.estimatedRowHeight = 0
+        
         self.tableView.register(UINib(nibName:"CourseOverviewHeaderCell", bundle:nil),forCellReuseIdentifier:"CourseOverviewHeaderCell")
         self.tableView.register(UINib(nibName:"CourseOverviewCell", bundle:nil),forCellReuseIdentifier:"CourseOverviewCell")
         self.tableView.register(UINib(nibName:"NewCommentHeaderCell", bundle:nil),forCellReuseIdentifier:"NewCommentHeaderCell")

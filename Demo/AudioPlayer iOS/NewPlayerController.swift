@@ -56,6 +56,21 @@ class NewPlayerController: UIViewController, UIScrollViewDelegate {
         self.automaticallyAdjustsScrollViewInsets = false
         view.addSubview(advancedManager)
         advancedManagerConfig()
+        
+        let overlay = UIView(frame: UIScreen.main.bounds)
+        overlay.backgroundColor = UIColor(white: 0, alpha: 0.65)
+        
+        //let Y: CGFloat = glt_iphoneX ? 64 + 24.0 : 64.0
+        let shareView = ShareView(frame: CGRect(x : 0, y: UIScreen.main.bounds.height - 233, width: UIScreen.main.bounds.width, height: 233))
+        
+        
+        //view.addSubview(overlay)
+        //view.addSubview(shareView)
+        
+        let commentKB = CommentKeyboard(frame: CGRect(x : 0, y: UIScreen.main.bounds.height - 156, width: UIScreen.main.bounds.width, height: 156))
+        //view.addSubview(overlay)
+        
+        view.addSubview(commentKB)
     }
     
 }

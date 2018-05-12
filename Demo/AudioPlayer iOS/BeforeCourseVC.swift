@@ -16,6 +16,7 @@ class BeforeCourseVC: UIViewController, LTTableViewProtocal {
         let H: CGFloat = glt_iphoneX ? (view.bounds.height - 64 - 24 - 34) : view.bounds.height  - 64
         let tableView = tableViewConfig(CGRect(x: 0, y: 0, width: view.bounds.width, height: H), self, self, nil)
         //tableView.separatorStyle = .none
+        tableView.bounces = false
         return tableView
     }()
     
