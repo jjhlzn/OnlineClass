@@ -52,6 +52,13 @@ class Album : BaseModelObject {
     var isReady : Bool = false
     var isAgent: Bool = false
     var playTimeDesc: String = ""
+    
+    var date: String = ""
+    var status: String = ""
+    var stars: Double = 5
+    var liveTime: String = ""
+    var listenerCount: Int = 0
+    
     var songs = [Song]()
     
     var hasImage: Bool {
@@ -218,6 +225,20 @@ class ChatSetting : BaseModelObject {
     var canComment: Bool = true
     var lastCommenTime : NSDate?
     
+}
+
+class ZhuanLan : BaseModelObject {
+    
+    var name: String = ""
+    var latest: String = ""
+    var updateTime : String = ""
+    var priceInfo : String = ""
+    var desc: String = ""
+    var imageUrl : String = ""
+    var url : String = ""
+    var author : String = ""
+    var authorTitle : String = ""
+    var dingyue : Int = 0
 }
 
 class ServiceLocator {

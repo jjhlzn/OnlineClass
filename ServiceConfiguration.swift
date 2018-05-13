@@ -315,5 +315,10 @@ class ServiceConfiguration {
         }
     }
 
+    static var GET_ZHUANLAN_AND_TUIJIAN_COURSES : String {
+        get {
+            return "\(http)://\(serverName):\(port)/app/getZhuanLanAndTuijianCourses"
+        }
+    }
 
 }

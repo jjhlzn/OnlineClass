@@ -1209,3 +1209,60 @@ class GetMainPageAdsResponse : ServerResponse {
     }
 }
 
+
+class GetZhuanLanAndTuijianCoursesRequest : ServerRequest {
+}
+class GetZhuanLanAndTuijianCoursesResponse : ServerResponse {
+    var zhuanLans = [ZhuanLan]()
+    var albums = [Album]()
+    override func parseJSON(request: ServerRequest, json: NSDictionary) {
+        super.parseJSON(request: request, json: json)
+        let j = JSON(json)
+        let zhuanLansJson = j["zhuanlans"].arrayValue
+        for eachJson in zhuanLansJson {
+            let zhuanLan = ZhuanLan()
+            zhuanLan.name = eachJson["name"].string!
+            zhuanLan.latest = eachJson["latest"].string!
+            zhuanLan.priceInfo = eachJson["priceInfo"].string!
+            zhuanLan.updateTime = eachJson["updateTime"].string!
+            zhuanLan.desc = eachJson["description"].string!
+            zhuanLan.imageUrl = eachJson["imageUrl"].string!
+            zhuanLan.url = eachJson["url"].string!
+            zhuanLan.author = eachJson["author"].string!
+            zhuanLan.authorTitle = eachJson["authorTitle"].string!
+            zhuanLan.dingyue = eachJson["dingyue"].int!
+            zhuanLans.append(zhuanLan)
+        }
+        
+        let coursesJson = j["albums"].arrayValue
+        for albumJson in coursesJson {
+            let album = Album()
+            album.id = "\(albumJson["id"].numberValue)"
+            album.name = albumJson["name"].stringValue
+            album.author = albumJson["author"].stringValue
+            album.image = albumJson["image"].stringValue
+            album.count = albumJson["count"].intValue
+            album.desc = albumJson["desc"].stringValue
+            album.listenCount = albumJson["listenCount"].stringValue
+            album.courseType = CourseType.getCourseType(code: albumJson["type"].stringValue)!
+            album.playing = albumJson["playing"].boolValue
+            album.isReady = albumJson["isReady"].boolValue
+            
+            if let playTimeDesc = albumJson["playTimeDesc"].string {
+                album.playTimeDesc = playTimeDesc != nil ? playTimeDesc as! String : ""
+            }
+            if let isAgent = albumJson["isAgent"].bool {
+                album.isAgent = isAgent != nil ? isAgent as! Bool : false
+            }
+            
+            album.status = albumJson["status"].stringValue
+            album.stars = albumJson["stars"].doubleValue
+            album.listenerCount = albumJson["listenerCount"].intValue
+            album.liveTime = albumJson["liveTime"].stringValue
+            album.date = albumJson["date"].stringValue
+            
+            albums.append(album)
+        }
+    }
+}
+

@@ -9,12 +9,15 @@
 import UIKit
 import FSPagerView
 import Gifu
+import QorumLogs
 
 class HeaderAdvCell: UITableViewCell, FSPagerViewDataSource, FSPagerViewDelegate {
     @IBOutlet weak var pagerView: FSPagerView! {
         didSet {
             self.pagerView.register(FSPagerViewCell.self, forCellWithReuseIdentifier: "mainpage_cell")
+            
         }
+        
     }
     
     @IBOutlet weak var pagerControl: FSPageControl!  {
@@ -24,6 +27,7 @@ class HeaderAdvCell: UITableViewCell, FSPagerViewDataSource, FSPagerViewDelegate
             self.pagerControl.contentInsets = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
             self.pagerControl.hidesForSinglePage = true
         
+            pagerControl.backgroundColor = nil
             self.pagerControl.setFillColor(UIColor.lightGray, for: .normal)
             
             self.pagerControl.setFillColor(UIColor.white, for: .selected)
@@ -41,6 +45,7 @@ class HeaderAdvCell: UITableViewCell, FSPagerViewDataSource, FSPagerViewDelegate
     
     public func pagerView(_ pagerView: FSPagerView, cellForItemAt index: Int) -> FSPagerViewCell {
         let cell = pagerView.dequeueReusableCell(withReuseIdentifier: "mainpage_cell", at: index)
+        cell.textLabel?.backgroundColor = nil
         cell.contentView.layer.shadowRadius = 0
         cell.imageView?.contentMode = .scaleToFill
         cell.imageView?.kf.setImage(with: URL(string: ads[index].imageUrl))
@@ -48,7 +53,13 @@ class HeaderAdvCell: UITableViewCell, FSPagerViewDataSource, FSPagerViewDelegate
         return cell
     }
     
-
+    func pagerView(_ pagerView: FSPagerView, didSelectItemAt index: Int) {
+            QL1("FSPagerView index = " + String(index) + " selected")
+    }
+    
+    func pagerView(_ pagerView: FSPagerView, willDisplay cell: FSPagerViewCell, forItemAt index: Int) {
+        self.pagerControl.currentPage = index
+    }
     
     public func initialize() {
         pagerView.automaticSlidingInterval = 3.0
@@ -56,7 +67,6 @@ class HeaderAdvCell: UITableViewCell, FSPagerViewDataSource, FSPagerViewDelegate
         pagerView.isInfinite = true
         pagerView.dataSource = self
         pagerView.delegate = self
-        
     }
     
     public func update() {

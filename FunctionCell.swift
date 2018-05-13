@@ -142,9 +142,7 @@ class ExtendFunctionMananger : NSObject {
     private func addCellView(row : Int, column : Int, index: Int, function: ExtendFunction, cell: UITableViewCell) -> UIView {
         let interval : CGFloat = UIScreen.main.bounds.width / 4
         let x = interval  * CGFloat(column)
-        let cellView = UIView(frame: CGRect(x: x, y: 0, width: interval, height: 79))
-        
-        
+        let cellView = UIView(frame: CGRect(x: x, y: 0, width: interval, height: 60))
         
         cellView.tag = index
         cell.addSubview(cellView)
@@ -166,9 +164,9 @@ class ExtendFunctionMananger : NSObject {
     private func getImageWidth() -> CGFloat {
         let screenWidth = UIScreen.main.bounds.width
         if isiPhone4Screen {
-            return screenWidth / 4 * 0.6
+            return screenWidth / 4 * 0.6 * 0.75
         } else {
-            return screenWidth / 4 * 0.7
+            return screenWidth / 4 * 0.7 * 0.75
         }
     }
     
@@ -176,9 +174,9 @@ class ExtendFunctionMananger : NSObject {
         get {
             let screenWidth = UIScreen.main.bounds.width
             if isiPhone4Screen {
-                return screenWidth / 4 * 0.95
+                return screenWidth / 4 * 0.95 * 0.7
             } else {
-                return screenWidth / 4
+                return screenWidth / 4  * 0.75
             }
             
         }
@@ -206,12 +204,13 @@ class ExtendFunctionMananger : NSObject {
         let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: getImageWidth(), height: getImageWidth()))
         imageView.center.x = superView.bounds.width / 2
     
+        let Y : CGFloat = 6
         if isiPhonePlusScreen {
-           imageView.center.y = cellHeight / 2 - 1
+           imageView.center.y = cellHeight / 2 - 1 - Y
         } else if isiPhone6Screen {
-           imageView.center.y = cellHeight / 2 - 2
+           imageView.center.y = cellHeight / 2 - 2 - Y
         } else {
-           imageView.center.y = cellHeight / 2 - 5
+           imageView.center.y = cellHeight / 2 - 5 - Y
         }
         //print("superView.center.x = \(superView.center.x), superView.center.y - 10 = \(superView.center.y - 10)")
         imageView.image = overlayImage(function: function) //UIImage(named: function.imageName)
@@ -231,11 +230,9 @@ class ExtendFunctionMananger : NSObject {
             }
         }
 
-        
         if !ExtendFunctionStore.instance.hasMessage(code: function.code) {
             return bottomImage
         }
-        
         
         let topImage = UIImage(named: "message_one")!
         
@@ -259,20 +256,20 @@ class ExtendFunctionMananger : NSObject {
         let screenWidth = UIScreen.main.bounds.width
         let labelWidth =  screenWidth / 4
         
-        let label = UILabel(frame: CGRect(x: 0, y: 0, width: labelWidth, height: 21))
+        let label = UILabel(frame: CGRect(x: 0, y: 0, width: labelWidth, height: 20))
         label.tag = index
         
         label.center.x = superView.bounds.width / 2
         if isiPhonePlusScreen {
             label.center.y = cellHeight / 2 + getImageWidth() / 2 + 9
         } else if isiPhone6Screen {
-            label.center.y = cellHeight / 2 + getImageWidth() / 2 + 3
+            label.center.y = cellHeight / 2 + getImageWidth() / 2 + 0
         } else {
-            label.center.y = cellHeight / 2 + getImageWidth() / 2 + 3
+            label.center.y = cellHeight / 2 + getImageWidth() / 2 + 0
         }
 
         label.textAlignment = .center
-        label.font = label.font.withSize(13)
+        label.font = label.font.withSize(12)
         label.textColor = UIColor.black
         label.text = function.name
         
