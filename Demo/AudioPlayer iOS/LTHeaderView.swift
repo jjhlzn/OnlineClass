@@ -40,10 +40,13 @@ class LTHeaderView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        /*
         let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: frame.height - 40))
         imageView.image = UIImage(named: "sample")
-        backgroundColor = UIColor.white
-        addSubview(imageView)
+        backgroundColor = UIColor.white */
+        
+        let headerView = PlayerHeaderView(frame: frame)
+        addSubview(headerView)
     }
     
     required init?(coder aDecoder: NSCoder) {

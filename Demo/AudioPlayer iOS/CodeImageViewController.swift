@@ -85,6 +85,7 @@ class CodeImageViewController: BaseUIViewController, FSPagerViewDataSource, FSPa
         let cell = pagerView.dequeueReusableCell(withReuseIdentifier: "cell", at: index)
         cell.contentView.layer.shadowRadius = 0
         cell.imageView?.kf.setImage(with: URL(string: imageUrls[index]))
+        QL1(imageUrls[index])
         //cell.imageView?.image = UIImage(named: "icon")
         cell.imageView?.contentMode = .scaleToFill
         cell.textLabel?.text = String("")

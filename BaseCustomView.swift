@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import QorumLogs
 
 class BaseCustomView: UIView {
 
@@ -25,8 +26,15 @@ class BaseCustomView: UIView {
     //初始化时将xib中的view添加进来
     override init(frame: CGRect) {
         super.init(frame: frame)
-        contentView = loadViewFromNib()
-        addSubview(contentView)
+        let v = loadViewFromNib()
+    
+        //let frame = v.frame
+        let newFrame = CGRect(x: 0, y: 0,  width: frame.width, height: frame.height)
+        //QL1("x = \(frame.minX), y = \(frame.minY), width = \(frame.width), height = \(frame.height)")
+        //QL1("x = \(newFrame.minX), y = \(newFrame.minY), width = \(newFrame.width), height = \(newFrame.height)")
+        v.frame = newFrame
+        
+        addSubview(v)
         
         //初始化属性配置
         initialSetup()

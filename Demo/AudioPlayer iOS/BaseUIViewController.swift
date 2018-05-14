@@ -23,8 +23,7 @@ class BaseUIViewController: UIViewController, AudioPlayerDelegate {
             self.navigationController?.navigationBar.barTintColor =
    UIColor(red: 0xFF/255, green: 0xFF/255, blue: 0xFF, alpha: 0.8)
             
-      
-            
+    
             self.navigationController?.navigationBar.barStyle = UIBarStyle.default
             
         }

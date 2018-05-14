@@ -12,6 +12,9 @@ import LTScrollView
 
 class NewPlayerController: UIViewController, UIScrollViewDelegate {
    
+    var titleView : UIView?
+    var bgImage: UIImage?
+    var isTouming : Bool = true
     
     private lazy var viewControllers: [UIViewController] = {
         let oneVc = CourseOverviewVC()
@@ -33,6 +36,7 @@ class NewPlayerController: UIViewController, UIScrollViewDelegate {
         layout.pageBottomLineColor = UIColor(r: 230, g: 230, b: 230)
         layout.isAverage = true
         layout.sliderWidth = 30
+        
        // layout.sliderHeight = 5
         return layout
     }()
@@ -40,13 +44,15 @@ class NewPlayerController: UIViewController, UIScrollViewDelegate {
     private lazy var advancedManager: LTAdvancedManager = {
         let Y: CGFloat = glt_iphoneX ? 64 + 24.0 : 64.0
         let H: CGFloat = glt_iphoneX ? (view.bounds.height - Y - 34) : view.bounds.height - Y
-        let advancedManager = LTAdvancedManager(frame: CGRect(x: 0, y: Y, width: view.bounds.width, height: H), viewControllers: viewControllers, titles: titles, currentViewController: self, layout: layout, headerViewHandle: {[weak self] in
+        let advancedManager = LTAdvancedManager(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height), viewControllers: viewControllers, titles: titles, currentViewController: self, layout: layout, headerViewHandle: {[weak self] in
             guard let strongSelf = self else { return UIView() }
             let headerView = strongSelf.testLabel()
             return headerView
         })
         advancedManager.delegate = self
         
+      
+      
         return advancedManager
     }()
     
@@ -62,7 +68,9 @@ class NewPlayerController: UIViewController, UIScrollViewDelegate {
         
         //let Y: CGFloat = glt_iphoneX ? 64 + 24.0 : 64.0
         let shareView = ShareView(frame: CGRect(x : 0, y: UIScreen.main.bounds.height - 233, width: UIScreen.main.bounds.width, height: 233))
-        
+        //shareView.autoresizingMask = [.flexibleWidth, .flexibleHeight, .flexibleLeftMargin, .flexibleRightMargin, .flexibleTopMargin, .flexibleBottomMargin]
+        //shareView.autoresizesSubviews = true
+        //view.autoresizesSubviews = true
         
         //view.addSubview(overlay)
         //view.addSubview(shareView)
@@ -71,8 +79,58 @@ class NewPlayerController: UIViewController, UIScrollViewDelegate {
         //view.addSubview(overlay)
         
         view.addSubview(commentKB)
+        setNavigationBar(true)
+        
+       
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        print("NewPlayerController viewWillAppear called")
+        setNavigationBar(self.isTouming)
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        setNavigationBar(true)
     }
     
+    
+    func setNavigationBar(_ isTranslucent : Bool) {
+        
+        if isTranslucent {
+            self.bgImage = self.navigationController?.navigationBar.backgroundImage(for: .default)
+            self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+           // self.navigationController?.navigationBar.shadowImage = UIImage()
+            self.navigationController?.navigationBar.isTranslucent = isTranslucent
+            //self.navigationController?.view.backgroundColor = .clear
+            self.navigationController?.title = "测试"
+            self.titleView = self.navigationItem.titleView
+            self.navigationItem.titleView = UILabel()
+        } else {
+            self.navigationController?.navigationBar.setBackgroundImage(self.bgImage, for: .default)
+           // self.navigationController?.navigationBar.shadowImage = nil
+            self.navigationController?.navigationBar.isTranslucent = isTranslucent
+            //self.navigationController?.view.backgroundColor = nil
+            let searchLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 30))
+
+
+            searchLabel.backgroundColor =  UIColor(white: 0, alpha: 0)
+            searchLabel.text = "测试"
+            searchLabel.textColor =  UIColor.black
+            searchLabel.textAlignment = .center
+            self.navigationItem.titleView = searchLabel
+            //print(self.navigationItem.title)
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+        if segue.identifier == "loadWebSegue" {
+            let dest = segue.destination as! WebPageViewController
+            let params = sender as! [String: String]
+            dest.url = NSURL(string: params["url"]!)
+            dest.title = params["title"]
+        }
+    }
 }
 
 extension NewPlayerController: LTAdvancedScrollViewDelegate {
@@ -82,18 +140,33 @@ extension NewPlayerController: LTAdvancedScrollViewDelegate {
         //MARK: 选中事件
         advancedManager.advancedDidSelectIndexHandle = {
             print($0)
+            let index = $0
+            if index == 2 {
+                var sender = [String:String]()
+                sender["url"] = "http://www.baidu.com"
+                sender["title"] = "测试"
+                self.performSegue(withIdentifier: "loadWebSegue", sender: sender)
+            }
         }
     }
     
     func glt_scrollViewOffsetY(_ offsetY: CGFloat) {
-        print("offset --> ", offsetY)
+        //print("offset --> ", offsetY)
+        let Y: CGFloat = glt_iphoneX ? 64 + 24.0 : 64.0
+        self.isTouming = !( offsetY > Y )
+        if offsetY > Y {
+            setNavigationBar(false)
+        } else {
+            setNavigationBar(true)
+        }
     }
 }
 
 
 extension NewPlayerController {
     private func testLabel() -> LTHeaderView {
-        return LTHeaderView(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 170))
+        let H = 229.0 * UIScreen.main.bounds.width / 375.0
+        return LTHeaderView(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 229))
     }
 }
 

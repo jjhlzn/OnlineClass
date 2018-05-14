@@ -8,7 +8,7 @@ PODS:
   - Gifu (3.0.0)
   - KDEAudioPlayer (1.1.0)
   - Kingfisher (4.1.1)
-  - LTScrollView (0.1.4)
+  - LTScrollView (0.1.5)
   - MarqueeLabel/Swift (3.1.4)
   - MJRefresh (3.1.14.1)
   - moa (9.0.2)
@@ -30,7 +30,7 @@ DEPENDENCIES:
   - Gifu (~> 3.0.0)
   - KDEAudioPlayer (~> 1.1.0)
   - Kingfisher (~> 4.1.0)
-  - LTScrollView (~> 0.1.4)
+  - LTScrollView (~> 0.1.5)
   - MarqueeLabel/Swift (~> 3.1.4)
   - MJRefresh (~> 3.1.14.1)
   - QorumLogs (~> 0.9)
@@ -39,6 +39,27 @@ DEPENDENCIES:
   - SwiftyJSON (~> 4.0)
   - tingyunApp
   - WeiboSDK (from `https://github.com/sinaweibosdk/weibo_ios_sdk.git`)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Alamofire
+    - ALCameraViewController
+    - Auk
+    - Emoji-swift
+    - FSPagerView
+    - Gifu
+    - KDEAudioPlayer
+    - Kingfisher
+    - LTScrollView
+    - MarqueeLabel
+    - MJRefresh
+    - moa
+    - QorumLogs
+    - Socket.IO-Client-Swift
+    - Starscream
+    - SwiftyBeaver
+    - SwiftyJSON
+    - tingyunApp
 
 EXTERNAL SOURCES:
   WeiboSDK:
@@ -58,7 +79,7 @@ SPEC CHECKSUMS:
   Gifu: 6543ca2056a3d697097c09fe543ef49348ccc892
   KDEAudioPlayer: b3787f02b6718c2416589a7726f2633cde2cd60e
   Kingfisher: 6793a473357b5dbee42b0068ef203fe8325f259e
-  LTScrollView: c29d1ab2596d39a6518b2b16b5a24156d49bcb91
+  LTScrollView: e0eaae134bba74a9018cd22ba5e07bdb155340c0
   MarqueeLabel: bf768455fe88d427f71476ebb23f9092b660f40b
   MJRefresh: 238e6a37e2dba12160ee3b79f6d2a2b26abcab42
   moa: b73dc5e0efa1fad00711c4608e41b197f4d15b12
@@ -70,6 +91,6 @@ SPEC CHECKSUMS:
   tingyunApp: bf9074313164f2b3595b5c2b422c8159cee03a58
   WeiboSDK: bceab625ec59b7039ba721cc4ba9f5868804f63e
 
-PODFILE CHECKSUM: 04b3960cd180999a9cc12badc02ed53118b57213
+PODFILE CHECKSUM: f57c8f18ce17962253e1c6a2e7dfd4fed989e2f2
 
-COCOAPODS: 1.1.1
+COCOAPODS: 1.5.2

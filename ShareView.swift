@@ -10,4 +10,7 @@ import UIKit
 
 class ShareView: BaseCustomView {
     
+    @IBOutlet var view: UIView!
+    
+    
 }
