@@ -119,8 +119,7 @@
 		E2C6FAE21C4B01D80055A1BF /* sound2.caf in Resources */ = {isa = PBXBuildFile; fileRef = E2C6FAE01C4B01D80055A1BF /* sound2.caf */; };
 		EF03652E209EEEA1006094EE /* SearchBarExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF03652D209EEEA1006094EE /* SearchBarExtension.swift */; };
 		EF10AAC820A95D3800C6B2E4 /* UINavigationControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF10AAC720A95D3800C6B2E4 /* UINavigationControllerExtension.swift */; };
-		EF13937B20A42EC200E32D20 /* small.gif in Resources */ = {isa = PBXBuildFile; fileRef = EF13937A20A42EC000E32D20 /* small.gif */; };
-		EF13937D20A42FE400E32D20 /* demo.gif in Resources */ = {isa = PBXBuildFile; fileRef = EF13937C20A42FE100E32D20 /* demo.gif */; };
+		EF10AAD220A9749100C6B2E4 /* demo.gif in Resources */ = {isa = PBXBuildFile; fileRef = EF10AAD120A9748E00C6B2E4 /* demo.gif */; };
 		EF1EA4E31ED3B9DA00B2616F /* ExtendFunctionImageStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF1EA4E21ED3B9DA00B2616F /* ExtendFunctionImageStore.swift */; };
 		EF21740E1E2753B10035C960 /* TencentOpenApi_IOS_Bundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = EF21740C1E2753B10035C960 /* TencentOpenApi_IOS_Bundle.bundle */; };
 		EF21740F1E2753B10035C960 /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF21740D1E2753B10035C960 /* TencentOpenAPI.framework */; };
@@ -294,8 +293,7 @@
 		E2C6FAE01C4B01D80055A1BF /* sound2.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = sound2.caf; path = ../Sounds/sound2.caf; sourceTree = "<group>"; };
 		EF03652D209EEEA1006094EE /* SearchBarExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarExtension.swift; sourceTree = "<group>"; };
 		EF10AAC720A95D3800C6B2E4 /* UINavigationControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationControllerExtension.swift; sourceTree = "<group>"; };
-		EF13937A20A42EC000E32D20 /* small.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = small.gif; sourceTree = "<group>"; };
-		EF13937C20A42FE100E32D20 /* demo.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = demo.gif; sourceTree = "<group>"; };
+		EF10AAD120A9748E00C6B2E4 /* demo.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = demo.gif; sourceTree = "<group>"; };
 		EF1DC2CC1F2B335000B471A5 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		EF1DC2CD1F2B335000B471A5 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		EF1EA4E21ED3B9DA00B2616F /* ExtendFunctionImageStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtendFunctionImageStore.swift; sourceTree = "<group>"; };
@@ -615,14 +613,13 @@
 		E2A9AF931C498E2900FE943A = {
 			isa = PBXGroup;
 			children = (
+				EF10AAD120A9748E00C6B2E4 /* demo.gif */,
 				EF21740C1E2753B10035C960 /* TencentOpenApi_IOS_Bundle.bundle */,
 				EF21740D1E2753B10035C960 /* TencentOpenAPI.framework */,
 				1C156D831D9E38AE007A7F65 /* jfzs-prefix.h */,
 				1C156D811D9E3584007A7F65 /* tingyunApp.framework */,
 				1C98A8991D62005900ADF12B /* xinge */,
 				1CBF78701D33727B00B596BC /* weixinshare_bridge.h */,
-				EF13937C20A42FE100E32D20 /* demo.gif */,
-				EF13937A20A42EC000E32D20 /* small.gif */,
 				1CBF785F1D336CC300B596BC /* weixinsdk */,
 				1C154A4E1CDACC89003B900C /* ui */,
 				1C2684721CCA5CA80032C014 /* lib */,
@@ -845,13 +842,12 @@
 				E2C6FAE21C4B01D80055A1BF /* sound2.caf in Resources */,
 				EF23459020A6794D002E2F30 /* NewCommentHeaderCell.xib in Resources */,
 				EF23458520A66986002E2F30 /* BeforeCourseCell.xib in Resources */,
+				EF10AAD220A9749100C6B2E4 /* demo.gif in Resources */,
 				EF21740E1E2753B10035C960 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				EF23459420A67961002E2F30 /* NewCommentCell.xib in Resources */,
 				EF23457D20A57585002E2F30 /* CourseOverviewCell.xib in Resources */,
 				1CBF786B1D336CF200B596BC /* README.txt in Resources */,
-				EF13937B20A42EC200E32D20 /* small.gif in Resources */,
 				EF2345A220A6C25D002E2F30 /* ShareView.xib in Resources */,
-				EF13937D20A42FE400E32D20 /* demo.gif in Resources */,
 				EF2345A420A6C6FD002E2F30 /* CommentKeyboard.xib in Resources */,
 				EF23457920A57267002E2F30 /* CourseOverviewHeaderCell.xib in Resources */,
 				EF2345AA20A85A57002E2F30 /* PlayerHeaderView.xib in Resources */,

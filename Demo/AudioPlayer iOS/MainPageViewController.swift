@@ -72,17 +72,7 @@ class CourseMainPageViewController: BaseUIViewController {
         tableView.addSubview(refreshControl)
         refreshing = false
         
-        self.imageView = GIFImageView(frame: CGRect(x: -10, y: 0, width: 36, height: 80))
-        self.imageView.backgroundColor = nil
-        self.imageView.animate(withGIFNamed: "demo") {
-            print("It's animating!")
-        }
-        self.imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tapMusicBtnHandler(sender:))))
-        //imageView.stopAnimatingGIF()
-        let button2 = UIBarButtonItem(customView: self.imageView)
-        //let button1 = UIBarButtonItem(image: UIImage(named: "imagename"), style: .plain, target: self, action: Selector("action")) // action:#selector(Class.MethodName) for swift 3
-        //self.navigationItem.rightBarButtonItems?.append(button2)
-        self.navigationItem.rightBarButtonItem  = button2
+        
         
         let searchLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 30))
         searchLabel.layer.masksToBounds = true
@@ -96,6 +86,24 @@ class CourseMainPageViewController: BaseUIViewController {
         
         self.navigationItem.titleView = searchLabel
      
+    }
+    
+    func setMusicButton() {
+        self.imageView = GIFImageView(frame: CGRect(x: -10, y: 0, width: 32, height: 32))
+        self.imageView.backgroundColor = nil
+        self.imageView.animate(withGIFNamed: "demo")
+        self.imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tapMusicBtnHandler(sender:))))
+        //imageView.stopAnimatingGIF()
+        
+        /*
+        let kefuImage = UIImageView(image: UIImage(named: "kefu"))
+        let v = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 10))
+        v.addSubview(kefuImage) */
+        let button2 = UIBarButtonItem(customView: self.imageView)
+        
+        //let button1 = UIBarButtonItem(image: UIImage(named: "imagename"), style: .plain, target: self, action: Selector("action")) // action:#selector(Class.MethodName) for swift 3
+        //self.navigationItem.rightBarButtonItems?.append(button2)
+        self.navigationItem.rightBarButtonItem  = button2
     }
     
     @objc func tapMusicBtnHandler(sender: UITapGestureRecognizer? = nil) {
@@ -114,17 +122,7 @@ class CourseMainPageViewController: BaseUIViewController {
         loadZhuanLanAndTuijianCourses()
       
         
-        self.imageView = GIFImageView(frame: CGRect(x: -10, y: 0, width: 36, height: 80))
-        self.imageView.backgroundColor = nil
-        self.imageView.animate(withGIFNamed: "demo") {
-            print("It's animating!")
-        }
-        self.imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tapMusicBtnHandler(sender:))))
-        //imageView.stopAnimatingGIF()
-        let button2 = UIBarButtonItem(customView: self.imageView)
-        //let button1 = UIBarButtonItem(image: UIImage(named: "imagename"), style: .plain, target: self, action: Selector("action")) // action:#selector(Class.MethodName) for swift 3
-        //self.navigationItem.rightBarButtonItems?.append(button2)
-        self.navigationItem.rightBarButtonItem  = button2
+        setMusicButton()
         
         let searchLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 30))
         searchLabel.layer.masksToBounds = true
