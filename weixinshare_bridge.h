@@ -10,7 +10,6 @@
 
 #ifndef weixinshare_bridge_h
 #define weixinshare_bridge_h
-
 #import <UIKit/UIKit.h>
 #import "WXApi.h"
 

@@ -22,10 +22,7 @@ class BaseUIViewController: UIViewController, AudioPlayerDelegate {
         if  self.navigationController != nil {
             self.navigationController?.navigationBar.barTintColor =
    UIColor(red: 0xFF/255, green: 0xFF/255, blue: 0xFF, alpha: 0.8)
-            
-    
             self.navigationController?.navigationBar.barStyle = UIBarStyle.default
-            
         }
     }
     
@@ -40,6 +37,22 @@ class BaseUIViewController: UIViewController, AudioPlayerDelegate {
     
     func isNeedResetAudioPlayerDelegate() -> Bool {
         return true
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        setNavigationBar(false)
+    }
+    
+    func setNavigationBar(_ isTranslucent : Bool) {
+        if self.navigationController?.backdropImageView == nil {
+            self.navigationController?.backdropImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 315, height:88))
+        }
+        
+        if isTranslucent {
+            self.navigationController?.setBarColor(image: UIImage(), color: nil, alpha: 0)
+        } else {
+            self.navigationController?.setBarColor(image: UIImage(), color: UIColor.white, alpha: 1)
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {

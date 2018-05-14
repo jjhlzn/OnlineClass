@@ -38,10 +38,13 @@ class CourseMainPageViewController: BaseUIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+    
         if #available(iOS 11.0, *) {
             tableView.contentInsetAdjustmentBehavior = .never
-        
+            if UIDevice().isX() {
+                tableView.contentInset = UIEdgeInsetsMake(24, 0, 49, 0)
+            }
+            
         } else {
             automaticallyAdjustsScrollViewInsets = false
         }
@@ -108,13 +111,8 @@ class CourseMainPageViewController: BaseUIViewController {
         super.viewWillAppear(animated)
         //updatePlayingButton(button: playingButton)
         loadHeadAds()
-        //loadFooterAdvs()
-        //loadCourseNotify()
         loadZhuanLanAndTuijianCourses()
       
-        //let button1 = UIBarButtonItem(image: UIImage(named: "imagename"), style: .plain, target: self, action: Selector("action")) // action:#selector(Class.MethodName) for swift 3
-        //self.navigationItem.rightBarButtonItems?.append(button2)
-       
         
         self.imageView = GIFImageView(frame: CGRect(x: -10, y: 0, width: 36, height: 80))
         self.imageView.backgroundColor = nil

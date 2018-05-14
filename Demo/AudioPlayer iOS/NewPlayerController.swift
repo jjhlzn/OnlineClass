@@ -14,6 +14,9 @@ class NewPlayerController: UIViewController, UIScrollViewDelegate {
    
     var titleView : UIView?
     var bgImage: UIImage?
+    var showdowImage: UIImage?
+    var imageView : UIImageView?
+    var bgColor: UIColor?
     var isTouming : Bool = true
     
     private lazy var viewControllers: [UIViewController] = {
@@ -90,36 +93,60 @@ class NewPlayerController: UIViewController, UIScrollViewDelegate {
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        resumeNavigationBar()
+    }
+    
+    func resumeNavigationBar() {
         setNavigationBar(true)
     }
     
-    
     func setNavigationBar(_ isTranslucent : Bool) {
+        if self.navigationController?.backdropImageView == nil {
+            self.navigationController?.backdropImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 315, height:88))
+        }
         
         if isTranslucent {
+            self.navigationController?.setBarColor(image: UIImage(), color: nil, alpha: 0)
+            let label = UILabel()
+            self.navigationItem.titleView = label
+        } else {
+            self.navigationController?.setBarColor(image: UIImage(), color: UIColor.white, alpha: 1)
+            let searchLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 30))
+            
+            searchLabel.backgroundColor =  UIColor(white: 0, alpha: 0)
+            searchLabel.text = "测试"
+            searchLabel.textColor =  UIColor.black
+            searchLabel.textAlignment = .center
+            self.navigationItem.titleView = searchLabel
+        }
+        /*
+        if isTranslucent {
             self.bgImage = self.navigationController?.navigationBar.backgroundImage(for: .default)
+            self.showdowImage = self.navigationController?.navigationBar.shadowImage
+            //self.bgColor = self.navigationController?.view.backgroundColor
+            
             self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-           // self.navigationController?.navigationBar.shadowImage = UIImage()
+            self.navigationController?.navigationBar.shadowImage = UIImage()
             self.navigationController?.navigationBar.isTranslucent = isTranslucent
             //self.navigationController?.view.backgroundColor = .clear
-            self.navigationController?.title = "测试"
             self.titleView = self.navigationItem.titleView
-            self.navigationItem.titleView = UILabel()
+            let label = UILabel()
+            label.backgroundColor = UIColor.white
+            self.navigationItem.titleView = label
         } else {
             self.navigationController?.navigationBar.setBackgroundImage(self.bgImage, for: .default)
-           // self.navigationController?.navigationBar.shadowImage = nil
+            self.navigationController?.navigationBar.shadowImage = self.showdowImage
+            self.navigationController?.view.backgroundColor = UIColor.white
+            
             self.navigationController?.navigationBar.isTranslucent = isTranslucent
-            //self.navigationController?.view.backgroundColor = nil
             let searchLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 30))
-
 
             searchLabel.backgroundColor =  UIColor(white: 0, alpha: 0)
             searchLabel.text = "测试"
             searchLabel.textColor =  UIColor.black
             searchLabel.textAlignment = .center
             self.navigationItem.titleView = searchLabel
-            //print(self.navigationItem.title)
-        }
+        } */
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
