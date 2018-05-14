@@ -261,7 +261,7 @@ class ExtendFunctionMananger : NSObject {
         
         label.center.x = superView.bounds.width / 2
         if isiPhonePlusScreen {
-            label.center.y = cellHeight / 2 + getImageWidth() / 2 + 9
+            label.center.y = cellHeight / 2 + getImageWidth() / 2 + 0
         } else if isiPhone6Screen {
             label.center.y = cellHeight / 2 + getImageWidth() / 2 + 0
         } else {
