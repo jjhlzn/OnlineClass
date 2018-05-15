@@ -186,6 +186,11 @@ class CourseMainPageViewController: BaseUIViewController {
         loadZhuanLanAndTuijianCourses()
     }
     
+    @IBAction func viewZhuanLanListPressed(_ sender: Any) {
+        performSegue(withIdentifier: "zhuanLanListSegue", sender: nil)
+    }
+    
+    
 }
 
 
