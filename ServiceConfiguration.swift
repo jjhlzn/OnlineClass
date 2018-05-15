@@ -15,8 +15,8 @@ class ServiceConfiguration {
     
 
     //114.80.101.27:6012/
-    static let serverName3 = "localhost"  //"localhost"
-    static let port3 =  4000  //4000
+    static let serverName3 = "jf.yhkamani.com"  //"localhost"
+    static let port3 =  80  //4000
     
     
     static let serverName4 = "jf.yhkamani.com"
@@ -318,6 +318,12 @@ class ServiceConfiguration {
     static var GET_ZHUANLAN_AND_TUIJIAN_COURSES : String {
         get {
             return "\(http)://\(serverName):\(port)/app/getZhuanLanAndTuijianCourses"
+        }
+    }
+    
+    static var Get_ZHUANLAN_LIST : String {
+        get {
+            return "\(http)://\(serverName):\(port)/app/getZhuanLans"
         }
     }
     

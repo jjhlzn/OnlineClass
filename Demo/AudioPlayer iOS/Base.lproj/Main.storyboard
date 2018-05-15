@@ -15,11 +15,11 @@
             <objects>
                 <viewController automaticallyAdjustsScrollViewInsets="NO" id="jTL-YG-lW0" customClass="MyInfoVieController" customModule="AudioPlayer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zBZ-AF-pWp">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" rowHeight="44" sectionHeaderHeight="1" sectionFooterHeight="4" id="cs3-w7-xqz">
-                                <rect key="frame" x="0.0" y="62" width="375" height="605"/>
+                                <rect key="frame" x="0.0" y="62" width="375" height="556"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
@@ -36,34 +36,34 @@
                                                     <color key="tintColor" red="0.94901960780000005" green="0.3803921569" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我的等级：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="W7Z-Ra-tKO">
-                                                    <rect key="frame" x="123" y="142" width="68" height="35"/>
+                                                    <rect key="frame" x="123" y="444" width="68" height="20"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="金军航 (jinjunhang)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="0jB-tN-jI3">
-                                                    <rect key="frame" x="124.5" y="45" width="243.5" height="26.5"/>
+                                                    <rect key="frame" x="106.5" y="73.5" width="252" height="34"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我的上级：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="oTl-8g-gXc">
-                                                    <rect key="frame" x="125.5" y="276.5" width="78.5" height="27"/>
+                                                    <rect key="frame" x="106.5" y="890.5" width="90" height="31.5"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="VIP用户" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="tZQ-KY-Wgb">
-                                                    <rect key="frame" x="199" y="142" width="151.5" height="35"/>
+                                                    <rect key="frame" x="195" y="444" width="121.5" height="20"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="张三" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="HHG-eb-zT6">
-                                                    <rect key="frame" x="199" y="276.5" width="151.5" height="27"/>
+                                                    <rect key="frame" x="195" y="890.5" width="121.5" height="31.5"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -215,18 +215,18 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6HR-Q7-heN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1225.5" y="2064.5"/>
+            <point key="canvasLocation" x="1024" y="2096"/>
         </scene>
         <!--个人资料-->
         <scene sceneID="ett-c2-aL0">
             <objects>
                 <viewController automaticallyAdjustsScrollViewInsets="NO" id="H6H-2U-a24" customClass="PersonalInfoViewController" customModule="AudioPlayer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Uf4-pl-Nq1">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="48" sectionHeaderHeight="1" sectionFooterHeight="1" id="VBJ-fs-lNt">
-                                <rect key="frame" x="0.0" y="62" width="375" height="559"/>
+                                <rect key="frame" x="0.0" y="62" width="375" height="510"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
@@ -299,7 +299,170 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ueE-jL-He1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2123" y="357"/>
+            <point key="canvasLocation" x="2186" y="-230"/>
+        </scene>
+        <!--直播-->
+        <scene sceneID="ArN-XE-hsa">
+            <objects>
+                <viewController title="直播" id="2mU-Ty-i7S" customClass="CourseListVC" customModule="AudioPlayer" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="mhs-gC-vZg">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" sectionIndexMinimumDisplayRowCount="1" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="3Y2-7f-p5G">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="courseHeaderCell" rowHeight="40" id="1Wa-Qm-kmz" userLabel="tuijianCourseHeaderCell" customClass="NewCourseHeaderCell" customModule="AudioPlayer" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="40"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1Wa-Qm-kmz" id="6HP-kU-Hge">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="39.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" misplaced="YES" id="x2s-9E-qU2">
+                                                    <rect key="frame" x="10" y="0.0" width="355" height="40"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="每日学习" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="5h5-b9-bcy">
+                                                            <rect key="frame" x="0.0" y="10" width="185" height="21"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </view>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="titleLabel" destination="5h5-b9-bcy" id="6eu-Qf-orX"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="newAlbumCell" rowHeight="203" id="4LI-fC-19X" userLabel="tuijianCourseCell" customClass="NewAlbumCell" customModule="AudioPlayer" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="68" width="375" height="203"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4LI-fC-19X" id="c5I-6Q-pIN">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="202.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="musicCover" id="UWp-i5-ljO">
+                                                    <rect key="frame" x="10" y="8" width="355" height="153"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                </imageView>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star1" id="0jh-bi-4DI" userLabel="star0">
+                                                    <rect key="frame" x="16" y="20" width="18" height="18"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star1" id="Ddz-9l-PvJ">
+                                                    <rect key="frame" x="35" y="20.5" width="18" height="18"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star1" id="LiH-Nm-37N" userLabel="star2">
+                                                    <rect key="frame" x="53" y="20.5" width="18" height="18"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star1" id="GXp-t8-sOc" userLabel="star3">
+                                                    <rect key="frame" x="72" y="20.5" width="18" height="18"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star1" id="98v-FR-A7E" userLabel="star4">
+                                                    <rect key="frame" x="92" y="20.5" width="18" height="18"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="4.5" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="nle-cO-Woq">
+                                                    <rect key="frame" x="115" y="22" width="20" height="16"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="War3直播" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="xev-gH-fEQ">
+                                                    <rect key="frame" x="16" y="122" width="210" height="20"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="2018/03/28" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="qLN-97-UkK">
+                                                    <rect key="frame" x="255" y="122" width="104" height="20"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <view contentMode="scaleToFill" misplaced="YES" id="ZkA-UP-yTo">
+                                                    <rect key="frame" x="10" y="154" width="355" height="41"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
+                                                    <subviews>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="play1" id="k2a-af-Mak">
+                                                            <rect key="frame" x="12" y="9" width="22" height="22"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES"/>
+                                                        </imageView>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="time" id="APi-Ev-BWM">
+                                                            <rect key="frame" x="251" y="10" width="22" height="22"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES"/>
+                                                        </imageView>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="u" id="asf-v9-rkd">
+                                                            <rect key="frame" x="140" y="9" width="26" height="22"/>
+                                                            <autoresizingMask key="autoresizingMask"/>
+                                                        </imageView>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="正在直播" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="qoq-K2-f9s">
+                                                            <rect key="frame" x="39" y="14" width="50" height="15"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                            <color key="textColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="589人在线" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="GV8-kj-ipy">
+                                                            <rect key="frame" x="170" y="14" width="55" height="14"/>
+                                                            <autoresizingMask key="autoresizingMask"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                                            <color key="textColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="03/28 20:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="OZK-jA-zTp">
+                                                            <rect key="frame" x="278" y="14" width="66" height="14"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                                            <color key="textColor" white="0.18953450520833334" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="0.93999999999999995" alpha="1" colorSpace="calibratedWhite"/>
+                                                </view>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="courseImageView" destination="UWp-i5-ljO" id="0Ze-jn-phe"/>
+                                            <outlet property="dateLabel" destination="qLN-97-UkK" id="q2l-Ed-UQA"/>
+                                            <outlet property="listenerCountLabel" destination="GV8-kj-ipy" id="L7h-R1-Xai"/>
+                                            <outlet property="liveTimeLabel" destination="OZK-jA-zTp" id="NQm-M5-IKM"/>
+                                            <outlet property="nameLabel" destination="xev-gH-fEQ" id="lQC-gP-zoZ"/>
+                                            <outlet property="scoreLabel" destination="nle-cO-Woq" id="gST-PE-4Br"/>
+                                            <outlet property="star0" destination="0jh-bi-4DI" id="fCE-tR-JBa"/>
+                                            <outlet property="star1" destination="Ddz-9l-PvJ" id="BSZ-F6-QIp"/>
+                                            <outlet property="star2" destination="LiH-Nm-37N" id="Qdg-lH-BDG"/>
+                                            <outlet property="star3" destination="GXp-t8-sOc" id="0O5-5B-z5v"/>
+                                            <outlet property="star4" destination="98v-FR-A7E" id="23I-3a-ZkX"/>
+                                            <outlet property="statusLabel" destination="qoq-K2-f9s" id="ZOF-oT-EyF"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="直播" id="F2f-iP-1Sn"/>
+                    <connections>
+                        <outlet property="tableView" destination="3Y2-7f-p5G" id="qQV-Wi-YBe"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uhL-gl-Ug2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2363.5" y="632.5"/>
         </scene>
         <!--二维码-->
         <scene sceneID="zcg-kT-Pr4">
@@ -451,11 +614,11 @@
             <objects>
                 <viewController automaticallyAdjustsScrollViewInsets="NO" id="68y-yK-JRN" customClass="SetSexViewController" customModule="AudioPlayer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tFP-nK-EMA">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="cba-2Y-apR">
-                                <rect key="frame" x="0.0" y="35" width="375" height="674"/>
+                                <rect key="frame" x="0.0" y="35" width="375" height="625"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
@@ -492,11 +655,11 @@
             <objects>
                 <viewController automaticallyAdjustsScrollViewInsets="NO" id="vNC-ta-SAY" customClass="SetNameViewController" customModule="AudioPlayer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Dul-Cz-g4u">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="zLs-ag-xlY">
-                                <rect key="frame" x="0.0" y="35" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="35" width="375" height="618"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
@@ -626,7 +789,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d0P-gH-5iy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3278" y="1157"/>
+            <point key="canvasLocation" x="4451.5" y="1156.5"/>
         </scene>
         <!--重设密码-->
         <scene sceneID="pEl-22-gMZ">
@@ -693,11 +856,11 @@
             <objects>
                 <viewController automaticallyAdjustsScrollViewInsets="NO" id="BYZ-38-t0r" customClass="AlbumListController" customModule="AudioPlayer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kPb-Ej-xD3">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="74" sectionHeaderHeight="18" sectionFooterHeight="18" id="ekl-tv-QSf">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
@@ -966,7 +1129,7 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1000人" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="rxF-6K-wZ6">
-                                                    <rect key="frame" x="316" y="22" width="67" height="21"/>
+                                                    <rect key="frame" x="316" y="21" width="67" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                     <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1014,7 +1177,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aAv-dc-Ce6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3644" y="633"/>
+            <point key="canvasLocation" x="4817.5" y="632.5"/>
         </scene>
         <!--所有评论-->
         <scene sceneID="Xxb-Tn-VuQ">
@@ -1287,7 +1450,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oFF-tq-awg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3352" y="-263"/>
+            <point key="canvasLocation" x="3773.5" y="-190.5"/>
         </scene>
         <!--登录-->
         <scene sceneID="in9-II-L7U">
@@ -1375,25 +1538,110 @@
             <objects>
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="IeE-13-KTg" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" id="F4Z-cz-0nE">
+                    <tabBar key="tabBar" contentMode="center" translucent="NO" id="F4Z-cz-0nE">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
-                                <color key="value" red="0.94901960784313721" green="0.38039215686274508" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="value" red="0.80988906825420526" green="0.64228946543546139" blue="0.44206493181725909" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </tabBar>
                     <connections>
                         <segue destination="ya2-w7-wG2" kind="relationship" relationship="viewControllers" id="zsi-PQ-Yec"/>
                         <segue destination="RMK-b3-F34" kind="relationship" relationship="viewControllers" id="G5Y-9X-Gdc"/>
+                        <segue destination="9nF-n9-bxG" kind="relationship" relationship="viewControllers" id="sxf-n0-9Dy"/>
+                        <segue destination="Px2-my-hgd" kind="relationship" relationship="viewControllers" id="uuC-Sc-y5e"/>
                         <segue destination="TZY-KL-rYs" kind="relationship" relationship="viewControllers" id="pAM-va-lxF"/>
-                        <segue destination="2kR-r7-fJK" kind="relationship" relationship="viewControllers" id="tH2-XQ-uzD"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ByJ-xc-bHB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1154" y="398"/>
+            <point key="canvasLocation" x="1024" y="291"/>
+        </scene>
+        <!--订阅-->
+        <scene sceneID="8II-5z-LfR">
+            <objects>
+                <viewController title="订阅" id="WlZ-YT-eo8" customClass="ZhuanLanListVC" customModule="AudioPlayer" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="vvC-5S-b8K">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="amD-9I-hVa">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="zhuanLanCell2" rowHeight="110" id="tLm-pd-l2Y" userLabel="zhuanLanCell" customClass="ZhuanLanCell2" customModule="AudioPlayer" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="110"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tLm-pd-l2Y" id="i3F-2E-HH9">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="109.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon" id="RLZ-at-al4">
+                                                    <rect key="frame" x="10" y="10" width="70" height="88"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5分钟商学院" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="TYD-RH-N8k">
+                                                    <rect key="frame" x="95" y="11" width="184" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="金军航    计算机工程师" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="4D5-0p-pSy">
+                                                    <rect key="frame" x="95" y="35" width="271" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <color key="textColor" red="0.4374603426" green="0.4374603426" blue="0.4374603426" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="赢家的方法" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="tSz-Ef-ge0">
+                                                    <rect key="frame" x="95" y="59" width="68" height="16"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <color key="textColor" red="0.4374603426" green="0.4374603426" blue="0.4374603426" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10000人订阅" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="CEi-kR-6gO">
+                                                    <rect key="frame" x="294" y="9" width="73" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.62470569350000005" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="199元/年" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="sRc-EH-eUp">
+                                                    <rect key="frame" x="95" y="78" width="271" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                                    <color key="textColor" red="1" green="0.53662542759999998" blue="0.057109609079999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="authorLabel" destination="4D5-0p-pSy" id="Xza-ix-xU2"/>
+                                            <outlet property="dingyueLabel" destination="CEi-kR-6gO" id="Sar-qh-fJy"/>
+                                            <outlet property="latestLabel" destination="tSz-Ef-ge0" id="p4T-lG-ldO"/>
+                                            <outlet property="nameLabel" destination="TYD-RH-N8k" id="Mqf-SB-y7b"/>
+                                            <outlet property="priceInfoLabel" destination="sRc-EH-eUp" id="2TL-DN-mXO"/>
+                                            <outlet property="zhuanLanImageView" destination="RLZ-at-al4" id="xSL-VI-PmA"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="订阅" id="l87-fz-5sx"/>
+                    <connections>
+                        <outlet property="tableView" destination="amD-9I-hVa" id="OQa-fq-bWH"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cF0-bF-bdT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2106" y="1786"/>
         </scene>
         <!--巨方助手-->
         <scene sceneID="HK8-uw-quO">
@@ -1404,7 +1652,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="53" sectionHeaderHeight="1" sectionFooterHeight="1" id="Av4-a9-92q">
-                                <rect key="frame" x="0.0" y="63" width="375" height="555"/>
+                                <rect key="frame" x="0.0" y="63" width="375" height="604"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
@@ -1758,7 +2006,7 @@
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 </view>
             </objects>
-            <point key="canvasLocation" x="2266" y="-3490"/>
+            <point key="canvasLocation" x="2265.5" y="-3490.5"/>
         </scene>
         <!--功能-->
         <scene sceneID="eyd-dN-buH">
@@ -1802,11 +2050,11 @@
             <objects>
                 <viewController title="搜索" id="nrh-Rw-P5G" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="WV2-dg-eJo">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="74" sectionHeaderHeight="28" sectionFooterHeight="28" id="L9T-GN-klP">
-                                <rect key="frame" x="0.0" y="50" width="375" height="575"/>
+                                <rect key="frame" x="0.0" y="50" width="375" height="526"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="sectionIndexBackgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1895,15 +2143,15 @@
             <objects>
                 <viewController hidesBottomBarWhenPushed="YES" id="qTJ-UI-98H" customClass="WebPageViewController" customModule="AudioPlayer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="nB4-cg-rGZ">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" id="NZi-Zv-8tP">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" id="O8E-Yp-ahf">
-                                        <rect key="frame" x="0.0" y="435" width="375" height="231"/>
+                                        <rect key="frame" x="0.0" y="386" width="375" height="231"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="ftI-lI-8SK">
@@ -2080,7 +2328,7 @@
             <objects>
                 <viewController title="播放页面" automaticallyAdjustsScrollViewInsets="NO" hidesBottomBarWhenPushed="YES" id="Xdz-Ta-yt3" customClass="SongViewController" customModule="AudioPlayer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="dVf-8o-LYI">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" id="vZo-j3-B8w">
@@ -2130,7 +2378,7 @@
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                             <view contentMode="scaleToFill" id="OeM-c4-RM9">
-                                <rect key="frame" x="0.0" y="265" width="375" height="402"/>
+                                <rect key="frame" x="0.0" y="216" width="375" height="402"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="oSB-yj-z0b">
@@ -2204,7 +2452,7 @@
                                 <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="415" sectionHeaderHeight="1" sectionFooterHeight="3" id="b2u-qz-OaA">
-                                <rect key="frame" x="0.0" y="28" width="375" height="606"/>
+                                <rect key="frame" x="0.0" y="28" width="375" height="557"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
@@ -2549,7 +2797,7 @@
                                 </prototypes>
                             </tableView>
                             <view contentMode="scaleToFill" id="kHZ-oF-wd2">
-                                <rect key="frame" x="0.0" y="619" width="375" height="46"/>
+                                <rect key="frame" x="0.0" y="570" width="375" height="46"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="MyE-zG-AmH" userLabel="我也来说两句">
@@ -2565,7 +2813,7 @@
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                             <view contentMode="scaleToFill" id="tod-NL-vDO">
-                                <rect key="frame" x="0.0" y="436" width="375" height="231"/>
+                                <rect key="frame" x="0.0" y="387" width="375" height="231"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="MKP-G2-4A9">
@@ -2960,18 +3208,18 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MrD-aa-jPu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2016" y="-704"/>
+            <point key="canvasLocation" x="1811" y="-619"/>
         </scene>
         <!--直播课程-->
         <scene sceneID="jc6-v7-kIt">
             <objects>
                 <viewController title="直播课程" automaticallyAdjustsScrollViewInsets="NO" id="Zuy-cj-6pY" customClass="LiveAlbumListController" customModule="AudioPlayer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="cyt-rQ-wn1">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="74" sectionHeaderHeight="1" sectionFooterHeight="2" id="3vt-Pe-sMa">
-                                <rect key="frame" x="0.0" y="29" width="375" height="638"/>
+                                <rect key="frame" x="0.0" y="29" width="375" height="589"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
@@ -3048,7 +3296,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GaB-TD-Wup" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5186" y="0.0"/>
+            <point key="canvasLocation" x="5772.5" y="-0.5"/>
         </scene>
         <!--直播课列表-->
         <scene sceneID="8qh-ZD-epN">
@@ -3175,7 +3423,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rm4-Qz-wnZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4667" y="1265"/>
+            <point key="canvasLocation" x="5253.5" y="1264.5"/>
         </scene>
         <!--搜索-->
         <scene sceneID="Puq-vm-CuL">
@@ -3277,7 +3525,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fUb-8w-yGM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4060" y="1701"/>
+            <point key="canvasLocation" x="4646.5" y="1700.5"/>
         </scene>
         <!--个人头像-->
         <scene sceneID="ais-yP-OWS">
@@ -3317,11 +3565,11 @@
             </objects>
             <point key="canvasLocation" x="2106" y="2174"/>
         </scene>
-        <!--申请-->
+        <!--资讯-->
         <scene sceneID="3Nn-97-MSo">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="RMK-b3-F34" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="申请" image="search" selectedImage="search-filled" id="S9t-9D-F23"/>
+                    <tabBarItem key="tabBarItem" title="资讯" image="search" selectedImage="search-filled" id="S9t-9D-F23"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="tv4-UK-8IS">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -3334,7 +3582,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IJc-sj-jGc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2594" y="722"/>
+            <point key="canvasLocation" x="3689" y="871"/>
         </scene>
         <!--服务器配置-->
         <scene sceneID="GxA-uE-PWz">
@@ -3502,18 +3750,18 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mu3-Qs-NF8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1785" y="1302"/>
+            <point key="canvasLocation" x="2258.5" y="1589.5"/>
         </scene>
         <!--昵称-->
         <scene sceneID="Uuv-42-coa">
             <objects>
                 <viewController title="昵称" automaticallyAdjustsScrollViewInsets="NO" id="XhM-of-jTv" customClass="SetNickNameViewController" customModule="AudioPlayer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="aww-LS-4lX">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="HXu-ev-MX3">
-                                <rect key="frame" x="0.0" y="35" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="35" width="375" height="618"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
@@ -3573,22 +3821,22 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6gJ-WL-m4B" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2847" y="-168"/>
+            <point key="canvasLocation" x="3204.5" y="-90.5"/>
         </scene>
         <!--申请-->
         <scene sceneID="Hdu-db-Gko">
             <objects>
                 <viewController title="申请" id="Omf-Kp-1wt" customClass="ApplyBrowserController" customModule="AudioPlayer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zEW-dl-JoQ">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" id="TfB-j0-khZ">
-                                <rect key="frame" x="0.0" y="63" width="375" height="556"/>
+                                <rect key="frame" x="0.0" y="63" width="375" height="507"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" id="oik-iH-pS2">
-                                        <rect key="frame" x="0.0" y="334" width="375" height="229"/>
+                                        <rect key="frame" x="0.0" y="285" width="375" height="229"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="MlW-er-vvD">
@@ -3736,7 +3984,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="88V-31-WYA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3264" y="486"/>
+            <point key="canvasLocation" x="4437.5" y="485.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="jeE-WS-jKw">
@@ -3769,6 +4017,46 @@
             </objects>
             <point key="canvasLocation" x="1609" y="-3466"/>
         </scene>
+        <!--订阅-->
+        <scene sceneID="oFf-jN-G4r">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Px2-my-hgd" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="订阅" image="zhuanLan" id="KgS-A7-hd8"/>
+                    <toolbarItems/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="8ZN-aD-Iwr">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="WlZ-YT-eo8" kind="relationship" relationship="rootViewController" id="w12-GX-7u5"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="agb-FY-8qq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="778" y="1249"/>
+        </scene>
+        <!--直播-->
+        <scene sceneID="ste-8V-tkO">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="9nF-n9-bxG" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="直播" image="setting" id="X8M-33-e1x"/>
+                    <toolbarItems/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="r6A-HV-4cd">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="2mU-Ty-i7S" kind="relationship" relationship="rootViewController" id="YgE-SR-Tjs"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zeG-Wj-rmE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1586" y="370"/>
+        </scene>
     </scenes>
     <resources>
         <image name="audioUserIcon" width="50" height="50"/>
@@ -3777,8 +4065,8 @@
         <image name="bufferCircle1" width="102" height="103"/>
         <image name="circleUser" width="50" height="50"/>
         <image name="copy" width="95" height="95"/>
-        <image name="course" width="25" height="25"/>
-        <image name="course-filled" width="25" height="25"/>
+        <image name="course" width="28" height="29"/>
+        <image name="course-filled" width="28" height="29"/>
         <image name="emojiSwitchButton2" width="50" height="50"/>
         <image name="fasongpengyou" width="95" height="95"/>
         <image name="hand" width="48" height="48"/>
@@ -3786,13 +4074,14 @@
         <image name="icon" width="393" height="396"/>
         <image name="launchAdv" width="66" height="626"/>
         <image name="liveMusicCover" width="250" height="125"/>
-        <image name="me" width="25" height="25"/>
-        <image name="me-filled" width="25" height="25"/>
+        <image name="me" width="22" height="27"/>
+        <image name="me-filled" width="22" height="27"/>
         <image name="moreicon" width="48" height="48"/>
         <image name="musicCover" width="250" height="250"/>
         <image name="nextPlay" width="100" height="100"/>
         <image name="pause" width="100" height="100"/>
         <image name="pengyouquan" width="95" height="95"/>
+        <image name="play1" width="25" height="26"/>
         <image name="playlist" width="40" height="40"/>
         <image name="prevPlay" width="100" height="100"/>
         <image name="qq_pengyou" width="95" height="95"/>
@@ -3800,13 +4089,15 @@
         <image name="sample" width="500" height="500"/>
         <image name="search" width="25" height="25"/>
         <image name="search-filled" width="25" height="25"/>
-        <image name="setting" width="25" height="25"/>
-        <image name="setting-filled" width="25" height="25"/>
+        <image name="setting" width="29" height="27"/>
+        <image name="setting-filled" width="29" height="27"/>
         <image name="shareicon" width="50" height="50"/>
         <image name="smallPlayIcon" width="50" height="50"/>
         <image name="soundup" width="40" height="40"/>
         <image name="star1" width="16" height="15"/>
+        <image name="time" width="23" height="23"/>
         <image name="toutiao_icon" width="59" height="44"/>
+        <image name="u" width="27" height="24"/>
         <image name="user" width="250" height="250"/>
         <image name="user1_0" width="45" height="45"/>
         <image name="user2_1" width="45" height="45"/>
@@ -3814,13 +4105,14 @@
         <image name="wave1" width="24" height="25"/>
         <image name="weibo" width="95" height="95"/>
         <image name="yaoqing_friend" width="129" height="39"/>
+        <image name="zhuanLan" width="23" height="26"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="gK4-D6-0Uz"/>
         <segue reference="tVi-RP-0bn"/>
-        <segue reference="pCp-Ba-NtI"/>
-        <segue reference="Kp8-Nw-Lqb"/>
-        <segue reference="VNd-S5-Rjk"/>
+        <segue reference="xbm-kK-Zqp"/>
+        <segue reference="xmL-0a-HxS"/>
+        <segue reference="v4X-xR-lre"/>
         <segue reference="ciV-s1-kgf"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

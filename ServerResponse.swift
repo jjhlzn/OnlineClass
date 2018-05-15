@@ -1218,7 +1218,7 @@ class GetZhuanLanAndTuijianCoursesResponse : ServerResponse {
     override func parseJSON(request: ServerRequest, json: NSDictionary) {
         super.parseJSON(request: request, json: json)
         let j = JSON(json)
-        let zhuanLansJson = j["zhuanlans"].arrayValue
+        let zhuanLansJson = j["zhuanLans"].arrayValue
         for eachJson in zhuanLansJson {
             let zhuanLan = ZhuanLan()
             zhuanLan.name = eachJson["name"].string!
@@ -1279,6 +1279,30 @@ class GetToutiaoResponse : ServerResponse {
         title = j["title"].stringValue
         
         QL1("content is \(j["content"].stringValue)")
+    }
+}
+
+class GetZhuanLansRequest : ServerRequest {}
+class GetZhuanLansResponse : ServerResponse {
+    var zhuanLans = [ZhuanLan]()
+    override func parseJSON(request: ServerRequest, json: NSDictionary) {
+        super.parseJSON(request: request, json: json)
+        let j = JSON(json)
+        let zhuanLansJson = j["zhuanLans"].arrayValue
+        for eachJson in zhuanLansJson {
+            let zhuanLan = ZhuanLan()
+            zhuanLan.name = eachJson["name"].string!
+            zhuanLan.latest = eachJson["latest"].string!
+            zhuanLan.priceInfo = eachJson["priceInfo"].string!
+            zhuanLan.updateTime = eachJson["updateTime"].string!
+            zhuanLan.desc = eachJson["description"].string!
+            zhuanLan.imageUrl = eachJson["imageUrl"].string!
+            zhuanLan.url = eachJson["url"].string!
+            zhuanLan.author = eachJson["author"].string!
+            zhuanLan.authorTitle = eachJson["authorTitle"].string!
+            zhuanLan.dingyue = eachJson["dingyue"].int!
+            zhuanLans.append(zhuanLan)
+        }
     }
 }
 

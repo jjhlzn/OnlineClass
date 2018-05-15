@@ -214,7 +214,6 @@ extension CourseMainPageViewController : UITableViewDataSource, UITableViewDeleg
             return cell
         } else if row == 1 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "seperatorCell")
-            //courseNotifies = [String]()
             return cell!
         } else if row == 2 || row == 3  {
             let cell = extendFunctionMananger.getFunctionCell(tableView: tableView, row: row - 2)
@@ -290,6 +289,10 @@ extension CourseMainPageViewController : UITableViewDataSource, UITableViewDeleg
         } else if row == 5 {
            
         } else if row > 5 && row < 5 + 1 + zhuanLans.count {
+            var sender = [String:String]()
+            sender["title"] = zhuanLans[row - 5 - 1].name
+            sender["url"] = zhuanLans[row - 5 - 1].url
+            performSegue(withIdentifier: "loadWebPageSegue", sender: sender)
             
         } else if row == 6 + zhuanLans.count {
             

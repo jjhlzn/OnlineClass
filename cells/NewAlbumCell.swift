@@ -1,5 +1,5 @@
 //
-//  MainPageCourseCell.swift
+//  NewAlbumCell.swift
 //  AudioPlayer iOS
 //
 //  Created by 金军航 on 2018/5/15.
@@ -8,16 +8,20 @@
 
 import UIKit
 
-class MainPageCourseCell: UITableViewCell {
+class NewAlbumCell: UITableViewCell {
     
     var course : Album?
 
     @IBOutlet weak var courseImageView: UIImageView!
     
     @IBOutlet weak var star0: UIImageView!
+    
     @IBOutlet weak var star1: UIImageView!
+    
     @IBOutlet weak var star2: UIImageView!
+    
     @IBOutlet weak var star3: UIImageView!
+    
     @IBOutlet weak var star4: UIImageView!
     
     @IBOutlet weak var scoreLabel: UILabel!
@@ -25,6 +29,16 @@ class MainPageCourseCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     
     @IBOutlet weak var dateLabel: UILabel!
+    
+    @IBOutlet weak var statusLabel: UILabel!
+    
+    @IBOutlet weak var liveTimeLabel: UILabel!
+    
+    @IBOutlet weak var listenerCountLabel: UILabel!
+    
+    
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -36,7 +50,7 @@ class MainPageCourseCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func update()  {
+    func update() {
         courseImageView.kf.setImage(with: URL(string: (course?.image)!))
         courseImageView.layer.cornerRadius = 5
         courseImageView.clipsToBounds = true
@@ -65,6 +79,13 @@ class MainPageCourseCell: UITableViewCell {
         scoreLabel.sizeToFit()
         nameLabel.text = course?.name
         dateLabel.text = course?.date
+        
+        
+        
+        
+        statusLabel.text = course?.status
+        listenerCountLabel.text = "\((course?.listenCount)!)人在线"
+        liveTimeLabel.text = course?.liveTime
     }
 
 }

@@ -162,6 +162,11 @@
 		EF76956A20AA6662000E3064 /* ZhuanLanCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF76956920AA6662000E3064 /* ZhuanLanCell.swift */; };
 		EF76956C20AA6B05000E3064 /* MainPageCourseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF76956B20AA6B05000E3064 /* MainPageCourseCell.swift */; };
 		EFB004231E236CD800B9272A /* HeaderAdvCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFB004221E236CD800B9272A /* HeaderAdvCell.swift */; };
+		EFDD138D20AA97A400BF8C37 /* ZhuanLanCell2.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFDD138C20AA97A400BF8C37 /* ZhuanLanCell2.swift */; };
+		EFDD138F20AA998300BF8C37 /* ZhuanLanListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFDD138E20AA998300BF8C37 /* ZhuanLanListVC.swift */; };
+		EFDD139120AAB0D100BF8C37 /* NewAlbumCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFDD139020AAB0D100BF8C37 /* NewAlbumCell.swift */; };
+		EFDD139320AAB4BA00BF8C37 /* CourseListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFDD139220AAB4BA00BF8C37 /* CourseListVC.swift */; };
+		EFDD139520AABCED00BF8C37 /* NewCourseHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFDD139420AABCED00BF8C37 /* NewCourseHeaderCell.swift */; };
 		EFED76191E5C61B200CB3C9A /* CourseNotifyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFED76181E5C61B200CB3C9A /* CourseNotifyCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -340,6 +345,11 @@
 		EF76956B20AA6B05000E3064 /* MainPageCourseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MainPageCourseCell.swift; path = cells/MainPageCourseCell.swift; sourceTree = "<group>"; };
 		EFB004221E236CD800B9272A /* HeaderAdvCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderAdvCell.swift; sourceTree = "<group>"; };
 		EFBFF6A51E2F4AAC00CDFB6F /* AudioPlayer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AudioPlayer.entitlements; sourceTree = SOURCE_ROOT; };
+		EFDD138C20AA97A400BF8C37 /* ZhuanLanCell2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ZhuanLanCell2.swift; path = cells/ZhuanLanCell2.swift; sourceTree = "<group>"; };
+		EFDD138E20AA998300BF8C37 /* ZhuanLanListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZhuanLanListVC.swift; sourceTree = "<group>"; };
+		EFDD139020AAB0D100BF8C37 /* NewAlbumCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NewAlbumCell.swift; path = cells/NewAlbumCell.swift; sourceTree = "<group>"; };
+		EFDD139220AAB4BA00BF8C37 /* CourseListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseListVC.swift; sourceTree = "<group>"; };
+		EFDD139420AABCED00BF8C37 /* NewCourseHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NewCourseHeaderCell.swift; path = cells/NewCourseHeaderCell.swift; sourceTree = "<group>"; };
 		EFED76181E5C61B200CB3C9A /* CourseNotifyCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseNotifyCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -454,6 +464,9 @@
 				EF22C2741E23D7C500EA0F5A /* FooterAdvCell.swift */,
 				EF67C0421E24A901004EEAF0 /* AlbumHeaderCell.swift */,
 				EFED76181E5C61B200CB3C9A /* CourseNotifyCell.swift */,
+				EFDD138C20AA97A400BF8C37 /* ZhuanLanCell2.swift */,
+				EFDD139020AAB0D100BF8C37 /* NewAlbumCell.swift */,
+				EFDD139420AABCED00BF8C37 /* NewCourseHeaderCell.swift */,
 			);
 			name = customCell;
 			sourceTree = "<group>";
@@ -669,6 +682,8 @@
 				1C9F20E51D823BA100E1B69F /* BuyWebPageViewController.swift */,
 				1C8926611D96196800E0AEC6 /* ApplyBrowserController.swift */,
 				1C8926631D961EA300E0AEC6 /* IapSupportWebPageViewController.swift */,
+				EFDD138E20AA998300BF8C37 /* ZhuanLanListVC.swift */,
+				EFDD139220AAB4BA00BF8C37 /* CourseListVC.swift */,
 				1C33F0391D071CC000D3EE4C /* login&signup */,
 				1C33F0381D071C8000D3EE4C /* song */,
 				1C33F0371D071C5300D3EE4C /* me */,
@@ -990,6 +1005,7 @@
 				1CD349721CF9AC7D00037F78 /* PersonalInfoCell2.swift in Sources */,
 				1C3C5EDA1D1E11B0000F0A39 /* KeyValueEntity+CoreDataProperties.swift in Sources */,
 				1C1E691B1CC90A6500CEA029 /* PlayerCell.swift in Sources */,
+				EFDD139320AAB4BA00BF8C37 /* CourseListVC.swift in Sources */,
 				1C33F02F1D066C5F00D3EE4C /* UpgradeViewController.swift in Sources */,
 				1CD3496A1CF9802C00037F78 /* FormCell.swift in Sources */,
 				1C2684741CCA62F40032C014 /* MyInfoVieController.swift in Sources */,
@@ -1012,12 +1028,14 @@
 				EF22C2771E23E65E00EA0F5A /* ExtendFunctionStore.swift in Sources */,
 				1C8E7DC41D8799F80022B0D2 /* PurchaseRecordStore.swift in Sources */,
 				1CEFF7831CBFB809000DEFF7 /* Model.swift in Sources */,
+				EFDD139520AABCED00BF8C37 /* NewCourseHeaderCell.swift in Sources */,
 				EF6C0F3820A2DA3400BE1829 /* MyGIfImageView.swift in Sources */,
 				1C1E69191CC9079100CEA029 /* SongViewController.swift in Sources */,
 				EF23458720A672E8002E2F30 /* BeforeCourseVC.swift in Sources */,
 				EF76956C20AA6B05000E3064 /* MainPageCourseCell.swift in Sources */,
 				1CD3496C1CF980D400037F78 /* ResetPasswordController.swift in Sources */,
 				1C1E68F11CC65F7500CEA029 /* CommentCell.swift in Sources */,
+				EFDD139120AAB0D100BF8C37 /* NewAlbumCell.swift in Sources */,
 				EF23457820A57267002E2F30 /* CourseOverviewHeaderCell.swift in Sources */,
 				EF10AAC820A95D3800C6B2E4 /* UINavigationControllerExtension.swift in Sources */,
 				EF3046271E5D7B6A00A6E7AE /* ShareManager.swift in Sources */,
@@ -1059,6 +1077,8 @@
 				1C451F6F1D0178A700DC29F9 /* ServiceLocatorStore.swift in Sources */,
 				1CEFF7901CC077D0000DEFF7 /* Utils.swift in Sources */,
 				1C1E69211CCA05E500CEA029 /* MoreLinkCell.swift in Sources */,
+				EFDD138D20AA97A400BF8C37 /* ZhuanLanCell2.swift in Sources */,
+				EFDD138F20AA998300BF8C37 /* ZhuanLanListVC.swift in Sources */,
 				1CEFF7981CC0D63B000DEFF7 /* LoadingOverlay.swift in Sources */,
 				1CD3496E1CF9A97D00037F78 /* PersonalInfoCell.swift in Sources */,
 				1CB2D7E81D0D9918007FE507 /* LiveAlbumCell.swift in Sources */,
