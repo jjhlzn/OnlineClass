@@ -12,6 +12,7 @@ import Gifu
 import QorumLogs
 
 class HeaderAdvCell: UITableViewCell, FSPagerViewDataSource, FSPagerViewDelegate {
+    var controller : UIViewController?
     @IBOutlet weak var pagerView: FSPagerView! {
         didSet {
             self.pagerView.register(FSPagerViewCell.self, forCellWithReuseIdentifier: "mainpage_cell")
@@ -38,6 +39,7 @@ class HeaderAdvCell: UITableViewCell, FSPagerViewDataSource, FSPagerViewDelegate
     @IBOutlet weak var toutiaoLabel: UILabel!
     
     public var ads : [Advertise] = [Advertise]()
+    public var toutiao = Toutiao()
     
     public func numberOfItems(in pagerView: FSPagerView) -> Int {
         return ads.count
@@ -55,6 +57,10 @@ class HeaderAdvCell: UITableViewCell, FSPagerViewDataSource, FSPagerViewDelegate
     
     func pagerView(_ pagerView: FSPagerView, didSelectItemAt index: Int) {
             QL1("FSPagerView index = " + String(index) + " selected")
+        var sender = [String:String]()
+        sender["url"] = self.ads[index].clickUrl
+        sender["title"] = self.ads[index].title
+        self.controller?.performSegue(withIdentifier: "loadWebPageSegue", sender: sender)
     }
     
     func pagerView(_ pagerView: FSPagerView, willDisplay cell: FSPagerViewCell, forItemAt index: Int) {
@@ -67,10 +73,26 @@ class HeaderAdvCell: UITableViewCell, FSPagerViewDataSource, FSPagerViewDelegate
         pagerView.isInfinite = true
         pagerView.dataSource = self
         pagerView.delegate = self
+        let tap = UITapGestureRecognizer(target: self, action: #selector(tapToutiaoLabel))
+        toutiaoLabel.isUserInteractionEnabled = true
+        toutiaoLabel.addGestureRecognizer(tap)
+        
+        yaoqingBtn.addTarget(self, action: #selector(yaoQingPressed), for: .touchUpInside)
+    }
+    
+    @objc func tapToutiaoLabel() {
+        var sender = [String:String]()
+        sender["title"] = toutiao.title
+        sender["url"] = toutiao.clickUrl
+        controller?.performSegue(withIdentifier: "loadWebPageSegue", sender: sender)
+    }
+    @objc func yaoQingPressed() {
+        controller?.performSegue(withIdentifier: "codeImageSegue", sender: nil)
     }
     
     public func update() {
         pagerView.reloadData()
-         self.pagerControl.numberOfPages = self.ads.count
+        self.pagerControl.numberOfPages = self.ads.count
+        toutiaoLabel.text = toutiao.content
     }
 }

@@ -69,11 +69,7 @@ class NewPlayerController: UIViewController, UIScrollViewDelegate {
         let overlay = UIView(frame: UIScreen.main.bounds)
         overlay.backgroundColor = UIColor(white: 0, alpha: 0.65)
         
-        //let Y: CGFloat = glt_iphoneX ? 64 + 24.0 : 64.0
         let shareView = ShareView(frame: CGRect(x : 0, y: UIScreen.main.bounds.height - 233, width: UIScreen.main.bounds.width, height: 233))
-        //shareView.autoresizingMask = [.flexibleWidth, .flexibleHeight, .flexibleLeftMargin, .flexibleRightMargin, .flexibleTopMargin, .flexibleBottomMargin]
-        //shareView.autoresizesSubviews = true
-        //view.autoresizesSubviews = true
         
         //view.addSubview(overlay)
         //view.addSubview(shareView)

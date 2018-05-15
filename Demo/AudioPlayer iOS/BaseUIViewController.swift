@@ -40,10 +40,10 @@ class BaseUIViewController: UIViewController, AudioPlayerDelegate {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        setNavigationBar(false)
+        setNavigationBar0(false)
     }
     
-    func setNavigationBar(_ isTranslucent : Bool) {
+    func setNavigationBar0(_ isTranslucent : Bool) {
         if self.navigationController?.backdropImageView == nil {
             self.navigationController?.backdropImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 315, height:88))
         }
@@ -69,8 +69,7 @@ class BaseUIViewController: UIViewController, AudioPlayerDelegate {
         }
 
     }
-    
-        
+
     
     func getAudioPlayer() -> AudioPlayer {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate

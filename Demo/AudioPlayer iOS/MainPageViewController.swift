@@ -30,6 +30,7 @@ class CourseMainPageViewController: BaseUIViewController {
     var refreshing = false
     var imageView: GIFImageView!
     
+    var toutiao = Toutiao()
     var ads = [Advertise]()
     var zhuanLans = [ZhuanLan]()
     var courses = [Album]()
@@ -71,9 +72,11 @@ class CourseMainPageViewController: BaseUIViewController {
         refreshControl.addTarget(self, action: #selector(refresh), for: UIControlEvents.valueChanged)
         tableView.addSubview(refreshControl)
         refreshing = false
-        
-        
-        
+    }
+    
+    func setNavigationBar() {
+        setMusicButton()
+        setKefuButton()
         let searchLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 30))
         searchLabel.layer.masksToBounds = true
         searchLabel.layer.cornerRadius = 15
@@ -81,29 +84,34 @@ class CourseMainPageViewController: BaseUIViewController {
         searchLabel.text = "融资、信用卡、关键词"
         searchLabel.textColor =  UIColor.lightGray
         searchLabel.font = searchLabel.font.withSize(13)
-        
         searchLabel.textAlignment = .center
-        
         self.navigationItem.titleView = searchLabel
-     
     }
     
     func setMusicButton() {
-        self.imageView = GIFImageView(frame: CGRect(x: -10, y: 0, width: 32, height: 32))
+        self.imageView = GIFImageView(frame: CGRect(x: 0, y: 0, width: 32, height: 32))
         self.imageView.backgroundColor = nil
         self.imageView.animate(withGIFNamed: "demo")
         self.imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tapMusicBtnHandler(sender:))))
-        //imageView.stopAnimatingGIF()
+        let button = UIBarButtonItem(customView: self.imageView)
         
-        /*
-        let kefuImage = UIImageView(image: UIImage(named: "kefu"))
-        let v = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 10))
-        v.addSubview(kefuImage) */
-        let button2 = UIBarButtonItem(customView: self.imageView)
-        
-        //let button1 = UIBarButtonItem(image: UIImage(named: "imagename"), style: .plain, target: self, action: Selector("action")) // action:#selector(Class.MethodName) for swift 3
-        //self.navigationItem.rightBarButtonItems?.append(button2)
-        self.navigationItem.rightBarButtonItem  = button2
+        self.navigationItem.rightBarButtonItem  = button
+    }
+    
+    func setKefuButton() {
+        let b = UIButton(type: .custom)
+        b.setImage( UIImage(named: "new_kefu"), for: .normal)
+        b.frame = CGRect(x: 0, y: 0, width: 8, height: 8)
+        let button = UIBarButtonItem(customView: b)
+        b.addTarget(self, action: #selector(keFuPressed), for: .touchUpInside)
+        self.navigationItem.leftBarButtonItem  = button
+    }
+    
+    @objc func keFuPressed() {
+        var sender = [String:String]()
+        sender["title"] = "客服"
+        sender["url"] = ServiceLinkManager.FunctionCustomerServiceUrl
+        performSegue(withIdentifier: "loadWebPageSegue", sender: sender)
     }
     
     @objc func tapMusicBtnHandler(sender: UITapGestureRecognizer? = nil) {
@@ -120,21 +128,8 @@ class CourseMainPageViewController: BaseUIViewController {
         //updatePlayingButton(button: playingButton)
         loadHeadAds()
         loadZhuanLanAndTuijianCourses()
-      
-        
-        setMusicButton()
-        
-        let searchLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 30))
-        searchLabel.layer.masksToBounds = true
-        searchLabel.layer.cornerRadius = 15
-        searchLabel.backgroundColor =  UIColor(white: 0.9, alpha: 0.8)
-        searchLabel.text = "融资、信用卡、关键词"
-        searchLabel.textColor =  UIColor.lightGray
-        searchLabel.font = searchLabel.font.withSize(13)
-        
-        searchLabel.textAlignment = .center
-        
-        self.navigationItem.titleView = searchLabel
+        loadToutiao()
+        self.setNavigationBar()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -186,11 +181,11 @@ class CourseMainPageViewController: BaseUIViewController {
         
         refreshing = true
         loadHeadAds()
+        loadToutiao()
         loadFunctionInfos()
         loadZhuanLanAndTuijianCourses()
     }
     
-    var footerImageInterWidth = 2
 }
 
 
@@ -211,7 +206,9 @@ extension CourseMainPageViewController : UITableViewDataSource, UITableViewDeleg
         
         if row == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "mainpageHeaderAdvCell") as! HeaderAdvCell
+            cell.controller = self
             cell.initialize()
+            cell.toutiao = self.toutiao
             cell.ads = ads
             cell.update()
             return cell
@@ -229,13 +226,17 @@ extension CourseMainPageViewController : UITableViewDataSource, UITableViewDeleg
             let cell = tableView.dequeueReusableCell(withIdentifier: "zhuanLanHeaderCell")!
             return cell
         } else if row > 5 && row < 5 + 1 + zhuanLans.count {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "zhuanLanCell")!
+            let cell = tableView.dequeueReusableCell(withIdentifier: "zhuanLanCell") as! ZhuanLanCell
+            cell.zhuanLan = zhuanLans[row - 5 - 1]
+            cell.update()
             return cell
         } else if row == 6 + zhuanLans.count {
             let cell = tableView.dequeueReusableCell(withIdentifier: "tuijianCourseHeaderCell")!
             return cell
         } else if row >  6 + zhuanLans.count && row < 6 + zhuanLans.count + 1 + courses.count  {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "tuijianCourseCell")!
+            let cell = tableView.dequeueReusableCell(withIdentifier: "tuijianCourseCell") as! MainPageCourseCell
+            cell.course = courses[row - 6 - zhuanLans.count - 1]
+            cell.update()
             return cell
         } else {
             return tableView.dequeueReusableCell(withIdentifier: "seperatorCell")!
@@ -356,6 +357,22 @@ extension CourseMainPageViewController  {
             
             self.zhuanLans = resp.zhuanLans
             self.courses = resp.albums
+            
+            self.tableView.reloadData()
+        }
+    }
+    
+    func loadToutiao() {
+        BasicService().sendRequest(url: ServiceConfiguration.GET_TOUTIAO, request: GetToutiaoRequest()) {
+            (resp: GetToutiaoResponse) -> Void in
+            if self.refreshing {
+                self.refreshControl.endRefreshing()
+            }
+            self.refreshing = false
+            
+            self.toutiao.content = resp.content
+            self.toutiao.clickUrl = resp.clickUrl
+            self.toutiao.title = resp.title
             
             self.tableView.reloadData()
         }

@@ -159,6 +159,8 @@
 		EF422C69209ECD5300419FCA /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF422C68209ECD5300419FCA /* LaunchViewController.swift */; };
 		EF67C0431E24A901004EEAF0 /* AlbumHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF67C0421E24A901004EEAF0 /* AlbumHeaderCell.swift */; };
 		EF6C0F3820A2DA3400BE1829 /* MyGIfImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF6C0F3720A2DA3400BE1829 /* MyGIfImageView.swift */; };
+		EF76956A20AA6662000E3064 /* ZhuanLanCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF76956920AA6662000E3064 /* ZhuanLanCell.swift */; };
+		EF76956C20AA6B05000E3064 /* MainPageCourseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF76956B20AA6B05000E3064 /* MainPageCourseCell.swift */; };
 		EFB004231E236CD800B9272A /* HeaderAdvCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFB004221E236CD800B9272A /* HeaderAdvCell.swift */; };
 		EFED76191E5C61B200CB3C9A /* CourseNotifyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFED76181E5C61B200CB3C9A /* CourseNotifyCell.swift */; };
 /* End PBXBuildFile section */
@@ -334,6 +336,8 @@
 		EF422C68209ECD5300419FCA /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
 		EF67C0421E24A901004EEAF0 /* AlbumHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumHeaderCell.swift; sourceTree = "<group>"; };
 		EF6C0F3720A2DA3400BE1829 /* MyGIfImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGIfImageView.swift; sourceTree = "<group>"; };
+		EF76956920AA6662000E3064 /* ZhuanLanCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ZhuanLanCell.swift; path = cells/ZhuanLanCell.swift; sourceTree = "<group>"; };
+		EF76956B20AA6B05000E3064 /* MainPageCourseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MainPageCourseCell.swift; path = cells/MainPageCourseCell.swift; sourceTree = "<group>"; };
 		EFB004221E236CD800B9272A /* HeaderAdvCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderAdvCell.swift; sourceTree = "<group>"; };
 		EFBFF6A51E2F4AAC00CDFB6F /* AudioPlayer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AudioPlayer.entitlements; sourceTree = SOURCE_ROOT; };
 		EFED76181E5C61B200CB3C9A /* CourseNotifyCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseNotifyCell.swift; sourceTree = "<group>"; };
@@ -423,6 +427,7 @@
 		1C1E691F1CC9FB5D00CEA029 /* customCell */ = {
 			isa = PBXGroup;
 			children = (
+				EF76956820AA663D000E3064 /* mainpage */,
 				EF23458820A678B4002E2F30 /* player */,
 				1CEFF78D1CBFC9B7000DEFF7 /* AlbumCell.swift */,
 				1CB2D7E71D0D9918007FE507 /* LiveAlbumCell.swift */,
@@ -723,6 +728,15 @@
 			name = view;
 			sourceTree = "<group>";
 		};
+		EF76956820AA663D000E3064 /* mainpage */ = {
+			isa = PBXGroup;
+			children = (
+				EF76956920AA6662000E3064 /* ZhuanLanCell.swift */,
+				EF76956B20AA6B05000E3064 /* MainPageCourseCell.swift */,
+			);
+			name = mainpage;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1001,6 +1015,7 @@
 				EF6C0F3820A2DA3400BE1829 /* MyGIfImageView.swift in Sources */,
 				1C1E69191CC9079100CEA029 /* SongViewController.swift in Sources */,
 				EF23458720A672E8002E2F30 /* BeforeCourseVC.swift in Sources */,
+				EF76956C20AA6B05000E3064 /* MainPageCourseCell.swift in Sources */,
 				1CD3496C1CF980D400037F78 /* ResetPasswordController.swift in Sources */,
 				1C1E68F11CC65F7500CEA029 /* CommentCell.swift in Sources */,
 				EF23457820A57267002E2F30 /* CourseOverviewHeaderCell.swift in Sources */,
@@ -1081,6 +1096,7 @@
 				1C2451DA1CE8A28B00F350DA /* LoginUserEntity.swift in Sources */,
 				EF23457320A563EC002E2F30 /* LTHeaderView.swift in Sources */,
 				EF23459320A67961002E2F30 /* NewCommentCell.swift in Sources */,
+				EF76956A20AA6662000E3064 /* ZhuanLanCell.swift in Sources */,
 				EF03652E209EEEA1006094EE /* SearchBarExtension.swift in Sources */,
 				1CEFF78A1CBFBA70000DEFF7 /* ServerResponse.swift in Sources */,
 				1C2451D61CE8A1CE00F350DA /* LoginUserStore.swift in Sources */,

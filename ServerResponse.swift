@@ -1266,3 +1266,19 @@ class GetZhuanLanAndTuijianCoursesResponse : ServerResponse {
     }
 }
 
+class GetToutiaoRequest : ServerRequest {}
+class GetToutiaoResponse : ServerResponse {
+    var content : String = ""
+    var clickUrl : String = ""
+    var title : String = ""
+    override func parseJSON(request: ServerRequest, json: NSDictionary) {
+        super.parseJSON(request: request, json: json)
+        let j = JSON(json)["result"]
+        content = j["content"].stringValue
+        clickUrl = j["clickUrl"].stringValue
+        title = j["title"].stringValue
+        
+        QL1("content is \(j["content"].stringValue)")
+    }
+}
+

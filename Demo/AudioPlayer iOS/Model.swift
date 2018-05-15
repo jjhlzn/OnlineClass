@@ -95,6 +95,12 @@ class Advertise : BaseModelObject {
     var title = ""
 }
 
+class Toutiao : BaseModelObject {
+    var content = ""
+    var clickUrl = ""
+    var title = ""
+}
+
 class Song : BaseModelObject {
     var id: String = ""
     var name: String = ""
