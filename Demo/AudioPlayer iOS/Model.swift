@@ -101,6 +101,17 @@ class Toutiao : BaseModelObject {
     var title = ""
 }
 
+public class SearchResult {
+    var title = ""
+    var content = ""
+    var clickUrl = ""
+    var image = ""
+    var date = ""
+    var author = ""
+    var desc = ""
+}
+
+
 class Song : BaseModelObject {
     var id: String = ""
     var name: String = ""

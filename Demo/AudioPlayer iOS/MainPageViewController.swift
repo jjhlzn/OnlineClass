@@ -85,7 +85,16 @@ class CourseMainPageViewController: BaseUIViewController {
         searchLabel.textColor =  UIColor.lightGray
         searchLabel.font = searchLabel.font.withSize(13)
         searchLabel.textAlignment = .center
+        searchLabel.isUserInteractionEnabled = true
+        
         self.navigationItem.titleView = searchLabel
+        let tap = UITapGestureRecognizer(target: self, action: #selector(CourseMainPageViewController.tapSearchLabel))
+        searchLabel.addGestureRecognizer(tap)
+    }
+    
+    @objc func tapSearchLabel(sender:UITapGestureRecognizer) {
+        QL1("seachLabel tapped")
+        performSegue(withIdentifier: "newSearchSegue", sender: nil)
     }
     
     func setMusicButton() {

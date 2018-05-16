@@ -167,6 +167,8 @@
 		EFDD139120AAB0D100BF8C37 /* NewAlbumCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFDD139020AAB0D100BF8C37 /* NewAlbumCell.swift */; };
 		EFDD139320AAB4BA00BF8C37 /* CourseListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFDD139220AAB4BA00BF8C37 /* CourseListVC.swift */; };
 		EFDD139520AABCED00BF8C37 /* NewCourseHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFDD139420AABCED00BF8C37 /* NewCourseHeaderCell.swift */; };
+		EFDD139720ABBE1500BF8C37 /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFDD139620ABBE1500BF8C37 /* SearchVC.swift */; };
+		EFDD139920AC159F00BF8C37 /* SearchResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFDD139820AC159F00BF8C37 /* SearchResultCell.swift */; };
 		EFED76191E5C61B200CB3C9A /* CourseNotifyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFED76181E5C61B200CB3C9A /* CourseNotifyCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -350,6 +352,8 @@
 		EFDD139020AAB0D100BF8C37 /* NewAlbumCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NewAlbumCell.swift; path = cells/NewAlbumCell.swift; sourceTree = "<group>"; };
 		EFDD139220AAB4BA00BF8C37 /* CourseListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseListVC.swift; sourceTree = "<group>"; };
 		EFDD139420AABCED00BF8C37 /* NewCourseHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NewCourseHeaderCell.swift; path = cells/NewCourseHeaderCell.swift; sourceTree = "<group>"; };
+		EFDD139620ABBE1500BF8C37 /* SearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVC.swift; sourceTree = "<group>"; };
+		EFDD139820AC159F00BF8C37 /* SearchResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SearchResultCell.swift; path = cells/SearchResultCell.swift; sourceTree = "<group>"; };
 		EFED76181E5C61B200CB3C9A /* CourseNotifyCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseNotifyCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -467,6 +471,7 @@
 				EFDD138C20AA97A400BF8C37 /* ZhuanLanCell2.swift */,
 				EFDD139020AAB0D100BF8C37 /* NewAlbumCell.swift */,
 				EFDD139420AABCED00BF8C37 /* NewCourseHeaderCell.swift */,
+				EFDD139820AC159F00BF8C37 /* SearchResultCell.swift */,
 			);
 			name = customCell;
 			sourceTree = "<group>";
@@ -522,6 +527,7 @@
 				EF23457420A56DB1002E2F30 /* CourseOverviewVC.swift */,
 				EF23457220A563EB002E2F30 /* LTHeaderView.swift */,
 				EF23458620A672E8002E2F30 /* BeforeCourseVC.swift */,
+				EFDD139620ABBE1500BF8C37 /* SearchVC.swift */,
 			);
 			name = song;
 			sourceTree = "<group>";
@@ -999,6 +1005,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1C451F6D1D01787B00DC29F9 /* ServiceLocatorEntity.swift in Sources */,
+				EFDD139920AC159F00BF8C37 /* SearchResultCell.swift in Sources */,
 				1C1E69251CCA0F3E00CEA029 /* NoCommentCell.swift in Sources */,
 				EF1EA4E31ED3B9DA00B2616F /* ExtendFunctionImageStore.swift in Sources */,
 				1CD349641CF8167C00037F78 /* WebPageViewController.swift in Sources */,
@@ -1106,6 +1113,7 @@
 				1C451F661D0175FA00DC29F9 /* ConfigurationViewController.swift in Sources */,
 				1C50C7561D48D28C0022B952 /* SongAdvCell.swift in Sources */,
 				1C3DC3941CFDC538007807AF /* LiveAlbumDetailController.swift in Sources */,
+				EFDD139720ABBE1500BF8C37 /* SearchVC.swift in Sources */,
 				EF23458F20A6794D002E2F30 /* NewCommentHeaderCell.swift in Sources */,
 				1C33F0421D07DBF000D3EE4C /* AllFunctionViewController.swift in Sources */,
 				1CDCC8ED1CE717F3001640CC /* ForgetPasswordViewController.swift in Sources */,

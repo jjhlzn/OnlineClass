@@ -1306,3 +1306,24 @@ class GetZhuanLansResponse : ServerResponse {
     }
 }
 
+
+class NewSearchResponse : ServerResponse {
+    var searchResults = [SearchResult]()
+    override func parseJSON(request: ServerRequest, json: NSDictionary) {
+        super.parseJSON(request: request, json: json)
+        let j = JSON(json)
+        let resultsJson = j["results"].arrayValue
+        for eachJson in resultsJson {
+            let searchResult = SearchResult()
+            searchResult.title = eachJson["title"].string!
+            searchResult.content = eachJson["content"].string!
+            searchResult.clickUrl = eachJson["clickUrl"].string!
+            searchResult.date = eachJson["date"].string!
+            searchResult.image = eachJson["image"].string!
+            searchResult.author = eachJson["author"].string!
+            searchResult.desc = eachJson["desc"].string!
+            
+            searchResults.append(searchResult)
+        }
+    }
+}
