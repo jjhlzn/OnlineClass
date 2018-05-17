@@ -156,6 +156,10 @@
 		EF2345AA20A85A57002E2F30 /* PlayerHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF2345A920A85A57002E2F30 /* PlayerHeaderView.xib */; };
 		EF2345AC20A85C99002E2F30 /* PlayerHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF2345AB20A85C99002E2F30 /* PlayerHeaderView.swift */; };
 		EF3046271E5D7B6A00A6E7AE /* ShareManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3046261E5D7B6A00A6E7AE /* ShareManager.swift */; };
+		EF39750720AD1FDB0033620D /* MyInfoFirstSectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF39750620AD1FDB0033620D /* MyInfoFirstSectionCell.swift */; };
+		EF39750920AD205B0033620D /* MyInfoSecondSectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF39750820AD205B0033620D /* MyInfoSecondSectionCell.swift */; };
+		EF39750B20AD20D20033620D /* MyInfoThirdSectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF39750A20AD20D20033620D /* MyInfoThirdSectionCell.swift */; };
+		EF39750D20AD28410033620D /* MyInfoCommonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF39750C20AD28410033620D /* MyInfoCommonCell.swift */; };
 		EF422C69209ECD5300419FCA /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF422C68209ECD5300419FCA /* LaunchViewController.swift */; };
 		EF67C0431E24A901004EEAF0 /* AlbumHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF67C0421E24A901004EEAF0 /* AlbumHeaderCell.swift */; };
 		EF6C0F3820A2DA3400BE1829 /* MyGIfImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF6C0F3720A2DA3400BE1829 /* MyGIfImageView.swift */; };
@@ -340,6 +344,10 @@
 		EF2345A920A85A57002E2F30 /* PlayerHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlayerHeaderView.xib; sourceTree = "<group>"; };
 		EF2345AB20A85C99002E2F30 /* PlayerHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerHeaderView.swift; sourceTree = "<group>"; };
 		EF3046261E5D7B6A00A6E7AE /* ShareManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareManager.swift; sourceTree = "<group>"; };
+		EF39750620AD1FDB0033620D /* MyInfoFirstSectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MyInfoFirstSectionCell.swift; path = cells/MyInfoFirstSectionCell.swift; sourceTree = "<group>"; };
+		EF39750820AD205B0033620D /* MyInfoSecondSectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MyInfoSecondSectionCell.swift; path = cells/MyInfoSecondSectionCell.swift; sourceTree = "<group>"; };
+		EF39750A20AD20D20033620D /* MyInfoThirdSectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoThirdSectionCell.swift; sourceTree = "<group>"; };
+		EF39750C20AD28410033620D /* MyInfoCommonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MyInfoCommonCell.swift; path = cells/MyInfoCommonCell.swift; sourceTree = "<group>"; };
 		EF422C68209ECD5300419FCA /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
 		EF67C0421E24A901004EEAF0 /* AlbumHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumHeaderCell.swift; sourceTree = "<group>"; };
 		EF6C0F3720A2DA3400BE1829 /* MyGIfImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGIfImageView.swift; sourceTree = "<group>"; };
@@ -441,6 +449,7 @@
 		1C1E691F1CC9FB5D00CEA029 /* customCell */ = {
 			isa = PBXGroup;
 			children = (
+				EF39750520AD1FBF0033620D /* me */,
 				EF76956820AA663D000E3064 /* mainpage */,
 				EF23458820A678B4002E2F30 /* player */,
 				1CEFF78D1CBFC9B7000DEFF7 /* AlbumCell.swift */,
@@ -749,6 +758,17 @@
 			name = view;
 			sourceTree = "<group>";
 		};
+		EF39750520AD1FBF0033620D /* me */ = {
+			isa = PBXGroup;
+			children = (
+				EF39750620AD1FDB0033620D /* MyInfoFirstSectionCell.swift */,
+				EF39750820AD205B0033620D /* MyInfoSecondSectionCell.swift */,
+				EF39750A20AD20D20033620D /* MyInfoThirdSectionCell.swift */,
+				EF39750C20AD28410033620D /* MyInfoCommonCell.swift */,
+			);
+			name = me;
+			sourceTree = "<group>";
+		};
 		EF76956820AA663D000E3064 /* mainpage */ = {
 			isa = PBXGroup;
 			children = (
@@ -1029,6 +1049,7 @@
 				1C33F03C1D079DBE00D3EE4C /* SetSexViewController.swift in Sources */,
 				EF23458420A66986002E2F30 /* BeforeCourseCell.swift in Sources */,
 				EF23458020A66914002E2F30 /* BeforeCourseHeaderCell.swift in Sources */,
+				EF39750B20AD20D20033620D /* MyInfoThirdSectionCell.swift in Sources */,
 				1CEFF7861CBFB9FD000DEFF7 /* BasicService.swift in Sources */,
 				EF23459F20A6BE4C002E2F30 /* ShareView.swift in Sources */,
 				1C8E7DC11D87950F0022B0D2 /* PurchaseRecordEntity+CoreDataProperties.swift in Sources */,
@@ -1098,6 +1119,7 @@
 				EFED76191E5C61B200CB3C9A /* CourseNotifyCell.swift in Sources */,
 				1C8A2AD61CE5882A0086C1B8 /* SignupViewController.swift in Sources */,
 				1CDCC8EF1CE72203001640CC /* logoutCell.swift in Sources */,
+				EF39750920AD205B0033620D /* MyInfoSecondSectionCell.swift in Sources */,
 				1C9E808A1DA8D5D9006DD2C2 /* WXApiManager.swift in Sources */,
 				1C2451D41CE8A0BD00F350DA /* jufangzhushou.xcdatamodeld in Sources */,
 				1C8926621D96196800E0AEC6 /* ApplyBrowserController.swift in Sources */,
@@ -1110,6 +1132,7 @@
 				EF23457120A56204002E2F30 /* BaomingVC.swift in Sources */,
 				1CEFF7811CBFB73D000DEFF7 /* AlbumListController.swift in Sources */,
 				1C09D3BF1CD09FED004A8F9C /* ToastMessage.swift in Sources */,
+				EF39750720AD1FDB0033620D /* MyInfoFirstSectionCell.swift in Sources */,
 				1C451F661D0175FA00DC29F9 /* ConfigurationViewController.swift in Sources */,
 				1C50C7561D48D28C0022B952 /* SongAdvCell.swift in Sources */,
 				1C3DC3941CFDC538007807AF /* LiveAlbumDetailController.swift in Sources */,
@@ -1119,6 +1142,7 @@
 				1CDCC8ED1CE717F3001640CC /* ForgetPasswordViewController.swift in Sources */,
 				1C451F6C1D01787B00DC29F9 /* ServiceLocatorEntity+CoreDataProperties.swift in Sources */,
 				EF23456F20A46895002E2F30 /* DeviceExtension.swift in Sources */,
+				EF39750D20AD28410033620D /* MyInfoCommonCell.swift in Sources */,
 				EFB004231E236CD800B9272A /* HeaderAdvCell.swift in Sources */,
 				1C33F0341D07195700D3EE4C /* TextFieldCell.swift in Sources */,
 				1C2451DA1CE8A28B00F350DA /* LoginUserEntity.swift in Sources */,
