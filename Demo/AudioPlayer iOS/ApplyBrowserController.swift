@@ -25,23 +25,22 @@ class ApplyBrowserController : IapSupportWebPageViewController, WKNavigationDele
     
     @IBOutlet weak var webContainer: UIView!
     
-    
-    var overlay = UIView()
-    var shareManager : ShareManager!
-    @IBOutlet weak var shareView: UIView!
-    @IBOutlet weak var closeShareViewButton: UIButton!
-
+    var navigationManager : NavigationBarManager!
+    var shareView: ShareView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "资讯"
         url = NSURL(string: ServiceLinkManager.ShenqingUrl)!
         
+        navigationManager = NavigationBarManager(self)
+        shareView = ShareView(frame: CGRect(x : 0, y: UIScreen.main.bounds.height - 233 - 49, width: UIScreen.main.bounds.width, height: 233), controller: self)
+        navigationManager.shareView = shareView
         
         initIAP()
         initWebView()
 
-        overlay.isHidden = true
+       
         
         backButton.target = self
         backButton.action = #selector(webViewBack)
@@ -49,15 +48,9 @@ class ApplyBrowserController : IapSupportWebPageViewController, WKNavigationDele
         backButtonCopy = backButton
         navigationItem.leftBarButtonItems = []
         
-        //navigationItem.leftBarButtonItems = [backButton]
-        //设置分享相关
-        shareView.isHidden = true
-        shareManager = ShareManager(controller: self)
-        closeShareViewButton.addBorder(vBorder: viewBorder.Top, color: UIColor(white: 0.65, alpha: 0.5), width: 1)
-
-        shareManager.isUseQrImage = false
-        
-        shareManager.loadShareInfo(url: url)
+        navigationItem.rightBarButtonItems = []
+        navigationManager.setMusicButton()
+        navigationManager.setShareButton()
         
     }
     
@@ -108,7 +101,7 @@ class ApplyBrowserController : IapSupportWebPageViewController, WKNavigationDele
         
         if webView.url != nil {
             QL1("url = \(webView.url!)")
-            shareManager.loadShareInfo(url: webView.url! as NSURL)
+            shareView.setShareUrl((webView.url?.absoluteString)!)
         }
         
         if webView.canGoBack {
@@ -150,87 +143,12 @@ class ApplyBrowserController : IapSupportWebPageViewController, WKNavigationDele
             webView!.goBack()
             if webView!.url != nil {
                 QL1("url = \(webView!.url!)")
-                shareManager.loadShareInfo(url: webView!.url! as NSURL)
+                shareView.setShareUrl((webView?.url?.absoluteString)!)
             }
         } else {
             navigationItem.leftBarButtonItems = []
         }
     }
-    
-    @IBAction func shareButtonPressed(sender: AnyObject) {
-        //如果正在评论，关闭评论的窗口
-        if overlay.isHidden {
-            shareView.becomeFirstResponder()
-            showShareView()
-        } else {
-            hideShareView()
-        }
-    }
-    
-    var shareViewHasCreated = false;
-    func showShareView() {
-        if !shareViewHasCreated {
-            let navHeight = self.navigationController?.navigationBar.frame.height;
-            
-            let fullScreen = UIScreen.main.bounds
-            let rect = CGRect(x: fullScreen.origin.x, y: fullScreen.origin.y + navHeight!, width: fullScreen.width, height: fullScreen.height)
-            
-            print("showOverlay")
-
-            overlay = UIView(frame: rect)
-            overlay.backgroundColor = UIColor(white: 0, alpha: 0.65)
-        
-            shareView.removeFromSuperview()
-            shareView.isHidden = false
-            overlay.addSubview(shareView)
-            self.view.addSubview(overlay)
-            shareViewHasCreated = true
-        
-        }
-        overlay.isHidden = false
-        
-    }
-    
-    func hideShareView() {
-        print("hideOverlay")
-        /*
-        shareView.removeFromSuperview()
-        self.view.addSubview(shareView)
-        shareView.hidden = true
-        overlay.removeFromSuperview()*/
-        overlay.isHidden = true
-    }
-    
-    
-    @IBAction func closeShareViewButtonPressed(sender: AnyObject) {
-        hideShareView()
-    }
-    
-    @IBAction func shareToFriends(sender: AnyObject) {
-        shareManager.shareToWeixinFriend()
-    }
-    
-    @IBAction func shareToPengyouquan(sender: AnyObject) {
-        shareManager.shareToWeixinPengyouquan()
-    }
-    
-    @IBAction func shareToWeibo(sender: AnyObject) {
-        shareManager.shareToWeibo()
-    }
-    
-    @IBAction func shareToQQFriends(sender: AnyObject) {
-        shareManager.shareToQQFriend()
-    }
-    
-    
-    @IBAction func shareToQzone(sender: AnyObject) {
-        shareManager.shareToQzone()
-    }
-    
-    @IBAction func copyLink(sender: AnyObject) {
-        shareManager.copyLink()
-    }
-
     
     
 }

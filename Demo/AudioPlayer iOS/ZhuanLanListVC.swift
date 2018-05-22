@@ -46,6 +46,17 @@ class ZhuanLanListVC: BaseUIViewController, UITableViewDataSource, UITableViewDe
             self.tableView.reloadData()
         }
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+        if segue.identifier == "loadWebPageSegue" {
+            let dest = segue.destination as! WebPageViewController
+            
+            let params = sender as! [String: String]
+            dest.url = NSURL(string: params["url"]!)
+            dest.title = params["title"]
+        }
+    }
 }
 
 extension ZhuanLanListVC {
@@ -64,6 +75,16 @@ extension ZhuanLanListVC {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 110
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath as IndexPath, animated: false)
+        let row = indexPath.row
+        let zhuanlan = zhuanLans[row]
+        var sender = [String:String]()
+        sender["title"] = zhuanlan.name
+        sender["url"] = zhuanlan.url
+        performSegue(withIdentifier: "loadWebPageSegue", sender: sender)
     }
 }
 

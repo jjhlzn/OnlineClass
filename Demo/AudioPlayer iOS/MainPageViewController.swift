@@ -23,12 +23,10 @@ class CourseMainPageViewController: BaseUIViewController {
     var extendFunctionImageStore = ExtendFunctionImageStore()
 
     var keyValueStore = KeyValueStore()
-    //var freshHeaderAdvTimer: Timer!
 
     var loading = LoadingOverlay()
     var refreshControl:UIRefreshControl!
     var refreshing = false
-    var imageView: GIFImageView!
     
     var toutiao = Toutiao()
     var ads = [Advertise]()
@@ -37,10 +35,12 @@ class CourseMainPageViewController: BaseUIViewController {
     
     var buyPayCourseDelegate: ConfirmDelegate2!
     var isDisapeared = false
+    var navigationManager : NavigationBarManager!
     
     override func viewDidLoad() {
         super.viewDidLoad()
     
+        navigationManager = NavigationBarManager(self)
         Utils.setNavigationBarAndTableView(self, tableView: tableView)
         
         tableView.separatorStyle = .none
@@ -68,7 +68,8 @@ class CourseMainPageViewController: BaseUIViewController {
     }
     
     func setNavigationBar() {
-        setMusicButton()
+        self.navigationItem.rightBarButtonItems = []
+        navigationManager.setMusicButton()
         setKefuButton()
         let searchLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 30))
         searchLabel.layer.masksToBounds = true
@@ -90,16 +91,6 @@ class CourseMainPageViewController: BaseUIViewController {
         performSegue(withIdentifier: "newSearchSegue", sender: nil)
     }
     
-    func setMusicButton() {
-        self.imageView = GIFImageView(frame: CGRect(x: 0, y: 0, width: 32, height: 32))
-        self.imageView.backgroundColor = nil
-        self.imageView.animate(withGIFNamed: "demo")
-        self.imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tapMusicBtnHandler(sender:))))
-        let button = UIBarButtonItem(customView: self.imageView)
-        
-        self.navigationItem.rightBarButtonItem  = button
-    }
-    
     func setKefuButton() {
         let b = UIButton(type: .custom)
         b.setImage( UIImage(named: "new_kefu"), for: .normal)
@@ -116,14 +107,6 @@ class CourseMainPageViewController: BaseUIViewController {
         performSegue(withIdentifier: "loadWebPageSegue", sender: sender)
     }
     
-    @objc func tapMusicBtnHandler(sender: UITapGestureRecognizer? = nil) {
-        if self.imageView.isAnimatingGIF {
-            self.imageView.stopAnimatingGIF()
-          
-        } else {
-            self.imageView.startAnimatingGIF()
-        }
-    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -139,7 +122,7 @@ class CourseMainPageViewController: BaseUIViewController {
         super.viewWillDisappear(animated)
         
         //freshHeaderAdvTimer.invalidate()
-        imageView.prepareForReuse()
+        //imageView.prepareForReuse()
         self.navigationItem.rightBarButtonItem  = nil
         
         isDisapeared = false

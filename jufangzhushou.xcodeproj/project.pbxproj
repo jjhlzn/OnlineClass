@@ -160,6 +160,7 @@
 		EF39750920AD205B0033620D /* MyInfoSecondSectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF39750820AD205B0033620D /* MyInfoSecondSectionCell.swift */; };
 		EF39750B20AD20D20033620D /* MyInfoThirdSectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF39750A20AD20D20033620D /* MyInfoThirdSectionCell.swift */; };
 		EF39750D20AD28410033620D /* MyInfoCommonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF39750C20AD28410033620D /* MyInfoCommonCell.swift */; };
+		EF39750F20B3B8340033620D /* NavigationBarManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF39750E20B3B8340033620D /* NavigationBarManager.swift */; };
 		EF422C69209ECD5300419FCA /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF422C68209ECD5300419FCA /* LaunchViewController.swift */; };
 		EF67C0431E24A901004EEAF0 /* AlbumHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF67C0421E24A901004EEAF0 /* AlbumHeaderCell.swift */; };
 		EF6C0F3820A2DA3400BE1829 /* MyGIfImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF6C0F3720A2DA3400BE1829 /* MyGIfImageView.swift */; };
@@ -348,6 +349,7 @@
 		EF39750820AD205B0033620D /* MyInfoSecondSectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MyInfoSecondSectionCell.swift; path = cells/MyInfoSecondSectionCell.swift; sourceTree = "<group>"; };
 		EF39750A20AD20D20033620D /* MyInfoThirdSectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInfoThirdSectionCell.swift; sourceTree = "<group>"; };
 		EF39750C20AD28410033620D /* MyInfoCommonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MyInfoCommonCell.swift; path = cells/MyInfoCommonCell.swift; sourceTree = "<group>"; };
+		EF39750E20B3B8340033620D /* NavigationBarManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarManager.swift; sourceTree = "<group>"; };
 		EF422C68209ECD5300419FCA /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
 		EF67C0421E24A901004EEAF0 /* AlbumHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumHeaderCell.swift; sourceTree = "<group>"; };
 		EF6C0F3720A2DA3400BE1829 /* MyGIfImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGIfImageView.swift; sourceTree = "<group>"; };
@@ -432,6 +434,7 @@
 				1C1E691F1CC9FB5D00CEA029 /* customCell */,
 				1C3479BE1CF3DECC003FEF05 /* controller */,
 				1C154A4F1CDACCA6003B900C /* MyUISlider.swift */,
+				EF39750E20B3B8340033620D /* NavigationBarManager.swift */,
 			);
 			name = ui;
 			sourceTree = "<group>";
@@ -1073,6 +1076,7 @@
 				1CEFF7921CC07838000DEFF7 /* UIImageView.swift in Sources */,
 				1C6420F61CD0605200119272 /* CommentController.swift in Sources */,
 				EF422C69209ECD5300419FCA /* LaunchViewController.swift in Sources */,
+				EF39750F20B3B8340033620D /* NavigationBarManager.swift in Sources */,
 				1CEFF79E1CC21E98000DEFF7 /* BaseUIViewController.swift in Sources */,
 				1C2451D11CE89EB800F350DA /* CoreDataStack.swift in Sources */,
 				1C62FF571D80587B00A97869 /* NewPlayerController.swift in Sources */,
