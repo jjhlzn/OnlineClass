@@ -10,10 +10,12 @@ import UIKit
 import LTScrollView
 
 class BeforeCourseVC: UIViewController, LTTableViewProtocal {
-
+    
+    var beforeCourses = [Course]()
+    
     private lazy var tableView: UITableView = {
         print(UIScreen.main.bounds.height)
-        let H: CGFloat = glt_iphoneX ? (view.bounds.height - 64 - 24 - 34) : view.bounds.height  - 64
+        let H: CGFloat = glt_iphoneX ? (view.bounds.height - 38) : view.bounds.height  - 38
         let tableView = tableViewConfig(CGRect(x: 0, y: 0, width: view.bounds.width, height: H), self, self, nil)
         //tableView.separatorStyle = .none
         tableView.bounces = false
@@ -33,6 +35,21 @@ class BeforeCourseVC: UIViewController, LTTableViewProtocal {
         
         self.tableView.register(UINib(nibName:"BeforeCourseHeaderCell", bundle:nil),forCellReuseIdentifier:"BeforeCourseHeaderCell")
         self.tableView.register(UINib(nibName:"BeforeCourseCell", bundle:nil),forCellReuseIdentifier:"BeforeCourseCell")
+        
+        loadBeforeCourses()
+    }
+    
+    func loadBeforeCourses() {
+        let req = GetCourseInfoRequest()
+        let song = Utils.getCurrentSong()
+        req.id = song.id
+        BasicService().sendRequest(url: ServiceConfiguration.GET_COURSEINFO, request: req) {
+            (resp: GetCourseInfoResponse) -> Void in
+            if resp.course != nil {
+                self.beforeCourses = (resp.course?.beforeCourses)!
+                self.tableView.reloadData()
+            }
+        }
     }
     
 }
@@ -40,7 +57,7 @@ class BeforeCourseVC: UIViewController, LTTableViewProtocal {
 extension BeforeCourseVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return 1 + beforeCourses.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -50,7 +67,8 @@ extension BeforeCourseVC: UITableViewDelegate, UITableViewDataSource {
             return cell
         } else {
             let cell : BeforeCourseCell = cellWithTableView(tableView)
-            
+            cell.course = beforeCourses[row - 1]
+            cell.update()
             return cell
         }
     }
@@ -66,7 +84,7 @@ extension BeforeCourseVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        print("点击了第\(indexPath.row + 1)行")
+        //print("点击了第\(indexPath.row + 1)行")
     }
 
 }

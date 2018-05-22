@@ -10,7 +10,14 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PlayerHeaderView" customModule="AudioPlayer" customModuleProvider="target"/>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PlayerHeaderView" customModule="AudioPlayer" customModuleProvider="target">
+            <connections>
+                <outlet property="listenerCountLabel" destination="6qz-mS-Vro" id="ACy-se-TD1"/>
+                <outlet property="playerBtn" destination="nWE-cn-R6P" id="haA-D5-fz9"/>
+                <outlet property="playerStatusLabel" destination="G9g-la-8Qq" id="mIg-nB-owO"/>
+                <outlet property="songImageView" destination="3Ej-dD-Idw" id="G1f-hH-1H4"/>
+            </connections>
+        </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
             <rect key="frame" x="0.0" y="0.0" width="375" height="229"/>

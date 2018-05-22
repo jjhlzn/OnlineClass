@@ -34,7 +34,7 @@ class ApplyBrowserController : IapSupportWebPageViewController, WKNavigationDele
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "申请"
+        self.title = "资讯"
         url = NSURL(string: ServiceLinkManager.ShenqingUrl)!
         
         

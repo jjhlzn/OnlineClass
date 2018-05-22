@@ -101,7 +101,7 @@ class Toutiao : BaseModelObject {
     var title = ""
 }
 
-public class SearchResult {
+class SearchResult : BaseModelObject{
     var title = ""
     var content = ""
     var clickUrl = ""
@@ -111,6 +111,17 @@ public class SearchResult {
     var desc = ""
 }
 
+
+ class Course : BaseModelObject {
+    
+    var id = "";
+    var sequence : Int = 0;
+    var title = "";
+    var time = "";
+    var introduction = "";
+    var url = "";
+    var beforeCourses = [Course]()
+}
 
 class Song : BaseModelObject {
     var id: String = ""
@@ -149,6 +160,7 @@ class LiveSong : Song {
     
     var startDateTime: String?
     var listenPeople: String = ""
+    var introduction: String = ""
     
     
     var startTime: String? {

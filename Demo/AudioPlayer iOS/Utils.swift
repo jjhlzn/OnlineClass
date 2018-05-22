@@ -54,16 +54,13 @@ class Utils {
         return appDelegate.audioPlayer
     }
     
-    static func delay(delay:Double, closure:()->()) {
+    static func delay(delay:Double, closure:@escaping ()->()) {
         
-        //TODO: 临时去掉
-        /*
-        dispatch_after(
-            dispatch_time(
-                DISPATCH_TIME_NOW,
-                Int64(delay * Double(NSEC_PER_SEC))
-            ),
-            dispatch_get_main_queue(), closure) */
+        DispatchQueue.main.asyncAfter(deadline: .now() + delay) { // change 2 to desired number of seconds
+            // Your code with delay
+            closure()
+        }
+        
     }
     
     static func getCurrentTime() -> String {
@@ -182,9 +179,40 @@ class Utils {
         }
         return false
     }
+    
+
+    static func getCurrentSong() -> LiveSong {
+        let audioPlayer = getAudioPlayer()
+        let song = (audioPlayer.currentItem as! MyAudioItem).song as! LiveSong
+        return song
+    }
+
+    static func setNavigationBarAndTableView(_ controller: UIViewController,  tableView: UITableView?) {
+        if #available(iOS 11.0, *) {
+            tableView?.contentInsetAdjustmentBehavior = .never
+            if UIDevice().isX() {
+                tableView?.contentInset = UIEdgeInsetsMake(24, 0, 49, 0)
+            }
+            
+        } else {
+            controller.automaticallyAdjustsScrollViewInsets = false
+        }
+    }
 
 
-
+   static func displayMessage(message : String) {
+        let alertView = UIAlertView()
+        //alertView.title = "系统提示"
+        alertView.message = message
+        alertView.addButton(withTitle: "好的")
+        alertView.cancelButtonIndex=0
+        alertView.show()
+        
+    }
+    
+    static func dismissKeyboard(_ view: UIView) {
+        view.endEditing(true)
+    }
 }
 
 extension UISearchBar {

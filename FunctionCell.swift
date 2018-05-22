@@ -164,7 +164,7 @@ class ExtendFunctionMananger : NSObject {
     private func getImageWidth() -> CGFloat {
         let screenWidth = UIScreen.main.bounds.width
         if isiPhone4Screen {
-            return screenWidth / 4 * 0.6 * 0.75
+            return screenWidth / 4 * 0.65 * 0.75
         } else {
             return screenWidth / 4 * 0.7 * 0.75
         }
@@ -174,7 +174,7 @@ class ExtendFunctionMananger : NSObject {
         get {
             let screenWidth = UIScreen.main.bounds.width
             if isiPhone4Screen {
-                return screenWidth / 4 * 0.95 * 0.7
+                return screenWidth / 4 * 0.7
             } else {
                 return screenWidth / 4  * 0.75
             }
@@ -210,7 +210,7 @@ class ExtendFunctionMananger : NSObject {
         } else if isiPhone6Screen {
            imageView.center.y = cellHeight / 2 - 2 - Y
         } else {
-           imageView.center.y = cellHeight / 2 - 5 - Y
+           imageView.center.y = cellHeight / 2 - 0 - Y + 1
         }
         //print("superView.center.x = \(superView.center.x), superView.center.y - 10 = \(superView.center.y - 10)")
         imageView.image = overlayImage(function: function) //UIImage(named: function.imageName)
@@ -260,16 +260,18 @@ class ExtendFunctionMananger : NSObject {
         label.tag = index
         
         label.center.x = superView.bounds.width / 2
+        var fontSize : CGFloat = 12
         if isiPhonePlusScreen {
             label.center.y = cellHeight / 2 + getImageWidth() / 2 + 0
         } else if isiPhone6Screen {
             label.center.y = cellHeight / 2 + getImageWidth() / 2 + 0
         } else {
-            label.center.y = cellHeight / 2 + getImageWidth() / 2 + 0
+            label.center.y = cellHeight / 2 + getImageWidth() / 2 + 1
+            fontSize = 11
         }
 
         label.textAlignment = .center
-        label.font = label.font.withSize(12)
+        label.font = label.font.withSize(fontSize)
         label.textColor = UIColor.black
         label.text = function.name
         

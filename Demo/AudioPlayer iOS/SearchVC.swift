@@ -32,6 +32,13 @@ class SearchVC: BaseUIViewController, UITableViewDataSource, UITableViewDelegate
         searchBar.delegate = self
         searchBar.placeholder = "融资、信用卡、关键字"
         
+        if UIDevice().isX() {
+            let frame = searchView.frame
+            let newFrame = CGRect(x: frame.minX, y: frame.minY + 24, width: frame.width, height: frame.height)
+            searchView.frame = newFrame
+            resultView.frame = newFrame
+        }
+        
         
         //searchBar.frame = frame
         //searchBars.backgroundColor = UIColor.white

@@ -15,6 +15,7 @@
 //
 
 import UIKit
+import KDEAudioPlayer
 
 class LTHeaderView: UIView {
     
@@ -38,6 +39,11 @@ class LTHeaderView: UIView {
         print("tapLabel☄")
     }
     
+    func getAudioPlayer() -> AudioPlayer {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        return appDelegate.audioPlayer
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         /*
@@ -46,6 +52,8 @@ class LTHeaderView: UIView {
         backgroundColor = UIColor.white */
         
         let headerView = PlayerHeaderView(frame: frame)
+        headerView.audioPlayer = getAudioPlayer()
+        headerView.initalize()
         addSubview(headerView)
     }
     

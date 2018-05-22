@@ -85,7 +85,9 @@ class NewAlbumCell: UITableViewCell {
         
         statusLabel.text = course?.status
         listenerCountLabel.text = "\((course?.listenCount)!)人在线"
+        listenerCountLabel.sizeToFit()
         liveTimeLabel.text = course?.liveTime
+        
     }
 
 }

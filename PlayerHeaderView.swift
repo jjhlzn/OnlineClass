@@ -7,15 +7,24 @@
 //
 
 import UIKit
+import KDEAudioPlayer
 
 class PlayerHeaderView: BaseCustomView {
 
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
+    var audioPlayer : AudioPlayer?
+    @IBOutlet weak var songImageView: UIImageView!
+    
+    @IBOutlet weak var playerBtn: UIImageView!
+    
+    @IBOutlet weak var listenerCountLabel: UILabel!
+    @IBOutlet weak var playerStatusLabel: UILabel!
+
+    
+    func initalize() {
+        let item = audioPlayer?.currentItem as! MyAudioItem
+        let song = item.song as! LiveSong
+        songImageView.kf.setImage(with: URL(string: song.imageUrl))
+        listenerCountLabel.text = song.listenPeople
     }
-    */
 
 }

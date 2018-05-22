@@ -68,7 +68,7 @@ class SongViewController: BaseUIViewController, UIGestureRecognizerDelegate {
         commentController.cancelButton = cancelButton
         commentController.sendButton = sendButton
         commentController.emojiSwitchButton = emojiSwithButton
-        commentController.shareView = shareView
+        //commentController.shareView = shareView
         commentController.viewController = self
         
         commentController.initView(song: song)

@@ -8,12 +8,16 @@
 
 import UIKit
 import LTScrollView
+import KDEAudioPlayer
 
-class CourseOverviewVC: UIViewController, LTTableViewProtocal {
+class CourseOverviewVC: UIViewController, LTTableViewProtocal, LiveCommentDelegate {
 
+    var song : LiveSong!
+    var comments = [Comment]()
+    
     private lazy var tableView: UITableView = {
         print(UIScreen.main.bounds.height)
-        let H: CGFloat = glt_iphoneX ? (view.bounds.height - 64 - 24 - 34) : view.bounds.height  - 64
+        let H: CGFloat = glt_iphoneX ? (view.bounds.height - 38) : view.bounds.height  - 38
         let tableView = tableViewConfig(CGRect(x: 0, y: 0, width: view.bounds.width, height: H), self, self, nil)
         tableView.separatorStyle = .none
         tableView.bounces = false
@@ -22,6 +26,7 @@ class CourseOverviewVC: UIViewController, LTTableViewProtocal {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        song = Utils.getCurrentSong()
         view.backgroundColor = UIColor.white
         view.addSubview(tableView)
         glt_scrollView = tableView
@@ -31,43 +36,77 @@ class CourseOverviewVC: UIViewController, LTTableViewProtocal {
             automaticallyAdjustsScrollViewInsets = false
         }
         
-        
         self.tableView.register(UINib(nibName:"CourseOverviewHeaderCell", bundle:nil),forCellReuseIdentifier:"CourseOverviewHeaderCell")
         self.tableView.register(UINib(nibName:"CourseOverviewCell", bundle:nil),forCellReuseIdentifier:"CourseOverviewCell")
         self.tableView.register(UINib(nibName:"NewCommentHeaderCell", bundle:nil),forCellReuseIdentifier:"NewCommentHeaderCell")
         self.tableView.register(UINib(nibName:"NewCommentCell", bundle:nil),forCellReuseIdentifier:"NewCommentCell")
+        
+        loadComments()
     }
     
+    var lastId = "-1"
+    var isUpdateChat = false
+    func loadComments() {
+        let request = GetSongLiveCommentsRequest(song: song!, lastId: "-1")
+        BasicService().sendRequest(url: ServiceConfiguration.GET_SONG_LIVE_COMMENTS, request: request) {
+                (resp: GetSongLiveCommentsResponse) -> Void in
+            
+                if resp.comments.count > 0 {
+                    self.lastId = resp.comments[0].id!
+                }
+                self.comments = resp.comments
+
+                self.tableView.reloadData()
+        }
+    }
+    
+    //comments是的长度总是为1
+    func afterSendLiveComment(comments: [Comment]) {
+        if comments.count > 0 {
+            self.lastId = comments[0].id!
+        }
+        self.comments.insert(comments[0], at: 0)
+        tableView.reloadData()
+    }
+    
+    
+    func getLastCommentId() -> String {
+        return lastId
+    }
+    
+    func setUpdateChatFlag(isUpdateFlag: Bool) {
+        self.isUpdateChat = isUpdateFlag
+    }
 }
 
 extension CourseOverviewVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 13
+        return 2 + 1 + comments.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let row = indexPath.row
         if row == 0 {
             let cell : CourseOverviewHeaderCell = cellWithTableView(tableView)
+            cell.song = song
+            cell.update()
             return cell
         } else if row == 1 {
-            let cell : CourseOverviewCell = cellWithTableView(tableView) 
+            let cell : CourseOverviewCell = cellWithTableView(tableView)
+            cell.song = song
+            cell.update()
             return cell
         } else if row == 2 {
             let cell : NewCommentHeaderCell = cellWithTableView(tableView)
+            
             return cell
         } else {
             let cell : NewCommentCell = cellWithTableView(tableView)
-            makeRoundImage(cell.headImageView)
             let row = indexPath.row
-            
-            var frame = cell.commentLabel.frame;
-            cell.commentLabel.numberOfLines = 0
-            cell.commentLabel.sizeToFit()
-            frame.size.height = cell.commentLabel.frame.size.height;
-            cell.commentLabel.frame = frame;
-            var height = cell.commentLabel.bounds.height
+            let comment = comments[row - 3]
+            cell.comment = comment
+            cell.update()
             return cell
         }
     }
@@ -78,33 +117,44 @@ extension CourseOverviewVC: UITableViewDelegate, UITableViewDataSource {
             return 56
         } else if row == 1 {
             let cell : CourseOverviewCell = cellWithTableView(tableView)
-            let row = indexPath.row
-
+            cell.overview.text = song.introduction
+            
             var frame = cell.overview.frame;
             cell.overview.numberOfLines = 0
             cell.overview.sizeToFit()
             frame.size.height = cell.overview.frame.size.height;
             cell.overview.frame = frame;
-            var height = cell.overview.bounds.height
+            var height =  cell.overview.bounds.height
 
-            return  height + 15
+            return height
 
         } else if row == 2 {
             return 56
         } else {
             let cell : NewCommentCell = cellWithTableView(tableView)
-            cell.timeLabel.text = "测试"
-            makeRoundImage(cell.headImageView)
+            //cell.timeLabel.text = "测试"
+            //makeRoundImage(cell.headImageView)
             let row = indexPath.row
-            
+            let comment = comments[row - 3]
+            cell.comment = comment
+       
+            cell.nameLabel.text = comment.userId
+            cell.timeLabel.text = comment.time
+            cell.commentLabel.text = comment.content.emojiUnescapedString
             var frame = cell.commentLabel.frame;
             cell.commentLabel.numberOfLines = 0
             cell.commentLabel.sizeToFit()
             frame.size.height = cell.commentLabel.frame.size.height;
             cell.commentLabel.frame = frame;
-            var height = cell.commentLabel.bounds.height
+            var height = 50 + cell.commentLabel.bounds.height + 28
             
-            return  height + 50 + 20
+            if height < 85 {
+                height = 85
+            }
+            
+            //QL1("content = \(comment.content.emojiUnescapedString), height = \(height)")
+            //NSLog("row = \(row), height = \(heightCache[comment.content])" )
+            return  height
         }
     }
     

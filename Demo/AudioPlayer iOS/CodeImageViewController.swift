@@ -14,10 +14,9 @@ import Kingfisher
 
 class CodeImageViewController: BaseUIViewController, FSPagerViewDataSource, FSPagerViewDelegate {
     
-    @IBOutlet weak var shareView: UIView!
-    @IBOutlet weak var pengyouquanButton: UIButton!
-    @IBOutlet weak var wechatButton: UIButton!
+ 
     var imageUrls = [String]()
+    var shareView: ShareView!
     
     @IBOutlet weak var pagerView: FSPagerView! {
         didSet {
@@ -42,6 +41,7 @@ class CodeImageViewController: BaseUIViewController, FSPagerViewDataSource, FSPa
         pagerView.dataSource = self
         pagerView.delegate = self
         
+        shareView = ShareView(frame: CGRect(x : 0, y: UIScreen.main.bounds.height - 233, width: UIScreen.main.bounds.width, height: 233), controller: self)
         /*
         let loginUser = LoginUserStore().getLoginUser()!
         
@@ -67,14 +67,10 @@ class CodeImageViewController: BaseUIViewController, FSPagerViewDataSource, FSPa
             self.pagerView.reloadData()
         }
     }
+
     
-    func addLineBorder(field: UIButton) {
-        /*
-        let bottomBorder = CALayer()
-        bottomBorder.frame = CGRectMake(0.0, 0, field.frame.size.width, 1.0);
-        bottomBorder.backgroundColor = UIColor.lightGrayColor().CGColor
-        field.layer.addSublayer(bottomBorder)
- */
+    @IBAction func shareBtnPressed(_ sender: Any) {
+        shareView.show()
     }
     
     public func numberOfItems(in pagerView: FSPagerView) -> Int {
@@ -84,6 +80,7 @@ class CodeImageViewController: BaseUIViewController, FSPagerViewDataSource, FSPa
     public func pagerView(_ pagerView: FSPagerView, cellForItemAt index: Int) -> FSPagerViewCell {
         let cell = pagerView.dequeueReusableCell(withReuseIdentifier: "cell", at: index)
         cell.contentView.layer.shadowRadius = 0
+        cell.textLabel?.backgroundColor = nil
         cell.imageView?.kf.setImage(with: URL(string: imageUrls[index]))
         QL1(imageUrls[index])
         //cell.imageView?.image = UIImage(named: "icon")
@@ -92,32 +89,16 @@ class CodeImageViewController: BaseUIViewController, FSPagerViewDataSource, FSPa
         return cell
     }
 
+    func pagerView(_ pagerView: FSPagerView, didSelectItemAt index: Int) {
+        //QL1("FSPagerView index = " + String(index) + " selected")
+        pagerView.deselectItem(at: index, animated: true)
+    }
     
-    @IBAction func shareToFriends(sender: AnyObject) {
-        shareManager.shareToWeixinFriend()
+    func pagerView(_ pagerView: FSPagerView, willDisplay cell: FSPagerViewCell, forItemAt index: Int) {
+        
+        shareView.setShareUrl(imageUrls[index])
     }
 
-    @IBAction func shareToPengyouquan(sender: AnyObject) {
-        shareManager.shareToWeixinPengyouquan()
-    }
-    
-    @IBAction func shareToWeibo(sender: AnyObject) {
-        shareManager.shareToWeibo()
-    }
-    
-    @IBAction func shareToQQFriends(sender: AnyObject) {
-        shareManager.shareToQQFriend()
-    }
-    
-    
-    @IBAction func shareToQzone(sender: AnyObject) {
-        shareManager.shareToQzone()
-    }
-    
-    @IBAction func copyLink(sender: AnyObject) {
-        shareManager.copyLink()
-    }
-    
     
     
 }

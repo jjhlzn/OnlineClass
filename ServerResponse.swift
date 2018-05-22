@@ -223,7 +223,7 @@ class GetAlbumSongsResponse : ServerResponse {
                     adImage.title = adImageJson["title"] as! String
                     liveSong.scrollAds.append(adImage)
                 }
-                
+                liveSong.introduction = json["introduction"] as! String
                 song = liveSong
             } else {
                 song = Song()
@@ -237,6 +237,7 @@ class GetAlbumSongsResponse : ServerResponse {
             song.imageUrl = json["image"] as! String
             song.shareTitle = json["shareTitle"] as! String
             song.shareUrl = json["shareUrl"] as! String
+            
             
             let settings = SongSetting()
             song.settings = settings
@@ -1324,6 +1325,45 @@ class NewSearchResponse : ServerResponse {
             searchResult.desc = eachJson["desc"].string!
             
             searchResults.append(searchResult)
+        }
+    }
+}
+
+
+class GetCourseInfoRequest : ServerRequest {
+    var id = ""
+    override var params: [String : AnyObject] {
+        get {
+            var parameters = super.params
+            parameters["id"] = id as AnyObject
+            return parameters
+        }
+    }
+}
+class GetCourseInfoResponse : ServerResponse {
+    var course : Course?
+    override func parseJSON(request: ServerRequest, json: NSDictionary) {
+        super.parseJSON(request: request, json: json)
+        let j = JSON(json)
+        let courseJson = j["course"]
+        
+        course = Course()
+        course?.id = courseJson["id"].stringValue
+        course?.time = courseJson["time"].stringValue
+        course?.title = courseJson["title"].stringValue
+        course?.introduction = courseJson["introduction"].stringValue
+        
+        var index = 1
+        let beforeCoursesJson = courseJson["beforeCourses"].arrayValue
+        for eachJSON in beforeCoursesJson {
+            let child = Course()
+            child.sequence = index
+            child.id = eachJSON["id"].stringValue
+            child.time = eachJSON["time"].stringValue
+            child.title = eachJSON["title"].stringValue
+            child.url = eachJSON["url"].stringValue
+            course?.beforeCourses.append(child)
+            index += 1
         }
     }
 }

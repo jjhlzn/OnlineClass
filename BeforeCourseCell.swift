@@ -9,6 +9,8 @@
 import UIKit
 
 class BeforeCourseCell: UITableViewCell {
+    
+    var course : Course?
 
     @IBOutlet weak var durationLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
@@ -23,4 +25,10 @@ class BeforeCourseCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    func update() {
+        titleLabel.text = "\((course?.sequence)!).\((course?.title)!)"
+        durationLabel.text = course?.time
+    }
+    
+
 }

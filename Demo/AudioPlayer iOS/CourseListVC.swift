@@ -8,6 +8,7 @@
 
 import UIKit
 import QorumLogs
+import KDEAudioPlayer
 
 class CourseListVC: BaseUIViewController, UITableViewDataSource, UITableViewDelegate, PagableControllerDelegate {
 
@@ -67,6 +68,16 @@ class CourseListVC: BaseUIViewController, UITableViewDataSource, UITableViewDele
         pagableController.isShowLoadCompleteText = false
         pagableController.loadMore()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        isDisapeared = false
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        isDisapeared = true
+    }
 
     //PageableControllerDelegate
     func searchHandler(respHandler: @escaping ((_ resp: ServerResponse) -> Void)) {
@@ -82,6 +93,43 @@ class CourseListVC: BaseUIViewController, UITableViewDataSource, UITableViewDele
     }
     
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+        if segue.identifier == "loadWebPageSegue" {
+            let dest = segue.destination as! WebPageViewController
+            
+            let params = sender as! [String: String]
+            dest.url = NSURL(string: params["url"]!)
+            
+            dest.title = params["title"]
+        } else if segue.identifier == "buyVipSegue" {
+            let dest = segue.destination as! WebPageViewController
+            dest.url = NSURL(string: ServiceLinkManager.MyAgentUrl)
+            dest.title = "Vip购买"
+        } else if segue.identifier == "newPlayerSegue" {
+            let song = sender as! Song
+            let audioPlayer = getAudioPlayer()
+            //如果当前歌曲已经在播放，就什么都不需要做
+            if audioPlayer.currentItem != nil {
+                if song.id == (audioPlayer.currentItem! as! MyAudioItem).song.id {
+                    return
+                }
+            }
+            
+            var audioItems = [AudioItem]()
+            var   url = URL(string: song.url)
+            
+            let audioItem = MyAudioItem(song: song, highQualitySoundURL: url)
+            //(audioItem as! MyAudioItem).song = item
+            
+            audioItems.append(audioItem!)
+            // }
+            
+            audioPlayer.delegate = nil
+            audioPlayer.play(items: audioItems, startAtIndex: 0)
+        }
+    }
+    
     var albumDataArray = [Int]()
 
 }
@@ -239,5 +287,78 @@ extension CourseListVC {
             return 18
         }
         return 1
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath as IndexPath, animated: false)
+        let row = indexPath.row
+        let section = indexPath.section
+        let album: Album!
+        if section == 0 {
+            album = pagableController.data[row]
+        } else if section == 1 {
+            album = pagableController.data[freeAlbumCount + row]
+        } else {
+            let index = freeAlbumCount + paidAlbumCount + row
+            QL1("freeAlbumCount = \(freeAlbumCount), paidAlbumCount = \(paidAlbumCount), index = \(index)")
+            album = pagableController.data[index]
+        }
+        //performSegue(withIdentifier: "newPlayerSegue", sender: nil)
+        if !album.isReady {
+            self.displayMessage(message: "该课程未上线，敬请期待！")
+            tableView.deselectRow(at: indexPath as IndexPath, animated: false)
+            return
+        }
+        
+        loading.showOverlay(view: self.view)
+        
+        let req = GetAlbumSongsRequest(album: album)
+        BasicService().sendRequest(url: ServiceConfiguration.GET_ALBUM_SONGS, request: req) {
+            (resp: GetAlbumSongsResponse) -> Void in
+            
+            self.loading.hideOverlayView()
+            if resp.status == ServerResponseStatus.TokenInvalid.rawValue {
+                self.displayMessage(message: "请重新登录")
+                tableView.deselectRow(at: indexPath as IndexPath, animated: false)
+                return
+            }
+            
+            
+            //目前这个逻辑之针对VIP课程权限够的情况
+            if resp.status == ServerResponseStatus.NoEnoughAuthority.rawValue {
+                self.displayVipBuyMessage(message: resp.errorMessage!, delegate: self.buyPayCourseDelegate!)
+                tableView.deselectRow(at: indexPath as IndexPath, animated: false)
+                return
+            }
+            
+            if self.isDisapeared {
+                return
+            }
+            
+            let songs = resp.resultSet
+            if (songs.count == 0) {
+                self.displayMessage(message: "获取课程失败")
+                return
+            }
+            
+            let song = songs[0]
+            self.performSegue(withIdentifier: "newPlayerSegue", sender: song)
+        }
+    }
+    
+    func loadAlbumSongs(_ album: Album) {
+        let req = GetAlbumSongsRequest(album: album)
+        BasicService().sendRequest(url: ServiceConfiguration.GET_ALBUM_SONGS, request: req) {
+            (resp: GetAlbumSongsResponse) -> Void in
+            
+            let songs = resp.resultSet
+            if (songs.count == 0) {
+                self.displayMessage(message: "获取课程失败")
+                return
+            }
+            
+            let song = songs[0]
+            self.performSegue(withIdentifier: "newPlayerSegue", sender: song)
+        }
     }
 }

@@ -9,15 +9,22 @@
 import UIKit
 import StoreKit
 import LTScrollView
+import KDEAudioPlayer
 
 class NewPlayerController: UIViewController, UIScrollViewDelegate {
    
+    var song : LiveSong!
     var titleView : UIView?
     var bgImage: UIImage?
     var showdowImage: UIImage?
     var imageView : UIImageView?
     var bgColor: UIColor?
     var isTouming : Bool = true
+    
+    //var shareOverlay: UIView!
+    var shareView: ShareView!
+    var commentKeyboard: CommentKeyboard!
+    
     
     private lazy var viewControllers: [UIViewController] = {
         let oneVc = CourseOverviewVC()
@@ -47,49 +54,94 @@ class NewPlayerController: UIViewController, UIScrollViewDelegate {
     private lazy var advancedManager: LTAdvancedManager = {
         let Y: CGFloat = glt_iphoneX ? 64 + 24.0 : 64.0
         let H: CGFloat = glt_iphoneX ? (view.bounds.height - Y - 34) : view.bounds.height - Y
-        let advancedManager = LTAdvancedManager(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height), viewControllers: viewControllers, titles: titles, currentViewController: self, layout: layout, headerViewHandle: {[weak self] in
+        let advancedManager = LTAdvancedManager(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: UIScreen.main.bounds.height), viewControllers: viewControllers, titles: titles, currentViewController: self, layout: layout, headerViewHandle: {[weak self] in
             guard let strongSelf = self else { return UIView() }
             let headerView = strongSelf.testLabel()
             return headerView
         })
         advancedManager.delegate = self
-        
-      
-      
         return advancedManager
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let audioPlayer = Utils.getAudioPlayer()
+        self.song = (audioPlayer.currentItem as! MyAudioItem).song as! LiveSong
+        
         view.backgroundColor = UIColor.white
         self.automaticallyAdjustsScrollViewInsets = false
         view.addSubview(advancedManager)
         advancedManagerConfig()
         
-        let overlay = UIView(frame: UIScreen.main.bounds)
-        overlay.backgroundColor = UIColor(white: 0, alpha: 0.65)
+        //shareOverlay = UIView(frame: UIScreen.main.bounds)
+        //shareOverlay.backgroundColor = UIColor(white: 0, alpha: 0.65)
         
-        let shareView = ShareView(frame: CGRect(x : 0, y: UIScreen.main.bounds.height - 233, width: UIScreen.main.bounds.width, height: 233))
+        shareView = ShareView(frame: CGRect(x : 0, y: UIScreen.main.bounds.height - 233, width: UIScreen.main.bounds.width, height: 233), controller: self)
+        //shareView.setup()
         
         //view.addSubview(overlay)
         //view.addSubview(shareView)
         
-        let commentKB = CommentKeyboard(frame: CGRect(x : 0, y: UIScreen.main.bounds.height - 156, width: UIScreen.main.bounds.width, height: 156))
+        commentKeyboard = CommentKeyboard(frame: CGRect(x : 0, y: UIScreen.main.bounds.height - 156, width: UIScreen.main.bounds.width, height: 156), shareView: shareView, viewController: self, liveDelegate: viewControllers[0] as! LiveCommentDelegate)
         //view.addSubview(overlay)
         
-        view.addSubview(commentKB)
+        view.addSubview(commentKeyboard)
         setNavigationBar(true)
-        
-       
     }
+    
+    func setBackButton(_ isTranslucent : Bool) {
+        let b = UIButton(type: .custom)
+        
+        var imageName = "back_black"
+        if isTranslucent {
+            imageName = "back_white"
+        }
+        b.setImage( UIImage(named: imageName), for: .normal)
+        b.frame = CGRect(x: 0, y: 0, width: 8, height: 8)
+        let button = UIBarButtonItem(customView: b)
+        b.addTarget(self, action: #selector(backPressed), for: .touchUpInside)
+        self.navigationItem.leftBarButtonItem  = button
+    }
+    
+    
+    @objc func backPressed() {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    func setShareButton(_ isTranslucent : Bool) {
+        let b = UIButton(type: .custom)
+        var imageName = "share_black"
+        if isTranslucent {
+            imageName = "share_white"
+        }
+        b.setImage( UIImage(named: imageName), for: .normal)
+        b.frame = CGRect(x: 0, y: 0, width: 8, height: 8)
+        let button = UIBarButtonItem(customView: b)
+        b.addTarget(self, action: #selector(sharePressed), for: .touchUpInside)
+        self.navigationItem.rightBarButtonItem  = button
+    }
+    
+    @objc func sharePressed(_ isTranslucent : Bool) {
+        //view.addSubview(shareOverlay)
+        //view.addSubview(shareView)
+        shareView.show()
+    }
+    
+    
     override func viewWillAppear(_ animated: Bool) {
         print("NewPlayerController viewWillAppear called")
         setNavigationBar(self.isTouming)
+        
+        commentKeyboard.commentController.addKeyboardNotify()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         resumeNavigationBar()
+        
+        commentKeyboard.commentController.removeKeyboardNotify()
+        commentKeyboard.commentController.dispose()
     }
     
     func resumeNavigationBar() {
@@ -110,39 +162,15 @@ class NewPlayerController: UIViewController, UIScrollViewDelegate {
             let searchLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 30))
             
             searchLabel.backgroundColor =  UIColor(white: 0, alpha: 0)
-            searchLabel.text = "测试"
+            searchLabel.text = song.name
             searchLabel.textColor =  UIColor.black
             searchLabel.textAlignment = .center
             self.navigationItem.titleView = searchLabel
         }
-        /*
-        if isTranslucent {
-            self.bgImage = self.navigationController?.navigationBar.backgroundImage(for: .default)
-            self.showdowImage = self.navigationController?.navigationBar.shadowImage
-            //self.bgColor = self.navigationController?.view.backgroundColor
-            
-            self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-            self.navigationController?.navigationBar.shadowImage = UIImage()
-            self.navigationController?.navigationBar.isTranslucent = isTranslucent
-            //self.navigationController?.view.backgroundColor = .clear
-            self.titleView = self.navigationItem.titleView
-            let label = UILabel()
-            label.backgroundColor = UIColor.white
-            self.navigationItem.titleView = label
-        } else {
-            self.navigationController?.navigationBar.setBackgroundImage(self.bgImage, for: .default)
-            self.navigationController?.navigationBar.shadowImage = self.showdowImage
-            self.navigationController?.view.backgroundColor = UIColor.white
-            
-            self.navigationController?.navigationBar.isTranslucent = isTranslucent
-            let searchLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 30))
+        
+        setShareButton(isTranslucent)
+        setBackButton(isTranslucent)
 
-            searchLabel.backgroundColor =  UIColor(white: 0, alpha: 0)
-            searchLabel.text = "测试"
-            searchLabel.textColor =  UIColor.black
-            searchLabel.textAlignment = .center
-            self.navigationItem.titleView = searchLabel
-        } */
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -157,8 +185,6 @@ class NewPlayerController: UIViewController, UIScrollViewDelegate {
 }
 
 extension NewPlayerController: LTAdvancedScrollViewDelegate {
-    
-    //MARK: 具体使用请参考以下
     private func advancedManagerConfig() {
         //MARK: 选中事件
         advancedManager.advancedDidSelectIndexHandle = {
@@ -189,7 +215,8 @@ extension NewPlayerController: LTAdvancedScrollViewDelegate {
 extension NewPlayerController {
     private func testLabel() -> LTHeaderView {
         let H = 229.0 * UIScreen.main.bounds.width / 375.0
-        return LTHeaderView(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 229))
+        let headerView = LTHeaderView(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 229))
+        return headerView
     }
 }
 

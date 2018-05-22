@@ -9,7 +9,7 @@
 import UIKit
 
 class CourseOverviewCell: UITableViewCell {
-
+    var song : LiveSong?
     @IBOutlet weak var overview: UILabel!
     
     override func awakeFromNib() {
@@ -21,6 +21,13 @@ class CourseOverviewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+        
+    
+    }
+    
+    func update() {
+        overview.text = song?.introduction
+        //overview.sizeToFit()
     }
     
 }

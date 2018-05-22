@@ -55,9 +55,7 @@ class MyInfoVieController: BaseUIViewController, UITableViewDataSource, UITableV
         lineSections.append(sixthSections)
         lineSections.append(seventhSections)
         
-        if #available(iOS 11.0, *) {
-            tableView.contentInsetAdjustmentBehavior = .never
-        }
+        Utils.setNavigationBarAndTableView(self, tableView: tableView)
         
         tableView.dataSource = self
         tableView.delegate = self

@@ -24,14 +24,14 @@ protocol LiveCommentDelegate {
 class CommentController : NSObject, UITextViewDelegate {
     let TAG = "CommentController"
     var overlay = UIView()
-    var viewController: BaseUIViewController!
+    var viewController: UIViewController!
     var delegate: CommentDelegate?
     var liveDelegate: LiveCommentDelegate?
     var bottomView: UIView!
     
     var bottomView2: UIView!
     var commentFiled2: UITextView!
-    var shareView: UIView!
+    var shareView: ShareView!
     
      var commentInputButton: UIButton!
     var emojiSwitchButton : UIButton?
@@ -54,7 +54,7 @@ class CommentController : NSObject, UITextViewDelegate {
     var socket: SocketIOClient?
     let loginUserStore = LoginUserStore()
     
-    func textViewDidChange(textView: UITextView) { //Handle the text changes here
+    func textViewDidChange(_ textView: UITextView) { //Handle the text changes here
         //print(textView.text); //the textView parameter is the textView where text was changed
         if textView.text.length > 0 {
             enableSendButton()
@@ -201,7 +201,7 @@ class CommentController : NSObject, UITextViewDelegate {
         if emojiKeyboardView != nil {
             closeEmojiKeyboard()
         }
-        viewController.dismissKeyboard()
+        Utils.dismissKeyboard(self.viewController.view)
         commentFiled2.resignFirstResponder()
     }
     
@@ -221,7 +221,7 @@ class CommentController : NSObject, UITextViewDelegate {
         
         let commentContent = getCommentContent()
         if commentContent.length == 0 {
-            viewController.displayMessage(message: "评论不能为空")
+            Utils.displayMessage(message: "评论不能为空")
             return false
         }
         
@@ -230,7 +230,7 @@ class CommentController : NSObject, UITextViewDelegate {
             let elapsedTime = NSDate().timeIntervalSince(lastCommentTime! as Date)
             let duration = Int(elapsedTime)
             if duration < 2 {
-                viewController.displayMessage(message: "您发的太频繁了")
+                Utils.displayMessage(message: "您发的太频繁了")
                 return false
             }
         }
@@ -242,7 +242,7 @@ class CommentController : NSObject, UITextViewDelegate {
         NSLog("%s: sendComment", TAG)
         isSendPressed = true
         
-        let song = (viewController.getAudioPlayer().currentItem as! MyAudioItem).song
+        let song = (Utils.getAudioPlayer().currentItem as! MyAudioItem).song
         if (song == nil) {
             NSLog("%s: song is null", TAG)
             return
@@ -272,7 +272,7 @@ class CommentController : NSObject, UITextViewDelegate {
             (resp: SendCommentResponse) -> Void in
             DispatchQueue.main.async() {
                 NSLog("%s: process send comment response", self.TAG)
-                self.viewController.dismissKeyboard()
+                Utils.dismissKeyboard(self.viewController.view)
                 self.lastCommentTime = NSDate()
                 if ( resp.status == ServerResponseStatus.Success.rawValue) {
                     NSLog("%s: sucess", self.TAG)
@@ -325,11 +325,11 @@ class CommentController : NSObject, UITextViewDelegate {
 
             let result = data[0] as! NSDictionary
             if result["status"] as! Int != 0 {
-                self.viewController.displayMessage(message: result["errorMessage"] as! String )
+            Utils.displayMessage(message: result["errorMessage"] as! String )
                 return
             }
             
-            self.viewController.dismissKeyboard()
+            Utils.dismissKeyboard(self.viewController.view)
             self.lastCommentTime = NSDate()
             self.commentFiled2.text = ""
             self.disableSendButton()
@@ -391,7 +391,7 @@ class CommentController : NSObject, UITextViewDelegate {
     //显示评论窗口，如果键盘大小发生变化，也需要调整窗口的位置
     private func showOrAdjustCommentWindow(keyboardSize: CGRect) {
         //如果分享页面打开，则不要弹出键盘
-        if !shareView.isHidden {
+        if shareView.isShow {
             return
         }
         

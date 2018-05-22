@@ -13,7 +13,7 @@ import QorumLogs
 
 class ShareManager {
     
-    var controller : BaseUIViewController!
+    var controller : UIViewController!
     
     var weixin : WeixinShareService!;
     var weibo : WeiboShareService!;
@@ -116,7 +116,7 @@ class ShareManager {
         
     }
     
-    init(controller : BaseUIViewController) {
+    init(controller : UIViewController) {
         self.controller = controller
         _shareTitle = "扫一扫下载安装【巨方助手】，即可免费在线学习、提额、办卡、贷款！"
         _shareDescription = ""
@@ -128,27 +128,28 @@ class ShareManager {
         tencentOAuth = TencentOAuth.init(appId: AppDelegate.qqAppId, andDelegate: nil)
     }
     
-    func shareToWeixinFriend() {
+    @objc func shareToWeixinFriend() {
         weixin.shareToFriend()
     }
     
-    func shareToWeixinPengyouquan() {
+    @objc func shareToWeixinPengyouquan() {
         weixin.shareToPengyouquan()
     }
     
-    func shareToWeibo() {
+    @objc func shareToWeibo() {
         weibo.share()
     }
     
-    func shareToQQFriend() {
+    @objc func shareToQQFriend() {
         qq.shareToFriends()
     }
     
-    func shareToQzone() {
+    @objc func shareToQzone() {
         qq.shareToQzone()
     }
     
-    func copyLink() {
+    @objc func copyLink() {
+        QL1("copyLink clicked")
         UIPasteboard.general.string =  shareUrl
         ToastMessage.showMessage(view: controller.view, message: "复制成功")
     }
@@ -156,17 +157,17 @@ class ShareManager {
 
 
 class WeixinShareService {
-    var controller : BaseUIViewController
+    var controller : UIViewController
     var shareManager : ShareManager
     
-    init(controller : BaseUIViewController, shareManager : ShareManager) {
+    init(controller : UIViewController, shareManager : ShareManager) {
         self.controller = controller
         self.shareManager = shareManager
     }
     
     func shareToFriend(){
         if !Utils.hasInstalledWeixin() {
-            controller.displayMessage(message: "请先安装微信客户端")
+            Utils.displayMessage(message: "请先安装微信客户端")
         } else {
             share(isPengyouquan: false)
         }
@@ -174,7 +175,7 @@ class WeixinShareService {
     
     func shareToPengyouquan() {
         if !Utils.hasInstalledWeixin() {
-            controller.displayMessage(message: "请先安装微信客户端")
+            Utils.displayMessage(message: "请先安装微信客户端")
         } else {
             print("share to pengyouquan")
             share(isPengyouquan: true)
@@ -208,10 +209,10 @@ class WeixinShareService {
 
 class WeiboShareService {
     
-    var controller : BaseUIViewController
+    var controller : UIViewController
     var shareManager : ShareManager
     
-    init(controller : BaseUIViewController, shareManager : ShareManager) {
+    init(controller : UIViewController, shareManager : ShareManager) {
         self.controller = controller
         self.shareManager = shareManager
     }
@@ -247,10 +248,10 @@ class WeiboShareService {
 
 class QQShareService {
     
-    var controller : BaseUIViewController
+    var controller : UIViewController
     var shareManager : ShareManager
     
-    init(controller : BaseUIViewController, shareManager : ShareManager) {
+    init(controller : UIViewController, shareManager : ShareManager) {
         self.controller = controller
         self.shareManager = shareManager
     }
@@ -258,7 +259,7 @@ class QQShareService {
     
     func shareToFriends() {
         if !Utils.hasInstalledQQ() {
-            controller.displayMessage(message: "请先安装QQ客户端")
+            Utils.displayMessage(message: "请先安装QQ客户端")
         } else {
             shareToQQ(isToQZone: false)
         }
@@ -266,7 +267,7 @@ class QQShareService {
     
     @IBAction func shareToQzone() {
         if !Utils.hasInstalledQQ() {
-            controller.displayMessage(message: "请先安装QQ客户端")
+            Utils.displayMessage(message: "请先安装QQ客户端")
         } else {
             shareToQQ(isToQZone: true)
         }

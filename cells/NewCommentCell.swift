@@ -9,6 +9,8 @@
 import UIKit
 
 class NewCommentCell: UITableViewCell {
+    
+    var comment : Comment?
 
     @IBOutlet weak var headImageView: UIImageView!
     
@@ -30,4 +32,13 @@ class NewCommentCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    func update() {
+        nameLabel.text = comment?.nickName
+        //nameLabel.sizeToFit()
+        timeLabel.text = comment?.time
+        //timeLabel.sizeToFit()
+        //commentLabel.numberOfLines = 0
+        commentLabel.text = comment?.content
+        //commentLabel.sizeToFit()
+    }
 }

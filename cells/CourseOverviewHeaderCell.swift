@@ -9,7 +9,8 @@
 import UIKit
 
 class CourseOverviewHeaderCell: UITableViewCell {
-
+    var song : Song?
+    @IBOutlet weak var nameLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -21,4 +22,7 @@ class CourseOverviewHeaderCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    func update() {
+        nameLabel.text = song?.name
+    }
 }

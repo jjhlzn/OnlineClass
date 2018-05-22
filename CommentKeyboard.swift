@@ -10,12 +10,46 @@ import UIKit
 
 class CommentKeyboard: BaseCustomView {
 
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
+    var commentController: CommentController!
+    @IBOutlet weak var keyboardTipView: UIView!
+    
+    @IBOutlet weak var commentInputButton: UIButton!
+    @IBOutlet weak var keyboardView: UIView!
+    
+    @IBOutlet weak var commentField: UITextView!
+    @IBOutlet weak var cancelButton: UIButton!
+    
+    @IBOutlet weak var sendButton: UIButton!
+    
+    @IBOutlet weak var switchButton: UIButton!
+
+    init(frame: CGRect, shareView: ShareView, viewController : UIViewController, liveDelegate: LiveCommentDelegate) {
+        super.init(frame: frame)
+        commentController = CommentController()
+        
+        //设置评论controller
+        commentController.bottomView = keyboardTipView
+        commentController.commentInputButton = commentInputButton
+        commentController.bottomView2 = keyboardView
+        commentController.commentFiled2 = commentField
+        commentController.cancelButton = cancelButton
+        commentController.sendButton = sendButton
+        commentController.emojiSwitchButton = switchButton
+        commentController.shareView = shareView
+        commentController.viewController = viewController
+        
+        commentController.liveDelegate = liveDelegate
+        let song = Utils.getCurrentSong()
+        commentController.initView(song: song)
+        
     }
-    */
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+    
+    
+    
+    
 
 }
