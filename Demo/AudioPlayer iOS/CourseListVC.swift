@@ -67,6 +67,8 @@ class CourseListVC: BaseUIViewController, UITableViewDataSource, UITableViewDele
         pagableController.initController()
         pagableController.isShowLoadCompleteText = false
         pagableController.loadMore()
+        
+        Utils.setNavigationBarAndTableView(self, tableView: tableView)
     }
     
     override func viewWillAppear(_ animated: Bool) {

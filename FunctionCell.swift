@@ -24,10 +24,12 @@ class ExtendFunctionMananger : NSObject {
     static var allFunctions = ExtendFunctionMananger.getAllFunctions()
     var functions: [ExtendFunction] {
         get {
+            return ExtendFunctionMananger.allFunctions
+            /*
             return ExtendFunctionMananger.allFunctions.filter({
                 (function: ExtendFunction) -> Bool in
                 return extendFunctionStore.isShow(code: function.code, defaultValue: false)
-            });
+            }); */
         }
     }
     
@@ -165,7 +167,7 @@ class ExtendFunctionMananger : NSObject {
         if isiPhone4Screen {
             return screenWidth / 4 * 0.65 * 0.75
         } else {
-            return screenWidth / 4 * 0.7 * 0.75
+            return screenWidth / 4 * 0.7 * 0.7
         }
     }
     
@@ -259,7 +261,7 @@ class ExtendFunctionMananger : NSObject {
         label.tag = index
         
         label.center.x = superView.bounds.width / 2
-        var fontSize : CGFloat = 12
+        var fontSize : CGFloat = 11
         if isiPhonePlusScreen {
             label.center.y = cellHeight / 2 + getImageWidth() / 2 + 0
         } else if isiPhone6Screen {
