@@ -48,7 +48,9 @@ class CommentKeyboard: BaseCustomView {
         super.init(coder: aDecoder)
     }
     
-    
+    func dispose() {
+        commentController.dispose()
+    }
     
     
 

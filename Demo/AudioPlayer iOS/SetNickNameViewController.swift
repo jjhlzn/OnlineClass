@@ -24,6 +24,8 @@ class SetNickNameViewController: BaseUIViewController, UITableViewDataSource, UI
         
         tableView.dataSource = self
         tableView.delegate = self
+        
+        Utils.setNavigationBarAndTableView(self, tableView: tableView)
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -52,7 +54,16 @@ class SetNickNameViewController: BaseUIViewController, UITableViewDataSource, UI
     }
     
     
-    @IBAction func savePressed(sender: AnyObject) {
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 1
+    }
+    
+    
+    @IBAction func savePressed(_ sender: Any) {
         
         loading.showOverlay(view: view)
         let request = SetNickNameRequest()

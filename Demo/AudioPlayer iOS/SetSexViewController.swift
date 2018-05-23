@@ -29,6 +29,8 @@ class SetSexViewController: BaseUIViewController, UITableViewDataSource, UITable
         } else {
             selectSex = loginUserStore.getLoginUser()!.sex!
         }
+        
+        Utils.setNavigationBarAndTableView(self, tableView: tableView)
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -52,7 +54,7 @@ class SetSexViewController: BaseUIViewController, UITableViewDataSource, UITable
         return cell
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectSex = (tableView.cellForRow(at: indexPath as IndexPath)?.textLabel?.text)!
         
         for i in 0...sexes.count {
@@ -63,6 +65,14 @@ class SetSexViewController: BaseUIViewController, UITableViewDataSource, UITable
         
         tableView.cellForRow(at: indexPath as IndexPath)?.accessoryType = .checkmark
         tableView.reloadData()
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 1
     }
     
     
@@ -76,8 +86,7 @@ class SetSexViewController: BaseUIViewController, UITableViewDataSource, UITable
         return "保密"
     }
     
-    
-    @IBAction func savePressed(sender: AnyObject) {
+    @IBAction func saveBtnPressed(_ sender: Any) {
         loading.showOverlay(view: view)
         let request = SetSexRequest()
         request.newSex = getSelectSex()
@@ -101,5 +110,6 @@ class SetSexViewController: BaseUIViewController, UITableViewDataSource, UITable
             }
         }
     }
+    
 
 }

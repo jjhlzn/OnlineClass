@@ -74,17 +74,10 @@ class NewPlayerController: UIViewController, UIScrollViewDelegate {
         view.addSubview(advancedManager)
         advancedManagerConfig()
         
-        //shareOverlay = UIView(frame: UIScreen.main.bounds)
-        //shareOverlay.backgroundColor = UIColor(white: 0, alpha: 0.65)
         
         shareView = ShareView(frame: CGRect(x : 0, y: UIScreen.main.bounds.height - 233, width: UIScreen.main.bounds.width, height: 233), controller: self)
-        //shareView.setup()
-        
-        //view.addSubview(overlay)
-        //view.addSubview(shareView)
-        
+
         commentKeyboard = CommentKeyboard(frame: CGRect(x : 0, y: UIScreen.main.bounds.height - 156, width: UIScreen.main.bounds.width, height: 156), shareView: shareView, viewController: self, liveDelegate: viewControllers[0] as! LiveCommentDelegate)
-        //view.addSubview(overlay)
         
         view.addSubview(commentKeyboard)
         setNavigationBar(true)
@@ -123,8 +116,6 @@ class NewPlayerController: UIViewController, UIScrollViewDelegate {
     }
     
     @objc func sharePressed(_ isTranslucent : Bool) {
-        //view.addSubview(shareOverlay)
-        //view.addSubview(shareView)
         shareView.show()
     }
     

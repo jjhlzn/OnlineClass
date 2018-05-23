@@ -66,6 +66,9 @@ class CourseOverviewVC: UIViewController, LTTableViewProtocal, LiveCommentDelega
             self.lastId = comments[0].id!
         }
         self.comments.insert(comments[0], at: 0)
+        if self.comments.count > 10 {
+            self.comments = Array(self.comments[0...9])
+        }
         tableView.reloadData()
     }
     

@@ -20,6 +20,8 @@ class PersonalInfoViewController: BaseUIViewController, UITableViewDataSource, U
         tableView.dataSource = self
         tableView.delegate = self
         
+        Utils.setNavigationBarAndTableView(self, tableView: tableView)
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -75,7 +77,7 @@ class PersonalInfoViewController: BaseUIViewController, UITableViewDataSource, U
         }
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let row = indexPath.row
         switch row {
         case 0:
@@ -105,11 +107,11 @@ class PersonalInfoViewController: BaseUIViewController, UITableViewDataSource, U
         }
     }
     
-    func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 1
     }
     
-    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 1
     }
     

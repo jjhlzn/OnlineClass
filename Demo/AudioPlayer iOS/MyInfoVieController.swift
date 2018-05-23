@@ -21,9 +21,9 @@ class MyInfoVieController: BaseUIViewController, UITableViewDataSource, UITableV
     @IBOutlet weak var tableView: UITableView!
     let log = SwiftyBeaver.self
     
-    var fourthSections = [ ["me_service", "我的服务", "webViewSegue", ServiceLinkManager.MyTuiJianUrl, "0", ""] ]
+    var fourthSections = [ ["me_service", "我的服务", "webViewSegue", ServiceLinkManager.MyServiceUrl, "0", ""] ]
     
-    var fifthSections = [ ["me_agent", "邀请好友", "webViewSegue", ServiceLinkManager.MyTuiJianUrl,  "1", ""],
+    var fifthSections = [ ["me_agent", "邀请好友", "codeImageSegue", "",  "1", ""],
                           ["me_tuijian", "我的推荐", "webViewSegue", ServiceLinkManager.MyTuiJianUrl,  "1", KeyValueStore.key_tuijian],
                           ["me_order", "我的订单", "webViewSegue", ServiceLinkManager.MyOrderUrl,  "1", KeyValueStore.key_ordercount],
                           ["me_team", "我的团队", "webViewSegue", ServiceLinkManager.MyTeamUrl,  "0", KeyValueStore.key_tuandui],
@@ -32,7 +32,7 @@ class MyInfoVieController: BaseUIViewController, UITableViewDataSource, UITableV
 
     var sixthSections = [ ["me_ziliao", "我的资料", "personalInfoSegue", "",  "1", ""],
                            ["me_qrcode", "我的二维码", "codeImageSegue", "",  "1", ""],
-                           ["me_hezuo", "申请合作", "webViewSegue", "", ServiceLinkManager.MyTeamUrl,  "0", ""],
+                           ["me_hezuo", "申请合作", "webViewSegue", "", ServiceLinkManager.HezuoUrl,  "0", ""],
                         ]
     
     var seventhSections = [ ["me_settings", "设置","settingsSegue", "",  "0", ""],

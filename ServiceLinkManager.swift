@@ -174,4 +174,15 @@ class ServiceLinkManager {
         }
     }
     
+    static var MyServiceUrl : String {
+        get {
+            return "http://\(ServiceConfiguration.serverName):\(ServiceConfiguration.port)/app/myservice"
+        }
+    }
+    
+    static var HezuoUrl : String {
+        get {
+            return "http://\(ServiceConfiguration.serverName):\(ServiceConfiguration.port)/app/hezuo"
+        }
+    }
 }

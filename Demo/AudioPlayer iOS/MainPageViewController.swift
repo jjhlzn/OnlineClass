@@ -56,7 +56,7 @@ class CourseMainPageViewController: BaseUIViewController {
         if screenHeight < 568 {  //568
             maxRows = 2
         }
-        extendFunctionMananger = ExtendFunctionMananger(controller: self, isNeedMore:  true, showMaxRows: maxRows)
+        extendFunctionMananger = ExtendFunctionMananger(controller: self, isNeedMore:  false, showMaxRows: maxRows)
         //addPlayingButton(button: playingButton)
         loadFunctionInfos()
         

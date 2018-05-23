@@ -37,28 +37,27 @@ class ExtendFunctionMananger : NSObject {
                                       selector: #selector(moreHanlder), isShowDefault: true)
         
         return [
-            ExtendFunction(imageName: "commonCard", name: "刷卡", code: "f_paybycard", url: "http://www.baidu.com",
+            ExtendFunction(imageName: "func_shuaka", name: "刷卡", code: "f_paybycard", url: "http://www.baidu.com",
                 selector:  #selector(openApp), isShowDefault: true),
-            ExtendFunction(imageName: "liveclass", name: "直播课堂", code: "f_class", url: ServiceLinkManager.FunctionUpUrl,
-                selector:  #selector(liveClassHandler), isShowDefault: true),
-            ExtendFunction(imageName: "visa", name: "快速办卡", code: "f_makecard", url: ServiceLinkManager.FunctionFastCardUrl,
+            ExtendFunction(imageName: "func_jsxk", name: "极速下卡", code: "f_makecard", url: ServiceLinkManager.FunctionFastCardUrl,
+                           selector:  #selector(imageHandler), isShowDefault: false),
+            
+            ExtendFunction(imageName: "func_loan", name: "极速贷款", code: "f_loan", url: ServiceLinkManager.FunctionDaiKuangUrl,
                 selector:  #selector(imageHandler), isShowDefault: false),
-            ExtendFunction(imageName: "dollar", name: "快速贷款", code: "f_loan", url: ServiceLinkManager.FunctionDaiKuangUrl,
+            ExtendFunction(imageName: "func_dingyue", name: "订阅专栏", code: "f_订阅", url: ServiceLinkManager.FunctionCardManagerUrl,
+                           selector:  #selector(imageHandler), isShowDefault: true),
+            
+            ExtendFunction(imageName: "func_rzjhk", name: "融资军火库", code: "f_rzjhk", url: ServiceLinkManager.FunctionCardManagerUrl,
+                           selector:  #selector(imageHandler), isShowDefault: true),
+            ExtendFunction(imageName: "func_health", name: "大健康", code: "f_health", url: ServiceLinkManager.FunctionCardManagerUrl,
+                           selector:  #selector(imageHandler), isShowDefault: true),
+            ExtendFunction(imageName: "func_car", name: "微购车", code: "f_car", url: ServiceLinkManager.FunctionCarLoanUrl,
+                           selector:  #selector(imageHandler), isShowDefault: false),
+            ExtendFunction(imageName: "func_shopcart", name: "商城", code: "f_market",  url: ServiceLinkManager.FunctionShopUrl,
                 selector:  #selector(imageHandler), isShowDefault: false),
             
-            ExtendFunction(imageName: "shopcart", name: "商城", code: "f_market",  url: ServiceLinkManager.FunctionShopUrl,
-                selector:  #selector(imageHandler), isShowDefault: false),
-            ExtendFunction(imageName: "car", name: "汽车分期", code: "f_car", url: ServiceLinkManager.FunctionCarLoanUrl,
-                selector:  #selector(imageHandler), isShowDefault: false),
-            ExtendFunction(imageName: "cardManage", name: "卡片管理", code: "f_cardmanager", url: ServiceLinkManager.FunctionCardManagerUrl,
-                selector:  #selector(imageHandler), isShowDefault: true),
-            ExtendFunction(imageName: "rmb", name: "我要充值", code: "f_chongzhi",  url: ServiceLinkManager.FunctionJiaoFeiUrl,
-                selector:  #selector(imageHandler), isShowDefault: false),
-            
-            ExtendFunction(imageName: "share", name: "分享", code: "f_share",  url: ServiceLinkManager.FunctionMccSearchUrl,
-                selector:  #selector(shareHanlder), isShowDefault: true),
-            ExtendFunction(imageName: "customerservice", name: "客服", code: "f_user", url: ServiceLinkManager.FunctionCustomerServiceUrl,
-                selector:  #selector(imageHandler), isShowDefault: true),
+
+           
             ExtendFunction(imageName: "moreFunction", name: "更多", code: "f_more", url: "",
                 selector: #selector(moreHanlder), isShowDefault: true)
         ]
@@ -212,7 +211,7 @@ class ExtendFunctionMananger : NSObject {
         } else {
            imageView.center.y = cellHeight / 2 - 0 - Y + 1
         }
-        //print("superView.center.x = \(superView.center.x), superView.center.y - 10 = \(superView.center.y - 10)")
+
         imageView.image = overlayImage(function: function) //UIImage(named: function.imageName)
         imageView.tag = index
         

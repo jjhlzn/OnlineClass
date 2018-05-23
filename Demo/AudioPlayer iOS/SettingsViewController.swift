@@ -18,6 +18,8 @@ class SettingsViewController: BaseUIViewController, UITableViewDataSource, UITab
         super.viewDidLoad()
         tableView.dataSource = self
         tableView.delegate = self
+        
+        Utils.setNavigationBarAndTableView(self, tableView: tableView)
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -32,7 +34,7 @@ class SettingsViewController: BaseUIViewController, UITableViewDataSource, UITab
         return 1
     }
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: IndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let section = indexPath.section
         switch section {
         case 0:
@@ -68,7 +70,7 @@ class SettingsViewController: BaseUIViewController, UITableViewDataSource, UITab
         }
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let section = indexPath.section
         let row = indexPath.row
         
@@ -88,7 +90,7 @@ class SettingsViewController: BaseUIViewController, UITableViewDataSource, UITab
         displayConfirmMessage(message: "确认退出登录吗？", delegate: self)
     }
     
-    func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
+    func alertView(_ alertView: UIAlertView, clickedButtonAt buttonIndex: Int) {
         switch buttonIndex {
         case 0:
             

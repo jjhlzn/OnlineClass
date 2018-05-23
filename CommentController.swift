@@ -51,11 +51,10 @@ class CommentController : NSObject, UITextViewDelegate {
     var emojiKeyboard : EmojiKeyboard!
     var commentErrorMessage: String?
     
-    var socket: SocketIOClient?
+    var socket: SocketIOClient!
     let loginUserStore = LoginUserStore()
     
     func textViewDidChange(_ textView: UITextView) { //Handle the text changes here
-        //print(textView.text); //the textView parameter is the textView where text was changed
         if textView.text.length > 0 {
             enableSendButton()
         } else {
@@ -116,21 +115,23 @@ class CommentController : NSObject, UITextViewDelegate {
     
     let chat_message_cmd = "chat message"
     let join_room_cmd = "join room"
+    var manager: SocketManager!
     
     func initChat() {
         if socket != nil {
             return
         }
-        let manager =  SocketManager(socketURL: URL(string:  ServiceLinkManager.ChatUrl)!, config: [.log(true), .compress])
+        manager =  SocketManager(socketURL: URL(string:  ServiceLinkManager.ChatUrl)!, config: [.log(false), .compress])
+        //manager.connect()
         socket = manager.defaultSocket
-        socket!.on("connect") {data, ack in
+        socket.on(clientEvent: .connect) {data, ack in
             QL1("socket connected")
             let request = JoinRoomRequest()
             request.song = self.song
             self.socket?.emit(self.join_room_cmd, request.getJSON().rawString()!)
         }
         
-        socket!.on(chat_message_cmd) {data, ack in
+        socket.on(chat_message_cmd) {data, ack in
             //get new message
             QL1("got a new message")
             QL1(data)
@@ -146,7 +147,7 @@ class CommentController : NSObject, UITextViewDelegate {
             
         }
         
-        socket!.connect()
+        socket.connect()
     }
     
     func dispose() {
@@ -255,55 +256,11 @@ class CommentController : NSObject, UITextViewDelegate {
         //关闭评论窗口
         closeCommentWindow()
         
-        if (song?.isLive)! {
-            sendLiveComment()
-        } else {
-            sendCommonComment()
-        }
+        sendLiveComment()
         
     }
     
-    private func sendCommonComment() {
-        let sendCommentRequest = SendCommentRequest()
-        sendCommentRequest.song = song
-        sendCommentRequest.comment = getCommentContent().emojiEscapedString
-        
-        BasicService().sendRequest(url: ServiceConfiguration.SEND_COMMENT, request: sendCommentRequest) {
-            (resp: SendCommentResponse) -> Void in
-            DispatchQueue.main.async() {
-                NSLog("%s: process send comment response", self.TAG)
-                Utils.dismissKeyboard(self.viewController.view)
-                self.lastCommentTime = NSDate()
-                if ( resp.status == ServerResponseStatus.Success.rawValue) {
-                    NSLog("%s: sucess", self.TAG)
-                    self.commentFiled2.text = ""
-                    self.disableSendButton()
-                    
-                    let loginUser = self.loginUserStore.getLoginUser()
-                    
-                    self.isCommentSuccess = true
-                    let comment = Comment()
-                    comment.song = self.song
-                    comment.time = "现在"
-                    comment.userId = loginUser!.userName
-                    comment.nickName = loginUser!.nickName!
-                    comment.content = sendCommentRequest.comment
-                    self.delegate?.afterSendComment(comment: comment)
-                    
-                    if !self.isKeyboardShow {
-                        self.showComentResultTip()
-                    }
-                    
-                } else {
-                    NSLog("%s: fail", self.TAG)
-                    self.isCommentSuccess = false
-                    self.commentErrorMessage = resp.errorMessage
-                }
-            }
-            
-        }
-
-    }
+   
     
     
     private func sendLiveComment() {

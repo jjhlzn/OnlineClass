@@ -23,6 +23,8 @@ class SetNameViewController: BaseUIViewController, UITableViewDataSource, UITabl
         
         tableView.dataSource = self
         tableView.delegate = self
+        
+        Utils.setNavigationBarAndTableView(self, tableView: tableView)
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -49,8 +51,15 @@ class SetNameViewController: BaseUIViewController, UITableViewDataSource, UITabl
     }
     
     
-    @IBAction func savePressed(sender: AnyObject) {
-        
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 1
+    }
+    
+    @IBAction func saveBtnPressed(_ sender: Any) {
         loading.showOverlay(view: view)
         let request = SetNameRequest()
         request.newName = (tableView.cellForRow(at: NSIndexPath(row: 0, section: 0) as IndexPath) as! TextFieldCell).textField.text!
@@ -73,7 +82,7 @@ class SetNameViewController: BaseUIViewController, UITableViewDataSource, UITabl
             }
             
         }
-        
     }
+
     
 }
