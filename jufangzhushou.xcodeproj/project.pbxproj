@@ -80,7 +80,6 @@
 		1CBF786B1D336CF200B596BC /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 1CBF78661D336CF200B596BC /* README.txt */; };
 		1CBF78711D33755A00B596BC /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CBF78651D336CF200B596BC /* libWeChatSDK.a */; };
 		1CC1ADBA1D1C17B7005AF856 /* SetProfilePhotoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC1ADB91D1C17B7005AF856 /* SetProfilePhotoController.swift */; };
-		1CC1ADBC1D1CC662005AF856 /* UserProfilePhotoStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CC1ADBB1D1CC662005AF856 /* UserProfilePhotoStore.swift */; };
 		1CD349641CF8167C00037F78 /* WebPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD349631CF8167C00037F78 /* WebPageViewController.swift */; };
 		1CD349661CF83A4700037F78 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD349651CF83A4700037F78 /* SettingsViewController.swift */; };
 		1CD349681CF9703700037F78 /* KeyValueCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD349671CF9703700037F78 /* KeyValueCell.swift */; };
@@ -266,7 +265,6 @@
 		1CBF786E1D336DEB00B596BC /* libstdc++.6.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.6.tbd"; path = "usr/lib/libstdc++.6.tbd"; sourceTree = SDKROOT; };
 		1CBF78701D33727B00B596BC /* weixinshare_bridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = weixinshare_bridge.h; sourceTree = "<group>"; };
 		1CC1ADB91D1C17B7005AF856 /* SetProfilePhotoController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetProfilePhotoController.swift; sourceTree = "<group>"; };
-		1CC1ADBB1D1CC662005AF856 /* UserProfilePhotoStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfilePhotoStore.swift; sourceTree = "<group>"; };
 		1CD349631CF8167C00037F78 /* WebPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebPageViewController.swift; sourceTree = "<group>"; };
 		1CD349651CF83A4700037F78 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		1CD349671CF9703700037F78 /* KeyValueCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyValueCell.swift; sourceTree = "<group>"; };
@@ -581,7 +579,6 @@
 				1C451F6A1D01787B00DC29F9 /* ServiceLocatorEntity+CoreDataProperties.swift */,
 				1C451F6B1D01787B00DC29F9 /* ServiceLocatorEntity.swift */,
 				1C451F6E1D0178A700DC29F9 /* ServiceLocatorStore.swift */,
-				1CC1ADBB1D1CC662005AF856 /* UserProfilePhotoStore.swift */,
 				1C3C5EDC1D1E11DB000F0A39 /* KeyValueStore.swift */,
 				1C66ADFC1D38C2CD001A6525 /* QrCodeImageStore.swift */,
 				1C66ADFE1D38C312001A6525 /* ImageStore.swift */,
@@ -1104,7 +1101,6 @@
 				EF23457C20A57585002E2F30 /* CourseOverviewCell.swift in Sources */,
 				1C2FC9271CFEE5BA0057EB93 /* EmojiKeyboard.swift in Sources */,
 				1C33F0361D0719BE00D3EE4C /* SetNameViewController.swift in Sources */,
-				1CC1ADBC1D1CC662005AF856 /* UserProfilePhotoStore.swift in Sources */,
 				1CA3B2141CD8E83B00D0ABD8 /* FunctionCell.swift in Sources */,
 				1C451F6F1D0178A700DC29F9 /* ServiceLocatorStore.swift in Sources */,
 				1CEFF7901CC077D0000DEFF7 /* Utils.swift in Sources */,

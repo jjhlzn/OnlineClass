@@ -45,7 +45,7 @@ class NewCommentCell: UITableViewCell {
         headImageView.layer.borderWidth = 0.3
         headImageView.layer.borderColor = UIColor.lightGray.cgColor
         let url =  ServiceConfiguration.GET_PROFILE_IMAGE + "?userid=" + (comment?.userId)!
-        headImageView.kf.setImage(with: ImageResource(downloadURL: URL(string: url)!, cacheKey: ImageCacheKeys.User_Profile_Image))
+        headImageView.kf.setImage(with: ImageResource(downloadURL: URL(string: url)!))
         
     }
 }

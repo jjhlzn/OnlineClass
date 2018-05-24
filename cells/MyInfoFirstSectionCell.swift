@@ -35,29 +35,10 @@ class MyInfoFirstSectionCell: UITableViewCell {
     func update() {
         let loginUserStore = LoginUserStore()
         let loginUser : LoginUserEntity = loginUserStore.getLoginUser()!
-        if UserProfilePhotoStore().get() == nil {
-            QL1("userName = \(loginUser.userName)")
-            let profilePhotoUrl = ServiceConfiguration.GET_PROFILE_IMAGE + "?userid=" + loginUserStore.getLoginUser()!.userName!
-            QL1("userimageurl = \(profilePhotoUrl)")
-            
-            headerImageView.kf.setImage(with: ImageResource(downloadURL: URL(string: profilePhotoUrl)!, cacheKey: ImageCacheKeys.User_Profile_Image))
-            
-            /*
-             cell.userImage.kf_setImageWithURL(NSURL(string: profilePhotoUrl)!,
-             placeholderImage: nil,
-             optionsInfo: nil,
-             progressBlock: { (receivedSize, totalSize) -> () in
-             //print("Download Progress: \(receivedSize)/\(totalSize)")
-             },
-             completionHandler: { (image, error, cacheType, imageURL) -> () in
-             if image != nil {
-             UserProfilePhotoStore().saveOrUpdate(image!)
-             }
-             }) */
-            
-        } else {
-            headerImageView.image = UserProfilePhotoStore().get()
-        }
+        let profilePhotoUrl = ServiceConfiguration.GET_PROFILE_IMAGE + "?userid=" + loginUserStore.getLoginUser()!.userName!
+        QL1("userimageurl = \(profilePhotoUrl)")
+        
+        headerImageView.kf.setImage(with: ImageResource(downloadURL: URL(string: profilePhotoUrl)!, cacheKey: ImageCacheKeys.User_Profile_Image))
         
         
         headerImageView.becomeCircle()

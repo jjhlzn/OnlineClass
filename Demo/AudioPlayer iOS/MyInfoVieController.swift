@@ -85,18 +85,11 @@ class MyInfoVieController: BaseUIViewController, UITableViewDataSource, UITableV
         }
     }
 
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-    }
-
 }
 
 extension MyInfoVieController {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        log.debug("section:")
-        log.debug(section)
+       
         switch section {
         case 0:
             return 1
