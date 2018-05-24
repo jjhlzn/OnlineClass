@@ -21,10 +21,21 @@ class ResetPasswordController: BaseUIViewController, UITableViewDataSource, UITa
         super.viewDidLoad()
         tableView.dataSource = self
         tableView.delegate = self
+        
+        Utils.setNavigationBarAndTableView(self, tableView: tableView)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 3
+    }
+    
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -37,7 +48,7 @@ class ResetPasswordController: BaseUIViewController, UITableViewDataSource, UITa
         return cell
     }
 
-    @IBAction func resetPasswordPressed(sender: AnyObject) {
+    @IBAction func resetPasswordPressed(_ sender: Any) {
         
         if !checkBeforeSubmit() {
             return

@@ -9,6 +9,8 @@
 import UIKit
 import ALCameraViewController
 import Alamofire
+import QorumLogs
+import Kingfisher
 
 class SetProfilePhotoController: BaseUIViewController {
     
@@ -17,7 +19,11 @@ class SetProfilePhotoController: BaseUIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        imageView.image = UserProfilePhotoStore().get()
+        //imageView.image = UserProfilePhotoStore().get()
+        let loginUser = (LoginUserStore().getLoginUser())!
+        let url = ServiceConfiguration.GET_PROFILE_IMAGE + "?userid=" + loginUser.userName!
+        imageView.kf.setImage(with: ImageResource(downloadURL: URL(string: url)!, cacheKey: ImageCacheKeys.User_Profile_Image))
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -31,13 +37,10 @@ class SetProfilePhotoController: BaseUIViewController {
         (self.navigationController?.viewControllers[0] as! MyInfoVieController).tableView.reloadData()
     }
     
-    @IBAction func morePressed(sender: AnyObject) {
+    @IBAction func morePressed(_ sender: Any) {
         presentSettingsActionSheet()
     }
     
-    @IBAction func moreActionPressed(sender: UIButton) {
-        presentSettingsActionSheet()
-    }
     
     private func presentSettingsActionSheet() {
         let settingsActionSheet: UIAlertController = UIAlertController(title:nil, message:nil, preferredStyle:UIAlertControllerStyle.actionSheet)
@@ -52,55 +55,60 @@ class SetProfilePhotoController: BaseUIViewController {
     }
     
     func openLibrary() {
-        //TODO:
-        /*
-        let croppingEnabled = true
-        let libraryViewController = CameraViewController.imagePickerViewController(croppingParameters: croppingEnabled) { image, asset in
+        let croppingParams = CroppingParameters(isEnabled: true)
+        
+        let libraryViewController = CameraViewController.imagePickerViewController(croppingParameters: croppingParams) { image, asset in
             if image != nil {
                 self.imageView.image = image
-                self.uploadImage(UIImageJPEGRepresentation(image!, 1)!)
+                self.uploadImage(imageData: UIImageJPEGRepresentation(image!, 1)!)
 
             }
-            self.dismissViewControllerAnimated(true, completion: nil)
+            self.dismiss(animated: true, completion: nil)
         }
         
-        presentViewController(libraryViewController, animated: true, completion: nil) */
+        present(libraryViewController, animated: true, completion: nil)
     }
     
     func openCamera() {
         
-        //TODO:
-        /*
-        let cameraViewController = CameraViewController(croppingParameters: true, allowsLibraryAccess: true) { [weak self] image, asset in
+        let croppingParams = CroppingParameters(isEnabled: true)
+        
+        let cameraViewController = CameraViewController(croppingParameters: croppingParams) { [weak self] image, asset in
             if image != nil {
                 self!.imageView.image = image
-                self!.uploadImage(UIImageJPEGRepresentation(image!, 1)!)
+                self?.uploadImage(imageData: UIImageJPEGRepresentation(image!, 1)!)
 
             }
-            self?.dismissViewControllerAnimated(true, completion: nil)
+            self?.dismiss(animated: true, completion: nil)
         }
         
-        presentViewController(cameraViewController, animated: true, completion: nil) */
+        present(cameraViewController, animated: true, completion: nil)
     }
     
     
-    private func uploadImage(imageData: NSData) {
+    private func uploadImage(imageData: Data) {
         
         //TODO:
-        /*
+        
         let loginUser = LoginUserStore().getLoginUser()!
         loading.showOverlayWithMessage(msg: "正在上传头像", view: view)
+       
         Alamofire.upload(
-            .POST,
-            ServiceConfiguration.UPLOAD_PROFILE_IMAGE,
+            //.POST,
             multipartFormData: { multipartFormData in
-                multipartFormData.appendBodyPart(data: imageData, name: "userimage", fileName: "userimage", mimeType: "image/png")
-                multipartFormData.appendBodyPart(data: loginUser.userName!.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, name :"userid")
-                multipartFormData.appendBodyPart(data: loginUser.token!.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, name :"token")
+    
+                multipartFormData.append(imageData, withName: "userimage", fileName: "userimage", mimeType: "image/png")
+    
+                multipartFormData.append("\(loginUser.userName!)".data(using: String.Encoding.utf8)!, withName: "userid")
+                multipartFormData.append("\(loginUser.token!)".data(using: String.Encoding.utf8)!, withName: "token")
+                
             },
+            to: ServiceConfiguration.UPLOAD_PROFILE_IMAGE,
+            
             encodingCompletion: { encodingResult in
                 switch encodingResult {
-                case .Success(let upload, _, _):
+                case .success(let upload, _, _):
+                    /*
                     upload.progress { (bytesWritten, totalBytesWritten, totalBytesExpectedToWrite) in
                         //print("Uploading Avatar \(totalBytesWritten) / \(totalBytesExpectedToWrite)")
                         dispatch_async(dispatch_get_main_queue(),{
@@ -108,25 +116,27 @@ class SetProfilePhotoController: BaseUIViewController {
                              *  Update UI Thread about the progress
                              */
                         })
-                    }
+                    }*/
                     upload.responseJSON { (JSON) in
-                        dispatch_async(dispatch_get_main_queue(),{
+                        //DispatchQueue.async(DispatchQueue.main, {
                             //Show Alert in UI
-                            print("success")
-                            UserProfilePhotoStore().saveOrUpdate(UIImage(data: imageData)!)
+                            QL1("success")
+                            //UserProfilePhotoStore().saveOrUpdate(image: UIImage(data: imageData)!)
+                        
+                            ImageCache.default.store(Image(data: imageData)!, forKey: ImageCacheKeys.User_Profile_Image)
                             self.loading.hideOverlayView()
-                            ToastMessage.showMessage(self.view, message: "头像上传成功")
-                        })
+                            ToastMessage.showMessage(view: self.view, message: "头像上传成功")
+                        //})
                     }
                     
-                case .Failure(let encodingError):
+                case .failure(let encodingError):
                     //Show Alert in UI
                     print("failure")
                     self.loading.hideOverlayView()
-                    ToastMessage.showMessage(self.view, message: "头像上传失败")
+                    ToastMessage.showMessage(view: self.view, message: "头像上传失败")
                 }
             }
-        ); */
+        );
     }
     
     

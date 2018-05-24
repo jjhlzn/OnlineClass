@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import QorumLogs
 
 class ImageStore : NSObject {
     var imageName : String {
@@ -17,33 +18,37 @@ class ImageStore : NSObject {
     }
     
     func saveOrUpdate(image : UIImage) {
-        /*
+        
         if let data = UIImagePNGRepresentation(image) {
             print("imageName = \(imageName)")
-            let filename = fileInDocumentsDirectory(imageName)
+            let filename = fileInDocumentsDirectory(filename: imageName)
             
-            let killFile = NSFileManager.defaultManager()
-            if (killFile.isDeletableFileAtPath(filename)){
+            let killFile = FileManager.default
+            if (killFile.isDeletableFile(atPath: filename)){
                 do {
-                    try killFile.removeItemAtPath(filename)
+                    try killFile.removeItem(atPath: filename)
                 }
                 catch let error as NSError {
-                    error.description
+                    QL4(error)
                 }
             }
-            data.writeToFile(filename, atomically: true)
-        } */
+            do {
+                try data.write(to: URL(string: filename)!, options: .atomic)
+            } catch let error as NSError {
+                QL4(error)
+            }
+        }
     }
     
     func delete() {
-        /*
-        let fileManager = NSFileManager.defaultManager()
-        let filePath = fileInDocumentsDirectory(imageName)
+        
+        let fileManager = FileManager.default
+        let filePath = fileInDocumentsDirectory(filename: imageName)
         do {
-            try fileManager.removeItemAtPath(filePath)
+            try fileManager.removeItem(atPath: filePath)
         } catch let error as NSError {
-            print(error.debugDescription)
-        } */
+            QL4(error)
+        }
     }
     
     private func loadImageFromPath(path: String) -> UIImage? {
@@ -56,28 +61,28 @@ class ImageStore : NSObject {
         
     }
     
-    /*
-    private func getDocumentsURL() -> NSURL {
-        let documentsURL = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)[0]
+    
+    private func getDocumentsURL() -> URL {
+        let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
         return documentsURL
     }
     
     private func fileInDocumentsDirectory(filename: String) -> String {
         print("fileInDocumentsDirectory()")
         
-        let fileURL = getDocumentsURL().URLByAppendingPathComponent(filename)
-        return fileURL.path!
+        let fileURL = getDocumentsURL().appendingPathComponent(filename)
+        return fileURL.path
         
-    } */
+    }
     
     func get() -> UIImage? {
-        return nil
-        /*
+        //return nil
+        
         print("get()")
-        let image = loadImageFromPath(fileInDocumentsDirectory(imageName))
+        let image = loadImageFromPath(path: fileInDocumentsDirectory(filename: imageName))
         if image == nil {
             return nil
         }
-        return image! */
+        return image!
     }
 }

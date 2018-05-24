@@ -141,8 +141,6 @@ extension MyInfoVieController {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let section = indexPath.section
         let row = indexPath.row
-        log.debug("section cellForRowAt:")
-        log.debug(section)
         switch section {
         case 0:
             let cell = tableView.dequeueReusableCell(withIdentifier: "myInfoFirstSection") as! MyInfoFirstSectionCell
@@ -174,9 +172,8 @@ extension MyInfoVieController {
 
         let section = indexPath.section
         let row = indexPath.row
-        let lineInfo = lineSections[section - 3][row]
         if section > 2 {
-            
+            let lineInfo = lineSections[section - 3][row]
             if lineInfo[2] == "webViewSegue" {
                 var sender = [String:String]()
                 sender["title"] = lineInfo[1]

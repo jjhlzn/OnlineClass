@@ -67,6 +67,8 @@ class CourseMainPageViewController: BaseUIViewController {
         refreshing = false
     }
     
+
+    
     func setNavigationBar() {
         self.navigationItem.rightBarButtonItems = []
         navigationManager.setMusicButton()
@@ -116,6 +118,13 @@ class CourseMainPageViewController: BaseUIViewController {
         loadToutiao()
         self.setNavigationBar()
         isDisapeared = false
+        
+       // navigationManager.setMusicBtnState()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+         navigationManager.setMusicBtnState()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -207,7 +216,7 @@ extension CourseMainPageViewController : UITableViewDataSource, UITableViewDeleg
         count += (1 + zhuanLans.count)
         count += 1
         
-        count += (1 + courses.count)
+        count += ( courses.count)
         return count
     }
     

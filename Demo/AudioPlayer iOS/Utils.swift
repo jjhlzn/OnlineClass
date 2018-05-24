@@ -27,6 +27,10 @@ extension String {
     }
 }
 
+class ImageCacheKeys {
+    static let User_Profile_Image = "key_User_Profile_Image"
+}
+
 class Utils {
     static let Model_Name = "jufangzhushou"
     
@@ -191,7 +195,8 @@ class Utils {
         if #available(iOS 11.0, *) {
             tableView?.contentInsetAdjustmentBehavior = .never
             if UIDevice().isX() {
-                tableView?.contentInset = UIEdgeInsetsMake(24, 0, 49, 0)
+                tableView?.contentInset = UIEdgeInsetsMake(24, 0, 0, 0)
+
             }
             
         } else {

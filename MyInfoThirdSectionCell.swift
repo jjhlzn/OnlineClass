@@ -30,7 +30,7 @@ class MyInfoThirdSectionCell: UITableViewCell {
     }
 
     func update() {
-        let vipEndDate = keyValueStore.get(key: KeyValueStore.key_jifen, defaultValue: "")
+        let vipEndDate = keyValueStore.get(key: KeyValueStore.key_vipenddate, defaultValue: "")
         let loginStore = LoginUserStore()
         let loginUser = loginStore.getLoginUser()!
         if vipEndDate == "" {

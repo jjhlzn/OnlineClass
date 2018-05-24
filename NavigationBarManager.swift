@@ -8,6 +8,7 @@
 
 import UIKit
 import Gifu
+import KDEAudioPlayer
 
 class NavigationBarManager: NSObject {
 
@@ -23,7 +24,8 @@ class NavigationBarManager: NSObject {
     func setMusicButton() {
         self.imageView = GIFImageView(frame: CGRect(x: 0, y: -10, width: 32, height: 32))
         self.imageView.backgroundColor = nil
-        self.imageView.animate(withGIFNamed: "demo")
+        self.imageView.prepareForAnimation(withGIFNamed: "demo")
+        self.imageView.setNeedsDisplay()
         self.imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tapMusicBtnHandler(sender:))))
         let button = UIBarButtonItem(customView: self.imageView)
         
@@ -35,6 +37,20 @@ class NavigationBarManager: NSObject {
             self.imageView.stopAnimatingGIF()
         } else {
             self.imageView.startAnimatingGIF()
+        }
+    }
+    
+    func setMusicBtnState() {
+        let audioPlayer = Utils.getAudioPlayer()
+        //self.imageView.startAnimatingGIF()
+        //self.imageView.setNeedsDisplay()
+        //self.imageView.fr
+        self.imageView.updateImageIfNeeded()
+        //self.imageView.stopAnimatingGIF()
+        if audioPlayer.state == AudioPlayerState.playing {
+            self.imageView.startAnimatingGIF()
+        } else {
+            self.imageView.stopAnimatingGIF()
         }
     }
     

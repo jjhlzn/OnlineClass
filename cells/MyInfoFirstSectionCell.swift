@@ -8,6 +8,7 @@
 
 import UIKit
 import QorumLogs
+import Kingfisher
 
 class MyInfoFirstSectionCell: UITableViewCell {
 
@@ -39,7 +40,7 @@ class MyInfoFirstSectionCell: UITableViewCell {
             let profilePhotoUrl = ServiceConfiguration.GET_PROFILE_IMAGE + "?userid=" + loginUserStore.getLoginUser()!.userName!
             QL1("userimageurl = \(profilePhotoUrl)")
             
-            headerImageView.kf.setImage(with: URL(string: profilePhotoUrl))
+            headerImageView.kf.setImage(with: ImageResource(downloadURL: URL(string: profilePhotoUrl)!, cacheKey: ImageCacheKeys.User_Profile_Image))
             
             /*
              cell.userImage.kf_setImageWithURL(NSURL(string: profilePhotoUrl)!,

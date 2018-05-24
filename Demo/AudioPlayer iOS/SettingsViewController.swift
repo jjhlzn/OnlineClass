@@ -22,7 +22,7 @@ class SettingsViewController: BaseUIViewController, UITableViewDataSource, UITab
         Utils.setNavigationBarAndTableView(self, tableView: tableView)
     }
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 3
     }
     
@@ -86,7 +86,7 @@ class SettingsViewController: BaseUIViewController, UITableViewDataSource, UITab
     }
     
 
-    @IBAction func logoutPressed(sender: UIButton) {
+    @IBAction func logoutBtnPressed(_ sender: Any) {
         displayConfirmMessage(message: "确认退出登录吗？", delegate: self)
     }
     
