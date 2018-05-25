@@ -54,7 +54,9 @@ class NavigationBarManager: NSObject {
         let audioPlayer = Utils.getAudioPlayer()
         if audioPlayer.currentItem != nil {
             let vc = NewPlayerController()
+            viewController.hidesBottomBarWhenPushed = true
             viewController.navigationController?.pushViewController(vc, animated: true)
+            
         }
     }
     

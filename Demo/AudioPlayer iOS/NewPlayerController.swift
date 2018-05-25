@@ -117,7 +117,7 @@ class NewPlayerController: UIViewController, UIScrollViewDelegate, AudioPlayerDe
             imageName = "back_white"
         }
         b.setImage( UIImage(named: imageName), for: .normal)
-        b.frame = CGRect(x: 0, y: 0, width: 8, height: 8)
+        b.frame = CGRect(x: -10, y: 0, width: 35, height: 35)
         let button = UIBarButtonItem(customView: b)
         b.addTarget(self, action: #selector(backPressed), for: .touchUpInside)
         self.navigationItem.leftBarButtonItem  = button
@@ -135,7 +135,7 @@ class NewPlayerController: UIViewController, UIScrollViewDelegate, AudioPlayerDe
             imageName = "share_white"
         }
         b.setImage( UIImage(named: imageName), for: .normal)
-        b.frame = CGRect(x: 0, y: 0, width: 8, height: 8)
+        b.frame = CGRect(x: 0, y: 0, width: 35, height: 35)
         let button = UIBarButtonItem(customView: b)
         b.addTarget(self, action: #selector(sharePressed), for: .touchUpInside)
         self.navigationItem.rightBarButtonItem  = button

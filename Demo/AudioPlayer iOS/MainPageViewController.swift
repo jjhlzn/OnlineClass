@@ -97,7 +97,7 @@ class CourseMainPageViewController: BaseUIViewController {
     func setKefuButton() {
         let b = UIButton(type: .custom)
         b.setImage( UIImage(named: "new_kefu"), for: .normal)
-        b.frame = CGRect(x: 0, y: 0, width: 8, height: 8)
+        b.frame = CGRect(x: 0, y: 0, width: 35, height: 35)
         let button = UIBarButtonItem(customView: b)
         b.addTarget(self, action: #selector(keFuPressed), for: .touchUpInside)
         self.navigationItem.leftBarButtonItem  = button
