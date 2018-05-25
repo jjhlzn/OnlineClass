@@ -9,7 +9,6 @@
 import UIKit
 import QorumLogs
 import Kingfisher
-import SwiftyBeaver
 
 class MyInfoLineInfo {
     
@@ -19,7 +18,7 @@ class MyInfoVieController: BaseUIViewController, UITableViewDataSource, UITableV
 
     
     @IBOutlet weak var tableView: UITableView!
-    let log = SwiftyBeaver.self
+    var navigationManager : NavigationBarManager!
     
     var fourthSections = [ ["me_service", "我的服务", "webViewSegue", ServiceLinkManager.MyServiceUrl, "0", ""] ]
     
@@ -49,6 +48,8 @@ class MyInfoVieController: BaseUIViewController, UITableViewDataSource, UITableV
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationManager = NavigationBarManager(self)
+        
         lineSections = [[[String]]]()
         lineSections.append(fourthSections)
         lineSections.append(fifthSections)
@@ -84,6 +85,18 @@ class MyInfoVieController: BaseUIViewController, UITableViewDataSource, UITableV
             self.refreshControl.endRefreshing()
         }
     }
+    
+    
+    func setNavigationBar() {
+        self.navigationItem.rightBarButtonItems = []
+        navigationManager.setMusicButton()
+
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setNavigationBar()
+    }
 
 }
 
@@ -112,8 +125,6 @@ extension MyInfoVieController {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let section = indexPath.section
-        log.debug("section heightForRowAtIndexPath:")
-        log.debug(section)
         switch section {
         case 0:
             return 88

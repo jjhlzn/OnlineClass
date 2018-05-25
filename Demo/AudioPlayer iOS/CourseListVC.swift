@@ -25,9 +25,12 @@ class CourseListVC: BaseUIViewController, UITableViewDataSource, UITableViewDele
 
     @IBOutlet weak var tableView: UITableView!
     
+    var navigationManager : NavigationBarManager!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        navigationManager = NavigationBarManager(self)
+        
         super.viewDidLoad()
         print("viewDidLoad")
         //addPlayingButton(button: playingButton)
@@ -71,9 +74,15 @@ class CourseListVC: BaseUIViewController, UITableViewDataSource, UITableViewDele
         Utils.setNavigationBarAndTableView(self, tableView: tableView)
     }
     
+    func setNavigationBar() {
+        self.navigationItem.rightBarButtonItems = []
+        navigationManager.setMusicButton()
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         isDisapeared = false
+        setNavigationBar()
     }
     
     override func viewWillDisappear(_ animated: Bool) {

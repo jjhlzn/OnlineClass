@@ -13,18 +13,12 @@ class ZhuanLanListVC: BaseUIViewController, UITableViewDataSource, UITableViewDe
     @IBOutlet weak var tableView: UITableView!
     var zhuanLans = [ZhuanLan]()
     
+    var navigationManager : NavigationBarManager!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        if #available(iOS 11.0, *) {
-            tableView.contentInsetAdjustmentBehavior = .never
-            if UIDevice().isX() {
-                tableView.contentInset = UIEdgeInsetsMake(24, 0, 49, 0)
-            }
-            
-        } else {
-            automaticallyAdjustsScrollViewInsets = false
-        }
+        navigationManager = NavigationBarManager(self)
+        Utils.setNavigationBarAndTableView(self, tableView: tableView)
         
         tableView.dataSource = self
         tableView.delegate = self
@@ -33,10 +27,6 @@ class ZhuanLanListVC: BaseUIViewController, UITableViewDataSource, UITableViewDe
         // Do any additional setup after loading the view.
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
     func loadZhuanLans() {
         BasicService().sendRequest(url: ServiceConfiguration.Get_ZHUANLAN_LIST, request: GetZhuanLansRequest()) {
@@ -56,6 +46,16 @@ class ZhuanLanListVC: BaseUIViewController, UITableViewDataSource, UITableViewDe
             dest.url = NSURL(string: params["url"]!)
             dest.title = params["title"]
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setNavigationBar()
+    }
+    
+    func setNavigationBar() {
+        self.navigationItem.rightBarButtonItems = []
+        navigationManager.setMusicButton()
     }
 }
 

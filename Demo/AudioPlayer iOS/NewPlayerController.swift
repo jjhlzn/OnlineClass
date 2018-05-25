@@ -77,7 +77,7 @@ class NewPlayerController: UIViewController, UIScrollViewDelegate {
         
         shareView = ShareView(frame: CGRect(x : 0, y: UIScreen.main.bounds.height - 233, width: UIScreen.main.bounds.width, height: 233), controller: self)
 
-        commentKeyboard = CommentKeyboard(frame: CGRect(x : 0, y: UIScreen.main.bounds.height - 156, width: UIScreen.main.bounds.width, height: 156), shareView: shareView, viewController: self, liveDelegate: viewControllers[0] as! LiveCommentDelegate)
+        commentKeyboard = CommentKeyboard(frame: CGRect(x : 0, y: UIScreen.main.bounds.height - 40, width: UIScreen.main.bounds.width, height: 40), shareView: shareView, viewController: self, liveDelegate: viewControllers[0] as! LiveCommentDelegate)
         
         view.addSubview(commentKeyboard)
         setNavigationBar(true)

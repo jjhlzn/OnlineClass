@@ -70,6 +70,7 @@ class CourseMainPageViewController: BaseUIViewController {
 
     
     func setNavigationBar() {
+        
         self.navigationItem.rightBarButtonItems = []
         navigationManager.setMusicButton()
         setKefuButton()
@@ -118,8 +119,6 @@ class CourseMainPageViewController: BaseUIViewController {
         loadToutiao()
         self.setNavigationBar()
         isDisapeared = false
-        
-       // navigationManager.setMusicBtnState()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -130,8 +129,6 @@ class CourseMainPageViewController: BaseUIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
-        //freshHeaderAdvTimer.invalidate()
-        //imageView.prepareForReuse()
         self.navigationItem.rightBarButtonItem  = nil
         
         isDisapeared = false

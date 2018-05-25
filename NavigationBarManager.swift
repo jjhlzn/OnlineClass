@@ -16,37 +16,53 @@ class NavigationBarManager: NSObject {
     var shareView: ShareView?
     
     var imageView: GIFImageView!
+    var staticImageView: UIImageView!
     
+    //var musicButton : UIBarButtonItem!
     init(_ viewController: UIViewController) {
+        super.init()
         self.viewController = viewController
+        
     }
     
     func setMusicButton() {
-        self.imageView = GIFImageView(frame: CGRect(x: 0, y: -10, width: 32, height: 32))
-        self.imageView.backgroundColor = nil
-        self.imageView.prepareForAnimation(withGIFNamed: "demo")
-        self.imageView.setNeedsDisplay()
-        self.imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tapMusicBtnHandler(sender:))))
-        let button = UIBarButtonItem(customView: self.imageView)
-        
-        viewController.navigationItem.rightBarButtonItems?.append(button)
+        let customView = getMusicCustomView()
+        let musicButton = UIBarButtonItem(customView: customView)
+        viewController.navigationItem.rightBarButtonItems?.append(musicButton)
+    }
+    
+    
+    func getMusicCustomView() -> UIView {
+        let audioPlayer = Utils.getAudioPlayer()
+        if audioPlayer.state == AudioPlayerState.playing {
+            self.imageView = GIFImageView(frame: CGRect(x: 0, y: -10, width: 32, height: 32))
+            self.imageView.backgroundColor = nil
+            self.imageView.animate(withGIFNamed: "demo")
+            self.imageView.setNeedsDisplay()
+            self.imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tapMusicBtnHandler(sender:))))
+            return self.imageView
+        } else {
+            self.staticImageView = UIImageView(image: UIImage(named: "music_static"))
+            staticImageView.isUserInteractionEnabled = true
+            let tapHandler = UITapGestureRecognizer(target: self, action: #selector(tapMusicBtnHandler(sender:)))
+            staticImageView.addGestureRecognizer(tapHandler)
+            return self.staticImageView
+        }
     }
     
     @objc func tapMusicBtnHandler(sender: UITapGestureRecognizer? = nil) {
-        if self.imageView.isAnimatingGIF {
-            self.imageView.stopAnimatingGIF()
-        } else {
-            self.imageView.startAnimatingGIF()
+        let audioPlayer = Utils.getAudioPlayer()
+        if audioPlayer.currentItem != nil {
+            let vc = NewPlayerController()
+            viewController.navigationController?.pushViewController(vc, animated: true)
         }
     }
     
     func setMusicBtnState() {
+        if self.imageView == nil {
+            return
+        }
         let audioPlayer = Utils.getAudioPlayer()
-        //self.imageView.startAnimatingGIF()
-        //self.imageView.setNeedsDisplay()
-        //self.imageView.fr
-        self.imageView.updateImageIfNeeded()
-        //self.imageView.stopAnimatingGIF()
         if audioPlayer.state == AudioPlayerState.playing {
             self.imageView.startAnimatingGIF()
         } else {
