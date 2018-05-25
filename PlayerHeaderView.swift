@@ -61,5 +61,9 @@ class PlayerHeaderView: BaseCustomView {
             playerStatusLabel.text = "开始播放"
         }
     }
+    
+    func updateListenerCountLabel(_ count: Int) {
+        listenerCountLabel.text = "\(count)人在线"
+    }
 
 }

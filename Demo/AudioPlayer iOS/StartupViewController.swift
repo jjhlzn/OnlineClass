@@ -41,7 +41,7 @@ class StartupViewController: BaseUIViewController {
         
         // optionalUpgradeAlertViewDelegate = OptionalUpgradeAlertViewDelegate(controller: self)
         
-        let serviceLocator = serviceLocatorStore.GetServiceLocator()
+        //let serviceLocator = serviceLocatorStore.GetServiceLocator()
         
         
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
@@ -49,29 +49,7 @@ class StartupViewController: BaseUIViewController {
         
         //serviceLocator不应该为null，因为在AppDelegate会有一个初始化值
          self.checkLaunchAdv()
-        /*
-        if (serviceLocator?.needServieLocator)! {
-            
-            BasicService().sendRequest(url: ServiceConfiguration.GET_SERVICE_LOACTOR_URL, request: GetServiceLocatorRequest(), timeout: 3) {
-                (resp : GetServiceLocatorResponse) -> Void in
-                
-                if resp.status == ServerResponseStatus.Success.rawValue {
-                    serviceLocator?.http = resp.http
-                    serviceLocator?.port = resp.port as! NSNumber
-                    serviceLocator?.serverName = resp.serverName
-                    
-                    self.serviceLocatorStore.UpdateServiceLocator()
-                }
-                
-                //self.checkLoginUser()
-                self.checkLaunchAdv()
-                
-            }
-        } else {
-            //checkLoginUser()
-            self.checkLaunchAdv()
-        }
-        */
+        
         goToNextControllerTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.skipAdvWhenTimeOut), userInfo: nil, repeats: true)
         
     }
@@ -105,7 +83,7 @@ class StartupViewController: BaseUIViewController {
         
     }
     
-    func skipAdv() {
+    @objc func skipAdv() {
         QL1("skip adv")
         goToNextControllerTimer?.invalidate()
         skipAdvTimer?.invalidate()
@@ -114,7 +92,7 @@ class StartupViewController: BaseUIViewController {
     
     var advUrl = ""
     var advTitle = ""
-    func goToAdvPage() {
+    @objc func goToAdvPage() {
         QL1("go to adv page")
         if "" != advUrl {
             goToNextControllerTimer?.invalidate()
@@ -127,35 +105,27 @@ class StartupViewController: BaseUIViewController {
         self.advUrl = advUrl
         self.advTitle = advTitle
         
-        let imageView = UIImageView()
-        /*
-        imageView.kf_setImageWithURL(NSURL(string: imageUrl)!,
-                                     placeholderImage: nil,
-                                     optionsInfo: [.ForceRefresh],
-                                     completionHandler: { (image, error, cacheType, imageURL) -> () in
-                                        if image != nil {
-                                            self.advImageView.image = image
-                                            self.advImageView.hidden = false
-                                            self.advTip.hidden = false
-                                            self.skipAdvButton.hidden = false
-                                            
-                                            
-                                            self.skipAdvButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.skipAdv)))
-                                            self.skipAdvButton.userInteractionEnabled = true
-                                            
-                                            self.advImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.goToAdvPage)))
-                                            self.advImageView.userInteractionEnabled = true
-                                            
-                                            //设置timer
-                                            self.skipAdvTimer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(self.updateSkipAdvButtonText), userInfo: nil, repeats: true)
-                                            
-                                        }
-        }) */
+        //let imageView = UIImageView()
+        
+        advImageView.kf.setImage(with: URL(string: imageUrl)!)
+        advImageView.isHidden = false
+        skipAdvButton.isHidden = false
+        self.advTip.isHidden = false
+        
+        self.skipAdvButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.skipAdv)))
+        self.skipAdvButton.isUserInteractionEnabled = true
+        
+        self.advImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.goToAdvPage)))
+        self.advImageView.isUserInteractionEnabled = true
+        
+        //设置timer
+        self.skipAdvTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.updateSkipAdvButtonText), userInfo: nil, repeats: true)
+        
     }
     
     var timerCount = 3
     var skipAdvTimer: Timer?
-    func updateSkipAdvButtonText() {
+    @objc func updateSkipAdvButtonText() {
         timerCount = timerCount - 1
         self.skipAdvButton.text = "跳过广告 \(timerCount)"
         

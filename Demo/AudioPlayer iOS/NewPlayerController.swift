@@ -22,6 +22,8 @@ class NewPlayerController: UIViewController, UIScrollViewDelegate, AudioPlayerDe
     var bgColor: UIColor?
     var isTouming : Bool = true
     
+    var timer : Timer!
+    
     //var shareOverlay: UIView!
     var shareView: ShareView!
     var commentKeyboard: CommentKeyboard!
@@ -94,6 +96,17 @@ class NewPlayerController: UIViewController, UIScrollViewDelegate, AudioPlayerDe
         
         view.addSubview(commentKeyboard)
         setNavigationBar(true)
+        
+        
+    }
+    
+    @objc func loadListenCount() {
+        let req = GetLiveListernerCountRequest(song: Utils.getCurrentSong())
+        BasicService().sendRequest(url: ServiceConfiguration.GET_LIVE_LISTERNER_COUNT, request: req) {
+            (resp: GetLiveListernerCountResponse) -> Void in
+            let listenerCount = resp.count
+            self.headerView.updateListenerCountLabel(listenerCount)
+        }
     }
     
     func setBackButton(_ isTranslucent : Bool) {
@@ -142,6 +155,8 @@ class NewPlayerController: UIViewController, UIScrollViewDelegate, AudioPlayerDe
         let audioPlayer = Utils.getAudioPlayer()
         
         audioPlayer.delegate = self
+    
+       timer = Timer.scheduledTimer(timeInterval: 60, target: self, selector: #selector(self.loadListenCount), userInfo: nil, repeats: true)
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -159,6 +174,8 @@ class NewPlayerController: UIViewController, UIScrollViewDelegate, AudioPlayerDe
                 }
             }
         }
+        
+        timer.invalidate()
     }
     
     func resumeNavigationBar() {
