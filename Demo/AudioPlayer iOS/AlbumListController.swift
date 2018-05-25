@@ -108,8 +108,8 @@ class AlbumListController: BaseUIViewController, UITableViewDataSource, UITableV
         
     }
     
-    override func audioPlayer(audioPlayer: AudioPlayer, didChangeStateFrom from: AudioPlayerState, toState to: AudioPlayerState) {
-        super.audioPlayer(audioPlayer: audioPlayer, didChangeStateFrom: from, toState: to)
+    override func audioPlayer(_ audioPlayer: AudioPlayer, didChangeStateFrom from: AudioPlayerState, to state: AudioPlayerState) {
+        super.audioPlayer(audioPlayer, didChangeStateFrom: from, to: state)
         updatePlayingButton(button: playingButton)
     }
     

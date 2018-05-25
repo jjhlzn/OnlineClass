@@ -36,7 +36,7 @@ class FirstPageViewController: BaseUIViewController {
         
     }
     
-    override func audioPlayer(audioPlayer: AudioPlayer, didChangeStateFrom from: AudioPlayerState, toState to: AudioPlayerState) {
+    override func audioPlayer(_ audioPlayer: AudioPlayer, didChangeStateFrom from: AudioPlayerState, to state: AudioPlayerState)  {
         let audioItem = getAudioPlayer().currentItem
         if audioItem == nil {
             print("audioItem is nil")

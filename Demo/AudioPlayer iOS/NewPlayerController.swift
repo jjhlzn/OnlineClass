@@ -10,8 +10,9 @@ import UIKit
 import StoreKit
 import LTScrollView
 import KDEAudioPlayer
+import QorumLogs
 
-class NewPlayerController: UIViewController, UIScrollViewDelegate {
+class NewPlayerController: UIViewController, UIScrollViewDelegate, AudioPlayerDelegate {
    
     var song : LiveSong!
     var titleView : UIView?
@@ -24,6 +25,8 @@ class NewPlayerController: UIViewController, UIScrollViewDelegate {
     //var shareOverlay: UIView!
     var shareView: ShareView!
     var commentKeyboard: CommentKeyboard!
+    
+    var  headerView : PlayerHeaderView!
     
     
     private lazy var viewControllers: [UIViewController] = {
@@ -66,8 +69,14 @@ class NewPlayerController: UIViewController, UIScrollViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        
         let audioPlayer = Utils.getAudioPlayer()
         self.song = (audioPlayer.currentItem as! MyAudioItem).song as! LiveSong
+        
+        audioPlayer.delegate = self
+        headerView = PlayerHeaderView(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 229))
+        headerView.audioPlayer = audioPlayer
         
         view.backgroundColor = UIColor.white
         self.automaticallyAdjustsScrollViewInsets = false
@@ -77,7 +86,11 @@ class NewPlayerController: UIViewController, UIScrollViewDelegate {
         
         shareView = ShareView(frame: CGRect(x : 0, y: UIScreen.main.bounds.height - 233, width: UIScreen.main.bounds.width, height: 233), controller: self)
 
-        commentKeyboard = CommentKeyboard(frame: CGRect(x : 0, y: UIScreen.main.bounds.height - 40, width: UIScreen.main.bounds.width, height: 40), shareView: shareView, viewController: self, liveDelegate: viewControllers[0] as! LiveCommentDelegate)
+        var y = UIScreen.main.bounds.height - 40
+        if UIDevice().isX() {
+            y -= 24
+        }
+        commentKeyboard = CommentKeyboard(frame: CGRect(x : 0, y: y, width: UIScreen.main.bounds.width, height: 40), shareView: shareView, viewController: self, liveDelegate: viewControllers[0] as! LiveCommentDelegate)
         
         view.addSubview(commentKeyboard)
         setNavigationBar(true)
@@ -125,6 +138,10 @@ class NewPlayerController: UIViewController, UIScrollViewDelegate {
         setNavigationBar(self.isTouming)
         
         commentKeyboard.commentController.addKeyboardNotify()
+        
+        let audioPlayer = Utils.getAudioPlayer()
+        
+        audioPlayer.delegate = self
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -133,6 +150,15 @@ class NewPlayerController: UIViewController, UIScrollViewDelegate {
         
         commentKeyboard.commentController.removeKeyboardNotify()
         commentKeyboard.commentController.dispose()
+        
+        Utils.getAudioPlayer().delegate = nil
+        if self.navigationController?.viewControllers.index(of: self) == nil {
+            if let navigatoinViewController = (self.parent as? UINavigationController) {
+                if let delegate = navigatoinViewController.topViewController as? AudioPlayerDelegate {
+                    Utils.getAudioPlayer().delegate = delegate
+                }
+            }
+        }
     }
     
     func resumeNavigationBar() {
@@ -173,6 +199,17 @@ class NewPlayerController: UIViewController, UIScrollViewDelegate {
             dest.title = params["title"]
         }
     }
+    
+    func audioPlayer(_ audioPlayer: AudioPlayer, didChangeStateFrom from: AudioPlayerState, to state: AudioPlayerState) {
+        QL1("audioPlayer:didChangeStateFrom called, from = \(from), to = \(state)")
+        //headerView.updateMusicButton()
+        headerView.updateMusicButton()
+        
+    }
+    
+    func audioPlayer(_ audioPlayer: AudioPlayer, didUpdateProgressionTo time: TimeInterval, percentageRead: Float) {
+        QL1("audioPlayer:didUpdateProgressionTo called: \(percentageRead)")
+    }
 }
 
 extension NewPlayerController: LTAdvancedScrollViewDelegate {
@@ -205,8 +242,10 @@ extension NewPlayerController: LTAdvancedScrollViewDelegate {
 
 extension NewPlayerController {
     private func testLabel() -> LTHeaderView {
-        let H = 229.0 * UIScreen.main.bounds.width / 375.0
+        //let H = 229.0 * UIScreen.main.bounds.width / 375.0
         let headerView = LTHeaderView(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 229))
+        headerView.headerView = self.headerView
+        headerView.initialize()
         return headerView
     }
 }

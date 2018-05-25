@@ -119,30 +119,10 @@ class BaseUIViewController: UIViewController, AudioPlayerDelegate {
         }
     }
 
-    func audioPlayer(audioPlayer: AudioPlayer, didChangeStateFrom from: AudioPlayerState, toState to: AudioPlayerState) {
-        QL1("audioPlayer:didChangeStateFrom called")
+    func audioPlayer(_ audioPlayer: AudioPlayer, didChangeStateFrom from: AudioPlayerState, to state: AudioPlayerState) {
+        QL1("audioPlayer:didChangeStateFrom called, from: \(from), to: \(state)")
     }
-    
-    func audioPlayer(audioPlayer: AudioPlayer, willStartPlayingItem item: AudioItem) {
-        QL1("audioPlayer:willStartPlayingItem called")
-    }
-    
-    func audioPlayer(audioPlayer: AudioPlayer, didUpdateProgressionToTime time: TimeInterval, percentageRead: Float) {
-        
-    }
-    
-    func audioPlayer(audioPlayer: AudioPlayer, didFindDuration duration: TimeInterval, forItem item: AudioItem) {
 
-    }
-    
-    func audioPlayer(audioPlayer: AudioPlayer, didUpdateEmptyMetadataOnItem item: AudioItem, withData data: Metadata) {
-        QL1("audioPlayer:didUpdateEmptyMetadataOnItem called, metaData = \(data)")
-    }
-    
-    /*
-    func audioPlayer(audioPlayer: AudioPlayer, didLoadRange range: AudioPlayer.TimeRange, forItem item: AudioItem){
-
-    }*/
     
     func becomeLineBorder(field: UITextField) {
         field.borderStyle = .none
