@@ -324,7 +324,7 @@ extension CourseMainPageViewController : UITableViewDataSource, UITableViewDeleg
             loading.showOverlay(view: self.view)
             
             let req = GetAlbumSongsRequest(album: album)
-            BasicService().sendRequest(url: ServiceConfiguration.GET_ALBUM_SONGS, request: req) {
+            _ = BasicService().sendRequest(url: ServiceConfiguration.GET_ALBUM_SONGS, request: req) {
                 (resp: GetAlbumSongsResponse) -> Void in
                 
                 self.loading.hideOverlayView()
@@ -382,7 +382,7 @@ extension CourseMainPageViewController  {
         }
     }
     
-    
+    @discardableResult
     func loadFunctionInfos() {
         BasicService().sendRequest(url: ServiceConfiguration.GET_FUNCTION_INFO, request: GetFunctionInfosRequest()) {
             (resp: GetFunctionInfosResponse) -> Void in

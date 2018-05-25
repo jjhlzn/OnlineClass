@@ -22,6 +22,7 @@ class KeyValueStore {
     
     var coreDataStack = CoreDataStack(modelName: "jufangzhushou")
     
+    @discardableResult
     func save(key: String, value: String) -> Bool {
         
         //首先查询key是否存在
