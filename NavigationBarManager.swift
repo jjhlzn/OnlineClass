@@ -56,7 +56,7 @@ class NavigationBarManager: NSObject {
             let vc = NewPlayerController()
             viewController.hidesBottomBarWhenPushed = true
             viewController.navigationController?.pushViewController(vc, animated: true)
-            
+            viewController.hidesBottomBarWhenPushed = false
         }
     }
     

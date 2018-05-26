@@ -67,7 +67,7 @@ class HeaderAdvCell: UITableViewCell, FSPagerViewDataSource, FSPagerViewDelegate
     }
     
     public func initialize() {
-        pagerView.automaticSlidingInterval = 3.0
+        pagerView.automaticSlidingInterval = 5.0
         pagerView.backgroundColor = UIColor.white
         pagerView.isInfinite = true
         pagerView.dataSource = self

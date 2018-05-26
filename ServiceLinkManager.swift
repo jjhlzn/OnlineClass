@@ -185,4 +185,28 @@ class ServiceLinkManager {
             return "http://\(ServiceConfiguration.serverName):\(ServiceConfiguration.port)/app/hezuo"
         }
     }
+    
+    static var CardPayUrl : String {
+        get {
+            return "http://\(ServiceConfiguration.serverName):\(ServiceConfiguration.port)/app/pay"
+        }
+    }
+    
+    static var JunhuokuUrl : String {
+        get {
+            return "http://\(ServiceConfiguration.serverName):\(ServiceConfiguration.port)/app/documents"
+        }
+    }
+    
+    static var HealthUrl : String {
+        get {
+            return "http://\(ServiceConfiguration.serverName):\(ServiceConfiguration.port)/app/health"
+        }
+    }
+    
+    static var ZixunUrl : String {
+        get {
+            return "http://\(ServiceConfiguration.serverName):\(ServiceConfiguration.port)/app/study"
+        }
+    }
 }

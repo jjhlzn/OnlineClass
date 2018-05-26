@@ -31,7 +31,7 @@ class ApplyBrowserController : IapSupportWebPageViewController, WKNavigationDele
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "资讯"
-        url = NSURL(string: ServiceLinkManager.ShenqingUrl)!
+        url = NSURL(string: ServiceLinkManager.ZixunUrl)!
         
         navigationManager = NavigationBarManager(self)
         shareView = ShareView(frame: CGRect(x : 0, y: UIScreen.main.bounds.height - 233 - 49, width: UIScreen.main.bounds.width, height: 233), controller: self)

@@ -12,6 +12,7 @@ import LTScrollView
 class BeforeCourseVC: UIViewController, LTTableViewProtocal {
     
     var beforeCourses = [Course]()
+    var disappeared = false
     
     private lazy var tableView: UITableView = {
         print(UIScreen.main.bounds.height)
@@ -43,13 +44,21 @@ class BeforeCourseVC: UIViewController, LTTableViewProtocal {
         let req = GetCourseInfoRequest()
         let song = Utils.getCurrentSong()
         req.id = song.id
-        BasicService().sendRequest(url: ServiceConfiguration.GET_COURSEINFO, request: req) {
+        _ = BasicService().sendRequest(url: ServiceConfiguration.GET_COURSEINFO, request: req) {
             (resp: GetCourseInfoResponse) -> Void in
+            if self.disappeared {
+                return
+            }
             if resp.course != nil {
                 self.beforeCourses = (resp.course?.beforeCourses)!
                 self.tableView.reloadData()
             }
         }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        disappeared = true
     }
     
 }

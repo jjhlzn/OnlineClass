@@ -37,7 +37,7 @@ class PurchaseRecordStore {
         return recordEntity
     }
     
-    
+    @discardableResult
     func update() -> Bool {
         do {
             try coreDataStack.saveChanges()

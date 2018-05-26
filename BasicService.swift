@@ -15,6 +15,7 @@ import QorumLogs
 
 class BasicService {
     
+    @discardableResult
     private func sendRequest0<T: ServerResponse>(url: String,
                      method: Alamofire.HTTPMethod = Alamofire.HTTPMethod.post,
                      serverRequest: ServerRequest,
@@ -114,7 +115,7 @@ class BasicService {
         return serverResponse
     }
     
-    
+    @discardableResult
     func sendRequest<T: ServerResponse>(url: String,
                      request: ServerRequest,
                      timeout: TimeInterval = 5,

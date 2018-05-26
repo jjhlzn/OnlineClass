@@ -48,10 +48,10 @@ class CourseListVC: BaseUIViewController, UITableViewDataSource, UITableViewDele
             request.payTime = purchaseRecord?.payTime!
             request.productId = purchaseRecord?.productId!
             request.sign = Utils.createIPANotifySign(request: request)
-            BasicService().sendRequest(url: ServiceConfiguration.NOTIFY_IAP_SUCCESS, request: request) {
+            _ = BasicService().sendRequest(url: ServiceConfiguration.NOTIFY_IAP_SUCCESS, request: request) {
                 (resp: NotifyIAPSuccessResponse) -> Void in
                 if resp.status != ServerResponseStatus.Success.rawValue {
-                    QL4("resp.status = \(resp.status), message = \(resp.errorMessage)")
+                    QL4("resp.status = \(resp.status), message = \(String(describing: resp.errorMessage))")
                     return;
                 }
                 if purchaseRecord != nil {
@@ -128,7 +128,7 @@ class CourseListVC: BaseUIViewController, UITableViewDataSource, UITableViewDele
             }
             
             var audioItems = [AudioItem]()
-            var   url = URL(string: song.url)
+            let   url = URL(string: song.url)
             
             let audioItem = MyAudioItem(song: song, highQualitySoundURL: url)
             //(audioItem as! MyAudioItem).song = item

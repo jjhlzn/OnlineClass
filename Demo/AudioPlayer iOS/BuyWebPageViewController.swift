@@ -80,12 +80,18 @@ class WebPageViewController: IapSupportWebPageViewController, WKNavigationDelega
         var url1 = url.absoluteString
         url1 = Utils.addUserParams(url: url1!)
         url1 = Utils.addDevcieParam(url: url1!)
-        print(url1)
+        QL1(url1)
         
         let config = WKWebViewConfiguration()
         config.userContentController = contentController
         
-        self.webView = WKWebView(frame: self.view.frame, configuration: config)
+        let frame = self.view.bounds
+        var H : CGFloat = 64
+        if UIDevice().isX() {
+            H -= 32
+        }
+        let newFrame = CGRect(x: frame.minX, y: frame.minY, width: frame.width, height: frame.height - H)
+        self.webView = WKWebView(frame: newFrame, configuration: config)
         
         self.webContainer.addSubview(self.webView!)
         self.webView?.navigationDelegate = self

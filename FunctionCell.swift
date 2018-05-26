@@ -39,27 +39,25 @@ class ExtendFunctionMananger : NSObject {
                                       selector: #selector(moreHanlder), isShowDefault: true)
         
         return [
-            ExtendFunction(imageName: "func_shuaka", name: "刷卡", code: "f_paybycard", url: "http://www.baidu.com",
-                selector:  #selector(openApp), isShowDefault: true),
+            ExtendFunction(imageName: "func_shuaka", name: "无卡支付", code: "f_paybycard", url: ServiceLinkManager.CardPayUrl,
+                selector:  #selector(imageHandler), isShowDefault: true),
             ExtendFunction(imageName: "func_jsxk", name: "极速下卡", code: "f_makecard", url: ServiceLinkManager.FunctionFastCardUrl,
                            selector:  #selector(imageHandler), isShowDefault: false),
             
             ExtendFunction(imageName: "func_loan", name: "极速贷款", code: "f_loan", url: ServiceLinkManager.FunctionDaiKuangUrl,
                 selector:  #selector(imageHandler), isShowDefault: false),
             ExtendFunction(imageName: "func_dingyue", name: "订阅专栏", code: "f_订阅", url: ServiceLinkManager.FunctionCardManagerUrl,
-                           selector:  #selector(imageHandler), isShowDefault: true),
+                           selector:  #selector(dingyueHandler), isShowDefault: true),
             
-            ExtendFunction(imageName: "func_rzjhk", name: "融资军火库", code: "f_rzjhk", url: ServiceLinkManager.FunctionCardManagerUrl,
+            ExtendFunction(imageName: "func_rzjhk", name: "融资军火库", code: "f_rzjhk", url: ServiceLinkManager.JunhuokuUrl,
                            selector:  #selector(imageHandler), isShowDefault: true),
-            ExtendFunction(imageName: "func_health", name: "大健康", code: "f_health", url: ServiceLinkManager.FunctionCardManagerUrl,
+            ExtendFunction(imageName: "func_health", name: "大健康", code: "f_health", url: ServiceLinkManager.HealthUrl,
                            selector:  #selector(imageHandler), isShowDefault: true),
             ExtendFunction(imageName: "func_car", name: "微购车", code: "f_car", url: ServiceLinkManager.FunctionCarLoanUrl,
                            selector:  #selector(imageHandler), isShowDefault: false),
             ExtendFunction(imageName: "func_shopcart", name: "商城", code: "f_market",  url: ServiceLinkManager.FunctionShopUrl,
                 selector:  #selector(imageHandler), isShowDefault: false),
             
-
-           
             ExtendFunction(imageName: "moreFunction", name: "更多", code: "f_more", url: "",
                 selector: #selector(moreHanlder), isShowDefault: true)
         ]
@@ -285,6 +283,13 @@ class ExtendFunctionMananger : NSObject {
         let function = functions[index!]
         let params : [String: String] = ["url": function.url, "title": function.name]
         controller.performSegue(withIdentifier: "loadWebPageSegue", sender: params)
+    }
+    
+    @objc func dingyueHandler(sender: UITapGestureRecognizer? = nil) {
+        let index = sender?.view?.tag
+        clearFunctionMessage(index: index!)
+        let function = functions[index!]
+        controller.performSegue(withIdentifier: "zhuanLanListSegue", sender: nil)
     }
     
     func unSupportHandler(sender: UITapGestureRecognizer? = nil) {

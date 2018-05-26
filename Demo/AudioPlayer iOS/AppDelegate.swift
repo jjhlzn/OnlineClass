@@ -27,7 +27,7 @@ class AppDelegate : XinGeAppDelegate {
 
     override func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
-        super.application(application, didFinishLaunchingWithOptions: launchOptions)
+        _ = super.application(application, didFinishLaunchingWithOptions: launchOptions)
         
         QorumLogs.enabled = true
         
@@ -41,7 +41,7 @@ class AppDelegate : XinGeAppDelegate {
             serviceLocator.serverName = "jf.yhkamani.com"
             serviceLocator.port = 80
             serviceLocator.isUseServiceLocator = "1"
-            serviceLocatorStore.saveServiceLocator(serviceLocator: serviceLocator)
+            _ = serviceLocatorStore.saveServiceLocator(serviceLocator: serviceLocator)
         }
 
         
