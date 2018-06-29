@@ -237,8 +237,8 @@ extension NewPlayerController: LTAdvancedScrollViewDelegate {
             let index = $0
             if index == 2 {
                 var sender = [String:String]()
-                sender["url"] = "http://www.baidu.com"
-                sender["title"] = "测试"
+                sender["url"] = ServiceLinkManager.MyAgentUrl2
+                sender["title"] = "我要报名"
                 self.performSegue(withIdentifier: "loadWebSegue", sender: sender)
             }
         }

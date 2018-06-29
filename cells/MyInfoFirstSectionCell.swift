@@ -62,7 +62,7 @@ class MyInfoFirstSectionCell: UITableViewCell {
         agentLevelLabel.layer.cornerRadius = 2
         agentLevelLabel.layer.masksToBounds = true
         
-        myBossLabel.text = loginUser.boss!
+        //myBossLabel.text = loginUser.boss!
 
     }
     

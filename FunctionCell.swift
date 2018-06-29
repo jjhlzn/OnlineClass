@@ -18,7 +18,7 @@ class ExtendFunctionMananger : NSObject {
     var controller : BaseUIViewController!
     var showMaxRows : Int
     static var moreFunction : ExtendFunction?
-    var isNeedMore = false
+    var isNeedMore = true
     var extendFunctionStore = ExtendFunctionStore.instance
     
     static var allFunctions = ExtendFunctionMananger.getAllFunctions()
@@ -33,33 +33,66 @@ class ExtendFunctionMananger : NSObject {
         }
     }
     
+    static func isTestUser() -> Bool {
+        let loginUser = LoginUserStore().getLoginUser()!
+        return loginUser.userName! == "13706794299"
+    }
+    
+    func isTestUser2() -> Bool {
+        let loginUser = LoginUserStore().getLoginUser()!
+        return loginUser.userName! == "13706794299"
+    }
+    
     static func getAllFunctions() -> [ExtendFunction] {
         
         ExtendFunctionMananger.moreFunction = ExtendFunction(imageName: "moreFunction", name: "更多", code: "f_more", url: "",
                                       selector: #selector(moreHanlder), isShowDefault: true)
-        
+        if isTestUser() {
+            return [
+                ExtendFunction(imageName: "func_shuaka", name: "刷卡", code: "f_paybycard", url: ServiceLinkManager.CardPayUrl,
+                               selector:  #selector(imageHandler), isShowDefault: true),
+
+                
+                ExtendFunction(imageName: "func_loan", name: "极速贷款", code: "f_loan", url: ServiceLinkManager.FunctionDaiKuangUrl,
+                               selector:  #selector(imageHandler), isShowDefault: false),
+                ExtendFunction(imageName: "func_dingyue", name: "订阅专栏", code: "f_dingyue", url: ServiceLinkManager.FunctionCardManagerUrl,
+                               selector:  #selector(dingyueHandler), isShowDefault: true),
+                
+                ExtendFunction(imageName: "func_rzjhk", name: "融资军火库", code: "f_rzjhk", url: ServiceLinkManager.JunhuokuUrl,
+                               selector:  #selector(imageHandler), isShowDefault: true),
+                
+                ExtendFunction(imageName: "func_car", name: "微购车", code: "f_car", url: ServiceLinkManager.FunctionCarLoanUrl,
+                               selector:  #selector(imageHandler), isShowDefault: false),
+                ExtendFunction(imageName: "func_shopcart", name: "商城", code: "f_market",  url: ServiceLinkManager.FunctionShopUrl,
+                               selector:  #selector(imageHandler), isShowDefault: false)
+                
+                
+            ]
+        }
         return [
-            ExtendFunction(imageName: "func_shuaka", name: "无卡支付", code: "f_paybycard", url: ServiceLinkManager.CardPayUrl,
+            ExtendFunction(imageName: "func_shuaka", name: "刷卡", code: "f_paybycard", url: ServiceLinkManager.CardPayUrl,
                 selector:  #selector(imageHandler), isShowDefault: true),
             ExtendFunction(imageName: "func_jsxk", name: "极速下卡", code: "f_makecard", url: ServiceLinkManager.FunctionFastCardUrl,
                            selector:  #selector(imageHandler), isShowDefault: false),
             
             ExtendFunction(imageName: "func_loan", name: "极速贷款", code: "f_loan", url: ServiceLinkManager.FunctionDaiKuangUrl,
                 selector:  #selector(imageHandler), isShowDefault: false),
-            ExtendFunction(imageName: "func_dingyue", name: "订阅专栏", code: "f_订阅", url: ServiceLinkManager.FunctionCardManagerUrl,
+            ExtendFunction(imageName: "func_dingyue", name: "订阅专栏", code: "f_dingyue", url: ServiceLinkManager.FunctionCardManagerUrl,
                            selector:  #selector(dingyueHandler), isShowDefault: true),
             
             ExtendFunction(imageName: "func_rzjhk", name: "融资军火库", code: "f_rzjhk", url: ServiceLinkManager.JunhuokuUrl,
                            selector:  #selector(imageHandler), isShowDefault: true),
-            ExtendFunction(imageName: "func_health", name: "大健康", code: "f_health", url: ServiceLinkManager.HealthUrl,
-                           selector:  #selector(imageHandler), isShowDefault: true),
+            
             ExtendFunction(imageName: "func_car", name: "微购车", code: "f_car", url: ServiceLinkManager.FunctionCarLoanUrl,
                            selector:  #selector(imageHandler), isShowDefault: false),
             ExtendFunction(imageName: "func_shopcart", name: "商城", code: "f_market",  url: ServiceLinkManager.FunctionShopUrl,
                 selector:  #selector(imageHandler), isShowDefault: false),
+            ExtendFunction(imageName: "func_health", name: "更多", code: "f_health", url: ServiceLinkManager.HealthUrl,
+                           selector:  #selector(moreHanlder), isShowDefault: true),
             
+            /*
             ExtendFunction(imageName: "moreFunction", name: "更多", code: "f_more", url: "",
-                selector: #selector(moreHanlder), isShowDefault: true)
+                selector: #selector(moreHanlder), isShowDefault: true) */
         ]
         
     }
@@ -70,6 +103,9 @@ class ExtendFunctionMananger : NSObject {
         self.isNeedMore = isNeedMore
         
         super.init()
+        if self.isTestUser2() {
+            self.isNeedMore = false
+        }
         ExtendFunctionMananger.allFunctions = ExtendFunctionMananger.getAllFunctions()
     }
     

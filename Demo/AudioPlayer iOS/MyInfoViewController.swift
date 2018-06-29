@@ -109,14 +109,12 @@ extension MyInfoVieController {
         case 1:
             return 1
         case 2:
-            return 1
-        case 3:
             return fourthSections.count
-        case 4:
+        case 3:
             return fifthSections.count
-        case 5:
+        case 4:
             return sixthSections.count
-        case 6:
+        case 5:
             return seventhSections.count
         default:
             return 1
@@ -130,8 +128,6 @@ extension MyInfoVieController {
             return 88
         case 1:
             return 120
-        case 2:
-            return 72
 
         default:
             return 50
@@ -156,16 +152,19 @@ extension MyInfoVieController {
             cell.controller = self
             cell.update()
             return cell
+            
+        /*
         case 2:
             let cell = tableView.dequeueReusableCell(withIdentifier: "myInfoThirdSection") as! MyInfoThirdSectionCell
             cell.controller = self
             cell.update()
-            return cell
+            return cell */
 
 
         default:
             let cell = tableView.dequeueReusableCell(withIdentifier: "myInfoCommonCell") as! MyInfoCommonCell
-            cell.lineInfo = lineSections[section - 3][row]
+            QL1("section: \(section), row: \(row)" )
+            cell.lineInfo = lineSections[section - 2][row]
             cell.update()
             return cell
         }
@@ -176,8 +175,8 @@ extension MyInfoVieController {
 
         let section = indexPath.section
         let row = indexPath.row
-        if section > 2 {
-            let lineInfo = lineSections[section - 3][row]
+        if section > 1 {
+            let lineInfo = lineSections[section - 2][row]
             if lineInfo[2] == "webViewSegue" {
                 var sender = [String:String]()
                 sender["title"] = lineInfo[1]
@@ -218,7 +217,7 @@ extension MyInfoVieController {
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 7
+        return 6
     }
     
     private func updateUserStatData(resp : GetUserStatDataResponse) {

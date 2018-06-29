@@ -23,7 +23,7 @@
 		1C2451D61CE8A1CE00F350DA /* LoginUserStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C2451D51CE8A1CE00F350DA /* LoginUserStore.swift */; };
 		1C2451D91CE8A28B00F350DA /* LoginUserEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C2451D71CE8A28B00F350DA /* LoginUserEntity+CoreDataProperties.swift */; };
 		1C2451DA1CE8A28B00F350DA /* LoginUserEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C2451D81CE8A28B00F350DA /* LoginUserEntity.swift */; };
-		1C2684741CCA62F40032C014 /* MyInfoVieController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C2684731CCA62F40032C014 /* MyInfoVieController.swift */; };
+		1C2684741CCA62F40032C014 /* MyInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C2684731CCA62F40032C014 /* MyInfoViewController.swift */; };
 		1C2684761CCA66040032C014 /* MyInfoMainCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C2684751CCA66040032C014 /* MyInfoMainCell.swift */; };
 		1C2684781CCB59210032C014 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C2684771CCB59200032C014 /* LoginViewController.swift */; };
 		1C2FC9271CFEE5BA0057EB93 /* EmojiKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C2FC9261CFEE5BA0057EB93 /* EmojiKeyboard.swift */; };
@@ -196,7 +196,7 @@
 		1C2451D51CE8A1CE00F350DA /* LoginUserStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginUserStore.swift; sourceTree = "<group>"; };
 		1C2451D71CE8A28B00F350DA /* LoginUserEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LoginUserEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		1C2451D81CE8A28B00F350DA /* LoginUserEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginUserEntity.swift; sourceTree = "<group>"; };
-		1C2684731CCA62F40032C014 /* MyInfoVieController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyInfoVieController.swift; sourceTree = "<group>"; };
+		1C2684731CCA62F40032C014 /* MyInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyInfoViewController.swift; sourceTree = "<group>"; };
 		1C2684751CCA66040032C014 /* MyInfoMainCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyInfoMainCell.swift; sourceTree = "<group>"; };
 		1C2684771CCB59200032C014 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		1C2FC9261CFEE5BA0057EB93 /* EmojiKeyboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmojiKeyboard.swift; sourceTree = "<group>"; };
@@ -510,7 +510,7 @@
 		1C33F0371D071C5300D3EE4C /* me */ = {
 			isa = PBXGroup;
 			children = (
-				1C2684731CCA62F40032C014 /* MyInfoVieController.swift */,
+				1C2684731CCA62F40032C014 /* MyInfoViewController.swift */,
 				1CD349651CF83A4700037F78 /* SettingsViewController.swift */,
 				1CD3496B1CF980D400037F78 /* ResetPasswordController.swift */,
 				1CD3496F1CF9AB1000037F78 /* PersonalInfoViewController.swift */,
@@ -1035,7 +1035,7 @@
 				EFDD139320AAB4BA00BF8C37 /* CourseListVC.swift in Sources */,
 				1C33F02F1D066C5F00D3EE4C /* UpgradeViewController.swift in Sources */,
 				1CD3496A1CF9802C00037F78 /* FormCell.swift in Sources */,
-				1C2684741CCA62F40032C014 /* MyInfoVieController.swift in Sources */,
+				1C2684741CCA62F40032C014 /* MyInfoViewController.swift in Sources */,
 				EF23457520A56DB1002E2F30 /* CourseOverviewVC.swift in Sources */,
 				1CEFF7961CC0C4C9000DEFF7 /* SongCell.swift in Sources */,
 				1CC1ADBA1D1C17B7005AF856 /* SetProfilePhotoController.swift in Sources */,

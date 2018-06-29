@@ -37,6 +37,11 @@ class CourseMainPageViewController: BaseUIViewController {
     var isDisapeared = false
     var navigationManager : NavigationBarManager!
     
+    
+    var adOverlay: UIView?
+    var isShowAd = false
+    var popupAd = Advertise()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     
@@ -56,7 +61,7 @@ class CourseMainPageViewController: BaseUIViewController {
         if screenHeight < 568 {  //568
             maxRows = 2
         }
-        extendFunctionMananger = ExtendFunctionMananger(controller: self, isNeedMore:  false, showMaxRows: maxRows)
+        extendFunctionMananger = ExtendFunctionMananger(controller: self, isNeedMore:  true, showMaxRows: maxRows)
         //addPlayingButton(button: playingButton)
         loadFunctionInfos()
         
@@ -65,6 +70,10 @@ class CourseMainPageViewController: BaseUIViewController {
         refreshControl.addTarget(self, action: #selector(refresh), for: UIControlEvents.valueChanged)
         tableView.addSubview(refreshControl)
         refreshing = false
+        
+        loadHeadAds()
+        loadZhuanLanAndTuijianCourses()
+        loadToutiao()
     }
     
 
@@ -114,11 +123,13 @@ class CourseMainPageViewController: BaseUIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         //updatePlayingButton(button: playingButton)
-        loadHeadAds()
-        loadZhuanLanAndTuijianCourses()
-        loadToutiao()
+
         self.setNavigationBar()
         isDisapeared = false
+        
+        if isShowAd {
+            hidePopupAd()
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -209,11 +220,13 @@ class CourseMainPageViewController: BaseUIViewController {
 extension CourseMainPageViewController : UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        var count =  1 + extendFunctionMananger.getRowCount()  + 1
+        var count =  1 + 1 + extendFunctionMananger.getRowCount()  + 1
         count += (1 + zhuanLans.count)
         count += 1
         
         count += ( courses.count)
+        
+        QL1("extendFunctionMananger.getRowCount() = \(extendFunctionMananger.getRowCount()), courses.count = \(courses.count), count = \(count)")
         return count
     }
     
@@ -276,7 +289,7 @@ extension CourseMainPageViewController : UITableViewDataSource, UITableViewDeleg
         } else if row == 6 + zhuanLans.count {
             return 40
         } else if row >  6 + zhuanLans.count && row < 6 + zhuanLans.count + 1 + courses.count  {
-            return 140
+            return 170
         } else {
             return 8
         }
@@ -367,6 +380,50 @@ extension CourseMainPageViewController : UITableViewDataSource, UITableViewDeleg
 }
 
 extension CourseMainPageViewController  {
+    
+    func showPopupAd(_ ad : Advertise) {
+        self.isShowAd = true
+        adOverlay = UIView(frame: UIScreen.main.bounds)
+        adOverlay!.backgroundColor = UIColor(white: 0, alpha: 0.65)
+        
+        let ration : CGFloat = 0.6
+        let imageWidth = UIScreen.main.bounds.width * ration
+        let imageHeight = UIScreen.main.bounds.width * ration * 1.5
+        let imageView = UIImageView(frame: CGRect(x: UIScreen.main.bounds.width * (1 - ration) / 2, y: UIScreen.main.bounds.height * 0.15 , width: imageWidth, height: imageHeight))
+        //imageView.image = UIImage(named: "icon")
+        imageView.kf.setImage(with: URL(string: ad.imageUrl)!)
+        adOverlay!.addSubview(imageView)
+        
+        imageView.isUserInteractionEnabled = true
+        let tapImageGesture = UITapGestureRecognizer(target: self, action: #selector(tapImageAd))
+        imageView.addGestureRecognizer(tapImageGesture)
+        
+        let closeAdWidth : CGFloat = 40
+        let closeAdBtn = UIImageView(frame: CGRect(x: (UIScreen.main.bounds.width - closeAdWidth) / 2, y: UIScreen.main.bounds.height * ( 1 - 0.15) , width: closeAdWidth, height: closeAdWidth))
+        closeAdBtn.image = UIImage(named: "closeAdButton")
+        adOverlay!.addSubview(closeAdBtn)
+        
+        closeAdBtn.isUserInteractionEnabled = true
+        let closeAdGesture = UITapGestureRecognizer(target: self,  action: #selector(hidePopupAd))
+        closeAdBtn.addGestureRecognizer(closeAdGesture)
+        
+        UIApplication.shared.keyWindow?.addSubview(adOverlay!)
+    }
+    
+    @objc func tapImageAd() {
+        var params = [String:String]()
+        params["title"] = popupAd.title
+        params["url"] = popupAd.clickUrl
+        performSegue(withIdentifier: "loadWebPageSegue", sender: params)
+        hidePopupAd()
+    }
+    
+    @objc func hidePopupAd() {
+        QL1("hidePopupAd")
+        if adOverlay != nil {
+            adOverlay?.removeFromSuperview()
+        }
+    }
 
     
     @objc func loadHeadAds() {
@@ -379,6 +436,16 @@ extension CourseMainPageViewController  {
             
             self.ads = resp.ads
             self.tableView.reloadData()
+            
+            if resp.popupAd.imageUrl != "" && resp.popupAd.imageUrl != nil {
+                let cacheImageUrl = self.keyValueStore.get(key: KeyValueStore.key_popupAdImageUrl, defaultValue: "")
+                
+                if cacheImageUrl != resp.popupAd.imageUrl {
+                    self.keyValueStore.save(key: KeyValueStore.key_popupAdImageUrl, value: resp.popupAd.imageUrl)
+                    self.popupAd = resp.popupAd
+                    self.showPopupAd(resp.popupAd)
+                }
+            }
         }
     }
     

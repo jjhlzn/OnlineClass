@@ -19,6 +19,7 @@ class KeyValueStore {
     static let key_tuijian = "key_tuijian"
     static let key_ordercount = "key_ordercount"
     static let key_vipenddate = "key_vipenddate"
+    static let key_popupAdImageUrl = "key_popupAdImageUrl"
     
     var coreDataStack = CoreDataStack(modelName: "jufangzhushou")
     

@@ -83,9 +83,16 @@ class NewAlbumCell: UITableViewCell {
         
         
         
+        if course?.status == "" {
+            course?.status = "未开始"
+        }
         statusLabel.text = course?.status
+        
         listenerCountLabel.text = "\((course?.listenCount)!)人在线"
         listenerCountLabel.sizeToFit()
+        if course?.liveTime == "" {
+            course?.liveTime = "时间未定"
+        }
         liveTimeLabel.text = course?.liveTime
         
     }

@@ -6,12 +6,11 @@
     },
     {
       "idiom" : "universal",
-      "filename" : "logo.png",
+      "filename" : "close_ad.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "logo-1.png",
       "scale" : "3x"
     }
   ],

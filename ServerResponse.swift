@@ -1192,6 +1192,7 @@ class GetMainPageAdsRequest : ServerRequest {
 }
 class GetMainPageAdsResponse : ServerResponse {
     var ads = [Advertise]()
+    var popupAd = Advertise()
     
     override func parseJSON(request: ServerRequest, json: NSDictionary) {
         super.parseJSON(request: request, json: json)
@@ -1206,6 +1207,12 @@ class GetMainPageAdsResponse : ServerResponse {
                 ads.append(ad)
             }
             
+            let popupJson = json["popupAd"] as! NSDictionary
+            if popupJson["imageUrl"] != nil {
+                popupAd.imageUrl = popupJson["imageUrl"] as! String
+                popupAd.clickUrl = popupJson["clickUrl"] as! String
+                popupAd.title = popupJson["title"] as! String
+            }
         }
     }
 }

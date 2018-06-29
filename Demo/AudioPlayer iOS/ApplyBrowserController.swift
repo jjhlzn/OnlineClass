@@ -32,9 +32,12 @@ class ApplyBrowserController : IapSupportWebPageViewController, WKNavigationDele
         super.viewDidLoad()
         self.title = "资讯"
         url = NSURL(string: ServiceLinkManager.ZixunUrl)!
+        //url = NSURL(string: "http://www.baidu.com")!
         
         navigationManager = NavigationBarManager(self)
-        shareView = ShareView(frame: CGRect(x : 0, y: UIScreen.main.bounds.height - 233 - 49, width: UIScreen.main.bounds.width, height: 233), controller: self)
+         Utils.setNavigationBarAndTableView(self, tableView: nil)
+        
+        shareView = ShareView(frame: CGRect(x : 0, y: UIScreen.main.bounds.height - 233 - 49 - 32 , width: UIScreen.main.bounds.width, height: 233), controller: self)
         navigationManager.shareView = shareView
         
         initIAP()
@@ -70,7 +73,7 @@ class ApplyBrowserController : IapSupportWebPageViewController, WKNavigationDele
         var url1 = url.absoluteString
         url1 = Utils.addUserParams(url: url1!)
         url1 = Utils.addDevcieParam(url: url1!)
-        print(url1)
+        
 
         
         let config = WKWebViewConfiguration()
@@ -79,7 +82,18 @@ class ApplyBrowserController : IapSupportWebPageViewController, WKNavigationDele
         let tabbarHegith = self.tabBarController?.tabBar.frame.height;
         QL1("tabbarHegith = \(tabbarHegith!)")
         let fullScreen = UIScreen.main.bounds
-        let rect = CGRect(x: fullScreen.origin.x, y: fullScreen.origin.y, width: fullScreen.width, height: fullScreen.height - tabbarHegith! * 2)
+        
+        var height : CGFloat = 0
+        
+        if UIDevice().isX() {
+            height = fullScreen.height - tabbarHegith! * 2 + 24
+        } else {
+            height = fullScreen.height - tabbarHegith! * 2
+        }
+        
+        let rect = CGRect(x: fullScreen.origin.x, y: fullScreen.origin.y, width: fullScreen.width, height: height)
+        
+        
         self.webView = WKWebView(frame: rect, configuration: config)
         
         self.webContainer.addSubview(self.webView!)
@@ -95,7 +109,7 @@ class ApplyBrowserController : IapSupportWebPageViewController, WKNavigationDele
     
     
     /****  webView相关的函数  ***/
-    func webView(webView: WKWebView, didCommitNavigation navigation: WKNavigation!) {
+    func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) {
         loading.show(view: view)
         QL1("webView.canGoBack = \(webView.canGoBack)")
         
@@ -111,7 +125,7 @@ class ApplyBrowserController : IapSupportWebPageViewController, WKNavigationDele
         }
     }
     
-    func webView(webView: WKWebView, didFinishNavigation navigation: WKNavigation!) {
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         loading.hide()
         QL1("webView.canGoBack = \(webView.canGoBack)")
         
@@ -129,11 +143,11 @@ class ApplyBrowserController : IapSupportWebPageViewController, WKNavigationDele
         }
     }
     
-    func webView(webView: WKWebView, didFailNavigation navigation: WKNavigation!, withError error: NSError) {
+    func webView(webView: WKWebView, didFailNavigation navigation: WKNavigation!, withError error: Error) {
         loading.hide()
     }
     
-    func webView(webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: NSError) {
+    func webView(webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
         loading.hide()
     }
     

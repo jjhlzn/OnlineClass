@@ -218,6 +218,7 @@ class Utils {
     static func dismissKeyboard(_ view: UIView) {
         view.endEditing(true)
     }
+    
 }
 
 extension UISearchBar {
