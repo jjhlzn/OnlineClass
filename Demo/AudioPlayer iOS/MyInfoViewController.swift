@@ -31,7 +31,7 @@ class MyInfoVieController: BaseUIViewController, UITableViewDataSource, UITableV
 
     var sixthSections = [ ["me_ziliao", "我的资料", "personalInfoSegue", "",  "1", ""],
                            ["me_qrcode", "我的二维码", "codeImageSegue", "",  "1", ""],
-                           ["me_hezuo", "申请合作", "webViewSegue", "", ServiceLinkManager.HezuoUrl,  "0", ""],
+                           ["me_hezuo", "申请合作", "webViewSegue", ServiceLinkManager.HezuoUrl, "0", ""],
                         ]
     
     var seventhSections = [ ["me_settings", "设置","settingsSegue", "",  "0", ""],
@@ -181,6 +181,7 @@ extension MyInfoVieController {
                 var sender = [String:String]()
                 sender["title"] = lineInfo[1]
                 sender["url"] = lineInfo[3]
+                QL1(lineInfo[3])
                 performSegue(withIdentifier: lineInfo[2], sender: sender)
             } else {
                 performSegue(withIdentifier: lineInfo[2], sender: nil)

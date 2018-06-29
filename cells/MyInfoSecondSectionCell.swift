@@ -13,10 +13,16 @@ class MyInfoSecondSectionCell: UITableViewCell {
 
     @IBOutlet weak var lineBorder1: UIView!
     @IBOutlet weak var lineBorder2: UIView!
+    
+    
+    @IBOutlet weak var caifuTitle: UILabel!
     @IBOutlet weak var caifuLabel: UILabel!
     
+    
+    @IBOutlet weak var jifenTitle: UILabel!
     @IBOutlet weak var jifenLabel: UILabel!
     
+    @IBOutlet weak var teamTitle: UILabel!
     @IBOutlet weak var teamLabel: UILabel!
     
     @IBOutlet weak var tixianBtn: UIButton!
@@ -49,6 +55,30 @@ class MyInfoSecondSectionCell: UITableViewCell {
         tixianBtn.layer.borderColor = UIColor.lightGray.cgColor
         
         tixianBtn.addTarget(self, action: #selector(tixianBtnPressed), for: .touchUpInside)
+        
+        
+        caifuLabel.isUserInteractionEnabled = true
+        caifuTitle.isUserInteractionEnabled = true
+        let cfGesture = UITapGestureRecognizer(target: self, action: #selector(caifuPressed))
+        let cfGesture2 = UITapGestureRecognizer(target: self, action: #selector(caifuPressed))
+        caifuLabel.addGestureRecognizer(cfGesture)
+        caifuTitle.addGestureRecognizer(cfGesture2)
+        
+        
+        jifenLabel.isUserInteractionEnabled = true
+        jifenTitle.isUserInteractionEnabled = true
+        let jifenGesture = UITapGestureRecognizer(target: self, action: #selector(jifenPressed))
+        let jifenGesture2 = UITapGestureRecognizer(target: self, action: #selector(jifenPressed))
+        jifenLabel.addGestureRecognizer(jifenGesture)
+        jifenTitle.addGestureRecognizer(jifenGesture2)
+        
+        teamLabel.isUserInteractionEnabled = true
+        teamTitle.isUserInteractionEnabled = true
+        let teamGesture = UITapGestureRecognizer(target: self, action: #selector(tuanduiPressed))
+        let teamGesture2 = UITapGestureRecognizer(target: self, action: #selector(tuanduiPressed))
+        teamLabel.addGestureRecognizer(teamGesture)
+        teamTitle.addGestureRecognizer(teamGesture2)
+        
     }
     
     @objc func tixianBtnPressed() {
@@ -57,5 +87,25 @@ class MyInfoSecondSectionCell: UITableViewCell {
         sender["url"] = ServiceLinkManager.MyExchangeUrl
         controller?.performSegue(withIdentifier: "webViewSegue", sender: sender)
     }
+    
+    @objc func caifuPressed() {
+        var sender = [String:String]()
+        sender["title"] = "我的财富"
+        sender["url"] = ServiceLinkManager.MyChaifuUrl
+        controller?.performSegue(withIdentifier: "webViewSegue", sender: sender)
+    }
 
+    @objc func jifenPressed() {
+        var sender = [String:String]()
+        sender["title"] = "我的积分"
+        sender["url"] = ServiceLinkManager.MyJifenUrl
+        controller?.performSegue(withIdentifier: "webViewSegue", sender: sender)
+    }
+
+    @objc func tuanduiPressed() {
+        var sender = [String:String]()
+        sender["title"] = "我的团队"
+        sender["url"] = ServiceLinkManager.MyTeamUrl
+        controller?.performSegue(withIdentifier: "webViewSegue", sender: sender)
+    }
 }

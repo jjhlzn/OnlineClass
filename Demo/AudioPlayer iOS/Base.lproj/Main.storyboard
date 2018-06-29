@@ -126,10 +126,13 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="caifuLabel" destination="lVb-Ko-qnq" id="lJy-Zv-Srb"/>
+                                            <outlet property="caifuTitle" destination="11u-fb-lOB" id="OxK-jp-vrP"/>
                                             <outlet property="jifenLabel" destination="Z2k-xn-dXV" id="H4z-30-qIC"/>
+                                            <outlet property="jifenTitle" destination="QLn-xl-KPp" id="8cH-9X-w5g"/>
                                             <outlet property="lineBorder1" destination="Bb5-qh-Tgm" id="6EW-F7-h1Y"/>
                                             <outlet property="lineBorder2" destination="RnP-oa-n8h" id="mOH-Il-dsW"/>
                                             <outlet property="teamLabel" destination="h3T-6m-RnP" id="Ytf-Tx-v8d"/>
+                                            <outlet property="teamTitle" destination="Fp2-LC-wBd" id="Vct-jk-Pfn"/>
                                             <outlet property="tixianBtn" destination="iRu-7g-vrW" id="1dr-9i-iZu"/>
                                         </connections>
                                     </tableViewCell>
@@ -3071,11 +3074,11 @@
     <inferredMetricsTieBreakers>
         <segue reference="Fp2-kS-DOK"/>
         <segue reference="gK4-D6-0Uz"/>
-        <segue reference="hKV-FU-ZG9"/>
+        <segue reference="TY9-aV-adh"/>
         <segue reference="VyC-tp-he9"/>
         <segue reference="dRn-tj-MbL"/>
-        <segue reference="7p7-B3-e4E"/>
-        <segue reference="ciV-s1-kgf"/>
+        <segue reference="xmL-0a-HxS"/>
+        <segue reference="YDx-ix-HXt"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>
