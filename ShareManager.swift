@@ -109,16 +109,16 @@ class ShareManager {
 
     
     func resetDefaultSetting()  {
-        _shareTitle = "扫一扫下载安装【巨方助手】，即可免费在线学习、提额、办卡、贷款！"
+        _shareTitle = "扫一扫下载安装【知得】，即可免费在线学习、提额、办卡、贷款！"
         let loginUser = LoginUserStore().getLoginUser()!
         _shareUrl = ServiceLinkManager.ShareQrImageUrl + "?userid=\(loginUser.userName!)"
-        _shareDescription = "巨方助手"
+        _shareDescription = "知得"
         
     }
     
     init(controller : UIViewController) {
         self.controller = controller
-        _shareTitle = "扫一扫下载安装【巨方助手】，即可免费在线学习、提额、办卡、贷款！"
+        _shareTitle = "扫一扫下载安装【知得】，即可免费在线学习、提额、办卡、贷款！"
         _shareDescription = ""
         let loginUser = LoginUserStore().getLoginUser()!
         _shareUrl = ServiceLinkManager.ShareQrImageUrl + "?userid=\(loginUser.userName!)"

@@ -20,7 +20,9 @@ class MyInfoVieController: BaseUIViewController, UITableViewDataSource, UITableV
     @IBOutlet weak var tableView: UITableView!
     var navigationManager : NavigationBarManager!
     
-    var fourthSections = [ ["me_service", "我的服务", "webViewSegue", ServiceLinkManager.MyServiceUrl, "0", ""] ]
+    var fourthSections = [
+        ["me_wallet", "我的钱包", "webViewSegue", ServiceLinkManager.MyWalletUrl, "1", KeyValueStore.key_zhidian] ,
+        ["me_service", "我的服务", "webViewSegue", ServiceLinkManager.MyServiceUrl, "0", ""] ]
     
     var fifthSections = [ ["me_agent", "邀请好友", "codeImageSegue", "",  "1", ""],
                           ["me_tuijian", "我的推荐", "webViewSegue", ServiceLinkManager.MyTuiJianUrl,  "1", KeyValueStore.key_tuijian],
@@ -235,6 +237,7 @@ extension MyInfoVieController {
         keyValueStore.save(key: KeyValueStore.key_tuijian, value: resp.tuijianPeople)
         
         keyValueStore.save(key: KeyValueStore.key_ordercount, value: resp.orderCount)
+        keyValueStore.save(key: KeyValueStore.key_zhidian, value: "\(resp.zhidian)点")
         
         let loginUserStore = LoginUserStore()
         let loginUser = loginUserStore.getLoginUser()!

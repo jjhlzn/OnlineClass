@@ -245,26 +245,26 @@ extension CourseMainPageViewController : UITableViewDataSource, UITableViewDeleg
         } else if row == 1 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "seperatorCell")
             return cell!
-        } else if row == 2 || row == 3  {
+        } else if row > 1 && row < 2 +  extendFunctionMananger.getRowCount()  {
             let cell = extendFunctionMananger.getFunctionCell(tableView: tableView, row: row - 2)
             return cell
-        } else if row == 4 {
+        } else if row == 2 + extendFunctionMananger.getRowCount() {
             let cell = tableView.dequeueReusableCell(withIdentifier: "seperatorCell")
             return cell!
-        } else if row == 5 {
+        } else if row == 2 + extendFunctionMananger.getRowCount() + 1 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "zhuanLanHeaderCell")!
             return cell
-        } else if row > 5 && row < 5 + 1 + zhuanLans.count {
+        } else if row > 2 + extendFunctionMananger.getRowCount() + 1 && row < 2 + extendFunctionMananger.getRowCount() + 1 + 1 + zhuanLans.count {
             let cell = tableView.dequeueReusableCell(withIdentifier: "zhuanLanCell") as! ZhuanLanCell
-            cell.zhuanLan = zhuanLans[row - 5 - 1]
+            cell.zhuanLan = zhuanLans[row - (2 + extendFunctionMananger.getRowCount() + 1) - 1]
             cell.update()
             return cell
-        } else if row == 6 + zhuanLans.count {
+        } else if row == 2 + extendFunctionMananger.getRowCount() + 1 + 1 + zhuanLans.count {
             let cell = tableView.dequeueReusableCell(withIdentifier: "tuijianCourseHeaderCell")!
             return cell
-        } else if row >  6 + zhuanLans.count && row < 6 + zhuanLans.count + 1 + courses.count  {
+        } else if row >  2 + extendFunctionMananger.getRowCount() + 1 + 1 + zhuanLans.count && row < 2 + extendFunctionMananger.getRowCount() + 1 + 1 + zhuanLans.count + 1 + courses.count  {
             let cell = tableView.dequeueReusableCell(withIdentifier: "tuijianCourseCell") as! MainPageCourseCell
-            cell.course = courses[row - 6 - zhuanLans.count - 1]
+            cell.course = courses[row - (2 + extendFunctionMananger.getRowCount() + 1 + 1) - zhuanLans.count - 1]
             cell.update()
             return cell
         } else {
@@ -278,17 +278,17 @@ extension CourseMainPageViewController : UITableViewDataSource, UITableViewDeleg
             return getHeaderAdvHeight()
         } else if row == 1 {
             return 8
-        } else if row == 2 || row == 3 {
+        } else if row > 1 && row < 2 +  extendFunctionMananger.getRowCount() {
             return extendFunctionMananger.cellHeight
-        } else if row == 4 {
+        } else if row == 2 + extendFunctionMananger.getRowCount() {
             return 8
-        } else if row == 5 {
+        } else if row == 2 + extendFunctionMananger.getRowCount() + 1 {
             return 40
-        } else if row > 5 && row < 5 + 1 + zhuanLans.count {
+        } else if row > 2 + extendFunctionMananger.getRowCount() + 1 && row < 2 + extendFunctionMananger.getRowCount() + 1 + 1 + zhuanLans.count {
             return 110
-        } else if row == 6 + zhuanLans.count {
+        } else if row == 2 + extendFunctionMananger.getRowCount() + 1 + 1 + zhuanLans.count {
             return 40
-        } else if row >  6 + zhuanLans.count && row < 6 + zhuanLans.count + 1 + courses.count  {
+        } else if row >  2 + extendFunctionMananger.getRowCount() + 1 + 1 + zhuanLans.count && row < 2 + extendFunctionMananger.getRowCount() + 1 + 1 + zhuanLans.count + 1 + courses.count {
             return 170
         } else {
             return 8
@@ -312,22 +312,22 @@ extension CourseMainPageViewController : UITableViewDataSource, UITableViewDeleg
             
         } else if row == 1 {
            
-        } else if row == 2 || row == 3 {
+        } else if row > 1 && row < 2 +  extendFunctionMananger.getRowCount() {
             
-        } else if row == 4 {
+        } else if row == 2 + extendFunctionMananger.getRowCount()  {
           
-        } else if row == 5 {
+        } else if row == 2 + extendFunctionMananger.getRowCount() + 1   {
            
-        } else if row > 5 && row < 5 + 1 + zhuanLans.count {
+        } else if row > 2 + extendFunctionMananger.getRowCount() + 1 && row < 2 + extendFunctionMananger.getRowCount() + 1 + 1 + zhuanLans.count {
             var sender = [String:String]()
-            sender["title"] = zhuanLans[row - 5 - 1].name
-            sender["url"] = zhuanLans[row - 5 - 1].url
+            sender["title"] = zhuanLans[row - (2 + extendFunctionMananger.getRowCount() + 1) - 1].name
+            sender["url"] = zhuanLans[row - (2 + extendFunctionMananger.getRowCount() + 1) - 1].url
             performSegue(withIdentifier: "loadWebPageSegue", sender: sender)
             
-        } else if row == 6 + zhuanLans.count {
+        } else if row == 2 + extendFunctionMananger.getRowCount() + 1 + 1 + zhuanLans.count {
             
-        } else if row >  6 + zhuanLans.count && row < 6 + zhuanLans.count + 1 + courses.count  {
-            let album = courses[row - 6 - zhuanLans.count - 1]
+        } else if row >  2 + extendFunctionMananger.getRowCount() + 1 + 1 + zhuanLans.count && row < 2 + extendFunctionMananger.getRowCount() + 1 + 1 + zhuanLans.count + 1 + courses.count  {
+            let album = courses[row - (2 + extendFunctionMananger.getRowCount() + 1 + 1) - zhuanLans.count - 1]
             if !album.isReady {
                 self.displayMessage(message: "该课程未上线，敬请期待！")
                 tableView.deselectRow(at: indexPath as IndexPath, animated: false)

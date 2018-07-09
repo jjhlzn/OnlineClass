@@ -180,6 +180,12 @@ class ServiceLinkManager {
         }
     }
     
+    static var MyWalletUrl : String {
+        get {
+            return "http://\(ServiceConfiguration.serverName):\(ServiceConfiguration.port)/app/mywallet"
+        }
+    }
+    
     static var HezuoUrl : String {
         get {
             return "http://\(ServiceConfiguration.serverName):\(ServiceConfiguration.port)/app/hezuo"

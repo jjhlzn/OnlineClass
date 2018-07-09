@@ -53,16 +53,13 @@ class ExtendFunctionMananger : NSObject {
                                selector:  #selector(imageHandler), isShowDefault: true),
 
                 
-                ExtendFunction(imageName: "func_loan", name: "极速贷款", code: "f_loan", url: ServiceLinkManager.FunctionDaiKuangUrl,
-                               selector:  #selector(imageHandler), isShowDefault: false),
+
                 ExtendFunction(imageName: "func_dingyue", name: "订阅专栏", code: "f_dingyue", url: ServiceLinkManager.FunctionCardManagerUrl,
                                selector:  #selector(dingyueHandler), isShowDefault: true),
                 
                 ExtendFunction(imageName: "func_rzjhk", name: "融资军火库", code: "f_rzjhk", url: ServiceLinkManager.JunhuokuUrl,
                                selector:  #selector(imageHandler), isShowDefault: true),
                 
-                ExtendFunction(imageName: "func_car", name: "微购车", code: "f_car", url: ServiceLinkManager.FunctionCarLoanUrl,
-                               selector:  #selector(imageHandler), isShowDefault: false),
                 ExtendFunction(imageName: "func_shopcart", name: "商城", code: "f_market",  url: ServiceLinkManager.FunctionShopUrl,
                                selector:  #selector(imageHandler), isShowDefault: false)
                 
@@ -130,6 +127,7 @@ class ExtendFunctionMananger : NSObject {
     let buttonCountEachRow = 4
     func getRowCount() -> Int {
         let rows = (functions.count + buttonCountEachRow - 1) / buttonCountEachRow
+        QL1("rows = \(rows)")
         let result = rows > showMaxRows ? showMaxRows : rows
         print("result = \(result)")
         return result

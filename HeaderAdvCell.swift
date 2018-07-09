@@ -83,6 +83,12 @@ class HeaderAdvCell: UITableViewCell, FSPagerViewDataSource, FSPagerViewDelegate
         var sender = [String:String]()
         sender["title"] = toutiao.title
         sender["url"] = toutiao.clickUrl
+        
+        QL1(toutiao.clickUrl)
+        if  toutiao.clickUrl == "http://jf.yhkamani.com/shop/docdtl.aspx?a=17&" {
+            sender["url"]  = "http://jf.yhkamani.com/new/zhuanlan.aspx?id=257"
+        }
+        
         controller?.performSegue(withIdentifier: "loadWebPageSegue", sender: sender)
     }
     @objc func yaoQingPressed() {

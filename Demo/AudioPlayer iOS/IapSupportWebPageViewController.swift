@@ -21,7 +21,9 @@ class IapSupportWebPageViewController: BaseUIViewController, SKProductsRequestDe
     var loadingOverlay = LoadingOverlayWithMessage()
     var buyAfterRequest = false
     var buyProductId = ""
+    var orderId = ""
     var theProduct = SKProduct()
+    
     
     func initIAP() {
         if(SKPaymentQueue.canMakePayments()) {
@@ -29,7 +31,6 @@ class IapSupportWebPageViewController: BaseUIViewController, SKProductsRequestDe
         } else {
             print("please enable IAPS")
         }
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -65,32 +66,24 @@ class IapSupportWebPageViewController: BaseUIViewController, SKProductsRequestDe
         QL1("message.name = \(message.name)")
         if(message.name == "payCallbackHandler") {
             QL1("JavaScript is sending a message \(message.body)")
+            let array = (message.body as! String).components(separatedBy: "###")
+            buyProductId = array[0]
+            orderId = array[1]
             
-            let requestId = message.body
-            buyProductId = requestId as! String
-            
-            if (!productIDs.contains(requestId) || theProduct.productIdentifier != buyProductId ){
-                productIDs = NSSet(objects: requestId)
-                QL1(productIDs)
-                self.buyAfterRequest = true
-                loadingOverlay.showOverlayWithMessage(msg:  "支付加载中", view: self.view)
-                let request: SKProductsRequest = SKProductsRequest(productIdentifiers: productIDs as! Set<String>)
-                request.delegate = self
-                request.start()
-                return;
-            }
-            
-            buyProduct(product: theProduct)
+            productIDs = NSSet(objects: buyProductId)
+            QL1(productIDs)
+            self.buyAfterRequest = true
+            loadingOverlay.showOverlayWithMessage(msg:  "支付加载中", view: self.view)
+            let request: SKProductsRequest = SKProductsRequest(productIdentifiers: productIDs as! Set<String>)
+            request.delegate = self
+            request.start()
             
         } else if message.name == "wechatPay" {
             QL1("JavaScript is sending a message \(message.body)")
             //let json = JSON.parse(message.body as! String)
             wechatPay(json: message.body as! NSDictionary)
-        }
-        
-        else if message.name == "openApp" {
-            if UIApplication.shared.canOpenURL(NSURL(string: message.body as! String)! as URL)
-            {
+        } else if message.name == "openApp" {
+            if UIApplication.shared.canOpenURL(NSURL(string: message.body as! String)! as URL) {
                 UIApplication.shared.openURL(NSURL(string: message.body as! String)! as URL)
             }
         }
@@ -98,24 +91,23 @@ class IapSupportWebPageViewController: BaseUIViewController, SKProductsRequestDe
 
 
     /***********   IAP相关的函数  *****************/
-
-    
     func buyProduct(product: SKProduct) {
         QL4("buy " + product.productIdentifier)
         if product.productIdentifier != buyProductId {
             return
         }
         
-        let pay = SKPayment(product: product)
+        let pay = SKMutablePayment(product: product)
+        pay.applicationUsername = orderId
         SKPaymentQueue.default().add(pay as SKPayment);
         loadingOverlay.showOverlayWithMessage(msg: "支付中", view: self.view)
     }
     
     func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
-        print("product request")
-        let myProduct = response.products
-        for product in myProduct {
-            print("product added")
+        print("取得产品信息")
+        let products = response.products
+        for product in products {
+            print("产品信息")
             print(product.productIdentifier)
             print(product.localizedTitle)
             print(product.localizedDescription)
@@ -129,7 +121,7 @@ class IapSupportWebPageViewController: BaseUIViewController, SKProductsRequestDe
         }
     }
     
-    func paymentQueueRestoreCompletedTransactionsFinished(queue: SKPaymentQueue) {
+    func paymentQueueRestoreCompletedTransactionsFinished(_ queue: SKPaymentQueue) {
         print("transactions restored")
     }
     
@@ -139,7 +131,7 @@ class IapSupportWebPageViewController: BaseUIViewController, SKProductsRequestDe
         loadingOverlay.hideOverlayView()
         for transaction:AnyObject in transactions {
             let trans = transaction as! SKPaymentTransaction
-            QL1("error = \(trans.error)")
+            QL1("error = \(String(describing: trans.error))")
             QL1("state = \(trans.transactionState.rawValue)")
             switch trans.transactionState {
                 
@@ -147,51 +139,59 @@ class IapSupportWebPageViewController: BaseUIViewController, SKProductsRequestDe
                 QL1("Purchased")
                 QL1(trans.payment.productIdentifier)
                 let prodID = trans.payment.productIdentifier as String
+                QL1("trans.payment.applicationUsername = \(String(describing: trans.payment.applicationUsername))")
                 QL1("prodid = \(prodID)")
                 
-                let dateFormat = DateFormatter()
-                dateFormat.dateFormat = "yyyy-MM-dd HH:mm:ss"
-                
-                //将购买记录保存到本地数据库中
-                let loginUserStore = LoginUserStore()
-                let purchaseRecordStore = PurchaseRecordStore()
-                let purchaseRecord = PurchaseRecord()
-                purchaseRecord.isNotify = false
-                purchaseRecord.payTime = dateFormat.string(from: NSDate() as Date)
-                purchaseRecord.productId = prodID
-                purchaseRecord.userid = loginUserStore.getLoginUser()?.userName!
-                
-                let purchaseRecordEntity = purchaseRecordStore.save(record: purchaseRecord)
-                if purchaseRecordEntity == nil {
-                    QL4("save purchase record entity error")
-                } else {
-                    QL1("save purchase record success")
-                }
-                //purchaseRecordStore.getAllNotifyRecord(purchaseRecord.userid)
-                
-                //将购买记录推送到巨方的服务器
-                let request = NotifyIAPSuccessRequest()
-                request.productId = prodID
-                request.payTime = purchaseRecord.payTime
-                
-                //sign必须最后一个进行赋值
-                request.sign = Utils.createIPANotifySign(request: request)
-                
-                BasicService().sendRequest(url: ServiceConfiguration.NOTIFY_IAP_SUCCESS, request: request) {
-                    (resp : NotifyIAPSuccessResponse) -> Void in
-                    if resp.status != ServerResponseStatus.Success.rawValue {
-                        QL4("resp.status = \(resp.status), message = \(resp.errorMessage)")
-                        return;
+                if let receiptUrl = Bundle.main.appStoreReceiptURL {//获取收据地址
+                    let receipt = NSData(contentsOf: receiptUrl)
+                    let receiptStr = receipt?.base64EncodedString(options: NSData.Base64EncodingOptions(rawValue: 0))
+                    //print("receiptStr:\(String(describing: receiptStr))")
+                    
+                    let dateFormat = DateFormatter()
+                    dateFormat.dateFormat = "yyyy-MM-dd HH:mm:ss"
+                    
+                    //将购买记录保存到本地数据库中
+                    let loginUserStore = LoginUserStore()
+                    let purchaseRecordStore = PurchaseRecordStore()
+                    let purchaseRecord = PurchaseRecord()
+                    purchaseRecord.isNotify = false
+                    purchaseRecord.payTime = dateFormat.string(from: NSDate() as Date)
+                    purchaseRecord.productId = prodID
+                    purchaseRecord.userid = loginUserStore.getLoginUser()?.userName!
+                    
+                    let purchaseRecordEntity = purchaseRecordStore.save(record: purchaseRecord)
+                    if purchaseRecordEntity == nil {
+                        QL4("save purchase record entity error")
+                    } else {
+                        QL1("save purchase record success")
                     }
-                    if purchaseRecordEntity != nil {
-                        purchaseRecordEntity!.isnotify = true
-                        purchaseRecordStore.update()
+                    //purchaseRecordStore.getAllNotifyRecord(purchaseRecord.userid)
+                    
+                    //将购买记录推送到巨方的服务器
+                    let request = NotifyIAPSuccessRequest()
+                    request.productId = prodID
+                    request.payTime = purchaseRecord.payTime
+                    request.orderId = orderId
+                    request.receipt = receiptStr
+                    
+                    //sign必须最后一个进行赋值
+                    request.sign = Utils.createIPANotifySign(request: request)
+                    
+                    BasicService().sendRequest(url: ServiceConfiguration.NOTIFY_IAP_SUCCESS, request: request) {
+                        (resp : NotifyIAPSuccessResponse) -> Void in
+                        if resp.status != ServerResponseStatus.Success.rawValue {
+                            QL4("resp.status = \(resp.status), message = \(String(describing: resp.errorMessage))")
+                            return;
+                        }
+                        if purchaseRecordEntity != nil {
+                            purchaseRecordEntity!.isnotify = true
+                            purchaseRecordStore.update()
+                        }
                     }
+                    
+                    notifyBrowserPayResult(result: true)
+                    queue.finishTransaction(trans)
                 }
-                
-                
-                notifyBrowserPayResult(result: true)
-                queue.finishTransaction(trans)
                 break;
             case .failed:
                 notifyBrowserPayResult(result: false)

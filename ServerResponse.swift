@@ -789,6 +789,7 @@ class GetUserStatDataResponse : ServerResponse {
     var teamPeople: String!
     var tuijianPeople: String!
     var orderCount: String!
+    var zhidian : Int = 0
     
     var name : String?
     var nickName: String!
@@ -817,6 +818,10 @@ class GetUserStatDataResponse : ServerResponse {
         boss = json["boss"] as? String
         sex = json["sex"] as! String
         codeImageUrl = json["codeImageUrl"] as! String
+        
+        if json["zhidian"] != nil {
+            zhidian = json["zhidian"] as! Int
+        }
     }
 }
 
@@ -995,6 +1000,8 @@ class JoinRoomRequest : ServerRequest {
 
 
 class NotifyIAPSuccessRequest : ServerRequest {
+    var orderId: String!
+    var receipt: String!
     var productId: String!
     var sign: String!
     var payTime: String!
@@ -1004,6 +1011,8 @@ class NotifyIAPSuccessRequest : ServerRequest {
             parameters["productId"] = productId as AnyObject
             parameters["sign"] = sign as AnyObject
             parameters["payTime"] = payTime as AnyObject
+            parameters["orderId"] = orderId as AnyObject
+            parameters["receipt"] = receipt as AnyObject
             return parameters
         }
     }

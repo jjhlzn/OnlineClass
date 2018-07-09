@@ -17,6 +17,7 @@ class KeyValueStore {
     static let key_chaifu = "key_chaifu"
     static let key_tuandui = "key_tuandui"
     static let key_tuijian = "key_tuijian"
+    static let key_zhidian = "key_zhidian"
     static let key_ordercount = "key_ordercount"
     static let key_vipenddate = "key_vipenddate"
     static let key_popupAdImageUrl = "key_popupAdImageUrl"
