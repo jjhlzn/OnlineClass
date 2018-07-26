@@ -2,23 +2,17 @@
 /* Class = "UILabel"; text = "Label"; ObjectID = "02i-aV-nRb"; */
 "02i-aV-nRb.text" = "Label";
 
-/* Class = "UILabel"; text = "金军航 (jinjunhang)"; ObjectID = "0jB-tN-jI3"; */
-"0jB-tN-jI3.text" = "金军航 (jinjunhang)";
+/* Class = "UILabel"; text = "199元/年"; ObjectID = "0UP-GQ-4mQ"; */
+"0UP-GQ-4mQ.text" = "199元/年";
 
-/* Class = "UINavigationItem"; title = "升级"; ObjectID = "0nw-fM-nS1"; */
-"0nw-fM-nS1.title" = "升级";
-
-/* Class = "UILabel"; text = "Label"; ObjectID = "1Ma-pU-yVh"; */
-"1Ma-pU-yVh.text" = "Label";
+/* Class = "UILabel"; text = "我的财富"; ObjectID = "11u-fb-lOB"; */
+"11u-fb-lOB.text" = "我的财富";
 
 /* Class = "UILabel"; text = "00:00"; ObjectID = "2i1-Up-r6k"; */
 "2i1-Up-r6k.text" = "00:00";
 
-/* Class = "UILabel"; text = "（0）"; ObjectID = "2sE-Pp-C4j"; */
-"2sE-Pp-C4j.text" = "（0）";
-
-/* Class = "UILabel"; text = "巨方助手"; ObjectID = "3Jn-bt-axP"; */
-"3Jn-bt-axP.text" = "巨方助手";
+/* Class = "UIViewController"; title = "直播"; ObjectID = "2mU-Ty-i7S"; */
+"2mU-Ty-i7S.title" = "直播";
 
 /* Class = "UIButton"; normalTitle = "注    册"; ObjectID = "3hc-62-qeb"; */
 "3hc-62-qeb.normalTitle" = "注    册";
@@ -26,20 +20,14 @@
 /* Class = "UITextField"; placeholder = "验证码"; ObjectID = "3k9-xr-4Dy"; */
 "3k9-xr-4Dy.placeholder" = "验证码";
 
-/* Class = "UIViewController"; title = "课列表"; ObjectID = "3ur-uT-JCP"; */
-"3ur-uT-JCP.title" = "课列表";
+/* Class = "UITabBarItem"; title = "资讯"; ObjectID = "3l4-qp-fQK"; */
+"3l4-qp-fQK.title" = "资讯";
 
 /* Class = "UILabel"; text = "播放列表"; ObjectID = "405-7L-Dqg"; */
 "405-7L-Dqg.text" = "播放列表";
 
-/* Class = "UIBarButtonItem"; title = "关闭"; ObjectID = "4AI-Il-BDS"; */
-"4AI-Il-BDS.title" = "关闭";
-
-/* Class = "UINavigationItem"; title = "往期课程"; ObjectID = "4yR-yP-jdw"; */
-"4yR-yP-jdw.title" = "往期课程";
-
-/* Class = "UIButton"; normalTitle = "web页面"; ObjectID = "58K-te-8dj"; */
-"58K-te-8dj.normalTitle" = "web页面";
+/* Class = "UILabel"; text = "金军航    计算机工程师"; ObjectID = "4D5-0p-pSy"; */
+"4D5-0p-pSy.text" = "金军航    计算机工程师";
 
 /* Class = "UIViewController"; title = "登录"; ObjectID = "59B-S3-xkA"; */
 "59B-S3-xkA.title" = "登录";
@@ -47,20 +35,17 @@
 /* Class = "UIViewController"; title = "重设密码"; ObjectID = "5FA-kt-hcm"; */
 "5FA-kt-hcm.title" = "重设密码";
 
-/* Class = "UITextField"; placeholder = "搜索"; ObjectID = "5rk-xO-6na"; */
-"5rk-xO-6na.placeholder" = "搜索";
+/* Class = "UILabel"; text = "每日学习"; ObjectID = "5h5-b9-bcy"; */
+"5h5-b9-bcy.text" = "每日学习";
 
-/* Class = "UILabel"; text = "Label"; ObjectID = "6Gp-Jm-oWg"; */
-"6Gp-Jm-oWg.text" = "Label";
+/* Class = "UILabel"; text = "我的服务"; ObjectID = "6Gp-Jm-oWg"; */
+"6Gp-Jm-oWg.text" = "我的服务";
+
+/* Class = "UILabel"; text = "热门搜索"; ObjectID = "6bg-UI-IO2"; */
+"6bg-UI-IO2.text" = "热门搜索";
 
 /* Class = "UIViewController"; title = "直播课列表"; ObjectID = "7G7-uk-15H"; */
 "7G7-uk-15H.title" = "直播课列表";
-
-/* Class = "UIViewController"; title = "搜索"; ObjectID = "7nG-8h-r7N"; */
-"7nG-8h-r7N.title" = "搜索";
-
-/* Class = "UILabel"; text = "Label"; ObjectID = "8Dr-pp-blc"; */
-"8Dr-pp-blc.text" = "Label";
 
 /* Class = "UIButton"; normalTitle = "Button"; ObjectID = "8Fs-8M-TxW"; */
 "8Fs-8M-TxW.normalTitle" = "Button";
@@ -71,17 +56,14 @@
 /* Class = "UILabel"; text = "Label"; ObjectID = "8xx-aD-LBh"; */
 "8xx-aD-LBh.text" = "Label";
 
-/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "95l-R0-4LS"; */
-"95l-R0-4LS.normalTitle" = "Button";
-
 /* Class = "UIButton"; normalTitle = ">>"; ObjectID = "9KZ-ct-Pwm"; */
 "9KZ-ct-Pwm.normalTitle" = ">>";
 
+/* Class = "UILabel"; text = "会员有效期"; ObjectID = "9Tf-aF-wGN"; */
+"9Tf-aF-wGN.text" = "会员有效期";
+
 /* Class = "UILabel"; text = "Label"; ObjectID = "9dw-pR-N7B"; */
 "9dw-pR-N7B.text" = "Label";
-
-/* Class = "UILabel"; text = "Label"; ObjectID = "9g0-PS-3bH"; */
-"9g0-PS-3bH.text" = "Label";
 
 /* Class = "UILabel"; text = "轻触上面的\"注册\"按钮，即表示你同意"; ObjectID = "9tn-AF-kWG"; */
 "9tn-AF-kWG.text" = "轻触上面的\"注册\"按钮，即表示你同意";
@@ -89,29 +71,8 @@
 /* Class = "UIButton"; normalTitle = ">>"; ObjectID = "A27-0l-kzQ"; */
 "A27-0l-kzQ.normalTitle" = ">>";
 
-/* Class = "UINavigationItem"; title = "所有评论"; ObjectID = "AWR-fd-RvS"; */
-"AWR-fd-RvS.title" = "所有评论";
-
-/* Class = "UIButton"; normalTitle = "发送"; ObjectID = "AYl-HM-evp"; */
-"AYl-HM-evp.normalTitle" = "发送";
-
 /* Class = "UITextField"; placeholder = "密码"; ObjectID = "AbX-60-4h6"; */
 "AbX-60-4h6.placeholder" = "密码";
-
-/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "AdF-UE-Kf8"; */
-"AdF-UE-Kf8.normalTitle" = "Button";
-
-/* Class = "UILabel"; text = "团队"; ObjectID = "AtA-bB-4MY"; */
-"AtA-bB-4MY.text" = "团队";
-
-/* Class = "UILabel"; text = "400万, 32集"; ObjectID = "B7E-M2-dgE"; */
-"B7E-M2-dgE.text" = "400万, 32集";
-
-/* Class = "UILabel"; text = "马上通过以下方式分享给朋友"; ObjectID = "BEt-2W-Uqx"; */
-"BEt-2W-Uqx.text" = "马上通过以下方式分享给朋友";
-
-/* Class = "UILabel"; text = "Label"; ObjectID = "BFx-RM-gii"; */
-"BFx-RM-gii.text" = "Label";
 
 /* Class = "UITextField"; placeholder = "昵称"; ObjectID = "BIe-nr-dbE"; */
 "BIe-nr-dbE.placeholder" = "昵称";
@@ -119,38 +80,41 @@
 /* Class = "UIBarButtonItem"; title = "关闭"; ObjectID = "BTk-wt-pRR"; */
 "BTk-wt-pRR.title" = "关闭";
 
-/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "C0K-eJ-OF1"; */
-"C0K-eJ-OF1.normalTitle" = "Button";
+/* Class = "UILabel"; text = "2018-03-28 08:00:00"; ObjectID = "CCg-ZL-oud"; */
+"CCg-ZL-oud.text" = "2018-03-28 08:00:00";
 
-/* Class = "UITextField"; placeholder = "搜索"; ObjectID = "D0Z-14-c6S"; */
-"D0Z-14-c6S.placeholder" = "搜索";
+/* Class = "UILabel"; text = "10000人订阅"; ObjectID = "CEi-kR-6gO"; */
+"CEi-kR-6gO.text" = "10000人订阅";
 
 /* Class = "UINavigationItem"; title = "往期课程"; ObjectID = "D19-Iy-DZq"; */
 "D19-Iy-DZq.title" = "往期课程";
 
-/* Class = "UILabel"; text = "Label"; ObjectID = "DOA-oC-oJS"; */
-"DOA-oC-oJS.text" = "Label";
+/* Class = "UILabel"; text = "0人"; ObjectID = "DOA-oC-oJS"; */
+"DOA-oC-oJS.text" = "0人";
+
+/* Class = "UILabel"; text = "War3直播"; ObjectID = "DOO-rX-bAH"; */
+"DOO-rX-bAH.text" = "War3直播";
 
 /* Class = "UIBarButtonItem"; title = "保存"; ObjectID = "DOr-Jj-eve"; */
 "DOr-Jj-eve.title" = "保存";
 
-/* Class = "UILabel"; text = "微信好友"; ObjectID = "DUs-5t-Mrq"; */
-"DUs-5t-Mrq.text" = "微信好友";
-
 /* Class = "UIBarButtonItem"; title = "保存"; ObjectID = "E8l-8X-Jbl"; */
 "E8l-8X-Jbl.title" = "保存";
 
-/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "Eap-n6-X4u"; */
-"Eap-n6-X4u.normalTitle" = "Button";
+/* Class = "UILabel"; text = "直播专栏"; ObjectID = "ENe-jY-Ugb"; */
+"ENe-jY-Ugb.text" = "直播专栏";
 
-/* Class = "UIBarButtonItem"; title = "返回"; ObjectID = "Eb4-oW-kVd"; */
-"Eb4-oW-kVd.title" = "返回";
+/* Class = "UINavigationItem"; title = "直播"; ObjectID = "F2f-iP-1Sn"; */
+"F2f-iP-1Sn.title" = "直播";
 
-/* Class = "UILabel"; text = "Label"; ObjectID = "GGs-yV-8Eo"; */
-"GGs-yV-8Eo.text" = "Label";
+/* Class = "UILabel"; text = "我的团队"; ObjectID = "Fp2-LC-wBd"; */
+"Fp2-LC-wBd.text" = "我的团队";
 
-/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "GSa-XF-1sh"; */
-"GSa-XF-1sh.normalTitle" = "Button";
+/* Class = "UIButton"; normalTitle = "一键分享"; ObjectID = "GA7-ne-GmJ"; */
+"GA7-ne-GmJ.normalTitle" = "一键分享";
+
+/* Class = "UILabel"; text = "589人在线"; ObjectID = "GV8-kj-ipy"; */
+"GV8-kj-ipy.text" = "589人在线";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "GfI-fu-pmd"; */
 "GfI-fu-pmd.text" = "Label";
@@ -158,23 +122,8 @@
 /* Class = "UILabel"; text = "00:00"; ObjectID = "GkG-OC-hHg"; */
 "GkG-OC-hHg.text" = "00:00";
 
-/* Class = "UILabel"; text = "QQ空间"; ObjectID = "GtD-ED-Ugz"; */
-"GtD-ED-Ugz.text" = "QQ空间";
-
 /* Class = "UITextField"; placeholder = "手机号"; ObjectID = "Gxn-Vt-Dyh"; */
 "Gxn-Vt-Dyh.placeholder" = "手机号";
-
-/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "H2h-Fd-L6V"; */
-"H2h-Fd-L6V.normalTitle" = "Button";
-
-/* Class = "UILabel"; text = "张三"; ObjectID = "HHG-eb-zT6"; */
-"HHG-eb-zT6.text" = "张三";
-
-/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "HL5-KI-1dJ"; */
-"HL5-KI-1dJ.normalTitle" = "Button";
-
-/* Class = "UIButton"; normalTitle = "取消"; ObjectID = "Hxv-L1-3RU"; */
-"Hxv-L1-3RU.normalTitle" = "取消";
 
 /* Class = "UINavigationItem"; title = "巨方助手"; ObjectID = "IJg-9Z-5d9"; */
 "IJg-9Z-5d9.title" = "巨方助手";
@@ -182,14 +131,8 @@
 /* Class = "UIButton"; normalTitle = "表情"; ObjectID = "ISo-t1-o3r"; */
 "ISo-t1-o3r.normalTitle" = "表情";
 
-/* Class = "UILabel"; text = "Label"; ObjectID = "ItW-Vg-PnY"; */
-"ItW-Vg-PnY.text" = "Label";
-
 /* Class = "UINavigationItem"; title = "服务器配置"; ObjectID = "IzW-sr-5Oe"; */
 "IzW-sr-5Oe.title" = "服务器配置";
-
-/* Class = "UILabel"; text = "Label"; ObjectID = "J7c-YY-70N"; */
-"J7c-YY-70N.text" = "Label";
 
 /* Class = "UITabBarItem"; title = "首页"; ObjectID = "JEl-jD-25b"; */
 "JEl-jD-25b.title" = "首页";
@@ -200,11 +143,11 @@
 /* Class = "UIBarButtonItem"; title = "返回"; ObjectID = "JJB-oS-mFP"; */
 "JJB-oS-mFP.title" = "返回";
 
-/* Class = "UITabBarItem"; title = "设置"; ObjectID = "JMx-He-QWO"; */
-"JMx-He-QWO.title" = "设置";
+/* Class = "UILabel"; text = "226 | 平凡：如何科学看待四大发明？"; ObjectID = "JjJ-xj-eui"; */
+"JjJ-xj-eui.text" = "226 | 平凡：如何科学看待四大发明？";
 
-/* Class = "UILabel"; text = "Label"; ObjectID = "Je6-1Z-Hsy"; */
-"Je6-1Z-Hsy.text" = "Label";
+/* Class = "UITabBarItem"; title = "订阅"; ObjectID = "KgS-A7-hd8"; */
+"KgS-A7-hd8.title" = "订阅";
 
 /* Class = "UINavigationItem"; title = "我的"; ObjectID = "LCK-C6-VtG"; */
 "LCK-C6-VtG.title" = "我的";
@@ -212,29 +155,14 @@
 /* Class = "UIBarButtonItem"; title = "保存"; ObjectID = "LEb-82-1S6"; */
 "LEb-82-1S6.title" = "保存";
 
-/* Class = "UILabel"; text = "Label"; ObjectID = "Lgn-bK-L3e"; */
-"Lgn-bK-L3e.text" = "Label";
-
 /* Class = "UINavigationItem"; title = "昵称"; ObjectID = "LwW-Cx-3w9"; */
 "LwW-Cx-3w9.title" = "昵称";
-
-/* Class = "UIViewController"; title = "升级"; ObjectID = "MBI-uG-znL"; */
-"MBI-uG-znL.title" = "升级";
-
-/* Class = "UILabel"; text = "Label"; ObjectID = "MHW-p6-9IU"; */
-"MHW-p6-9IU.text" = "Label";
 
 /* Class = "UIButton"; normalTitle = "Button"; ObjectID = "MKP-G2-4A9"; */
 "MKP-G2-4A9.normalTitle" = "Button";
 
 /* Class = "UINavigationItem"; title = "个人头像"; ObjectID = "MWc-0a-JiS"; */
 "MWc-0a-JiS.title" = "个人头像";
-
-/* Class = "UILabel"; text = "Label"; ObjectID = "Ma9-tl-kpc"; */
-"Ma9-tl-kpc.text" = "Label";
-
-/* Class = "UILabel"; text = "新浪微博"; ObjectID = "Mqt-m8-hGc"; */
-"Mqt-m8-hGc.text" = "新浪微博";
 
 /* Class = "UIButton"; normalTitle = " 我也来说两句                                                     "; ObjectID = "MyE-zG-AmH"; */
 "MyE-zG-AmH.normalTitle" = " 我也来说两句                                                     ";
@@ -251,14 +179,17 @@
 /* Class = "UILabel"; text = "Label"; ObjectID = "Nvt-bV-U7p"; */
 "Nvt-bV-U7p.text" = "Label";
 
-/* Class = "UIViewController"; title = "申请"; ObjectID = "Omf-Kp-1wt"; */
-"Omf-Kp-1wt.title" = "申请";
+/* Class = "UIButton"; normalTitle = "升级"; ObjectID = "OJY-1R-XTo"; */
+"OJY-1R-XTo.normalTitle" = "升级";
+
+/* Class = "UILabel"; text = "03/28 20:00"; ObjectID = "OZK-jA-zTp"; */
+"OZK-jA-zTp.text" = "03/28 20:00";
+
+/* Class = "UIViewController"; title = "资讯"; ObjectID = "Omf-Kp-1wt"; */
+"Omf-Kp-1wt.title" = "资讯";
 
 /* Class = "UINavigationItem"; title = "忘记密码"; ObjectID = "OnC-f5-Rx0"; */
 "OnC-f5-Rx0.title" = "忘记密码";
-
-/* Class = "UILabel"; text = "1000人"; ObjectID = "OzV-bt-y98"; */
-"OzV-bt-y98.text" = "1000人";
 
 /* Class = "UILabel"; text = "目前没有任何点评"; ObjectID = "P5r-Ee-aFD"; */
 "P5r-Ee-aFD.text" = "目前没有任何点评";
@@ -266,8 +197,11 @@
 /* Class = "UINavigationItem"; title = "性别"; ObjectID = "PBd-5u-oD6"; */
 "PBd-5u-oD6.title" = "性别";
 
-/* Class = "UILabel"; text = "新浪微博"; ObjectID = "PUg-cw-uC6"; */
-"PUg-cw-uC6.text" = "新浪微博";
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "POi-J7-gQB"; */
+"POi-J7-gQB.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "我的代理等级"; ObjectID = "PWe-Og-21B"; */
+"PWe-Og-21B.text" = "我的代理等级";
 
 /* Class = "UIButton"; normalTitle = "发送"; ObjectID = "PcH-Ec-lFO"; */
 "PcH-Ec-lFO.normalTitle" = "发送";
@@ -275,8 +209,8 @@
 /* Class = "UILabel"; text = "Label"; ObjectID = "PhV-Vs-2Dq"; */
 "PhV-Vs-2Dq.text" = "Label";
 
-/* Class = "UILabel"; text = "评论"; ObjectID = "Qix-zG-l54"; */
-"Qix-zG-l54.text" = "评论";
+/* Class = "UILabel"; text = "我的积分"; ObjectID = "QLn-xl-KPp"; */
+"QLn-xl-KPp.text" = "我的积分";
 
 /* Class = "UILabel"; text = "新浪微博"; ObjectID = "R2v-WR-tLp"; */
 "R2v-WR-tLp.text" = "新浪微博";
@@ -296,8 +230,8 @@
 /* Class = "UITextField"; placeholder = "手机号"; ObjectID = "S1r-9X-Qbf"; */
 "S1r-9X-Qbf.placeholder" = "手机号";
 
-/* Class = "UITabBarItem"; title = "申请"; ObjectID = "S9t-9D-F23"; */
-"S9t-9D-F23.title" = "申请";
+/* Class = "UIButton"; normalTitle = "购买"; ObjectID = "S6I-fP-va9"; */
+"S6I-fP-va9.normalTitle" = "购买";
 
 /* Class = "UIButton"; normalTitle = "<<"; ObjectID = "SV4-F6-i0R"; */
 "SV4-F6-i0R.normalTitle" = "<<";
@@ -305,11 +239,14 @@
 /* Class = "UIButton"; normalTitle = "Button"; ObjectID = "Saw-xU-Pms"; */
 "Saw-xU-Pms.normalTitle" = "Button";
 
-/* Class = "UILabel"; text = "copyright@巨胜网络 版权所有"; ObjectID = "Su9-jj-ctL"; */
-"Su9-jj-ctL.text" = "copyright@巨胜网络 版权所有";
+/* Class = "UILabel"; text = "共找到0条记录"; ObjectID = "SuQ-9f-RXH"; */
+"SuQ-9f-RXH.text" = "共找到0条记录";
 
 /* Class = "UILabel"; text = "（0）"; ObjectID = "TC3-6X-jry"; */
 "TC3-6X-jry.text" = "（0）";
+
+/* Class = "UILabel"; text = "5分钟商学院"; ObjectID = "TYD-RH-N8k"; */
+"TYD-RH-N8k.text" = "5分钟商学院";
 
 /* Class = "UILabel"; text = "400万, 32集"; ObjectID = "TcI-NK-vas"; */
 "TcI-NK-vas.text" = "400万, 32集";
@@ -317,38 +254,26 @@
 /* Class = "UITextField"; placeholder = "密   码（不少于6位）"; ObjectID = "Tqu-Ro-0CT"; */
 "Tqu-Ro-0CT.placeholder" = "密   码（不少于6位）";
 
-/* Class = "UILabel"; text = "Label"; ObjectID = "TvH-HH-jxH"; */
-"TvH-HH-jxH.text" = "Label";
-
 /* Class = "UIViewController"; title = "注册"; ObjectID = "UXT-7U-nAQ"; */
 "UXT-7U-nAQ.title" = "注册";
 
-/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "VGo-oT-3Yv"; */
-"VGo-oT-3Yv.normalTitle" = "Button";
-
-/* Class = "UILabel"; text = "热门搜索"; ObjectID = "VJW-j0-3Ha"; */
-"VJW-j0-3Ha.text" = "热门搜索";
+/* Class = "UILabel"; text = "海外网5月10日电 超级英雄钢铁侠的服装被偷走了！对于漫威粉丝来说."; ObjectID = "VS9-eA-hG1"; */
+"VS9-eA-hG1.text" = "海外网5月10日电 超级英雄钢铁侠的服装被偷走了！对于漫威粉丝来说.";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "VYH-b7-tH2"; */
 "VYH-b7-tH2.text" = "Label";
 
-/* Class = "UILabel"; text = "每日课堂"; ObjectID = "VYU-FS-0jC"; */
-"VYU-FS-0jC.text" = "每日课堂";
-
-/* Class = "UILabel"; text = "巨方助手"; ObjectID = "VoM-YP-YGR"; */
-"VoM-YP-YGR.text" = "巨方助手";
-
-/* Class = "UILabel"; text = "我的等级："; ObjectID = "W7Z-Ra-tKO"; */
-"W7Z-Ra-tKO.text" = "我的等级：";
-
 /* Class = "UIButton"; normalTitle = "Button"; ObjectID = "WD5-tc-FtC"; */
 "WD5-tc-FtC.normalTitle" = "Button";
 
-/* Class = "UIButton"; normalTitle = "表情"; ObjectID = "WUN-Jy-RQJ"; */
-"WUN-Jy-RQJ.normalTitle" = "表情";
+/* Class = "UIViewController"; title = "订阅"; ObjectID = "WlZ-YT-eo8"; */
+"WlZ-YT-eo8.title" = "订阅";
 
 /* Class = "UIBarButtonItem"; title = "返回"; ObjectID = "WoQ-2N-XI0"; */
 "WoQ-2N-XI0.title" = "返回";
+
+/* Class = "UILabel"; text = "2019-03-28"; ObjectID = "WqE-AV-fG6"; */
+"WqE-AV-fG6.text" = "2019-03-28";
 
 /* Class = "UILabel"; text = "00:00"; ObjectID = "Wrw-Uh-OCW"; */
 "Wrw-Uh-OCW.text" = "00:00";
@@ -356,8 +281,11 @@
 /* Class = "UIButton"; normalTitle = "登    录"; ObjectID = "X0u-y0-reH"; */
 "X0u-y0-reH.normalTitle" = "登    录";
 
-/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "XIV-Yp-amN"; */
-"XIV-Yp-amN.normalTitle" = "Button";
+/* Class = "UITabBarItem"; title = "直播"; ObjectID = "X8M-33-e1x"; */
+"X8M-33-e1x.title" = "直播";
+
+/* Class = "UILabel"; text = "标题标题"; ObjectID = "Xdu-R6-OkM"; */
+"Xdu-R6-OkM.text" = "标题标题";
 
 /* Class = "UIViewController"; title = "播放页面"; ObjectID = "Xdz-Ta-yt3"; */
 "Xdz-Ta-yt3.title" = "播放页面";
@@ -365,20 +293,23 @@
 /* Class = "UIViewController"; title = "昵称"; ObjectID = "XhM-of-jTv"; */
 "XhM-of-jTv.title" = "昵称";
 
+/* Class = "UIButton"; normalTitle = "查看全部"; ObjectID = "XoM-I1-Emv"; */
+"XoM-I1-Emv.normalTitle" = "查看全部";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "Xrd-ND-nnd"; */
+"Xrd-ND-nnd.text" = "Label";
+
 /* Class = "UIButton"; normalTitle = "确    认"; ObjectID = "Y5L-3p-6mz"; */
 "Y5L-3p-6mz.normalTitle" = "确    认";
-
-/* Class = "UILabel"; text = "For iPhone"; ObjectID = "YLB-yi-Zlx"; */
-"YLB-yi-Zlx.text" = "For iPhone";
 
 /* Class = "UILabel"; text = "查看更多评论"; ObjectID = "YrG-eP-4Ew"; */
 "YrG-eP-4Ew.text" = "查看更多评论";
 
-/* Class = "UILabel"; text = "听众点评"; ObjectID = "YsH-h9-xZM"; */
-"YsH-h9-xZM.text" = "听众点评";
-
 /* Class = "UILabel"; text = "Label"; ObjectID = "Yxq-X9-J0l"; */
 "Yxq-X9-J0l.text" = "Label";
+
+/* Class = "UILabel"; text = "10"; ObjectID = "Z2k-xn-dXV"; */
+"Z2k-xn-dXV.text" = "10";
 
 /* Class = "UINavigationItem"; title = "二维码"; ObjectID = "Z51-eT-H9A"; */
 "Z51-eT-H9A.title" = "二维码";
@@ -389,9 +320,6 @@
 /* Class = "UILabel"; text = "59秒后重新获取"; ObjectID = "ZXh-xP-uf6"; */
 "ZXh-xP-uf6.text" = "59秒后重新获取";
 
-/* Class = "UILabel"; text = "复制链接"; ObjectID = "ZeT-AB-VIm"; */
-"ZeT-AB-VIm.text" = "复制链接";
-
 /* Class = "UILabel"; text = "QQ空间"; ObjectID = "Zgb-he-e9D"; */
 "Zgb-he-e9D.text" = "QQ空间";
 
@@ -401,14 +329,14 @@
 /* Class = "UILabel"; text = "评论"; ObjectID = "aK0-wN-Jxh"; */
 "aK0-wN-Jxh.text" = "评论";
 
+/* Class = "UILabel"; text = "4.5"; ObjectID = "bYB-jU-8ju"; */
+"bYB-jU-8ju.text" = "4.5";
+
 /* Class = "UILabel"; text = "Label"; ObjectID = "bv0-Ec-ene"; */
 "bv0-Ec-ene.text" = "Label";
 
 /* Class = "UILabel"; text = "广告"; ObjectID = "bza-Bt-9yP"; */
 "bza-Bt-9yP.text" = "广告";
-
-/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "c89-iu-mp1"; */
-"c89-iu-mp1.normalTitle" = "Button";
 
 /* Class = "UILabel"; text = "100人"; ObjectID = "cKm-ma-ptv"; */
 "cKm-ma-ptv.text" = "100人";
@@ -419,35 +347,29 @@
 /* Class = "UINavigationItem"; title = "重设密码"; ObjectID = "dOy-NO-SnK"; */
 "dOy-NO-SnK.title" = "重设密码";
 
+/* Class = "UIBarButtonItem"; title = "Item"; ObjectID = "e0B-C8-lMW"; */
+"e0B-C8-lMW.title" = "Item";
+
 /* Class = "UITextField"; placeholder = "验证码"; ObjectID = "ePd-3i-LbB"; */
 "ePd-3i-LbB.placeholder" = "验证码";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "edm-FX-2RD"; */
 "edm-FX-2RD.text" = "Label";
 
-/* Class = "UILabel"; text = "直播中"; ObjectID = "f17-9z-UoM"; */
-"f17-9z-UoM.text" = "直播中";
-
-/* Class = "UILabel"; text = "Label"; ObjectID = "feS-JZ-jfm"; */
-"feS-JZ-jfm.text" = "Label";
-
-/* Class = "UILabel"; text = "Label"; ObjectID = "g7o-DL-uKN"; */
-"g7o-DL-uKN.text" = "Label";
+/* Class = "UILabel"; text = "Label"; ObjectID = "fxe-tY-J7u"; */
+"fxe-tY-J7u.text" = "Label";
 
 /* Class = "UIViewController"; title = "忘记密码"; ObjectID = "gB1-HN-uiB"; */
 "gB1-HN-uiB.title" = "忘记密码";
 
-/* Class = "UILabel"; text = "财富"; ObjectID = "gGD-vo-2YQ"; */
-"gGD-vo-2YQ.text" = "财富";
+/* Class = "UILabel"; text = "高级代理"; ObjectID = "gE1-ir-i8d"; */
+"gE1-ir-i8d.text" = "高级代理";
 
 /* Class = "UITextField"; placeholder = "名字"; ObjectID = "gao-g1-fbe"; */
 "gao-g1-fbe.placeholder" = "名字";
 
-/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "giv-d7-Ul6"; */
-"giv-d7-Ul6.normalTitle" = "Button";
-
-/* Class = "UILabel"; text = "Label"; ObjectID = "hE2-zk-9nO"; */
-"hE2-zk-9nO.text" = "Label";
+/* Class = "UILabel"; text = "10人"; ObjectID = "h3T-6m-RnP"; */
+"h3T-6m-RnP.text" = "10人";
 
 /* Class = "UIBarButtonItem"; title = "保存"; ObjectID = "hGM-KZ-ZKI"; */
 "hGM-KZ-ZKI.title" = "保存";
@@ -458,11 +380,11 @@
 /* Class = "UILabel"; text = "复制链接"; ObjectID = "hbF-vP-vIK"; */
 "hbF-vP-vIK.text" = "复制链接";
 
-/* Class = "UILabel"; text = "目前没有任何点评"; ObjectID = "i8S-Sc-HpE"; */
-"i8S-Sc-HpE.text" = "目前没有任何点评";
+/* Class = "UILabel"; text = "热门专栏"; ObjectID = "ho7-W2-J9T"; */
+"ho7-W2-J9T.text" = "热门专栏";
 
-/* Class = "UILabel"; text = "Label"; ObjectID = "iL0-tg-b8S"; */
-"iL0-tg-b8S.text" = "Label";
+/* Class = "UIButton"; normalTitle = "提现"; ObjectID = "iRu-7g-vrW"; */
+"iRu-7g-vrW.normalTitle" = "提现";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "iVa-2f-lxN"; */
 "iVa-2f-lxN.text" = "Label";
@@ -473,62 +395,50 @@
 /* Class = "UILabel"; text = "值"; ObjectID = "jN2-4j-t25"; */
 "jN2-4j-t25.text" = "值";
 
-/* Class = "UILabel"; text = "朋友圈"; ObjectID = "jR7-NO-g6m"; */
-"jR7-NO-g6m.text" = "朋友圈";
-
 /* Class = "UILabel"; text = "59秒后重新获取"; ObjectID = "jXq-sW-ZWz"; */
 "jXq-sW-ZWz.text" = "59秒后重新获取";
+
+/* Class = "UILabel"; text = "高级代理"; ObjectID = "jnr-0l-oHs"; */
+"jnr-0l-oHs.text" = "高级代理";
 
 /* Class = "UITextField"; placeholder = "邀请人手机号（可不填）"; ObjectID = "ju7-BH-gu7"; */
 "ju7-BH-gu7.placeholder" = "邀请人手机号（可不填）";
 
-/* Class = "UILabel"; text = "微信好友"; ObjectID = "kPG-UH-8Qf"; */
-"kPG-UH-8Qf.text" = "微信好友";
-
 /* Class = "UIButton"; normalTitle = "Button"; ObjectID = "kgi-cI-GvL"; */
 "kgi-cI-GvL.normalTitle" = "Button";
 
-/* Class = "UILabel"; text = "微信朋友圈"; ObjectID = "l7U-28-tmP"; */
-"l7U-28-tmP.text" = "微信朋友圈";
+/* Class = "UINavigationItem"; title = "订阅"; ObjectID = "l87-fz-5sx"; */
+"l87-fz-5sx.title" = "订阅";
 
 /* Class = "UINavigationItem"; title = "注册"; ObjectID = "lPJ-a3-1gx"; */
 "lPJ-a3-1gx.title" = "注册";
 
+/* Class = "UILabel"; text = "1000"; ObjectID = "lVb-Ko-qnq"; */
+"lVb-Ko-qnq.text" = "1000";
+
 /* Class = "UILabel"; text = "Label"; ObjectID = "lWm-bK-TsM"; */
 "lWm-bK-TsM.text" = "Label";
+
+/* Class = "UILabel"; text = "帮你做复杂世界的明白人"; ObjectID = "lly-C8-eMx"; */
+"lly-C8-eMx.text" = "帮你做复杂世界的明白人";
 
 /* Class = "UIButton"; normalTitle = "注册"; ObjectID = "lmm-M6-7zy"; */
 "lmm-M6-7zy.normalTitle" = "注册";
 
-/* Class = "UILabel"; text = "Label"; ObjectID = "lne-9e-Z6d"; */
-"lne-9e-Z6d.text" = "Label";
-
-/* Class = "UIButton"; normalTitle = "  我也来说两句                                                     "; ObjectID = "lxH-Lb-car"; */
-"lxH-Lb-car.normalTitle" = "  我也来说两句                                                     ";
-
-/* Class = "UIBarButtonItem"; title = "取消"; ObjectID = "mBi-ZU-Kzk"; */
-"mBi-ZU-Kzk.title" = "取消";
-
-/* Class = "UIButton"; normalTitle = "购买"; ObjectID = "mQ7-PW-RcJ"; */
-"mQ7-PW-RcJ.normalTitle" = "购买";
-
-/* Class = "UILabel"; text = "Label"; ObjectID = "may-zf-RDG"; */
-"may-zf-RDG.text" = "Label";
+/* Class = "UILabel"; text = "21小时前更新"; ObjectID = "lpH-aR-q6E"; */
+"lpH-aR-q6E.text" = "21小时前更新";
 
 /* Class = "UIViewController"; title = "启动"; ObjectID = "mtC-8X-XYd"; */
 "mtC-8X-XYd.title" = "启动";
 
-/* Class = "UILabel"; text = "Label"; ObjectID = "myQ-jv-ewh"; */
-"myQ-jv-ewh.text" = "Label";
-
 /* Class = "UILabel"; text = "Label"; ObjectID = "mye-sB-DjN"; */
 "mye-sB-DjN.text" = "Label";
 
+/* Class = "UINavigationItem"; title = "播放页面"; ObjectID = "nJf-D3-e9Y"; */
+"nJf-D3-e9Y.title" = "播放页面";
+
 /* Class = "UIButton"; normalTitle = "播放"; ObjectID = "nSg-mE-Y2N"; */
 "nSg-mE-Y2N.normalTitle" = "播放";
-
-/* Class = "UILabel"; text = "Label"; ObjectID = "neR-qe-UD4"; */
-"neR-qe-UD4.text" = "Label";
 
 /* Class = "UIBarButtonItem"; title = "保存"; ObjectID = "nfb-6I-JXZ"; */
 "nfb-6I-JXZ.title" = "保存";
@@ -536,23 +446,17 @@
 /* Class = "UIBarButtonItem"; title = "返回"; ObjectID = "ni2-53-BVe"; */
 "ni2-53-BVe.title" = "返回";
 
+/* Class = "UILabel"; text = "4.5"; ObjectID = "nle-cO-Woq"; */
+"nle-cO-Woq.text" = "4.5";
+
 /* Class = "UIButton"; normalTitle = "获取验证码"; ObjectID = "nqp-j4-gan"; */
 "nqp-j4-gan.normalTitle" = "获取验证码";
-
-/* Class = "UIViewController"; title = "搜索"; ObjectID = "nrh-Rw-P5G"; */
-"nrh-Rw-P5G.title" = "搜索";
-
-/* Class = "UIButton"; normalTitle = "取消"; ObjectID = "o3R-xy-jax"; */
-"o3R-xy-jax.normalTitle" = "取消";
 
 /* Class = "UIButton"; normalTitle = "关闭"; ObjectID = "oSB-yj-z0b"; */
 "oSB-yj-z0b.normalTitle" = "关闭";
 
-/* Class = "UILabel"; text = "我的上级："; ObjectID = "oTl-8g-gXc"; */
-"oTl-8g-gXc.text" = "我的上级：";
-
-/* Class = "UIButton"; normalTitle = "《巨方助手软件许可及服务协议》"; ObjectID = "obI-4L-xEU"; */
-"obI-4L-xEU.normalTitle" = "《巨方助手软件许可及服务协议》";
+/* Class = "UIButton"; normalTitle = "《知得软件许可及服务协议》"; ObjectID = "obI-4L-xEU"; */
+"obI-4L-xEU.normalTitle" = "《知得软件许可及服务协议》";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "opi-sn-gss"; */
 "opi-sn-gss.text" = "Label";
@@ -560,23 +464,26 @@
 /* Class = "UITabBarItem"; title = "我的"; ObjectID = "owk-5T-4hW"; */
 "owk-5T-4hW.title" = "我的";
 
-/* Class = "UIButton"; normalTitle = "取消"; ObjectID = "ozi-P0-Qde"; */
-"ozi-P0-Qde.normalTitle" = "取消";
-
 /* Class = "UIButton"; normalTitle = "<<"; ObjectID = "pMj-nW-pUe"; */
 "pMj-nW-pUe.normalTitle" = "<<";
 
 /* Class = "UILabel"; text = "QQ好友"; ObjectID = "qFd-n8-1iO"; */
 "qFd-n8-1iO.text" = "QQ好友";
 
+/* Class = "UILabel"; text = "2018/03/28"; ObjectID = "qLN-97-UkK"; */
+"qLN-97-UkK.text" = "2018/03/28";
+
 /* Class = "UILabel"; text = "Label"; ObjectID = "qP8-dI-Onq"; */
 "qP8-dI-Onq.text" = "Label";
+
+/* Class = "UIViewController"; title = "web页面"; ObjectID = "qTJ-UI-98H"; */
+"qTJ-UI-98H.title" = "web页面";
 
 /* Class = "UIButton"; normalTitle = "点击报名！"; ObjectID = "qgN-yE-e6h"; */
 "qgN-yE-e6h.normalTitle" = "点击报名！";
 
-/* Class = "UILabel"; text = "400万, 32集"; ObjectID = "quh-ff-M7D"; */
-"quh-ff-M7D.text" = "400万, 32集";
+/* Class = "UILabel"; text = "正在直播"; ObjectID = "qoq-K2-f9s"; */
+"qoq-K2-f9s.text" = "正在直播";
 
 /* Class = "UIButton"; normalTitle = "配置"; ObjectID = "qy9-aD-Lyt"; */
 "qy9-aD-Lyt.normalTitle" = "配置";
@@ -584,17 +491,20 @@
 /* Class = "UIBarButtonItem"; title = "保存"; ObjectID = "rmd-fc-mwn"; */
 "rmd-fc-mwn.title" = "保存";
 
-/* Class = "UILabel"; text = "1000人"; ObjectID = "rxF-6K-wZ6"; */
-"rxF-6K-wZ6.text" = "1000人";
-
 /* Class = "UILabel"; text = "00:00"; ObjectID = "s4V-Y0-FBi"; */
 "s4V-Y0-FBi.text" = "00:00";
 
-/* Class = "UILabel"; text = "积分"; ObjectID = "tNF-oD-avW"; */
-"tNF-oD-avW.text" = "积分";
+/* Class = "UILabel"; text = "199元/年"; ObjectID = "sRc-EH-eUp"; */
+"sRc-EH-eUp.text" = "199元/年";
 
-/* Class = "UILabel"; text = "VIP用户"; ObjectID = "tZQ-KY-Wgb"; */
-"tZQ-KY-Wgb.text" = "VIP用户";
+/* Class = "UILabel"; text = "2018/03/28"; ObjectID = "scH-nj-iU2"; */
+"scH-nj-iU2.text" = "2018/03/28";
+
+/* Class = "UILabel"; text = "金军航"; ObjectID = "sun-kg-klA"; */
+"sun-kg-klA.text" = "金军航";
+
+/* Class = "UILabel"; text = "赢家的方法"; ObjectID = "tSz-Ef-ge0"; */
+"tSz-Ef-ge0.text" = "赢家的方法";
 
 /* Class = "UILabel"; text = "跳过广告 3"; ObjectID = "tmD-Xg-AJz"; */
 "tmD-Xg-AJz.text" = "跳过广告 3";
@@ -602,8 +512,14 @@
 /* Class = "UIButton"; normalTitle = "播放"; ObjectID = "txP-0L-fDd"; */
 "txP-0L-fDd.normalTitle" = "播放";
 
+/* Class = "UIBarButtonItem"; title = "  取消"; ObjectID = "unL-MU-gZL"; */
+"unL-MU-gZL.title" = "  取消";
+
 /* Class = "UIButton"; normalTitle = "Button"; ObjectID = "vXq-da-5gY"; */
 "vXq-da-5gY.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "5分钟商学院"; ObjectID = "vcA-Ez-N1S"; */
+"vcA-Ez-N1S.text" = "5分钟商学院";
 
 /* Class = "UILabel"; text = "名称"; ObjectID = "vvl-34-Fof"; */
 "vvl-34-Fof.text" = "名称";
@@ -614,29 +530,20 @@
 /* Class = "UINavigationItem"; title = "设置"; ObjectID = "wRr-91-USj"; */
 "wRr-91-USj.title" = "设置";
 
-/* Class = "UILabel"; text = "QQ好友"; ObjectID = "xDO-gR-w2J"; */
-"xDO-gR-w2J.text" = "QQ好友";
-
 /* Class = "UILabel"; text = "Label"; ObjectID = "xDc-Hf-JgV"; */
 "xDc-Hf-JgV.text" = "Label";
 
 /* Class = "UIButton"; normalTitle = "取消"; ObjectID = "xG9-aM-mvF"; */
 "xG9-aM-mvF.normalTitle" = "取消";
 
-/* Class = "UILabel"; text = "400万, 32集"; ObjectID = "yAz-ae-Z3m"; */
-"yAz-ae-Z3m.text" = "400万, 32集";
-
-/* Class = "UILabel"; text = "Label"; ObjectID = "yKo-9h-ElL"; */
-"yKo-9h-ElL.text" = "Label";
+/* Class = "UILabel"; text = "War3直播"; ObjectID = "xev-gH-fEQ"; */
+"xev-gH-fEQ.text" = "War3直播";
 
 /* Class = "UIButton"; normalTitle = "取消"; ObjectID = "yOs-ly-yn7"; */
 "yOs-ly-yn7.normalTitle" = "取消";
 
 /* Class = "UILabel"; text = "马上通过以下方式分享给朋友"; ObjectID = "ydt-Jn-eyP"; */
 "ydt-Jn-eyP.text" = "马上通过以下方式分享给朋友";
-
-/* Class = "UILabel"; text = "Label"; ObjectID = "yri-Ng-Fd0"; */
-"yri-Ng-Fd0.text" = "Label";
 
 /* Class = "UITextField"; placeholder = "用户名"; ObjectID = "z4A-8X-s9O"; */
 "z4A-8X-s9O.placeholder" = "用户名";
@@ -647,11 +554,5 @@
 /* Class = "UINavigationItem"; title = "服务器配置"; ObjectID = "zHG-kc-2UN"; */
 "zHG-kc-2UN.title" = "服务器配置";
 
-/* Class = "UILabel"; text = "Label"; ObjectID = "zQb-wC-fEX"; */
-"zQb-wC-fEX.text" = "Label";
-
 /* Class = "UILabel"; text = "在线聊天"; ObjectID = "zqv-N0-3M2"; */
 "zqv-N0-3M2.text" = "在线聊天";
-
-/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "zzx-oX-YTN"; */
-"zzx-oX-YTN.normalTitle" = "Button";

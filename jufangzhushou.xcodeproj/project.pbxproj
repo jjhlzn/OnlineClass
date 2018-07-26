@@ -306,7 +306,6 @@
 		EF03652D209EEEA1006094EE /* SearchBarExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarExtension.swift; sourceTree = "<group>"; };
 		EF10AAC720A95D3800C6B2E4 /* UINavigationControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationControllerExtension.swift; sourceTree = "<group>"; };
 		EF10AAD120A9748E00C6B2E4 /* demo.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = demo.gif; sourceTree = "<group>"; };
-		EF1DC2CC1F2B335000B471A5 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		EF1DC2CD1F2B335000B471A5 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		EF1EA4E21ED3B9DA00B2616F /* ExtendFunctionImageStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtendFunctionImageStore.swift; sourceTree = "<group>"; };
 		EF21740C1E2753B10035C960 /* TencentOpenApi_IOS_Bundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = TencentOpenApi_IOS_Bundle.bundle; sourceTree = "<group>"; };
@@ -872,6 +871,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans",
 			);
 			mainGroup = E2A9AF931C498E2900FE943A;
 			productRefGroup = E2A9AF9D1C498E2900FE943A /* Products */;
@@ -1177,7 +1177,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				E2A9AFA41C498E2900FE943A /* Base */,
-				EF1DC2CC1F2B335000B471A5 /* zh-Hans */,
 			);
 			name = Main.storyboard;
 			path = "Demo/AudioPlayer iOS";
