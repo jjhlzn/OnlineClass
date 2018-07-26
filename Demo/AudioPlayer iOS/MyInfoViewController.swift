@@ -76,9 +76,11 @@ class MyInfoVieController: BaseUIViewController, UITableViewDataSource, UITableV
             refreshControl.endRefreshing()
             return
         }
-        
+        loadUserData()
+    }
+    
+    func loadUserData() {
         querying = true
-        
         BasicService().sendRequest(url: ServiceConfiguration.GET_USER_STAT_DATA, request: GetUserStatDataRequest()) {
             (resp: GetUserStatDataResponse) -> Void in
             self.updateUserStatData(resp: resp)
@@ -92,12 +94,13 @@ class MyInfoVieController: BaseUIViewController, UITableViewDataSource, UITableV
     func setNavigationBar() {
         self.navigationItem.rightBarButtonItems = []
         navigationManager.setMusicButton()
-
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        QL1("viewWillAppear called")
         setNavigationBar()
+        loadUserData()
     }
 
 }
@@ -237,7 +240,7 @@ extension MyInfoVieController {
         keyValueStore.save(key: KeyValueStore.key_tuijian, value: resp.tuijianPeople)
         
         keyValueStore.save(key: KeyValueStore.key_ordercount, value: resp.orderCount)
-        keyValueStore.save(key: KeyValueStore.key_zhidian, value: "\(resp.zhidian)点")
+        keyValueStore.save(key: KeyValueStore.key_zhidian, value: "\(resp.zhidian)知点")
         
         let loginUserStore = LoginUserStore()
         let loginUser = loginUserStore.getLoginUser()!

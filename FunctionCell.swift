@@ -8,6 +8,7 @@
 
 import UIKit
 import QorumLogs
+import Kingfisher
 
 class FunctionCell: UITableViewCell {
  
@@ -21,51 +22,37 @@ class ExtendFunctionMananger : NSObject {
     var isNeedMore = true
     var extendFunctionStore = ExtendFunctionStore.instance
     
-    static var allFunctions = ExtendFunctionMananger.getAllFunctions()
+    private var _functions : [ExtendFunction] = [ExtendFunction]()
+    
+    static var instance = ExtendFunctionMananger()
+    
+    //static var allFunctions = ExtendFunctionMananger.getAllFunctions()
     var functions: [ExtendFunction] {
         get {
-            return ExtendFunctionMananger.allFunctions
-            /*
-            return ExtendFunctionMananger.allFunctions.filter({
-                (function: ExtendFunction) -> Bool in
-                return extendFunctionStore.isShow(code: function.code, defaultValue: false)
-            }); */
+            //return ExtendFunctionMananger.allFunctions
+            return _functions
+        }
+        set {
+            _functions = newValue
         }
     }
     
-    static func isTestUser() -> Bool {
-        let loginUser = LoginUserStore().getLoginUser()!
-        return loginUser.userName! == "13706794299"
-    }
-    
-    func isTestUser2() -> Bool {
-        let loginUser = LoginUserStore().getLoginUser()!
-        return loginUser.userName! == "13706794299"
+    func makeFunction(imageName: String, name: String, code: String, url: String, messageCount: Int, selectorName: String) -> ExtendFunction {
+        QL1(selectorName)
+        var selector = #selector(imageHandler)
+        if selectorName == "dingyueHandler" {
+            selector = #selector(dingyueHandler)
+        } else if selectorName == "moreHanlder" {
+            selector = #selector(moreHanlder)
+        }
+        return ExtendFunction(imageName: imageName, name: name, code: code, url: url, messageCount: messageCount,
+                       selector:  selector, isShowDefault: true)
     }
     
     static func getAllFunctions() -> [ExtendFunction] {
-        
-        ExtendFunctionMananger.moreFunction = ExtendFunction(imageName: "moreFunction", name: "更多", code: "f_more", url: "",
-                                      selector: #selector(moreHanlder), isShowDefault: true)
-        if isTestUser() {
-            return [
-                ExtendFunction(imageName: "func_shuaka", name: "刷卡", code: "f_paybycard", url: ServiceLinkManager.CardPayUrl,
-                               selector:  #selector(imageHandler), isShowDefault: true),
+        /*
+        ExtendFunctionMananger.moreFunction = ExtendFunction(imageName: "moreFunction", name: "更多", code: "f_more", url: "", selector: #selector(moreHanlder), isShowDefault: true)
 
-                
-
-                ExtendFunction(imageName: "func_dingyue", name: "订阅专栏", code: "f_dingyue", url: ServiceLinkManager.FunctionCardManagerUrl,
-                               selector:  #selector(dingyueHandler), isShowDefault: true),
-                
-                ExtendFunction(imageName: "func_rzjhk", name: "融资军火库", code: "f_rzjhk", url: ServiceLinkManager.JunhuokuUrl,
-                               selector:  #selector(imageHandler), isShowDefault: true),
-                
-                ExtendFunction(imageName: "func_shopcart", name: "商城", code: "f_market",  url: ServiceLinkManager.FunctionShopUrl,
-                               selector:  #selector(imageHandler), isShowDefault: false)
-                
-                
-            ]
-        }
         return [
             ExtendFunction(imageName: "func_shuaka", name: "刷卡", code: "f_paybycard", url: ServiceLinkManager.CardPayUrl,
                 selector:  #selector(imageHandler), isShowDefault: true),
@@ -87,28 +74,29 @@ class ExtendFunctionMananger : NSObject {
             ExtendFunction(imageName: "func_health", name: "更多", code: "f_health", url: ServiceLinkManager.HealthUrl,
                            selector:  #selector(moreHanlder), isShowDefault: true),
             
-            /*
-            ExtendFunction(imageName: "moreFunction", name: "更多", code: "f_more", url: "",
-                selector: #selector(moreHanlder), isShowDefault: true) */
-        ]
+        ] */
+        return [];
         
     }
     
-    init(controller: BaseUIViewController, isNeedMore: Bool = true, showMaxRows : Int = 100) {
+    private init(controller: BaseUIViewController, isNeedMore: Bool = true, showMaxRows : Int = 100) {
         self.controller = controller
         self.showMaxRows = showMaxRows
         self.isNeedMore = isNeedMore
         
         super.init()
-        if self.isTestUser2() {
-            self.isNeedMore = false
-        }
-        ExtendFunctionMananger.allFunctions = ExtendFunctionMananger.getAllFunctions()
+        //ExtendFunctionMananger.allFunctions = ExtendFunctionMananger.getAllFunctions()
+    }
+    
+    func setConfig(controller: BaseUIViewController, isNeedMore: Bool = true, showMaxRows : Int = 100) {
+        self.controller = controller
+        self.showMaxRows = showMaxRows
+        self.isNeedMore = isNeedMore
     }
     
     
     private func getFunction(code: String) -> ExtendFunction? {
-        for function in ExtendFunctionMananger.allFunctions {
+        for function in functions {
             if function.code == code {
                 return function
             }
@@ -127,9 +115,9 @@ class ExtendFunctionMananger : NSObject {
     let buttonCountEachRow = 4
     func getRowCount() -> Int {
         let rows = (functions.count + buttonCountEachRow - 1) / buttonCountEachRow
-        QL1("rows = \(rows)")
+        //QL1("rows = \(rows)")
         let result = rows > showMaxRows ? showMaxRows : rows
-        print("result = \(result)")
+        //print("result = \(result)")
         return result
     }
     
@@ -142,7 +130,7 @@ class ExtendFunctionMananger : NSObject {
         return buttonCount < functions.count ? buttonCount - 1 : functions.count - 1
     }
     
-    func getFunctionCell(tableView: UITableView, row: Int) -> FunctionCell {
+    func getFunctionCell(tableView: UITableView, row: Int, isNeedMore: Bool = true) -> FunctionCell {
         var index = row * buttonCountEachRow
         let cell = tableView.dequeueReusableCell(withIdentifier: "functionCell") as! FunctionCell
         cell.subviews.forEach() { subView in
@@ -155,11 +143,13 @@ class ExtendFunctionMananger : NSObject {
             }
             
             var function = functions[index]
+            
+            /*
             if isNeedMoreButton() && index == getLastIndex() {
                 function = ExtendFunctionMananger.moreFunction!
-            }
+            } */
             
-            if !isNeedMoreButton() && function.name == ExtendFunctionMananger.moreFunction!.name {
+            if !isNeedMore && function.isMore {
                 break
             }
             
@@ -186,12 +176,19 @@ class ExtendFunctionMananger : NSObject {
         cellView.addSubview(imageView)
         cellView.addSubview(label)
         
-        if function.action != nil {
-            cellView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: function.action ))
-            cellView.isUserInteractionEnabled = true
-        }
+    
+        cellView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: function.action ))
+        cellView.isUserInteractionEnabled = true
         
         return cellView
+    }
+    
+    private func redraw(index: Int, view: UIView) {
+        let row : Int = index / 4
+        let column : Int = index % 4
+        let parent = view.superview!
+        view.removeFromSuperview()
+        addCellView(row: row, column: column, index: index, function: functions[index], cell: parent as! UITableViewCell)
     }
     
     private func getImageWidth() -> CGFloat {
@@ -246,14 +243,46 @@ class ExtendFunctionMananger : NSObject {
            imageView.center.y = cellHeight / 2 - 0 - Y + 1
         }
 
-        imageView.image = overlayImage(function: function) //UIImage(named: function.imageName)
+        overlayImage(function: function, imageView: imageView) //UIImage(named: function.imageName)
         imageView.tag = index
         
         return imageView
     }
     
-    func overlayImage(function: ExtendFunction) -> UIImage {
-        var bottomImage = UIImage(named: function.imageName)!
+    func overlayImage(function: ExtendFunction, imageView: UIImageView)  {
+        let viwe = UIImageView()
+        
+        if function.imageName != "" {
+            let url = ImageResource(downloadURL: URL(string: function.imageName)!, cacheKey: function.imageUrl)
+            
+            ImageCache.default.retrieveImage(forKey: function.imageUrl, options: nil) {
+                image, cacheType in
+                if let image = image {
+                    print("Get image \(image), cacheType: \(cacheType).")
+                    //In this code snippet, the `cacheType` is .disk
+                    imageView.image = self.overlayImage0(function: function, bottomImg: image)
+                } else {
+                    //QL1(function.imageName)
+                    viwe.kf.setImage(with: url, completionHandler: {
+                        (image, error, cacheType, imageUrl) in
+                        if image != nil {
+                            imageView.image = self.overlayImage0(function: function, bottomImg: image!)
+                            QL1("update icon for: \(function.name)")
+                        }
+                    })
+                    
+                    imageView.image = self.overlayImage0(function: function, bottomImg: UIImage(named: "func_placeholder")!)
+                }
+            }
+        } else {
+            imageView.image = self.overlayImage0(function: function, bottomImg: UIImage(named: "func_placeholder")!)
+        }
+        
+       
+    }
+    
+    func overlayImage0(function: ExtendFunction, bottomImg: UIImage) -> UIImage {
+        var bottomImage = bottomImg
         let extendFunctionImageStore = ExtendFunctionImageStore()
         QL1("\(function.code):  \(function.name), \(function.imageUrl)")
         if function.imageUrl != "" {
@@ -262,8 +291,8 @@ class ExtendFunctionMananger : NSObject {
                 bottomImage = image!
             }
         }
-
-        if !ExtendFunctionStore.instance.hasMessage(code: function.code) {
+        
+        if !function.hasMessage {
             return bottomImage
         }
         
@@ -312,8 +341,9 @@ class ExtendFunctionMananger : NSObject {
     }
     
     @objc func imageHandler(sender: UITapGestureRecognizer? = nil) {
+        
         let index = sender?.view?.tag
-        clearFunctionMessage(index: index!)
+        clearFunctionMessage(index: index!, view:(sender?.view)!)
         let function = functions[index!]
         let params : [String: String] = ["url": function.url, "title": function.name]
         controller.performSegue(withIdentifier: "loadWebPageSegue", sender: params)
@@ -321,26 +351,25 @@ class ExtendFunctionMananger : NSObject {
     
     @objc func dingyueHandler(sender: UITapGestureRecognizer? = nil) {
         let index = sender?.view?.tag
-        clearFunctionMessage(index: index!)
-        let function = functions[index!]
+        clearFunctionMessage(index: index!, view:(sender?.view)!)
         controller.performSegue(withIdentifier: "zhuanLanListSegue", sender: nil)
     }
     
     func unSupportHandler(sender: UITapGestureRecognizer? = nil) {
         let index = sender?.view?.tag
-        clearFunctionMessage(index: index!)
+        clearFunctionMessage(index: index!, view:(sender?.view)!)
         controller.displayMessage(message: "敬请期待")
     }
     
     @objc func moreHanlder(sender: UITapGestureRecognizer? = nil) {
         let index = sender?.view?.tag
-        clearFunctionMessage(index: index!)
+        clearFunctionMessage(index: index!,view:(sender?.view)!)
         controller.performSegue(withIdentifier: "moreFunctionSegue", sender: nil)
     }
     
     @objc func openApp(sender: UITapGestureRecognizer? = nil) {
         let index = sender?.view?.tag
-        clearFunctionMessage(index: index!)
+        clearFunctionMessage(index: index!, view:(sender?.view)!)
 
         let jfzfHooks = "com.uen.jfzfxpush://"
         let jfzfUrl = NSURL(string: jfzfHooks)
@@ -356,19 +385,21 @@ class ExtendFunctionMananger : NSObject {
     
     @objc func shareHanlder(sender: UITapGestureRecognizer? = nil) {
         let index = sender?.view?.tag
-        clearFunctionMessage(index: index!)
+        clearFunctionMessage(index: index!, view:(sender?.view)!)
         
         controller.performSegue(withIdentifier: "codeImageSegue", sender: nil)
     }
     
     @objc func liveClassHandler(sender: UITapGestureRecognizer? = nil) {
         let index = sender?.view?.tag
-        clearFunctionMessage(index: index!)
+        clearFunctionMessage(index: index!, view:(sender?.view)!)
         controller.performSegue(withIdentifier: "beforeCourseSegue", sender: CourseType.LiveCourse)
     }
     
-    private func clearFunctionMessage(index: Int) {
+    private func clearFunctionMessage(index: Int, view: UIView) {
+        
         let function = functions[index]
+        function.messageCount = 0
         extendFunctionStore.clearMessage(code: function.code, value: 0)
         let request = ClearFunctionMessageRequest()
         request.code = function.code
@@ -379,6 +410,7 @@ class ExtendFunctionMananger : NSObject {
                 return
             }
         }
+        redraw(index: index, view: view)
     }
 }
 
@@ -392,6 +424,12 @@ class ExtendFunction {
     var messageCount = 0
     var action : Selector
     
+    var isMore : Bool {
+        get {
+            return code == "f_more"
+        }
+    }
+    
     var hasMessage: Bool {
         get {
             return self.messageCount > 0
@@ -400,23 +438,26 @@ class ExtendFunction {
     
     var name: String {
         get {
-            return ExtendFunctionStore.instance.getFunctionName(code: self.code, defaultValue: _name)
+            //return ExtendFunctionStore.instance.getFunctionName(code: self.code, defaultValue: _name)
+            return _name
         }
     }
     
     var imageUrl: String {
         get {
-            return ExtendFunctionStore.instance.getImageUrl(code: self.code)
+            //return ExtendFunctionStore.instance.getImageUrl(code: self.code)
+            return imageName
         }
     }
     
-    init(imageName: String, name: String, code: String, url: String, selector: Selector, isShowDefault: Bool) {
+    init(imageName: String, name: String, code: String, url: String, messageCount: Int, selector: Selector, isShowDefault: Bool) {
         self.imageName = imageName
         self._name = name
         self.url = url
         self.action = selector
         self.code = code
         self.isShowDefault = isShowDefault
+        self.messageCount = messageCount
     }
     
     func dummy() {

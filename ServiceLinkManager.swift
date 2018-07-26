@@ -31,6 +31,13 @@ class ServiceLinkManager {
         
     }
     
+    static var BuyProductUrl : String {
+        get {
+            return "http://\(ServiceConfiguration.serverName):\(ServiceConfiguration.port)/app/buy"
+        }
+        
+    }
+    
     static var MyAgentUrl2 : String {
         get {
             return "http://\(ServiceConfiguration.serverName):\(ServiceConfiguration.port)/Center/MyLevel2.aspx"

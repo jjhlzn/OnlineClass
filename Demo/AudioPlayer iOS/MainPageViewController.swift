@@ -18,7 +18,7 @@ class CourseMainPageViewController: BaseUIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     //@IBOutlet weak var playingButton: UIButton!
-    var extendFunctionMananger : ExtendFunctionMananger!
+    var extendFunctionMananger = ExtendFunctionMananger.instance
     var extendFunctionStore = ExtendFunctionStore.instance
     var extendFunctionImageStore = ExtendFunctionImageStore()
 
@@ -56,27 +56,30 @@ class CourseMainPageViewController: BaseUIViewController {
         
         buyPayCourseDelegate = ConfirmDelegate2(controller: self)
         
-        let screenHeight = UIScreen.main.bounds.height
-        var maxRows = 3
-        if screenHeight < 568 {  //568
-            maxRows = 2
-        }
-        extendFunctionMananger = ExtendFunctionMananger(controller: self, isNeedMore:  true, showMaxRows: maxRows)
+        setExtendFuncMgrConfig()
+        //extendFunctionMananger = ExtendFunctionMananger(controller: self, isNeedMore:  true, showMaxRows: maxRows)
         //addPlayingButton(button: playingButton)
-        loadFunctionInfos()
-        
+       
         //下拉刷新设置
         refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(refresh), for: UIControlEvents.valueChanged)
         tableView.addSubview(refreshControl)
         refreshing = false
         
+        loadFunctionInfos()
         loadHeadAds()
         loadZhuanLanAndTuijianCourses()
         loadToutiao()
     }
     
-
+    func setExtendFuncMgrConfig() {
+        let screenHeight = UIScreen.main.bounds.height
+        var maxRows = 3
+        if screenHeight < 568 {  //568
+            maxRows = 2
+        }
+        extendFunctionMananger.setConfig(controller: self, isNeedMore: true, showMaxRows: maxRows)
+    }
     
     func setNavigationBar() {
         
@@ -123,7 +126,7 @@ class CourseMainPageViewController: BaseUIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         //updatePlayingButton(button: playingButton)
-
+         extendFunctionMananger.controller = self
         self.setNavigationBar()
         isDisapeared = false
         
@@ -160,9 +163,12 @@ class CourseMainPageViewController: BaseUIViewController {
             
             dest.title = params["title"]
         } else if segue.identifier == "buyVipSegue" {
+            let args = sender as! [String:String]
             let dest = segue.destination as! WebPageViewController
-            dest.url = NSURL(string: ServiceLinkManager.MyAgentUrl)
-            dest.title = "Vip购买"
+            let url = "\(ServiceLinkManager.BuyProductUrl)?type=course&id=\(args["courseId"]!)"
+            QL1(url)
+            dest.url = NSURL(string: url)
+            dest.title = "确认支付"
         } else if segue.identifier == "newPlayerSegue" {
             let song = sender as! Song
             let audioPlayer = getAudioPlayer()
@@ -175,7 +181,7 @@ class CourseMainPageViewController: BaseUIViewController {
             
             var audioItems = [AudioItem]()
 
-            var   url = URL(string: song.url)
+            let   url = URL(string: song.url)
             let audioItem = MyAudioItem(song: song, highQualitySoundURL: url)
             audioItems.append(audioItem!)
 
@@ -212,8 +218,6 @@ class CourseMainPageViewController: BaseUIViewController {
     @IBAction func viewZhuanLanListPressed(_ sender: Any) {
         performSegue(withIdentifier: "zhuanLanListSegue", sender: nil)
     }
-    
-    
 }
 
 
@@ -305,6 +309,48 @@ extension CourseMainPageViewController : UITableViewDataSource, UITableViewDeleg
     }
     
     
+    func jumpToCourse(album: Album) {
+        if !album.isReady {
+            self.displayMessage(message: "该课程未上线，敬请期待！")
+            return
+        }
+        
+        loading.showOverlay(view: self.view)
+        
+        let req = GetAlbumSongsRequest(album: album)
+        _ = BasicService().sendRequest(url: ServiceConfiguration.GET_ALBUM_SONGS, request: req) {
+            (resp: GetAlbumSongsResponse) -> Void in
+            
+            self.loading.hideOverlayView()
+            if resp.status == ServerResponseStatus.TokenInvalid.rawValue {
+                self.displayMessage(message: "请重新登录")
+                return
+            }
+            
+            //目前这个逻辑之针对VIP课程权限够的情况
+            if resp.status == ServerResponseStatus.NoEnoughAuthority.rawValue {
+                self.buyPayCourseDelegate.courseId = album.id
+                self.displayVipBuyMessage(message: resp.errorMessage!, delegate: self.buyPayCourseDelegate!)
+                return
+            }
+            
+            if self.isDisapeared {
+                return
+            }
+            
+            let songs = resp.resultSet
+            if (songs.count == 0) {
+                self.displayMessage(message: "获取课程失败")
+                return
+            }
+            
+            let song = songs[0]
+            self.performSegue(withIdentifier: "newPlayerSegue", sender: song)
+        }
+    }
+    
+    
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath as IndexPath, animated: false)
         let row = indexPath.row
@@ -328,46 +374,8 @@ extension CourseMainPageViewController : UITableViewDataSource, UITableViewDeleg
             
         } else if row >  2 + extendFunctionMananger.getRowCount() + 1 + 1 + zhuanLans.count && row < 2 + extendFunctionMananger.getRowCount() + 1 + 1 + zhuanLans.count + 1 + courses.count  {
             let album = courses[row - (2 + extendFunctionMananger.getRowCount() + 1 + 1) - zhuanLans.count - 1]
-            if !album.isReady {
-                self.displayMessage(message: "该课程未上线，敬请期待！")
-                tableView.deselectRow(at: indexPath as IndexPath, animated: false)
-                return
-            }
-            
-            loading.showOverlay(view: self.view)
-            
-            let req = GetAlbumSongsRequest(album: album)
-            _ = BasicService().sendRequest(url: ServiceConfiguration.GET_ALBUM_SONGS, request: req) {
-                (resp: GetAlbumSongsResponse) -> Void in
-                
-                self.loading.hideOverlayView()
-                if resp.status == ServerResponseStatus.TokenInvalid.rawValue {
-                    self.displayMessage(message: "请重新登录")
-                    tableView.deselectRow(at: indexPath as IndexPath, animated: false)
-                    return
-                }
-                
-                
-                //目前这个逻辑之针对VIP课程权限够的情况
-                if resp.status == ServerResponseStatus.NoEnoughAuthority.rawValue {
-                    self.displayVipBuyMessage(message: resp.errorMessage!, delegate: self.buyPayCourseDelegate!)
-                    tableView.deselectRow(at: indexPath as IndexPath, animated: false)
-                    return
-                }
-                
-                if self.isDisapeared {
-                    return
-                }
-                
-                let songs = resp.resultSet
-                if (songs.count == 0) {
-                    self.displayMessage(message: "获取课程失败")
-                    return
-                }
-                
-                let song = songs[0]
-                self.performSegue(withIdentifier: "newPlayerSegue", sender: song)
-            }
+            tableView.deselectRow(at: indexPath as IndexPath, animated: false)
+            self.jumpToCourse(album: album)
         }
     }
     
@@ -412,9 +420,17 @@ extension CourseMainPageViewController  {
     
     @objc func tapImageAd() {
         var params = [String:String]()
-        params["title"] = popupAd.title
-        params["url"] = popupAd.clickUrl
-        performSegue(withIdentifier: "loadWebPageSegue", sender: params)
+        
+        if popupAd.type == Advertise.WEB {
+            params["title"] = popupAd.title
+            params["url"] = popupAd.clickUrl
+            performSegue(withIdentifier: "loadWebPageSegue", sender: params)
+        } else if popupAd.type == Advertise.COURSE {
+            let album = Album()
+            album.id = popupAd.id
+            album.isReady = true
+            jumpToCourse(album: album)
+        }
         hidePopupAd()
     }
     
@@ -457,19 +473,32 @@ extension CourseMainPageViewController  {
                 QL4("server return error: \(resp.errorMessage!)")
                 return
             }
+            
+            var functions = [ExtendFunction]()
+            let extendFuncMgr = ExtendFunctionMananger.instance
             //更新消息
-            var imageUrls = [String]()
+            //var imageUrls = [String]()
             for function in resp.functions {
+                
+                let extendFunc = extendFuncMgr.makeFunction(imageName: function.imageUrl, name: function.name, code: function.code, url: function.clickUrl, messageCount: function.messageCount, selectorName: function.action)
+                
+                QL1("\(function.name) \(function.action)")
+                
+                functions.append(extendFunc)
+                
+                
+                /*
                 self.extendFunctionStore.updateMessageCount(code: function.code, value: function.messageCount)
                 self.extendFunctionStore.updateShow(code: function.code, value: function.isShow)
                 self.extendFunctionStore.updateFunctionName(code: function.code, value: function.name)
                 self.extendFunctionStore.updateImageUrl(code: function.code, value: function.imageUrl)
                 if function.imageUrl != "" {
                     imageUrls.append(function.imageUrl)
-                }
+                } */
             }
+            extendFuncMgr.functions = functions
             self.tableView.reloadData()
-            self.downloadFunctionImages(imageUrls: imageUrls)
+            //self.downloadFunctionImages(imageUrls: imageUrls)
         }
         
     }

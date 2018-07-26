@@ -20,5 +20,5 @@ target 'AudioPlayer iOS' do
     pod 'Gifu', '~> 3.0.0'
     pod 'LTScrollView', '~> 0.1.5'
     pod 'MJRefresh', '~> 3.1.14.1'
-    # pod 'Kanna', '~> 4.0.0' #ok
+    pod 'Kanna', '~> 4.0.0' #ok
 end

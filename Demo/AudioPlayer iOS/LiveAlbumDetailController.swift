@@ -15,7 +15,7 @@ class LiveAlbumDetailController: AlbumDetailController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        extendFunctionManager = ExtendFunctionMananger(controller: self)
+        extendFunctionManager = ExtendFunctionMananger.instance
     }
     
 

@@ -38,7 +38,7 @@ class ForgetPasswordViewController: BaseUIViewController, UIAlertViewDelegate {
         phoneCodeLabel.isHidden = true
     }
 
-    @IBAction func getPhoneCodePressed(sender: UIButton) {
+    @IBAction func getPhoneCodePressed(_ sender: UIButton) {
         //TODO: 验证手机号码
         //手机号码不能为空
         let phoneNumber = phoneField.text
@@ -58,7 +58,7 @@ class ForgetPasswordViewController: BaseUIViewController, UIAlertViewDelegate {
         }
         
         //设置timer
-        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: "updateButtonTitle", userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateButtonTitle), userInfo: nil, repeats: true)
         
         getPhoneCodeButton.isHidden = true
         phoneCodeLabel.isHidden = false
@@ -66,7 +66,7 @@ class ForgetPasswordViewController: BaseUIViewController, UIAlertViewDelegate {
     
     var timerCount = 59
     var timer: Timer?
-    func updateButtonTitle() {
+    @objc func updateButtonTitle() {
         phoneCodeLabel.text = "\(timerCount)秒后重新获取"
         timerCount = timerCount - 1
         if timerCount <= 0 {
@@ -78,7 +78,7 @@ class ForgetPasswordViewController: BaseUIViewController, UIAlertViewDelegate {
     }
     
     
-    @IBAction func confirmPressed(sender: UIButton) {
+    @IBAction func confirmPressed(_ sender: UIButton) {
         
         //验证手机号码
         let phoneNumber = phoneField.text

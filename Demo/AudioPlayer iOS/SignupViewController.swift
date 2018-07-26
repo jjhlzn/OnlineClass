@@ -61,7 +61,7 @@ class SignupViewController : BaseUIViewController, UIAlertViewDelegate {
     }
 
     
-    @IBAction func getPhoneCodePressed(sender: UIButton) {
+    @IBAction func getPhoneCodePressed(_ sender: UIButton) {
         //TODO: 验证手机号码
         //手机号码不能为空
         let phoneNumber = phoneField.text
@@ -100,7 +100,7 @@ class SignupViewController : BaseUIViewController, UIAlertViewDelegate {
         }
     }
     
-    @IBAction func signupPressed(sender: UIButton) {
+    @IBAction func signupPressed(_ sender: UIButton) {
         
         //验证手机号
         let phoneNumber = phoneField.text
@@ -134,14 +134,14 @@ class SignupViewController : BaseUIViewController, UIAlertViewDelegate {
         self.performSegue(withIdentifier: "signupSuccessSegue", sender: nil)
     }
     
-    @IBAction func showAgreementButtonPressed(sender: AnyObject) {
+    @IBAction func showAgreementButtonPressed(_ sender: AnyObject) {
         performSegue(withIdentifier: "webViewSegue", sender: nil)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "webViewSegue" {
             let dest = segue.destination as! WebPageViewController
-            dest.title = "巨方助手APP服务协议"
+            dest.title = "知得APP服务协议"
             dest.url = NSURL(string: ServiceLinkManager.AgreementUrl)
         }
     }

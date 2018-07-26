@@ -90,6 +90,11 @@ class SongSetting : BaseModelObject {
 }
 
 class Advertise : BaseModelObject {
+    static let WEB = "web"
+    static let COURSE = "course"
+    
+    var type = WEB
+    var id = ""
     var imageUrl = ""
     var clickUrl = ""
     var title = ""

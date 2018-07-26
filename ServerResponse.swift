@@ -789,7 +789,7 @@ class GetUserStatDataResponse : ServerResponse {
     var teamPeople: String!
     var tuijianPeople: String!
     var orderCount: String!
-    var zhidian : Int = 0
+    var zhidian : Double = 0
     
     var name : String?
     var nickName: String!
@@ -820,7 +820,7 @@ class GetUserStatDataResponse : ServerResponse {
         codeImageUrl = json["codeImageUrl"] as! String
         
         if json["zhidian"] != nil {
-            zhidian = json["zhidian"] as! Int
+            zhidian = json["zhidian"] as! Double
         }
     }
 }
@@ -1120,13 +1120,19 @@ class ExtendFunctionResponseObject {
     var name = ""
     var imageUrl = ""
     var messageCount = 0
-    var isShow = false
-    init(code: String, name: String, imageUrl: String, messageCount: Int, isShow: Bool) {
+    var action = ""
+    var clickUrl = ""
+    //var title = ""
+    
+    var isShow = false  //没有用
+    init(code: String, name: String, imageUrl: String, messageCount: Int, action: String, clickUrl: String) {
         self.code = code
         self.name = name
         self.imageUrl = imageUrl
         self.messageCount = messageCount
-        self.isShow = isShow
+        self.action = action
+        self.clickUrl = clickUrl
+        //self.title = title
     }
 }
 
@@ -1143,9 +1149,9 @@ class GetFunctionInfosResponse : ServerResponse {
                     name: eachJson["name"] as! String,
                     imageUrl: eachJson["imageUrl"] as! String,
                     messageCount: eachJson["message"] as! Int,
-                    isShow: eachJson["isShow"] as! Bool)
+                    action: eachJson["action"] as! String,
+                    clickUrl:  eachJson["clickUrl"] as! String)
             functions.append(function)
-
         }
     }
 }
@@ -1210,6 +1216,8 @@ class GetMainPageAdsResponse : ServerResponse {
             for adJson1 in adsJson {
                 let adJson = adJson1 as! [String:AnyObject]
                 let ad = Advertise()
+                ad.type = adJson["type"] as! String
+                ad.id = adJson["id"] as! String
                 ad.imageUrl = adJson["imageUrl"] as! String
                 ad.clickUrl = adJson["clickUrl"] as! String
                 ad.title = adJson["title"] as! String
@@ -1218,6 +1226,12 @@ class GetMainPageAdsResponse : ServerResponse {
             
             let popupJson = json["popupAd"] as! NSDictionary
             if popupJson["imageUrl"] != nil {
+                if popupJson["type"] != nil && !(popupJson["type"] is NSNull) {
+                    popupAd.type = popupJson["type"] as! String
+                }
+                if popupJson["id"] != nil && !(popupJson["id"] is NSNull){
+                    popupAd.id = popupJson["id"] as! String
+                }
                 popupAd.imageUrl = popupJson["imageUrl"] as! String
                 popupAd.clickUrl = popupJson["clickUrl"] as! String
                 popupAd.title = popupJson["title"] as! String

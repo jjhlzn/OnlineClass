@@ -55,11 +55,22 @@ class HeaderAdvCell: UITableViewCell, FSPagerViewDataSource, FSPagerViewDelegate
     }
     
     func pagerView(_ pagerView: FSPagerView, didSelectItemAt index: Int) {
-            QL1("FSPagerView index = " + String(index) + " selected")
+        QL1("FSPagerView index = " + String(index) + " selected")
         var sender = [String:String]()
-        sender["url"] = self.ads[index].clickUrl
-        sender["title"] = self.ads[index].title
-        self.controller?.performSegue(withIdentifier: "loadWebPageSegue", sender: sender)
+        let ad =  self.ads[index]
+        pagerView.deselectItem(at: index, animated: true)
+        if self.ads[index].type == Advertise.WEB {
+            sender["url"] = ad.clickUrl
+            sender["title"] = ad.title
+            self.controller?.performSegue(withIdentifier: "loadWebPageSegue", sender: sender)
+        } else if self.ads[index].type == Advertise.COURSE {
+            let album = Album()
+            album.id = ad.id
+            album.isReady = true
+            (controller as! CourseMainPageViewController).jumpToCourse(album: album)
+        }
+        
+        
     }
     
     func pagerView(_ pagerView: FSPagerView, willDisplay cell: FSPagerViewCell, forItemAt index: Int) {

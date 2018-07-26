@@ -114,9 +114,11 @@ class CourseListVC: BaseUIViewController, UITableViewDataSource, UITableViewDele
             
             dest.title = params["title"]
         } else if segue.identifier == "buyVipSegue" {
+            let args = sender as! [String:String]
             let dest = segue.destination as! WebPageViewController
-            dest.url = NSURL(string: ServiceLinkManager.MyAgentUrl)
-            dest.title = "Vip购买"
+            let url = "\(ServiceLinkManager.BuyProductUrl)?type=course&id=\(args["courseId"]!)"
+            dest.url = NSURL(string: url)
+            dest.title = "确认支付"
         } else if segue.identifier == "newPlayerSegue" {
             let song = sender as! Song
             let audioPlayer = getAudioPlayer()
@@ -337,6 +339,7 @@ extension CourseListVC {
             
             //目前这个逻辑之针对VIP课程权限够的情况
             if resp.status == ServerResponseStatus.NoEnoughAuthority.rawValue {
+                self.buyPayCourseDelegate?.courseId = album.id
                 self.displayVipBuyMessage(message: resp.errorMessage!, delegate: self.buyPayCourseDelegate!)
                 tableView.deselectRow(at: indexPath as IndexPath, animated: false)
                 return

@@ -9,7 +9,7 @@
 import Foundation
 import Alamofire
 import QorumLogs
-//import Kanna
+import Kanna
 
 class ShareManager {
     
@@ -61,27 +61,17 @@ class ShareManager {
         }
     }
     
-    func loadShareInfo(url: NSURL) {
-        //TODO: 临时删掉
-        /*
-        self.resetDefaultSetting()
+    func loadShareInfo(url: URL) {
+        //self.resetDefaultSetting()
         QL1("load share info url: \(url)")
-        
-        let request = NSMutableURLRequest(url: url as URL)
-        request.httpMethod = "GET"
-        request.setValue("text/html", forHTTPHeaderField: "Content-Type")
-        
-        Alamofire.request(request as! URLRequestConvertible as! URLRequestConvertible)
+        Alamofire.request(url.absoluteString)
             .responseString { response in
                 //QL1("\(response)")
-                if let doc = HTML(html: response.result.value!, encoding: String.Encoding.utf8) {
+                if let doc = try? HTML(html: response.result.value!, encoding: String.Encoding.utf8) {
                     if  doc.title != nil {
                         
                         var title = doc.title!
-                        title = title.stringByTrimmingCharactersInSet(
-                            NSCharacterSet.whitespaceAndNewlineCharacterSet()
-                        )
-
+                        title = title.trimmingCharacters(in: CharacterSet.whitespaces)
                         self.shareTitle = title
                         QL1("title = \(title)")
                     }
@@ -104,7 +94,7 @@ class ShareManager {
                         
                     }
                 }
-        } */
+        }
     }
 
     
@@ -120,12 +110,15 @@ class ShareManager {
         self.controller = controller
         _shareTitle = "扫一扫下载安装【知得】，即可免费在线学习、提额、办卡、贷款！"
         _shareDescription = ""
-        let loginUser = LoginUserStore().getLoginUser()!
-        _shareUrl = ServiceLinkManager.ShareQrImageUrl + "?userid=\(loginUser.userName!)"
-        weixin = WeixinShareService(controller: controller, shareManager: self)
-        weibo = WeiboShareService(controller: controller, shareManager: self)
-        qq = QQShareService(controller: controller, shareManager: self)
-        tencentOAuth = TencentOAuth.init(appId: AppDelegate.qqAppId, andDelegate: nil)
+        
+        if LoginUserStore().getLoginUser() != nil {
+            let loginUser = LoginUserStore().getLoginUser()!
+            _shareUrl = ServiceLinkManager.ShareQrImageUrl + "?userid=\(loginUser.userName!)"
+            weixin = WeixinShareService(controller: controller, shareManager: self)
+            weibo = WeiboShareService(controller: controller, shareManager: self)
+            qq = QQShareService(controller: controller, shareManager: self)
+            tencentOAuth = TencentOAuth.init(appId: AppDelegate.qqAppId, andDelegate: nil)
+        }
     }
     
     @objc func shareToWeixinFriend() {

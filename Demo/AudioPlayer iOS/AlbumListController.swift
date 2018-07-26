@@ -325,6 +325,7 @@ extension AlbumListController {
                 
                 //目前这个逻辑之针对VIP课程权限够的情况
                 if resp.status == ServerResponseStatus.NoEnoughAuthority.rawValue {
+                    self.buyPayCourseDelegate?.courseId = album.id
                     self.displayVipBuyMessage(message: resp.errorMessage!, delegate: self.buyPayCourseDelegate!)
                     tableView.deselectRow(at: indexPath as IndexPath, animated: false)
                     return
@@ -395,9 +396,11 @@ extension AlbumListController {
             
             
         } else if segue.identifier == "buyVipSegue" {
+            let args = sender as! [String:String]
             let dest = segue.destination as! WebPageViewController
-            dest.url = NSURL(string: ServiceLinkManager.MyAgentUrl)
-            dest.title = "Vip购买"
+            let url = "\(ServiceLinkManager.BuyProductUrl)?type=course&id=\(String(describing: args["courseId"]))"
+            dest.url = NSURL(string: url)
+            dest.title = "确认支付"
         } else if segue.identifier == "songSegue1" {
             //let dest = segue.destinationViewController as! SongViewController
             let songs = sender as! [Song]
@@ -436,13 +439,16 @@ extension AlbumListController {
 
 class ConfirmDelegate2 : NSObject, UIAlertViewDelegate {
     var controller : UIViewController
+    var courseId: String = ""
     init(controller: UIViewController) {
         self.controller = controller
     }
     func alertView(_ alertView: UIAlertView, clickedButtonAt buttonIndex: Int) {
         switch buttonIndex {
         case 0:
-            controller.performSegue(withIdentifier: "buyVipSegue", sender: nil)
+            var sender = [String:String]()
+            sender["courseId"] = courseId
+            controller.performSegue(withIdentifier: "buyVipSegue", sender: sender)
             break
         case 1:
             break

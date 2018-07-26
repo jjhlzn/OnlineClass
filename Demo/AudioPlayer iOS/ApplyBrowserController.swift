@@ -129,11 +129,11 @@ class ApplyBrowserController : IapSupportWebPageViewController, WKNavigationDele
         loading.hide()
         QL1("webView.canGoBack = \(webView.canGoBack)")
         
-        /*
-        if webView.URL != nil {
-            QL1("url = \(webView.URL!)")
-            shareManager.loadShareInfo(webView.URL!)
-        }*/
+        
+        if webView.url != nil {
+            QL1("url = \(webView.url!)")
+            shareView.shareManager.loadShareInfo(url: webView.url!)
+        }
         
         
         if webView.canGoBack {

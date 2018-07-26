@@ -131,7 +131,9 @@ class WebPageViewController: IapSupportWebPageViewController, WKNavigationDelega
         if webView.url != nil {
             QL1("url = \(webView.url!)")
             shareView.setShareUrl((webView.url?.absoluteString)!)
+            shareView.shareManager.loadShareInfo(url: webView.url!)
         }
+        
         
         if !webView.canGoBack {
             navigationItem.leftBarButtonItems = [backButton]
