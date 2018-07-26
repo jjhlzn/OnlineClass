@@ -240,7 +240,7 @@ extension NewPlayerController: LTAdvancedScrollViewDelegate {
                 sender["url"] = ServiceLinkManager.MyAgentUrl2
                 sender["title"] = "我要报名"
                 if self.shouldPerformSegue(withIdentifier: "loadWebSegue", sender: sender) {
-                    self.performSegue(withIdentifier: "loadWebSegue", sender: sender)
+                    self.performSegue(withIdentifier: "loadWebSegue", sender: sender) 
                 }
                 
             }
