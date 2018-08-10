@@ -48,9 +48,9 @@ class StartupViewController: BaseUIViewController {
         
         
         //serviceLocator不应该为null，因为在AppDelegate会有一个初始化值
-         self.checkLaunchAdv()
+         //self.checkLaunchAdv()
         
-        goToNextControllerTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.skipAdvWhenTimeOut), userInfo: nil, repeats: true)
+        //goToNextControllerTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.skipAdvWhenTimeOut), userInfo: nil, repeats: true)
         
     }
     

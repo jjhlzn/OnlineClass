@@ -53,7 +53,15 @@ class NavigationBarManager: NSObject {
     @objc func tapMusicBtnHandler(sender: UITapGestureRecognizer? = nil) {
         let audioPlayer = Utils.getAudioPlayer()
         if audioPlayer.currentItem != nil {
-            let vc = NewPlayerController()
+            //let vc = viewController(nibName: "nameOfNib", bundle: nil)
+            //let vc = NewPlayerController()
+            
+            //Storyboard
+            let viewControllerStoryboardId = "NewPlayerController"
+            let storyboardName = "Main"
+            let storyboard = UIStoryboard(name: storyboardName, bundle: Bundle.main)
+            let vc = storyboard.instantiateViewController(withIdentifier: viewControllerStoryboardId) as! NewPlayerController
+            
             viewController.hidesBottomBarWhenPushed = true
             viewController.navigationController?.pushViewController(vc, animated: true)
             viewController.hidesBottomBarWhenPushed = false

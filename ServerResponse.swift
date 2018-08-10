@@ -212,6 +212,10 @@ class GetAlbumSongsResponse : ServerResponse {
                     liveSong.advUrl = json["advUrl"] as? String
                 }
                 
+                if json["advUrl"] != nil {
+                    liveSong.advUrl = json["advUrl"] as? String
+                }
+                
                 liveSong.advScrollRate = json["advScrollRate"] as! Int
                 liveSong.advText = json["advText"] as! String
                 let adImages = json["advImages"] as! NSArray

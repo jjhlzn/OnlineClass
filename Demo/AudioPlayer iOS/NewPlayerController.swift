@@ -1,4 +1,4 @@
-//
+ //
 //  TestIAPController.swift
 //  jufangzhushou
 //
@@ -237,11 +237,18 @@ extension NewPlayerController: LTAdvancedScrollViewDelegate {
             let index = $0
             if index == 2 {
                 var sender = [String:String]()
-                sender["url"] = ServiceLinkManager.MyAgentUrl2
+                 QL1(self.song.advUrl)
+                sender["url"] = (self.song.advUrl)!
+               
                 sender["title"] = "我要报名"
-                if self.shouldPerformSegue(withIdentifier: "loadWebSegue", sender: sender) {
-                    self.performSegue(withIdentifier: "loadWebSegue", sender: sender) 
-                }
+                
+                /*
+                let vc = WebPageViewController()
+                vc.url = NSURL(string: ServiceLinkManager.MyAgentUrl2)
+                vc.title = "我要报名"
+                self.navigationController?.pushViewController(vc, animated: true)
+                */
+                self.performSegue(withIdentifier: "loadWebSegue", sender: sender)
                 
             }
         }

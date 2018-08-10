@@ -441,7 +441,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <view contentMode="scaleToFill" misplaced="YES" id="ZkA-UP-yTo">
-                                                    <rect key="frame" x="10" y="162" width="355" height="42"/>
+                                                    <rect key="frame" x="10" y="161" width="355" height="43"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="play1" id="k2a-af-Mak">
@@ -752,11 +752,11 @@
             <objects>
                 <viewController title="重设密码" automaticallyAdjustsScrollViewInsets="NO" id="5FA-kt-hcm" customClass="ResetPasswordController" customModule="AudioPlayer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="OMT-lM-xc9">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="DI6-6m-JRj">
-                                <rect key="frame" x="0.0" y="65" width="375" height="553"/>
+                                <rect key="frame" x="0.0" y="65" width="375" height="602"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
@@ -976,16 +976,16 @@
             </objects>
             <point key="canvasLocation" x="3145" y="206"/>
         </scene>
-        <!--订阅-->
+        <!--专栏-->
         <scene sceneID="8II-5z-LfR">
             <objects>
-                <viewController title="订阅" id="WlZ-YT-eo8" customClass="ZhuanLanListVC" customModule="AudioPlayer" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="专栏" id="WlZ-YT-eo8" customClass="ZhuanLanListVC" customModule="AudioPlayer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="vvC-5S-b8K">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="amD-9I-hVa">
-                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
@@ -1051,7 +1051,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
-                    <navigationItem key="navigationItem" title="订阅" id="l87-fz-5sx"/>
+                    <navigationItem key="navigationItem" title="专栏" id="l87-fz-5sx"/>
                     <connections>
                         <outlet property="tableView" destination="amD-9I-hVa" id="OQa-fq-bWH"/>
                         <segue destination="qTJ-UI-98H" kind="push" identifier="loadWebPageSegue" id="GqU-nw-svf"/>
@@ -1059,7 +1059,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cF0-bF-bdT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1769" y="-2917"/>
+            <point key="canvasLocation" x="1580" y="-2871"/>
         </scene>
         <!--巨方助手-->
         <scene sceneID="HK8-uw-quO">
@@ -1465,7 +1465,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SbC-uk-qm6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2586" y="-2945"/>
+            <point key="canvasLocation" x="2629" y="-3274"/>
         </scene>
         <!--web页面-->
         <scene sceneID="wge-sZ-oJ8">
@@ -2616,7 +2616,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rm4-Qz-wnZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5253.5" y="1264.5"/>
+            <point key="canvasLocation" x="5762" y="1108"/>
         </scene>
         <!--SearchVC-->
         <scene sceneID="4xv-Vd-TG3">
@@ -2951,7 +2951,7 @@
         <!--新播放页面-->
         <scene sceneID="R5A-05-JCz">
             <objects>
-                <viewController hidesBottomBarWhenPushed="YES" id="qdf-O4-dNB" userLabel="新播放页面" customClass="NewPlayerController" customModule="AudioPlayer" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="NewPlayerController" hidesBottomBarWhenPushed="YES" id="qdf-O4-dNB" userLabel="新播放页面" customClass="NewPlayerController" customModule="AudioPlayer" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" title="播放页面" id="nJf-D3-e9Y"/>
                     <connections>
                         <segue destination="qTJ-UI-98H" kind="push" identifier="loadWebSegue" id="hv3-yH-OpQ"/>
@@ -2961,11 +2961,11 @@
             </objects>
             <point key="canvasLocation" x="1219" y="-3522"/>
         </scene>
-        <!--订阅-->
+        <!--专栏-->
         <scene sceneID="oFf-jN-G4r">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Px2-my-hgd" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="订阅" image="zhuanLan" selectedImage="zhuanLan-filled" id="KgS-A7-hd8"/>
+                    <tabBarItem key="tabBarItem" title="专栏" image="zhuanLan" selectedImage="zhuanLan-filled" id="KgS-A7-hd8"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="8ZN-aD-Iwr">
@@ -3073,14 +3073,13 @@
         <image name="zhuanLan-filled" width="22" height="22"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="riR-fS-mU8"/>
-        <segue reference="94Q-Cc-Zo4"/>
-        <segue reference="gK4-D6-0Uz"/>
-        <segue reference="voY-hX-16h"/>
-        <segue reference="VyC-tp-he9"/>
+        <segue reference="Fp2-kS-DOK"/>
+        <segue reference="ybB-My-glY"/>
+        <segue reference="hv3-yH-OpQ"/>
+        <segue reference="w12-GX-7u5"/>
         <segue reference="xbm-kK-Zqp"/>
-        <segue reference="6YY-4Q-Fzm"/>
-        <segue reference="ciV-s1-kgf"/>
+        <segue reference="HJR-zD-bje"/>
+        <segue reference="yd8-5Q-bIa"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>

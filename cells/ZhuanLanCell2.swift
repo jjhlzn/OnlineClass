@@ -39,7 +39,7 @@ class ZhuanLanCell2: UITableViewCell {
         authorLabel.text = "\((zhuanLan?.author)!)   \((zhuanLan?.authorTitle)!)"
         nameLabel.text = zhuanLan?.name
         latestLabel.text = zhuanLan?.latest
-        dingyueLabel.text = "\((zhuanLan?.dingyue)!)人订阅"
+        dingyueLabel.text = "\((zhuanLan?.dingyue)!)人购买"
     }
 
 }

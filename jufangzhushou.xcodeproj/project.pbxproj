@@ -304,6 +304,7 @@
 		E2C6FADF1C4B01D80055A1BF /* sound1.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = sound1.caf; path = ../Sounds/sound1.caf; sourceTree = "<group>"; };
 		E2C6FAE01C4B01D80055A1BF /* sound2.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = sound2.caf; path = ../Sounds/sound2.caf; sourceTree = "<group>"; };
 		EF03652D209EEEA1006094EE /* SearchBarExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarExtension.swift; sourceTree = "<group>"; };
+		EF0E47BA210EF88000145A24 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		EF10AAC720A95D3800C6B2E4 /* UINavigationControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationControllerExtension.swift; sourceTree = "<group>"; };
 		EF10AAD120A9748E00C6B2E4 /* demo.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = demo.gif; sourceTree = "<group>"; };
 		EF1DC2CD1F2B335000B471A5 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
@@ -1177,6 +1178,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				E2A9AFA41C498E2900FE943A /* Base */,
+				EF0E47BA210EF88000145A24 /* zh-Hans */,
 			);
 			name = Main.storyboard;
 			path = "Demo/AudioPlayer iOS";

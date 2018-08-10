@@ -146,8 +146,8 @@
 /* Class = "UILabel"; text = "226 | 平凡：如何科学看待四大发明？"; ObjectID = "JjJ-xj-eui"; */
 "JjJ-xj-eui.text" = "226 | 平凡：如何科学看待四大发明？";
 
-/* Class = "UITabBarItem"; title = "订阅"; ObjectID = "KgS-A7-hd8"; */
-"KgS-A7-hd8.title" = "订阅";
+/* Class = "UITabBarItem"; title = "专栏"; ObjectID = "KgS-A7-hd8"; */
+"KgS-A7-hd8.title" = "专栏";
 
 /* Class = "UINavigationItem"; title = "我的"; ObjectID = "LCK-C6-VtG"; */
 "LCK-C6-VtG.title" = "我的";
@@ -266,8 +266,8 @@
 /* Class = "UIButton"; normalTitle = "Button"; ObjectID = "WD5-tc-FtC"; */
 "WD5-tc-FtC.normalTitle" = "Button";
 
-/* Class = "UIViewController"; title = "订阅"; ObjectID = "WlZ-YT-eo8"; */
-"WlZ-YT-eo8.title" = "订阅";
+/* Class = "UIViewController"; title = "专栏"; ObjectID = "WlZ-YT-eo8"; */
+"WlZ-YT-eo8.title" = "专栏";
 
 /* Class = "UIBarButtonItem"; title = "返回"; ObjectID = "WoQ-2N-XI0"; */
 "WoQ-2N-XI0.title" = "返回";
@@ -407,8 +407,8 @@
 /* Class = "UIButton"; normalTitle = "Button"; ObjectID = "kgi-cI-GvL"; */
 "kgi-cI-GvL.normalTitle" = "Button";
 
-/* Class = "UINavigationItem"; title = "订阅"; ObjectID = "l87-fz-5sx"; */
-"l87-fz-5sx.title" = "订阅";
+/* Class = "UINavigationItem"; title = "专栏"; ObjectID = "l87-fz-5sx"; */
+"l87-fz-5sx.title" = "专栏";
 
 /* Class = "UINavigationItem"; title = "注册"; ObjectID = "lPJ-a3-1gx"; */
 "lPJ-a3-1gx.title" = "注册";
