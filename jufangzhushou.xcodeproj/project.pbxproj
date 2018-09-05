@@ -173,6 +173,7 @@
 		EFDD139520AABCED00BF8C37 /* NewCourseHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFDD139420AABCED00BF8C37 /* NewCourseHeaderCell.swift */; };
 		EFDD139720ABBE1500BF8C37 /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFDD139620ABBE1500BF8C37 /* SearchVC.swift */; };
 		EFDD139920AC159F00BF8C37 /* SearchResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFDD139820AC159F00BF8C37 /* SearchResultCell.swift */; };
+		EFEBF8D5211DCA0300A071DD /* Launch Screen2.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EFEBF8D4211DCA0300A071DD /* Launch Screen2.storyboard */; };
 		EFED76191E5C61B200CB3C9A /* CourseNotifyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFED76181E5C61B200CB3C9A /* CourseNotifyCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -362,6 +363,7 @@
 		EFDD139420AABCED00BF8C37 /* NewCourseHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NewCourseHeaderCell.swift; path = cells/NewCourseHeaderCell.swift; sourceTree = "<group>"; };
 		EFDD139620ABBE1500BF8C37 /* SearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVC.swift; sourceTree = "<group>"; };
 		EFDD139820AC159F00BF8C37 /* SearchResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SearchResultCell.swift; path = cells/SearchResultCell.swift; sourceTree = "<group>"; };
+		EFEBF8D4211DCA0300A071DD /* Launch Screen2.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen2.storyboard"; sourceTree = "<group>"; };
 		EFED76181E5C61B200CB3C9A /* CourseNotifyCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseNotifyCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -441,8 +443,9 @@
 			isa = PBXGroup;
 			children = (
 				E2A9AFA31C498E2900FE943A /* Main.storyboard */,
-				E2A9AFA81C498E2900FE943A /* LaunchScreen.storyboard */,
+				EFEBF8D4211DCA0300A071DD /* Launch Screen2.storyboard */,
 				E2A9AFA61C498E2900FE943A /* Assets.xcassets */,
+				E2A9AFA81C498E2900FE943A /* LaunchScreen.storyboard */,
 			);
 			name = storyboard;
 			sourceTree = "<group>";
@@ -894,6 +897,7 @@
 				EF23458120A66914002E2F30 /* BeforeCourseHeaderCell.xib in Resources */,
 				E2C6FAE11C4B01D80055A1BF /* sound1.caf in Resources */,
 				E2A9AFAA1C498E2900FE943A /* LaunchScreen.storyboard in Resources */,
+				EFEBF8D5211DCA0300A071DD /* Launch Screen2.storyboard in Resources */,
 				E2A9AFA71C498E2900FE943A /* Assets.xcassets in Resources */,
 				E2C6FAE21C4B01D80055A1BF /* sound2.caf in Resources */,
 				EF23459020A6794D002E2F30 /* NewCommentHeaderCell.xib in Resources */,

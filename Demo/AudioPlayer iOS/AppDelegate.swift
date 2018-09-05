@@ -28,7 +28,7 @@ class AppDelegate : XinGeAppDelegate {
     override func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
         _ = super.application(application, didFinishLaunchingWithOptions: launchOptions)
-        
+        QL1("didFinishLaunchingWithOptions")
         QorumLogs.enabled = true
         
         // Override point for customization after application launch.
