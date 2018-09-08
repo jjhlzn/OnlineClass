@@ -107,7 +107,6 @@
 		1CEFF79E1CC21E98000DEFF7 /* BaseUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CEFF79D1CC21E98000DEFF7 /* BaseUIViewController.swift */; };
 		C8FD3BA5397761EB2BB46B45 /* Pods_AudioPlayer_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 027A6F2741F10408886C9077 /* Pods_AudioPlayer_iOS.framework */; };
 		E2A9AFA01C498E2900FE943A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A9AF9F1C498E2900FE943A /* AppDelegate.swift */; };
-		E2A9AFA51C498E2900FE943A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E2A9AFA31C498E2900FE943A /* Main.storyboard */; };
 		E2A9AFA71C498E2900FE943A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2A9AFA61C498E2900FE943A /* Assets.xcassets */; };
 		E2A9AFAA1C498E2900FE943A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E2A9AFA81C498E2900FE943A /* LaunchScreen.storyboard */; };
 		E2B2FA0C1C4BB64E00ABF3C5 /* sound1.caf in Resources */ = {isa = PBXBuildFile; fileRef = E2C6FADF1C4B01D80055A1BF /* sound1.caf */; };
@@ -119,6 +118,9 @@
 		EF03652E209EEEA1006094EE /* SearchBarExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF03652D209EEEA1006094EE /* SearchBarExtension.swift */; };
 		EF10AAC820A95D3800C6B2E4 /* UINavigationControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF10AAC720A95D3800C6B2E4 /* UINavigationControllerExtension.swift */; };
 		EF10AAD220A9749100C6B2E4 /* demo.gif in Resources */ = {isa = PBXBuildFile; fileRef = EF10AAD120A9748E00C6B2E4 /* demo.gif */; };
+		EF1E54D82143CD2B0005901E /* ToutiaoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF1E54D72143CD2B0005901E /* ToutiaoCell.swift */; };
+		EF1E54DA214401A00005901E /* PosCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF1E54D9214401A00005901E /* PosCell.swift */; };
+		EF1E54DB21440C000005901E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E2A9AFA31C498E2900FE943A /* Main.storyboard */; };
 		EF1EA4E31ED3B9DA00B2616F /* ExtendFunctionImageStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF1EA4E21ED3B9DA00B2616F /* ExtendFunctionImageStore.swift */; };
 		EF21740E1E2753B10035C960 /* TencentOpenApi_IOS_Bundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = EF21740C1E2753B10035C960 /* TencentOpenApi_IOS_Bundle.bundle */; };
 		EF21740F1E2753B10035C960 /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF21740D1E2753B10035C960 /* TencentOpenAPI.framework */; };
@@ -165,6 +167,15 @@
 		EF6C0F3820A2DA3400BE1829 /* MyGIfImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF6C0F3720A2DA3400BE1829 /* MyGIfImageView.swift */; };
 		EF76956A20AA6662000E3064 /* ZhuanLanCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF76956920AA6662000E3064 /* ZhuanLanCell.swift */; };
 		EF76956C20AA6B05000E3064 /* MainPageCourseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF76956B20AA6B05000E3064 /* MainPageCourseCell.swift */; };
+		EF9A9219214268A0008133EA /* QuestionHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF9A9218214268A0008133EA /* QuestionHeaderCell.xib */; };
+		EF9A921B21426B55008133EA /* QuestionHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9A921A21426B55008133EA /* QuestionHeaderCell.swift */; };
+		EF9A921D214275AA008133EA /* TableViewUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9A921C214275AA008133EA /* TableViewUtils.swift */; };
+		EF9A921F21427820008133EA /* QuestionItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF9A921E21427820008133EA /* QuestionItemCell.xib */; };
+		EF9A922121427844008133EA /* QuestionItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9A922021427844008133EA /* QuestionItemCell.swift */; };
+		EF9A9223214279F4008133EA /* QuestionAnswersView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF9A9222214279F4008133EA /* QuestionAnswersView.xib */; };
+		EF9A922521427A0E008133EA /* QuestionAnswersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9A922421427A0E008133EA /* QuestionAnswersView.swift */; };
+		EF9A92272142B464008133EA /* AnswerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF9A92262142B464008133EA /* AnswerCell.xib */; };
+		EF9A92292142B480008133EA /* AnswerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9A92282142B480008133EA /* AnswerCell.swift */; };
 		EFB004231E236CD800B9272A /* HeaderAdvCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFB004221E236CD800B9272A /* HeaderAdvCell.swift */; };
 		EFDD138D20AA97A400BF8C37 /* ZhuanLanCell2.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFDD138C20AA97A400BF8C37 /* ZhuanLanCell2.swift */; };
 		EFDD138F20AA998300BF8C37 /* ZhuanLanListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFDD138E20AA998300BF8C37 /* ZhuanLanListVC.swift */; };
@@ -305,10 +316,12 @@
 		E2C6FADF1C4B01D80055A1BF /* sound1.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = sound1.caf; path = ../Sounds/sound1.caf; sourceTree = "<group>"; };
 		E2C6FAE01C4B01D80055A1BF /* sound2.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = sound2.caf; path = ../Sounds/sound2.caf; sourceTree = "<group>"; };
 		EF03652D209EEEA1006094EE /* SearchBarExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarExtension.swift; sourceTree = "<group>"; };
-		EF0E47BA210EF88000145A24 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		EF10AAC720A95D3800C6B2E4 /* UINavigationControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationControllerExtension.swift; sourceTree = "<group>"; };
 		EF10AAD120A9748E00C6B2E4 /* demo.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = demo.gif; sourceTree = "<group>"; };
 		EF1DC2CD1F2B335000B471A5 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		EF1E54D72143CD2B0005901E /* ToutiaoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ToutiaoCell.swift; path = cells/ToutiaoCell.swift; sourceTree = "<group>"; };
+		EF1E54D9214401A00005901E /* PosCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PosCell.swift; path = cells/PosCell.swift; sourceTree = "<group>"; };
+		EF1E54E221440E790005901E /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		EF1EA4E21ED3B9DA00B2616F /* ExtendFunctionImageStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtendFunctionImageStore.swift; sourceTree = "<group>"; };
 		EF21740C1E2753B10035C960 /* TencentOpenApi_IOS_Bundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = TencentOpenApi_IOS_Bundle.bundle; sourceTree = "<group>"; };
 		EF21740D1E2753B10035C960 /* TencentOpenAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TencentOpenAPI.framework; sourceTree = "<group>"; };
@@ -354,6 +367,15 @@
 		EF6C0F3720A2DA3400BE1829 /* MyGIfImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGIfImageView.swift; sourceTree = "<group>"; };
 		EF76956920AA6662000E3064 /* ZhuanLanCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ZhuanLanCell.swift; path = cells/ZhuanLanCell.swift; sourceTree = "<group>"; };
 		EF76956B20AA6B05000E3064 /* MainPageCourseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MainPageCourseCell.swift; path = cells/MainPageCourseCell.swift; sourceTree = "<group>"; };
+		EF9A9218214268A0008133EA /* QuestionHeaderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QuestionHeaderCell.xib; sourceTree = "<group>"; };
+		EF9A921A21426B55008133EA /* QuestionHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = QuestionHeaderCell.swift; path = cells/QuestionHeaderCell.swift; sourceTree = "<group>"; };
+		EF9A921C214275AA008133EA /* TableViewUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewUtils.swift; sourceTree = "<group>"; };
+		EF9A921E21427820008133EA /* QuestionItemCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QuestionItemCell.xib; sourceTree = "<group>"; };
+		EF9A922021427844008133EA /* QuestionItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = QuestionItemCell.swift; path = cells/QuestionItemCell.swift; sourceTree = "<group>"; };
+		EF9A9222214279F4008133EA /* QuestionAnswersView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QuestionAnswersView.xib; sourceTree = "<group>"; };
+		EF9A922421427A0E008133EA /* QuestionAnswersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionAnswersView.swift; sourceTree = "<group>"; };
+		EF9A92262142B464008133EA /* AnswerCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AnswerCell.xib; sourceTree = "<group>"; };
+		EF9A92282142B480008133EA /* AnswerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerCell.swift; sourceTree = "<group>"; };
 		EFB004221E236CD800B9272A /* HeaderAdvCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderAdvCell.swift; sourceTree = "<group>"; };
 		EFBFF6A51E2F4AAC00CDFB6F /* AudioPlayer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AudioPlayer.entitlements; sourceTree = SOURCE_ROOT; };
 		EFDD138C20AA97A400BF8C37 /* ZhuanLanCell2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ZhuanLanCell2.swift; path = cells/ZhuanLanCell2.swift; sourceTree = "<group>"; };
@@ -506,6 +528,7 @@
 				EF6C0F3720A2DA3400BE1829 /* MyGIfImageView.swift */,
 				EF23456E20A46895002E2F30 /* DeviceExtension.swift */,
 				EF10AAC720A95D3800C6B2E4 /* UINavigationControllerExtension.swift */,
+				EF9A921C214275AA008133EA /* TableViewUtils.swift */,
 			);
 			name = lib;
 			sourceTree = "<group>";
@@ -757,6 +780,8 @@
 				EF2345A720A6C923002E2F30 /* BaseCustomView.swift */,
 				EF2345A920A85A57002E2F30 /* PlayerHeaderView.xib */,
 				EF2345AB20A85C99002E2F30 /* PlayerHeaderView.swift */,
+				EF9A9222214279F4008133EA /* QuestionAnswersView.xib */,
+				EF9A922421427A0E008133EA /* QuestionAnswersView.swift */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -777,6 +802,14 @@
 			children = (
 				EF76956920AA6662000E3064 /* ZhuanLanCell.swift */,
 				EF76956B20AA6B05000E3064 /* MainPageCourseCell.swift */,
+				EF9A9218214268A0008133EA /* QuestionHeaderCell.xib */,
+				EF9A921A21426B55008133EA /* QuestionHeaderCell.swift */,
+				EF9A921E21427820008133EA /* QuestionItemCell.xib */,
+				EF9A922021427844008133EA /* QuestionItemCell.swift */,
+				EF9A92262142B464008133EA /* AnswerCell.xib */,
+				EF9A92282142B480008133EA /* AnswerCell.swift */,
+				EF1E54D72143CD2B0005901E /* ToutiaoCell.swift */,
+				EF1E54D9214401A00005901E /* PosCell.swift */,
 			);
 			name = mainpage;
 			sourceTree = "<group>";
@@ -894,14 +927,18 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EF9A921F21427820008133EA /* QuestionItemCell.xib in Resources */,
 				EF23458120A66914002E2F30 /* BeforeCourseHeaderCell.xib in Resources */,
 				E2C6FAE11C4B01D80055A1BF /* sound1.caf in Resources */,
 				E2A9AFAA1C498E2900FE943A /* LaunchScreen.storyboard in Resources */,
 				EFEBF8D5211DCA0300A071DD /* Launch Screen2.storyboard in Resources */,
+				EF1E54DB21440C000005901E /* Main.storyboard in Resources */,
 				E2A9AFA71C498E2900FE943A /* Assets.xcassets in Resources */,
 				E2C6FAE21C4B01D80055A1BF /* sound2.caf in Resources */,
 				EF23459020A6794D002E2F30 /* NewCommentHeaderCell.xib in Resources */,
 				EF23458520A66986002E2F30 /* BeforeCourseCell.xib in Resources */,
+				EF9A9223214279F4008133EA /* QuestionAnswersView.xib in Resources */,
+				EF9A9219214268A0008133EA /* QuestionHeaderCell.xib in Resources */,
 				EF10AAD220A9749100C6B2E4 /* demo.gif in Resources */,
 				EF21740E1E2753B10035C960 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				EF23459420A67961002E2F30 /* NewCommentCell.xib in Resources */,
@@ -910,8 +947,8 @@
 				EF2345A220A6C25D002E2F30 /* ShareView.xib in Resources */,
 				EF2345A420A6C6FD002E2F30 /* CommentKeyboard.xib in Resources */,
 				EF23457920A57267002E2F30 /* CourseOverviewHeaderCell.xib in Resources */,
+				EF9A92272142B464008133EA /* AnswerCell.xib in Resources */,
 				EF2345AA20A85A57002E2F30 /* PlayerHeaderView.xib in Resources */,
-				E2A9AFA51C498E2900FE943A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1033,6 +1070,8 @@
 				EFDD139920AC159F00BF8C37 /* SearchResultCell.swift in Sources */,
 				1C1E69251CCA0F3E00CEA029 /* NoCommentCell.swift in Sources */,
 				EF1EA4E31ED3B9DA00B2616F /* ExtendFunctionImageStore.swift in Sources */,
+				EF9A922121427844008133EA /* QuestionItemCell.swift in Sources */,
+				EF9A921D214275AA008133EA /* TableViewUtils.swift in Sources */,
 				1CD349641CF8167C00037F78 /* WebPageViewController.swift in Sources */,
 				1CD349721CF9AC7D00037F78 /* PersonalInfoCell2.swift in Sources */,
 				1C3C5EDA1D1E11B0000F0A39 /* KeyValueEntity+CoreDataProperties.swift in Sources */,
@@ -1086,6 +1125,7 @@
 				1C1E68EF1CC65DF600CEA029 /* CommentListController.swift in Sources */,
 				1CA3B2121CD86BD300D0ABD8 /* CourseTypeCell.swift in Sources */,
 				1C3C5EDB1D1E11B0000F0A39 /* KeyValueEntity.swift in Sources */,
+				EF9A922521427A0E008133EA /* QuestionAnswersView.swift in Sources */,
 				1CD349661CF83A4700037F78 /* SettingsViewController.swift in Sources */,
 				1C2451D91CE8A28B00F350DA /* LoginUserEntity+CoreDataProperties.swift in Sources */,
 				1C3C5EDD1D1E11DB000F0A39 /* KeyValueStore.swift in Sources */,
@@ -1123,8 +1163,10 @@
 				E2A9AFA01C498E2900FE943A /* AppDelegate.swift in Sources */,
 				EFED76191E5C61B200CB3C9A /* CourseNotifyCell.swift in Sources */,
 				1C8A2AD61CE5882A0086C1B8 /* SignupViewController.swift in Sources */,
+				EF1E54D82143CD2B0005901E /* ToutiaoCell.swift in Sources */,
 				1CDCC8EF1CE72203001640CC /* logoutCell.swift in Sources */,
 				EF39750920AD205B0033620D /* MyInfoSecondSectionCell.swift in Sources */,
+				EF9A921B21426B55008133EA /* QuestionHeaderCell.swift in Sources */,
 				1C9E808A1DA8D5D9006DD2C2 /* WXApiManager.swift in Sources */,
 				1C2451D41CE8A0BD00F350DA /* jufangzhushou.xcdatamodeld in Sources */,
 				1C8926621D96196800E0AEC6 /* ApplyBrowserController.swift in Sources */,
@@ -1138,6 +1180,7 @@
 				1CEFF7811CBFB73D000DEFF7 /* AlbumListController.swift in Sources */,
 				1C09D3BF1CD09FED004A8F9C /* ToastMessage.swift in Sources */,
 				EF39750720AD1FDB0033620D /* MyInfoFirstSectionCell.swift in Sources */,
+				EF1E54DA214401A00005901E /* PosCell.swift in Sources */,
 				1C451F661D0175FA00DC29F9 /* ConfigurationViewController.swift in Sources */,
 				1C50C7561D48D28C0022B952 /* SongAdvCell.swift in Sources */,
 				1C3DC3941CFDC538007807AF /* LiveAlbumDetailController.swift in Sources */,
@@ -1156,6 +1199,7 @@
 				EF76956A20AA6662000E3064 /* ZhuanLanCell.swift in Sources */,
 				EF03652E209EEEA1006094EE /* SearchBarExtension.swift in Sources */,
 				1CEFF78A1CBFBA70000DEFF7 /* ServerResponse.swift in Sources */,
+				EF9A92292142B480008133EA /* AnswerCell.swift in Sources */,
 				1C2451D61CE8A1CE00F350DA /* LoginUserStore.swift in Sources */,
 				1CEFF78E1CBFC9B7000DEFF7 /* AlbumCell.swift in Sources */,
 			);
@@ -1182,7 +1226,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				E2A9AFA41C498E2900FE943A /* Base */,
-				EF0E47BA210EF88000145A24 /* zh-Hans */,
+				EF1E54E221440E790005901E /* zh-Hans */,
 			);
 			name = Main.storyboard;
 			path = "Demo/AudioPlayer iOS";

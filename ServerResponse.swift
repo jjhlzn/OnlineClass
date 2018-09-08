@@ -1250,10 +1250,15 @@ class GetZhuanLanAndTuijianCoursesRequest : ServerRequest {
 class GetZhuanLanAndTuijianCoursesResponse : ServerResponse {
     var zhuanLans = [ZhuanLan]()
     var albums = [Album]()
-    override func parseJSON(request: ServerRequest, json: NSDictionary) {
-        super.parseJSON(request: request, json: json)
-        let j = JSON(json)
-        let zhuanLansJson = j["zhuanLans"].arrayValue
+    var jpks = [ZhuanLan]()
+    var pos : Pos?
+    
+    required init() {
+        
+    }
+    
+    private func parse(_ zhuanLansJson: [JSON]) -> [ZhuanLan] {
+        var results = [ZhuanLan]()
         for eachJson in zhuanLansJson {
             let zhuanLan = ZhuanLan()
             zhuanLan.name = eachJson["name"].string!
@@ -1266,10 +1271,27 @@ class GetZhuanLanAndTuijianCoursesResponse : ServerResponse {
             zhuanLan.author = eachJson["author"].string!
             zhuanLan.authorTitle = eachJson["authorTitle"].string!
             zhuanLan.dingyue = eachJson["dingyue"].int!
-            zhuanLans.append(zhuanLan)
+            results.append(zhuanLan)
         }
+        return results
+    }
+    
+    override func parseJSON(request: ServerRequest, json: NSDictionary) {
+        super.parseJSON(request: request, json: json)
+        let j = JSON(json)
+        zhuanLans = parse(j["zhuanLans"].arrayValue)
+        jpks = parse(j["jpks"].arrayValue)
         
         let coursesJson = j["albums"].arrayValue
+        
+        let posJson = j["pos"]
+        if posJson["imageUrl"].stringValue != "" {
+            pos = Pos()
+            pos?.clickUrl = posJson["clickUrl"].stringValue
+            pos?.imageUrl = posJson["imageUrl"].stringValue
+            pos?.title = posJson["title"].stringValue
+        }
+        
         for albumJson in coursesJson {
             let album = Album()
             album.id = "\(albumJson["id"].numberValue)"
@@ -1317,7 +1339,16 @@ class GetToutiaoResponse : ServerResponse {
     }
 }
 
-class GetZhuanLansRequest : ServerRequest {}
+class GetZhuanLansRequest : ServerRequest {
+    var type: String!
+    override var params: [String : AnyObject] {
+        get {
+            var parameters = super.params
+            parameters["type"] = type as AnyObject
+            return parameters
+        }
+    }
+}
 class GetZhuanLansResponse : ServerResponse {
     var zhuanLans = [ZhuanLan]()
     override func parseJSON(request: ServerRequest, json: NSDictionary) {
@@ -1400,4 +1431,59 @@ class GetCourseInfoResponse : ServerResponse {
             index += 1
         }
     }
+}
+
+class GetQuestionsRequest : ServerRequest {}
+class GetQuestionsResponse : ServerResponse {
+    var questions = [Question]()
+    override func parseJSON(request: ServerRequest, json: NSDictionary) {
+        super.parseJSON(request: request, json: json)
+        let j = JSON(json)
+        let questionsJson = j["questions"].arrayValue
+        for eachJSON in questionsJson {
+            let question = Question()
+            questions.append(question)
+            
+            question.id = eachJSON["id"].stringValue
+            question.userId = eachJSON["userId"].stringValue
+            question.userName = eachJSON["name"].stringValue
+            question.time = eachJSON["time"].stringValue
+            question.content = eachJSON["content"].stringValue
+            question.answerCount = eachJSON["answerCount"].intValue
+            question.thumbCount = eachJSON["thumbCount"].intValue
+            question.isLiked = eachJSON["isLiked"].boolValue
+            
+            let answersJson = eachJSON["answers"].arrayValue
+            for jo in answersJson {
+                let answer = Answer()
+                answer.fromUserId = jo["fromId"].stringValue
+                answer.fromUserName = jo["fromName"].stringValue
+                answer.toUserId = jo["toId"].stringValue
+                answer.toUserName = jo["toName"].stringValue
+                answer.content = jo["content"].stringValue
+                answer.isFromManager = jo["isFromManager"].boolValue
+                question.answers.append(answer)
+            }
+        }
+    }
+}
+
+class GetFinanceToutiaoRequest : ServerRequest {}
+class GetFinanceToutiaoResponse : ServerResponse {
+    var toutiaos = [FinanceToutiao]()
+    
+    override func parseJSON(request: ServerRequest, json: NSDictionary) {
+        super.parseJSON(request: request, json: json)
+        let j = JSON(json)
+        let toutiaosJson = j["toutiaos"].arrayValue
+        for eachJson in toutiaosJson {
+            let toutiao = FinanceToutiao()
+            toutiao.index = eachJson["index"].intValue
+            toutiao.title = eachJson["title"].stringValue
+            toutiao.content = eachJson["content"].stringValue
+            toutiao.link = eachJson["link"].stringValue
+            toutiaos.append(toutiao)
+        }
+    }
+    
 }

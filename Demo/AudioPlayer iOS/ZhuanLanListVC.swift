@@ -10,6 +10,11 @@ import UIKit
 
 class ZhuanLanListVC: BaseUIViewController, UITableViewDataSource, UITableViewDelegate {
 
+    public static let TYPE_ZHUANLAN = "TYPE_ZHUANLAN"
+    public static let TYPE_JPK = "TYPE_JPK"
+    
+    var type : String = ZhuanLanListVC.TYPE_ZHUANLAN
+    
     @IBOutlet weak var tableView: UITableView!
     var zhuanLans = [ZhuanLan]()
     
@@ -20,6 +25,12 @@ class ZhuanLanListVC: BaseUIViewController, UITableViewDataSource, UITableViewDe
         navigationManager = NavigationBarManager(self)
         Utils.setNavigationBarAndTableView(self, tableView: tableView)
         
+        if type == ZhuanLanListVC.TYPE_ZHUANLAN {
+            self.title = "专栏"
+        } else {
+            self.title = "精品课"
+        }
+        
         tableView.dataSource = self
         tableView.delegate = self
         tableView.separatorStyle = .none
@@ -29,7 +40,9 @@ class ZhuanLanListVC: BaseUIViewController, UITableViewDataSource, UITableViewDe
 
     
     func loadZhuanLans() {
-        BasicService().sendRequest(url: ServiceConfiguration.Get_ZHUANLAN_LIST, request: GetZhuanLansRequest()) {
+        let req = GetZhuanLansRequest()
+        req.type = type
+        BasicService().sendRequest(url: ServiceConfiguration.Get_ZHUANLAN_LIST, request: req) {
             (resp: GetZhuanLansResponse) -> Void in
             
             self.zhuanLans = resp.zhuanLans

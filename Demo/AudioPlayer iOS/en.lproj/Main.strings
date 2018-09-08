@@ -389,8 +389,8 @@
 /* Class = "UILabel"; text = "复制链接"; ObjectID = "hbF-vP-vIK"; */
 "hbF-vP-vIK.text" = "复制链接";
 
-/* Class = "UILabel"; text = "热门专栏"; ObjectID = "ho7-W2-J9T"; */
-"ho7-W2-J9T.text" = "热门专栏";
+/* Class = "UILabel"; text = "热门专栏1"; ObjectID = "ho7-W2-J9T"; */
+"ho7-W2-J9T.text" = "热门专栏1";
 
 /* Class = "UIButton"; normalTitle = "提现"; ObjectID = "iRu-7g-vrW"; */
 "iRu-7g-vrW.normalTitle" = "提现";

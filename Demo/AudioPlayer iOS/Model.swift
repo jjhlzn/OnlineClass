@@ -304,3 +304,38 @@ class PurchaseRecord {
     var isNotify: Bool = false
     var payTime: String!
 }
+
+class Question : BaseModelObject {
+    var id : String!
+    var userId : String!
+    var userName : String!
+    var content : String!
+    var time : String!
+    var isLiked : Bool!
+    var answerCount: Int!
+    var thumbCount : Int!
+    var answers = [Answer]()
+}
+
+class Answer : BaseModelObject {
+    var question : Question?
+    var fromUserId : String!
+    var fromUserName : String!
+    var toUserId : String?
+    var toUserName : String?
+    var content : String!
+    var isFromManager : Bool!
+}
+
+class FinanceToutiao : BaseModelObject {
+    var title : String!
+    var content : String!
+    var link : String!
+    var index : Int!
+}
+
+class Pos : BaseModelObject {
+    var imageUrl : String!
+    var clickUrl : String!
+    var title : String!
+}

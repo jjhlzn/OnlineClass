@@ -34,8 +34,8 @@ class HeaderAdvCell: UITableViewCell, FSPagerViewDataSource, FSPagerViewDelegate
         }
     }
     
-    @IBOutlet weak var yaoqingBtn: UIButton!
-    @IBOutlet weak var toutiaoLabel: UILabel!
+    //@IBOutlet weak var yaoqingBtn: UIButton!
+    //@IBOutlet weak var toutiaoLabel: UILabel!
     
     public var ads : [Advertise] = [Advertise]()
     public var toutiao = Toutiao()
@@ -84,10 +84,10 @@ class HeaderAdvCell: UITableViewCell, FSPagerViewDataSource, FSPagerViewDelegate
         pagerView.dataSource = self
         pagerView.delegate = self
         let tap = UITapGestureRecognizer(target: self, action: #selector(tapToutiaoLabel))
-        toutiaoLabel.isUserInteractionEnabled = true
-        toutiaoLabel.addGestureRecognizer(tap)
+        //toutiaoLabel.isUserInteractionEnabled = true
+        //toutiaoLabel.addGestureRecognizer(tap)
         
-        yaoqingBtn.addTarget(self, action: #selector(yaoQingPressed), for: .touchUpInside)
+        //yaoqingBtn.addTarget(self, action: #selector(yaoQingPressed), for: .touchUpInside)
     }
     
     @objc func tapToutiaoLabel() {
@@ -109,6 +109,6 @@ class HeaderAdvCell: UITableViewCell, FSPagerViewDataSource, FSPagerViewDelegate
     public func update() {
         pagerView.reloadData()
         self.pagerControl.numberOfPages = self.ads.count
-        toutiaoLabel.text = toutiao.content
+        //toutiaoLabel.text = toutiao.content
     }
 }

@@ -15,8 +15,8 @@ class ServiceConfiguration {
     
 
     //114.80.101.27:6012/
-    static let serverName3 = "jf.yhkamani.com"  //"localhost"
-    static let port3 =  80  //4000
+    static let serverName3 = "localhost"  //"localhost"
+    static let port3 =  3000  //4000
     
     
     static let serverName4 = "jf.yhkamani.com"
@@ -336,6 +336,18 @@ class ServiceConfiguration {
     static var GET_COURSEINFO : String {
         get {
             return "\(http)://\(serverName):\(port)/getCourseInfo"
+        }
+    }
+    
+    static var GET_QUESTIONS : String {
+        get {
+            return "\(http)://\(serverName):\(port)/app/getQuestions"
+        }
+    }
+    
+    static var GET_FINANCE_TOUTIAOS : String {
+        get {
+            return "\(http)://\(serverName):\(port)/app/getJinRongToutiaos"
         }
     }
 }

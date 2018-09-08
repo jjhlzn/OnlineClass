@@ -16,6 +16,7 @@ class FunctionCell: UITableViewCell {
 
 class ExtendFunctionMananger : NSObject {
     
+    
     var controller : BaseUIViewController!
     var showMaxRows : Int
     static var moreFunction : ExtendFunction?
@@ -26,7 +27,6 @@ class ExtendFunctionMananger : NSObject {
     
     static var instance = ExtendFunctionMananger()
     
-    //static var allFunctions = ExtendFunctionMananger.getAllFunctions()
     var functions: [ExtendFunction] {
         get {
             //return ExtendFunctionMananger.allFunctions
@@ -50,31 +50,6 @@ class ExtendFunctionMananger : NSObject {
     }
     
     static func getAllFunctions() -> [ExtendFunction] {
-        /*
-        ExtendFunctionMananger.moreFunction = ExtendFunction(imageName: "moreFunction", name: "更多", code: "f_more", url: "", selector: #selector(moreHanlder), isShowDefault: true)
-
-        return [
-            ExtendFunction(imageName: "func_shuaka", name: "刷卡", code: "f_paybycard", url: ServiceLinkManager.CardPayUrl,
-                selector:  #selector(imageHandler), isShowDefault: true),
-            ExtendFunction(imageName: "func_jsxk", name: "极速下卡", code: "f_makecard", url: ServiceLinkManager.FunctionFastCardUrl,
-                           selector:  #selector(imageHandler), isShowDefault: false),
-            
-            ExtendFunction(imageName: "func_loan", name: "极速贷款", code: "f_loan", url: ServiceLinkManager.FunctionDaiKuangUrl,
-                selector:  #selector(imageHandler), isShowDefault: false),
-            ExtendFunction(imageName: "func_dingyue", name: "订阅专栏", code: "f_dingyue", url: ServiceLinkManager.FunctionCardManagerUrl,
-                           selector:  #selector(dingyueHandler), isShowDefault: true),
-            
-            ExtendFunction(imageName: "func_rzjhk", name: "融资军火库", code: "f_rzjhk", url: ServiceLinkManager.JunhuokuUrl,
-                           selector:  #selector(imageHandler), isShowDefault: true),
-            
-            ExtendFunction(imageName: "func_car", name: "微购车", code: "f_car", url: ServiceLinkManager.FunctionCarLoanUrl,
-                           selector:  #selector(imageHandler), isShowDefault: false),
-            ExtendFunction(imageName: "func_shopcart", name: "商城", code: "f_market",  url: ServiceLinkManager.FunctionShopUrl,
-                selector:  #selector(imageHandler), isShowDefault: false),
-            ExtendFunction(imageName: "func_health", name: "更多", code: "f_health", url: ServiceLinkManager.HealthUrl,
-                           selector:  #selector(moreHanlder), isShowDefault: true),
-            
-        ] */
         return [];
         
     }
@@ -85,7 +60,6 @@ class ExtendFunctionMananger : NSObject {
         self.isNeedMore = isNeedMore
         
         super.init()
-        //ExtendFunctionMananger.allFunctions = ExtendFunctionMananger.getAllFunctions()
     }
     
     func setConfig(controller: BaseUIViewController, isNeedMore: Bool = true, showMaxRows : Int = 100) {
@@ -112,7 +86,7 @@ class ExtendFunctionMananger : NSObject {
     }
 
     
-    let buttonCountEachRow = 4
+    let buttonCountEachRow = 5
     func getRowCount() -> Int {
         let rows = (functions.count + buttonCountEachRow - 1) / buttonCountEachRow
         //QL1("rows = \(rows)")
@@ -142,12 +116,8 @@ class ExtendFunctionMananger : NSObject {
                 break
             }
             
-            var function = functions[index]
-            
-            /*
-            if isNeedMoreButton() && index == getLastIndex() {
-                function = ExtendFunctionMananger.moreFunction!
-            } */
+            let function = functions[index]
+        
             
             if !isNeedMore && function.isMore {
                 break
@@ -163,7 +133,7 @@ class ExtendFunctionMananger : NSObject {
     
     
     private func addCellView(row : Int, column : Int, index: Int, function: ExtendFunction, cell: UITableViewCell) -> UIView {
-        let interval : CGFloat = UIScreen.main.bounds.width / 4
+        let interval : CGFloat = UIScreen.main.bounds.width / CGFloat(buttonCountEachRow)
         let x = interval  * CGFloat(column)
         let cellView = UIView(frame: CGRect(x: x, y: 0, width: interval, height: 60))
         
@@ -184,8 +154,8 @@ class ExtendFunctionMananger : NSObject {
     }
     
     private func redraw(index: Int, view: UIView) {
-        let row : Int = index / 4
-        let column : Int = index % 4
+        let row : Int = index / buttonCountEachRow
+        let column : Int = index % buttonCountEachRow
         let parent = view.superview!
         view.removeFromSuperview()
         addCellView(row: row, column: column, index: index, function: functions[index], cell: parent as! UITableViewCell)
@@ -194,9 +164,9 @@ class ExtendFunctionMananger : NSObject {
     private func getImageWidth() -> CGFloat {
         let screenWidth = UIScreen.main.bounds.width
         if isiPhone4Screen {
-            return screenWidth / 4 * 0.65 * 0.75
+            return screenWidth / CGFloat(buttonCountEachRow) * 0.65 * 0.55
         } else {
-            return screenWidth / 4 * 0.7 * 0.7
+            return screenWidth / CGFloat(buttonCountEachRow) * 0.7 * 0.55
         }
     }
     
@@ -204,9 +174,9 @@ class ExtendFunctionMananger : NSObject {
         get {
             let screenWidth = UIScreen.main.bounds.width
             if isiPhone4Screen {
-                return screenWidth / 4 * 0.7
+                return screenWidth / CGFloat(buttonCountEachRow) * 0.82
             } else {
-                return screenWidth / 4  * 0.75
+                return screenWidth / CGFloat(buttonCountEachRow) * 0.82
             }
             
         }
@@ -299,12 +269,12 @@ class ExtendFunctionMananger : NSObject {
         let topImage = UIImage(named: "message_one")!
         
         let newSize = CGSize(width: getImageWidth(), height: getImageWidth()) // set this to what you need
-        let ratio : CGFloat = 0.32
+        let ratio : CGFloat = 0.42
         let messageSize = CGSize(width: getImageWidth() * ratio, height: getImageWidth() * ratio)
         UIGraphicsBeginImageContextWithOptions(newSize, false, 0.0)
         
-        let x = getImageWidth() - abs(getImageWidth() - getImageWidth() * ratio) * 0.9 / 2
-        let y = getImageWidth() * ratio / 5 - 4
+        let x = getImageWidth() - abs(getImageWidth() - getImageWidth() * ratio) * 1.3 / 2
+        let y = getImageWidth() * ratio / 5 - 2
         
         bottomImage.draw(in: CGRect(origin: CGPoint.zero, size: newSize))
         topImage.draw(in: CGRect(origin: CGPoint(x: x, y: CGFloat(y)), size: messageSize))
@@ -316,25 +286,25 @@ class ExtendFunctionMananger : NSObject {
     
     private func makeLabel(index: Int, function: ExtendFunction, superView: UIView) -> UILabel {
         let screenWidth = UIScreen.main.bounds.width
-        let labelWidth =  screenWidth / 4
+        let labelWidth =  screenWidth / CGFloat(buttonCountEachRow)
         
         let label = UILabel(frame: CGRect(x: 0, y: 0, width: labelWidth, height: 20))
         label.tag = index
         
         label.center.x = superView.bounds.width / 2
-        var fontSize : CGFloat = 11
+        var fontSize : CGFloat = 10
         if isiPhonePlusScreen {
-            label.center.y = cellHeight / 2 + getImageWidth() / 2 + 0
-        } else if isiPhone6Screen {
-            label.center.y = cellHeight / 2 + getImageWidth() / 2 + 0
-        } else {
             label.center.y = cellHeight / 2 + getImageWidth() / 2 + 1
-            fontSize = 11
+        } else if isiPhone6Screen {
+            label.center.y = cellHeight / 2 + getImageWidth() / 2 + 1
+        } else {
+            label.center.y = cellHeight / 2 + getImageWidth() / 2 + 2
+            fontSize = 9
         }
 
         label.textAlignment = .center
         label.font = label.font.withSize(fontSize)
-        label.textColor = UIColor.black
+        label.textColor = UIColor.darkGray
         label.text = function.name
         
         return label

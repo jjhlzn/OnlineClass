@@ -14,6 +14,7 @@ class MainPageCourseCell: UITableViewCell {
 
     @IBOutlet weak var courseImageView: UIImageView!
     
+    /*
     @IBOutlet weak var star0: UIImageView!
     @IBOutlet weak var star1: UIImageView!
     @IBOutlet weak var star2: UIImageView!
@@ -24,7 +25,7 @@ class MainPageCourseCell: UITableViewCell {
     
     @IBOutlet weak var nameLabel: UILabel!
     
-    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel! */
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -40,7 +41,7 @@ class MainPageCourseCell: UITableViewCell {
         courseImageView.kf.setImage(with: URL(string: (course?.image)!))
         courseImageView.layer.cornerRadius = 5
         courseImageView.clipsToBounds = true
-        
+        /*
         var stars = (course?.stars)!
         var starImageViews = [UIImageView]()
         starImageViews.append(star0)
@@ -64,7 +65,7 @@ class MainPageCourseCell: UITableViewCell {
         scoreLabel.text = "\((course?.stars)!)"
         scoreLabel.sizeToFit()
         nameLabel.text = course?.name
-        dateLabel.text = course?.date
+        dateLabel.text = course?.date */
     }
 
 }

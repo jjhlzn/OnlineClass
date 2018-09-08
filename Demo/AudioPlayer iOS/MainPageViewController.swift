@@ -12,8 +12,9 @@ import QorumLogs
 import Auk
 import MarqueeLabel
 import Gifu
+import LTScrollView
 
-class CourseMainPageViewController: BaseUIViewController {
+class CourseMainPageViewController: BaseUIViewController, LTTableViewProtocal {
 
     @IBOutlet weak var tableView: UITableView!
     
@@ -31,7 +32,11 @@ class CourseMainPageViewController: BaseUIViewController {
     var toutiao = Toutiao()
     var ads = [Advertise]()
     var zhuanLans = [ZhuanLan]()
+    var jpks = [ZhuanLan]()
     var courses = [Album]()
+    var questions = [Question]()
+    var toutiaos = [FinanceToutiao]()
+    var pos: Pos?
     
     var buyPayCourseDelegate: ConfirmDelegate2!
     var isDisapeared = false
@@ -53,6 +58,9 @@ class CourseMainPageViewController: BaseUIViewController {
         tableView.dataSource = self
         tableView.delegate = self
 
+        self.tableView.register(UINib(nibName:"QuestionHeaderCell", bundle:nil),forCellReuseIdentifier:"QuestionHeaderCell")
+        self.tableView.register(UINib(nibName:"QuestionItemCell", bundle:nil),forCellReuseIdentifier:"QuestionItemCell")
+
         
         buyPayCourseDelegate = ConfirmDelegate2(controller: self)
         
@@ -65,11 +73,14 @@ class CourseMainPageViewController: BaseUIViewController {
         refreshControl.addTarget(self, action: #selector(refresh), for: UIControlEvents.valueChanged)
         tableView.addSubview(refreshControl)
         refreshing = false
+        makeCells()
         
         loadFunctionInfos()
         loadHeadAds()
         loadZhuanLanAndTuijianCourses()
-        loadToutiao()
+        //loadToutiao()
+        loadQuestions()
+        loadFinanceToutiaos()
     }
     
     func setExtendFuncMgrConfig() {
@@ -169,6 +180,10 @@ class CourseMainPageViewController: BaseUIViewController {
             QL1(url)
             dest.url = NSURL(string: url)
             dest.title = "确认支付"
+        } else if segue.identifier == "zhuanLanListSegue" {
+            let args = sender as! [String:String]
+            let dest = segue.destination as! ZhuanLanListVC
+            dest.type = args["type"] as! String
         } else if segue.identifier == "newPlayerSegue" {
             let song = sender as! Song
             let audioPlayer = getAudioPlayer()
@@ -210,93 +225,228 @@ class CourseMainPageViewController: BaseUIViewController {
         
         refreshing = true
         loadHeadAds()
-        loadToutiao()
+        //loadToutiao()
         loadFunctionInfos()
         loadZhuanLanAndTuijianCourses()
+        loadQuestions()
+        loadFinanceToutiaos()
     }
     
     @IBAction func viewZhuanLanListPressed(_ sender: Any) {
-        performSegue(withIdentifier: "zhuanLanListSegue", sender: nil)
+        var sender = [String:String]()
+        sender["type"] = ZhuanLanListVC.TYPE_ZHUANLAN
+        performSegue(withIdentifier: "zhuanLanListSegue", sender: sender)
     }
+    
+    @IBAction func viewJpkPressed(_ sender: Any) {
+        var sender = [String:String]()
+        sender["type"] = ZhuanLanListVC.TYPE_JPK
+        performSegue(withIdentifier: "zhuanLanListSegue", sender: sender)
+    }
+    
+    
+    @IBAction func viewAllToutiaoPressed(_ sender: Any) {
+        //performSegue(withIdentifier: "zhuanLanListSegue", sender: nil)
+        var sender = [String:String]()
+        sender["title"] = "融资军火库"
+        sender["url"] = ServiceLinkManager.JunhuokuUrl
+        performSegue(withIdentifier: "loadWebPageSegue", sender: sender)
+    }
+    
+    private var cells = [UITableViewCell]()
+    private var heights = [CGFloat]()
+    private var didSelectActions = [(tableView: UITableView, indexPath: IndexPath) -> Void]()
 }
 
 
 extension CourseMainPageViewController : UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        var count =  1 + 1 + extendFunctionMananger.getRowCount()  + 1
-        count += (1 + zhuanLans.count)
-        count += 1
+        return self.cells.count
+    }
+    
+    func dummyDidSelectAction(tableView: UITableView, indexPath: IndexPath) -> Void {
+    }
+
+    
+    private func makeCells() {
         
-        count += ( courses.count)
+        cells = [UITableViewCell]()
+        heights = [CGFloat]()
+        didSelectActions = [(tableView: UITableView, indexPath: IndexPath) -> Void]()
         
-        QL1("extendFunctionMananger.getRowCount() = \(extendFunctionMananger.getRowCount()), courses.count = \(courses.count), count = \(count)")
-        return count
+        let cell = tableView.dequeueReusableCell(withIdentifier: "mainpageHeaderAdvCell") as! HeaderAdvCell
+        cell.controller = self
+        cell.initialize()
+        cell.toutiao = self.toutiao
+        cell.ads = ads
+        cell.update()
+        
+        
+        cells.append(cell)
+        heights.append(getHeaderAdvHeight())
+        didSelectActions.append(dummyDidSelectAction)
+        
+        if pos != nil {
+            let posCell = tableView.dequeueReusableCell(withIdentifier: "posCell") as! PosCell
+            posCell.pos = pos
+            posCell.viewController = self
+            posCell.update()
+            cells.append(posCell)
+            heights.append(28)
+        } else {
+            cells.append(tableView.dequeueReusableCell(withIdentifier: "seperatorCell")!)
+            heights.append(8)
+            didSelectActions.append(dummyDidSelectAction)
+        }
+        
+
+        
+        for index in 0..<extendFunctionMananger.getRowCount() {
+            cells.append(extendFunctionMananger.getFunctionCell(tableView: tableView, row: index))
+            heights.append(extendFunctionMananger.cellHeight)
+            didSelectActions.append(dummyDidSelectAction)
+        }
+        
+        
+        
+        if courses.count > 0 {
+            cells.append(tableView.dequeueReusableCell(withIdentifier: "seperatorCell")!)
+            heights.append(8)
+            didSelectActions.append(dummyDidSelectAction)
+            
+            cells.append(tableView.dequeueReusableCell(withIdentifier: "tuijianCourseHeaderCell")!)
+            heights.append(40)
+            didSelectActions.append(dummyDidSelectAction)
+            
+            for index in 0..<courses.count {
+                let courseCell = tableView.dequeueReusableCell(withIdentifier: "tuijianCourseCell") as! MainPageCourseCell
+                courseCell.course = courses[index]
+                courseCell.update()
+                cells.append(courseCell)
+                heights.append(170)
+                didSelectActions.append( { (tableView: UITableView, indexPath: IndexPath) -> Void in
+                    let album = self.courses[index]
+                    tableView.deselectRow(at: indexPath as IndexPath, animated: false)
+                    self.jumpToCourse(album: album)
+                } )
+            }
+        }
+        
+        if toutiaos.count > 0 {
+            cells.append(tableView.dequeueReusableCell(withIdentifier: "seperatorCell")!)
+            heights.append(8)
+            didSelectActions.append(dummyDidSelectAction)
+            
+            cells.append(tableView.dequeueReusableCell(withIdentifier: "toutiaoHeaderCell")!)
+            heights.append(40)
+            didSelectActions.append(dummyDidSelectAction)
+            
+            for index in 0..<toutiaos.count {
+                let toutiaoCell = tableView.dequeueReusableCell(withIdentifier: "toutiaoCell") as! ToutiaoCell
+                toutiaoCell.toutiao = toutiaos[index]
+                toutiaoCell.update()
+                cells.append(toutiaoCell)
+                heights.append(40)
+                didSelectActions.append({ (tableView: UITableView, indexPath: IndexPath) -> Void in
+                    var sender = [String:String]()
+                    sender["title"] = self.toutiaos[index].title
+                    sender["url"] = self.toutiaos[index].link
+                    self.performSegue(withIdentifier: "loadWebPageSegue", sender: sender)
+                })
+            }
+        }
+        
+        if zhuanLans.count > 0 {
+            
+            cells.append(tableView.dequeueReusableCell(withIdentifier: "seperatorCell")!)
+            heights.append(8)
+            didSelectActions.append(dummyDidSelectAction)
+            
+            cells.append(tableView.dequeueReusableCell(withIdentifier: "zhuanLanHeaderCell")!)
+            heights.append(40)
+            didSelectActions.append(dummyDidSelectAction)
+            
+            for index in 0..<zhuanLans.count {
+                let zhuanLanCell = tableView.dequeueReusableCell(withIdentifier: "zhuanLanCell") as! ZhuanLanCell
+                zhuanLanCell.zhuanLan = zhuanLans[index]
+                zhuanLanCell.update()
+                cells.append(zhuanLanCell)
+                heights.append(110)
+                didSelectActions.append({ (tableView: UITableView, indexPath: IndexPath) -> Void in
+                    QL1("ZhuanLan Action called")
+                    var sender = [String:String]()
+                    sender["title"] = self.zhuanLans[index].name
+                    sender["url"] = self.zhuanLans[index].url
+                    self.performSegue(withIdentifier: "loadWebPageSegue", sender: sender)
+                })
+            }
+        }
+        
+        
+        if jpks.count > 0 {
+            
+            cells.append(tableView.dequeueReusableCell(withIdentifier: "seperatorCell")!)
+            heights.append(8)
+            didSelectActions.append(dummyDidSelectAction)
+            
+            cells.append(tableView.dequeueReusableCell(withIdentifier: "jpkHeaderCell")!)
+            heights.append(40)
+            didSelectActions.append(dummyDidSelectAction)
+            
+            for index in 0..<jpks.count {
+                let jpkCell = tableView.dequeueReusableCell(withIdentifier: "zhuanLanCell") as! ZhuanLanCell
+                jpkCell.zhuanLan = jpks[index]
+                jpkCell.update()
+                cells.append(jpkCell)
+                heights.append(110)
+                didSelectActions.append({ (tableView: UITableView, indexPath: IndexPath) -> Void in
+                    QL1("ZhuanLan Action called")
+                    var sender = [String:String]()
+                    sender["title"] = self.jpks[index].name
+                    sender["url"] = self.jpks[index].url
+                    self.performSegue(withIdentifier: "loadWebPageSegue", sender: sender)
+                })
+            }
+        }
+        
+        
+        
+        cells.append(tableView.dequeueReusableCell(withIdentifier: "seperatorCell")!)
+        heights.append(8)
+        didSelectActions.append(dummyDidSelectAction)
+        
+        let questionHeaderCell : QuestionHeaderCell = cellWithTableView(tableView)
+        cells.append(questionHeaderCell)
+        heights.append(40)
+        didSelectActions.append(dummyDidSelectAction)
+           
+        for index in 0..<questions.count {
+            let questionItemCell : QuestionItemCell = cellWithTableView(tableView)
+            questionItemCell.question = questions[index]
+            if index == questions.count - 1 {
+                questionItemCell.isLast = true
+            }
+            questionItemCell.update()
+            cells.append(questionItemCell)
+            heights.append(questionItemCell.getHeight())
+            didSelectActions.append(dummyDidSelectAction)
+        }
+        
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let row = indexPath.row
         
-        if row == 0 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "mainpageHeaderAdvCell") as! HeaderAdvCell
-            cell.controller = self
-            cell.initialize()
-            cell.toutiao = self.toutiao
-            cell.ads = ads
-            cell.update()
-            return cell
-        } else if row == 1 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "seperatorCell")
-            return cell!
-        } else if row > 1 && row < 2 +  extendFunctionMananger.getRowCount()  {
-            let cell = extendFunctionMananger.getFunctionCell(tableView: tableView, row: row - 2)
-            return cell
-        } else if row == 2 + extendFunctionMananger.getRowCount() {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "seperatorCell")
-            return cell!
-        } else if row == 2 + extendFunctionMananger.getRowCount() + 1 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "zhuanLanHeaderCell")!
-            return cell
-        } else if row > 2 + extendFunctionMananger.getRowCount() + 1 && row < 2 + extendFunctionMananger.getRowCount() + 1 + 1 + zhuanLans.count {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "zhuanLanCell") as! ZhuanLanCell
-            cell.zhuanLan = zhuanLans[row - (2 + extendFunctionMananger.getRowCount() + 1) - 1]
-            cell.update()
-            return cell
-        } else if row == 2 + extendFunctionMananger.getRowCount() + 1 + 1 + zhuanLans.count {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "tuijianCourseHeaderCell")!
-            return cell
-        } else if row >  2 + extendFunctionMananger.getRowCount() + 1 + 1 + zhuanLans.count && row < 2 + extendFunctionMananger.getRowCount() + 1 + 1 + zhuanLans.count + 1 + courses.count  {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "tuijianCourseCell") as! MainPageCourseCell
-            cell.course = courses[row - (2 + extendFunctionMananger.getRowCount() + 1 + 1) - zhuanLans.count - 1]
-            cell.update()
-            return cell
-        } else {
-            return tableView.dequeueReusableCell(withIdentifier: "seperatorCell")!
-        }
+        return cells[row]
      }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let row = indexPath.row
-        if row == 0 {
-            return getHeaderAdvHeight()
-        } else if row == 1 {
-            return 8
-        } else if row > 1 && row < 2 +  extendFunctionMananger.getRowCount() {
-            return extendFunctionMananger.cellHeight
-        } else if row == 2 + extendFunctionMananger.getRowCount() {
-            return 8
-        } else if row == 2 + extendFunctionMananger.getRowCount() + 1 {
-            return 40
-        } else if row > 2 + extendFunctionMananger.getRowCount() + 1 && row < 2 + extendFunctionMananger.getRowCount() + 1 + 1 + zhuanLans.count {
-            return 110
-        } else if row == 2 + extendFunctionMananger.getRowCount() + 1 + 1 + zhuanLans.count {
-            return 40
-        } else if row >  2 + extendFunctionMananger.getRowCount() + 1 + 1 + zhuanLans.count && row < 2 + extendFunctionMananger.getRowCount() + 1 + 1 + zhuanLans.count + 1 + courses.count {
-            return 170
-        } else {
-            return 8
-        }
+        
+        return self.heights[row]
     }
     
     
@@ -354,34 +504,14 @@ extension CourseMainPageViewController : UITableViewDataSource, UITableViewDeleg
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath as IndexPath, animated: false)
         let row = indexPath.row
-        if row == 0 {
-            
-        } else if row == 1 {
-           
-        } else if row > 1 && row < 2 +  extendFunctionMananger.getRowCount() {
-            
-        } else if row == 2 + extendFunctionMananger.getRowCount()  {
-          
-        } else if row == 2 + extendFunctionMananger.getRowCount() + 1   {
-           
-        } else if row > 2 + extendFunctionMananger.getRowCount() + 1 && row < 2 + extendFunctionMananger.getRowCount() + 1 + 1 + zhuanLans.count {
-            var sender = [String:String]()
-            sender["title"] = zhuanLans[row - (2 + extendFunctionMananger.getRowCount() + 1) - 1].name
-            sender["url"] = zhuanLans[row - (2 + extendFunctionMananger.getRowCount() + 1) - 1].url
-            performSegue(withIdentifier: "loadWebPageSegue", sender: sender)
-            
-        } else if row == 2 + extendFunctionMananger.getRowCount() + 1 + 1 + zhuanLans.count {
-            
-        } else if row >  2 + extendFunctionMananger.getRowCount() + 1 + 1 + zhuanLans.count && row < 2 + extendFunctionMananger.getRowCount() + 1 + 1 + zhuanLans.count + 1 + courses.count  {
-            let album = courses[row - (2 + extendFunctionMananger.getRowCount() + 1 + 1) - zhuanLans.count - 1]
-            tableView.deselectRow(at: indexPath as IndexPath, animated: false)
-            self.jumpToCourse(album: album)
-        }
+        
+        QL1(didSelectActions.count)
+        self.didSelectActions[row](tableView, indexPath)
     }
     
     private func getHeaderAdvHeight() -> CGFloat {
         let screenWidth = UIScreen.main.bounds.width
-        return screenWidth * 122 / 320 + 10
+        return screenWidth * 110 / 375
         //return 172
     }
 
@@ -451,6 +581,8 @@ extension CourseMainPageViewController  {
             self.refreshing = false
             
             self.ads = resp.ads
+            
+            self.makeCells()
             self.tableView.reloadData()
             
             if resp.popupAd.imageUrl != "" && resp.popupAd.imageUrl != nil {
@@ -486,17 +618,10 @@ extension CourseMainPageViewController  {
                 
                 functions.append(extendFunc)
                 
-                
-                /*
-                self.extendFunctionStore.updateMessageCount(code: function.code, value: function.messageCount)
-                self.extendFunctionStore.updateShow(code: function.code, value: function.isShow)
-                self.extendFunctionStore.updateFunctionName(code: function.code, value: function.name)
-                self.extendFunctionStore.updateImageUrl(code: function.code, value: function.imageUrl)
-                if function.imageUrl != "" {
-                    imageUrls.append(function.imageUrl)
-                } */
             }
             extendFuncMgr.functions = functions
+            
+            self.makeCells()
             self.tableView.reloadData()
             //self.downloadFunctionImages(imageUrls: imageUrls)
         }
@@ -513,11 +638,15 @@ extension CourseMainPageViewController  {
             
             self.zhuanLans = resp.zhuanLans
             self.courses = resp.albums
+            self.jpks = resp.jpks
+            self.pos = resp.pos
             
+            self.makeCells()
             self.tableView.reloadData()
         }
     }
     
+    /*
     func loadToutiao() {
         BasicService().sendRequest(url: ServiceConfiguration.GET_TOUTIAO, request: GetToutiaoRequest()) {
             (resp: GetToutiaoResponse) -> Void in
@@ -530,30 +659,39 @@ extension CourseMainPageViewController  {
             self.toutiao.clickUrl = resp.clickUrl
             self.toutiao.title = resp.title
             
+            self.makeCells()
+            self.tableView.reloadData()
+        }
+    } */
+    
+    func loadQuestions() {
+        BasicService().sendRequest(url: ServiceConfiguration.GET_QUESTIONS, request: GetQuestionsRequest()) {
+            (resp: GetQuestionsResponse) -> Void in
+            if self.refreshing {
+                self.refreshControl.endRefreshing()
+            }
+            self.refreshing = false
+            
+            self.questions = resp.questions
+            
+            self.makeCells()
             self.tableView.reloadData()
         }
     }
     
-    func downloadFunctionImages(imageUrls: [String]) {
-        for imageUrl in imageUrls {
-            
-            let image = extendFunctionImageStore.getImage(imageUrl: imageUrl)
-            if image == nil {
-                let imageView = UIImageView()
-                imageView.kf.setImage(with: URL(string: imageUrl)!)
-                
-                /*
-                 imageView.kf_setImageWithURL(NSURL(string: imageUrl)!,
-                 placeholderImage: nil,
-                 optionsInfo: [.ForceRefresh],
-                 completionHandler: { (image, error, cacheType, imageURL) -> () in
-                 if image != nil {
-                 self.extendFunctionImageStore.saveOrUpdate(imageUrl, image: image!)
-                 self.tableView.reloadData()
-                 }
-                 }) */
-                
+    func loadFinanceToutiaos() {
+        BasicService().sendRequest(url: ServiceConfiguration.GET_FINANCE_TOUTIAOS, request: GetFinanceToutiaoRequest()) {
+            (resp: GetFinanceToutiaoResponse) -> Void in
+            if self.refreshing {
+                self.refreshControl.endRefreshing()
             }
+            self.refreshing = false
+            
+            self.toutiaos = resp.toutiaos
+            
+            self.makeCells()
+            self.tableView.reloadData()
         }
     }
+    
 }
