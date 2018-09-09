@@ -30,9 +30,18 @@ class ApplyBrowserController : IapSupportWebPageViewController, WKNavigationDele
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "资讯"
+        
+        if tabBarController != nil {
+            QL1("title: \( self.tabBarController?.tabBar.items![self.tabBarController!.selectedIndex])")
+            self.title = self.tabBarController?.tabBar.items![self.tabBarController!.selectedIndex].title
+        }
+
         url = NSURL(string: ServiceLinkManager.ZixunUrl)!
-        //url = NSURL(string: "http://www.baidu.com")!
+        if self.title == "签到" {
+            url = NSURL(string: ServiceLinkManager.qiandaoUrl)!
+        } else if self.title == "已购" {
+            url = NSURL(string: ServiceLinkManager.yigouUrl)!
+        }
         
         navigationManager = NavigationBarManager(self)
          Utils.setNavigationBarAndTableView(self, tableView: nil)
@@ -42,8 +51,6 @@ class ApplyBrowserController : IapSupportWebPageViewController, WKNavigationDele
         
         initIAP()
         initWebView()
-
-       
         
         backButton.target = self
         backButton.action = #selector(webViewBack)

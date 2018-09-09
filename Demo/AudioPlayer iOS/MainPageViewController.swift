@@ -50,6 +50,13 @@ class CourseMainPageViewController: BaseUIViewController, LTTableViewProtocal {
     override func viewDidLoad() {
         super.viewDidLoad()
     
+        let items = self.tabBarController?.tabBar.items
+        items![0].title = "探索"
+        items![1].title = "签到"
+        items![2].title = "直播"
+        items![3].title = "已购"
+        items![4].title = "我的"
+        
         navigationManager = NavigationBarManager(self)
         Utils.setNavigationBarAndTableView(self, tableView: tableView)
         

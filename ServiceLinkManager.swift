@@ -222,4 +222,15 @@ class ServiceLinkManager {
             return "http://\(ServiceConfiguration.serverName):\(ServiceConfiguration.port)/app/study"
         }
     }
+    
+    static var qiandaoUrl : String {
+        get {
+            return "http://\(ServiceConfiguration.serverName):\(ServiceConfiguration.port)/app/qiandao"
+        }
+    }
+    static var yigouUrl : String {
+        get {
+            return "http://\(ServiceConfiguration.serverName):\(ServiceConfiguration.port)/app/yigou"
+        }
+    }
 }

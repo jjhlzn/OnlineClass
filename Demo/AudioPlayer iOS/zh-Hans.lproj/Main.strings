@@ -17,20 +17,32 @@
 /* Class = "UIViewController"; title = "直播"; ObjectID = "2mU-Ty-i7S"; */
 "2mU-Ty-i7S.title" = "直播";
 
+/* Class = "UINavigationItem"; title = "提问"; ObjectID = "3b9-8i-90r"; */
+"3b9-8i-90r.title" = "提问";
+
 /* Class = "UIButton"; normalTitle = "注    册"; ObjectID = "3hc-62-qeb"; */
 "3hc-62-qeb.normalTitle" = "注    册";
 
 /* Class = "UITextField"; placeholder = "验证码"; ObjectID = "3k9-xr-4Dy"; */
 "3k9-xr-4Dy.placeholder" = "验证码";
 
-/* Class = "UITabBarItem"; title = "资讯"; ObjectID = "3l4-qp-fQK"; */
-"3l4-qp-fQK.title" = "资讯";
+/* Class = "UITabBarItem"; title = "签到"; ObjectID = "3l4-qp-fQK"; */
+"3l4-qp-fQK.title" = "签到";
 
 /* Class = "UILabel"; text = "播放列表"; ObjectID = "405-7L-Dqg"; */
 "405-7L-Dqg.text" = "播放列表";
 
+/* Class = "UIBarButtonItem"; title = "关闭"; ObjectID = "4Av-fQ-09v"; */
+"4Av-fQ-09v.title" = "关闭";
+
 /* Class = "UILabel"; text = "金军航    计算机工程师"; ObjectID = "4D5-0p-pSy"; */
 "4D5-0p-pSy.text" = "金军航    计算机工程师";
+
+/* Class = "UIBarButtonItem"; title = "  发送"; ObjectID = "4Yi-hL-nsb"; */
+"4Yi-hL-nsb.title" = "  发送";
+
+/* Class = "UINavigationItem"; title = "问答"; ObjectID = "57Z-ve-WVz"; */
+"57Z-ve-WVz.title" = "问答";
 
 /* Class = "UIViewController"; title = "登录"; ObjectID = "59B-S3-xkA"; */
 "59B-S3-xkA.title" = "登录";
@@ -98,9 +110,6 @@
 /* Class = "UILabel"; text = "0人"; ObjectID = "DOA-oC-oJS"; */
 "DOA-oC-oJS.text" = "0人";
 
-/* Class = "UILabel"; text = "War3直播"; ObjectID = "DOO-rX-bAH"; */
-"DOO-rX-bAH.text" = "War3直播";
-
 /* Class = "UIBarButtonItem"; title = "保存"; ObjectID = "DOr-Jj-eve"; */
 "DOr-Jj-eve.title" = "保存";
 
@@ -112,6 +121,9 @@
 
 /* Class = "UINavigationItem"; title = "直播"; ObjectID = "F2f-iP-1Sn"; */
 "F2f-iP-1Sn.title" = "直播";
+
+/* Class = "UIBarButtonItem"; title = "提问"; ObjectID = "FMN-1f-JMT"; */
+"FMN-1f-JMT.title" = "提问";
 
 /* Class = "UILabel"; text = "我的团队"; ObjectID = "Fp2-LC-wBd"; */
 "Fp2-LC-wBd.text" = "我的团队";
@@ -131,8 +143,8 @@
 /* Class = "UITextField"; placeholder = "手机号"; ObjectID = "Gxn-Vt-Dyh"; */
 "Gxn-Vt-Dyh.placeholder" = "手机号";
 
-/* Class = "UINavigationItem"; title = "巨方助手"; ObjectID = "IJg-9Z-5d9"; */
-"IJg-9Z-5d9.title" = "巨方助手";
+/* Class = "UINavigationItem"; title = "探索"; ObjectID = "IJg-9Z-5d9"; */
+"IJg-9Z-5d9.title" = "探索";
 
 /* Class = "UIButton"; normalTitle = "表情"; ObjectID = "ISo-t1-o3r"; */
 "ISo-t1-o3r.normalTitle" = "表情";
@@ -140,8 +152,8 @@
 /* Class = "UINavigationItem"; title = "服务器配置"; ObjectID = "IzW-sr-5Oe"; */
 "IzW-sr-5Oe.title" = "服务器配置";
 
-/* Class = "UITabBarItem"; title = "首页"; ObjectID = "JEl-jD-25b"; */
-"JEl-jD-25b.title" = "首页";
+/* Class = "UITabBarItem"; title = "探索"; ObjectID = "JEl-jD-25b"; */
+"JEl-jD-25b.title" = "探索";
 
 /* Class = "UIButton"; normalTitle = "获取验证码"; ObjectID = "JHs-L0-mtN"; */
 "JHs-L0-mtN.normalTitle" = "获取验证码";
@@ -155,8 +167,8 @@
 /* Class = "UILabel"; text = "精品课"; ObjectID = "Jk9-GF-17j"; */
 "Jk9-GF-17j.text" = "精品课";
 
-/* Class = "UITabBarItem"; title = "专栏"; ObjectID = "KgS-A7-hd8"; */
-"KgS-A7-hd8.title" = "专栏";
+/* Class = "UITabBarItem"; title = "已购"; ObjectID = "KgS-A7-hd8"; */
+"KgS-A7-hd8.title" = "已购";
 
 /* Class = "UINavigationItem"; title = "我的"; ObjectID = "LCK-C6-VtG"; */
 "LCK-C6-VtG.title" = "我的";
@@ -197,8 +209,8 @@
 /* Class = "UILabel"; text = "03/28 20:00"; ObjectID = "OZK-jA-zTp"; */
 "OZK-jA-zTp.text" = "03/28 20:00";
 
-/* Class = "UIViewController"; title = "资讯"; ObjectID = "Omf-Kp-1wt"; */
-"Omf-Kp-1wt.title" = "资讯";
+/* Class = "UIViewController"; title = "签到"; ObjectID = "Omf-Kp-1wt"; */
+"Omf-Kp-1wt.title" = "签到";
 
 /* Class = "UINavigationItem"; title = "忘记密码"; ObjectID = "OnC-f5-Rx0"; */
 "OnC-f5-Rx0.title" = "忘记密码";
@@ -208,6 +220,9 @@
 
 /* Class = "UINavigationItem"; title = "性别"; ObjectID = "PBd-5u-oD6"; */
 "PBd-5u-oD6.title" = "性别";
+
+/* Class = "UIBarButtonItem"; title = "发送"; ObjectID = "PEF-cQ-c1X"; */
+"PEF-cQ-c1X.title" = "发送";
 
 /* Class = "UILabel"; text = "我的代理等级"; ObjectID = "PWe-Og-21B"; */
 "PWe-Og-21B.text" = "我的代理等级";
@@ -220,6 +235,9 @@
 
 /* Class = "UILabel"; text = "我的积分"; ObjectID = "QLn-xl-KPp"; */
 "QLn-xl-KPp.text" = "我的积分";
+
+/* Class = "UITextView"; text = "提问题"; ObjectID = "Qc8-c4-nds"; */
+"Qc8-c4-nds.text" = "提问题";
 
 /* Class = "UILabel"; text = "新浪微博"; ObjectID = "R2v-WR-tLp"; */
 "R2v-WR-tLp.text" = "新浪微博";
@@ -329,14 +347,14 @@
 /* Class = "UILabel"; text = "QQ空间"; ObjectID = "Zgb-he-e9D"; */
 "Zgb-he-e9D.text" = "QQ空间";
 
+/* Class = "UITextView"; text = "不管你觉得 iPhone 值不值，自面世以来 iPhone 的价格就一直是标杆式的存在。其他厂商的手机只要在定价上与 iPhone 接近，马上就会有人发表诸如「不如买 iPhone」的言论，由此可见 iPhone 的价格在大家心中有着特殊的地位。当然，我们之所以这么说，最主要还是因为 iPhone 的价格整体相对偏高，这也跟 iPhone 的自身定位有关。"; ObjectID = "Zph-A2-vhP"; */
+"Zph-A2-vhP.text" = "不管你觉得 iPhone 值不值，自面世以来 iPhone 的价格就一直是标杆式的存在。其他厂商的手机只要在定价上与 iPhone 接近，马上就会有人发表诸如「不如买 iPhone」的言论，由此可见 iPhone 的价格在大家心中有着特殊的地位。当然，我们之所以这么说，最主要还是因为 iPhone 的价格整体相对偏高，这也跟 iPhone 的自身定位有关。";
+
 /* Class = "UIViewController"; title = "直播课程"; ObjectID = "Zuy-cj-6pY"; */
 "Zuy-cj-6pY.title" = "直播课程";
 
 /* Class = "UILabel"; text = "评论"; ObjectID = "aK0-wN-Jxh"; */
 "aK0-wN-Jxh.text" = "评论";
-
-/* Class = "UILabel"; text = "4.5"; ObjectID = "bYB-jU-8ju"; */
-"bYB-jU-8ju.text" = "4.5";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "bv0-Ec-ene"; */
 "bv0-Ec-ene.text" = "Label";
@@ -500,6 +518,9 @@
 /* Class = "UIButton"; normalTitle = "配置"; ObjectID = "qy9-aD-Lyt"; */
 "qy9-aD-Lyt.normalTitle" = "配置";
 
+/* Class = "UINavigationItem"; title = "回复"; ObjectID = "r4P-AU-sNX"; */
+"r4P-AU-sNX.title" = "回复";
+
 /* Class = "UIBarButtonItem"; title = "保存"; ObjectID = "rmd-fc-mwn"; */
 "rmd-fc-mwn.title" = "保存";
 
@@ -508,9 +529,6 @@
 
 /* Class = "UILabel"; text = "199元/年"; ObjectID = "sRc-EH-eUp"; */
 "sRc-EH-eUp.text" = "199元/年";
-
-/* Class = "UILabel"; text = "2018/03/28"; ObjectID = "scH-nj-iU2"; */
-"scH-nj-iU2.text" = "2018/03/28";
 
 /* Class = "UILabel"; text = "金军航"; ObjectID = "sun-kg-klA"; */
 "sun-kg-klA.text" = "金军航";
