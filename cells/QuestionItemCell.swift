@@ -10,7 +10,7 @@ import UIKit
 import QorumLogs
 import LTScrollView
 
-class QuestionItemCell: UITableViewCell, UITableViewDataSource, UITableViewDelegate, LTTableViewProtocal {
+class QuestionItemCell: UITableViewCell {
 
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
@@ -24,18 +24,12 @@ class QuestionItemCell: UITableViewCell, UITableViewDataSource, UITableViewDeleg
     
     var viewController : BaseUIViewController?
     var question : Question?
-    var tableView = UITableView()
     
-    var answerCells = [UITableViewCell]()
     var answerLabels = [UILabel]()
     var isLast = false
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        //answersView.backgroundColor = UIColor.white.withAlphaComponent(1)
-        tableView.bounces = false
-        tableView.autoresizesSubviews = true
-        tableView.register(UINib(nibName:"AnswerCell", bundle:nil),forCellReuseIdentifier:"AnswerCell")
         
         initView()
     }
@@ -59,32 +53,12 @@ class QuestionItemCell: UITableViewCell, UITableViewDataSource, UITableViewDeleg
         thumbImage.isUserInteractionEnabled = true
     }
     
-    func setAnswerTableView() {
-        makeAnswerCells()
-        tableView.dataSource = self
-        tableView.delegate = self
-        tableView.separatorStyle = .none
-        tableView.isScrollEnabled = false
-        
-        var height : CGFloat = 0
-        for index in 0..<answerCells.count {
-            height += (answerCells[index] as! AnswerCell).getHeight()
-        }
-        var aframe = answersView.frame
-        aframe.size.height = height
-        aframe.origin.y = getFirstPartHeight()
-        answersView.frame = aframe
-        
-        var tFrame = tableView.frame
-        tFrame.size.width = aframe.width
-        tFrame.size.height = height
-        tableView.frame = tFrame
-        answersView.addSubview(tableView)
-    }
     
     func update() {
+        
+        answerLabels = [UILabel]()
+        
         if isLast {
-            
             interLine.isHidden = true
         }
         
@@ -121,7 +95,7 @@ class QuestionItemCell: UITableViewCell, UITableViewDataSource, UITableViewDeleg
                 let last = answerLabels[index - 1]
                 origin = CGPoint(x: origin.x, y: origin.y + lineSpace + last.frame.height)
             }
-            makeAnswerCell(answer, origin: origin)
+            makeAnswerCell(answer, index: index, origin: origin)
             height += answerLabels[index].frame.height + lineSpace
         }
     
@@ -132,7 +106,18 @@ class QuestionItemCell: UITableViewCell, UITableViewDataSource, UITableViewDeleg
     }
     
     
-    private func makeAnswerCell(_ answer: Answer, origin: CGPoint) {
+    @objc func tapAnswerLabel(_ sender: UITapGestureRecognizer) {
+        let index = (sender.view?.tag)!
+        let answer = question!.answers[index]
+        var params = [String:AnyObject]()
+        params["toUserId"] = answer.fromUserId as AnyObject
+        params["toUserName"] = answer.fromUserName  as AnyObject
+        params["question"] = question!  as AnyObject
+        viewController?.performSegue(withIdentifier: "answerQuestionSegue", sender: params)
+        
+    }
+    
+    private func makeAnswerCell(_ answer: Answer, index: Int, origin: CGPoint) {
         let label = UILabel(frame: CGRect(x: origin.x + padX, y: origin.y + padY, width: answersView.frame.width -  padX, height: 100))
         
         label.backgroundColor = answersView.backgroundColor
@@ -144,21 +129,16 @@ class QuestionItemCell: UITableViewCell, UITableViewDataSource, UITableViewDeleg
         label.numberOfLines = 0
         label.sizeToFit()
         
+        label.tag = index
+        label.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tapAnswerLabel)))
+        label.isUserInteractionEnabled = true
+        
         //frame.size.height = label.frame.size.height
         answerLabels.append(label)
         
         answersView.addSubview(label)
     }
-    
-    private func makeAnswerCells() {
-        answerCells = [UITableViewCell]()
-        for index in 0..<question!.answers.count {
-            let cell : AnswerCell = cellWithTableView(tableView)
-            cell.answer = question!.answers[index]
-            cell.update()
-            self.answerCells.append(cell)
-        }
-    }
+
     
     private func makeAnswerContent(_ answer : Answer) -> String {
         //设置内容
@@ -199,20 +179,3 @@ class QuestionItemCell: UITableViewCell, UITableViewDataSource, UITableViewDeleg
     }
 }
 
-extension QuestionItemCell {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return answerCells.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let row = indexPath.row
-        return answerCells[row]
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let row = indexPath.row
-        let cell = answerCells[row] as! AnswerCell
-        return cell.getHeight()
-    }
-
-}

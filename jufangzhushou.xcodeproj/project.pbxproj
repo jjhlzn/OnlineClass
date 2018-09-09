@@ -122,6 +122,8 @@
 		EF1E54DA214401A00005901E /* PosCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF1E54D9214401A00005901E /* PosCell.swift */; };
 		EF1E54DB21440C000005901E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E2A9AFA31C498E2900FE943A /* Main.storyboard */; };
 		EF1E54E52144A5D40005901E /* AnswerQuestionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF1E54E42144A5D40005901E /* AnswerQuestionVC.swift */; };
+		EF1E54E72144D9B90005901E /* QuestionListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF1E54E62144D9B90005901E /* QuestionListVC.swift */; };
+		EF1E54E92144EB8D0005901E /* AskQuestionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF1E54E82144EB8D0005901E /* AskQuestionVC.swift */; };
 		EF1EA4E31ED3B9DA00B2616F /* ExtendFunctionImageStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF1EA4E21ED3B9DA00B2616F /* ExtendFunctionImageStore.swift */; };
 		EF21740E1E2753B10035C960 /* TencentOpenApi_IOS_Bundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = EF21740C1E2753B10035C960 /* TencentOpenApi_IOS_Bundle.bundle */; };
 		EF21740F1E2753B10035C960 /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF21740D1E2753B10035C960 /* TencentOpenAPI.framework */; };
@@ -324,6 +326,8 @@
 		EF1E54D9214401A00005901E /* PosCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PosCell.swift; path = cells/PosCell.swift; sourceTree = "<group>"; };
 		EF1E54E221440E790005901E /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		EF1E54E42144A5D40005901E /* AnswerQuestionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerQuestionVC.swift; sourceTree = "<group>"; };
+		EF1E54E62144D9B90005901E /* QuestionListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionListVC.swift; sourceTree = "<group>"; };
+		EF1E54E82144EB8D0005901E /* AskQuestionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AskQuestionVC.swift; sourceTree = "<group>"; };
 		EF1EA4E21ED3B9DA00B2616F /* ExtendFunctionImageStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtendFunctionImageStore.swift; sourceTree = "<group>"; };
 		EF21740C1E2753B10035C960 /* TencentOpenApi_IOS_Bundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = TencentOpenApi_IOS_Bundle.bundle; sourceTree = "<group>"; };
 		EF21740D1E2753B10035C960 /* TencentOpenAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TencentOpenAPI.framework; sourceTree = "<group>"; };
@@ -758,6 +762,8 @@
 			isa = PBXGroup;
 			children = (
 				EF1E54E42144A5D40005901E /* AnswerQuestionVC.swift */,
+				EF1E54E62144D9B90005901E /* QuestionListVC.swift */,
+				EF1E54E82144EB8D0005901E /* AskQuestionVC.swift */,
 			);
 			name = question;
 			sourceTree = "<group>";
@@ -1137,6 +1143,7 @@
 				1CA3B2121CD86BD300D0ABD8 /* CourseTypeCell.swift in Sources */,
 				1C3C5EDB1D1E11B0000F0A39 /* KeyValueEntity.swift in Sources */,
 				EF9A922521427A0E008133EA /* QuestionAnswersView.swift in Sources */,
+				EF1E54E92144EB8D0005901E /* AskQuestionVC.swift in Sources */,
 				1CD349661CF83A4700037F78 /* SettingsViewController.swift in Sources */,
 				1C2451D91CE8A28B00F350DA /* LoginUserEntity+CoreDataProperties.swift in Sources */,
 				1C3C5EDD1D1E11DB000F0A39 /* KeyValueStore.swift in Sources */,
@@ -1205,6 +1212,7 @@
 				EF39750D20AD28410033620D /* MyInfoCommonCell.swift in Sources */,
 				EFB004231E236CD800B9272A /* HeaderAdvCell.swift in Sources */,
 				1C33F0341D07195700D3EE4C /* TextFieldCell.swift in Sources */,
+				EF1E54E72144D9B90005901E /* QuestionListVC.swift in Sources */,
 				1C2451DA1CE8A28B00F350DA /* LoginUserEntity.swift in Sources */,
 				EF23457320A563EC002E2F30 /* LTHeaderView.swift in Sources */,
 				EF23459320A67961002E2F30 /* NewCommentCell.swift in Sources */,

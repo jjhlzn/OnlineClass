@@ -686,7 +686,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="值" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jN2-4j-t25">
-                                                    <rect key="frame" x="123" y="13" width="234" height="21"/>
+                                                    <rect key="frame" x="122" y="13" width="235" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1054,7 +1054,40 @@
             </objects>
             <point key="canvasLocation" x="1580" y="-2871"/>
         </scene>
-        <!--巨方助手-->
+        <!--问答-->
+        <scene sceneID="j1n-uW-duZ">
+            <objects>
+                <viewController hidesBottomBarWhenPushed="YES" id="D0M-qp-a0Q" customClass="QuestionListVC" customModule="AudioPlayer" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="41G-iS-hIQ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="aDt-Bh-e4B">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="问答" id="57Z-ve-WVz">
+                        <barButtonItem key="rightBarButtonItem" title="提问" id="FMN-1f-JMT">
+                            <connections>
+                                <action selector="askQuestionPressed:" destination="D0M-qp-a0Q" id="6wk-gp-GUn"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="aDt-Bh-e4B" id="QxZ-fP-q3Q"/>
+                        <segue destination="Ila-mB-lqv" kind="push" identifier="answerQuestionSegue" id="e26-mJ-OO1"/>
+                        <segue destination="cCb-ux-L08" kind="push" identifier="askQuestionSegue" id="UuH-c3-aFF"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="E9Q-z0-krd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2344" y="-6032"/>
+        </scene>
+        <!--探索-->
         <scene sceneID="HK8-uw-quO">
             <objects>
                 <viewController automaticallyAdjustsScrollViewInsets="NO" id="klh-jW-OoR" customClass="CourseMainPageViewController" customModule="AudioPlayer" customModuleProvider="target" sceneMemberID="viewController">
@@ -1340,7 +1373,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
-                    <navigationItem key="navigationItem" title="巨方助手" id="IJg-9Z-5d9">
+                    <navigationItem key="navigationItem" title="探索" id="IJg-9Z-5d9">
                         <barButtonItem key="rightBarButtonItem" title="Item" id="e0B-C8-lMW"/>
                     </navigationItem>
                     <connections>
@@ -1355,6 +1388,7 @@
                         <segue destination="WlZ-YT-eo8" kind="push" identifier="zhuanLanListSegue" id="VyC-tp-he9"/>
                         <segue destination="8z7-OK-eXg" kind="push" identifier="newSearchSegue" id="G5G-Rc-xt3"/>
                         <segue destination="Ila-mB-lqv" kind="push" identifier="answerQuestionSegue" id="gsK-rG-j3C"/>
+                        <segue destination="D0M-qp-a0Q" kind="push" identifier="allQuestionsSegue" id="2Tp-BE-8GL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="laU-XU-h4Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1461,7 +1495,7 @@
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 </view>
             </objects>
-            <point key="canvasLocation" x="2304" y="-4993"/>
+            <point key="canvasLocation" x="2108" y="-4955"/>
         </scene>
         <!--回复-->
         <scene sceneID="vKN-Xn-yJy">
@@ -1501,7 +1535,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ELR-06-YVa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2820" y="-5052"/>
+            <point key="canvasLocation" x="2989" y="-5689"/>
         </scene>
         <!--功能-->
         <scene sceneID="eyd-dN-buH">
@@ -1698,7 +1732,7 @@
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Rp9-wO-HNf">
-                                                            <rect key="frame" x="55" y="13" width="302" height="21"/>
+                                                            <rect key="frame" x="54" y="13" width="303" height="21"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxY="YES"/>
                                                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
                                                             <color key="textColor" red="0.70980392156862748" green="0.1803921568627451" blue="0.10196078431372549" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -2119,14 +2153,14 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="微信朋友圈" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="8mt-Kb-CuZ">
-                                        <rect key="frame" x="154" y="87" width="68" height="21"/>
+                                        <rect key="frame" x="153" y="87" width="68" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="11"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="新浪微博" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="R2v-WR-tLp">
-                                        <rect key="frame" x="154" y="160" width="68" height="21"/>
+                                        <rect key="frame" x="153" y="160" width="68" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="11"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -3095,6 +3129,40 @@
             </objects>
             <point key="canvasLocation" x="4065" y="262"/>
         </scene>
+        <!--提问-->
+        <scene sceneID="cjO-5P-SvV">
+            <objects>
+                <viewController hidesBottomBarWhenPushed="YES" id="cCb-ux-L08" customClass="AskQuestionVC" customModule="AudioPlayer" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="KOB-k1-Cvc">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="提问题" textAlignment="natural" id="Qc8-c4-nds" customClass="UITextViewPlaceHolder" customModule="AudioPlayer" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="64" width="375" height="273"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="提问" id="3b9-8i-90r">
+                        <barButtonItem key="rightBarButtonItem" title="发送" id="PEF-cQ-c1X">
+                            <connections>
+                                <action selector="askQuestionPressed:" destination="cCb-ux-L08" id="zp8-B2-J9p"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="contentView" destination="Qc8-c4-nds" id="F5N-6b-38q"/>
+                        <outlet property="sendButton" destination="PEF-cQ-c1X" id="WFm-Oa-FoU"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PAF-3M-6Lp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3017" y="-6445"/>
+        </scene>
     </scenes>
     <resources>
         <image name="audioUserIcon" width="50" height="50"/>
@@ -3150,6 +3218,7 @@
         <segue reference="94Q-Cc-Zo4"/>
         <segue reference="gK4-D6-0Uz"/>
         <segue reference="tVi-RP-0bn"/>
+        <segue reference="e26-mJ-OO1"/>
         <segue reference="VyC-tp-he9"/>
         <segue reference="xbm-kK-Zqp"/>
         <segue reference="xmL-0a-HxS"/>

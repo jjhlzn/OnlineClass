@@ -1439,10 +1439,14 @@ class GetQuestionsResponse : ServerResponse {
     override func parseJSON(request: ServerRequest, json: NSDictionary) {
         super.parseJSON(request: request, json: json)
         let j = JSON(json)
-        let questionsJson = j["questions"].arrayValue
+        questions = GetQuestionsResponse.parseQuestions(j["questions"].arrayValue)
+    }
+    
+    static func parseQuestions(_ questionsJson: [JSON]) -> [Question] {
+        var results = [Question]()
         for eachJSON in questionsJson {
             let question = Question()
-            questions.append(question)
+            results.append(question)
             
             question.id = eachJSON["id"].stringValue
             question.userId = eachJSON["userId"].stringValue
@@ -1465,6 +1469,7 @@ class GetQuestionsResponse : ServerResponse {
                 question.answers.append(answer)
             }
         }
+        return results
     }
 }
 
@@ -1516,3 +1521,26 @@ class LikeQuestionRequest : ServerRequest {
     }
 }
 class LikeQuestionResponse : ServerResponse {}
+
+class GetPagedQuestionsRequest : PagedServerRequest {}
+class GetPagedQuestionsResponse : PageServerResponse<Question> {
+    override func parseJSON(request: ServerRequest, json: NSDictionary) {
+        super.parseJSON(request: request, json: json)
+        let j = JSON(json)
+        resultSet = GetQuestionsResponse.parseQuestions(j["questions"].arrayValue)
+    }
+}
+
+class AskQuestionRequest : ServerRequest {
+    var content : String!
+    override var params: [String : AnyObject] {
+        get {
+            var parameters = super.params
+            parameters["content"] = content as AnyObject
+            return parameters
+        }
+    }
+}
+class AskQuestionResponse : ServerResponse {
+    
+}

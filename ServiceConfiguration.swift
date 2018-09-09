@@ -362,4 +362,16 @@ class ServiceConfiguration {
             return "\(http)://\(serverName):\(port)/app/likeQuestion"
         }
     }
+    
+    static var GET_PAGED_QUESTIONS : String {
+        get {
+            return "\(http)://\(serverName):\(port)/app/getPagedQuestions"
+        }
+    }
+    
+    static var ASK_QUESTION : String {
+        get {
+            return "\(http)://\(serverName):\(port)/app/askQuestion"
+        }
+    }
 }

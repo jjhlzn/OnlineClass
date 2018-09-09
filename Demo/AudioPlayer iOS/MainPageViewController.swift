@@ -423,6 +423,7 @@ extension CourseMainPageViewController : UITableViewDataSource, UITableViewDeleg
         didSelectActions.append(dummyDidSelectAction)
         
         let questionHeaderCell : QuestionHeaderCell = cellWithTableView(tableView)
+        questionHeaderCell.viewController = self
         cells.append(questionHeaderCell)
         heights.append(40)
         didSelectActions.append(dummyDidSelectAction)

@@ -32,6 +32,9 @@
                         <state key="normal" title="查看全部">
                             <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </state>
+                        <connections>
+                            <action selector="viewAllPressed:" destination="uVe-Dn-59R" eventType="touchUpInside" id="DUW-AM-HM4"/>
+                        </connections>
                     </button>
                 </subviews>
             </tableViewCellContentView>

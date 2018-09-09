@@ -1,5 +1,5 @@
 //
-//  AnswerQuestionVC.swift
+//  AskQuestionVC.swift
 //  AudioPlayer iOS
 //
 //  Created by 金军航 on 2018/9/9.
@@ -8,14 +8,13 @@
 
 import UIKit
 
-class AnswerQuestionVC: BaseUIViewController, UITextViewDelegate {
+class AskQuestionVC: BaseUIViewController, UITextViewDelegate {
     
-    var toUserId : String?
-    var toUserName : String?
     var question: Question?
     var loading: LoadingOverlay!
- 
+
     @IBOutlet weak var contentView: UITextViewPlaceHolder!
+    
     @IBOutlet weak var sendButton: UIBarButtonItem!
     
     override func viewDidLoad() {
@@ -25,25 +24,17 @@ class AnswerQuestionVC: BaseUIViewController, UITextViewDelegate {
         textViewDidChange(contentView)
         contentView.becomeFirstResponder()
         contentView.delegate = self
-        if toUserId == nil || toUserId == "" {
-            contentView.placeholder = "回复内容限制在200字以内"
-        } else {
-            contentView.placeholder = "回复\(toUserName!): 内容限制在200字以内"
-        }
-    }
-    
-    @IBAction func closePressed(_ sender: Any) {
-        navigationController?.popViewController(animated: true)
-    }
-    
-    @IBAction func sendPressed(_ sender: Any) {
-        sendAnswer()
+        contentView.placeholder = "问题内容限制在400字以内"
     }
     
 
+    @IBAction func askQuestionPressed(_ sender: Any) {
+        sendAskQuestion()
+    }
+    
 }
 
-extension AnswerQuestionVC {
+extension AskQuestionVC {
     public func textViewDidChange(_ textView: UITextView) { //Handle the text changes here
         if textView.text == "" {
             sendButton.isEnabled = false
@@ -55,28 +46,25 @@ extension AnswerQuestionVC {
     }
 }
 
-extension AnswerQuestionVC : UIAlertViewDelegate{
-    func sendAnswer() {
+extension AskQuestionVC : UIAlertViewDelegate{
+    func sendAskQuestion() {
         loading.showOverlay(view: self.view)
-        let req = SendAnswerRequest()
-        req.question = question!
+        let req = AskQuestionRequest()
         req.content = contentView.text.trimmingCharacters(in: .whitespaces)
-        req.toUser = toUserId!
-        BasicService().sendRequest(url: ServiceConfiguration.SEND_ANSWER, request: req) {
-            (resp: SendAnswerResponse) -> Void in
+        BasicService().sendRequest(url: ServiceConfiguration.ASK_QUESTION, request: req) {
+            (resp: AskQuestionResponse) -> Void in
             self.loading.hideOverlayView()
             if resp.isSuccess {
                 self.displayMessage(message: "发送成功，需要审核通过才能查看！", delegate: self)
-               
             } else {
                 self.displayMessage(message: resp.errorMessage!)
                 return
             }
-
+            
         }
     }
     
     func alertView(_ alertView: UIAlertView, clickedButtonAt buttonIndex: Int) {
-          self.navigationController?.popViewController(animated: true)
+        self.navigationController?.popViewController(animated: true)
     }
 }
