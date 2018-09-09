@@ -56,7 +56,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="icon" width="341" height="341"/>
+        <image name="icon" width="85" height="85"/>
         <image name="launchAdv" width="88" height="784"/>
     </resources>
 </document>

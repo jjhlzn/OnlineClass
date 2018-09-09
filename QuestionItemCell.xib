@@ -67,8 +67,8 @@
                         <rect key="frame" x="261" y="19" width="28" height="28"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1234" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TxJ-jN-OP8">
-                        <rect key="frame" x="297" y="26" width="27" height="17"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1234" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TxJ-jN-OP8">
+                        <rect key="frame" x="295" y="26" width="27" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" name="PingFangSC-Light" family="PingFang SC" pointSize="12"/>
                         <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
@@ -88,6 +88,7 @@
                 <outlet property="answerImage" destination="S7d-Rb-t4S" id="txX-BJ-nHO"/>
                 <outlet property="answersView" destination="nkz-86-eQL" id="Ryb-j9-qf3"/>
                 <outlet property="contentLabel" destination="HJF-JH-qLq" id="hxO-Mw-MQI"/>
+                <outlet property="headImageView" destination="5yE-8p-wDM" id="x6y-pX-nTb"/>
                 <outlet property="interLine" destination="Zyj-fl-asS" id="Kp4-Wg-dyf"/>
                 <outlet property="thumbCountLabel" destination="TxJ-jN-OP8" id="azU-rH-YhS"/>
                 <outlet property="thumbImage" destination="JI5-hZ-l7i" id="6Zm-V2-4Qa"/>

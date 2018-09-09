@@ -21,6 +21,7 @@ class QuestionItemCell: UITableViewCell {
     @IBOutlet weak var thumbImage: UIImageView!
     @IBOutlet weak var answerCountLabel: UILabel!
     @IBOutlet weak var thumbCountLabel: UILabel!
+    @IBOutlet weak var headImageView: UIImageView!
     
     var viewController : BaseUIViewController?
     var question : Question?
@@ -62,6 +63,8 @@ class QuestionItemCell: UITableViewCell {
             interLine.isHidden = true
         }
         
+        Utils.setUserHeadImageView(headImageView, userId: question!.userId)
+        
         userNameLabel.text = question!.userName
         timeLabel.text = question!.time
         contentLabel.text = question!.content
@@ -82,7 +85,12 @@ class QuestionItemCell: UITableViewCell {
         contentLabel.frame = frame
 
         //setAnswerTableView()
-        makeAnswersView()
+        if question!.answers.count > 0 {
+            answersView.isHidden = false
+            makeAnswersView()
+        } else {
+            answersView.isHidden = true
+        }
     }
     
     let padX : CGFloat = 6, padY : CGFloat = 2, lineSpace : CGFloat = 2
@@ -143,7 +151,7 @@ class QuestionItemCell: UITableViewCell {
     private func makeAnswerContent(_ answer : Answer) -> String {
         //设置内容
         var content = answer.fromUserName!
-        if answer.toUserName != nil {
+        if answer.toUserName != nil &&  answer.toUserName != "" {
             content = content + " 回复 " + answer.toUserName!
         }
         content = content + " : " + answer.content
@@ -151,8 +159,13 @@ class QuestionItemCell: UITableViewCell {
     }
     
     public func getHeight() -> CGFloat {
-      
-        return getFirstPartHeight() + answersView.frame.height + 10
+        
+        if question!.answers.count > 0 {
+            return getFirstPartHeight() + answersView.frame.height + 10
+        } else {
+            return getFirstPartHeight() + 4
+        }
+        
     }
     
     private func getFirstPartHeight() -> CGFloat {

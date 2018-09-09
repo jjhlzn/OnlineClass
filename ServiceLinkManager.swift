@@ -225,12 +225,12 @@ class ServiceLinkManager {
     
     static var qiandaoUrl : String {
         get {
-            return "http://\(ServiceConfiguration.serverName):\(ServiceConfiguration.port)/app/qiandao"
+            return "http://\(ServiceConfiguration.serverName):\(ServiceConfiguration.port)/app/signin"
         }
     }
     static var yigouUrl : String {
         get {
-            return "http://\(ServiceConfiguration.serverName):\(ServiceConfiguration.port)/app/yigou"
+            return "http://\(ServiceConfiguration.serverName):\(ServiceConfiguration.port)/app/purchased"
         }
     }
 }

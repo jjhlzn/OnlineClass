@@ -41,14 +41,8 @@ class NewCommentCell: UITableViewCell {
         //commentLabel.numberOfLines = 0
         commentLabel.text = comment?.content.emojiUnescapedString
         //commentLabel.sizeToFit()
-        headImageView.becomeCircle()
-        headImageView.layer.borderWidth = 0.3
-        headImageView.layer.borderColor = UIColor.lightGray.cgColor
-        let url =  ServiceConfiguration.GET_PROFILE_IMAGE + "?userid=" + (comment?.userId)!
-        if let downloadURL = URL(string: url) {
-            headImageView.kf.setImage(with: ImageResource(downloadURL: downloadURL))
-        }
         
+        Utils.setUserHeadImageView(headImageView, userId: (comment?.userId)!)
         
     }
 }

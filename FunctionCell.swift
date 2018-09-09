@@ -254,7 +254,7 @@ class ExtendFunctionMananger : NSObject {
     func overlayImage0(function: ExtendFunction, bottomImg: UIImage) -> UIImage {
         var bottomImage = bottomImg
         let extendFunctionImageStore = ExtendFunctionImageStore()
-        QL1("\(function.code):  \(function.name), \(function.imageUrl)")
+       // QL1("\(function.code):  \(function.name), \(function.imageUrl)")
         if function.imageUrl != "" {
             let image = extendFunctionImageStore.getImage(imageUrl: function.imageUrl)
             if image != nil {

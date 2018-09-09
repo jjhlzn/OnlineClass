@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 import KDEAudioPlayer
-
+import Kingfisher
 import QorumLogs
 
 extension String {
@@ -54,6 +54,18 @@ class Utils {
             blue: CGFloat(rgbValue & 0x0000FF) / 255.0,
             alpha: CGFloat(1.0)
         )
+    }
+    
+    static func setUserHeadImageView(_ headImageView: UIImageView, userId: String) {
+        headImageView.becomeCircle()
+        headImageView.layer.borderWidth = 0.3
+        headImageView.layer.borderColor = UIColor.lightGray.cgColor
+        let url =  ServiceConfiguration.GET_PROFILE_IMAGE + "?userid=" + userId
+        QL1(url)
+        if let downloadURL = URL(string: url) {
+            let resource = ImageResource(downloadURL: downloadURL, cacheKey: "headimage_"+userId)
+            headImageView.kf.setImage(with: resource, placeholder: UIImage(named: "func_placeholder"))
+        }
     }
     
     static func getDataFromUrl(url:NSURL, completion: @escaping ((_ data: NSData?, _ response: URLResponse?, _ error: NSError? ) -> Void)) {
