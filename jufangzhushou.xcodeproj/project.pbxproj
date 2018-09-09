@@ -121,6 +121,7 @@
 		EF1E54D82143CD2B0005901E /* ToutiaoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF1E54D72143CD2B0005901E /* ToutiaoCell.swift */; };
 		EF1E54DA214401A00005901E /* PosCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF1E54D9214401A00005901E /* PosCell.swift */; };
 		EF1E54DB21440C000005901E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E2A9AFA31C498E2900FE943A /* Main.storyboard */; };
+		EF1E54E52144A5D40005901E /* AnswerQuestionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF1E54E42144A5D40005901E /* AnswerQuestionVC.swift */; };
 		EF1EA4E31ED3B9DA00B2616F /* ExtendFunctionImageStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF1EA4E21ED3B9DA00B2616F /* ExtendFunctionImageStore.swift */; };
 		EF21740E1E2753B10035C960 /* TencentOpenApi_IOS_Bundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = EF21740C1E2753B10035C960 /* TencentOpenApi_IOS_Bundle.bundle */; };
 		EF21740F1E2753B10035C960 /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF21740D1E2753B10035C960 /* TencentOpenAPI.framework */; };
@@ -322,6 +323,7 @@
 		EF1E54D72143CD2B0005901E /* ToutiaoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ToutiaoCell.swift; path = cells/ToutiaoCell.swift; sourceTree = "<group>"; };
 		EF1E54D9214401A00005901E /* PosCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PosCell.swift; path = cells/PosCell.swift; sourceTree = "<group>"; };
 		EF1E54E221440E790005901E /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
+		EF1E54E42144A5D40005901E /* AnswerQuestionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerQuestionVC.swift; sourceTree = "<group>"; };
 		EF1EA4E21ED3B9DA00B2616F /* ExtendFunctionImageStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtendFunctionImageStore.swift; sourceTree = "<group>"; };
 		EF21740C1E2753B10035C960 /* TencentOpenApi_IOS_Bundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = TencentOpenApi_IOS_Bundle.bundle; sourceTree = "<group>"; };
 		EF21740D1E2753B10035C960 /* TencentOpenAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TencentOpenAPI.framework; sourceTree = "<group>"; };
@@ -707,6 +709,7 @@
 		E2A9AF9E1C498E2900FE943A /* AudioPlayer iOS */ = {
 			isa = PBXGroup;
 			children = (
+				EF1E54E32144A5A30005901E /* question */,
 				EFBFF6A51E2F4AAC00CDFB6F /* AudioPlayer.entitlements */,
 				1C98A8911D61F71400ADF12B /* XinGeAppDelegate.swift */,
 				E2A9AF9F1C498E2900FE943A /* AppDelegate.swift */,
@@ -749,6 +752,14 @@
 				E2C6FAE01C4B01D80055A1BF /* sound2.caf */,
 			);
 			path = Sounds;
+			sourceTree = "<group>";
+		};
+		EF1E54E32144A5A30005901E /* question */ = {
+			isa = PBXGroup;
+			children = (
+				EF1E54E42144A5D40005901E /* AnswerQuestionVC.swift */,
+			);
+			name = question;
 			sourceTree = "<group>";
 		};
 		EF23458820A678B4002E2F30 /* player */ = {
@@ -1176,6 +1187,7 @@
 				1C33A5701D059A5D00E87803 /* StartupViewController.swift in Sources */,
 				EF67C0431E24A901004EEAF0 /* AlbumHeaderCell.swift in Sources */,
 				1CB425A61D229E1600971F95 /* ServiceLinkManager.swift in Sources */,
+				EF1E54E52144A5D40005901E /* AnswerQuestionVC.swift in Sources */,
 				EF23457120A56204002E2F30 /* BaomingVC.swift in Sources */,
 				1CEFF7811CBFB73D000DEFF7 /* AlbumListController.swift in Sources */,
 				1C09D3BF1CD09FED004A8F9C /* ToastMessage.swift in Sources */,

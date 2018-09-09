@@ -22,6 +22,7 @@ class QuestionItemCell: UITableViewCell, UITableViewDataSource, UITableViewDeleg
     @IBOutlet weak var answerCountLabel: UILabel!
     @IBOutlet weak var thumbCountLabel: UILabel!
     
+    var viewController : BaseUIViewController?
     var question : Question?
     var tableView = UITableView()
     
@@ -36,11 +37,26 @@ class QuestionItemCell: UITableViewCell, UITableViewDataSource, UITableViewDeleg
         tableView.autoresizesSubviews = true
         tableView.register(UINib(nibName:"AnswerCell", bundle:nil),forCellReuseIdentifier:"AnswerCell")
         
+        initView()
+    }
+    
+    @objc func tapAnswerQuestionImage() {
+        var params = [String:AnyObject]()
+        params["toUserId"] = "" as AnyObject
+        params["toUserName"] = ""  as AnyObject
+        params["question"] = question!  as AnyObject
+        viewController?.performSegue(withIdentifier: "answerQuestionSegue", sender: params)
+    }
+    @objc func tapThumbImage() {
+        sendLikeQuestion()
+    }
+    
+    private func initView() {
+        answerImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tapAnswerQuestionImage)))
+        answerImage.isUserInteractionEnabled = true
         
-        //tableView.backgroundColor = UIColor.lightGray.withAlphaComponent(0.5)
-        
-        //tableView.bounds =  tableView.frame.insetBy(dx: 50.0, dy: 50.0)
-        //answersView.bounds = answersView.frame.insetBy(dx: 10.0, dy: 10.0)
+        thumbImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tapThumbImage)))
+        thumbImage.isUserInteractionEnabled = true
     }
     
     func setAnswerTableView() {
@@ -163,6 +179,24 @@ class QuestionItemCell: UITableViewCell, UITableViewDataSource, UITableViewDeleg
         return 62 + contentLabel.frame.height
     }
     
+    
+    private func sendLikeQuestion() {
+        let req = LikeQuestionRequest()
+        req.question = question!
+        BasicService().sendRequest(url: ServiceConfiguration.LIKE_QUESTION, request: req) {
+            (resp: LikeQuestionResponse) -> Void in
+
+            if resp.isSuccess {
+                self.thumbImage.image = UIImage(named: "thumb_s")
+                self.question?.thumbCount = (self.question?.thumbCount!)! + 1
+                self.thumbCountLabel.text = "\((self.question?.thumbCount)!)"
+            } else {
+                //self.viewController?.displayMessage(message: resp.errorMessage!)
+                return
+            }
+            
+        }
+    }
 }
 
 extension QuestionItemCell {

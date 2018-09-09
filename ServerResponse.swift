@@ -1487,3 +1487,32 @@ class GetFinanceToutiaoResponse : ServerResponse {
     }
     
 }
+
+class SendAnswerRequest : ServerRequest {
+    var question : Question!
+    var content : String!
+    var toUser = ""
+    override var params: [String : AnyObject] {
+        get {
+            var parameters = super.params
+            parameters["questionId"] = question.id as AnyObject
+            parameters["comment"] = content as AnyObject
+            parameters["toUserId"] = toUser as AnyObject
+            return parameters
+        }
+    }
+}
+class SendAnswerResponse : ServerResponse {
+}
+
+class LikeQuestionRequest : ServerRequest {
+    var question : Question!
+    override var params: [String : AnyObject] {
+        get {
+            var parameters = super.params
+            parameters["questionId"] = question.id as AnyObject
+            return parameters
+        }
+    }
+}
+class LikeQuestionResponse : ServerResponse {}

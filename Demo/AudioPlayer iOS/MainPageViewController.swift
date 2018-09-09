@@ -183,7 +183,13 @@ class CourseMainPageViewController: BaseUIViewController, LTTableViewProtocal {
         } else if segue.identifier == "zhuanLanListSegue" {
             let args = sender as! [String:String]
             let dest = segue.destination as! ZhuanLanListVC
-            dest.type = args["type"] as! String
+            dest.type = args["type"]!
+        }  else if segue.identifier == "answerQuestionSegue" {
+            let args = sender as! [String:AnyObject]
+            let dest = segue.destination as! AnswerQuestionVC
+            dest.toUserId = args["toUserId"] as? String
+            dest.toUserName = args["toUserName"] as? String
+            dest.question = args["question"] as? Question
         } else if segue.identifier == "newPlayerSegue" {
             let song = sender as! Song
             let audioPlayer = getAudioPlayer()
@@ -427,6 +433,7 @@ extension CourseMainPageViewController : UITableViewDataSource, UITableViewDeleg
             if index == questions.count - 1 {
                 questionItemCell.isLast = true
             }
+            questionItemCell.viewController = self
             questionItemCell.update()
             cells.append(questionItemCell)
             heights.append(questionItemCell.getHeight())

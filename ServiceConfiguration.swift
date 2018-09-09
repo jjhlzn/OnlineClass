@@ -350,4 +350,16 @@ class ServiceConfiguration {
             return "\(http)://\(serverName):\(port)/app/getJinRongToutiaos"
         }
     }
+    
+    static var SEND_ANSWER : String {
+        get {
+            return "\(http)://\(serverName):\(port)/app/sendQuestionAnswer"
+        }
+    }
+    
+    static var LIKE_QUESTION : String {
+        get {
+            return "\(http)://\(serverName):\(port)/app/likeQuestion"
+        }
+    }
 }

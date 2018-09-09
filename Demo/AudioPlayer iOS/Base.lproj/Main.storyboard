@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="1" id="cs3-w7-xqz">
-                                <rect key="frame" x="-2" y="63" width="377" height="553"/>
+                                <rect key="frame" x="-3" y="63" width="377" height="553"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
@@ -1354,6 +1354,7 @@
                         <segue destination="qdf-O4-dNB" kind="push" identifier="newPlayerSegue" id="94Q-Cc-Zo4"/>
                         <segue destination="WlZ-YT-eo8" kind="push" identifier="zhuanLanListSegue" id="VyC-tp-he9"/>
                         <segue destination="8z7-OK-eXg" kind="push" identifier="newSearchSegue" id="G5G-Rc-xt3"/>
+                        <segue destination="Ila-mB-lqv" kind="push" identifier="answerQuestionSegue" id="gsK-rG-j3C"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="laU-XU-h4Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1460,7 +1461,47 @@
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 </view>
             </objects>
-            <point key="canvasLocation" x="2566.5" y="-4348.5"/>
+            <point key="canvasLocation" x="2304" y="-4993"/>
+        </scene>
+        <!--回复-->
+        <scene sceneID="vKN-Xn-yJy">
+            <objects>
+                <viewController hidesBottomBarWhenPushed="YES" id="Ila-mB-lqv" customClass="AnswerQuestionVC" customModule="AudioPlayer" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="JPx-7p-jvI">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" textAlignment="natural" id="Zph-A2-vhP" customClass="UITextViewPlaceHolder" customModule="AudioPlayer" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="64" width="375" height="273"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <string key="text">不管你觉得 iPhone 值不值，自面世以来 iPhone 的价格就一直是标杆式的存在。其他厂商的手机只要在定价上与 iPhone 接近，马上就会有人发表诸如「不如买 iPhone」的言论，由此可见 iPhone 的价格在大家心中有着特殊的地位。当然，我们之所以这么说，最主要还是因为 iPhone 的价格整体相对偏高，这也跟 iPhone 的自身定位有关。</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="回复" id="r4P-AU-sNX">
+                        <barButtonItem key="leftBarButtonItem" title="关闭" id="4Av-fQ-09v">
+                            <connections>
+                                <action selector="closePressed:" destination="Ila-mB-lqv" id="RMg-Tq-lVn"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="  发送" id="4Yi-hL-nsb">
+                            <connections>
+                                <action selector="sendPressed:" destination="Ila-mB-lqv" id="CrP-XJ-z8j"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="contentView" destination="Zph-A2-vhP" id="snK-UE-YcG"/>
+                        <outlet property="sendButton" destination="4Yi-hL-nsb" id="wc9-wG-lvN"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ELR-06-YVa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2820" y="-5052"/>
         </scene>
         <!--功能-->
         <scene sceneID="eyd-dN-buH">
