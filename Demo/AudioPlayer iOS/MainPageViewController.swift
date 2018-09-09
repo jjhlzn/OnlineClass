@@ -307,13 +307,12 @@ extension CourseMainPageViewController : UITableViewDataSource, UITableViewDeleg
             posCell.update()
             cells.append(posCell)
             heights.append(28)
+            didSelectActions.append(dummyDidSelectAction)
         } else {
             cells.append(tableView.dequeueReusableCell(withIdentifier: "seperatorCell")!)
             heights.append(8)
             didSelectActions.append(dummyDidSelectAction)
         }
-        
-
         
         for index in 0..<extendFunctionMananger.getRowCount() {
             cells.append(extendFunctionMananger.getFunctionCell(tableView: tableView, row: index))

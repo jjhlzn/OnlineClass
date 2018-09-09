@@ -14,6 +14,7 @@ class NewAlbumCell: UITableViewCell {
 
     @IBOutlet weak var courseImageView: UIImageView!
     
+    /*
     @IBOutlet weak var star0: UIImageView!
     
     @IBOutlet weak var star1: UIImageView!
@@ -28,7 +29,7 @@ class NewAlbumCell: UITableViewCell {
     
     @IBOutlet weak var nameLabel: UILabel!
     
-    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel! */
     
     @IBOutlet weak var statusLabel: UILabel!
     
@@ -36,7 +37,7 @@ class NewAlbumCell: UITableViewCell {
     
     @IBOutlet weak var listenerCountLabel: UILabel!
     
-    
+
     
     
     override func awakeFromNib() {
@@ -55,6 +56,7 @@ class NewAlbumCell: UITableViewCell {
         courseImageView.layer.cornerRadius = 5
         courseImageView.clipsToBounds = true
         
+        /*
         var stars = (course?.stars)!
         var starImageViews = [UIImageView]()
         starImageViews.append(star0)
@@ -80,7 +82,7 @@ class NewAlbumCell: UITableViewCell {
         nameLabel.text = course?.name
         dateLabel.text = course?.date
         
-        
+        */
         
         
         if course?.status == "" {
