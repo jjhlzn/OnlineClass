@@ -767,11 +767,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="icon" id="6tm-UC-EWb">
-                                <rect key="frame" x="157" y="582" width="60" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
+                                <rect key="frame" x="158" y="579" width="60" height="60"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launchAdv" id="nxI-f1-8vJ">
-                                <rect key="frame" x="174" y="114" width="32" height="320"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="launchAdv" id="nxI-f1-8vJ">
+                                <rect key="frame" x="172" y="130" width="32" height="320"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="g5Z-JS-RAJ">
@@ -1063,8 +1063,8 @@
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </view>
-                                                <view contentMode="scaleToFill" id="b3h-TX-fxt" customClass="FSPageControl" customModule="FSPagerView">
-                                                    <rect key="frame" x="239" y="47" width="132" height="28"/>
+                                                <view contentMode="scaleToFill" misplaced="YES" id="b3h-TX-fxt" customClass="FSPageControl" customModule="FSPagerView">
+                                                    <rect key="frame" x="239" y="79" width="132" height="28"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                                 </view>
                                             </subviews>
@@ -1314,7 +1314,6 @@
                                                 </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" red="0.82780774111675126" green="0.82780774111675126" blue="0.82780774111675126" alpha="0.3438035102739726" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
                                             <outlet property="posImage" destination="Ghv-VH-Ghz" id="2M9-Ov-R3U"/>
                                         </connections>
@@ -1457,7 +1456,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" textAlignment="natural" id="Zph-A2-vhP" customClass="UITextViewPlaceHolder" customModule="AudioPlayer" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="64" width="375" height="273"/>
+                                <rect key="frame" x="16" y="64" width="343" height="273"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <string key="text">不管你觉得 iPhone 值不值，自面世以来 iPhone 的价格就一直是标杆式的存在。其他厂商的手机只要在定价上与 iPhone 接近，马上就会有人发表诸如「不如买 iPhone」的言论，由此可见 iPhone 的价格在大家心中有着特殊的地位。当然，我们之所以这么说，最主要还是因为 iPhone 的价格整体相对偏高，这也跟 iPhone 的自身定位有关。</string>
@@ -1486,7 +1485,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ELR-06-YVa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2989" y="-5689"/>
+            <point key="canvasLocation" x="2988.5" y="-5689.5"/>
         </scene>
         <!--功能-->
         <scene sceneID="eyd-dN-buH">
@@ -3088,8 +3087,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="提问题" textAlignment="natural" id="Qc8-c4-nds" customClass="UITextViewPlaceHolder" customModule="AudioPlayer" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="64" width="375" height="273"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" text="提问题" textAlignment="natural" id="Qc8-c4-nds" customClass="UITextViewPlaceHolder" customModule="AudioPlayer" customModuleProvider="target">
+                                <rect key="frame" x="16" y="64" width="343" height="273"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -3112,7 +3111,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PAF-3M-6Lp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3017" y="-6445"/>
+            <point key="canvasLocation" x="3016.5" y="-6445.5"/>
         </scene>
         <!--已购-->
         <scene sceneID="zvI-0p-UXm">
@@ -3160,7 +3159,7 @@
         <image name="footer_ditu" width="690" height="709"/>
         <image name="hand" width="48" height="48"/>
         <image name="header_ditu" width="1634" height="709"/>
-        <image name="icon" width="512" height="512"/>
+        <image name="icon" width="128" height="128"/>
         <image name="launchAdv" width="88" height="784"/>
         <image name="liveMusicCover" width="250" height="125"/>
         <image name="me" width="17" height="20"/>
@@ -3201,8 +3200,8 @@
         <segue reference="tVi-RP-0bn"/>
         <segue reference="gsK-rG-j3C"/>
         <segue reference="VyC-tp-he9"/>
-        <segue reference="xbm-kK-Zqp"/>
-        <segue reference="xmL-0a-HxS"/>
+        <segue reference="pCp-Ba-NtI"/>
+        <segue reference="71V-Tn-QDD"/>
         <segue reference="ciV-s1-kgf"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

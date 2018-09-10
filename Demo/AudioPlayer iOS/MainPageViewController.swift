@@ -188,9 +188,16 @@ class CourseMainPageViewController: BaseUIViewController, LTTableViewProtocal {
             dest.url = NSURL(string: url)
             dest.title = "确认支付"
         } else if segue.identifier == "zhuanLanListSegue" {
-            let args = sender as! [String:String]
-            let dest = segue.destination as! ZhuanLanListVC
-            dest.type = args["type"]!
+            if sender == nil {
+                let dest = segue.destination as! ZhuanLanListVC
+                dest.type = ZhuanLanListVC.TYPE_ZHUANLAN
+            } else {
+                let args = sender as! [String:String]
+                
+                let dest = segue.destination as! ZhuanLanListVC
+                dest.type = args["type"]!
+            }
+            
         }  else if segue.identifier == "answerQuestionSegue" {
             let args = sender as! [String:AnyObject]
             let dest = segue.destination as! AnswerQuestionVC

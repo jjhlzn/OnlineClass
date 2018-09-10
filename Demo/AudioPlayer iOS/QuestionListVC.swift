@@ -25,6 +25,7 @@ class QuestionListVC: BaseUIViewController, LTTableViewProtocal,
         
         tableView.dataSource = self
         tableView.delegate = self
+        tableView.separatorStyle = .none
         
         //初始化PagableController
         pagableController.viewController = self

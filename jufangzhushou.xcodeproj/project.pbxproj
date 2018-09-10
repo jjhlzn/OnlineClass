@@ -321,14 +321,12 @@
 		EF03652D209EEEA1006094EE /* SearchBarExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarExtension.swift; sourceTree = "<group>"; };
 		EF10AAC720A95D3800C6B2E4 /* UINavigationControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationControllerExtension.swift; sourceTree = "<group>"; };
 		EF10AAD120A9748E00C6B2E4 /* demo.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = demo.gif; sourceTree = "<group>"; };
-		EF1DC2CD1F2B335000B471A5 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		EF1E54D72143CD2B0005901E /* ToutiaoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ToutiaoCell.swift; path = cells/ToutiaoCell.swift; sourceTree = "<group>"; };
 		EF1E54D9214401A00005901E /* PosCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PosCell.swift; path = cells/PosCell.swift; sourceTree = "<group>"; };
 		EF1E54E42144A5D40005901E /* AnswerQuestionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerQuestionVC.swift; sourceTree = "<group>"; };
 		EF1E54E62144D9B90005901E /* QuestionListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionListVC.swift; sourceTree = "<group>"; };
 		EF1E54E82144EB8D0005901E /* AskQuestionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AskQuestionVC.swift; sourceTree = "<group>"; };
 		EF1E54F02144FE2F0005901E /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
-		EF1E54F12144FE330005901E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		EF1EA4E21ED3B9DA00B2616F /* ExtendFunctionImageStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtendFunctionImageStore.swift; sourceTree = "<group>"; };
 		EF21740C1E2753B10035C960 /* TencentOpenApi_IOS_Bundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = TencentOpenApi_IOS_Bundle.bundle; sourceTree = "<group>"; };
 		EF21740D1E2753B10035C960 /* TencentOpenAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TencentOpenAPI.framework; sourceTree = "<group>"; };
@@ -383,6 +381,7 @@
 		EF9A922421427A0E008133EA /* QuestionAnswersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionAnswersView.swift; sourceTree = "<group>"; };
 		EF9A92262142B464008133EA /* AnswerCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AnswerCell.xib; sourceTree = "<group>"; };
 		EF9A92282142B480008133EA /* AnswerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerCell.swift; sourceTree = "<group>"; };
+		EFA032452145FE9C008279CD /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		EFB004221E236CD800B9272A /* HeaderAdvCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderAdvCell.swift; sourceTree = "<group>"; };
 		EFBFF6A51E2F4AAC00CDFB6F /* AudioPlayer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AudioPlayer.entitlements; sourceTree = SOURCE_ROOT; };
 		EFDD138C20AA97A400BF8C37 /* ZhuanLanCell2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ZhuanLanCell2.swift; path = cells/ZhuanLanCell2.swift; sourceTree = "<group>"; };
@@ -1248,7 +1247,6 @@
 			children = (
 				E2A9AFA41C498E2900FE943A /* Base */,
 				EF1E54F02144FE2F0005901E /* zh-Hans */,
-				EF1E54F12144FE330005901E /* en */,
 			);
 			name = Main.storyboard;
 			path = "Demo/AudioPlayer iOS";
@@ -1258,7 +1256,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				E2A9AFA91C498E2900FE943A /* Base */,
-				EF1DC2CD1F2B335000B471A5 /* zh-Hans */,
+				EFA032452145FE9C008279CD /* zh-Hans */,
 			);
 			name = LaunchScreen.storyboard;
 			path = "Demo/AudioPlayer iOS";
