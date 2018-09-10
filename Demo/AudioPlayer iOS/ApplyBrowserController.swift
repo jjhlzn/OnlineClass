@@ -46,7 +46,12 @@ class ApplyBrowserController : IapSupportWebPageViewController, WKNavigationDele
         navigationManager = NavigationBarManager(self)
          Utils.setNavigationBarAndTableView(self, tableView: nil)
         
-        shareView = ShareView(frame: CGRect(x : 0, y: UIScreen.main.bounds.height - 233 - 49 - 32 , width: UIScreen.main.bounds.width, height: 233), controller: self)
+        if UIDevice().isX() {
+            shareView = ShareView(frame: CGRect(x : 0, y: UIScreen.main.bounds.height - 233 - 49 - 32, width: UIScreen.main.bounds.width, height: 233), controller: self)
+        } else {
+            shareView = ShareView(frame: CGRect(x : 0, y: UIScreen.main.bounds.height - 233 - 49 , width: UIScreen.main.bounds.width, height: 233), controller: self)
+        }
+        
         navigationManager.shareView = shareView
         
         initIAP()
@@ -80,8 +85,6 @@ class ApplyBrowserController : IapSupportWebPageViewController, WKNavigationDele
         var url1 = url.absoluteString
         url1 = Utils.addUserParams(url: url1!)
         url1 = Utils.addDevcieParam(url: url1!)
-        
-
         
         let config = WKWebViewConfiguration()
         config.userContentController = contentController
