@@ -364,9 +364,14 @@ extension CourseMainPageViewController : UITableViewDataSource, UITableViewDeleg
             for index in 0..<toutiaos.count {
                 let toutiaoCell = tableView.dequeueReusableCell(withIdentifier: "toutiaoCell") as! ToutiaoCell
                 toutiaoCell.toutiao = toutiaos[index]
+                if index == toutiaos.count - 1 {
+                    toutiaoCell.isLast = true
+                } else {
+                    toutiaoCell.isLast = false
+                }
                 toutiaoCell.update()
                 cells.append(toutiaoCell)
-                heights.append(40)
+                heights.append(52)
                 didSelectActions.append({ (tableView: UITableView, indexPath: IndexPath) -> Void in
                     var sender = [String:String]()
                     sender["title"] = self.toutiaos[index].title

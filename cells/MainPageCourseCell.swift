@@ -38,7 +38,7 @@ class MainPageCourseCell: UITableViewCell {
     }
     
     func update()  {
-        courseImageView.kf.setImage(with: URL(string: (course?.image)!))
+        courseImageView.kf.setImage(with: URL(string: (course?.image)!), placeholder: UIImage(named: "rect_placeholder"))
         courseImageView.layer.cornerRadius = 5
         courseImageView.clipsToBounds = true
         /*

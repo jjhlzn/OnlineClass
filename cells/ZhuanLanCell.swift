@@ -31,7 +31,8 @@ class ZhuanLanCell: UITableViewCell {
     }
     
     func update() {
-        zhuanLanImageView.kf.setImage(with: URL(string: (zhuanLan?.imageUrl)!))
+        
+        zhuanLanImageView.kf.setImage(with: URL(string: (zhuanLan?.imageUrl)!), placeholder: UIImage(named: "rect_placeholder"))
         zhuanLanImageView.clipsToBounds = true
         zhuanLanImageView.layer.cornerRadius = 5
         descLabel.text = zhuanLan?.desc
