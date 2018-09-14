@@ -26,6 +26,7 @@ class IapSupportWebPageViewController: BaseUIViewController, SKProductsRequestDe
     
     
     func initIAP() {
+        
         if(SKPaymentQueue.canMakePayments()) {
             print("IAP is enabled, loading")
         } else {

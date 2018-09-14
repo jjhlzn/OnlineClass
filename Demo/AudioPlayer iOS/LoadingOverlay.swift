@@ -129,12 +129,12 @@ public class LoadingCircle {
     
     public func show(view: UIView!) {
 
-        activityIndicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
+        activityIndicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 32, height: 32))
         activityIndicator.layer.cornerRadius = 05;
         activityIndicator.backgroundColor = nil
-        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.whiteLarge
+        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.white
         activityIndicator.center = view.center
-        activityIndicator.color = UIColor.gray
+        activityIndicator.color = UIColor.lightGray
         view.addSubview(activityIndicator)
         activityIndicator.startAnimating()
         

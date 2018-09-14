@@ -44,6 +44,10 @@ class ExtendFunctionMananger : NSObject {
             selector = #selector(dingyueHandler)
         } else if selectorName == "moreHanlder" {
             selector = #selector(moreHanlder)
+        } else if selectorName == "jpkHandler" {
+            selector = #selector(jpkHandler(sender:))
+        } else if selectorName == "questionHandler" {
+            selector = #selector(questionHandler(sender:))
         }
         return ExtendFunction(imageName: imageName, name: name, code: code, url: url, messageCount: messageCount,
                        selector:  selector, isShowDefault: true)
@@ -323,6 +327,20 @@ class ExtendFunctionMananger : NSObject {
         let index = sender?.view?.tag
         clearFunctionMessage(index: index!, view:(sender?.view)!)
         controller.performSegue(withIdentifier: "zhuanLanListSegue", sender: nil)
+    }
+    
+    @objc func jpkHandler(sender: UITapGestureRecognizer? = nil) {
+        let index = sender?.view?.tag
+        clearFunctionMessage(index: index!, view:(sender?.view)!)
+        var sender = [String:String]()
+        sender["type"] = ZhuanLanListVC.TYPE_JPK
+        controller.performSegue(withIdentifier: "zhuanLanListSegue", sender: sender)
+    }
+    
+    @objc func questionHandler(sender: UITapGestureRecognizer? = nil) {
+        let index = sender?.view?.tag
+        clearFunctionMessage(index: index!, view:(sender?.view)!)
+        controller.performSegue(withIdentifier: "allQuestionsSegue", sender: nil)
     }
     
     func unSupportHandler(sender: UITapGestureRecognizer? = nil) {

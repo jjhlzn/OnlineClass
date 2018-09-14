@@ -19,6 +19,7 @@ class ApplyBrowserController : IapSupportWebPageViewController, WKNavigationDele
     var url : NSURL!
     @IBOutlet weak var backButton: UIBarButtonItem!
     var backButtonCopy: UIBarButtonItem!
+    var refreshControl:UIRefreshControl!
     
     //var leftBarButtonItems: [UIBarButtonItem]?
     var loading = LoadingCircle()
@@ -27,6 +28,9 @@ class ApplyBrowserController : IapSupportWebPageViewController, WKNavigationDele
     
     var navigationManager : NavigationBarManager!
     var shareView: ShareView!
+    
+    var showLoading = true
+    var isNeedRefresh = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,7 +44,9 @@ class ApplyBrowserController : IapSupportWebPageViewController, WKNavigationDele
         if self.title == "签到" {
             url = NSURL(string: ServiceLinkManager.qiandaoUrl)!
         } else if self.title == "已购" {
+            showLoading = false
             url = NSURL(string: ServiceLinkManager.yigouUrl)!
+            isNeedRefresh = true
         }
         
         navigationManager = NavigationBarManager(self)
@@ -67,6 +73,12 @@ class ApplyBrowserController : IapSupportWebPageViewController, WKNavigationDele
         navigationManager.setMusicButton()
         navigationManager.setShareButton()
         
+        
+    }
+    
+    @objc func refresh() {
+        webView?.reload()
+        self.refreshControl.endRefreshing()
     }
     
     
@@ -106,6 +118,12 @@ class ApplyBrowserController : IapSupportWebPageViewController, WKNavigationDele
         
         self.webView = WKWebView(frame: rect, configuration: config)
         
+        if isNeedRefresh {
+            refreshControl = UIRefreshControl()
+            refreshControl.addTarget(self, action: #selector(refresh), for: UIControlEvents.valueChanged)
+            webView?.scrollView.addSubview(refreshControl)
+        }
+        
         self.webContainer.addSubview(self.webView!)
         self.webView?.navigationDelegate = self
         
@@ -120,7 +138,9 @@ class ApplyBrowserController : IapSupportWebPageViewController, WKNavigationDele
     
     /****  webView相关的函数  ***/
     func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) {
-        loading.show(view: view)
+        if showLoading {
+            loading.show(view: view)
+        }
         QL1("webView.canGoBack = \(webView.canGoBack)")
         
         if webView.url != nil {

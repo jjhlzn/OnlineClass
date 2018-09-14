@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class NewAlbumCell: UITableViewCell {
     
@@ -52,7 +53,8 @@ class NewAlbumCell: UITableViewCell {
     }
     
     func update() {
-        courseImageView.kf.setImage(with: URL(string: (course?.image)!))
+        let resource = ImageResource(downloadURL: URL(string: (course?.image)!)!, cacheKey: (course?.image)!)
+        courseImageView.kf.setImage(with: resource, placeholder: UIImage(named: "rect_placeholder"))
         courseImageView.layer.cornerRadius = 5
         courseImageView.clipsToBounds = true
         

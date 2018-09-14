@@ -58,7 +58,7 @@ class Utils {
     
     static func setUserHeadImageView(_ headImageView: UIImageView, userId: String) {
         headImageView.becomeCircle()
-        headImageView.layer.borderWidth = 0.3
+        //headImageView.layer.borderWidth = 0.3
         headImageView.layer.borderColor = UIColor.lightGray.cgColor
         let url =  ServiceConfiguration.GET_PROFILE_IMAGE + "?userid=" + userId
         QL1(url)
@@ -449,6 +449,17 @@ class UITextViewPlaceHolder: UITextView, UITextViewDelegate {
         
         originDelegate = self.delegate
         self.delegate = self
+    }
+    
+}
+
+extension NSMutableAttributedString {
+    
+    func setColorForText(textForAttribute: String, withColor color: UIColor) {
+        let range: NSRange = self.mutableString.range(of: textForAttribute, options: .caseInsensitive)
+        
+        // Swift 4.1 and below
+        self.addAttribute(NSAttributedStringKey.foregroundColor, value: color, range: range)
     }
     
 }

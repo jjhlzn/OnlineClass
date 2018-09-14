@@ -36,12 +36,7 @@ class QuestionListVC: BaseUIViewController, LTTableViewProtocal,
         pagableController.isShowLoadCompleteText = false
         pagableController.loadMore()
         
-        if #available(iOS 11.0, *) {
-            tableView.contentInsetAdjustmentBehavior = .never
-            tableView.contentInset = UIEdgeInsetsMake(22, 0, 49, 0)
-            tableView.estimatedRowHeight = 0
-            UITableView.appearance().estimatedRowHeight = 0
-        }
+        Utils.setNavigationBarAndTableView(self, tableView: tableView)
     }
 
     //PageableControllerDelegate
