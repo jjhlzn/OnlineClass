@@ -55,7 +55,7 @@ class QuestionItemCell: UITableViewCell {
         thumbImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tapThumbImage)))
         thumbImage.isUserInteractionEnabled = true
         
-        interLine.frame.size.height = 0.6
+        interLine.frame.size.height = 0.8
     }
     
     
@@ -82,21 +82,13 @@ class QuestionItemCell: UITableViewCell {
             thumbImage.image = UIImage(named: "thumb")
         }
         
-
-        
         contentLabel.frame.size.width = UIScreen.main.bounds.width - 19 * 2
         contentLabel.frame.size.height = 20
-        QL1("\(UIScreen.main.bounds.width)  \(contentLabel.frame.size.width)")
         contentLabel.setLineSpacing(lineSpacing: 0, lineHeightMultiple: 1.4)
         contentLabel.numberOfLines = 0
         contentLabel.sizeToFit()
-        //contentLabel.frame.size.width = UIScreen.main.bounds.width * 0.9
-        QL1("[\(question!.content)]")
-        QL1("contentLabel.frame.size.height: \(contentLabel.frame.size.height)")
         contentLabel.frame.size.height = contentLabel.frame.size.height + 12 //10线间隔
-        //contentLabel.frame = frame
-
-        //setAnswerTableView()
+        
         if question!.answers.count > 0 {
             answersView.isHidden = false
             makeAnswersView()
@@ -195,9 +187,9 @@ class QuestionItemCell: UITableViewCell {
     public func getHeight() -> CGFloat {
         var heigth : CGFloat = 0
         if question!.answers.count > 0 {
-            heigth = getFirstPartHeight() + answersView.frame.height + 10
+            heigth = getFirstPartHeight() + answersView.frame.height + 11
         } else {
-            heigth = getFirstPartHeight() + 4
+            heigth = getFirstPartHeight() + 5
         }
         QL1("question cell height: \(getFirstPartHeight()) \(answersView.frame.height) \(heigth)")
         return heigth

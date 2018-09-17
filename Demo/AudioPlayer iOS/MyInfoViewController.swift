@@ -98,7 +98,6 @@ class MyInfoVieController: BaseUIViewController, UITableViewDataSource, UITableV
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        QL1("viewWillAppear called")
         setNavigationBar()
         loadUserData()
     }

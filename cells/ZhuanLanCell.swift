@@ -37,10 +37,14 @@ class ZhuanLanCell: UITableViewCell {
         zhuanLanImageView.layer.cornerRadius = 5
         descLabel.text = zhuanLan?.desc
         priceInfoLabel.text = zhuanLan?.priceInfo
-        updateTimeLabel.text = " " + (zhuanLan?.updateTime)! + " "
+        updateTimeLabel.textAlignment = .center
+        updateTimeLabel.text = "" + (zhuanLan?.updateTime)! + "  "
         updateTimeLabel.layer.cornerRadius = 5
         updateTimeLabel.clipsToBounds = true
         updateTimeLabel.sizeToFit()
+        updateTimeLabel.frame.size.height += 2
+        updateTimeLabel.frame.size.width += 2
+        
         latestLabel.text = zhuanLan?.latest
         titleLabel.text = zhuanLan?.name
     }

@@ -170,7 +170,7 @@ class ExtendFunctionMananger : NSObject {
         if isiPhone4Screen {
             return screenWidth / CGFloat(buttonCountEachRow) * 0.65 * 0.55
         } else {
-            return screenWidth / CGFloat(buttonCountEachRow) * 0.7 * 0.55
+            return screenWidth / CGFloat(buttonCountEachRow) * 0.7 * 0.36
         }
     }
     
@@ -178,9 +178,9 @@ class ExtendFunctionMananger : NSObject {
         get {
             let screenWidth = UIScreen.main.bounds.width
             if isiPhone4Screen {
-                return screenWidth / CGFloat(buttonCountEachRow) * 0.82
+                return screenWidth / CGFloat(buttonCountEachRow) * 0.7
             } else {
-                return screenWidth / CGFloat(buttonCountEachRow) * 0.82
+                return screenWidth / CGFloat(buttonCountEachRow) * 0.7
             }
             
         }
