@@ -27,6 +27,11 @@ class CourseListVC: BaseUIViewController, UITableViewDataSource, UITableViewDele
     
     var navigationManager : NavigationBarManager!
     
+    lazy var box = UIView()
+    
+
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationManager = NavigationBarManager(self)
@@ -72,6 +77,7 @@ class CourseListVC: BaseUIViewController, UITableViewDataSource, UITableViewDele
         pagableController.loadMore()
         
         Utils.setNavigationBarAndTableView(self, tableView: tableView)
+        
     }
     
     func setNavigationBar() {
@@ -258,6 +264,9 @@ extension CourseListVC {
         let album = getAlbum(indexPath: indexPath as NSIndexPath)
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "newAlbumCell") as! NewAlbumCell
+        cell.translatesAutoresizingMaskIntoConstraints = false
+        cell.autoresizesSubviews = false
+        cell.setNeedsUpdateConstraints()
         cell.course = album
         cell.update()
         return cell

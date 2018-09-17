@@ -8,42 +8,73 @@
 
 import UIKit
 import Kingfisher
+import SnapKit
+import QorumLogs
 
 class NewAlbumCell: UITableViewCell {
     
     var course : Album?
 
     @IBOutlet weak var courseImageView: UIImageView!
+    @IBOutlet weak var labelsContainer: UIView!
     
     /*
-    @IBOutlet weak var star0: UIImageView!
-    
-    @IBOutlet weak var star1: UIImageView!
-    
-    @IBOutlet weak var star2: UIImageView!
-    
-    @IBOutlet weak var star3: UIImageView!
-    
-    @IBOutlet weak var star4: UIImageView!
-    
-    @IBOutlet weak var scoreLabel: UILabel!
-    
-    @IBOutlet weak var nameLabel: UILabel!
-    
-    @IBOutlet weak var dateLabel: UILabel! */
-    
     @IBOutlet weak var statusLabel: UILabel!
-    
     @IBOutlet weak var liveTimeLabel: UILabel!
+    @IBOutlet weak var listenerCountLabel: UILabel! */
     
-    @IBOutlet weak var listenerCountLabel: UILabel!
-    
+    var statusImage: UIImageView!
+    var statusLabel : UILabel!
+    var listenerImage : UIImageView!
+    var listenerLabel : UILabel!
+    var timeImage : UIImageView!
+    var timeLabel : UILabel!
 
-    
-    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        
+        makeLabels()
+        makeImages()
+    }
+    
+    private func makeLabels() {
+        statusLabel = UILabel()
+        statusLabel.font = statusLabel.font.withSize(11)
+        statusLabel.textAlignment = .left
+        //statusLabel.backgroundColor = UIColor.black
+        statusLabel.textColor = UIColor.black
+        statusLabel.text = ""
+        
+        labelsContainer.addSubview(statusLabel)
+        
+        listenerLabel = UILabel()
+        listenerLabel.font = statusLabel.font.withSize(11)
+        listenerLabel.textAlignment = .left
+        //listenerLabel.backgroundColor = UIColor.black
+        listenerLabel.textColor = UIColor.black
+        listenerLabel.text = ""
+        
+        labelsContainer.addSubview(listenerLabel)
+        
+        timeLabel = UILabel()
+        timeLabel.font = statusLabel.font.withSize(11)
+        timeLabel.textAlignment = .right
+        //timeLabel.backgroundColor = UIColor.black
+        timeLabel.textColor = UIColor.black
+        timeLabel.text = ""
+        
+        labelsContainer.addSubview(timeLabel)
+    }
+    
+    private func makeImages() {
+        statusImage = UIImageView(image: UIImage(named: "play1"))
+        labelsContainer.addSubview(statusImage)
+        
+        listenerImage = UIImageView(image: UIImage(named: "u"))
+        labelsContainer.addSubview(listenerImage)
+        
+        timeImage = UIImageView(image: UIImage(named: "time"))
+        labelsContainer.addSubview(timeImage)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -52,39 +83,62 @@ class NewAlbumCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    override func updateConstraints() {
+        
+        statusImage.snp.makeConstraints { (make) -> Void in
+            make.height.equalTo(20)
+            make.width.equalTo(20)
+            make.left.equalTo(10)
+            make.centerY.equalToSuperview().offset(-3)
+        }
+
+        statusLabel.snp.makeConstraints { (make) -> Void in
+            make.height.equalTo(14)
+            make.width.equalTo(60)
+            make.left.equalTo(statusImage.snp.right).offset(8)
+            make.centerY.equalToSuperview()
+        }
+        
+        /**  */
+        listenerImage.snp.makeConstraints { (make) -> Void in
+            make.height.equalTo(20)
+            make.width.equalTo(20)
+            make.centerX.equalToSuperview().offset(-20)
+            make.centerY.equalToSuperview()
+        }
+        
+        listenerLabel.snp.makeConstraints { (make) -> Void in
+            make.height.equalTo(14)
+            make.width.equalTo(60)
+            make.left.equalTo(listenerImage.snp.right).offset(8)
+            make.centerY.equalToSuperview()
+        }
+        
+        /**  */
+        
+        timeImage.snp.makeConstraints { (make) -> Void in
+            make.height.equalTo(20)
+            make.width.equalTo(20)
+            make.right.equalTo(timeLabel.snp.left).offset(-8)
+            make.centerY.equalToSuperview()
+        }
+        
+        timeLabel.snp.makeConstraints { (make) -> Void in
+            make.height.equalTo(14)
+            make.left.equalTo(timeImage.snp.right).offset(-8)
+            make.right.equalTo(superview!.frame.width).offset(-10)
+            make.centerY.equalToSuperview()
+        }
+        
+        super.updateConstraints()
+    }
+    
     func update() {
+        
         let resource = ImageResource(downloadURL: URL(string: (course?.image)!)!, cacheKey: (course?.image)!)
         courseImageView.kf.setImage(with: resource, placeholder: UIImage(named: "rect_placeholder"))
         courseImageView.layer.cornerRadius = 5
         courseImageView.clipsToBounds = true
-        
-        /*
-        var stars = (course?.stars)!
-        var starImageViews = [UIImageView]()
-        starImageViews.append(star0)
-        starImageViews.append(star1)
-        starImageViews.append(star2)
-        starImageViews.append(star3)
-        starImageViews.append(star4)
-        for index in 0...4 {
-            var imageName = "star1"
-            if stars >= 1 {
-                imageName = "star1"
-            } else if stars <= 0 {
-                imageName = "star2"
-            } else {
-                imageName = "star3"
-            }
-            starImageViews[index].image = UIImage(named: imageName)
-            stars -= 1
-        }
-        
-        scoreLabel.text = "\((course?.stars)!)"
-        scoreLabel.sizeToFit()
-        nameLabel.text = course?.name
-        dateLabel.text = course?.date
-        
-        */
         
         
         if course?.status == "" {
@@ -92,12 +146,12 @@ class NewAlbumCell: UITableViewCell {
         }
         statusLabel.text = course?.status
         
-        listenerCountLabel.text = "\((course?.listenCount)!)人在线"
-        listenerCountLabel.sizeToFit()
+        listenerLabel.text = "\((course?.listenCount)!)人在线"
+        listenerLabel.sizeToFit()
         if course?.liveTime == "" {
             course?.liveTime = "时间未定"
         }
-        liveTimeLabel.text = course?.liveTime
+        timeLabel.text = course?.liveTime
         
     }
 

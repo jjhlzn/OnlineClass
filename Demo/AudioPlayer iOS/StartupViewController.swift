@@ -40,6 +40,9 @@ class StartupViewController: BaseUIViewController {
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
         //serviceLocator不应该为null，因为在AppDelegate会有一个初始化值
         self.checkLaunchAdv()
+        
+        //let myVC:MyViewController = MyViewController()
+        //self.present(myVC, animated: true, completion: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {

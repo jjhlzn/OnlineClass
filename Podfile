@@ -21,4 +21,5 @@ target 'AudioPlayer iOS' do
     pod 'LTScrollView', '~> 0.1.5'
     pod 'MJRefresh', '~> 3.1.14.1'
     pod 'Kanna', '~> 4.0.0' #ok
+    pod 'SnapKit', '~> 4.0.0' #ok
 end

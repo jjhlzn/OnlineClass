@@ -166,6 +166,7 @@
 		EF39750D20AD28410033620D /* MyInfoCommonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF39750C20AD28410033620D /* MyInfoCommonCell.swift */; };
 		EF39750F20B3B8340033620D /* NavigationBarManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF39750E20B3B8340033620D /* NavigationBarManager.swift */; };
 		EF422C69209ECD5300419FCA /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF422C68209ECD5300419FCA /* LaunchViewController.swift */; };
+		EF4B4847214F356C00909356 /* MyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF4B4846214F356C00909356 /* MyViewController.swift */; };
 		EF67C0431E24A901004EEAF0 /* AlbumHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF67C0421E24A901004EEAF0 /* AlbumHeaderCell.swift */; };
 		EF6C0F3820A2DA3400BE1829 /* MyGIfImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF6C0F3720A2DA3400BE1829 /* MyGIfImageView.swift */; };
 		EF76956A20AA6662000E3064 /* ZhuanLanCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF76956920AA6662000E3064 /* ZhuanLanCell.swift */; };
@@ -368,6 +369,7 @@
 		EF39750C20AD28410033620D /* MyInfoCommonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MyInfoCommonCell.swift; path = cells/MyInfoCommonCell.swift; sourceTree = "<group>"; };
 		EF39750E20B3B8340033620D /* NavigationBarManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarManager.swift; sourceTree = "<group>"; };
 		EF422C68209ECD5300419FCA /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
+		EF4B4846214F356C00909356 /* MyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyViewController.swift; sourceTree = "<group>"; };
 		EF67C0421E24A901004EEAF0 /* AlbumHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumHeaderCell.swift; sourceTree = "<group>"; };
 		EF6C0F3720A2DA3400BE1829 /* MyGIfImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGIfImageView.swift; sourceTree = "<group>"; };
 		EF76956920AA6662000E3064 /* ZhuanLanCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ZhuanLanCell.swift; path = cells/ZhuanLanCell.swift; sourceTree = "<group>"; };
@@ -713,6 +715,7 @@
 		E2A9AF9E1C498E2900FE943A /* AudioPlayer iOS */ = {
 			isa = PBXGroup;
 			children = (
+				EF4B4845214F33E500909356 /* experiment */,
 				EF1E54E32144A5A30005901E /* question */,
 				EFBFF6A51E2F4AAC00CDFB6F /* AudioPlayer.entitlements */,
 				1C98A8911D61F71400ADF12B /* XinGeAppDelegate.swift */,
@@ -812,6 +815,14 @@
 				EF39750C20AD28410033620D /* MyInfoCommonCell.swift */,
 			);
 			name = me;
+			sourceTree = "<group>";
+		};
+		EF4B4845214F33E500909356 /* experiment */ = {
+			isa = PBXGroup;
+			children = (
+				EF4B4846214F356C00909356 /* MyViewController.swift */,
+			);
+			name = experiment;
 			sourceTree = "<group>";
 		};
 		EF76956820AA663D000E3064 /* mainpage */ = {
@@ -1121,6 +1132,7 @@
 				EF6C0F3820A2DA3400BE1829 /* MyGIfImageView.swift in Sources */,
 				1C1E69191CC9079100CEA029 /* SongViewController.swift in Sources */,
 				EF23458720A672E8002E2F30 /* BeforeCourseVC.swift in Sources */,
+				EF4B4847214F356C00909356 /* MyViewController.swift in Sources */,
 				EF76956C20AA6B05000E3064 /* MainPageCourseCell.swift in Sources */,
 				1CD3496C1CF980D400037F78 /* ResetPasswordController.swift in Sources */,
 				1C1E68F11CC65F7500CEA029 /* CommentCell.swift in Sources */,
