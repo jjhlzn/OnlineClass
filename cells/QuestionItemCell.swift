@@ -82,7 +82,7 @@ class QuestionItemCell: UITableViewCell {
             thumbImage.image = UIImage(named: "thumb")
         }
         
-        contentLabel.frame.size.width = UIScreen.main.bounds.width - 19 * 2
+        contentLabel.frame.size.width = UIScreen.main.bounds.width - 10 * 2
         contentLabel.frame.size.height = 20
         contentLabel.setLineSpacing(lineSpacing: 0, lineHeightMultiple: 1.4)
         contentLabel.numberOfLines = 0
@@ -132,7 +132,7 @@ class QuestionItemCell: UITableViewCell {
     private func makeAnswerCell(_ answer: Answer, index: Int, origin: CGPoint) {
         
         QL1("\(UIScreen.main.bounds.width)   \(answersView.frame.width)")
-        let label = UILabel(frame: CGRect(x: origin.x + padX, y: origin.y + padY, width: UIScreen.main.bounds.width - 19 * 2 - padX, height: 100))
+        let label = UILabel(frame: CGRect(x: origin.x + padX, y: origin.y + padY, width: UIScreen.main.bounds.width - 10 * 2 - padX, height: 100))
         
         answerLabels.append(label)
         answersView.autoresizesSubviews = true
@@ -207,9 +207,17 @@ class QuestionItemCell: UITableViewCell {
             (resp: LikeQuestionResponse) -> Void in
 
             if resp.isSuccess {
-                self.thumbImage.image = UIImage(named: "thumb_s")
-                self.question?.thumbCount = (self.question?.thumbCount!)! + 1
-                self.thumbCountLabel.text = "\((self.question?.thumbCount)!)"
+                if self.question!.isLiked {
+                    self.question!.isLiked = !self.question!.isLiked
+                    self.thumbImage.image = UIImage(named: "thumb")
+                    self.question?.thumbCount = (self.question?.thumbCount!)! - 1
+                    self.thumbCountLabel.text = "\((self.question?.thumbCount)!)"
+                } else {
+                    self.question!.isLiked = !self.question!.isLiked
+                    self.thumbImage.image = UIImage(named: "thumb_s")
+                    self.question?.thumbCount = (self.question?.thumbCount!)! + 1
+                    self.thumbCountLabel.text = "\((self.question?.thumbCount)!)"
+                }
             } else {
                 //self.viewController?.displayMessage(message: resp.errorMessage!)
                 return

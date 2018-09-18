@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import QorumLogs
+import MJRefresh
 
 public protocol PagableControllerDelegate : NSObjectProtocol {
     func searchHandler(respHandler: @escaping ((_ resp: ServerResponse) -> Void))
@@ -29,14 +30,20 @@ class PagableController<T> : NSObject {
     var isShowLoadCompleteText = true
     var confirmDelegate : ConfirmDelegate?
     
-    var refreshControl: UIRefreshControl!
+    //var refreshControl: UIRefreshControl!
+    let refreshHeader = MJRefreshNormalHeader()
     
     func initController() {
         confirmDelegate = ConfirmDelegate(controller: viewController)
         if isNeedRefresh {
+            /*
             refreshControl = UIRefreshControl()
             refreshControl.addTarget(self, action: #selector(refresh), for: UIControlEvents.valueChanged)
-            tableView.addSubview(refreshControl)
+            tableView.addSubview(refreshControl) */
+            refreshHeader.setRefreshingTarget(self, refreshingAction: #selector(refresh))
+            tableView.mj_header = refreshHeader
+            refreshHeader.lastUpdatedTimeLabel.isHidden = true
+            refreshHeader.stateLabel.isHidden = true
         }
     }
     
@@ -74,7 +81,7 @@ class PagableController<T> : NSObject {
     
     @objc func refresh() {
         if (quering) {
-            refreshControl.endRefreshing()
+            refreshHeader.endRefreshing()
             return
         }
         
@@ -92,7 +99,7 @@ class PagableController<T> : NSObject {
     
     func afterHandleRefreshRespones(resp: PageServerResponse<T>) {
         self.quering = false
-        refreshControl.endRefreshing()
+        refreshHeader.endRefreshing()
         
         if resp.status != 0 {
             print("Server Return Error")

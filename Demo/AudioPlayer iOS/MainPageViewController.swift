@@ -13,6 +13,7 @@ import Auk
 import MarqueeLabel
 import Gifu
 import LTScrollView
+import MJRefresh
 
 class CourseMainPageViewController: BaseUIViewController, LTTableViewProtocal {
 
@@ -26,7 +27,7 @@ class CourseMainPageViewController: BaseUIViewController, LTTableViewProtocal {
     var keyValueStore = KeyValueStore()
 
     var loading = LoadingOverlay()
-    var refreshControl:UIRefreshControl!
+    //var refreshControl:UIRefreshControl!
     var refreshing = false
     
     var toutiao = Toutiao()
@@ -47,6 +48,8 @@ class CourseMainPageViewController: BaseUIViewController, LTTableViewProtocal {
     var isShowAd = false
     var popupAd = Advertise()
     
+    let refreshHeader = MJRefreshNormalHeader()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     
@@ -57,8 +60,7 @@ class CourseMainPageViewController: BaseUIViewController, LTTableViewProtocal {
         items![3].title = "已购"
         items![4].title = "我的"
         
-        navigationManager = NavigationBarManager(self)
-        Utils.setNavigationBarAndTableView(self, tableView: tableView)
+       
         
         tableView.separatorStyle = .none
         
@@ -72,14 +74,15 @@ class CourseMainPageViewController: BaseUIViewController, LTTableViewProtocal {
         buyPayCourseDelegate = ConfirmDelegate2(controller: self)
         
         setExtendFuncMgrConfig()
-        //extendFunctionMananger = ExtendFunctionMananger(controller: self, isNeedMore:  true, showMaxRows: maxRows)
-        //addPlayingButton(button: playingButton)
        
         //下拉刷新设置
-        refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: #selector(refresh), for: UIControlEvents.valueChanged)
-        tableView.addSubview(refreshControl)
         refreshing = false
+        
+        refreshHeader.setRefreshingTarget(self, refreshingAction: #selector(refresh))
+        tableView.mj_header = refreshHeader
+        refreshHeader.lastUpdatedTimeLabel.isHidden = true
+        refreshHeader.stateLabel.isHidden = true
+        
         makeCells()
         
         loadFunctionInfos()
@@ -88,6 +91,9 @@ class CourseMainPageViewController: BaseUIViewController, LTTableViewProtocal {
         //loadToutiao()
         loadQuestions()
         loadFinanceToutiaos()
+        
+        navigationManager = NavigationBarManager(self)
+        Utils.setNavigationBarAndTableView(self, tableView: tableView)
     }
     
     func setExtendFuncMgrConfig() {
@@ -107,7 +113,7 @@ class CourseMainPageViewController: BaseUIViewController, LTTableViewProtocal {
         let searchLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 30))
         searchLabel.layer.masksToBounds = true
         searchLabel.layer.cornerRadius = 15
-        searchLabel.backgroundColor =  UIColor(white: 0.9, alpha: 0.8)
+        searchLabel.backgroundColor =  UIColor(white: 0.9, alpha: 0.7)
         searchLabel.text = "融资、信用卡、关键词"
         searchLabel.textColor =  UIColor.lightGray
         searchLabel.font = searchLabel.font.withSize(13)
@@ -239,7 +245,8 @@ class CourseMainPageViewController: BaseUIViewController, LTTableViewProtocal {
     
     @objc func refresh() {
         if (refreshing) {
-            refreshControl.endRefreshing()
+            //refreshControl.endRefreshing()
+            refreshHeader.endRefreshing()
             return
         }
         
@@ -602,7 +609,7 @@ extension CourseMainPageViewController  {
         BasicService().sendRequest(url: ServiceConfiguration.GET_MAIN_PAGE_ADS, request: GetMainPageAdsRequest()) {
             (resp: GetMainPageAdsResponse) -> Void in
             if self.refreshing {
-                self.refreshControl.endRefreshing()
+                self.refreshHeader.endRefreshing()
             }
             self.refreshing = false
             
@@ -658,7 +665,7 @@ extension CourseMainPageViewController  {
         BasicService().sendRequest(url: ServiceConfiguration.GET_ZHUANLAN_AND_TUIJIAN_COURSES, request: GetZhuanLanAndTuijianCoursesRequest()) {
             (resp: GetZhuanLanAndTuijianCoursesResponse) -> Void in
             if self.refreshing {
-                self.refreshControl.endRefreshing()
+                self.refreshHeader.endRefreshing()
             }
             self.refreshing = false
             
@@ -671,30 +678,13 @@ extension CourseMainPageViewController  {
             self.tableView.reloadData()
         }
     }
-    
-    /*
-    func loadToutiao() {
-        BasicService().sendRequest(url: ServiceConfiguration.GET_TOUTIAO, request: GetToutiaoRequest()) {
-            (resp: GetToutiaoResponse) -> Void in
-            if self.refreshing {
-                self.refreshControl.endRefreshing()
-            }
-            self.refreshing = false
-            
-            self.toutiao.content = resp.content
-            self.toutiao.clickUrl = resp.clickUrl
-            self.toutiao.title = resp.title
-            
-            self.makeCells()
-            self.tableView.reloadData()
-        }
-    } */
+
     
     func loadQuestions() {
         BasicService().sendRequest(url: ServiceConfiguration.GET_QUESTIONS, request: GetQuestionsRequest()) {
             (resp: GetQuestionsResponse) -> Void in
             if self.refreshing {
-                self.refreshControl.endRefreshing()
+                self.refreshHeader.endRefreshing()
             }
             self.refreshing = false
             
@@ -709,7 +699,7 @@ extension CourseMainPageViewController  {
         BasicService().sendRequest(url: ServiceConfiguration.GET_FINANCE_TOUTIAOS, request: GetFinanceToutiaoRequest()) {
             (resp: GetFinanceToutiaoResponse) -> Void in
             if self.refreshing {
-                self.refreshControl.endRefreshing()
+                self.refreshHeader.endRefreshing()
             }
             self.refreshing = false
             

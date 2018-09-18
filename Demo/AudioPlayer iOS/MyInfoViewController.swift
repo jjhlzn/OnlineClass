@@ -9,6 +9,7 @@
 import UIKit
 import QorumLogs
 import Kingfisher
+import MJRefresh
 
 class MyInfoLineInfo {
     
@@ -19,6 +20,8 @@ class MyInfoVieController: BaseUIViewController, UITableViewDataSource, UITableV
     
     @IBOutlet weak var tableView: UITableView!
     var navigationManager : NavigationBarManager!
+    
+    let refreshHeader = MJRefreshNormalHeader()
     
     var fourthSections = [
         ["me_wallet", "我的钱包", "webViewSegue", ServiceLinkManager.MyWalletUrl, "1", KeyValueStore.key_zhidian] ,
@@ -44,7 +47,7 @@ class MyInfoVieController: BaseUIViewController, UITableViewDataSource, UITableV
     var keyValueStore = KeyValueStore()
     var loginUserStore = LoginUserStore()
     
-    var refreshControl: UIRefreshControl!
+    //var refreshControl: UIRefreshControl!
     var querying = false
 
     
@@ -64,16 +67,17 @@ class MyInfoVieController: BaseUIViewController, UITableViewDataSource, UITableV
         tableView.delegate = self
         tableView.separatorStyle = .none
         
-        refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: #selector(refresh), for: UIControlEvents.valueChanged)
-        tableView.addSubview(refreshControl)
+        refreshHeader.setRefreshingTarget(self, refreshingAction: #selector(refresh))
+        tableView.mj_header = refreshHeader
+        refreshHeader.lastUpdatedTimeLabel.isHidden = true
+        refreshHeader.stateLabel.isHidden = true
         
     }
     
     
     @objc func refresh() {
         if (querying) {
-            refreshControl.endRefreshing()
+            refreshHeader.endRefreshing()
             return
         }
         loadUserData()
@@ -86,7 +90,7 @@ class MyInfoVieController: BaseUIViewController, UITableViewDataSource, UITableV
             self.updateUserStatData(resp: resp)
             self.tableView.reloadData()
             self.querying = false
-            self.refreshControl.endRefreshing()
+            self.refreshHeader.endRefreshing()
         }
     }
     

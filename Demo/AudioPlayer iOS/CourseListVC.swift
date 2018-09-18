@@ -9,6 +9,7 @@
 import UIKit
 import QorumLogs
 import KDEAudioPlayer
+import MJRefresh
 
 class CourseListVC: BaseUIViewController, UITableViewDataSource, UITableViewDelegate, PagableControllerDelegate {
 
@@ -27,7 +28,6 @@ class CourseListVC: BaseUIViewController, UITableViewDataSource, UITableViewDele
     
     var navigationManager : NavigationBarManager!
     
-    lazy var box = UIView()
     
 
     
@@ -280,6 +280,7 @@ extension CourseListVC {
         
         let  headerCell = tableView.dequeueReusableCell(withIdentifier: "courseHeaderCell") as! NewCourseHeaderCell
         headerCell.isUserInteractionEnabled = false
+        //headerCell.backgroundColor = UIColor.red
         
         switch (section) {
         case 1:

@@ -230,7 +230,6 @@ class Utils {
             tableView?.contentInsetAdjustmentBehavior = .never
             if UIDevice().isX() {
                 tableView?.contentInset = UIEdgeInsetsMake(24, 0, 0, 0)
-
             }
             
         } else {

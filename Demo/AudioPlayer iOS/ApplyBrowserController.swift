@@ -11,6 +11,7 @@ import WebKit
 import StoreKit
 import QorumLogs
 import Alamofire
+import MJRefresh
 //import Kanna
 
 
@@ -19,7 +20,8 @@ class ApplyBrowserController : IapSupportWebPageViewController, WKNavigationDele
     var url : NSURL!
     @IBOutlet weak var backButton: UIBarButtonItem!
     var backButtonCopy: UIBarButtonItem!
-    var refreshControl:UIRefreshControl!
+    //var refreshControl:UIRefreshControl!
+    let refreshHeader = MJRefreshNormalHeader()
     
     //var leftBarButtonItems: [UIBarButtonItem]?
     var loading = LoadingCircle()
@@ -78,7 +80,7 @@ class ApplyBrowserController : IapSupportWebPageViewController, WKNavigationDele
     
     @objc func refresh() {
         webView?.reload()
-        self.refreshControl.endRefreshing()
+        self.refreshHeader.endRefreshing()
     }
     
     
@@ -119,16 +121,16 @@ class ApplyBrowserController : IapSupportWebPageViewController, WKNavigationDele
         self.webView = WKWebView(frame: rect, configuration: config)
         
         if isNeedRefresh {
-            refreshControl = UIRefreshControl()
-            refreshControl.addTarget(self, action: #selector(refresh), for: UIControlEvents.valueChanged)
-            webView?.scrollView.addSubview(refreshControl)
+            refreshHeader.setRefreshingTarget(self, refreshingAction: #selector(refresh))
+            webView?.scrollView.mj_header = refreshHeader
+            refreshHeader.lastUpdatedTimeLabel.isHidden = true
+            refreshHeader.stateLabel.isHidden = true
         }
         
         self.webContainer.addSubview(self.webView!)
         self.webView?.navigationDelegate = self
         
         let nsurl = NSURL(string: url1!)
-        QL1("NSUrl = \(nsurl)")
         let myRequest = NSURLRequest(url: nsurl! as URL);
         //webView.delegate = self
         webView!.load(myRequest as URLRequest);
