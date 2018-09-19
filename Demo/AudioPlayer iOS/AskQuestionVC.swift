@@ -25,6 +25,8 @@ class AskQuestionVC: BaseUIViewController, UITextViewDelegate {
         contentView.becomeFirstResponder()
         contentView.delegate = self
         contentView.placeholder = "问题内容限制在400字以内"
+        
+        setLeftBackButton()
     }
     
 
