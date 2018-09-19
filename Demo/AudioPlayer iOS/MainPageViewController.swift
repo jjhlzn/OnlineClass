@@ -131,14 +131,14 @@ class CourseMainPageViewController: BaseUIViewController, LTTableViewProtocal {
     var leftButton : UIBarButtonItem!
     
     func setKefuButton() {
-        let b = UIButton(frame: CGRect(x: -20, y: 0, width: 24, height: 24))
+        let b = UIButton(frame: CGRect(x: 0, y: 0, width: 24, height: 24))
         b.setImage( UIImage(named: "backicon"), for: .normal)
         //b.backgroundColor = UIColor.red
         // b.frame = CGRect(x: 0, y: 0, width: 35, height: 35)
         leftButton = UIBarButtonItem(image: UIImage(named: "new_kefu"), style: .plain, target: self, action: #selector(self.keFuPressed))
         
         // leftButton.image = UIImage(named: "backicon")
-        leftButton.imageInsets = UIEdgeInsets(top: 0, left: 2, bottom: 0, right: 0)
+        leftButton.imageInsets = UIEdgeInsets(top: 0, left: -4, bottom: 0, right: 0)  //-10表示让leftButton的图标向左偏移
         //leftButton.action = #selector(self._backPressed)
         //leftButton.
         

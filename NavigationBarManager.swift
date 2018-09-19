@@ -28,8 +28,12 @@ class NavigationBarManager: NSObject {
     
     func setMusicButton() {
         let customView = getMusicCustomView()
-        customView.backgroundColor = UIColor.red
-        let musicButton = UIBarButtonItem(customView: customView)
+        //customView.backgroundColor = UIColor.red
+        
+        let container = UIView(frame: CGRect(x: 8, y: 0, width: 24, height: 24))
+        container.addSubview(customView)
+        //container.backgroundColor = UIColor.red
+        let musicButton = UIBarButtonItem(customView: container)
         viewController.navigationItem.rightBarButtonItems?.append(musicButton)
         if #available(iOS 11.0, *) {
             musicButton.customView?.snp.makeConstraints({ (make) in
@@ -43,14 +47,14 @@ class NavigationBarManager: NSObject {
     func getMusicCustomView() -> UIView {
         let audioPlayer = Utils.getAudioPlayer()
         if audioPlayer.state == AudioPlayerState.playing {
-            self.imageView = GIFImageView(frame: CGRect(x: 20, y: 0, width: 40, height: 24))
+            self.imageView = GIFImageView(frame: CGRect(x: 8, y: 0, width: 24, height: 24))
             self.imageView.backgroundColor = nil
             self.imageView.animate(withGIFNamed: "demo")
             self.imageView.setNeedsDisplay()
             self.imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tapMusicBtnHandler(sender:))))
             return self.imageView
         } else {
-            self.staticImageView = UIImageView(frame: CGRect(x: 20, y: 0, width: 40, height: 24))
+            self.staticImageView = UIImageView(frame: CGRect(x: 8, y: 0, width: 24, height: 24))
             self.staticImageView.image = UIImage(named: "music_static")
             staticImageView.isUserInteractionEnabled = true
             let tapHandler = UITapGestureRecognizer(target: self, action: #selector(tapMusicBtnHandler(sender:)))
