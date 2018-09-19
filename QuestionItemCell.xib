@@ -44,7 +44,7 @@
                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Zyj-fl-asS">
                         <rect key="frame" x="10" y="215" width="394" height="1"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                        <color key="backgroundColor" red="0.91767131979695427" green="0.91767131979695427" blue="0.91767131979695427" alpha="0.51278895547945202" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.84347239847715727" green="0.84347239847715727" blue="0.84347239847715727" alpha="0.55744327910958902" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HJF-JH-qLq">
                         <rect key="frame" x="10" y="57" width="394" height="62"/>
