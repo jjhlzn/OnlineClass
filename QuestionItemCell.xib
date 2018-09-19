@@ -11,11 +11,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="215" id="Se0-EV-Niz" customClass="QuestionItemCell" customModule="AudioPlayer" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="414" height="215"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="219" id="Se0-EV-Niz" customClass="QuestionItemCell" customModule="AudioPlayer" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="219"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Se0-EV-Niz" id="xNb-Yn-KG7">
-                <rect key="frame" x="0.0" y="0.0" width="414" height="214.66666666666666"/>
+                <rect key="frame" x="0.0" y="0.0" width="414" height="218.66666666666666"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="金军航1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VvB-hN-RcI">
@@ -42,9 +42,9 @@
                         <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Zyj-fl-asS">
-                        <rect key="frame" x="10" y="211" width="394" height="1"/>
+                        <rect key="frame" x="10" y="215" width="394" height="1"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                        <color key="backgroundColor" red="0.81129045050761417" green="0.81129045050761417" blue="0.81129045050761417" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.91767131979695427" green="0.91767131979695427" blue="0.91767131979695427" alpha="0.51278895547945202" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HJF-JH-qLq">
                         <rect key="frame" x="10" y="57" width="394" height="62"/>
@@ -95,7 +95,7 @@
                 <outlet property="timeLabel" destination="84a-FS-gZG" id="XuT-QJ-93d"/>
                 <outlet property="userNameLabel" destination="VvB-hN-RcI" id="ieH-As-1Gw"/>
             </connections>
-            <point key="canvasLocation" x="137" y="23.5"/>
+            <point key="canvasLocation" x="137" y="25.5"/>
         </tableViewCell>
     </objects>
     <resources>

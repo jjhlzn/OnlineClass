@@ -14,6 +14,7 @@ import MarqueeLabel
 import Gifu
 import LTScrollView
 import MJRefresh
+import SnapKit
 
 class CourseMainPageViewController: BaseUIViewController, LTTableViewProtocal {
 
@@ -52,18 +53,15 @@ class CourseMainPageViewController: BaseUIViewController, LTTableViewProtocal {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+
         let items = self.tabBarController?.tabBar.items
         items![0].title = "探索"
         items![1].title = "签到"
         items![2].title = "直播"
         items![3].title = "已购"
         items![4].title = "我的"
-        
-       
-        
+    
         tableView.separatorStyle = .none
-        
         tableView.dataSource = self
         tableView.delegate = self
 
@@ -110,9 +108,9 @@ class CourseMainPageViewController: BaseUIViewController, LTTableViewProtocal {
         self.navigationItem.rightBarButtonItems = []
         navigationManager.setMusicButton()
         setKefuButton()
-        let searchLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 30))
+        let searchLabel = UILabel(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width * 0.65, height: 24))
         searchLabel.layer.masksToBounds = true
-        searchLabel.layer.cornerRadius = 15
+        searchLabel.layer.cornerRadius = 10
         searchLabel.backgroundColor =  UIColor(white: 0.9, alpha: 0.7)
         searchLabel.text = "融资、信用卡、关键词"
         searchLabel.textColor =  UIColor.lightGray
@@ -130,13 +128,38 @@ class CourseMainPageViewController: BaseUIViewController, LTTableViewProtocal {
         performSegue(withIdentifier: "newSearchSegue", sender: nil)
     }
     
+    var leftButton : UIBarButtonItem!
+    
     func setKefuButton() {
-        let b = UIButton(type: .custom)
-        b.setImage( UIImage(named: "new_kefu"), for: .normal)
-        b.frame = CGRect(x: 0, y: 0, width: 35, height: 35)
-        let button = UIBarButtonItem(customView: b)
-        b.addTarget(self, action: #selector(keFuPressed), for: .touchUpInside)
-        self.navigationItem.leftBarButtonItem  = button
+        let b = UIButton(frame: CGRect(x: -20, y: 0, width: 24, height: 24))
+        b.setImage( UIImage(named: "backicon"), for: .normal)
+        //b.backgroundColor = UIColor.red
+        // b.frame = CGRect(x: 0, y: 0, width: 35, height: 35)
+        leftButton = UIBarButtonItem(image: UIImage(named: "new_kefu"), style: .plain, target: self, action: #selector(self.keFuPressed))
+        
+        // leftButton.image = UIImage(named: "backicon")
+        leftButton.imageInsets = UIEdgeInsets(top: 0, left: 2, bottom: 0, right: 0)
+        //leftButton.action = #selector(self._backPressed)
+        //leftButton.
+        
+        //b.addTarget(self, action: #selector(_backPressed), for: .touchUpInside)
+        self.navigationItem.leftBarButtonItem  = leftButton
+        
+        if #available(iOS 11.0, *) {
+            leftButton.customView?.snp.makeConstraints({ (make) in
+                make.width.equalTo(24)
+                make.height.equalTo(24)
+            })
+        }
+    }
+    
+    var barStackView : UIView?
+    override func updateViewConstraints() {
+        leftButton.customView?.superview?.backgroundColor = UIColor.red
+        leftButton.customView?.superview?.snp.makeConstraints({ (make) in
+           //make.left.equalTo(0)
+        }) 
+        super.updateViewConstraints()
     }
     
     @objc func keFuPressed() {
@@ -157,6 +180,8 @@ class CourseMainPageViewController: BaseUIViewController, LTTableViewProtocal {
         if isShowAd {
             hidePopupAd()
         }
+        
+        updateViewConstraints()
     }
     
     override func viewDidAppear(_ animated: Bool) {

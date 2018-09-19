@@ -23,6 +23,7 @@ class ResetPasswordController: BaseUIViewController, UITableViewDataSource, UITa
         tableView.delegate = self
         
         Utils.setNavigationBarAndTableView(self, tableView: tableView)
+        setLeftBackButton()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

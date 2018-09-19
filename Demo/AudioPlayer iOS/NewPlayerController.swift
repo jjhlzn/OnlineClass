@@ -111,16 +111,29 @@ class NewPlayerController: UIViewController, UIScrollViewDelegate, AudioPlayerDe
     
     func setBackButton(_ isTranslucent : Bool) {
         let b = UIButton(type: .custom)
-        
         var imageName = "back_black"
         if isTranslucent {
             imageName = "back_white"
         }
         b.setImage( UIImage(named: imageName), for: .normal)
-        b.frame = CGRect(x: -10, y: 0, width: 35, height: 35)
+        b.frame = CGRect(x: -20, y: 0, width: 35, height: 35)
         let button = UIBarButtonItem(customView: b)
+        
         b.addTarget(self, action: #selector(backPressed), for: .touchUpInside)
         self.navigationItem.leftBarButtonItem  = button
+    }
+    
+    func setBackButton2(_ isTranslucent : Bool) {
+        
+        var imageName = "back_white"
+        if isTranslucent {
+            imageName = "back_black"
+        }
+
+        let leftButton = UIBarButtonItem(image: UIImage(named: imageName), style: .plain, target: self, action: #selector(self.backPressed))
+        
+        leftButton.imageInsets = UIEdgeInsets(top: 0, left: -5, bottom: 0, right: 0)
+        self.navigationItem.leftBarButtonItem  = leftButton
     }
     
     

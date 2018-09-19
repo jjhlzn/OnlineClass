@@ -55,7 +55,7 @@ class QuestionItemCell: UITableViewCell {
         thumbImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tapThumbImage)))
         thumbImage.isUserInteractionEnabled = true
         
-        interLine.frame.size.height = 0.8
+        interLine.frame.size.height = 0.6
     }
     
     
@@ -187,9 +187,9 @@ class QuestionItemCell: UITableViewCell {
     public func getHeight() -> CGFloat {
         var heigth : CGFloat = 0
         if question!.answers.count > 0 {
-            heigth = getFirstPartHeight() + answersView.frame.height + 11
+            heigth = getFirstPartHeight() + answersView.frame.height + 11 + 8
         } else {
-            heigth = getFirstPartHeight() + 5
+            heigth = getFirstPartHeight() + 5 + 8
         }
         QL1("question cell height: \(getFirstPartHeight()) \(answersView.frame.height) \(heigth)")
         return heigth

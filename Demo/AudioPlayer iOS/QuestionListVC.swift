@@ -37,6 +37,8 @@ class QuestionListVC: BaseUIViewController, LTTableViewProtocal,
         pagableController.loadMore()
         
         Utils.setNavigationBarAndTableView(self, tableView: tableView)
+        
+        setLeftBackButton()
     }
 
     //PageableControllerDelegate

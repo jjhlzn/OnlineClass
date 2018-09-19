@@ -35,6 +35,7 @@ class CodeImageViewController: BaseUIViewController, FSPagerViewDataSource, FSPa
         pagerView.interitemSpacing = 30
         let width = UIScreen.main.bounds.width * 0.75
         let height = width * 1.8
+        
         pagerView.itemSize = CGSize(width: width, height: height)
        // pagerView.is
         pagerView.backgroundColor = UIColor.white
@@ -42,19 +43,9 @@ class CodeImageViewController: BaseUIViewController, FSPagerViewDataSource, FSPa
         pagerView.delegate = self
         
         shareView = ShareView(frame: CGRect(x : 0, y: UIScreen.main.bounds.height - 233, width: UIScreen.main.bounds.width, height: 233), controller: self)
-        /*
-        let loginUser = LoginUserStore().getLoginUser()!
         
-        qrCodeImageStore = QrCodeImageStore()
-    
-        shareManager = ShareManager(controller: self)
-        shareManager.shareDescription = "扫一扫下载安装【巨方助手】，即可免费在线学习、提额、办卡、贷款！"
-        
-        if WXApi.isWXAppInstalled() && WXApi.isWXAppSupportApi() {
-            print("winxin share is OK")
-        } else {
-            print("winxin share is  NOT OK")
-        }*/
+        setLeftBackButton()
+
         loadData()
     }
     

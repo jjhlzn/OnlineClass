@@ -25,6 +25,7 @@ class SetNameViewController: BaseUIViewController, UITableViewDataSource, UITabl
         tableView.delegate = self
         
         Utils.setNavigationBarAndTableView(self, tableView: tableView)
+        setLeftBackButton()
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {

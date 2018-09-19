@@ -22,8 +22,13 @@ class ZhuanLanListVC: BaseUIViewController, UITableViewDataSource, UITableViewDe
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        setLeftBackButton()
+        
         navigationManager = NavigationBarManager(self)
         Utils.setNavigationBarAndTableView(self, tableView: tableView)
+        
+        //setBackButton()
         
         if type == ZhuanLanListVC.TYPE_ZHUANLAN {
             self.title = "专栏"
@@ -37,7 +42,35 @@ class ZhuanLanListVC: BaseUIViewController, UITableViewDataSource, UITableViewDe
         loadZhuanLans()
         // Do any additional setup after loading the view.
     }
-
+    
+    /*
+    override func updateViewConstraints() {
+        leftButton.customView?.superview?.snp.makeConstraints({ (make) in
+            make.left.equalTo(0)
+        })
+        super.updateViewConstraints()
+    }
+    
+    var leftButton : UIBarButtonItem!
+    func setBackButton() {
+        /*
+        let b = UIButton(frame: CGRect(x: -20, y: 0, width: 20, height: 20))
+        b.setImage( UIImage(named: "backicon"), for: .normal)
+        //b.backgroundColor = UIColor.red
+        // b.frame = CGRect(x: 0, y: 0, width: 35, height: 35)
+        leftButton = UIBarButtonItem(customView: b)
+        b.addTarget(self, action: #selector(backPressed), for: .touchUpInside)
+        self.navigationItem.leftBarButtonItem  = leftButton
+        leftButton.customView?.snp.makeConstraints({ (make) in
+            make.width.equalTo(22)
+            make.height.equalTo(22)
+        })*/
+    }
+    
+    
+    @objc func backPressed() {
+        self.navigationController?.popViewController(animated: true)
+    } */
     
     func loadZhuanLans() {
         let req = GetZhuanLansRequest()
@@ -64,6 +97,7 @@ class ZhuanLanListVC: BaseUIViewController, UITableViewDataSource, UITableViewDe
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setNavigationBar()
+        updateViewConstraints()
     }
     
     func setNavigationBar() {

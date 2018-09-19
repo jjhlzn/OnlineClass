@@ -9,6 +9,7 @@
 import UIKit
 import Gifu
 import KDEAudioPlayer
+import SnapKit
 
 class NavigationBarManager: NSObject {
 
@@ -27,22 +28,30 @@ class NavigationBarManager: NSObject {
     
     func setMusicButton() {
         let customView = getMusicCustomView()
+        customView.backgroundColor = UIColor.red
         let musicButton = UIBarButtonItem(customView: customView)
         viewController.navigationItem.rightBarButtonItems?.append(musicButton)
+        if #available(iOS 11.0, *) {
+            musicButton.customView?.snp.makeConstraints({ (make) in
+                make.width.equalTo(24)
+                make.height.equalTo(24)
+            })
+        }
     }
     
     
     func getMusicCustomView() -> UIView {
         let audioPlayer = Utils.getAudioPlayer()
         if audioPlayer.state == AudioPlayerState.playing {
-            self.imageView = GIFImageView(frame: CGRect(x: 0, y: -10, width: 32, height: 32))
+            self.imageView = GIFImageView(frame: CGRect(x: 20, y: 0, width: 40, height: 24))
             self.imageView.backgroundColor = nil
             self.imageView.animate(withGIFNamed: "demo")
             self.imageView.setNeedsDisplay()
             self.imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tapMusicBtnHandler(sender:))))
             return self.imageView
         } else {
-            self.staticImageView = UIImageView(image: UIImage(named: "music_static"))
+            self.staticImageView = UIImageView(frame: CGRect(x: 20, y: 0, width: 40, height: 24))
+            self.staticImageView.image = UIImage(named: "music_static")
             staticImageView.isUserInteractionEnabled = true
             let tapHandler = UITapGestureRecognizer(target: self, action: #selector(tapMusicBtnHandler(sender:)))
             staticImageView.addGestureRecognizer(tapHandler)
@@ -82,17 +91,31 @@ class NavigationBarManager: NSObject {
     
     func setShareButton() {
         let b = UIButton(type: .custom)
+        //b.backgroundColor = UIColor.red
         b.setImage( UIImage(named: "share_black2"), for: .normal)
-        b.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
+        b.frame = CGRect(x: 0, y: 0, width: 50, height: 24)
+        //b.backgroundColor = UIColor.blue
         
-        let view = UIView(frame: CGRect(x: 0, y: 5, width: 45, height: 45))
+        b.addTarget(self, action: #selector(sharePressed), for: .touchUpInside)
+        
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: 50, height: 24))
+        //view.backgroundColor = UIColor.blue
+        //view.backgroundColor = UIColor.red
         view.addSubview(b)
         let button = UIBarButtonItem(customView: view)
-        b.addTarget(self, action: #selector(sharePressed), for: .touchUpInside)
+        //view.isUserInteractionEnabled = true
+        //view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(sharePressed)))
+
         viewController.navigationItem.rightBarButtonItems?.append(button)
+        
     }
     
     @objc func sharePressed() {
         shareView?.show()
     }
 }
+
+
+
+
+

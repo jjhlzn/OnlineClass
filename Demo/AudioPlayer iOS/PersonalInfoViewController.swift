@@ -21,7 +21,7 @@ class PersonalInfoViewController: BaseUIViewController, UITableViewDataSource, U
         tableView.delegate = self
         
         Utils.setNavigationBarAndTableView(self, tableView: tableView)
-        
+        setLeftBackButton()
     }
     
     override func viewWillAppear(_ animated: Bool) {

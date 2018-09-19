@@ -20,6 +20,7 @@ class SettingsViewController: BaseUIViewController, UITableViewDataSource, UITab
         tableView.delegate = self
         
         Utils.setNavigationBarAndTableView(self, tableView: tableView)
+        setLeftBackButton()
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {

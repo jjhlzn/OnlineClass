@@ -24,6 +24,8 @@ class SetProfilePhotoController: BaseUIViewController {
         let url = ServiceConfiguration.GET_PROFILE_IMAGE + "?userid=" + loginUser.userName!
         imageView.kf.setImage(with: ImageResource(downloadURL: URL(string: url)!, cacheKey: ImageCacheKeys.User_Profile_Image))
         
+        setLeftBackButton()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
