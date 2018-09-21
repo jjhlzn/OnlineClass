@@ -30,7 +30,7 @@ class NavigationBarManager: NSObject {
         let customView = getMusicCustomView()
         //customView.backgroundColor = UIColor.red
         
-        let container = UIView(frame: CGRect(x: 8, y: 0, width: 24, height: 24))
+        let container = UIView(frame: CGRect(x: 8, y: 0, width: 24, height: 26))
         container.addSubview(customView)
         //container.backgroundColor = UIColor.red
         let musicButton = UIBarButtonItem(customView: container)
@@ -38,7 +38,7 @@ class NavigationBarManager: NSObject {
         if #available(iOS 11.0, *) {
             musicButton.customView?.snp.makeConstraints({ (make) in
                 make.width.equalTo(24)
-                make.height.equalTo(24)
+                make.height.equalTo(26)
             })
         }
     }
@@ -47,14 +47,15 @@ class NavigationBarManager: NSObject {
     func getMusicCustomView() -> UIView {
         let audioPlayer = Utils.getAudioPlayer()
         if audioPlayer.state == AudioPlayerState.playing {
-            self.imageView = GIFImageView(frame: CGRect(x: 8, y: 0, width: 24, height: 24))
+            self.imageView = GIFImageView(frame: CGRect(x: 8, y: 0, width: 24, height: 26))
             self.imageView.backgroundColor = nil
             self.imageView.animate(withGIFNamed: "demo")
             self.imageView.setNeedsDisplay()
+            self.imageView.isUserInteractionEnabled = true
             self.imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tapMusicBtnHandler(sender:))))
             return self.imageView
         } else {
-            self.staticImageView = UIImageView(frame: CGRect(x: 8, y: 0, width: 24, height: 24))
+            self.staticImageView = UIImageView(frame: CGRect(x: 8, y: 0, width: 24, height: 26))
             self.staticImageView.image = UIImage(named: "music_static")
             staticImageView.isUserInteractionEnabled = true
             let tapHandler = UITapGestureRecognizer(target: self, action: #selector(tapMusicBtnHandler(sender:)))

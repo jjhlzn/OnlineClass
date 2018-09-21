@@ -56,6 +56,10 @@ class Utils {
         )
     }
     
+    static func getNavigationBarHeight() -> CGFloat {
+        return UIDevice().isX() ? 64 + 24.0 : 64.0
+    }
+    
     static func setUserHeadImageView(_ headImageView: UIImageView, userId: String) {
         headImageView.becomeCircle()
         //headImageView.layer.borderWidth = 0.3
