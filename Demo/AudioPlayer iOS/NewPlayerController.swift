@@ -85,7 +85,6 @@ class NewPlayerController: UIViewController, UIScrollViewDelegate, AudioPlayerDe
         view.addSubview(advancedManager)
         advancedManagerConfig()
         
-        
         shareView = ShareView(frame: CGRect(x : 0, y: UIScreen.main.bounds.height - 233, width: UIScreen.main.bounds.width, height: 233), controller: self)
 
         var y = UIScreen.main.bounds.height - 40
@@ -195,13 +194,15 @@ class NewPlayerController: UIViewController, UIScrollViewDelegate, AudioPlayerDe
         setNavigationBar(true)
     }
     
-    func setNavigationBar(_ isTranslucent : Bool) {
+    func setNavigationBar(_ isTranslucent : Bool, offset : CGFloat = 0) {
         if self.navigationController?.backdropImageView == nil {
             self.navigationController?.backdropImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 315, height:88))
         }
         
         if isTranslucent {
-            self.navigationController?.setBarColor(image: UIImage(), color: nil, alpha: 0)
+            let alpha = (offset / Utils.getNavigationBarHeight()) > 1.0 ? 1 : offset / Utils.getNavigationBarHeight()
+            //QL1(alpha)
+            self.navigationController?.setBarColor(image: UIImage(), color: nil, alpha: alpha)
             let label = UILabel()
             self.navigationItem.titleView = label
         } else {
@@ -255,12 +256,6 @@ extension NewPlayerController: LTAdvancedScrollViewDelegate {
                
                 sender["title"] = "我要报名"
                 
-                /*
-                let vc = WebPageViewController()
-                vc.url = NSURL(string: ServiceLinkManager.MyAgentUrl2)
-                vc.title = "我要报名"
-                self.navigationController?.pushViewController(vc, animated: true)
-                */
                 self.performSegue(withIdentifier: "loadWebSegue", sender: sender)
                 
             }
@@ -268,13 +263,13 @@ extension NewPlayerController: LTAdvancedScrollViewDelegate {
     }
     
     func glt_scrollViewOffsetY(_ offsetY: CGFloat) {
-        //print("offset --> ", offsetY)
-        let Y: CGFloat = glt_iphoneX ? 64 + 24.0 : 64.0
+        //QL1(offsetY)
+        let Y: CGFloat = Utils.getNavigationBarHeight()
         self.isTouming = !( offsetY > Y )
         if offsetY > Y {
-            setNavigationBar(false)
+            setNavigationBar(false, offset: offsetY)
         } else {
-            setNavigationBar(true)
+            setNavigationBar(true,  offset: offsetY)
         }
     }
 }
