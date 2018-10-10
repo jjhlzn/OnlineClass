@@ -38,7 +38,6 @@ class ApplyBrowserController : IapSupportWebPageViewController, WKNavigationDele
         super.viewDidLoad()
         
         if tabBarController != nil {
-            QL1("title: \( self.tabBarController?.tabBar.items![self.tabBarController!.selectedIndex])")
             self.title = self.tabBarController?.tabBar.items![self.tabBarController!.selectedIndex].title
         }
 

@@ -97,9 +97,9 @@ class ShareManager {
         }
     }
 
-    
+    var defaultShareTitle = "扫一扫下载安装【知得】，在线学习信用卡、贷款、股票、基金、投资、理财、保险、财务等金融知识！"
     func resetDefaultSetting()  {
-        _shareTitle = "扫一扫下载安装【知得】，即可免费在线学习、提额、办卡、贷款！"
+        _shareTitle = defaultShareTitle
         let loginUser = LoginUserStore().getLoginUser()!
         _shareUrl = ServiceLinkManager.ShareQrImageUrl + "?userid=\(loginUser.userName!)"
         _shareDescription = "知得"
@@ -108,7 +108,7 @@ class ShareManager {
     
     init(controller : UIViewController) {
         self.controller = controller
-        _shareTitle = "扫一扫下载安装【知得】，即可免费在线学习、提额、办卡、贷款！"
+        _shareTitle = defaultShareTitle
         _shareDescription = ""
         
         if LoginUserStore().getLoginUser() != nil {

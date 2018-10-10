@@ -34,6 +34,13 @@ class ImageCacheKeys {
 class Utils {
     static let Model_Name = "jufangzhushou"
     
+    static func getTabHeight(controller: UIViewController) -> CGFloat {
+        if controller.tabBarController == nil {
+            return 49
+        }
+        return controller.tabBarController!.tabBar.frame.size.height
+    }
+    
     static func hexStringToUIColor (hex:String) -> UIColor {
         var cString:String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
         
@@ -57,7 +64,12 @@ class Utils {
     }
     
     static func getNavigationBarHeight() -> CGFloat {
-        return UIDevice().isX() ? 64 + 24.0 : 64.0
+        if UIDevice().isXMax() {
+            return 128
+        }
+        let result : CGFloat = UIDevice().isX() ? 64 + 24.0 : 64.0
+        QL1("result = \(result)")
+        return result
     }
     
     static func setUserHeadImageView(_ headImageView: UIImageView, userId: String) {
@@ -222,6 +234,8 @@ class Utils {
         return false
     }
     
+    
+
 
     static func getCurrentSong() -> LiveSong {
         let audioPlayer = getAudioPlayer()
@@ -230,9 +244,14 @@ class Utils {
     }
 
     static func setNavigationBarAndTableView(_ controller: UIViewController,  tableView: UITableView?) {
+        
         if #available(iOS 11.0, *) {
+            
             tableView?.contentInsetAdjustmentBehavior = .never
-            if UIDevice().isX() {
+            
+            if UIDevice().isXMax() {
+                tableView?.contentInset = UIEdgeInsetsMake(24, 0, 0, 0)
+            } else if UIDevice().isX() {
                 tableView?.contentInset = UIEdgeInsetsMake(24, 0, 0, 0)
             }
             
@@ -465,4 +484,14 @@ extension NSMutableAttributedString {
         self.addAttribute(NSAttributedStringKey.foregroundColor, value: color, range: range)
     }
     
+}
+
+extension UIImage {
+    func withAlpha(alpha: CGFloat) -> UIImage? {
+        UIGraphicsBeginImageContextWithOptions(size, false, scale)
+        draw(at: .zero, blendMode: .normal, alpha: alpha)
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return newImage
+    }
 }

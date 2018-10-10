@@ -22,9 +22,16 @@ class PlayerHeaderView: BaseCustomView {
 
     
     func initalize() {
+        if audioPlayer?.currentItem != nil {
+            update()
+        }
+        
+    }
+    
+    func update() {
         let item = audioPlayer?.currentItem as! MyAudioItem
         let song = item.song as! LiveSong
-        songImageView.kf.setImage(with: URL(string: song.imageUrl))
+        songImageView.kf.setImage(with: URL(string: song.imageUrl), placeholder: UIImage(named: "rect_placeholder"))
         listenerCountLabel.text = song.listenPeople
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(tapMusic))
@@ -34,7 +41,6 @@ class PlayerHeaderView: BaseCustomView {
     }
     
     @objc func tapMusic(_ sender: UITapGestureRecognizer) {
-        QL1("tap music")
         let state = audioPlayer?.state
         if state == AudioPlayerState.buffering || state == AudioPlayerState.waitingForConnection {
             audioPlayer?.pause()
@@ -49,7 +55,7 @@ class PlayerHeaderView: BaseCustomView {
     
     func updateMusicButton() {
         let state = audioPlayer?.state
-        QL1("state = \(state!)" )
+        //QL1("state = \(state!)" )
         if state == AudioPlayerState.buffering || state == AudioPlayerState.waitingForConnection {
             playerBtn.image = UIImage(named: "playerButton2")
             playerStatusLabel.text = "缓冲中"

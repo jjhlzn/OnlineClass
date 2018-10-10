@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0700"
+   LastUpgradeVersion = "0930"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -13,11 +13,11 @@
             buildForProfiling = "YES"
             buildForArchiving = "YES">
             <BuildableReference
-               BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'F9279FCEF8226C8DEA5C35687ADB5DD6'
-               BlueprintName = 'QorumLogs'
-               ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'QorumLogs.framework'>
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "809249DEE21EB59D28F30D1135C665E5"
+               BlueprintName = "QorumLogs"
+               ReferencedContainer = "container:Pods.xcodeproj"
+               BuildableName = "QorumLogs.framework">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

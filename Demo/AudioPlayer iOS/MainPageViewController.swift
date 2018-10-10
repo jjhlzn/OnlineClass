@@ -16,7 +16,7 @@ import LTScrollView
 import MJRefresh
 import SnapKit
 
-class CourseMainPageViewController: BaseUIViewController, LTTableViewProtocal {
+class CourseMainPageViewController: BaseUIViewController, LTTableViewProtocal, UIScrollViewDelegate {
 
     @IBOutlet weak var tableView: UITableView!
     
@@ -50,6 +50,7 @@ class CourseMainPageViewController: BaseUIViewController, LTTableViewProtocal {
     var popupAd = Advertise()
     
     let refreshHeader = MJRefreshNormalHeader()
+    let mainPageNavBar = MainPageNavigationBar()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,9 +62,11 @@ class CourseMainPageViewController: BaseUIViewController, LTTableViewProtocal {
         items![3].title = "已购"
         items![4].title = "我的"
     
+        
         tableView.separatorStyle = .none
         tableView.dataSource = self
         tableView.delegate = self
+        
 
         self.tableView.register(UINib(nibName:"QuestionHeaderCell", bundle:nil),forCellReuseIdentifier:"QuestionHeaderCell")
         self.tableView.register(UINib(nibName:"QuestionItemCell", bundle:nil),forCellReuseIdentifier:"QuestionItemCell")
@@ -78,6 +81,13 @@ class CourseMainPageViewController: BaseUIViewController, LTTableViewProtocal {
         
         refreshHeader.setRefreshingTarget(self, refreshingAction: #selector(refresh))
         tableView.mj_header = refreshHeader
+        
+        //如果是iphoneX则，需要加长下拉的程度
+        if UIDevice().isX() {
+            refreshHeader.frame.size.height += 40
+            let frame = refreshHeader.frame
+            refreshHeader.bounds = CGRect(x: frame.origin.x, y: frame.origin.y  - 20, width: frame.width, height: frame.height)
+        }
         refreshHeader.lastUpdatedTimeLabel.isHidden = true
         refreshHeader.stateLabel.isHidden = true
         
@@ -86,12 +96,25 @@ class CourseMainPageViewController: BaseUIViewController, LTTableViewProtocal {
         loadFunctionInfos()
         loadHeadAds()
         loadZhuanLanAndTuijianCourses()
-        //loadToutiao()
         loadQuestions()
         loadFinanceToutiaos()
         
         navigationManager = NavigationBarManager(self)
-        Utils.setNavigationBarAndTableView(self, tableView: tableView)
+        mainPageNavBar.navigationManager = navigationManager
+        mainPageNavBar.controller = self
+        setNavigationBarAndTableView(self, tableView: tableView)
+        //self.automaticallyAdjustsScrollViewInsets = false
+    }
+    
+    func setNavigationBarAndTableView(_ controller: UIViewController,  tableView: UITableView?) {
+        if #available(iOS 11.0, *) {
+            tableView?.contentInsetAdjustmentBehavior = .never
+            if UIDevice().isX() {
+                tableView?.contentInset = UIEdgeInsetsMake(0, 0, 0, 0)
+            }
+        } else {
+            controller.automaticallyAdjustsScrollViewInsets = false
+        }
     }
     
     func setExtendFuncMgrConfig() {
@@ -103,85 +126,33 @@ class CourseMainPageViewController: BaseUIViewController, LTTableViewProtocal {
         extendFunctionMananger.setConfig(controller: self, isNeedMore: true, showMaxRows: maxRows)
     }
     
-    func setNavigationBar() {
-        
-        self.navigationItem.rightBarButtonItems = []
-        navigationManager.setMusicButton()
-        setKefuButton()
-        let searchLabel = UILabel(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width * 0.65, height: 24))
-        searchLabel.layer.masksToBounds = true
-        searchLabel.layer.cornerRadius = 10
-        searchLabel.backgroundColor =  UIColor(white: 0.9, alpha: 0.7)
-        searchLabel.text = "融资、信用卡、关键词"
-        searchLabel.textColor =  UIColor.lightGray
-        searchLabel.font = searchLabel.font.withSize(13)
-        searchLabel.textAlignment = .center
-        searchLabel.isUserInteractionEnabled = true
-        
-        self.navigationItem.titleView = searchLabel
-        let tap = UITapGestureRecognizer(target: self, action: #selector(CourseMainPageViewController.tapSearchLabel))
-        searchLabel.addGestureRecognizer(tap)
+    
+    var lastOffSet : CGFloat = 0
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let offsetY = scrollView.contentOffset.y
+        lastOffSet = offsetY
+        mainPageNavBar.updateNavigationForOffsetAdust(offsetY)
+    }
+    
+    func setNavigationBar(_ offset : CGFloat = 0, updateAlways : Bool = false) {
+        //updateNavigationForOffsetAdust(offset, updateAlways: updateAlways)
+        mainPageNavBar.updateNavigationForOffsetAdust(offset, updateAlways: updateAlways)
     }
     
     @objc func tapSearchLabel(sender:UITapGestureRecognizer) {
-        QL1("seachLabel tapped")
         performSegue(withIdentifier: "newSearchSegue", sender: nil)
     }
-    
-    var leftButton : UIBarButtonItem!
-    
-    func setKefuButton() {
-        let b = UIButton(frame: CGRect(x: 0, y: 0, width: 24, height: 24))
-        b.setImage( UIImage(named: "backicon"), for: .normal)
-        //b.backgroundColor = UIColor.red
-        // b.frame = CGRect(x: 0, y: 0, width: 35, height: 35)
-        leftButton = UIBarButtonItem(image: UIImage(named: "new_kefu"), style: .plain, target: self, action: #selector(self.keFuPressed))
-        
-        // leftButton.image = UIImage(named: "backicon")
-        leftButton.imageInsets = UIEdgeInsets(top: 0, left: -4, bottom: 0, right: 0)  //-10表示让leftButton的图标向左偏移
-        //leftButton.action = #selector(self._backPressed)
-        //leftButton.
-        
-        //b.addTarget(self, action: #selector(_backPressed), for: .touchUpInside)
-        self.navigationItem.leftBarButtonItem  = leftButton
-        
-        if #available(iOS 11.0, *) {
-            leftButton.customView?.snp.makeConstraints({ (make) in
-                make.width.equalTo(24)
-                make.height.equalTo(24)
-            })
-        }
-    }
-    
-    var barStackView : UIView?
-    override func updateViewConstraints() {
-        leftButton.customView?.superview?.backgroundColor = UIColor.red
-        leftButton.customView?.superview?.snp.makeConstraints({ (make) in
-           //make.left.equalTo(0)
-        }) 
-        super.updateViewConstraints()
-    }
-    
-    @objc func keFuPressed() {
-        var sender = [String:String]()
-        sender["title"] = "客服"
-        sender["url"] = ServiceLinkManager.FunctionCustomerServiceUrl
-        performSegue(withIdentifier: "loadWebPageSegue", sender: sender)
-    }
-    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         //updatePlayingButton(button: playingButton)
          extendFunctionMananger.controller = self
-        self.setNavigationBar()
+        self.setNavigationBar(lastOffSet, updateAlways: true)
         isDisapeared = false
         
         if isShowAd {
             hidePopupAd()
         }
-        
-        updateViewConstraints()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -195,6 +166,9 @@ class CourseMainPageViewController: BaseUIViewController, LTTableViewProtocal {
         self.navigationItem.rightBarButtonItem  = nil
         
         isDisapeared = false
+        let nav = self.navigationController?.navigationBar
+        nav?.barStyle = UIBarStyle.default
+        nav?.tintColor = UIColor.black
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -253,6 +227,8 @@ class CourseMainPageViewController: BaseUIViewController, LTTableViewProtocal {
 
             audioPlayer.delegate = nil
             audioPlayer.play(items: audioItems, startAtIndex: 0)
+
+            (segue.destination as! NewPlayerController).hidesBottomBarWhenPushed = true
         }
     }
     
@@ -305,6 +281,8 @@ class CourseMainPageViewController: BaseUIViewController, LTTableViewProtocal {
         performSegue(withIdentifier: "loadWebPageSegue", sender: sender)
     }
     
+
+    
     private var cells = [UITableViewCell]()
     private var heights = [CGFloat]()
     private var didSelectActions = [(tableView: UITableView, indexPath: IndexPath) -> Void]()
@@ -339,23 +317,23 @@ extension CourseMainPageViewController : UITableViewDataSource, UITableViewDeleg
         heights.append(getHeaderAdvHeight())
         didSelectActions.append(dummyDidSelectAction)
         
+        for index in 0..<extendFunctionMananger.getRowCount() {
+            cells.append(extendFunctionMananger.getFunctionCell(tableView: tableView, row: index))
+            heights.append(extendFunctionMananger.cellHeight)
+            didSelectActions.append(dummyDidSelectAction)
+        }
+        
         if pos != nil {
+            cells.append(tableView.dequeueReusableCell(withIdentifier: "seperatorCell")!)
+            heights.append(8)
+            didSelectActions.append(dummyDidSelectAction)
+            
             let posCell = tableView.dequeueReusableCell(withIdentifier: "posCell") as! PosCell
             posCell.pos = pos
             posCell.viewController = self
             posCell.update()
             cells.append(posCell)
             heights.append(UIScreen.main.bounds.width / 375 * 28.0 )
-            didSelectActions.append(dummyDidSelectAction)
-        } else {
-            cells.append(tableView.dequeueReusableCell(withIdentifier: "seperatorCell")!)
-            heights.append(8)
-            didSelectActions.append(dummyDidSelectAction)
-        }
-        
-        for index in 0..<extendFunctionMananger.getRowCount() {
-            cells.append(extendFunctionMananger.getFunctionCell(tableView: tableView, row: index))
-            heights.append(extendFunctionMananger.cellHeight)
             didSelectActions.append(dummyDidSelectAction)
         }
         
@@ -365,7 +343,7 @@ extension CourseMainPageViewController : UITableViewDataSource, UITableViewDeleg
             didSelectActions.append(dummyDidSelectAction)
             
             cells.append(tableView.dequeueReusableCell(withIdentifier: "tuijianCourseHeaderCell")!)
-            heights.append(40)
+            heights.append(52)
             didSelectActions.append(dummyDidSelectAction)
             
             for index in 0..<courses.count {
@@ -388,7 +366,7 @@ extension CourseMainPageViewController : UITableViewDataSource, UITableViewDeleg
             didSelectActions.append(dummyDidSelectAction)
             
             cells.append(tableView.dequeueReusableCell(withIdentifier: "toutiaoHeaderCell")!)
-            heights.append(40)
+            heights.append(52)
             didSelectActions.append(dummyDidSelectAction)
             
             for index in 0..<toutiaos.count {
@@ -401,7 +379,7 @@ extension CourseMainPageViewController : UITableViewDataSource, UITableViewDeleg
                 }
                 toutiaoCell.update()
                 cells.append(toutiaoCell)
-                heights.append(42)
+                heights.append(30)
                 didSelectActions.append({ (tableView: UITableView, indexPath: IndexPath) -> Void in
                     var sender = [String:String]()
                     sender["title"] = self.toutiaos[index].title
@@ -418,7 +396,7 @@ extension CourseMainPageViewController : UITableViewDataSource, UITableViewDeleg
             didSelectActions.append(dummyDidSelectAction)
             
             cells.append(tableView.dequeueReusableCell(withIdentifier: "jpkHeaderCell")!)
-            heights.append(40)
+            heights.append(52)
             didSelectActions.append(dummyDidSelectAction)
             
             for index in 0..<jpks.count {
@@ -445,7 +423,7 @@ extension CourseMainPageViewController : UITableViewDataSource, UITableViewDeleg
             didSelectActions.append(dummyDidSelectAction)
             
             cells.append(tableView.dequeueReusableCell(withIdentifier: "zhuanLanHeaderCell")!)
-            heights.append(40)
+            heights.append(52)
             didSelectActions.append(dummyDidSelectAction)
             
             for index in 0..<zhuanLans.count {
@@ -476,7 +454,7 @@ extension CourseMainPageViewController : UITableViewDataSource, UITableViewDeleg
             let questionHeaderCell : QuestionHeaderCell = cellWithTableView(tableView)
             questionHeaderCell.viewController = self
             cells.append(questionHeaderCell)
-            heights.append(40)
+            heights.append(52)
             didSelectActions.append(dummyDidSelectAction)
             
             for index in 0..<questions.count {
@@ -519,6 +497,15 @@ extension CourseMainPageViewController : UITableViewDataSource, UITableViewDeleg
     
     
     func jumpToCourse(album: Album) {
+        let viewControllerStoryboardId = "NewPlayerController"
+        let storyboardName = "Main"
+        let storyboard = UIStoryboard(name: storyboardName, bundle: Bundle.main)
+        let vc = storyboard.instantiateViewController(withIdentifier: viewControllerStoryboardId) as! NewPlayerController
+        vc.hasBottomBar = false
+        self.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(vc, animated: true)
+        self.hidesBottomBarWhenPushed = false
+        /*
         if !album.isReady {
             self.displayMessage(message: "该课程未上线，敬请期待！")
             return
@@ -555,10 +542,8 @@ extension CourseMainPageViewController : UITableViewDataSource, UITableViewDeleg
             
             let song = songs[0]
             self.performSegue(withIdentifier: "newPlayerSegue", sender: song)
-        }
+        } */
     }
-    
-    
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath as IndexPath, animated: false)
@@ -570,7 +555,7 @@ extension CourseMainPageViewController : UITableViewDataSource, UITableViewDeleg
     
     private func getHeaderAdvHeight() -> CGFloat {
         let screenWidth = UIScreen.main.bounds.width
-        return screenWidth / 375 * 110.0
+        return screenWidth / 375 * 224
     }
 
 }

@@ -166,6 +166,7 @@
 		EF39750D20AD28410033620D /* MyInfoCommonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF39750C20AD28410033620D /* MyInfoCommonCell.swift */; };
 		EF39750F20B3B8340033620D /* NavigationBarManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF39750E20B3B8340033620D /* NavigationBarManager.swift */; };
 		EF422C69209ECD5300419FCA /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF422C68209ECD5300419FCA /* LaunchViewController.swift */; };
+		EF49FB682157C87400E0E673 /* MainPageNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF49FB672157C87400E0E673 /* MainPageNavigationBar.swift */; };
 		EF4B4847214F356C00909356 /* MyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF4B4846214F356C00909356 /* MyViewController.swift */; };
 		EF67C0431E24A901004EEAF0 /* AlbumHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF67C0421E24A901004EEAF0 /* AlbumHeaderCell.swift */; };
 		EF6C0F3820A2DA3400BE1829 /* MyGIfImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF6C0F3720A2DA3400BE1829 /* MyGIfImageView.swift */; };
@@ -368,6 +369,7 @@
 		EF39750C20AD28410033620D /* MyInfoCommonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MyInfoCommonCell.swift; path = cells/MyInfoCommonCell.swift; sourceTree = "<group>"; };
 		EF39750E20B3B8340033620D /* NavigationBarManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarManager.swift; sourceTree = "<group>"; };
 		EF422C68209ECD5300419FCA /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
+		EF49FB672157C87400E0E673 /* MainPageNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageNavigationBar.swift; sourceTree = "<group>"; };
 		EF4B4846214F356C00909356 /* MyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyViewController.swift; sourceTree = "<group>"; };
 		EF67C0421E24A901004EEAF0 /* AlbumHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumHeaderCell.swift; sourceTree = "<group>"; };
 		EF6C0F3720A2DA3400BE1829 /* MyGIfImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGIfImageView.swift; sourceTree = "<group>"; };
@@ -464,6 +466,7 @@
 				1C3479BE1CF3DECC003FEF05 /* controller */,
 				1C154A4F1CDACCA6003B900C /* MyUISlider.swift */,
 				EF39750E20B3B8340033620D /* NavigationBarManager.swift */,
+				EF49FB672157C87400E0E673 /* MainPageNavigationBar.swift */,
 			);
 			name = ui;
 			sourceTree = "<group>";
@@ -1006,7 +1009,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-AudioPlayer iOS/Pods-AudioPlayer iOS-resources.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-AudioPlayer iOS/Pods-AudioPlayer iOS-resources.sh",
 				"${PODS_ROOT}/WeiboSDK/libWeiboSDK/WeiboSDK.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
@@ -1015,7 +1018,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AudioPlayer iOS/Pods-AudioPlayer iOS-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AudioPlayer iOS/Pods-AudioPlayer iOS-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		63783D85F8B04DD6FFC5B7C3 /* [CP] Embed Pods Frameworks */ = {
@@ -1024,7 +1027,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-AudioPlayer iOS/Pods-AudioPlayer iOS-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-AudioPlayer iOS/Pods-AudioPlayer iOS-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/ALCameraViewController/ALCameraViewController.framework",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Auk/Auk.framework",
@@ -1032,11 +1035,13 @@
 				"${BUILT_PRODUCTS_DIR}/FSPagerView/FSPagerView.framework",
 				"${BUILT_PRODUCTS_DIR}/Gifu/Gifu.framework",
 				"${BUILT_PRODUCTS_DIR}/KDEAudioPlayer/KDEAudioPlayer.framework",
+				"${BUILT_PRODUCTS_DIR}/Kanna/Kanna.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/LTScrollView/LTScrollView.framework",
 				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
 				"${BUILT_PRODUCTS_DIR}/MarqueeLabel/MarqueeLabel.framework",
 				"${BUILT_PRODUCTS_DIR}/QorumLogs/QorumLogs.framework",
+				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 				"${BUILT_PRODUCTS_DIR}/Socket.IO-Client-Swift/SocketIO.framework",
 				"${BUILT_PRODUCTS_DIR}/Starscream/Starscream.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyBeaver/SwiftyBeaver.framework",
@@ -1052,11 +1057,13 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FSPagerView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Gifu.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KDEAudioPlayer.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kanna.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LTScrollView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MarqueeLabel.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/QorumLogs.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SocketIO.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Starscream.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyBeaver.framework",
@@ -1065,7 +1072,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AudioPlayer iOS/Pods-AudioPlayer iOS-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AudioPlayer iOS/Pods-AudioPlayer iOS-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		6A38FF6F25AFC71B6A998B43 /* [CP] Check Pods Manifest.lock */ = {
@@ -1083,7 +1090,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1113,6 +1120,7 @@
 				1C09D3C11CD1D462004A8F9C /* CommonPlayerPageViewController.swift in Sources */,
 				1C8926641D961EA300E0AEC6 /* IapSupportWebPageViewController.swift in Sources */,
 				1CA3B2101CD86B7800D0ABD8 /* MainPageViewController.swift in Sources */,
+				EF49FB682157C87400E0E673 /* MainPageNavigationBar.swift in Sources */,
 				1C1E69231CCA0F1700CEA029 /* CommentHeaderCell.swift in Sources */,
 				1C2684781CCB59210032C014 /* LoginViewController.swift in Sources */,
 				EF22C2751E23D7C500EA0F5A /* FooterAdvCell.swift in Sources */,

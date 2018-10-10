@@ -4,7 +4,7 @@ PODS:
   - Auk (8.0.2):
     - moa
   - Emoji-swift (0.2.2)
-  - FSPagerView (0.7.1)
+  - FSPagerView (0.8.1)
   - Gifu (3.0.0)
   - Kanna (4.0.0)
   - KDEAudioPlayer (1.1.0)
@@ -28,7 +28,7 @@ DEPENDENCIES:
   - ALCameraViewController (~> 3.0.3)
   - Auk (~> 8.0)
   - Emoji-swift (~> 0.2.2)
-  - FSPagerView (~> 0.7.1)
+  - FSPagerView (~> 0.8.1)
   - Gifu (~> 3.0.0)
   - Kanna (~> 4.0.0)
   - KDEAudioPlayer (~> 1.1.0)
@@ -44,6 +44,29 @@ DEPENDENCIES:
   - tingyunApp
   - WeiboSDK (from `https://github.com/sinaweibosdk/weibo_ios_sdk.git`)
 
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Alamofire
+    - ALCameraViewController
+    - Auk
+    - Emoji-swift
+    - FSPagerView
+    - Gifu
+    - Kanna
+    - KDEAudioPlayer
+    - Kingfisher
+    - LTScrollView
+    - MarqueeLabel
+    - MJRefresh
+    - moa
+    - QorumLogs
+    - SnapKit
+    - Socket.IO-Client-Swift
+    - Starscream
+    - SwiftyBeaver
+    - SwiftyJSON
+    - tingyunApp
+
 EXTERNAL SOURCES:
   WeiboSDK:
     :git: https://github.com/sinaweibosdk/weibo_ios_sdk.git
@@ -58,7 +81,7 @@ SPEC CHECKSUMS:
   ALCameraViewController: 6398a9282057f709b87a1ecc52a83b48028ade64
   Auk: 82be62a2cf650437fe745c81b12ac2440a0f682c
   Emoji-swift: d118ef9be36f02b4bfa702ffde08a4b07a9e1d3d
-  FSPagerView: 958aba39684e1573755ddcfcc29f7eebb8413cee
+  FSPagerView: 4e865526acc0b0e3077e2abb29b8d10a9f395476
   Gifu: 6543ca2056a3d697097c09fe543ef49348ccc892
   Kanna: d5ae2a26472f7e7a474e7f36a9cd8aa2c8c63ad3
   KDEAudioPlayer: b3787f02b6718c2416589a7726f2633cde2cd60e
@@ -76,6 +99,6 @@ SPEC CHECKSUMS:
   tingyunApp: bf9074313164f2b3595b5c2b422c8159cee03a58
   WeiboSDK: bceab625ec59b7039ba721cc4ba9f5868804f63e
 
-PODFILE CHECKSUM: abd8da90ab9718f93157237f013306ecd52c124d
+PODFILE CHECKSUM: 447f05a3bfa9003d17d59e282513725c789072cd
 
-COCOAPODS: 1.1.1
+COCOAPODS: 1.6.0.beta.1

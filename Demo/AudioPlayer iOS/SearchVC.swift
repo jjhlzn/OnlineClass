@@ -31,34 +31,22 @@ class SearchVC: BaseUIViewController, UITableViewDataSource, UITableViewDelegate
         searchBar  = UISearchBar()
         searchBar.delegate = self
         searchBar.placeholder = "融资、信用卡、关键字"
-        
         if UIDevice().isX() {
             let frame = searchView.frame
             let newFrame = CGRect(x: frame.minX, y: frame.minY + 24, width: frame.width, height: frame.height)
             searchView.frame = newFrame
             resultView.frame = newFrame
         }
-        
-        
-        //searchBar.frame = frame
-        //searchBars.backgroundColor = UIColor.white
         for subView in searchBar.subviews {
-            
             for subViewOne in subView.subviews {
-                
                 if subViewOne is UITextField {
                     subViewOne.backgroundColor = UIColor(white: 0.9, alpha: 0.8)
-                    
-                    //use the code below if you want to change the color of placeholder
-                    //let textFieldInsideUISearchBarLabel = textField.value(forKey: "placeholderLabel") as? UILabel
-                    //textFieldInsideUISearchBarLabel?.textColor = UIColor.blue
                 }
             }
         }
         self.navigationItem.titleView = searchBar
         searchBar.becomeFirstResponder()
         showSearchView(true)
-        
         loadSearchWords()
     }
     

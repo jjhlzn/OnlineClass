@@ -12,21 +12,31 @@ import KDEAudioPlayer
 
 class CourseOverviewVC: UIViewController, LTTableViewProtocal, LiveCommentDelegate {
 
-    var song : LiveSong!
+    var song : LiveSong?
     var comments = [Comment]()
+    var hasBottomBar : Bool = true
     
     private lazy var tableView: UITableView = {
-        print(UIScreen.main.bounds.height)
-        let H: CGFloat = glt_iphoneX ? (view.bounds.height - 38) : view.bounds.height  - 38
+        //print(UIScreen.main.bounds.height)
+        var H: CGFloat = view.bounds.height  - 38
+        if hasBottomBar {
+            H = view.bounds.height - Utils.getTabHeight(controller: self) - 38
+        }
         let tableView = tableViewConfig(CGRect(x: 0, y: 0, width: view.bounds.width, height: H), self, self, nil)
         tableView.separatorStyle = .none
         tableView.bounces = false
         return tableView
     }()
     
+    
+    public func refresh() {
+        loadComments()
+        self.tableView.reloadData()
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        song = Utils.getCurrentSong()
         view.backgroundColor = UIColor.white
         view.addSubview(tableView)
         glt_scrollView = tableView
@@ -41,7 +51,11 @@ class CourseOverviewVC: UIViewController, LTTableViewProtocal, LiveCommentDelega
         self.tableView.register(UINib(nibName:"NewCommentHeaderCell", bundle:nil),forCellReuseIdentifier:"NewCommentHeaderCell")
         self.tableView.register(UINib(nibName:"NewCommentCell", bundle:nil),forCellReuseIdentifier:"NewCommentCell")
         
-        loadComments()
+        if song == nil {
+            return
+        } else {
+            loadComments()
+        }
     }
     
     var lastId = "-1"
@@ -85,6 +99,9 @@ class CourseOverviewVC: UIViewController, LTTableViewProtocal, LiveCommentDelega
 extension CourseOverviewVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if song == nil {
+            return 0
+        }
         return 2 + 1 + comments.count
     }
     
@@ -120,7 +137,7 @@ extension CourseOverviewVC: UITableViewDelegate, UITableViewDataSource {
             return 56
         } else if row == 1 {
             let cell : CourseOverviewCell = cellWithTableView(tableView)
-            cell.overview.text = song.introduction
+            cell.overview.text = song!.introduction
             
             var frame = cell.overview.frame;
             cell.overview.numberOfLines = 0

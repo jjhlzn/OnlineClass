@@ -51,14 +51,7 @@ class WebPageViewController: IapSupportWebPageViewController, WKNavigationDelega
         
         navigationItem.leftBarButtonItems = [backButton]
         navigationItem.rightBarButtonItems = []
-
-        if title == "提额秘诀" {
-            
-        } else {
-            //navigationItem.rightBarButtonItems = []
-        }
         
-        QL1("set navigation bar")
         navigationManager.setMusicButton()
         navigationManager.setShareButton()
     

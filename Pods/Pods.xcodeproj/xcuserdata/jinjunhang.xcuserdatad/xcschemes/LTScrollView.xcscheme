@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0700"
+   LastUpgradeVersion = "0930"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -13,11 +13,11 @@
             buildForProfiling = "YES"
             buildForArchiving = "YES">
             <BuildableReference
-               BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '79A3083613F2A5E4A6B3FE13E0EEAC3D'
-               BlueprintName = 'LTScrollView'
-               ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'LTScrollView.framework'>
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "0E7E90CD94C3C85AF7A65A4990BC6494"
+               BlueprintName = "LTScrollView"
+               ReferencedContainer = "container:Pods.xcodeproj"
+               BuildableName = "LTScrollView.framework">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

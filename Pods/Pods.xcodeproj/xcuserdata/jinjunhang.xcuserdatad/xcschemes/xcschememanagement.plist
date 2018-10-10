@@ -99,7 +99,17 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>WeiboSDK.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>moa.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>tingyunApp.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>

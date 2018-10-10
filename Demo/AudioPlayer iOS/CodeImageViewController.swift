@@ -11,26 +11,36 @@ import Kingfisher
 import QorumLogs
 import FSPagerView
 import Kingfisher
+import SnapKit
 
 class CodeImageViewController: BaseUIViewController, FSPagerViewDataSource, FSPagerViewDelegate {
     
- 
     var imageUrls = [String]()
     var shareView: ShareView!
     
+    /*
     @IBOutlet weak var pagerView: FSPagerView! {
         didSet {
             self.pagerView.register(FSPagerViewCell.self, forCellWithReuseIdentifier: "cell")
         }
-    }
+    } */
     
     @IBOutlet weak var codeImageView: UIImageView!
     var qrCodeImageStore: QrCodeImageStore!
     
     var shareManager : ShareManager!
+    var pagerView: FSPagerView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let screenWidth = UIScreen.main.bounds.width
+        let frame1 = CGRect(x: 0, y: 0, width: 1, height: 1 )
+        pagerView = FSPagerView(frame: frame1)
+        pagerView.dataSource = self
+        pagerView.delegate = self
+        pagerView.register(FSPagerViewCell.self, forCellWithReuseIdentifier: "codeimage_view_cell")
+        self.view.addSubview(pagerView)
 
         pagerView.interitemSpacing = 30
         let width = UIScreen.main.bounds.width * 0.75
@@ -42,12 +52,20 @@ class CodeImageViewController: BaseUIViewController, FSPagerViewDataSource, FSPa
         pagerView.dataSource = self
         pagerView.delegate = self
         
+        pagerView.snp.makeConstraints { (make) -> Void in
+            make.height.equalTo(screenWidth / 375 * 444)
+            make.width.equalTo(screenWidth)
+            //make.left.equalTo(10)
+            make.center.equalToSuperview()
+        }
+        
         shareView = ShareView(frame: CGRect(x : 0, y: UIScreen.main.bounds.height - 233, width: UIScreen.main.bounds.width, height: 233), controller: self)
         
         setLeftBackButton()
 
         loadData()
     }
+
     
     private func loadData() {
         let request = GetShareImagesRequest()
@@ -69,7 +87,7 @@ class CodeImageViewController: BaseUIViewController, FSPagerViewDataSource, FSPa
     }
     
     public func pagerView(_ pagerView: FSPagerView, cellForItemAt index: Int) -> FSPagerViewCell {
-        let cell = pagerView.dequeueReusableCell(withReuseIdentifier: "cell", at: index)
+        let cell = pagerView.dequeueReusableCell(withReuseIdentifier: "codeimage_view_cell", at: index)
         cell.contentView.layer.shadowRadius = 0
         cell.textLabel?.backgroundColor = nil
         cell.imageView?.kf.setImage(with: URL(string: imageUrls[index]))
@@ -82,7 +100,7 @@ class CodeImageViewController: BaseUIViewController, FSPagerViewDataSource, FSPa
 
     func pagerView(_ pagerView: FSPagerView, didSelectItemAt index: Int) {
         //QL1("FSPagerView index = " + String(index) + " selected")
-        pagerView.deselectItem(at: index, animated: true)
+        pagerView.deselectItem(at: index, animated: false)
     }
     
     func pagerView(_ pagerView: FSPagerView, willDisplay cell: FSPagerViewCell, forItemAt index: Int) {

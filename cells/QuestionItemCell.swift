@@ -131,7 +131,7 @@ class QuestionItemCell: UITableViewCell {
     
     private func makeAnswerCell(_ answer: Answer, index: Int, origin: CGPoint) {
         
-        QL1("\(UIScreen.main.bounds.width)   \(answersView.frame.width)")
+        //QL1("\(UIScreen.main.bounds.width)   \(answersView.frame.width)")
         let label = UILabel(frame: CGRect(x: origin.x + padX, y: origin.y + padY, width: UIScreen.main.bounds.width - 10 * 2 - padX, height: 100))
         
         answerLabels.append(label)
@@ -191,7 +191,7 @@ class QuestionItemCell: UITableViewCell {
         } else {
             heigth = getFirstPartHeight() + 5 + 8
         }
-        QL1("question cell height: \(getFirstPartHeight()) \(answersView.frame.height) \(heigth)")
+        //QL1("question cell height: \(getFirstPartHeight()) \(answersView.frame.height) \(heigth)")
         return heigth
     }
     

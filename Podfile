@@ -15,7 +15,7 @@ target 'AudioPlayer iOS' do
     pod 'Socket.IO-Client-Swift', '~> 13.1.0' #ok
     pod 'tingyunApp'    #igonre
     pod 'MarqueeLabel/Swift', '~> 3.1.4'  #igonre
-    pod 'FSPagerView', '~> 0.7.1'
+    pod 'FSPagerView', '~> 0.8.1'
     pod 'WeiboSDK', :git => 'https://github.com/sinaweibosdk/weibo_ios_sdk.git' #ok
     pod 'Gifu', '~> 3.0.0'
     pod 'LTScrollView', '~> 0.1.5'
