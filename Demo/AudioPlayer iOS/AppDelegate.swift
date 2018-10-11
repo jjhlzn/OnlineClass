@@ -65,20 +65,20 @@ class AppDelegate : XinGeAppDelegate {
         application.registerUserNotificationSettings(notificationSettings)
     }
     
-    override func application(application: UIApplication, didRegisterUserNotificationSettings notificationSettings: UIUserNotificationSettings) {
-        super.application(application: application, didRegisterUserNotificationSettings: notificationSettings)
+    override func application(_ application: UIApplication, didRegister notificationSettings: UIUserNotificationSettings) {
+        super.application( application, didRegister: notificationSettings)
         if notificationSettings.types != .none {
             application.registerForRemoteNotifications()
         }
     }
     
     var deviceTokenString = ""
-    override func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
-        super.application(application: application, didRegisterForRemoteNotificationsWithDeviceToken: deviceToken)
-        let tokenChars = (deviceToken as NSData).bytes.bindMemory(to: CChar.self, capacity: deviceToken.length)
+    override func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        super.application( application, didRegisterForRemoteNotificationsWithDeviceToken: deviceToken)
+        let tokenChars = (deviceToken as NSData).bytes.bindMemory(to: CChar.self, capacity: deviceToken.count)
         var tokenString = ""
         
-        for i in 0..<deviceToken.length {
+        for i in 0..<deviceToken.count {
             tokenString += String(format: "%02.2hhx", arguments: [tokenChars[i]])
         }
 
@@ -91,7 +91,7 @@ class AppDelegate : XinGeAppDelegate {
             tokenString += String(format: "%02.2hhx", arguments: [tokenChars[i]])
         }*/
      
-        NSLog("devicetoken: \(tokenString)")
+        QL1("devicetoken: \(tokenString)")
         
         deviceTokenString = tokenString
         
@@ -115,7 +115,7 @@ class AppDelegate : XinGeAppDelegate {
         }
     }
     
-    override func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
+    override func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error)  {
         print("Failed to register:", error)
     }
     

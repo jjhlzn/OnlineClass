@@ -81,8 +81,10 @@ class WebPageViewController: IapSupportWebPageViewController, WKNavigationDelega
         let frame = self.view.bounds
         var H : CGFloat = 64
         if UIDevice().isX() {
-            H -= 32
+            H -= 24
         }
+        
+        QL1("minY = \(frame.minY)")
         let newFrame = CGRect(x: frame.minX, y: frame.minY, width: frame.width, height: frame.height - H)
         self.webView = WKWebView(frame: newFrame, configuration: config)
         
@@ -147,7 +149,7 @@ class WebPageViewController: IapSupportWebPageViewController, WKNavigationDelega
         if webView!.canGoBack {
             webView!.goBack()
             if webView?.url != nil {
-                QL1("url = \(webView?.url!)")
+                //QL1("url = \(webView?.url!)")
                 shareView.setShareUrl((webView?.url?.absoluteString)!)
             }
         } else {
@@ -161,7 +163,7 @@ class WebPageViewController: IapSupportWebPageViewController, WKNavigationDelega
         let loginUser = loginUserStore.getLoginUser()
         if  loginUser != nil {
             QL1("found login user")
-            QL1("userid = \(loginUser?.userName), password = \(loginUser?.password), token = \(loginUser?.token)")
+            //QL1("userid = \(loginUser?.userName), password = \(loginUser?.password), token = \(loginUser?.token)")
             self.performSegue(withIdentifier: "hasLoginSegue", sender: self)
         } else {
             QL1("no login user")

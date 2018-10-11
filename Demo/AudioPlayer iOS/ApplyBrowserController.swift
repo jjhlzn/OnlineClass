@@ -109,7 +109,7 @@ class ApplyBrowserController : IapSupportWebPageViewController, WKNavigationDele
         var height : CGFloat = 0
         
         if UIDevice().isX() {
-            height = fullScreen.height - tabbarHegith! * 2 + 24
+            height = fullScreen.height - tabbarHegith! * 2  + 24
         } else {
             height = fullScreen.height - tabbarHegith! * 2
         }

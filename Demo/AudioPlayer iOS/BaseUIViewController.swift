@@ -19,6 +19,7 @@ class BaseUIViewController: UIViewController, AudioPlayerDelegate {
         getAudioPlayer().delegate = self
         tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         
+        
         if  self.navigationController != nil {
             self.navigationController?.navigationBar.barTintColor =
    UIColor(red: 0xFF/255, green: 0xFF/255, blue: 0xFF, alpha: 0.8)
@@ -44,9 +45,12 @@ class BaseUIViewController: UIViewController, AudioPlayerDelegate {
     }
     
     func setNavigationBar0(_ isTranslucent : Bool) {
+        
+        
         if self.navigationController?.backdropImageView == nil {
-            self.navigationController?.backdropImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 315, height:88))
-        }
+            self.navigationController?.backdropImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 315, height: Utils.getNavigationBarHeight()))
+        } 
+       
         
         if isTranslucent {
             self.navigationController?.setBarColor(image: UIImage(), color: nil, alpha: 0)

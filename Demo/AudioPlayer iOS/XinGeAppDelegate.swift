@@ -124,7 +124,7 @@ class XinGeAppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     
-    func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
+    func application(_ application: UIApplication, didReceive notification: UILocalNotification) {
         XGPush.localNotification(atFrontEnd: notification, userInfoKey: "clockID", userInfoValue: "myid")
         
         XGPush.delLocalNotification(notification)
@@ -132,11 +132,11 @@ class XinGeAppDelegate: UIResponder, UIApplicationDelegate {
     
     
  
-    func application(application: UIApplication, didRegisterUserNotificationSettings notificationSettings: UIUserNotificationSettings) {
+    func application(_ application: UIApplication, didRegister notificationSettings: UIUserNotificationSettings) {
         UIApplication.shared.registerForRemoteNotifications()
     }
 
-    func application(application: UIApplication, handleActionWithIdentifier identifier: String?, forRemoteNotification userInfo: [NSObject : AnyObject], completionHandler: () -> Void) {
+    func application(application: UIApplication, handleActionWithIdentifier identifier: String?, forRemoteNotification userInfo: [NSObject : AnyObject], completionHandler: @escaping () -> Void) {
         
         if let ident = identifier
         {
@@ -151,7 +151,7 @@ class XinGeAppDelegate: UIResponder, UIApplicationDelegate {
     
     
     
-    func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         //注册设备
         //        XGSetting.getInstance().Channel = ""//= "appstore"
         //        XGSetting.getInstance().GameServer = "家万户"
@@ -168,20 +168,20 @@ class XinGeAppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     
-    func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
         print("didFailToRegisterForRemoteNotifications error:\(error.localizedDescription)\n\n")
     }
     
     // iOS 3 以上
-    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
+    private func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
         
         //        UIAlertView(title: "3-", message: "didReceive", delegate: self, cancelButtonTitle: "OK").show()
         let info = userInfo as! [String : AnyObject]
-        var apsDictionary = info["aps"] as? NSDictionary
+        let apsDictionary = info["aps"] as? NSDictionary
        
         if let apsDict = apsDictionary
         {
-            var alertView = UIAlertView(title: "您有新的消息", message: apsDict["alert"] as? String, delegate: self, cancelButtonTitle: "确定")
+            let alertView = UIAlertView(title: "您有新的消息", message: apsDict["alert"] as? String, delegate: self, cancelButtonTitle: "确定")
             alertView.show()
         }
         
@@ -194,7 +194,7 @@ class XinGeAppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     // iOS 7 以上
-    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject], fetchCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void)
+    private func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void)
     {
         //        UIAlertView(title: "7-", message: "didReceive", delegate: self, cancelButtonTitle: "OK").show()
         let info = userInfo as! [String : AnyObject]

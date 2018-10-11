@@ -11,11 +11,7 @@ import UIKit
 // 扩展属性的key
 fileprivate var backdropKey: Void?
 extension UINavigationController {
-    var IS_IPHONE_X: Bool {
-        get  {
-            return UIScreen.main.bounds.height == 812
-        }
-    }
+
     var SCREEN_WIDTH : CGFloat {
         get {
             return UIScreen.main.bounds.width
@@ -34,7 +30,7 @@ extension UINavigationController {
         }
         // 添加新的视觉图层
         if backdropImageView?.superview == nil {
-            backdropImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height:(IS_IPHONE_X ? 88 : 64)))
+            backdropImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height:(UIDevice().isX() ? Utils.getNavigationBarHeight() : 64)))
             navigationBar.subviews[0].insertSubview(backdropImageView!, at: 0)
         }
         backdropImageView?.tag = 10054
