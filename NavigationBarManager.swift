@@ -31,15 +31,15 @@ class NavigationBarManager: NSObject {
             return
         }
         let customView = getMusicCustomView(alpha, isWhite: isWhite)
-        let container = UIView(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
+        let container = UIView(frame: CGRect(x: 0, y: 0, width: 21, height: 21))
         container.addSubview(customView)
         //container.backgroundColor = UIColor.red
         let musicButton = UIBarButtonItem(customView: container)
         viewController.navigationItem.rightBarButtonItems?.append(musicButton)
         if #available(iOS 11.0, *) {
             musicButton.customView?.snp.makeConstraints({ (make) in
-                make.width.equalTo(20)
-                make.height.equalTo(20)
+                make.width.equalTo(21)
+                make.height.equalTo(21)
             })
         }
     }
@@ -51,12 +51,12 @@ class NavigationBarManager: NSObject {
         if UIDevice().isIphone5Like() {
             xOffset = 7
         } else if UIDevice().isX() {
-            xOffset = 2
+            xOffset = 1
         } else if UIDevice().isIphonePlusLike() {
             xOffset = 4
         }
         if audioPlayer.state == AudioPlayerState.playing {
-            self.imageView = GIFImageView(frame: CGRect(x: xOffset, y: -2, width: 20, height: 20))
+            self.imageView = GIFImageView(frame: CGRect(x: xOffset, y: -2, width: 21, height: 21))
             if alpha < 0.01 {
                 self.imageView.isHidden = true
             } else {
@@ -64,13 +64,18 @@ class NavigationBarManager: NSObject {
             }
             self.imageView.backgroundColor = nil
             self.imageView.alpha = alpha
-            self.imageView.animate(withGIFNamed: "demo")
+            if isWhite {
+                self.imageView.animate(withGIFNamed: "demo_white")
+            } else {
+                self.imageView.animate(withGIFNamed: "demo")
+            }
+            
             self.imageView.setNeedsDisplay()
             self.imageView.isUserInteractionEnabled = true
             self.imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tapMusicBtnHandler(sender:))))
             return self.imageView
         } else {
-            self.staticImageView = UIImageView(frame: CGRect(x: xOffset, y: -2, width: 20, height: 20))
+            self.staticImageView = UIImageView(frame: CGRect(x: xOffset, y: -2, width: 21, height: 21))
             if alpha < 0.01 {
                 self.staticImageView.isHidden = true
             } else {

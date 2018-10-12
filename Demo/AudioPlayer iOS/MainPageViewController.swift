@@ -146,18 +146,21 @@ class CourseMainPageViewController: BaseUIViewController, LTTableViewProtocal, U
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         //updatePlayingButton(button: playingButton)
-         extendFunctionMananger.controller = self
+        extendFunctionMananger.controller = self
         self.setNavigationBar(lastOffSet, updateAlways: true)
         isDisapeared = false
         
         if isShowAd {
             hidePopupAd()
         }
+        
+        //self.hidesBottomBarWhenPushed = false
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
          navigationManager.setMusicBtnState()
+
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -504,45 +507,8 @@ extension CourseMainPageViewController : UITableViewDataSource, UITableViewDeleg
         vc.hasBottomBar = false
         self.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(vc, animated: true)
+        //
         self.hidesBottomBarWhenPushed = false
-        /*
-        if !album.isReady {
-            self.displayMessage(message: "该课程未上线，敬请期待！")
-            return
-        }
-        
-        loading.showOverlay(view: self.view)
-        
-        let req = GetAlbumSongsRequest(album: album)
-        _ = BasicService().sendRequest(url: ServiceConfiguration.GET_ALBUM_SONGS, request: req) {
-            (resp: GetAlbumSongsResponse) -> Void in
-            
-            self.loading.hideOverlayView()
-            if resp.status == ServerResponseStatus.TokenInvalid.rawValue {
-                self.displayMessage(message: "请重新登录")
-                return
-            }
-            
-            //目前这个逻辑之针对VIP课程权限够的情况
-            if resp.status == ServerResponseStatus.NoEnoughAuthority.rawValue {
-                self.buyPayCourseDelegate.courseId = album.id
-                self.displayVipBuyMessage(message: resp.errorMessage!, delegate: self.buyPayCourseDelegate!)
-                return
-            }
-            
-            if self.isDisapeared {
-                return
-            }
-            
-            let songs = resp.resultSet
-            if (songs.count == 0) {
-                self.displayMessage(message: "获取课程失败")
-                return
-            }
-            
-            let song = songs[0]
-            self.performSegue(withIdentifier: "newPlayerSegue", sender: song)
-        } */
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

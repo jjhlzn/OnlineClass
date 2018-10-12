@@ -66,7 +66,7 @@ class Utils {
     static func getNavigationBarHeight() -> CGFloat {
  
         let result : CGFloat = UIDevice().isX() ? 64 + 24.0 : 64.0
-        QL1("result = \(result)")
+        //QL1("result = \(result)")
         return result
     }
     

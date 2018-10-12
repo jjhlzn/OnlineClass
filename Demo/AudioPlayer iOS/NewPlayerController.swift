@@ -44,6 +44,7 @@ class NewPlayerController: BaseUIViewController, UIScrollViewDelegate {
         return ["课程介绍", "我要报名"]
     }()
     
+    //设置Header的样式
     private lazy var layout: LTLayout = {
         let layout = LTLayout()
         layout.titleViewBgColor = UIColor.white
@@ -58,8 +59,7 @@ class NewPlayerController: BaseUIViewController, UIScrollViewDelegate {
     }()
     
     private lazy var advancedManager: LTAdvancedManager = {
-        let Y: CGFloat = glt_iphoneX ? 64 + 24.0 : 64.0
-        let H: CGFloat = glt_iphoneX ? (view.bounds.height - Y - 34) : view.bounds.height - Y
+
         let advancedManager = LTAdvancedManager(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: UIScreen.main.bounds.height), viewControllers: viewControllers, titles: titles, currentViewController: self, layout: layout, headerViewHandle: {[weak self] in
             guard let strongSelf = self else { return UIView() }
             let headerView = strongSelf.testLabel()
@@ -75,7 +75,8 @@ class NewPlayerController: BaseUIViewController, UIScrollViewDelegate {
         //self.song = (audioPlayer.currentItem as! MyAudioItem).song as! LiveSong
         
         audioPlayer.delegate = self
-        headerView = PlayerHeaderView(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 229))
+        headerView = PlayerHeaderView(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width, height: PlayerHeaderView.getHeight()))
+        //headerView.frame.size.height = headerView.getHeight()
         headerView.audioPlayer = audioPlayer
         
         view.backgroundColor = UIColor.white
@@ -97,7 +98,6 @@ class NewPlayerController: BaseUIViewController, UIScrollViewDelegate {
             loadCourses()
         } else {
             self.song = Utils.getCurrentSong()
-            initCommentKeybaord()
             loadViewAfterGetSong()
         }
     }
@@ -110,8 +110,6 @@ class NewPlayerController: BaseUIViewController, UIScrollViewDelegate {
        
         self.initCommentKeybaord()
     }
-    
-    
     
     private func initCommentKeybaord() {
         var y = UIScreen.main.bounds.height - 40
@@ -130,6 +128,7 @@ class NewPlayerController: BaseUIViewController, UIScrollViewDelegate {
         commentKeyboard = CommentKeyboard(frame: CGRect(x : 0, y: y, width: UIScreen.main.bounds.width, height: 40), shareView: shareView, viewController: self, liveDelegate: viewControllers[0] as! LiveCommentDelegate)
         
         view.addSubview(commentKeyboard!)
+        commentKeyboard?.commentController.addKeyboardNotify()
     }
     
     @objc func loadListenCount() {
@@ -181,18 +180,14 @@ class NewPlayerController: BaseUIViewController, UIScrollViewDelegate {
     
     
     override func viewWillAppear(_ animated: Bool) {
-        print("NewPlayerController viewWillAppear called")
-        
         setNavigationBar(self.isTouming)
-        
         commentKeyboard?.commentController.addKeyboardNotify()
         
         let audioPlayer = Utils.getAudioPlayer()
-        
         audioPlayer.delegate = self
     
-       timer = Timer.scheduledTimer(timeInterval: 60, target: self, selector: #selector(self.loadListenCount), userInfo: nil, repeats: true)
-    
+        timer = Timer.scheduledTimer(timeInterval: 60, target: self, selector: #selector(self.loadListenCount), userInfo: nil, repeats: true)
+        
     }
     
 
@@ -213,6 +208,10 @@ class NewPlayerController: BaseUIViewController, UIScrollViewDelegate {
         }
         
         timer.invalidate()
+        let nav = self.navigationController?.navigationBar
+        nav?.barStyle = UIBarStyle.default
+        nav?.tintColor = UIColor.black
+        
     }
     
     func resumeNavigationBar() {
@@ -221,7 +220,6 @@ class NewPlayerController: BaseUIViewController, UIScrollViewDelegate {
     
     
     func setNavigationBar(_ isTranslucent : Bool, offset : CGFloat = 0) {
-      
         if !hasBottomBar {
             if self.navigationController?.backdropImageView == nil {
                 self.navigationController?.backdropImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 315, height:88))
@@ -234,15 +232,22 @@ class NewPlayerController: BaseUIViewController, UIScrollViewDelegate {
             self.navigationController?.setBarColor(image: UIImage(), color: nil, alpha: alpha)
             let label = UILabel()
             self.navigationItem.titleView = label
+            
+            let nav = self.navigationController?.navigationBar
+            nav?.barStyle = UIBarStyle.black
+            nav?.tintColor = UIColor.white
         } else {
             self.navigationController?.setBarColor(image: UIImage(), color: UIColor.white, alpha: 1)
             let searchLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 30))
-            
             searchLabel.backgroundColor =  UIColor(white: 0, alpha: 0)
             searchLabel.text = song?.name
             searchLabel.textColor =  UIColor.black
             searchLabel.textAlignment = .center
             self.navigationItem.titleView = searchLabel
+            
+            let nav = self.navigationController?.navigationBar
+            nav?.barStyle = UIBarStyle.default
+            nav?.tintColor = UIColor.black
         }
         
         setShareButton(isTranslucent)
@@ -264,7 +269,7 @@ class NewPlayerController: BaseUIViewController, UIScrollViewDelegate {
     }
     
     override func audioPlayer(_ audioPlayer: AudioPlayer, didChangeStateFrom from: AudioPlayerState, to state: AudioPlayerState) {
-        QL1("audioPlayer:didChangeStateFrom called, from = \(from), to = \(state)")
+        //QL1("audioPlayer:didChangeStateFrom called, from = \(from), to = \(state)")
         headerView.updateMusicButton()
     }
     
@@ -331,17 +336,37 @@ class NewPlayerController: BaseUIViewController, UIScrollViewDelegate {
 }
 
 extension NewPlayerController: LTAdvancedScrollViewDelegate {
+    func jumpToWebPage(sender: [String:String]) {
+        let viewControllerStoryboardId = "WebPageViewController"
+        let storyboardName = "Main"
+        let storyboard = UIStoryboard(name: storyboardName, bundle: Bundle.main)
+        let vc = storyboard.instantiateViewController(withIdentifier: viewControllerStoryboardId) as! WebPageViewController
+        let params = sender as! [String: String]
+        vc.url = NSURL(string: params["url"]!)
+        vc.title = params["title"]
+        if !hasBottomBar {
+            self.hidesBottomBarWhenPushed = true
+        }
+        self.navigationController?.pushViewController(vc, animated: true)
+        //
+        //self.hidesBottomBarWhenPushed = false
+    }
+    
     private func advancedManagerConfig() {
         //MARK: 选中事件
         advancedManager.advancedDidSelectIndexHandle = {
             print($0)
+            
             let index = $0
             if index == 1 {
                 var sender = [String:String]()
                 if self.song != nil {
                     sender["url"] = (self.song?.advUrl)!
                     sender["title"] = "我要报名"
-                    self.performSegue(withIdentifier: "loadWebSegue", sender: sender)
+                    
+                    //self.performSegue(withIdentifier: "loadWebSegue", sender: sender)
+                    self.jumpToWebPage(sender: sender)
+
                 }
                 
             }
@@ -364,8 +389,11 @@ extension NewPlayerController: LTAdvancedScrollViewDelegate {
 extension NewPlayerController {
     private func testLabel() -> LTHeaderView {
         //let H = 229.0 * UIScreen.main.bounds.width / 375.0
-        let headerView = LTHeaderView(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 229))
+        QL1("PlayerHeaderView.height = \(PlayerHeaderView.getHeight())")
+        let headerView = LTHeaderView(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width, height: PlayerHeaderView.getHeight()))
+        
         headerView.headerView = self.headerView
+        headerView.headerView.updateConstraints()
         headerView.initialize()
         return headerView
     }

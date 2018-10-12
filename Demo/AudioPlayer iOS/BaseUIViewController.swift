@@ -11,11 +11,12 @@ import KDEAudioPlayer
 import QorumLogs
 
 
-class BaseUIViewController: UIViewController, AudioPlayerDelegate {
+class BaseUIViewController: UIViewController, AudioPlayerDelegate, UIGestureRecognizerDelegate {
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //self.navigationController?.interactivePopGestureRecognizer?.isEnabled = true
         getAudioPlayer().delegate = self
         tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         
@@ -49,7 +50,7 @@ class BaseUIViewController: UIViewController, AudioPlayerDelegate {
         
         if self.navigationController?.backdropImageView == nil {
             self.navigationController?.backdropImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 315, height: Utils.getNavigationBarHeight()))
-        } 
+        }
        
         
         if isTranslucent {
@@ -81,29 +82,19 @@ class BaseUIViewController: UIViewController, AudioPlayerDelegate {
     func setLeftBackButton() {
         let b = UIButton(frame: CGRect(x: -20, y: 0, width: 24, height: 24))
         b.setImage( UIImage(named: "backicon"), for: .normal)
-        //b.backgroundColor = UIColor.red
-        // b.frame = CGRect(x: 0, y: 0, width: 35, height: 35)
         let leftButton = UIBarButtonItem(image: UIImage(named: "backicon"), style: .plain, target: self, action: #selector(self._backPressed))
         
        // leftButton.image = UIImage(named: "backicon")
         leftButton.imageInsets = UIEdgeInsets(top: 0, left: -5, bottom: 0, right: 0)
-        //leftButton.action = #selector(self._backPressed)
-        //leftButton.
-        
-        //b.addTarget(self, action: #selector(_backPressed), for: .touchUpInside)
         self.navigationItem.leftBarButtonItem  = leftButton
         
-        //leftButton.customView?.superview?.backgroundColor = UIColor.red
-        
-        /*
-        if #available(iOS 11.0, *) {
-            leftButton.customView?.snp.makeConstraints({ (make) in
-                make.width.equalTo(24)
-                make.height.equalTo(24)
-            })
-        } */
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = self
+        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = true
     }
 
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldBeRequiredToFailBy otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
+    } 
     
     func getAudioPlayer() -> AudioPlayer {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate

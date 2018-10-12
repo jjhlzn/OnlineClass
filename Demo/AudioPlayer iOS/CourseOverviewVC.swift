@@ -21,6 +21,10 @@ class CourseOverviewVC: UIViewController, LTTableViewProtocal, LiveCommentDelega
         var H: CGFloat = view.bounds.height  - 38
         if hasBottomBar {
             H = view.bounds.height - Utils.getTabHeight(controller: self) - 38
+        } else {
+            if UIDevice().isX() {
+                H = H - 24
+            }
         }
         let tableView = tableViewConfig(CGRect(x: 0, y: 0, width: view.bounds.width, height: H), self, self, nil)
         tableView.separatorStyle = .none
@@ -144,7 +148,7 @@ extension CourseOverviewVC: UITableViewDelegate, UITableViewDataSource {
             cell.overview.sizeToFit()
             frame.size.height = cell.overview.frame.size.height;
             cell.overview.frame = frame;
-            var height =  cell.overview.bounds.height
+            let height =  cell.overview.bounds.height
 
             return height
 
@@ -188,7 +192,7 @@ extension CourseOverviewVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        print("点击了第\(indexPath.row + 1)行")
+        //print("点击了第\(indexPath.row + 1)行")
     }
     
 }

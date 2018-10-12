@@ -11,7 +11,7 @@ import KDEAudioPlayer
 import QorumLogs
 import SwiftyBeaver
 
-class SongViewController: BaseUIViewController, UIGestureRecognizerDelegate {
+class SongViewController: BaseUIViewController {
     
     let log = SwiftyBeaver.self
     

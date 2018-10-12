@@ -18,7 +18,7 @@ target 'AudioPlayer iOS' do
     pod 'FSPagerView', '~> 0.8.1'
     pod 'WeiboSDK', :git => 'https://github.com/sinaweibosdk/weibo_ios_sdk.git' #ok
     pod 'Gifu', '~> 3.0.0'
-    pod 'LTScrollView', '~> 0.1.5'
+    pod 'LTScrollView', '~> 0.2.0'
     pod 'MJRefresh', '~> 3.1.14.1'
     pod 'Kanna', '~> 4.0.0' #ok
     pod 'SnapKit', '~> 4.0.0' #ok

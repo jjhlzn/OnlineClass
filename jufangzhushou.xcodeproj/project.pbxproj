@@ -117,7 +117,6 @@
 		E2C6FAE21C4B01D80055A1BF /* sound2.caf in Resources */ = {isa = PBXBuildFile; fileRef = E2C6FAE01C4B01D80055A1BF /* sound2.caf */; };
 		EF03652E209EEEA1006094EE /* SearchBarExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF03652D209EEEA1006094EE /* SearchBarExtension.swift */; };
 		EF10AAC820A95D3800C6B2E4 /* UINavigationControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF10AAC720A95D3800C6B2E4 /* UINavigationControllerExtension.swift */; };
-		EF10AAD220A9749100C6B2E4 /* demo.gif in Resources */ = {isa = PBXBuildFile; fileRef = EF10AAD120A9748E00C6B2E4 /* demo.gif */; };
 		EF1E54D82143CD2B0005901E /* ToutiaoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF1E54D72143CD2B0005901E /* ToutiaoCell.swift */; };
 		EF1E54DA214401A00005901E /* PosCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF1E54D9214401A00005901E /* PosCell.swift */; };
 		EF1E54DB21440C000005901E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E2A9AFA31C498E2900FE943A /* Main.storyboard */; };
@@ -166,6 +165,8 @@
 		EF39750D20AD28410033620D /* MyInfoCommonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF39750C20AD28410033620D /* MyInfoCommonCell.swift */; };
 		EF39750F20B3B8340033620D /* NavigationBarManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF39750E20B3B8340033620D /* NavigationBarManager.swift */; };
 		EF422C69209ECD5300419FCA /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF422C68209ECD5300419FCA /* LaunchViewController.swift */; };
+		EF45B4CC216F44F30006F114 /* demo.gif in Resources */ = {isa = PBXBuildFile; fileRef = EF45B4CA216F44F20006F114 /* demo.gif */; };
+		EF45B4CD216F44F30006F114 /* demo_white.gif in Resources */ = {isa = PBXBuildFile; fileRef = EF45B4CB216F44F20006F114 /* demo_white.gif */; };
 		EF49FB682157C87400E0E673 /* MainPageNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF49FB672157C87400E0E673 /* MainPageNavigationBar.swift */; };
 		EF4B4847214F356C00909356 /* MyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF4B4846214F356C00909356 /* MyViewController.swift */; };
 		EF67C0431E24A901004EEAF0 /* AlbumHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF67C0421E24A901004EEAF0 /* AlbumHeaderCell.swift */; };
@@ -322,7 +323,6 @@
 		E2C6FAE01C4B01D80055A1BF /* sound2.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = sound2.caf; path = ../Sounds/sound2.caf; sourceTree = "<group>"; };
 		EF03652D209EEEA1006094EE /* SearchBarExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarExtension.swift; sourceTree = "<group>"; };
 		EF10AAC720A95D3800C6B2E4 /* UINavigationControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationControllerExtension.swift; sourceTree = "<group>"; };
-		EF10AAD120A9748E00C6B2E4 /* demo.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = demo.gif; sourceTree = "<group>"; };
 		EF1E54D72143CD2B0005901E /* ToutiaoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ToutiaoCell.swift; path = cells/ToutiaoCell.swift; sourceTree = "<group>"; };
 		EF1E54D9214401A00005901E /* PosCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PosCell.swift; path = cells/PosCell.swift; sourceTree = "<group>"; };
 		EF1E54E42144A5D40005901E /* AnswerQuestionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerQuestionVC.swift; sourceTree = "<group>"; };
@@ -369,6 +369,8 @@
 		EF39750C20AD28410033620D /* MyInfoCommonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MyInfoCommonCell.swift; path = cells/MyInfoCommonCell.swift; sourceTree = "<group>"; };
 		EF39750E20B3B8340033620D /* NavigationBarManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarManager.swift; sourceTree = "<group>"; };
 		EF422C68209ECD5300419FCA /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
+		EF45B4CA216F44F20006F114 /* demo.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = demo.gif; path = "../../Library/Containers/com.tencent.xinWeChat/Data/Library/Application Support/com.tencent.xinWeChat/2.0b4.0.9/c72cea09616bd1e9a503dbe6b2c24061/Message/MessageTemp/590cbc9a738b4ceb50de5c57b71b8c32/File/音乐跳动/demo.gif"; sourceTree = "<group>"; };
+		EF45B4CB216F44F20006F114 /* demo_white.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = demo_white.gif; sourceTree = "<group>"; };
 		EF49FB672157C87400E0E673 /* MainPageNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageNavigationBar.swift; sourceTree = "<group>"; };
 		EF4B4846214F356C00909356 /* MyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyViewController.swift; sourceTree = "<group>"; };
 		EF67C0421E24A901004EEAF0 /* AlbumHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumHeaderCell.swift; sourceTree = "<group>"; };
@@ -682,7 +684,8 @@
 		E2A9AF931C498E2900FE943A = {
 			isa = PBXGroup;
 			children = (
-				EF10AAD120A9748E00C6B2E4 /* demo.gif */,
+				EF45B4CB216F44F20006F114 /* demo_white.gif */,
+				EF45B4CA216F44F20006F114 /* demo.gif */,
 				EF21740C1E2753B10035C960 /* TencentOpenApi_IOS_Bundle.bundle */,
 				EF21740D1E2753B10035C960 /* TencentOpenAPI.framework */,
 				1C156D831D9E38AE007A7F65 /* jfzs-prefix.h */,
@@ -969,8 +972,9 @@
 				EF23458520A66986002E2F30 /* BeforeCourseCell.xib in Resources */,
 				EF9A9223214279F4008133EA /* QuestionAnswersView.xib in Resources */,
 				EF9A9219214268A0008133EA /* QuestionHeaderCell.xib in Resources */,
-				EF10AAD220A9749100C6B2E4 /* demo.gif in Resources */,
 				EF21740E1E2753B10035C960 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
+				EF45B4CC216F44F30006F114 /* demo.gif in Resources */,
+				EF45B4CD216F44F30006F114 /* demo_white.gif in Resources */,
 				EF23459420A67961002E2F30 /* NewCommentCell.xib in Resources */,
 				EF23457D20A57585002E2F30 /* CourseOverviewCell.xib in Resources */,
 				1CBF786B1D336CF200B596BC /* README.txt in Resources */,

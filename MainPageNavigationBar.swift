@@ -117,25 +117,7 @@ class MainPageNavigationBar: NSObject {
         }
         
     }
-    
-    func setKefuButton() {
-        /*
-         let b = UIButton(frame: CGRect(x: 0, y: 0, width: 24, height: 24))
-         b.setImage( UIImage(named: "backicon"), for: .normal)
-         leftButton = UIBarButtonItem(image: UIImage(named: "new_kefu"), style: .plain, target: self, action: #selector(self.keFuPressed))
-         
-         // leftButton.image = UIImage(named: "backicon")
-         leftButton.imageInsets = UIEdgeInsets(top: 0, left: -4, bottom: 0, right: 0)  //-10表示让leftButton的图标向左偏移
-         
-         self.navigationItem.leftBarButtonItem  = leftButton
-         
-         if #available(iOS 11.0, *) {
-         leftButton.customView?.snp.makeConstraints({ (make) in
-         make.width.equalTo(24)
-         make.height.equalTo(24)
-         })
-         }*/
-    }
+
     
     @objc func keFuPressed() {
         var sender = [String:String]()

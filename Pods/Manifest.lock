@@ -9,7 +9,7 @@ PODS:
   - Kanna (4.0.0)
   - KDEAudioPlayer (1.1.0)
   - Kingfisher (4.1.1)
-  - LTScrollView (0.1.5)
+  - LTScrollView (0.2.0)
   - MarqueeLabel/Swift (3.1.4)
   - MJRefresh (3.1.14.1)
   - moa (9.0.2)
@@ -33,7 +33,7 @@ DEPENDENCIES:
   - Kanna (~> 4.0.0)
   - KDEAudioPlayer (~> 1.1.0)
   - Kingfisher (~> 4.1.0)
-  - LTScrollView (~> 0.1.5)
+  - LTScrollView (~> 0.2.0)
   - MarqueeLabel/Swift (~> 3.1.4)
   - MJRefresh (~> 3.1.14.1)
   - QorumLogs (~> 0.9)
@@ -86,7 +86,7 @@ SPEC CHECKSUMS:
   Kanna: d5ae2a26472f7e7a474e7f36a9cd8aa2c8c63ad3
   KDEAudioPlayer: b3787f02b6718c2416589a7726f2633cde2cd60e
   Kingfisher: 6793a473357b5dbee42b0068ef203fe8325f259e
-  LTScrollView: e0eaae134bba74a9018cd22ba5e07bdb155340c0
+  LTScrollView: 1a18ae14884eb99c27f0222203aedaccd21b72fc
   MarqueeLabel: bf768455fe88d427f71476ebb23f9092b660f40b
   MJRefresh: 238e6a37e2dba12160ee3b79f6d2a2b26abcab42
   moa: b73dc5e0efa1fad00711c4608e41b197f4d15b12
@@ -99,6 +99,6 @@ SPEC CHECKSUMS:
   tingyunApp: bf9074313164f2b3595b5c2b422c8159cee03a58
   WeiboSDK: bceab625ec59b7039ba721cc4ba9f5868804f63e
 
-PODFILE CHECKSUM: 447f05a3bfa9003d17d59e282513725c789072cd
+PODFILE CHECKSUM: c7969355feb92c2b0611541ad014fc674a4ba750
 
 COCOAPODS: 1.6.0.beta.1

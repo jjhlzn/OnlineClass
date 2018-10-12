@@ -20,6 +20,7 @@ class BaseCustomView: UIView {
         super.layoutSubviews()
     }
     
+
     /*** 下面的几个方法都是为了让这个自定义类能将xib里的view加载进来。这个是通用的，我们不需修改。 ****/
     var contentView:UIView!
     
@@ -28,7 +29,6 @@ class BaseCustomView: UIView {
         super.init(frame: frame)
         let v = loadViewFromNib()
     
-        //let frame = v.frame
         let newFrame = CGRect(x: 0, y: 0,  width: frame.width, height: frame.height)
         //QL1("x = \(frame.minX), y = \(frame.minY), width = \(frame.width), height = \(frame.height)")
         //QL1("x = \(newFrame.minX), y = \(newFrame.minY), width = \(newFrame.width), height = \(newFrame.height)")

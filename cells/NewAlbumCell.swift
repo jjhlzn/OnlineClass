@@ -18,11 +18,6 @@ class NewAlbumCell: UITableViewCell {
     @IBOutlet weak var courseImageView: UIImageView!
     @IBOutlet weak var labelsContainer: UIView!
     
-    /*
-    @IBOutlet weak var statusLabel: UILabel!
-    @IBOutlet weak var liveTimeLabel: UILabel!
-    @IBOutlet weak var listenerCountLabel: UILabel! */
-    
     var statusImage: UIImageView!
     var statusLabel : UILabel!
     var listenerImage : UIImageView!

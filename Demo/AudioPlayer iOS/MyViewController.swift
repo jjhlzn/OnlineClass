@@ -7,10 +7,15 @@
 //
 
 import SnapKit
+import QorumLogs
 
 class MyViewController: UIViewController {
     
     lazy var box = UIView()
+    
+    @objc func tapBox() {
+        QL1("tap Box called")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,6 +23,9 @@ class MyViewController: UIViewController {
         box.backgroundColor = UIColor.red
         self.view.addSubview(box)
         
+        let tap = UITapGestureRecognizer(target: self, action: #selector(tapBox))
+        box.isUserInteractionEnabled = true
+        box.addGestureRecognizer(tap)
         /*
         box.snp.makeConstraints { (make) -> Void in
             make.width.height.equalTo(50)
