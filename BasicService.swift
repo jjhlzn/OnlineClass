@@ -33,7 +33,7 @@ class BasicService {
         request.setValue("application/json; charset=UTF-8", forHTTPHeaderField: "Content-Type")
         do {
             request.httpBody = try serverRequest.getJSON().rawData()
-            QL1(serverRequest.getJSON())
+            //QL1(serverRequest.getJSON())
         } catch let error {
             QL4("catchException, ex = \(error)")
             serverResponse.status = -1
@@ -56,7 +56,7 @@ class BasicService {
                     
                 } else {
                     let json = response.result.value as! NSDictionary
-                    QL1(json)
+                    //QL1(json)
                     serverResponse.status = json["status"] as! Int
                     //检查status是否是因为token过期，如果是，则需要重新验证token的值, 获得token的值后，重新发送一次请求
                     if serverResponse.status == ServerResponseStatus.TokenInvalid.rawValue && !hasResendForTokenInvalid {

@@ -142,13 +142,15 @@ extension CourseOverviewVC: UITableViewDelegate, UITableViewDataSource {
         } else if row == 1 {
             let cell : CourseOverviewCell = cellWithTableView(tableView)
             cell.overview.text = song!.introduction
-            
+            /*
             var frame = cell.overview.frame;
             cell.overview.numberOfLines = 0
             cell.overview.sizeToFit()
             frame.size.height = cell.overview.frame.size.height;
-            cell.overview.frame = frame;
-            let height =  cell.overview.bounds.height
+            cell.overview.frame = frame; */
+            
+            cell.updateConstraints()
+            let height =  cell.overview.frame.height
 
             return height
 

@@ -44,12 +44,18 @@
                         <color key="textColor" red="0.32483343908629436" green="0.32483343908629436" blue="0.32483343908629436" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5dM-yG-xjY">
+                        <rect key="frame" x="16" y="92" width="422" height="1"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" red="0.88333932790095238" green="0.89753307715805619" blue="0.91570828043502539" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </view>
                 </subviews>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="commentLabel" destination="8q1-LI-6fr" id="Vtt-DP-4Y8"/>
                 <outlet property="headImageView" destination="2yC-de-RtS" id="MzJ-MN-FX4"/>
+                <outlet property="line" destination="5dM-yG-xjY" id="is3-7o-3rb"/>
                 <outlet property="nameLabel" destination="GA8-v3-F0X" id="MJc-Sx-YVd"/>
                 <outlet property="timeLabel" destination="PWo-xF-ifM" id="daa-8V-geu"/>
             </connections>

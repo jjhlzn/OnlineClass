@@ -49,11 +49,12 @@ class NewPlayerController: BaseUIViewController, UIScrollViewDelegate {
         let layout = LTLayout()
         layout.titleViewBgColor = UIColor.white
         layout.titleColor = UIColor(r: 0, g: 0, b: 0)
+        layout.titleFont = UIFont(name: "HelveticaNeue", size: 16)
         layout.titleSelectColor = UIColor(r: 0xCA, g: 0x9A, b: 0x60)
         layout.bottomLineColor = UIColor(r: 0xCA, g: 0x9A, b: 0x60)
         layout.pageBottomLineColor = UIColor(r: 230, g: 230, b: 230)
         layout.isAverage = true
-        layout.sliderWidth = 30
+        layout.sliderWidth = 80
         
         return layout
     }()

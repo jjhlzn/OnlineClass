@@ -80,8 +80,8 @@ class PlayerHeaderView: BaseCustomView {
         playerBtn.snp.makeConstraints { (make) -> Void in
             make.height.equalTo(20)
             make.width.equalTo(20)
-            make.left.equalTo(container).offset(30)
-            make.top.equalTo(container).offset(height + PlayerHeaderView.interHeight)
+            make.left.equalToSuperview().offset(30)
+            make.top.equalToSuperview().offset(height + PlayerHeaderView.interHeight)
         }
         
         playerStatusLabel.snp.makeConstraints { (make) -> Void in
@@ -93,8 +93,8 @@ class PlayerHeaderView: BaseCustomView {
         
         listenerCountLabel.snp.makeConstraints { (make) -> Void in
             make.height.equalTo(20)
-            make.left.equalTo(listenerImage.snp.right).offset(30)
-            make.right.equalTo(container.snp.right).offset(-30)
+            make.left.equalTo(listenerImage.snp.right).offset(10)
+            make.right.equalToSuperview().offset(-30)
             make.centerY.equalTo(playerBtn)
         }
         

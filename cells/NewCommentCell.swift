@@ -21,17 +21,14 @@ class NewCommentCell: UITableViewCell {
     
     @IBOutlet weak var commentLabel: UILabel!
     
+    @IBOutlet weak var line: UIView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        line.frame.size.height = 0.3
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
     
     func update() {
         nameLabel.text = comment?.nickName

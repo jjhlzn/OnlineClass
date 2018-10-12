@@ -54,9 +54,9 @@ class ImageStore : NSObject {
     private func loadImageFromPath(path: String) -> UIImage? {
         let image = UIImage(contentsOfFile: path)
         if image == nil {
-            print("missing image at: \(path)")
+            //print("missing image at: \(path)")
         }
-        print("Loading image from path: \(path)") // this is just for you to see the path in case you want to go to the directory, using Finder.
+        //print("Loading image from path: \(path)") // this is just for you to see the path in case you want to go to the directory, using Finder.
         return image
         
     }
@@ -68,7 +68,7 @@ class ImageStore : NSObject {
     }
     
     private func fileInDocumentsDirectory(filename: String) -> String {
-        print("fileInDocumentsDirectory()")
+        //print("fileInDocumentsDirectory()")
         
         let fileURL = getDocumentsURL().appendingPathComponent(filename)
         return fileURL.path
@@ -78,7 +78,7 @@ class ImageStore : NSObject {
     func get() -> UIImage? {
         //return nil
         
-        print("get()")
+        //print("get()")
         let image = loadImageFromPath(path: fileInDocumentsDirectory(filename: imageName))
         if image == nil {
             return nil

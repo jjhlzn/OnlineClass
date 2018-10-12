@@ -75,7 +75,6 @@ class Utils {
         //headImageView.layer.borderWidth = 0.3
         headImageView.layer.borderColor = UIColor.lightGray.cgColor
         let url =  ServiceConfiguration.GET_PROFILE_IMAGE + "?userid=" + userId
-        QL1(url)
         if let downloadURL = URL(string: url) {
             let resource = ImageResource(downloadURL: downloadURL, cacheKey: "headimage_"+userId)
             headImageView.kf.setImage(with: resource, placeholder: UIImage(named: "func_placeholder"))
