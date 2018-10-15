@@ -15,6 +15,7 @@ import Gifu
 import LTScrollView
 import MJRefresh
 import SnapKit
+import SocketIO
 
 class CourseMainPageViewController: BaseUIViewController, LTTableViewProtocal, UIScrollViewDelegate {
 
@@ -51,10 +52,51 @@ class CourseMainPageViewController: BaseUIViewController, LTTableViewProtocal, U
     
     let refreshHeader = MJRefreshNormalHeader()
     let mainPageNavBar = MainPageNavigationBar()
+
+    var manager: SocketManager!
+    var socket: SocketIOClient!
+    
+    func initChat() {
+        
+        if socket != nil {
+            socket.disconnect()
+            QL3("socket is not nil")
+            //setup()
+            socket.connect()
+            return
+        }
+        
+
+        self.manager =  SocketManager(socketURL: URL(string:  "http://localhost:3000")!, config: [.log(true), .compress])
+            //manager.connect()
+            QL1(ServiceLinkManager.ChatUrl)
+       
+            self.socket = self.manager.defaultSocket
+        
+        
+        
+        self.socket.on(clientEvent: .connect) {data, ack in
+            QL1("socket connected")
+            
+            let request = JoinRoomRequest()
+            //request.song = self.song
+            //QL1(request.getJSON().rawString()!)
+            
+            //self.socket!.emit(self.join_room_cmd, request.getJSON().rawString()!)
+
+        }
+        self.socket.on("chat message") {data, ack in
+            //get new message
+            QL1("got a new message")
+
+            
+        }
+        manager.connect()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+       initChat()
         let items = self.tabBarController?.tabBar.items
         items![0].title = "探索"
         items![1].title = "签到"

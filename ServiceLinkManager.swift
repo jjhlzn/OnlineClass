@@ -166,6 +166,7 @@ class ServiceLinkManager {
     static var ChatUrl : String {
         get {
             return "http://chat.yhkamani.com"
+            //return "http://localhost:3000"
         }
     }
     

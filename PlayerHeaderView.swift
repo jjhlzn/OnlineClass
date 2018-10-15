@@ -13,8 +13,11 @@ import SnapKit
 
 class PlayerHeaderView: BaseCustomView {
 
-    var audioPlayer : AudioPlayer?
+    //var audioPlayer : AudioPlayer?
     
+    private func getAduioPlayer() -> AudioPlayer {
+        return Utils.getAudioPlayer()
+    }
     @IBOutlet weak var songImageView: UIImageView!
     @IBOutlet weak var playerBtn: UIImageView!
     @IBOutlet weak var listenerCountLabel: UILabel!
@@ -23,24 +26,14 @@ class PlayerHeaderView: BaseCustomView {
     
     @IBOutlet var container: UIView!
     
-    /*
-    
-    @IBOutlet weak var playerBtn: UIImageView!
-    
-    @IBOutlet weak var container: UIView!
-    
-    var songImageView: UIImageView!
-    //var playerBtn: UIButton!
-    var listenerImage : UIImageView!
-    var listenerCountLabel: UILabel!
-    var playerStatusLabel: UILabel! */
     
     override func initialSetup(){
        //makeViews()
     }
     
     func initalize() {
-        if audioPlayer?.currentItem != nil {
+        let audioPlayer = getAduioPlayer()
+        if audioPlayer.currentItem != nil {
             update()
         }
         playerBtn.isUserInteractionEnabled = true
@@ -48,10 +41,7 @@ class PlayerHeaderView: BaseCustomView {
         playerBtn.addGestureRecognizer(tap)
         
     }
-    
-    
-    
-    
+
     static let  interHeight : CGFloat = 15
     static func getHeight() -> CGFloat {
         let sceenWidth = UIScreen.main.bounds.width
@@ -68,7 +58,6 @@ class PlayerHeaderView: BaseCustomView {
             make.top.equalToSuperview()
         }
         
-
         let height = sceenWidth / 375 * 177
         songImageView.snp.makeConstraints { (make) -> Void in
             make.width.equalTo(sceenWidth )
@@ -110,7 +99,8 @@ class PlayerHeaderView: BaseCustomView {
     
     
     func update() {
-        let item = audioPlayer?.currentItem as! MyAudioItem
+        let audioPlayer = getAduioPlayer()
+        let item = audioPlayer.currentItem as! MyAudioItem
         let song = item.song as! LiveSong
         songImageView.kf.setImage(with: URL(string: song.imageUrl), placeholder: UIImage(named: "rect_placeholder"))
         listenerCountLabel.text = song.listenPeople
@@ -119,36 +109,104 @@ class PlayerHeaderView: BaseCustomView {
         
         updateMusicButton()
        // updateConstraints()
-        
-     
     }
     
+    var lastStateBeforePause : AudioPlayerState?
     @objc func tapMusic(sender: UITapGestureRecognizer) {
-        let state = audioPlayer?.state
+         let audioPlayer = getAduioPlayer()
+        let state = audioPlayer.state
+        
+        QL1("currentState = \(state)")
+        QL1("lastStateBeforePause = \(lastStateBeforePause)")
+        
+        switch state {
+        case AudioPlayerState.buffering,  AudioPlayerState.waitingForConnection:
+            lastStateBeforePause = state
+            audioPlayer.pause()
+            break
+        case AudioPlayerState.playing:
+            lastStateBeforePause = state
+            audioPlayer.pause()
+            break
+        case AudioPlayerState.failed( _):
+            QL1("retry after failed")
+            lastStateBeforePause = state
+            audioPlayer.retryAnyway()
+            break
+        case AudioPlayerState.stopped:
+            QL1("retry after stopped")
+            audioPlayer.retryAnyway()
+            break
+        default:
+            if lastStateBeforePause == AudioPlayerState.buffering {
+                QL1("retry because of buffering paused")
+                audioPlayer.retryAnyway()
+            } else {
+                audioPlayer.seekToSeekableRangeEnd(padding: 1, completionHandler: nil)
+                audioPlayer.resume()
+            }
+            
+        }
+        updateMusicButton()
+        
+        /*
         if state == AudioPlayerState.buffering || state == AudioPlayerState.waitingForConnection {
             audioPlayer?.pause()
         } else if state == AudioPlayerState.playing {
             audioPlayer?.pause()
         } else {
-             audioPlayer?.seekToSeekableRangeEnd(padding: 1, completionHandler: nil)
+            audioPlayer?.seekToSeekableRangeEnd(padding: 1, completionHandler: nil)
             audioPlayer?.resume()
-        }
-        updateMusicButton()
+        } */
+        
     }
     
     func updateMusicButton() {
-        let state = audioPlayer?.state
-        //QL1("state = \(state!)" )
+        let audioPlayer = getAduioPlayer()
+        let state : AudioPlayerState = audioPlayer.state
+        QL1("state = \(state)" )
+        QL1(audioPlayer)
+        QL1(audioPlayer.delegate)
+        switch state {
+        case AudioPlayerState.buffering, AudioPlayerState.waitingForConnection:
+            playerBtn.image = UIImage(named: "playerButton2")
+            playerStatusLabel.text = "缓冲中"
+            audioPlayer.setError(false)
+            break
+        case AudioPlayerState.playing:
+            playerBtn.image = UIImage(named: "playerButton2")
+            playerStatusLabel.text = "播放中"
+            audioPlayer.setError(false)
+            break
+        case AudioPlayerState.failed(let error):
+            QL1("error happen")
+            QL3(error)
+            audioPlayer.setError(true)
+            playerBtn.image = UIImage(named: "playerButton")
+            playerStatusLabel.text = "直播未开始"
+            break
+        default:
+            // access api value here
+            playerBtn.image = UIImage(named: "playerButton")
+            playerStatusLabel.text = "开始播放"
+            audioPlayer.setError(false)
+        }
+        
+        /*
         if state == AudioPlayerState.buffering || state == AudioPlayerState.waitingForConnection {
             playerBtn.image = UIImage(named: "playerButton2")
             playerStatusLabel.text = "缓冲中"
         } else if state == AudioPlayerState.playing {
             playerBtn.image = UIImage(named: "playerButton2")
             playerStatusLabel.text = "播放中"
+         
+         
+        } else if state != AudioPlayerState.failed(AudioPlayerError) {
+            QL1("error happen")
         } else {
             playerBtn.image = UIImage(named: "playerButton")
             playerStatusLabel.text = "开始播放"
-        }
+        } */
     }
     
     func updateListenerCountLabel(_ count: Int) {

@@ -11,6 +11,38 @@ import KDEAudioPlayer
 
 extension AudioPlayer {
     
+    func retryIfHasError() {
+        switch state {
+        case AudioPlayerState.failed(_):
+            retryAnyway()
+            break
+        default:
+            break
+        }
+    }
+    
+    func retryAnyway() {
+        
+       
+        if items != nil {
+            let newItems = items!
+            self.stop()
+            
+            self.play(items: newItems, startAtIndex: 0)
+        }
+    }
+    
+    func setError(_ hasError: Bool) {
+        if currentItem == nil {
+            return
+        }
+        
+        if (currentItem as! MyAudioItem).song == nil {
+            return
+        }
+        
+        (currentItem as! MyAudioItem).hasError = hasError
+    }
     
     func playThisSong(song: Song) {
         let album = song.album
@@ -63,6 +95,7 @@ extension AudioPlayer {
 class MyAudioItem : AudioItem {
     
     var song: Song!
+    var hasError : Bool = false
     
     convenience init?(song: Song, highQualitySoundURL: URL? = nil, mediumQualitySoundURL: URL? = nil, lowQualitySoundURL: URL? = nil) {
         var URLs = [AudioQuality: URL]()

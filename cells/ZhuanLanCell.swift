@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class ZhuanLanCell: UITableViewCell {
     
@@ -23,11 +24,17 @@ class ZhuanLanCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    
+    override func updateConstraints() {
+        titleLabel.snp.makeConstraints { (make) -> Void in
+            //make.height.equalTo(latestLabel.snp.height).offset(3)
+            make.left.equalTo(latestLabel.snp.left)
+            make.right.equalTo(priceInfoLabel.snp.left).offset(1)
+            make.top.equalTo(latestLabel.snp.top).offset(-20)
+            
+        }
+        
+        super.updateConstraints()
     }
     
     func update() {
@@ -47,6 +54,11 @@ class ZhuanLanCell: UITableViewCell {
         
         latestLabel.text = zhuanLan?.latest
         titleLabel.text = zhuanLan?.name
+        
+        if UIDevice().isIphone5Like() {
+            updateConstraints()
+            titleLabel.font = UIFont.systemFont(ofSize: 14)
+        }
     }
 
 }

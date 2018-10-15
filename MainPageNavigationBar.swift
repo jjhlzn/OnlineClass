@@ -30,6 +30,7 @@ class MainPageNavigationBar: NSObject {
         searchLabel.textAlignment = .center
         controller.navigationItem.titleView = view
         
+
     }
     
     

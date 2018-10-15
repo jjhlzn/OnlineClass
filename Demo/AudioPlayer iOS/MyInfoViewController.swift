@@ -161,13 +161,6 @@ extension MyInfoVieController {
             cell.update()
             return cell
             
-        /*
-        case 2:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "myInfoThirdSection") as! MyInfoThirdSectionCell
-            cell.controller = self
-            cell.update()
-            return cell */
-
 
         default:
             let cell = tableView.dequeueReusableCell(withIdentifier: "myInfoCommonCell") as! MyInfoCommonCell

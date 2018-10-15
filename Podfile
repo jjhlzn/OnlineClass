@@ -12,7 +12,7 @@ target 'AudioPlayer iOS' do
     pod 'QorumLogs', '~> 0.9'  #no
     pod 'SwiftyBeaver', '~> 1.5.2'
     pod 'ALCameraViewController', '~> 3.0.3' #ok
-    pod 'Socket.IO-Client-Swift', '~> 13.1.0' #ok
+    pod 'Socket.IO-Client-Swift', '~> 13.1.1' #ok
     pod 'tingyunApp'    #igonre
     pod 'MarqueeLabel/Swift', '~> 3.1.4'  #igonre
     pod 'FSPagerView', '~> 0.8.1'

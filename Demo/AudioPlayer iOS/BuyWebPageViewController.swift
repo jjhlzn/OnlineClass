@@ -55,6 +55,8 @@ class WebPageViewController: IapSupportWebPageViewController, WKNavigationDelega
         navigationManager.setMusicButton()
         navigationManager.setShareButton()
     
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = self
+        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = true
     }
     
     
@@ -113,6 +115,9 @@ class WebPageViewController: IapSupportWebPageViewController, WKNavigationDelega
         if webView.canGoBack {
             navigationItem.leftBarButtonItems = [backButton, closeButton]
             backButton.action = #selector(webViewBack)
+
+            self.navigationController?.interactivePopGestureRecognizer?.delegate = self
+            self.navigationController?.interactivePopGestureRecognizer?.isEnabled = true
         }
     }
     
@@ -133,6 +138,9 @@ class WebPageViewController: IapSupportWebPageViewController, WKNavigationDelega
         if !webView.canGoBack {
             navigationItem.leftBarButtonItems = [backButton]
             backButton.action = #selector(returnLastController)
+
+            self.navigationController?.interactivePopGestureRecognizer?.delegate = self
+            self.navigationController?.interactivePopGestureRecognizer?.isEnabled = true
         }
     }
     

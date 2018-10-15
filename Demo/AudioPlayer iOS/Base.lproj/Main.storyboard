@@ -261,7 +261,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6HR-Q7-heN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1387.2" y="1682.1589205397302"/>
+            <point key="canvasLocation" x="1088" y="2003"/>
         </scene>
         <!--个人资料-->
         <scene sceneID="ett-c2-aL0">
@@ -2322,12 +2322,12 @@
     <inferredMetricsTieBreakers>
         <segue reference="geI-4Z-Ncp"/>
         <segue reference="4Rk-Mf-vVd"/>
-        <segue reference="hv3-yH-OpQ"/>
+        <segue reference="TY9-aV-adh"/>
         <segue reference="gsK-rG-j3C"/>
         <segue reference="VyC-tp-he9"/>
         <segue reference="dRn-tj-MbL"/>
         <segue reference="7p7-B3-e4E"/>
-        <segue reference="ciV-s1-kgf"/>
+        <segue reference="YDx-ix-HXt"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>

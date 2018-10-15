@@ -78,7 +78,6 @@ class NewPlayerController: BaseUIViewController, UIScrollViewDelegate {
         audioPlayer.delegate = self
         headerView = PlayerHeaderView(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width, height: PlayerHeaderView.getHeight()))
         //headerView.frame.size.height = headerView.getHeight()
-        headerView.audioPlayer = audioPlayer
         
         view.backgroundColor = UIColor.white
         self.automaticallyAdjustsScrollViewInsets = false
@@ -100,6 +99,7 @@ class NewPlayerController: BaseUIViewController, UIScrollViewDelegate {
         } else {
             self.song = Utils.getCurrentSong()
             loadViewAfterGetSong()
+            
         }
     }
     
@@ -164,6 +164,9 @@ class NewPlayerController: BaseUIViewController, UIScrollViewDelegate {
         
         b.addTarget(self, action: #selector(backPressed), for: .touchUpInside)
         self.navigationItem.leftBarButtonItem  = button
+
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = self
+        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = true
     }
     
     func setShareButton(_ isTranslucent : Bool) {
@@ -183,14 +186,18 @@ class NewPlayerController: BaseUIViewController, UIScrollViewDelegate {
     override func viewWillAppear(_ animated: Bool) {
         setNavigationBar(self.isTouming)
         commentKeyboard?.commentController.addKeyboardNotify()
-        
-        let audioPlayer = Utils.getAudioPlayer()
-        audioPlayer.delegate = self
-    
         timer = Timer.scheduledTimer(timeInterval: 60, target: self, selector: #selector(self.loadListenCount), userInfo: nil, repeats: true)
         
+        if commentKeyboard?.commentController != nil {
+           commentKeyboard?.commentController.initChat()
+        }
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        Utils.getAudioPlayer().delegate = self
+        QL1(Utils.getAudioPlayer())
+        QL1(Utils.getAudioPlayer().delegate)
+    }
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
@@ -270,7 +277,8 @@ class NewPlayerController: BaseUIViewController, UIScrollViewDelegate {
     }
     
     override func audioPlayer(_ audioPlayer: AudioPlayer, didChangeStateFrom from: AudioPlayerState, to state: AudioPlayerState) {
-        //QL1("audioPlayer:didChangeStateFrom called, from = \(from), to = \(state)")
+        QL1("audioPlayer state changed, from = \(from), to = \(state)")
+        
         headerView.updateMusicButton()
     }
     

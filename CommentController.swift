@@ -119,19 +119,43 @@ class CommentController : NSObject, UITextViewDelegate {
     
     func initChat() {
         if socket != nil {
+            //socket.disconnect()
+            QL3("socket is not nil")
+            QL1("init socket")
+            //self.dispose()
+            setup()
+            socket.connect()
             return
         }
-        manager =  SocketManager(socketURL: URL(string:  ServiceLinkManager.ChatUrl)!, config: [.log(false), .compress])
+
+         QL1("init socket")
+        self.manager =  SocketManager(socketURL: URL(string:  ServiceLinkManager.ChatUrl)!, config: [.log(false), .compress])
         //manager.connect()
-        socket = manager.defaultSocket
-        socket.on(clientEvent: .connect) {data, ack in
+        QL1(ServiceLinkManager.ChatUrl)
+        self.socket = self.manager.defaultSocket
+        self.socket.on(clientEvent: .connect) {data, ack in
             QL1("socket connected")
+            
             let request = JoinRoomRequest()
             request.song = self.song
-            self.socket?.emit(self.join_room_cmd, request.getJSON().rawString()!)
+            //QL1(request.getJSON().rawString()!)
+            
+            //延迟3秒发送加入房间的请求，为了确保服务器已经在socket上加入了join room事件。
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3.0, execute: {
+                self.socket!.emit(self.join_room_cmd, request.getJSON().rawString()!)
+            })
+            
+            
         }
+        setup()
+        socket.connect()
+        //}
         
-        socket.on(chat_message_cmd) {data, ack in
+    }
+    
+    private func setup() {
+        self.socket.off(self.chat_message_cmd)
+        self.socket.on(self.chat_message_cmd) {data, ack in
             //get new message
             QL1("got a new message")
             QL1(data)
@@ -146,15 +170,15 @@ class CommentController : NSObject, UITextViewDelegate {
             self.liveDelegate?.afterSendLiveComment(comments: [comment])
             
         }
-        
-        socket.connect()
     }
     
     func dispose() {
         if socket != nil {
+            QL1("disponse socket")
             socket!.off(chat_message_cmd)
-            socket!.off(join_room_cmd)
+            //socket!.off(join_room_cmd)
             socket!.disconnect()
+            //socket = nil
         }
     }
     
