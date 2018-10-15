@@ -35,7 +35,14 @@ class CodeImageViewController: BaseUIViewController, FSPagerViewDataSource, FSPa
         super.viewDidLoad()
         
         let screenWidth = UIScreen.main.bounds.width
-        let frame1 = CGRect(x: 0, y: 0, width: 1, height: 1 )
+        let width = UIScreen.main.bounds.width * 0.75
+        var height = width * 1.8
+        
+        if height < screenWidth / 375 * 224 {
+            height = screenWidth / 375 * 224
+        }
+        
+        let frame1 = CGRect(x: 0, y: 0, width: screenWidth, height: height  )
         pagerView = FSPagerView(frame: frame1)
         pagerView.dataSource = self
         pagerView.delegate = self
@@ -43,8 +50,7 @@ class CodeImageViewController: BaseUIViewController, FSPagerViewDataSource, FSPa
         self.view.addSubview(pagerView)
 
         pagerView.interitemSpacing = 30
-        let width = UIScreen.main.bounds.width * 0.75
-        let height = width * 1.8
+        
         
         pagerView.itemSize = CGSize(width: width, height: height)
        // pagerView.is
@@ -53,7 +59,7 @@ class CodeImageViewController: BaseUIViewController, FSPagerViewDataSource, FSPa
         pagerView.delegate = self
         
         pagerView.snp.makeConstraints { (make) -> Void in
-            make.height.equalTo(screenWidth / 375 * 444)
+            make.height.equalTo(height)
             make.width.equalTo(screenWidth)
             //make.left.equalTo(10)
             make.center.equalToSuperview()
