@@ -10,6 +10,7 @@ import UIKit
 import QorumLogs
 import Kingfisher
 import MJRefresh
+import SnapKit
 
 class MyInfoLineInfo {
     
@@ -30,12 +31,10 @@ class MyInfoVieController: BaseUIViewController, UITableViewDataSource, UITableV
     var fifthSections = [ ["me_agent", "邀请好友", "codeImageSegue", "",  "1", ""],
                           ["me_tuijian", "我的推荐", "webViewSegue", ServiceLinkManager.MyTuiJianUrl,  "1", KeyValueStore.key_tuijian],
                           ["me_order", "我的订单", "webViewSegue", ServiceLinkManager.MyOrderUrl,  "1", KeyValueStore.key_ordercount],
-                          ["me_team", "我的团队", "webViewSegue", ServiceLinkManager.MyTeamUrl,  "0", KeyValueStore.key_tuandui],
-                        ]
+                            ]
     
 
     var sixthSections = [ ["me_ziliao", "我的资料", "personalInfoSegue", "",  "1", ""],
-                           ["me_qrcode", "我的二维码", "codeImageSegue", "",  "1", ""],
                            ["me_hezuo", "申请合作", "webViewSegue", ServiceLinkManager.HezuoUrl, "0", ""],
                         ]
     
@@ -72,6 +71,57 @@ class MyInfoVieController: BaseUIViewController, UITableViewDataSource, UITableV
         refreshHeader.lastUpdatedTimeLabel.isHidden = true
         refreshHeader.stateLabel.isHidden = true
         
+        setMessageButton()
+        
+    }
+    
+    @objc func pressMessageBtn() {
+        keyValueStore.save(key: KeyValueStore.key_hasnewmessage, value: "0")
+        setMessageButton()
+        self.performSegue(withIdentifier: "messageSegue", sender: nil)
+    }
+    
+    func setMessageButton() {
+        let b = UIButton(type: .custom)
+        //b.backgroundColor = UIColor.red
+        let bottomImage = UIImage(named: "message")!
+        b.setImage( overlayImage(bottomImage), for: .normal)
+        b.frame = CGRect(x: -6, y: 0, width: 40, height: 40)
+        //b.backgroundColor = UIColor.blue
+        
+        b.addTarget(self, action: #selector(pressMessageBtn), for: .touchUpInside)
+        
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
+        view.addSubview(b)
+        let button = UIBarButtonItem(customView: view)
+        
+        navigationItem.leftBarButtonItems = []
+        navigationItem.leftBarButtonItems?.append(button)
+    }
+    
+    func overlayImage(_ bottomImg: UIImage) -> UIImage {
+        let bottomImage = bottomImg
+        if !keyValueStore.hasNewMessage() {
+            return bottomImg
+        }
+        
+        let topImage = UIImage(named: "reddot")!
+        
+        let imageWidth : CGFloat = 32
+        let newSize = CGSize(width: imageWidth, height: imageWidth) // set this to what you need
+        let ratio : CGFloat = 0.3
+        let messageSize = CGSize(width: imageWidth * ratio, height: imageWidth * ratio)
+        UIGraphicsBeginImageContextWithOptions(newSize, false, 0.0)
+        
+        let x = imageWidth - abs(imageWidth - imageWidth * ratio) * 1.3 / 2 + 2
+        let y = imageWidth * ratio / 5 - 2
+        
+        bottomImage.draw(in: CGRect(origin: CGPoint.zero, size: CGSize(width: imageWidth * 0.8, height: imageWidth * 0.8)))
+        topImage.draw(in: CGRect(origin: CGPoint(x: x, y: CGFloat(y)), size: messageSize))
+        
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return newImage!
     }
     
     
@@ -182,7 +232,6 @@ extension MyInfoVieController {
                 var sender = [String:String]()
                 sender["title"] = lineInfo[1]
                 sender["url"] = lineInfo[3]
-                QL1(lineInfo[3])
                 performSegue(withIdentifier: lineInfo[2], sender: sender)
             } else {
                 performSegue(withIdentifier: lineInfo[2], sender: nil)
@@ -237,6 +286,9 @@ extension MyInfoVieController {
         
         keyValueStore.save(key: KeyValueStore.key_ordercount, value: resp.orderCount)
         keyValueStore.save(key: KeyValueStore.key_zhidian, value: "\(resp.zhidian)知点")
+        keyValueStore.save(key: KeyValueStore.key_isweixinbind, value: resp.isBindWeixin ? "1" : "0")
+        keyValueStore.save(key: KeyValueStore.key_hasnewmessage, value: resp.hasNewMessage ? "1" : "0")
+        keyValueStore.save(key: KeyValueStore.key_hasbindphone, value: resp.hasBindPhone ? "1" : "0")
         
         let loginUserStore = LoginUserStore()
         let loginUser = loginUserStore.getLoginUser()!
@@ -249,7 +301,7 @@ extension MyInfoVieController {
         loginUserStore.updateLoginUser()
         
         tableView.reloadData()
-    
+        setMessageButton()
         
     }
 

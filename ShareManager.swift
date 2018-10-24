@@ -181,7 +181,7 @@ class WeixinShareService {
         message.description = shareManager.shareDescription
         
         if shareManager.isUseQrImage {
-            message.setThumbImage(UIImage(named: "me_qrcode"))
+            message.setThumbImage(UIImage(named: "smallAppIcon"))
         } else {
             message.setThumbImage(UIImage(named: "smallAppIcon"))
         }
@@ -227,7 +227,7 @@ class WeiboShareService {
         
         //webpage.thumbnailData = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"image_2" ofType:@"jpg"]];
         if shareManager.isUseQrImage {
-            webpage.thumbnailData = UIImagePNGRepresentation(UIImage(named: "me_qrcode")!)
+            webpage.thumbnailData = UIImagePNGRepresentation(UIImage(named: "smallAppIcon")!)
         } else {
             webpage.thumbnailData = UIImagePNGRepresentation(UIImage(named: "smallAppIcon")!)
         }
@@ -267,28 +267,28 @@ class QQShareService {
     }
 
     private func shareToQQ(isToQZone: Bool) {
-        //TODO: 临时删掉
-        /*
-        let newsUrl = NSURL(string: shareManager.shareUrl)
+        let newsUrl = URL(string: shareManager.shareUrl)
         let title = shareManager.shareTitle
         let description = shareManager.shareDescription
         
-        var imageName = "me_qrcode"
+        var imageName = "smallAppIcon"
         if !shareManager.isUseQrImage {
             imageName = "smallAppIcon"
         }
         
-        let newsObj = QQApiNewsObject(URL: newsUrl!, title: title, description: description, previewImageData: UIImagePNGRepresentation(UIImage(named: imageName)!), targetContentType: QQApiURLTargetTypeNews)
+       
+        //QQApiNewsObject(url: <#T##URL!#>, title: <#T##String!#>, description: <#T##String!#>, previewImageData: <#T##Data!#>, targetContentType: <#T##QQApiURLTargetType#>)
+        let newsObj = QQApiNewsObject(url: newsUrl!, title: title, description: description, previewImageData: UIImagePNGRepresentation(UIImage(named: imageName)!), targetContentType: QQApiURLTargetTypeNews)
         
         let req = SendMessageToQQReq(content: newsObj)
         
         if isToQZone {
-            QQApiInterface.SendReqToQZone(req)
+            QQApiInterface.sendReq(toQZone: req)
         } else {
-            QQApiInterface.sendReq(req)
+            QQApiInterface.send(req)
         }
         
-        */
+        
     }
 
 

@@ -15,7 +15,6 @@ import Gifu
 import LTScrollView
 import MJRefresh
 import SnapKit
-import SocketIO
 
 class CourseMainPageViewController: BaseUIViewController, LTTableViewProtocal, UIScrollViewDelegate {
 
@@ -52,51 +51,10 @@ class CourseMainPageViewController: BaseUIViewController, LTTableViewProtocal, U
     
     let refreshHeader = MJRefreshNormalHeader()
     let mainPageNavBar = MainPageNavigationBar()
-
-    var manager: SocketManager!
-    var socket: SocketIOClient!
-    
-    func initChat() {
-        
-        if socket != nil {
-            socket.disconnect()
-            QL3("socket is not nil")
-            //setup()
-            socket.connect()
-            return
-        }
-        
-
-        self.manager =  SocketManager(socketURL: URL(string:  "http://localhost:3000")!, config: [.log(true), .compress])
-            //manager.connect()
-            QL1(ServiceLinkManager.ChatUrl)
-       
-            self.socket = self.manager.defaultSocket
-        
-        
-        
-        self.socket.on(clientEvent: .connect) {data, ack in
-            QL1("socket connected")
-            
-            let request = JoinRoomRequest()
-            //request.song = self.song
-            //QL1(request.getJSON().rawString()!)
-            
-            //self.socket!.emit(self.join_room_cmd, request.getJSON().rawString()!)
-
-        }
-        self.socket.on("chat message") {data, ack in
-            //get new message
-            QL1("got a new message")
-
-            
-        }
-        manager.connect()
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       initChat()
+
         let items = self.tabBarController?.tabBar.items
         items![0].title = "探索"
         items![1].title = "签到"
@@ -196,6 +154,9 @@ class CourseMainPageViewController: BaseUIViewController, LTTableViewProtocal, U
             hidePopupAd()
         }
         
+        if cells == nil || cells.count == 0 {
+            makeCells()
+        }
         //self.hidesBottomBarWhenPushed = false
     }
     
@@ -321,7 +282,7 @@ class CourseMainPageViewController: BaseUIViewController, LTTableViewProtocal, U
     @IBAction func viewAllToutiaoPressed(_ sender: Any) {
         //performSegue(withIdentifier: "zhuanLanListSegue", sender: nil)
         var sender = [String:String]()
-        sender["title"] = "融资军火库"
+        sender["title"] = "金融宝典"
         sender["url"] = ServiceLinkManager.JunhuokuUrl
         performSegue(withIdentifier: "loadWebPageSegue", sender: sender)
     }
@@ -491,7 +452,6 @@ extension CourseMainPageViewController : UITableViewDataSource, UITableViewDeleg
         
         
         if questions.count > 0 {
-        
             cells.append(tableView.dequeueReusableCell(withIdentifier: "seperatorCell")!)
             heights.append(8)
             didSelectActions.append(dummyDidSelectAction)
@@ -519,18 +479,14 @@ extension CourseMainPageViewController : UITableViewDataSource, UITableViewDeleg
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         let row = indexPath.row
-        
         return cells[row]
      }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let row = indexPath.row
-        
         return self.heights[row]
     }
-    
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 1
@@ -540,7 +496,6 @@ extension CourseMainPageViewController : UITableViewDataSource, UITableViewDeleg
         return 1
     }
     
-    
     func jumpToCourse(album: Album) {
         let viewControllerStoryboardId = "NewPlayerController"
         let storyboardName = "Main"
@@ -549,7 +504,6 @@ extension CourseMainPageViewController : UITableViewDataSource, UITableViewDeleg
         vc.hasBottomBar = false
         self.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(vc, animated: true)
-        //
         self.hidesBottomBarWhenPushed = false
     }
     
@@ -557,8 +511,8 @@ extension CourseMainPageViewController : UITableViewDataSource, UITableViewDeleg
         tableView.deselectRow(at: indexPath as IndexPath, animated: false)
         let row = indexPath.row
         
-        QL1(didSelectActions.count)
         self.didSelectActions[row](tableView, indexPath)
+        
     }
     
     private func getHeaderAdvHeight() -> CGFloat {

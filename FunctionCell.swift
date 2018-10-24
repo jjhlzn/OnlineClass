@@ -127,7 +127,7 @@ class ExtendFunctionMananger : NSObject {
                 break
             }
             
-            addCellView(row: row, column: i, index: index, function: function, cell: cell)
+            _ = addCellView(row: row, column: i, index: index, function: function, cell: cell)
             index = index + 1
         }
         
@@ -136,21 +136,28 @@ class ExtendFunctionMananger : NSObject {
     }
     
     
+    var cellHeight:CGFloat {
+        get {
+            let screenWidth = UIScreen.main.bounds.width
+            if UIDevice().isIphone4Like() {
+                return screenWidth / CGFloat(buttonCountEachRow) * 0.7
+            } else {
+                return screenWidth / CGFloat(buttonCountEachRow) * 0.92
+            }
+            
+        }
+    }
+    
     private func addCellView(row : Int, column : Int, index: Int, function: ExtendFunction, cell: UITableViewCell) -> UIView {
         let interval : CGFloat = UIScreen.main.bounds.width / CGFloat(buttonCountEachRow)
         let x = interval  * CGFloat(column)
-        let cellView = UIView(frame: CGRect(x: x, y: 0, width: interval, height: 60))
+        let cellView = UIView(frame: CGRect(x: x, y: 0, width: interval, height: 100))
         
         cellView.tag = index
         cell.addSubview(cellView)
         
-        let imageView = makeImage(index: index, function: function, superView: cellView)
-        let label =     makeLabel(index: index, function: function, superView: cellView)
-        
-        cellView.addSubview(imageView)
-        cellView.addSubview(label)
-        
-    
+        let view = ExtendFunctionView(frame: CGRect(x: 0, y: 0, width: interval, height: cellHeight), index: index, function: function, superView: cellView)
+        cellView.addSubview(view)
         cellView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: function.action ))
         cellView.isUserInteractionEnabled = true
         
@@ -162,160 +169,10 @@ class ExtendFunctionMananger : NSObject {
         let column : Int = index % buttonCountEachRow
         let parent = view.superview!
         view.removeFromSuperview()
-        addCellView(row: row, column: column, index: index, function: functions[index], cell: parent as! UITableViewCell)
+        _ = addCellView(row: row, column: column, index: index, function: functions[index], cell: parent as! UITableViewCell)
     }
-    
-    private func getImageWidth() -> CGFloat {
-        let screenWidth = UIScreen.main.bounds.width
-        if isiPhone4Screen {
-            return screenWidth / CGFloat(buttonCountEachRow) * 0.65 * 0.55
-        } else {
-            return screenWidth / CGFloat(buttonCountEachRow) * 0.7 * 0.36
-        }
-    }
-    
-    var cellHeight:CGFloat {
-        get {
-            let screenWidth = UIScreen.main.bounds.width
-            if isiPhone4Screen {
-                return screenWidth / CGFloat(buttonCountEachRow) * 0.7
-            } else {
-                return screenWidth / CGFloat(buttonCountEachRow) * 0.7
-            }
-            
-        }
-    }
-    
-    var isiPhonePlusScreen: Bool {
-        get {
-            return abs(UIScreen.main.bounds.width - 414) < 1;
-        }
-    }
-    
-    var isiPhone6Screen: Bool {
-        get {
-            return abs(UIScreen.main.bounds.width - 375) < 1;
-        }
-    }
-    
-    var isiPhone4Screen: Bool {
-        get {
-            return abs(UIScreen.main.bounds.width - 320) < 1;
-        }
-    }
-    
-    private func makeImage(index: Int, function: ExtendFunction, superView: UIView) -> UIImageView {
-        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: getImageWidth(), height: getImageWidth()))
-        imageView.center.x = superView.bounds.width / 2
-    
-        let Y : CGFloat = 6
-        if isiPhonePlusScreen {
-           imageView.center.y = cellHeight / 2 - 1 - Y
-        } else if isiPhone6Screen {
-           imageView.center.y = cellHeight / 2 - 2 - Y
-        } else {
-           imageView.center.y = cellHeight / 2 - 0 - Y + 1
-        }
 
-        overlayImage(function: function, imageView: imageView) //UIImage(named: function.imageName)
-        imageView.tag = index
-        
-        return imageView
-    }
-    
-    func overlayImage(function: ExtendFunction, imageView: UIImageView)  {
-        let viwe = UIImageView()
-        
-        if function.imageName != "" {
-            let url = ImageResource(downloadURL: URL(string: function.imageName)!, cacheKey: function.imageUrl)
-            
-            ImageCache.default.retrieveImage(forKey: function.imageUrl, options: nil) {
-                image, cacheType in
-                if let image = image {
-                    print("Get image \(image), cacheType: \(cacheType).")
-                    //In this code snippet, the `cacheType` is .disk
-                    imageView.image = self.overlayImage0(function: function, bottomImg: image)
-                } else {
-                    //QL1(function.imageName)
-                    viwe.kf.setImage(with: url, completionHandler: {
-                        (image, error, cacheType, imageUrl) in
-                        if image != nil {
-                            imageView.image = self.overlayImage0(function: function, bottomImg: image!)
-                            QL1("update icon for: \(function.name)")
-                        }
-                    })
-                    
-                    imageView.image = self.overlayImage0(function: function, bottomImg: UIImage(named: "func_placeholder")!)
-                }
-            }
-        } else {
-            imageView.image = self.overlayImage0(function: function, bottomImg: UIImage(named: "func_placeholder")!)
-        }
-        
-       
-    }
-    
-    func overlayImage0(function: ExtendFunction, bottomImg: UIImage) -> UIImage {
-        var bottomImage = bottomImg
-        let extendFunctionImageStore = ExtendFunctionImageStore()
-       // QL1("\(function.code):  \(function.name), \(function.imageUrl)")
-        if function.imageUrl != "" {
-            let image = extendFunctionImageStore.getImage(imageUrl: function.imageUrl)
-            if image != nil {
-                bottomImage = image!
-            }
-        }
-        
-        if !function.hasMessage {
-            return bottomImage
-        }
-        
-        let topImage = UIImage(named: "message_one")!
-        
-        let newSize = CGSize(width: getImageWidth(), height: getImageWidth()) // set this to what you need
-        let ratio : CGFloat = 0.42
-        let messageSize = CGSize(width: getImageWidth() * ratio, height: getImageWidth() * ratio)
-        UIGraphicsBeginImageContextWithOptions(newSize, false, 0.0)
-        
-        let x = getImageWidth() - abs(getImageWidth() - getImageWidth() * ratio) * 1.3 / 2
-        let y = getImageWidth() * ratio / 5 - 2
-        
-        bottomImage.draw(in: CGRect(origin: CGPoint.zero, size: newSize))
-        topImage.draw(in: CGRect(origin: CGPoint(x: x, y: CGFloat(y)), size: messageSize))
-        
-        let newImage = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        return newImage!
-    }
-    
-    private func makeLabel(index: Int, function: ExtendFunction, superView: UIView) -> UILabel {
-        let screenWidth = UIScreen.main.bounds.width
-        let labelWidth =  screenWidth / CGFloat(buttonCountEachRow)
-        
-        let label = UILabel(frame: CGRect(x: 0, y: 0, width: labelWidth, height: 20))
-        label.tag = index
-        
-        label.center.x = superView.bounds.width / 2
-        var fontSize : CGFloat = 10
-        if isiPhonePlusScreen {
-            label.center.y = cellHeight / 2 + getImageWidth() / 2 + 1
-        } else if isiPhone6Screen {
-            label.center.y = cellHeight / 2 + getImageWidth() / 2 + 1
-        } else {
-            label.center.y = cellHeight / 2 + getImageWidth() / 2 + 2
-            fontSize = 9
-        }
-
-        label.textAlignment = .center
-        label.font = label.font.withSize(fontSize)
-        label.textColor = UIColor.darkGray
-        label.text = function.name
-        
-        return label
-    }
-    
     @objc func imageHandler(sender: UITapGestureRecognizer? = nil) {
-        
         let index = sender?.view?.tag
         clearFunctionMessage(index: index!, view:(sender?.view)!)
         let function = functions[index!]

@@ -46,4 +46,8 @@ extension UIDevice {
         
         return false
     }
+    
+    public func isIphone4Like() -> Bool {
+        return abs(UIScreen.main.bounds.width - 320) < 1;
+    }
 }

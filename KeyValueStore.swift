@@ -21,6 +21,9 @@ class KeyValueStore {
     static let key_ordercount = "key_ordercount"
     static let key_vipenddate = "key_vipenddate"
     static let key_popupAdImageUrl = "key_popupAdImageUrl"
+    static let key_isweixinbind = "key_isweixinbind"
+    static let key_hasnewmessage = "key_hasnewmessage"
+    static let key_hasbindphone = "key_hasbindphone"
     
     var coreDataStack = CoreDataStack(modelName: "jufangzhushou")
     
@@ -107,5 +110,21 @@ class KeyValueStore {
         }
         //QL1("key = \(key), default: \(defaultValue), result = \(result != nil ? result! : "nil")")
         return result
+    }
+    
+    func hasNewMessage() -> Bool {
+        return checkBoolean(KeyValueStore.key_hasnewmessage)
+    }
+    
+    func isBindWeixin() -> Bool {
+       return checkBoolean(KeyValueStore.key_isweixinbind)
+    }
+    
+    func hasBindPhone() -> Bool {
+        return checkBoolean(KeyValueStore.key_hasbindphone)
+    }
+    
+    private func checkBoolean(_ key : String) -> Bool {
+        return self.get(key: key, defaultValue: "0") == "1"
     }
 }

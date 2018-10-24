@@ -339,3 +339,13 @@ class Pos : BaseModelObject {
     var clickUrl : String!
     var title : String!
 }
+
+class Message : BaseModelObject {
+    var title: String!
+    var desc : String!
+    var time : String!
+    var clickTitle : String!
+    var clickUrl : String!
+    
+    var height: CGFloat! = 0
+}

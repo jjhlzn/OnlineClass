@@ -20,7 +20,7 @@ class AppDelegate : XinGeAppDelegate {
     var loginUserStore = LoginUserStore()
     var audioPlayer = AudioPlayer()
     var liveProgressTimer : Timer?
-    var wxApiManager = WXApiManager()
+var wxApiManager = WXApiManager()
     
     static let wbAppKey = "901768017"
     static let qqAppId = "1105796307"
@@ -81,15 +81,6 @@ class AppDelegate : XinGeAppDelegate {
         for i in 0..<deviceToken.count {
             tokenString += String(format: "%02.2hhx", arguments: [tokenChars[i]])
         }
-
-
-        //let tokenChars = UnsafePointer<CChar>(deviceToken.bytes)
-        //var tokenString = ""
-        /*
-        
-        for i in 0..<deviceToken.length {
-            tokenString += String(format: "%02.2hhx", arguments: [tokenChars[i]])
-        }*/
      
         QL1("devicetoken: \(tokenString)")
         
@@ -123,10 +114,11 @@ class AppDelegate : XinGeAppDelegate {
         if let event = event {
             //TODO:
             //audioPlayer.remoteControlReceivedWithEvent(event)
+            audioPlayer.remoteControlReceived(with: event)
         }
     }
     
-    func applicationWillEnterForeground(application: UIApplication) {
+    func applicationWillEnterForeground(_ application: UIApplication) {
         application.applicationIconBadgeNumber = 0
         let currentViewController = getVisibleViewController(rootViewController: nil)
         
@@ -138,8 +130,8 @@ class AppDelegate : XinGeAppDelegate {
             }
         }
     }
-    
-    func applicationDidEnterBackground(application: UIApplication) {
+   
+    func applicationDidEnterBackground(_ application: UIApplication) {
         let currentViewController = getVisibleViewController(rootViewController: nil)
         
         if currentViewController != nil {
@@ -152,21 +144,31 @@ class AppDelegate : XinGeAppDelegate {
 
     }
     
-    
-    func application(application: UIApplication, handleOpenURL url: NSURL) -> Bool {
+    /*
+    func application(_ application: UIApplication, handleOpenURL url: NSURL) -> Bool {
         QL1("application(UIApplication, url): ", url.absoluteString!)
-        return WXApi.handleOpen(url as URL!, delegate: wxApiManager)
+        
+        return WXApi.handleOpen(url as URL, delegate: wxApiManager)
     }
     
-    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
+    
+    func application(_ application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
         QL1("application(UIApplication, url): \(url.absoluteString)")
         QL1("sourceApplication: \(sourceApplication == nil ? "nil" : sourceApplication!)")
         //tencent1105796307://response_from_qq
         
         //WeiboSDK.handleOpenURL(url, delegate: nil)
-        return WXApi.handleOpen(url as URL!, delegate: wxApiManager)
+        return WXApi.handleOpen(url as URL, delegate: wxApiManager)
         
         
+    } */
+    public func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        QL1("application(UIApplication, url): ", url.absoluteString)
+        QL1("scheme: \(url.scheme)")
+        if url.scheme == "wx73653b5260b24787" {
+            return WXApi.handleOpen(url as URL, delegate: wxApiManager)
+        }
+        return true
     }
     
     

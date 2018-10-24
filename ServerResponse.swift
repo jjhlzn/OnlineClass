@@ -432,6 +432,7 @@ class LoginResponse : ServerResponse {
     var boss: String?
     var sex: String = ""
     var codeImageUrl: String = ""
+    var userId : String!
     
     required init() {
         
@@ -439,15 +440,17 @@ class LoginResponse : ServerResponse {
     
     override func parseJSON(request: ServerRequest, json: NSDictionary) {
         super.parseJSON(request: request, json: json)
-
+        let j = JSON(json)
         if status == 0 {
-            name = json["name"] as? String
-            token = json["token"] as? String
-            sex = json["sex"] as! String
-            codeImageUrl = json["codeImageUrl"] as! String
-            nickName = json["nickname"] as! String
-            level = json["level"] as! String
-            boss = json["boss"] as? String
+            userId = j["userid"].stringValue
+            name = j["name"].stringValue
+            token = j["token"].stringValue
+            sex = j["sex"].stringValue
+            
+            codeImageUrl = j["codeImageUrl"].stringValue
+            nickName = j["nickname"].stringValue
+            level = j["level"].stringValue
+            boss = j["boss"].stringValue
         }
     }
 
@@ -801,31 +804,35 @@ class GetUserStatDataResponse : ServerResponse {
     var boss: String?
     var sex: String = ""
     var codeImageUrl: String = ""
-
+    var isBindWeixin: Bool! = false
+    var hasNewMessage : Bool! = false
+    var hasBindPhone : Bool! = false
     
     override func parseJSON(request: ServerRequest, json: NSDictionary) {
         super.parseJSON(request: request, json: json)
-        jifen = json["jifen"] as! String
-        chaifu = json["chaifu"] as! String
-        teamPeople = json["teamPeople"] as! String
-        tuijianPeople = json["tuijianPeople"] as! String
-        orderCount = json["orderCount"] as! String
         
-        name = json["name"] as? String
-        if json["nickname"] != nil {
-            nickName = json["nickname"] as! String
-        } else {
-            nickName = ""
+        let j = JSON(json)
+        jifen = j["jifen"].stringValue
+        chaifu = j["chaifu"].stringValue
+        teamPeople = j["teamPeople"].stringValue
+        tuijianPeople = j["tuijianPeople"].stringValue
+        orderCount = j["orderCount"].stringValue
+        
+        name = j["name"].stringValue
+        nickName = j["nickname"].stringValue
+        
+        level = j["level"].stringValue
+        boss = j["boss"].stringValue
+        sex = j["sex"].stringValue
+        codeImageUrl = j["codeImageUrl"].stringValue
+        
+        if j["zhidian"].double != nil {
+            zhidian = j["zhidian"].doubleValue
         }
         
-        level = json["level"] as! String
-        boss = json["boss"] as? String
-        sex = json["sex"] as! String
-        codeImageUrl = json["codeImageUrl"] as! String
-        
-        if json["zhidian"] != nil {
-            zhidian = json["zhidian"] as! Double
-        }
+        isBindWeixin = j["isBindWeixin"].boolValue
+        hasNewMessage = j["hasNewMessage"].boolValue
+        hasBindPhone = j["hasBindPhone"].boolValue
     }
 }
 
@@ -1542,5 +1549,89 @@ class AskQuestionRequest : ServerRequest {
     }
 }
 class AskQuestionResponse : ServerResponse {
+}
+
+
+class GetWeixinTokenRequest : ServerRequest {
+    var code : String!
+    override var params: [String : AnyObject] {
+        get {
+            var parameters = super.params
+            parameters["code"] = code as AnyObject
+            return parameters
+        }
+    }
+}
+class GetWeixinTokenResonse : ServerResponse {
+    var responseString : String = "{}"
+    override func parseJSON(request: ServerRequest, json: NSDictionary) {
+        super.parseJSON(request: request, json: json)
+        let j = JSON(json)
+        responseString = j["responseString"].stringValue
+    }
+}
+
+
+class OAuthRequest : ServerRequest {
+    var accessToken : String!
+    var refreshToken : String!
+    var openId : String!
+    var unionId : String!
+    var respStr : String!
+    var deviceToken : String!
+    
+    override var params: [String : AnyObject] {
+        get {
+            var parameters = super.params
+            parameters["access_token"] = accessToken as AnyObject
+            parameters["refresh_token"] = refreshToken as AnyObject
+            parameters["openid"] = openId as AnyObject
+            parameters["unionid"] = unionId as AnyObject
+            parameters["respStr"] = respStr as AnyObject
+            parameters["deviceToken"] = deviceToken as AnyObject
+            return parameters
+        }
+    }
     
 }
+class OAuthResponse : LoginResponse {
+}
+
+class BindWeixinRequest : OAuthRequest {
+}
+class BindWeixinResponse : ServerResponse {}
+
+class GetMessagesRequest : ServerRequest {}
+class GetMessagesResponse : ServerResponse {
+    var messages = [Message]()
+    
+    override func parseJSON(request: ServerRequest, json: NSDictionary) {
+        super.parseJSON(request: request, json: json)
+        let j = JSON(json)
+        let jsonArray = j["messages"].arrayValue
+        for jo in jsonArray {
+            let message = Message()
+            message.title = jo["title"].stringValue
+            message.desc = jo["detail"].stringValue
+            message.time = jo["time"].stringValue
+            message.clickTitle = jo["clickTitle"].stringValue
+            message.clickUrl = jo["clickUrl"].stringValue
+            messages.append(message)
+        }
+    }
+}
+
+
+class BindPhoneRequest : ServerRequest {
+    var newPhone : String!
+    var code : String! = ""
+    override var params: [String : AnyObject] {
+        get {
+            var parameters = super.params
+            parameters["newphone"] = newPhone as AnyObject
+            parameters["code"] = code as AnyObject
+            return parameters
+        }
+    }
+}
+class BindPhoneResponse : ServerResponse {}

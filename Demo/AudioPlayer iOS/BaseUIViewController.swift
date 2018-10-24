@@ -88,8 +88,8 @@ class BaseUIViewController: UIViewController, AudioPlayerDelegate, UIGestureReco
         leftButton.imageInsets = UIEdgeInsets(top: 0, left: -5, bottom: 0, right: 0)
         self.navigationItem.leftBarButtonItem  = leftButton
         
-        self.navigationController?.interactivePopGestureRecognizer?.delegate = self
-        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = true
+        //self.navigationController?.interactivePopGestureRecognizer?.delegate = self
+        //self.navigationController?.interactivePopGestureRecognizer?.isEnabled = true
     }
 
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldBeRequiredToFailBy otherGestureRecognizer: UIGestureRecognizer) -> Bool {

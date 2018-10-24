@@ -8,7 +8,8 @@
 
 import UIKit
 import Foundation
-
+import QorumLogs
+import SnapKit
 
 class LoginViewController: BaseUIViewController {
 
@@ -20,16 +21,17 @@ class LoginViewController: BaseUIViewController {
     @IBOutlet weak var passwordField: UITextField!
     var isKeyboardShow = false
     
+    @IBOutlet weak var weixinViewContainer: UIView!
+    @IBOutlet weak var weixinLoginBtn: UIImageView!
+    var weixinLoginManager : WeixinLoginManager!
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
         super.hideKeyboardWhenTappedAround()
-        
+        weixinLoginManager = WeixinLoginManager()
         setTextFieldHeight(field: userNameField, height: 45)
         setTextFieldHeight(field: passwordField, height: 45)
-        
-
         
         becomeLineBorder(field: userNameField)
         becomeLineBorder(field: passwordField)
@@ -39,9 +41,7 @@ class LoginViewController: BaseUIViewController {
         
         let screenSize: CGRect = UIScreen.main.bounds
         
-        let screenWidth = screenSize.width
         let screenHeight = screenSize.height
-        print("width = \(screenWidth), height = \(screenHeight)")
         if screenHeight < 667 {
             //TODO: 参数
             NotificationCenter.default.addObserver(self,
@@ -55,6 +55,26 @@ class LoginViewController: BaseUIViewController {
         }
         
         
+        
+        if WXApi.isWXAppInstalled() {
+            if UIDevice().isX() {
+                weixinViewContainer.frame.origin.y -= 40
+            }
+            
+            weixinLoginBtn.isUserInteractionEnabled = true
+            
+            //var tapWeixinLogin = UITapGestureRecognizer(target: self, action: #selector(tapWeixinLogin))
+            weixinLoginBtn.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tapWeixinLogin)))
+        } else {
+            weixinViewContainer.isHidden = true
+        }
+        
+       
+    }
+    
+    @objc func tapWeixinLogin(_ tapGes : UITapGestureRecognizer) {
+        QL1("tapWeixinLogin called")
+        weixinLoginManager.loginStep1()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -76,8 +96,6 @@ class LoginViewController: BaseUIViewController {
     override func isNeedResetAudioPlayerDelegate() -> Bool {
         return false
     }
-    
-    
     
     func addIconToField(field: UITextField, imageName: String) {
         let imageView = UIImageView();
@@ -125,6 +143,13 @@ class LoginViewController: BaseUIViewController {
         }
     }
     
+    func showLoadingOverlay() {
+        self.loadingOverlay.showOverlay(view: self.view)
+    }
+    
+    func hideLoadingOverlay() {
+        self.loadingOverlay.hideOverlayView()
+    }
     
     var loadingOverlay = LoadingOverlay()
     var loginUserStore = LoginUserStore()
@@ -155,12 +180,11 @@ class LoginViewController: BaseUIViewController {
                         loginUser.nickName = response.nickName
                         loginUser.level = response.level
                         loginUser.boss = response.boss
-                    if self.loginUserStore.saveLoginUser(loginUser: loginUser) {
-                        self.performSegue(withIdentifier: "loginSuccessSegue", sender: self)
+                        if self.loginUserStore.saveLoginUser(loginUser: loginUser) {
+                            self.performSegue(withIdentifier: "loginSuccessSegue", sender: self)
                         } else {
-                        self.displayMessage(message: "登录失败")
+                            self.displayMessage(message: "登录失败")
                         }
-                        
                 } else {
                     self.displayMessage(message: response.errorMessage!)
                 }

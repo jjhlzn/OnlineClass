@@ -116,6 +116,11 @@
 		E2C6FAE11C4B01D80055A1BF /* sound1.caf in Resources */ = {isa = PBXBuildFile; fileRef = E2C6FADF1C4B01D80055A1BF /* sound1.caf */; };
 		E2C6FAE21C4B01D80055A1BF /* sound2.caf in Resources */ = {isa = PBXBuildFile; fileRef = E2C6FAE01C4B01D80055A1BF /* sound2.caf */; };
 		EF03652E209EEEA1006094EE /* SearchBarExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF03652D209EEEA1006094EE /* SearchBarExtension.swift */; };
+		EF0B6E2D217AD5DA00E99EBF /* ExtendFunctionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF0B6E2C217AD5DA00E99EBF /* ExtendFunctionView.swift */; };
+		EF0B6E2F217AF36E00E99EBF /* WeixinLoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF0B6E2E217AF36E00E99EBF /* WeixinLoginManager.swift */; };
+		EF0B6E31217B7A1700E99EBF /* BindWeixinCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF0B6E30217B7A1700E99EBF /* BindWeixinCell.swift */; };
+		EF0B6E33217C1F0800E99EBF /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF0B6E32217C1F0700E99EBF /* MessageCell.swift */; };
+		EF0B6E35217C23CA00E99EBF /* MessagesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF0B6E34217C23CA00E99EBF /* MessagesController.swift */; };
 		EF10AAC820A95D3800C6B2E4 /* UINavigationControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF10AAC720A95D3800C6B2E4 /* UINavigationControllerExtension.swift */; };
 		EF1E54D82143CD2B0005901E /* ToutiaoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF1E54D72143CD2B0005901E /* ToutiaoCell.swift */; };
 		EF1E54DA214401A00005901E /* PosCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF1E54D9214401A00005901E /* PosCell.swift */; };
@@ -165,7 +170,6 @@
 		EF39750D20AD28410033620D /* MyInfoCommonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF39750C20AD28410033620D /* MyInfoCommonCell.swift */; };
 		EF39750F20B3B8340033620D /* NavigationBarManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF39750E20B3B8340033620D /* NavigationBarManager.swift */; };
 		EF422C69209ECD5300419FCA /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF422C68209ECD5300419FCA /* LaunchViewController.swift */; };
-		EF45B4CC216F44F30006F114 /* demo.gif in Resources */ = {isa = PBXBuildFile; fileRef = EF45B4CA216F44F20006F114 /* demo.gif */; };
 		EF45B4CD216F44F30006F114 /* demo_white.gif in Resources */ = {isa = PBXBuildFile; fileRef = EF45B4CB216F44F20006F114 /* demo_white.gif */; };
 		EF49FB682157C87400E0E673 /* MainPageNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF49FB672157C87400E0E673 /* MainPageNavigationBar.swift */; };
 		EF4B4847214F356C00909356 /* MyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF4B4846214F356C00909356 /* MyViewController.swift */; };
@@ -182,6 +186,8 @@
 		EF9A922521427A0E008133EA /* QuestionAnswersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9A922421427A0E008133EA /* QuestionAnswersView.swift */; };
 		EF9A92272142B464008133EA /* AnswerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF9A92262142B464008133EA /* AnswerCell.xib */; };
 		EF9A92292142B480008133EA /* AnswerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9A92282142B480008133EA /* AnswerCell.swift */; };
+		EFA70A0A217F48810032BDA3 /* BindPhoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFA70A09217F48810032BDA3 /* BindPhoneViewController.swift */; };
+		EFA70A0C21800DDB0032BDA3 /* demo.gif in Resources */ = {isa = PBXBuildFile; fileRef = EFA70A0B21800DDB0032BDA3 /* demo.gif */; };
 		EFB004231E236CD800B9272A /* HeaderAdvCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFB004221E236CD800B9272A /* HeaderAdvCell.swift */; };
 		EFDD138D20AA97A400BF8C37 /* ZhuanLanCell2.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFDD138C20AA97A400BF8C37 /* ZhuanLanCell2.swift */; };
 		EFDD138F20AA998300BF8C37 /* ZhuanLanListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFDD138E20AA998300BF8C37 /* ZhuanLanListVC.swift */; };
@@ -322,6 +328,11 @@
 		E2C6FADF1C4B01D80055A1BF /* sound1.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = sound1.caf; path = ../Sounds/sound1.caf; sourceTree = "<group>"; };
 		E2C6FAE01C4B01D80055A1BF /* sound2.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = sound2.caf; path = ../Sounds/sound2.caf; sourceTree = "<group>"; };
 		EF03652D209EEEA1006094EE /* SearchBarExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarExtension.swift; sourceTree = "<group>"; };
+		EF0B6E2C217AD5DA00E99EBF /* ExtendFunctionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtendFunctionView.swift; sourceTree = "<group>"; };
+		EF0B6E2E217AF36E00E99EBF /* WeixinLoginManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeixinLoginManager.swift; sourceTree = "<group>"; };
+		EF0B6E30217B7A1700E99EBF /* BindWeixinCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindWeixinCell.swift; sourceTree = "<group>"; };
+		EF0B6E32217C1F0700E99EBF /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
+		EF0B6E34217C23CA00E99EBF /* MessagesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesController.swift; sourceTree = "<group>"; };
 		EF10AAC720A95D3800C6B2E4 /* UINavigationControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationControllerExtension.swift; sourceTree = "<group>"; };
 		EF1E54D72143CD2B0005901E /* ToutiaoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ToutiaoCell.swift; path = cells/ToutiaoCell.swift; sourceTree = "<group>"; };
 		EF1E54D9214401A00005901E /* PosCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PosCell.swift; path = cells/PosCell.swift; sourceTree = "<group>"; };
@@ -369,7 +380,6 @@
 		EF39750C20AD28410033620D /* MyInfoCommonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MyInfoCommonCell.swift; path = cells/MyInfoCommonCell.swift; sourceTree = "<group>"; };
 		EF39750E20B3B8340033620D /* NavigationBarManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarManager.swift; sourceTree = "<group>"; };
 		EF422C68209ECD5300419FCA /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
-		EF45B4CA216F44F20006F114 /* demo.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = demo.gif; path = "../../Library/Containers/com.tencent.xinWeChat/Data/Library/Application Support/com.tencent.xinWeChat/2.0b4.0.9/c72cea09616bd1e9a503dbe6b2c24061/Message/MessageTemp/590cbc9a738b4ceb50de5c57b71b8c32/File/音乐跳动/demo.gif"; sourceTree = "<group>"; };
 		EF45B4CB216F44F20006F114 /* demo_white.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = demo_white.gif; sourceTree = "<group>"; };
 		EF49FB672157C87400E0E673 /* MainPageNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageNavigationBar.swift; sourceTree = "<group>"; };
 		EF4B4846214F356C00909356 /* MyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyViewController.swift; sourceTree = "<group>"; };
@@ -387,6 +397,8 @@
 		EF9A92262142B464008133EA /* AnswerCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AnswerCell.xib; sourceTree = "<group>"; };
 		EF9A92282142B480008133EA /* AnswerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerCell.swift; sourceTree = "<group>"; };
 		EFA032452145FE9C008279CD /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		EFA70A09217F48810032BDA3 /* BindPhoneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindPhoneViewController.swift; sourceTree = "<group>"; };
+		EFA70A0B21800DDB0032BDA3 /* demo.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = demo.gif; sourceTree = "<group>"; };
 		EFB004221E236CD800B9272A /* HeaderAdvCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderAdvCell.swift; sourceTree = "<group>"; };
 		EFBFF6A51E2F4AAC00CDFB6F /* AudioPlayer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AudioPlayer.entitlements; sourceTree = SOURCE_ROOT; };
 		EFDD138C20AA97A400BF8C37 /* ZhuanLanCell2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ZhuanLanCell2.swift; path = cells/ZhuanLanCell2.swift; sourceTree = "<group>"; };
@@ -519,6 +531,8 @@
 				EFDD139020AAB0D100BF8C37 /* NewAlbumCell.swift */,
 				EFDD139420AABCED00BF8C37 /* NewCourseHeaderCell.swift */,
 				EFDD139820AC159F00BF8C37 /* SearchResultCell.swift */,
+				EF0B6E30217B7A1700E99EBF /* BindWeixinCell.swift */,
+				EF0B6E32217C1F0700E99EBF /* MessageCell.swift */,
 			);
 			name = customCell;
 			sourceTree = "<group>";
@@ -541,6 +555,7 @@
 				EF23456E20A46895002E2F30 /* DeviceExtension.swift */,
 				EF10AAC720A95D3800C6B2E4 /* UINavigationControllerExtension.swift */,
 				EF9A921C214275AA008133EA /* TableViewUtils.swift */,
+				EF0B6E2E217AF36E00E99EBF /* WeixinLoginManager.swift */,
 			);
 			name = lib;
 			sourceTree = "<group>";
@@ -684,8 +699,8 @@
 		E2A9AF931C498E2900FE943A = {
 			isa = PBXGroup;
 			children = (
+				EFA70A0B21800DDB0032BDA3 /* demo.gif */,
 				EF45B4CB216F44F20006F114 /* demo_white.gif */,
-				EF45B4CA216F44F20006F114 /* demo.gif */,
 				EF21740C1E2753B10035C960 /* TencentOpenApi_IOS_Bundle.bundle */,
 				EF21740D1E2753B10035C960 /* TencentOpenAPI.framework */,
 				1C156D831D9E38AE007A7F65 /* jfzs-prefix.h */,
@@ -744,6 +759,8 @@
 				1C33F0381D071C8000D3EE4C /* song */,
 				1C33F0371D071C5300D3EE4C /* me */,
 				EF422C68209ECD5300419FCA /* LaunchViewController.swift */,
+				EF0B6E34217C23CA00E99EBF /* MessagesController.swift */,
+				EFA70A09217F48810032BDA3 /* BindPhoneViewController.swift */,
 			);
 			name = "AudioPlayer iOS";
 			path = "Demo/AudioPlayer iOS";
@@ -807,6 +824,7 @@
 				EF2345AB20A85C99002E2F30 /* PlayerHeaderView.swift */,
 				EF9A9222214279F4008133EA /* QuestionAnswersView.xib */,
 				EF9A922421427A0E008133EA /* QuestionAnswersView.swift */,
+				EF0B6E2C217AD5DA00E99EBF /* ExtendFunctionView.swift */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -973,8 +991,8 @@
 				EF9A9223214279F4008133EA /* QuestionAnswersView.xib in Resources */,
 				EF9A9219214268A0008133EA /* QuestionHeaderCell.xib in Resources */,
 				EF21740E1E2753B10035C960 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
-				EF45B4CC216F44F30006F114 /* demo.gif in Resources */,
 				EF45B4CD216F44F30006F114 /* demo_white.gif in Resources */,
+				EFA70A0C21800DDB0032BDA3 /* demo.gif in Resources */,
 				EF23459420A67961002E2F30 /* NewCommentCell.xib in Resources */,
 				EF23457D20A57585002E2F30 /* CourseOverviewCell.xib in Resources */,
 				1CBF786B1D336CF200B596BC /* README.txt in Resources */,
@@ -1104,6 +1122,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EF0B6E31217B7A1700E99EBF /* BindWeixinCell.swift in Sources */,
 				1C451F6D1D01787B00DC29F9 /* ServiceLocatorEntity.swift in Sources */,
 				EFDD139920AC159F00BF8C37 /* SearchResultCell.swift in Sources */,
 				1C1E69251CCA0F3E00CEA029 /* NoCommentCell.swift in Sources */,
@@ -1179,6 +1198,8 @@
 				1C33F03E1D07A8E200D3EE4C /* CodeImageViewController.swift in Sources */,
 				1CD349681CF9703700037F78 /* KeyValueCell.swift in Sources */,
 				1C3479BD1CF2F9BD003FEF05 /* FirstPageViewController.swift in Sources */,
+				EF0B6E33217C1F0800E99EBF /* MessageCell.swift in Sources */,
+				EFA70A0A217F48810032BDA3 /* BindPhoneViewController.swift in Sources */,
 				1C9F20E61D823BA100E1B69F /* BuyWebPageViewController.swift in Sources */,
 				1C3479C01CF3EBEF003FEF05 /* LivePlayerCell.swift in Sources */,
 				1CEE8AF31CD4998A00865FB6 /* PagableController.swift in Sources */,
@@ -1200,12 +1221,14 @@
 				1C3CC4C01CFBE3FE007D3EBC /* SongListCell.swift in Sources */,
 				1C66ADFD1D38C2CE001A6525 /* QrCodeImageStore.swift in Sources */,
 				1CD349741CFA8DD700037F78 /* SearchCourseViewController.swift in Sources */,
+				EF0B6E2D217AD5DA00E99EBF /* ExtendFunctionView.swift in Sources */,
 				1CEFF7881CBFBA1B000DEFF7 /* ServiceConfiguration.swift in Sources */,
 				E2A9AFA01C498E2900FE943A /* AppDelegate.swift in Sources */,
 				EFED76191E5C61B200CB3C9A /* CourseNotifyCell.swift in Sources */,
 				1C8A2AD61CE5882A0086C1B8 /* SignupViewController.swift in Sources */,
 				EF1E54D82143CD2B0005901E /* ToutiaoCell.swift in Sources */,
 				1CDCC8EF1CE72203001640CC /* logoutCell.swift in Sources */,
+				EF0B6E35217C23CA00E99EBF /* MessagesController.swift in Sources */,
 				EF39750920AD205B0033620D /* MyInfoSecondSectionCell.swift in Sources */,
 				EF9A921B21426B55008133EA /* QuestionHeaderCell.swift in Sources */,
 				1C9E808A1DA8D5D9006DD2C2 /* WXApiManager.swift in Sources */,
@@ -1244,6 +1267,7 @@
 				1CEFF78A1CBFBA70000DEFF7 /* ServerResponse.swift in Sources */,
 				EF9A92292142B480008133EA /* AnswerCell.swift in Sources */,
 				1C2451D61CE8A1CE00F350DA /* LoginUserStore.swift in Sources */,
+				EF0B6E2F217AF36E00E99EBF /* WeixinLoginManager.swift in Sources */,
 				1CEFF78E1CBFC9B7000DEFF7 /* AlbumCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

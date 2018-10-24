@@ -39,7 +39,7 @@ class PlayerHeaderView: BaseCustomView {
         playerBtn.isUserInteractionEnabled = true
         let tap  = UITapGestureRecognizer(target: self, action: #selector(tapMusic))
         playerBtn.addGestureRecognizer(tap)
-        
+        listenerCountLabel.text = "0人"
     }
 
     static let  interHeight : CGFloat = 15

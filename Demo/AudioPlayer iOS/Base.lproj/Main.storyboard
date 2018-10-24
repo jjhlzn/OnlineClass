@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" colorMatched="YES" initialViewController="TOO-0G-gko">
-    <device id="retina6_5" orientation="portrait">
+    <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -14,19 +14,19 @@
             <objects>
                 <viewController automaticallyAdjustsScrollViewInsets="NO" id="jTL-YG-lW0" customClass="MyInfoVieController" customModule="AudioPlayer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zBZ-AF-pWp">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="1" id="cs3-w7-xqz">
-                                <rect key="frame" x="-2" y="63" width="416" height="748"/>
+                                <rect key="frame" x="-2" y="63" width="376" height="553"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="myInfoFirstSection" rowHeight="88" id="Jgc-mU-UkK" userLabel="firstSection" customClass="MyInfoFirstSectionCell" customModule="AudioPlayer" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="55.333333333333343" width="416" height="88"/>
+                                        <rect key="frame" x="0.0" y="55.5" width="376" height="88"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Jgc-mU-UkK" id="0UR-TV-gWE">
-                                            <rect key="frame" x="0.0" y="0.0" width="416" height="87.666666666666671"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="376" height="87.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="高级代理" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jnr-0l-oHs">
@@ -56,14 +56,14 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="myInfoSecondSection" rowHeight="120" id="Joh-CK-0xu" userLabel="secondSection" customClass="MyInfoSecondSectionCell" customModule="AudioPlayer" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="143.33333333333334" width="416" height="120.00000000000003"/>
+                                        <rect key="frame" x="0.0" y="143.5" width="376" height="120"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Joh-CK-0xu" id="69f-bF-hms">
-                                            <rect key="frame" x="0.0" y="0.0" width="416" height="119.66666666666667"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="376" height="119.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我的财富" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="11u-fb-lOB">
-                                                    <rect key="frame" x="13" y="6" width="86" height="21"/>
+                                                    <rect key="frame" x="12" y="6" width="77" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                     <color key="textColor" red="0.57045853140000002" green="0.57047235969999999" blue="0.57046490910000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -91,33 +91,33 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10人" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="h3T-6m-RnP">
-                                                    <rect key="frame" x="226" y="89" width="69" height="16"/>
+                                                    <rect key="frame" x="200" y="89" width="69" height="16"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我的团队" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Fp2-LC-wBd">
-                                                    <rect key="frame" x="226" y="68" width="62" height="21"/>
+                                                    <rect key="frame" x="200" y="68" width="62" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                     <color key="textColor" red="0.57045853140000002" green="0.57047235969999999" blue="0.57046490910000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <color key="highlightedColor" red="0.66422420739999999" green="0.66424006219999998" blue="0.66423153879999997" alpha="0.59939533389999999" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </label>
                                                 <view contentMode="scaleToFill" id="Bb5-qh-Tgm">
-                                                    <rect key="frame" x="12" y="60" width="397" height="1"/>
+                                                    <rect key="frame" x="12" y="60" width="357" height="1"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" red="0.83741801979999997" green="0.83743780850000005" blue="0.83742713930000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </view>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="iRu-7g-vrW">
-                                                    <rect key="frame" x="349" y="17" width="56" height="27"/>
+                                                    <rect key="frame" x="309" y="17" width="56" height="27"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <state key="normal" title="提现"/>
                                                 </button>
                                                 <view contentMode="scaleToFill" id="RnP-oa-n8h">
-                                                    <rect key="frame" x="208" y="60" width="1" height="48"/>
+                                                    <rect key="frame" x="187" y="60" width="1" height="48"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" red="0.83921568627450982" green="0.83921568627450982" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </view>
@@ -136,10 +136,10 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="myInfoThirdSection" rowHeight="72" id="CU9-X3-hES" userLabel="thirdSection" customClass="MyInfoThirdSectionCell" customModule="AudioPlayer" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="263.33333333333337" width="416" height="72"/>
+                                        <rect key="frame" x="0.0" y="263.5" width="376" height="72"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="CU9-X3-hES" id="9Du-Vx-oum">
-                                            <rect key="frame" x="0.0" y="0.0" width="416" height="71.666666666666671"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="376" height="71.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="会员有效期" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="9Tf-aF-wGN">
@@ -157,21 +157,21 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="高级代理" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="gE1-ir-i8d">
-                                                    <rect key="frame" x="231" y="37" width="69" height="16"/>
+                                                    <rect key="frame" x="204" y="37" width="69" height="16"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我的代理等级" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="PWe-Og-21B">
-                                                    <rect key="frame" x="227" y="18" width="68" height="21"/>
+                                                    <rect key="frame" x="201" y="18" width="68" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                     <color key="textColor" red="0.57045853140000002" green="0.57047235969999999" blue="0.57046490910000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <color key="highlightedColor" red="0.66422420739999999" green="0.66424006219999998" blue="0.66423153879999997" alpha="0.59939533389999999" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="OJY-1R-XTo">
-                                                    <rect key="frame" x="344" y="23" width="56" height="27"/>
+                                                    <rect key="frame" x="304" y="23" width="56" height="27"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES"/>
                                                     <color key="backgroundColor" red="0.80392156859999997" green="0.61960784310000006" blue="0.37647058820000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -180,13 +180,13 @@
                                                     </state>
                                                 </button>
                                                 <view contentMode="scaleToFill" id="wbH-qN-ILr">
-                                                    <rect key="frame" x="208" y="21" width="1" height="30"/>
+                                                    <rect key="frame" x="187" y="21" width="1" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <color key="tintColor" red="0.75294117647058822" green="0.75294117647058822" blue="0.75294117647058822" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </view>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="S6I-fP-va9">
-                                                    <rect key="frame" x="123" y="24" width="56" height="26"/>
+                                                    <rect key="frame" x="109" y="24" width="56" height="26"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" red="0.80392156862745101" green="0.61960784313725492" blue="0.37647058823529411" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -204,32 +204,32 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="myInfoCommonCell" rowHeight="50" id="iXY-KB-U1H" userLabel="otherCell" customClass="MyInfoCommonCell" customModule="AudioPlayer" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="335.33333333333337" width="416" height="50"/>
+                                        <rect key="frame" x="0.0" y="335.5" width="376" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="iXY-KB-U1H" id="rwX-j9-wne">
-                                            <rect key="frame" x="0.0" y="0.0" width="378" height="49.666666666666664"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="343" height="49.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="me_agent" id="rv0-qb-SFB">
-                                                    <rect key="frame" x="15" y="13" width="25" height="25"/>
+                                                    <rect key="frame" x="15" y="14.000000000000114" width="20" height="20"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0人" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="DOA-oC-oJS">
-                                                    <rect key="frame" x="328" y="15" width="54" height="21"/>
+                                                    <rect key="frame" x="293" y="15" width="54" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <color key="textColor" red="0.57045853140000002" green="0.57047235969999999" blue="0.57046490910000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我的服务" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="6Gp-Jm-oWg">
-                                                    <rect key="frame" x="56" y="14" width="278" height="21"/>
+                                                    <rect key="frame" x="50" y="14" width="278" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <view alpha="0.5" contentMode="scaleToFill" id="ksT-T2-oVx">
-                                                    <rect key="frame" x="54" y="49" width="356" height="1"/>
+                                                    <rect key="frame" x="50" y="49" width="321" height="1"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" red="0.6705882352941176" green="0.6705882352941176" blue="0.6705882352941176" alpha="0.57898116438356162" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </view>
@@ -257,30 +257,70 @@
                         <segue destination="qTJ-UI-98H" kind="push" identifier="webViewSegue" id="TY9-aV-adh"/>
                         <segue destination="qTJ-UI-98H" kind="push" identifier="webViewSegue2" id="wBb-qu-AM9"/>
                         <segue destination="U8X-pM-Yzb" kind="push" identifier="settingsSegue" id="4at-cA-UU8"/>
+                        <segue destination="uVk-ak-6p8" kind="push" identifier="messageSegue" id="ObE-iA-hfD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6HR-Q7-heN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1088" y="2003"/>
+            <point key="canvasLocation" x="1342" y="1985"/>
+        </scene>
+        <!--消息中心-->
+        <scene sceneID="fdK-dE-wFZ">
+            <objects>
+                <viewController hidesBottomBarWhenPushed="YES" id="uVk-ak-6p8" customClass="MessagesController" customModule="AudioPlayer" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="JSm-nh-Djo">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="IQV-aS-4hU">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="gray" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="messageCell" id="4BT-Oh-u3k" customClass="MessageCell" customModule="AudioPlayer" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4BT-Oh-u3k" id="eyE-hW-E92">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="container" destination="eyE-hW-E92" id="ncV-kA-GOK"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="消息中心" id="WK8-CA-dV1"/>
+                    <connections>
+                        <outlet property="tableView" destination="IQV-aS-4hU" id="UZB-u9-ijy"/>
+                        <segue destination="qTJ-UI-98H" kind="push" identifier="webSegue" id="flh-Fm-rLT"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PID-pL-Qvm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1686" y="1177"/>
         </scene>
         <!--个人资料-->
         <scene sceneID="ett-c2-aL0">
             <objects>
                 <viewController automaticallyAdjustsScrollViewInsets="NO" id="H6H-2U-a24" customClass="PersonalInfoViewController" customModule="AudioPlayer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Uf4-pl-Nq1">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="48" sectionHeaderHeight="1" sectionFooterHeight="1" id="VBJ-fs-lNt">
-                                <rect key="frame" x="0.0" y="65" width="414" height="751"/>
+                                <rect key="frame" x="0.0" y="65" width="375" height="556"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="personalItemCell" rowHeight="48" id="Trs-fK-fbF" customClass="PersonalInfoCell" customModule="AudioPlayer" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="55.333333333333343" width="414" height="48"/>
+                                        <rect key="frame" x="0.0" y="55.5" width="375" height="48"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Trs-fK-fbF" id="how-hh-Sf7">
-                                            <rect key="frame" x="0.0" y="0.0" width="376" height="47.666666666666664"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="342" height="47.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="iVa-2f-lxN">
@@ -291,7 +331,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="qP8-dI-Onq">
-                                                    <rect key="frame" x="248" y="14" width="130" height="21"/>
+                                                    <rect key="frame" x="214" y="14" width="130" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -305,10 +345,10 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="personalItemCell2" rowHeight="48" id="xgP-sz-yS3" customClass="PersonalInfoCell2" customModule="AudioPlayer" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="103.33333333333334" width="414" height="48"/>
+                                        <rect key="frame" x="0.0" y="103.5" width="375" height="48"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xgP-sz-yS3" id="P9K-ZM-8Dw">
-                                            <rect key="frame" x="0.0" y="0.0" width="376" height="47.666666666666664"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="342" height="47.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="xDc-Hf-JgV">
@@ -319,7 +359,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="barcode" id="wZ8-IS-3GG">
-                                                    <rect key="frame" x="357" y="14" width="20" height="20"/>
+                                                    <rect key="frame" x="323" y="14" width="20" height="20"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
                                             </subviews>
@@ -352,27 +392,27 @@
             <objects>
                 <viewController title="直播" id="2mU-Ty-i7S" customClass="CourseListVC" customModule="AudioPlayer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="mhs-gC-vZg">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" sectionIndexMinimumDisplayRowCount="1" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="3Y2-7f-p5G">
-                                <rect key="frame" x="0.0" y="64" width="414" height="832"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="courseHeaderCell" rowHeight="40" id="1Wa-Qm-kmz" userLabel="tuijianCourseHeaderCell" customClass="NewCourseHeaderCell" customModule="AudioPlayer" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="40"/>
+                                        <rect key="frame" x="0.0" y="28" width="375" height="40"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1Wa-Qm-kmz" id="6HP-kU-Hge">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="39.666666666666664"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="39.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" id="x2s-9E-qU2">
-                                                    <rect key="frame" x="10" y="0.0" width="394" height="41"/>
+                                                    <rect key="frame" x="10" y="0.0" width="355" height="40"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="每日学习" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="5h5-b9-bcy">
-                                                            <rect key="frame" x="0.0" y="10" width="224" height="21"/>
+                                                            <rect key="frame" x="0.0" y="10" width="185" height="21"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -388,18 +428,18 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="newAlbumCell" rowHeight="204" id="4LI-fC-19X" userLabel="tuijianCourseCell" customClass="NewAlbumCell" customModule="AudioPlayer" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="68" width="414" height="204"/>
+                                        <rect key="frame" x="0.0" y="68" width="375" height="204"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4LI-fC-19X" id="c5I-6Q-pIN">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="203.66666666666666"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="203.5"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="musicCover" id="UWp-i5-ljO">
-                                                    <rect key="frame" x="10" y="8" width="394" height="158"/>
+                                                    <rect key="frame" x="10" y="8" width="355" height="158"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                                 </imageView>
                                                 <view contentMode="scaleToFill" id="ZkA-UP-yTo">
-                                                    <rect key="frame" x="10" y="166" width="394" height="38"/>
+                                                    <rect key="frame" x="10" y="165" width="355" height="38"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                     <subviews>
                                                         <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="play1" id="k2a-af-Mak">
@@ -407,11 +447,11 @@
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                         </imageView>
                                                         <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="time" id="APi-Ev-BWM">
-                                                            <rect key="frame" x="298" y="10" width="19" height="19"/>
+                                                            <rect key="frame" x="259" y="10" width="19" height="19"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                         </imageView>
                                                         <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="u" id="asf-v9-rkd">
-                                                            <rect key="frame" x="153" y="10" width="22" height="19"/>
+                                                            <rect key="frame" x="137" y="10" width="22" height="19"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                         </imageView>
                                                         <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="正在直播" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="qoq-K2-f9s">
@@ -422,14 +462,14 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="589人在线" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="GV8-kj-ipy">
-                                                            <rect key="frame" x="184" y="13" width="59" height="14"/>
+                                                            <rect key="frame" x="163" y="13" width="59" height="14"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                             <color key="textColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="03/28 20:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="OZK-jA-zTp">
-                                                            <rect key="frame" x="322" y="13" width="67" height="13"/>
+                                                            <rect key="frame" x="283" y="13" width="67" height="13"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                             <color key="textColor" white="0.18953450520833334" alpha="1" colorSpace="calibratedWhite"/>
@@ -467,11 +507,11 @@
             <objects>
                 <viewController hidesBottomBarWhenPushed="YES" id="tlV-Sn-3a7" customClass="CodeImageViewController" customModule="AudioPlayer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7xt-Of-WdR">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="GA7-ne-GmJ">
-                                <rect key="frame" x="0.0" y="823" width="414" height="73"/>
+                                <rect key="frame" x="0.0" y="613" width="375" height="54"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="0.83529411764705885" green="0.6705882352941176" blue="0.45882352941176469" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
@@ -504,19 +544,19 @@
             <objects>
                 <viewController automaticallyAdjustsScrollViewInsets="NO" id="68y-yK-JRN" customClass="SetSexViewController" customModule="AudioPlayer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tFP-nK-EMA">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="cba-2Y-apR">
-                                <rect key="frame" x="0.0" y="65" width="414" height="749"/>
+                                <rect key="frame" x="0.0" y="65" width="375" height="554"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="sexCell" id="hJP-rI-wd2">
-                                        <rect key="frame" x="0.0" y="55.333333333333343" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="55.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hJP-rI-wd2" id="Vvx-SS-SWa">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -545,23 +585,23 @@
             <objects>
                 <viewController automaticallyAdjustsScrollViewInsets="NO" id="vNC-ta-SAY" customClass="SetNameViewController" customModule="AudioPlayer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Dul-Cz-g4u">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="zLs-ag-xlY">
-                                <rect key="frame" x="0.0" y="65" width="414" height="743"/>
+                                <rect key="frame" x="0.0" y="65" width="375" height="548"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="textFieldCell" id="jxh-6O-GDT" customClass="TextFieldCell" customModule="AudioPlayer" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="55.333333333333343" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="55.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jxh-6O-GDT" id="Ir8-rh-oNS">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="名字" textAlignment="natural" minimumFontSize="17" id="gao-g1-fbe">
-                                                    <rect key="frame" x="8" y="8" width="406" height="30"/>
+                                                    <rect key="frame" x="8" y="8" width="367" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
@@ -598,19 +638,19 @@
             <objects>
                 <viewController automaticallyAdjustsScrollViewInsets="NO" id="U8X-pM-Yzb" customClass="SettingsViewController" customModule="AudioPlayer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="fXT-eO-Oj5">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="9" sectionFooterHeight="9" id="2uv-BB-ghS">
-                                <rect key="frame" x="0.0" y="40" width="414" height="813"/>
+                                <rect key="frame" x="0.0" y="40" width="375" height="569"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="keyValueCell" rowHeight="48" id="vUL-wk-mxV" customClass="KeyValueCell" customModule="AudioPlayer" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="55.333333333333343" width="414" height="48"/>
+                                        <rect key="frame" x="0.0" y="55.5" width="375" height="48"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vUL-wk-mxV" id="KOJ-JM-tUq">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="47.666666666666664"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="47.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="名称" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="vvl-34-Fof">
@@ -621,7 +661,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="值" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jN2-4j-t25">
-                                                    <rect key="frame" x="136" y="13" width="260" height="21"/>
+                                                    <rect key="frame" x="123" y="13" width="234" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -634,15 +674,15 @@
                                             <outlet property="valueLabel" destination="jN2-4j-t25" id="1cd-2m-BFv"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="logoutCell" rowHeight="66" id="2tR-85-nHW" customClass="logoutCell" customModule="AudioPlayer" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="103.33333333333334" width="414" height="66"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="logoutCell" rowHeight="60" id="2tR-85-nHW" customClass="logoutCell" customModule="AudioPlayer" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="103.5" width="375" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2tR-85-nHW" id="CFI-Sy-y57">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="65.666666666666671"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="59.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="RGC-iL-VU8">
-                                                    <rect key="frame" x="20" y="9" width="374" height="47"/>
+                                                    <rect key="frame" x="20" y="10" width="335" height="40"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" red="0.83921568627450982" green="0.66666666666666663" blue="0.45098039215686275" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
@@ -659,12 +699,40 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="accountSecurityCell" rowHeight="44" id="QDI-tn-dcX" customClass="logoutCell" customModule="AudioPlayer" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="169.33333333333334" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="163.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="QDI-tn-dcX" id="4DA-b9-gzC">
-                                            <rect key="frame" x="0.0" y="0.0" width="376" height="43.666666666666664"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="342" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="bindWeixin" rowHeight="44" id="LVM-18-jgG" customClass="BindWeixinCell" customModule="AudioPlayer" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="207.5" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="LVM-18-jgG" id="txk-8a-Kdl">
+                                            <rect key="frame" x="0.0" y="0.0" width="342" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="微信登录" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="SAc-ww-Tbi">
+                                                    <rect key="frame" x="15" y="12" width="207" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="尚未绑定" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Kqy-Wi-va4">
+                                                    <rect key="frame" x="200" y="11" width="148" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" red="1" green="0.53662542759999998" blue="0.057109609079999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="descLabel" destination="Kqy-Wi-va4" id="OoF-72-V1g"/>
+                                            <outlet property="nameLabel" destination="SAc-ww-Tbi" id="FQa-zx-t7d"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -676,30 +744,31 @@
                         <outlet property="tableView" destination="2uv-BB-ghS" id="Hl9-Ul-epZ"/>
                         <segue destination="59B-S3-xkA" kind="modal" identifier="logoutSegue" modalTransitionStyle="flipHorizontal" id="HJR-zD-bje"/>
                         <segue destination="5FA-kt-hcm" kind="push" identifier="resetPasswordSegue" id="wkj-js-G1Z"/>
+                        <segue destination="cIJ-ue-zLC" kind="push" identifier="bindPhoneSegue" id="8gP-Ij-jYE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d0P-gH-5iy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1019.2" y="569.41529235382313"/>
+            <point key="canvasLocation" x="-1079.2" y="280.20989505247377"/>
         </scene>
         <!--重设密码-->
         <scene sceneID="pEl-22-gMZ">
             <objects>
                 <viewController title="重设密码" automaticallyAdjustsScrollViewInsets="NO" id="5FA-kt-hcm" customClass="ResetPasswordController" customModule="AudioPlayer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="OMT-lM-xc9">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="DI6-6m-JRj">
-                                <rect key="frame" x="0.0" y="65" width="414" height="748"/>
+                                <rect key="frame" x="0.0" y="65" width="375" height="553"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="formCell" rowHeight="48" id="6ad-42-xVO" customClass="FormCell" customModule="AudioPlayer" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="55.333333333333343" width="414" height="48"/>
+                                        <rect key="frame" x="0.0" y="55.5" width="375" height="48"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6ad-42-xVO" id="VIE-76-cSa">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="47.666666666666664"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="47.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="8xx-aD-LBh">
@@ -747,24 +816,24 @@
             <objects>
                 <viewController title="启动" id="mtC-8X-XYd" customClass="StartupViewController" customModule="AudioPlayer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="j35-dQ-5Ku">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon" id="6tm-UC-EWb">
-                                <rect key="frame" x="178" y="808" width="60" height="60"/>
+                                <rect key="frame" x="158" y="579" width="60" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launchAdv" id="nxI-f1-8vJ">
-                                <rect key="frame" x="192" y="216" width="32" height="320"/>
+                                <rect key="frame" x="172" y="130" width="32" height="320"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="g5Z-JS-RAJ">
-                                <rect key="frame" x="-3" y="0.0" width="419" height="786"/>
+                                <rect key="frame" x="-3" y="0.0" width="380" height="557"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="0.7019608021" green="0.7019608021" blue="0.7019608021" alpha="0.67912176719999995" colorSpace="custom" customColorSpace="sRGB"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="广告" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="bza-Bt-9yP">
-                                <rect key="frame" x="393" y="763" width="21" height="22"/>
+                                <rect key="frame" x="354" y="534" width="21" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                 <color key="backgroundColor" red="0.7019608021" green="0.7019608021" blue="0.7019608021" alpha="0.67478448280000003" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="9"/>
@@ -772,7 +841,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="跳过广告 3" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="tmD-Xg-AJz">
-                                <rect key="frame" x="337" y="26" width="68" height="24"/>
+                                <rect key="frame" x="298" y="26" width="68" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.7019608021" green="0.7019608021" blue="0.7019608021" alpha="0.46974676720000003" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -802,25 +871,25 @@
             <objects>
                 <viewController title="登录" id="59B-S3-xkA" customClass="LoginViewController" customModule="AudioPlayer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" opaque="NO" contentMode="scaleToFill" id="y8O-bz-Hvd">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="用户名" textAlignment="natural" minimumFontSize="17" id="z4A-8X-s9O">
-                                <rect key="frame" x="20" y="202" width="374" height="30"/>
+                                <rect key="frame" x="20" y="202" width="335" height="30"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="密码" textAlignment="natural" minimumFontSize="17" id="AbX-60-4h6">
-                                <rect key="frame" x="20" y="256" width="374" height="30"/>
+                                <rect key="frame" x="20" y="256" width="335" height="30"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="X0u-y0-reH">
-                                <rect key="frame" x="20" y="331" width="374" height="47"/>
+                                <rect key="frame" x="20" y="331" width="335" height="47"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.83921568627450982" green="0.66666666666666663" blue="0.46274509803921571" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
@@ -841,7 +910,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="NkQ-Q0-xW7">
-                                <rect key="frame" x="302" y="393" width="94" height="30"/>
+                                <rect key="frame" x="263" y="393" width="94" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="忘记密码?"/>
                                 <connections>
@@ -849,7 +918,7 @@
                                 </connections>
                             </button>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="qy9-aD-Lyt">
-                                <rect key="frame" x="169" y="869" width="74" height="30"/>
+                                <rect key="frame" x="150" y="640" width="74" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                 <state key="normal" title="配置">
@@ -860,9 +929,37 @@
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon" id="Q8O-4H-Bee">
-                                <rect key="frame" x="163" y="54" width="90" height="90"/>
+                                <rect key="frame" x="143" y="54" width="90" height="90"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES"/>
                             </imageView>
+                            <view contentMode="scaleToFill" id="GRY-Nm-B88">
+                                <rect key="frame" x="0.0" y="503" width="375" height="165"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fasongpengyou" id="FSZ-K3-vF7">
+                                        <rect key="frame" x="163" y="98" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    </imageView>
+                                    <view alpha="0.59999999999999998" contentMode="scaleToFill" id="0La-vr-k5Y">
+                                        <rect key="frame" x="11" y="73" width="128" height="1"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="其他登陆方式" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="zvV-hU-q1O">
+                                        <rect key="frame" x="145" y="65" width="86" height="17"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <view alpha="0.60000002384185791" contentMode="scaleToFill" id="D7u-1m-79C">
+                                        <rect key="frame" x="239" y="73" width="128" height="1"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES"/>
+                                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
@@ -871,12 +968,14 @@
                         <outlet property="loginButton" destination="X0u-y0-reH" id="BM5-M8-nbT"/>
                         <outlet property="passwordField" destination="AbX-60-4h6" id="s3G-pX-pNg"/>
                         <outlet property="userNameField" destination="z4A-8X-s9O" id="fNg-23-WZ9"/>
+                        <outlet property="weixinLoginBtn" destination="FSZ-K3-vF7" id="coj-5R-D0Q"/>
+                        <outlet property="weixinViewContainer" destination="GRY-Nm-B88" id="RIP-s6-hIn"/>
                         <segue destination="IeE-13-KTg" kind="modal" identifier="loginSuccessSegue" modalTransitionStyle="flipHorizontal" id="xbm-kK-Zqp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="H2f-BP-R0Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1760" y="-720.5397301349326"/>
+            <point key="canvasLocation" x="1759.2" y="-721.88905547226398"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="DBt-Ms-qHP">
@@ -909,19 +1008,19 @@
             <objects>
                 <viewController title="专栏" id="WlZ-YT-eo8" customClass="ZhuanLanListVC" customModule="AudioPlayer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="vvC-5S-b8K">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="amD-9I-hVa">
-                                <rect key="frame" x="0.0" y="64" width="414" height="749"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="zhuanLanCell2" rowHeight="110" id="tLm-pd-l2Y" userLabel="zhuanLanCell" customClass="ZhuanLanCell2" customModule="AudioPlayer" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="110"/>
+                                        <rect key="frame" x="0.0" y="28" width="375" height="110"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tLm-pd-l2Y" id="i3F-2E-HH9">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="109.66666666666667"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="109.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon" id="RLZ-at-al4">
@@ -936,28 +1035,28 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="金军航    计算机工程师" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="4D5-0p-pSy">
-                                                    <rect key="frame" x="95" y="35" width="310" height="21"/>
+                                                    <rect key="frame" x="95" y="35" width="271" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" red="0.4374603426" green="0.4374603426" blue="0.4374603426" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="赢家的方法" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="tSz-Ef-ge0">
-                                                    <rect key="frame" x="95" y="59" width="311" height="16"/>
+                                                    <rect key="frame" x="95" y="59" width="272" height="16"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" red="0.4374603426" green="0.4374603426" blue="0.4374603426" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10000人订阅" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="CEi-kR-6gO">
-                                                    <rect key="frame" x="333" y="9" width="73" height="21"/>
+                                                    <rect key="frame" x="294" y="9" width="73" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.62470569350000005" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="199元/年" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="sRc-EH-eUp">
-                                                    <rect key="frame" x="95" y="78" width="310" height="21"/>
+                                                    <rect key="frame" x="95" y="78" width="271" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                     <color key="textColor" red="1" green="0.53662542759999998" blue="0.057109609079999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -998,11 +1097,11 @@
             <objects>
                 <viewController hidesBottomBarWhenPushed="YES" id="D0M-qp-a0Q" customClass="QuestionListVC" customModule="AudioPlayer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="41G-iS-hIQ">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="aDt-Bh-e4B">
-                                <rect key="frame" x="0.0" y="64" width="414" height="832"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
@@ -1034,19 +1133,19 @@
             <objects>
                 <viewController automaticallyAdjustsScrollViewInsets="NO" id="klh-jW-OoR" customClass="CourseMainPageViewController" customModule="AudioPlayer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ikl-QX-Ylo">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="53" sectionHeaderHeight="1" sectionFooterHeight="1" id="Av4-a9-92q">
-                                <rect key="frame" x="0.0" y="-1" width="414" height="813"/>
+                                <rect key="frame" x="0.0" y="-1" width="375" height="618"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="mainpageHeaderAdvCell" rowHeight="224" id="YIC-W9-KFh" customClass="HeaderAdvCell" customModule="AudioPlayer" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="55.333333333333343" width="414" height="224.00000000000003"/>
+                                        <rect key="frame" x="0.0" y="55.5" width="375" height="224"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YIC-W9-KFh" id="ftm-DF-qlg">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="223.66666666666666"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="223.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                         <connections>
@@ -1054,24 +1153,24 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="seperatorCell" rowHeight="8" id="4TB-Ee-xJA">
-                                        <rect key="frame" x="0.0" y="279.33333333333331" width="414" height="8"/>
+                                        <rect key="frame" x="0.0" y="279.5" width="375" height="8"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="center" tableViewCell="4TB-Ee-xJA" id="r3w-ev-g8w">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="7.666666666666667"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="7.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="zhuanLanHeaderCell" rowHeight="52" id="xCo-M2-Gxe" userLabel="zhuanLanHeaderCell" customClass="FooterAdvCell" customModule="AudioPlayer" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="287.33333333333331" width="414" height="52"/>
+                                        <rect key="frame" x="0.0" y="287.5" width="375" height="52"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xCo-M2-Gxe" id="8ag-Bn-G92">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="51.666666666666664"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="51.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="XoM-I1-Emv">
-                                                    <rect key="frame" x="344" y="11" width="62" height="30"/>
+                                                    <rect key="frame" x="305" y="11" width="62" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES"/>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                                     <state key="normal" title="查看全部">
@@ -1092,10 +1191,10 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="jpkHeaderCell" rowHeight="52" id="gyV-d5-vH9" customClass="FooterAdvCell" customModule="AudioPlayer" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="339.33333333333331" width="414" height="52"/>
+                                        <rect key="frame" x="0.0" y="339.5" width="375" height="52"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gyV-d5-vH9" id="HPU-0M-ksv">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="51.666666666666664"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="51.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="精品课" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Jk9-GF-17j">
@@ -1106,7 +1205,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="6hy-f4-mQg">
-                                                    <rect key="frame" x="344" y="11" width="62" height="30"/>
+                                                    <rect key="frame" x="305" y="11" width="62" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES"/>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                                     <state key="normal" title="查看全部">
@@ -1120,10 +1219,10 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="toutiaoHeaderCell" rowHeight="52" id="7fz-KW-I5K" customClass="FooterAdvCell" customModule="AudioPlayer" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="391.33333333333331" width="414" height="52"/>
+                                        <rect key="frame" x="0.0" y="391.5" width="375" height="52"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7fz-KW-I5K" id="RO9-sq-yzT">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="51.666666666666664"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="51.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="金融头条" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="MYV-hE-8I0" userLabel="金融头条">
@@ -1134,7 +1233,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="jFZ-sX-9ue">
-                                                    <rect key="frame" x="344" y="10" width="62" height="30"/>
+                                                    <rect key="frame" x="305" y="10" width="62" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES"/>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                                     <state key="normal" title="查看全部">
@@ -1148,14 +1247,14 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="toutiaoCell" rowHeight="30" id="MCU-ly-HRt" userLabel="toutiaoCell" customClass="ToutiaoCell" customModule="AudioPlayer" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="443.33333333333331" width="414" height="30"/>
+                                        <rect key="frame" x="0.0" y="443.5" width="375" height="30"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="MCU-ly-HRt" id="7Wj-5F-9p9">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="29.666666666666668"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="29.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1bX-k3-GIF">
-                                                    <rect key="frame" x="56" y="0.0" width="350" height="30"/>
+                                                    <rect key="frame" x="56" y="0.0" width="311" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                                     <attributedString key="attributedText">
                                                         <fragment content="至于刘强东能不能离开美国，有人说能有人说不能，有人甚至说不能离开本州郡">
@@ -1179,10 +1278,10 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="zhuanLanCell" rowHeight="110" id="NvM-BN-d2e" userLabel="zhuanLanCell" customClass="ZhuanLanCell" customModule="AudioPlayer" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="473.33333333333326" width="414" height="110"/>
+                                        <rect key="frame" x="0.0" y="473.5" width="375" height="110"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NvM-BN-d2e" id="Fei-Em-Rau">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="109.66666666666667"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="109.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon" id="ix6-rB-9tR">
@@ -1212,7 +1311,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="199元/年" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="0UP-GQ-4mQ">
-                                                    <rect key="frame" x="332" y="9" width="73" height="21"/>
+                                                    <rect key="frame" x="293" y="9" width="73" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" red="1" green="0.53662542764942944" blue="0.057109609079101342" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1237,10 +1336,10 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="tuijianCourseHeaderCell" rowHeight="52" id="Dqq-KH-U7Z" userLabel="tuijianCourseHeaderCell" customClass="FooterAdvCell" customModule="AudioPlayer" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="583.33333333333326" width="414" height="52"/>
+                                        <rect key="frame" x="0.0" y="583.5" width="375" height="52"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Dqq-KH-U7Z" id="WDz-Rl-udl">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="51.666666666666664"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="51.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="直播专栏" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ENe-jY-Ugb">
@@ -1254,14 +1353,14 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="tuijianCourseCell" rowHeight="180" id="zRM-Uj-ysD" userLabel="tuijianCourseCell" customClass="MainPageCourseCell" customModule="AudioPlayer" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="635.33333333333326" width="414" height="180"/>
+                                        <rect key="frame" x="0.0" y="635.5" width="375" height="180"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zRM-Uj-ysD" id="kOj-2i-ZuN">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="179.66666666666666"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="179.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="musicCover" id="Qoi-gK-85s">
-                                                    <rect key="frame" x="10" y="11" width="394" height="158"/>
+                                                    <rect key="frame" x="10" y="11" width="355" height="158"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 </imageView>
                                             </subviews>
@@ -1271,22 +1370,22 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="functionCell" rowHeight="11" id="67c-qf-CFU" customClass="FunctionCell" customModule="AudioPlayer" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="815.33333333333326" width="414" height="11"/>
+                                        <rect key="frame" x="0.0" y="815.5" width="375" height="11"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="67c-qf-CFU" id="BeO-jU-pML">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="10.666666666666666"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="10.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="posCell" rowHeight="28" id="ZKG-iV-WSz" customClass="PosCell" customModule="AudioPlayer" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="826.33333333333326" width="414" height="28"/>
+                                        <rect key="frame" x="0.0" y="826.5" width="375" height="28"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ZKG-iV-WSz" id="gZb-Ak-Qtw">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="27.666666666666668"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="27.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pos_placeholder" id="Ghv-VH-Ghz">
-                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="28"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="28"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 </imageView>
                                             </subviews>
@@ -1327,14 +1426,14 @@
                             <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <prototypes>
                                 <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="courseTypeCell" rowHeight="74" id="tfn-l9-ejG" customClass="CourseTypeCell" customModule="AudioPlayer" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="55.333333333333343" width="375" height="74"/>
+                                    <rect key="frame" x="0.0" y="55.5" width="375" height="74"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tfn-l9-ejG" id="uXk-kd-hY9">
-                                        <rect key="frame" x="0.0" y="0.0" width="337" height="73.666666666666671"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="342" height="73.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fxe-tY-J7u">
-                                                <rect key="frame" x="65" y="28" width="154" height="21"/>
+                                                <rect key="frame" x="65" y="28" width="159" height="21"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1345,7 +1444,7 @@
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Sgs-E5-it0">
-                                                <rect key="frame" x="197" y="17" width="146" height="42"/>
+                                                <rect key="frame" x="199.5" y="17" width="148.5" height="42"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                 <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1360,22 +1459,22 @@
                                     </connections>
                                 </tableViewCell>
                                 <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="functionCell" rowHeight="79" id="eWT-8a-02y" customClass="FunctionCell" customModule="AudioPlayer" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="129.33333333333334" width="375" height="79"/>
+                                    <rect key="frame" x="0.0" y="129.5" width="375" height="79"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="eWT-8a-02y" id="Var-82-7aN">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="78.666666666666671"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="78.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                     </tableViewCellContentView>
                                 </tableViewCell>
                                 <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="mainpageHeaderAdvCell" rowHeight="122" id="pn0-8u-KrZ" customClass="HeaderAdvCell" customModule="AudioPlayer" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="208.33333333333337" width="375" height="122"/>
+                                    <rect key="frame" x="0.0" y="208.5" width="375" height="122"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pn0-8u-KrZ" id="nOE-V0-iU1">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="121.66666666666667"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="121.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="header_ditu" id="0uJ-di-H2E">
-                                                <rect key="frame" x="0.0" y="-1.3333333333333712" width="375" height="123"/>
+                                                <rect key="frame" x="0.0" y="-1.5" width="375" height="123"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             </imageView>
                                         </subviews>
@@ -1385,14 +1484,14 @@
                                     </connections>
                                 </tableViewCell>
                                 <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="courseNotifyCell" rowHeight="18" id="Ncl-FJ-hg5" customClass="CourseNotifyCell" customModule="AudioPlayer" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="330.33333333333337" width="375" height="18"/>
+                                    <rect key="frame" x="0.0" y="330.5" width="375" height="18"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ncl-FJ-hg5" id="scu-7e-8tN">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="17.666666666666668"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="17.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Xrd-ND-nnd" customClass="MarqueeLabel" customModule="MarqueeLabel">
-                                                <rect key="frame" x="0.0" y="-1.3333333333333712" width="375" height="19"/>
+                                                <rect key="frame" x="0.0" y="-1.5" width="375" height="19"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" red="0.87843137250000003" green="0.87843137250000003" blue="0.87843137250000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="11"/>
@@ -1407,10 +1506,10 @@
                                     </connections>
                                 </tableViewCell>
                                 <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="footerAdvCell" rowHeight="96" id="6MK-2t-eMt" customClass="FooterAdvCell" customModule="AudioPlayer" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="348.33333333333337" width="375" height="96"/>
+                                    <rect key="frame" x="0.0" y="348.5" width="375" height="96"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6MK-2t-eMt" id="FmV-mG-Nbe">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="95.666666666666671"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="95.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                     </tableViewCellContentView>
                                 </tableViewCell>
@@ -1427,11 +1526,11 @@
             <objects>
                 <viewController hidesBottomBarWhenPushed="YES" id="Ila-mB-lqv" customClass="AnswerQuestionVC" customModule="AudioPlayer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="JPx-7p-jvI">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" id="Zph-A2-vhP" customClass="UITextViewPlaceHolder" customModule="AudioPlayer" customModuleProvider="target">
-                                <rect key="frame" x="16" y="64" width="382" height="377"/>
+                                <rect key="frame" x="16" y="64" width="343" height="273"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <string key="text">不管你觉得 iPhone 值不值，自面世以来 iPhone 的价格就一直是标杆式的存在。其他厂商的手机只要在定价上与 iPhone 接近，马上就会有人发表诸如「不如买 iPhone」的言论，由此可见 iPhone 的价格在大家心中有着特殊的地位。当然，我们之所以这么说，最主要还是因为 iPhone 的价格整体相对偏高，这也跟 iPhone 的自身定位有关。</string>
@@ -1467,19 +1566,19 @@
             <objects>
                 <viewController hidesBottomBarWhenPushed="YES" id="SlY-yD-6L0" customClass="AllFunctionViewController" customModule="AudioPlayer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7xi-KK-Cy6">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="79" sectionHeaderHeight="28" sectionFooterHeight="28" id="gw7-b7-gJF">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="901"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="672"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="functionCell" id="nMx-i2-zh4" customClass="FunctionCell" customModule="AudioPlayer" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="79"/>
+                                        <rect key="frame" x="0.0" y="28" width="375" height="79"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nMx-i2-zh4" id="KV1-bG-Y2O">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="79"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="79"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -1505,11 +1604,11 @@
             <objects>
                 <viewController storyboardIdentifier="WebPageViewController" title="web页面" automaticallyAdjustsScrollViewInsets="NO" hidesBottomBarWhenPushed="YES" id="qTJ-UI-98H" customClass="WebPageViewController" customModule="AudioPlayer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="nB4-cg-rGZ">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" id="NZi-Zv-8tP">
-                                <rect key="frame" x="0.0" y="64" width="414" height="749"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
@@ -1546,7 +1645,7 @@
                     <tabBarItem key="tabBarItem" title="我的" image="me" selectedImage="me-filled" id="owk-5T-4hW"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="8yN-zm-MH5">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -1563,46 +1662,46 @@
             <objects>
                 <viewController title="注册" id="UXT-7U-nAQ" customClass="SignupViewController" customModule="AudioPlayer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" opaque="NO" contentMode="scaleToFill" id="WCo-Kc-R5K">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="手机号" textAlignment="natural" minimumFontSize="17" id="S1r-9X-Qbf">
-                                <rect key="frame" x="20" y="86" width="374" height="30"/>
+                                <rect key="frame" x="20" y="86" width="335" height="30"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="密   码（不少于6位）" textAlignment="natural" minimumFontSize="17" id="Tqu-Ro-0CT">
-                                <rect key="frame" x="20" y="249" width="374" height="30"/>
+                                <rect key="frame" x="20" y="249" width="335" height="30"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="验证码" textAlignment="natural" minimumFontSize="17" id="ePd-3i-LbB">
-                                <rect key="frame" x="20" y="139" width="374" height="30"/>
+                                <rect key="frame" x="20" y="139" width="335" height="30"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="邀请人手机号（可不填）" textAlignment="natural" minimumFontSize="17" id="ju7-BH-gu7">
-                                <rect key="frame" x="20" y="193" width="374" height="30"/>
+                                <rect key="frame" x="20" y="193" width="335" height="30"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="轻触上面的&quot;注册&quot;按钮，即表示你同意" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="9tn-AF-kWG">
-                                <rect key="frame" x="0.0" y="844" width="414" height="21"/>
+                                <rect key="frame" x="0.0" y="615" width="375" height="21"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="obI-4L-xEU">
-                                <rect key="frame" x="52" y="866" width="311" height="30"/>
+                                <rect key="frame" x="52" y="637" width="272" height="30"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <state key="normal" title="《知得软件许可及服务协议》"/>
@@ -1611,7 +1710,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="JHs-L0-mtN">
-                                <rect key="frame" x="313" y="142" width="87" height="30"/>
+                                <rect key="frame" x="274" y="142" width="87" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="获取验证码"/>
                                 <connections>
@@ -1619,7 +1718,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="3hc-62-qeb">
-                                <rect key="frame" x="20" y="325" width="374" height="47"/>
+                                <rect key="frame" x="20" y="325" width="335" height="40"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.83921568627450982" green="0.66666666666666663" blue="0.46274509803921571" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
@@ -1632,7 +1731,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="59秒后重新获取" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ZXh-xP-uf6">
-                                <rect key="frame" x="274" y="144" width="120" height="25"/>
+                                <rect key="frame" x="235" y="144" width="120" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" red="0.87058823529999996" green="0.42352941179999998" blue="0.18039215689999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1670,7 +1769,7 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="Qfu-Cz-LFH"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="cuG-wh-C2L">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -1687,32 +1786,32 @@
             <objects>
                 <viewController title="忘记密码" id="gB1-HN-uiB" customClass="ForgetPasswordViewController" customModule="AudioPlayer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" opaque="NO" contentMode="scaleToFill" id="dLp-hW-frO">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="手机号" textAlignment="natural" minimumFontSize="17" id="Gxn-Vt-Dyh">
-                                <rect key="frame" x="20" y="86" width="374" height="30"/>
+                                <rect key="frame" x="20" y="86" width="335" height="30"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="验证码" textAlignment="natural" minimumFontSize="17" id="3k9-xr-4Dy">
-                                <rect key="frame" x="20" y="139" width="374" height="30"/>
+                                <rect key="frame" x="20" y="139" width="335" height="30"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="新密码" textAlignment="natural" minimumFontSize="17" id="NIz-j4-Jzk">
-                                <rect key="frame" x="20" y="193" width="374" height="30"/>
+                                <rect key="frame" x="20" y="193" width="335" height="30"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="nqp-j4-gan">
-                                <rect key="frame" x="311" y="143" width="83" height="30"/>
+                                <rect key="frame" x="272" y="143" width="83" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="获取验证码"/>
                                 <connections>
@@ -1720,7 +1819,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Y5L-3p-6mz">
-                                <rect key="frame" x="20" y="268" width="374" height="47"/>
+                                <rect key="frame" x="20" y="268" width="335" height="47"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.83921568627450982" green="0.66666666666666663" blue="0.45098039215686275" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
@@ -1733,7 +1832,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="59秒后重新获取" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jXq-sW-ZWz">
-                                <rect key="frame" x="265" y="147" width="123" height="21"/>
+                                <rect key="frame" x="226" y="147" width="123" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" red="0.87058823529999996" green="0.42352941179999998" blue="0.18039215689999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1767,7 +1866,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="L2O-fx-t11" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="j3V-fQ-ktC">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -1786,7 +1885,7 @@
                     <tabBarItem key="tabBarItem" title="探索" image="course" selectedImage="course-filled" id="JEl-jD-25b"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="nwi-ip-qsl">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -1803,11 +1902,11 @@
             <objects>
                 <viewController hidesBottomBarWhenPushed="YES" id="8z7-OK-eXg" customClass="SearchVC" customModule="AudioPlayer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Xv7-BF-lVv">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" id="8ca-9G-wSw">
-                                <rect key="frame" x="0.0" y="76" width="414" height="820"/>
+                                <rect key="frame" x="0.0" y="76" width="375" height="591"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="热门搜索" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="6bg-UI-IO2">
@@ -1821,19 +1920,19 @@
                                 <color key="backgroundColor" red="0.95686274509803926" green="0.95686274509803926" blue="0.95686274509803926" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                             <view contentMode="scaleToFill" id="c6w-87-sYG" userLabel="ResultView">
-                                <rect key="frame" x="0.0" y="76" width="414" height="820"/>
+                                <rect key="frame" x="0.0" y="76" width="375" height="591"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Uv3-fh-azl">
-                                        <rect key="frame" x="0.0" y="50" width="414" height="812"/>
+                                        <rect key="frame" x="0.0" y="50" width="375" height="583"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="searchResultCell" rowHeight="80" id="VBO-IU-Pao" customClass="SearchResultCell" customModule="AudioPlayer" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="28" width="414" height="80"/>
+                                                <rect key="frame" x="0.0" y="28" width="375" height="80"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="VBO-IU-Pao" id="jam-Sh-Qpr">
-                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="79.666666666666671"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="79.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="footer_ditu" id="R74-UZ-sno">
@@ -1901,11 +2000,11 @@
             <objects>
                 <viewController hidesBottomBarWhenPushed="YES" id="KZl-Qt-wqT" customClass="SetProfilePhotoController" customModule="AudioPlayer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="e0s-8B-UOC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user" id="xqG-gX-5ri">
-                                <rect key="frame" x="0.0" y="62" width="414" height="834"/>
+                                <rect key="frame" x="0.0" y="62" width="375" height="605"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
                         </subviews>
@@ -1931,11 +2030,11 @@
             <objects>
                 <viewController id="k9X-IE-Oxb" customClass="ConfigurationController" customModule="AudioPlayer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="k0v-0R-D7p">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <navigationBar contentMode="scaleToFill" id="Jd7-Y0-eGj">
-                                <rect key="frame" x="0.0" y="22" width="414" height="44"/>
+                                <rect key="frame" x="0.0" y="22" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
                                     <navigationItem title="服务器配置" id="IzW-sr-5Oe">
@@ -1953,26 +2052,26 @@
                                 </items>
                             </navigationBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="50" sectionHeaderHeight="18" sectionFooterHeight="18" id="rkp-UK-liO">
-                                <rect key="frame" x="0.0" y="66" width="414" height="830"/>
+                                <rect key="frame" x="0.0" y="66" width="375" height="601"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="configurationCell" id="Tae-98-rCy" customClass="ConfigurationCell" customModule="AudioPlayer" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="55.333333333333343" width="414" height="50"/>
+                                        <rect key="frame" x="0.0" y="55.5" width="375" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Tae-98-rCy" id="cxv-X7-lje">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="49.666666666666664"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="49.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Yxq-X9-J0l">
-                                                    <rect key="frame" x="15" y="14" width="89" height="21"/>
+                                                    <rect key="frame" x="15" y="14" width="80" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" id="oLn-zY-cMn">
-                                                    <rect key="frame" x="118" y="9" width="288" height="30"/>
+                                                    <rect key="frame" x="107" y="9" width="260" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <textInputTraits key="textInputTraits"/>
@@ -1985,21 +2084,21 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="configurationCell2" id="4EG-bm-j7o" customClass="ConfigurationCell2" customModule="AudioPlayer" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="105.33333333333334" width="414" height="50"/>
+                                        <rect key="frame" x="0.0" y="105.5" width="375" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4EG-bm-j7o" id="dUX-EQ-8PC">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="49.666666666666664"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="49.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="VYH-b7-tH2">
-                                                    <rect key="frame" x="15" y="14" width="275" height="21"/>
+                                                    <rect key="frame" x="15" y="14" width="248" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="N6j-g4-S83">
-                                                    <rect key="frame" x="351" y="9" width="51" height="31"/>
+                                                    <rect key="frame" x="312" y="9" width="51" height="31"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                                 </switch>
                                             </subviews>
@@ -2031,23 +2130,23 @@
             <objects>
                 <viewController title="昵称" automaticallyAdjustsScrollViewInsets="NO" id="XhM-of-jTv" customClass="SetNickNameViewController" customModule="AudioPlayer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="aww-LS-4lX">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="HXu-ev-MX3">
-                                <rect key="frame" x="0.0" y="65" width="414" height="813"/>
+                                <rect key="frame" x="0.0" y="65" width="375" height="618"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="textFieldCell" id="f9f-ap-G9Q" customClass="TextFieldCell" customModule="AudioPlayer" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="55.333333333333343" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="55.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="f9f-ap-G9Q" id="m86-hR-rxe">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="昵称" textAlignment="natural" minimumFontSize="17" id="BIe-nr-dbE">
-                                                    <rect key="frame" x="8" y="8" width="406" height="30"/>
+                                                    <rect key="frame" x="8" y="8" width="367" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
@@ -2084,11 +2183,11 @@
             <objects>
                 <viewController title="签到" id="Omf-Kp-1wt" customClass="ApplyBrowserController" customModule="AudioPlayer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zEW-dl-JoQ">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" id="TfB-j0-khZ">
-                                <rect key="frame" x="0.0" y="63" width="414" height="750"/>
+                                <rect key="frame" x="0.0" y="63" width="375" height="521"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
@@ -2126,7 +2225,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Szb-kQ-Z89" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-548.79999999999995" y="-513.64317841079469"/>
+            <point key="canvasLocation" x="-1330" y="-461"/>
         </scene>
         <!--新播放页面-->
         <scene sceneID="R5A-05-JCz">
@@ -2149,7 +2248,7 @@
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="8ZN-aD-Iwr">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -2169,7 +2268,7 @@
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="r6A-HV-4cd">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -2189,7 +2288,7 @@
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="5GM-Jz-2qi">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -2206,11 +2305,11 @@
             <objects>
                 <viewController hidesBottomBarWhenPushed="YES" id="cCb-ux-L08" customClass="AskQuestionVC" customModule="AudioPlayer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="KOB-k1-Cvc">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="提问题" textAlignment="natural" id="Qc8-c4-nds" customClass="UITextViewPlaceHolder" customModule="AudioPlayer" customModuleProvider="target">
-                                <rect key="frame" x="16" y="64" width="382" height="377"/>
+                                <rect key="frame" x="16" y="64" width="343" height="273"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -2243,11 +2342,11 @@
             <objects>
                 <viewController title="已购" id="sFI-0O-gk3" customClass="ApplyBrowserController" customModule="AudioPlayer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="s4y-7A-Y7u">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" id="oY0-na-mdj">
-                                <rect key="frame" x="0.0" y="64" width="414" height="783"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
@@ -2277,7 +2376,7 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="ohS-vu-tTX"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="gQa-ZV-uas">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -2289,12 +2388,88 @@
             </objects>
             <point key="canvasLocation" x="-375" y="-2538"/>
         </scene>
+        <!--绑定手机号-->
+        <scene sceneID="5sS-O9-lFT">
+            <objects>
+                <viewController title="绑定手机号" hidesBottomBarWhenPushed="YES" id="cIJ-ue-zLC" customClass="BindPhoneViewController" customModule="AudioPlayer" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" opaque="NO" contentMode="scaleToFill" id="E2U-kV-lEa">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="新手机号" textAlignment="natural" minimumFontSize="17" id="KLg-fu-VeV">
+                                <rect key="frame" x="20" y="86" width="335" height="30"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" red="0.66666666669999997" green="0.66666666669999997" blue="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="确认手机号" textAlignment="natural" minimumFontSize="17" id="iUQ-jD-bev">
+                                <rect key="frame" x="20" y="141" width="335" height="30"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" red="0.66666666669999997" green="0.66666666669999997" blue="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="旧手机验证码" textAlignment="natural" minimumFontSize="17" id="864-J1-c1I">
+                                <rect key="frame" x="20" y="194" width="335" height="30"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" red="0.66666666669999997" green="0.66666666669999997" blue="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="xbd-c8-iHt">
+                                <rect key="frame" x="268" y="201" width="87" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="获取验证码"/>
+                                <connections>
+                                    <action selector="getPhoneCodePressed:" destination="cIJ-ue-zLC" eventType="touchUpInside" id="XzC-5a-DOB"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="wKZ-3U-7GK">
+                                <rect key="frame" x="20" y="273" width="335" height="40"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.83921568629999999" green="0.66666666669999997" blue="0.46274509800000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="提  交">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="submitPressed:" destination="cIJ-ue-zLC" eventType="touchUpInside" id="K8w-Yj-Ym6"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="59秒后重新获取" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="rtJ-gu-dnm">
+                                <rect key="frame" x="227" y="204" width="120" height="25"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" red="0.87058823529999996" green="0.42352941179999998" blue="0.18039215689999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="绑定手机号" id="7sk-7C-qGQ">
+                        <barButtonItem key="leftBarButtonItem" image="backicon" id="Cl3-Mh-keQ"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="getPhoneCodeButton" destination="xbd-c8-iHt" id="Ymy-AM-cBR"/>
+                        <outlet property="phoneCheckCode" destination="864-J1-c1I" id="17C-S4-hYK"/>
+                        <outlet property="phoneCodeLabel" destination="rtJ-gu-dnm" id="zLI-f1-hag"/>
+                        <outlet property="phoneField" destination="KLg-fu-VeV" id="tzO-Ev-Ef2"/>
+                        <outlet property="repeatPhoneField" destination="iUQ-jD-bev" id="111-lv-DR1"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="boP-Kg-RgA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1580" y="985"/>
+        </scene>
     </scenes>
     <resources>
         <image name="backicon" width="34.5" height="34.5"/>
         <image name="barcode" width="50" height="50"/>
         <image name="course" width="37" height="39"/>
         <image name="course-filled" width="37" height="39"/>
+        <image name="fasongpengyou" width="190" height="190"/>
         <image name="footer_ditu" width="1380" height="1418"/>
         <image name="func_placeholder" width="512" height="512"/>
         <image name="header_ditu" width="3268" height="1418"/>
@@ -2322,11 +2497,11 @@
     <inferredMetricsTieBreakers>
         <segue reference="geI-4Z-Ncp"/>
         <segue reference="4Rk-Mf-vVd"/>
-        <segue reference="TY9-aV-adh"/>
+        <segue reference="voY-hX-16h"/>
         <segue reference="gsK-rG-j3C"/>
         <segue reference="VyC-tp-he9"/>
-        <segue reference="dRn-tj-MbL"/>
-        <segue reference="7p7-B3-e4E"/>
+        <segue reference="xbm-kK-Zqp"/>
+        <segue reference="71V-Tn-QDD"/>
         <segue reference="YDx-ix-HXt"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

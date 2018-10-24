@@ -117,6 +117,12 @@ class ServiceConfiguration {
         }
     }
     
+    static var BIND_PHONE : String {
+        get {
+            return "\(http)://\(serverName):\(port)/user/bindphone"
+        }
+    }
+    
     static var GET_PASSWORD: String {
         get {
             return "\(http)://\(serverName):\(port)/user/getPassword"
@@ -372,6 +378,30 @@ class ServiceConfiguration {
     static var ASK_QUESTION : String {
         get {
             return "\(http)://\(serverName):\(port)/app/askQuestion"
+        }
+    }
+    
+    static var GET_WEIXIN_TOKEN : String {
+        get {
+            return "\(http)://\(serverName):\(port)/user/getweixintoken"
+        }
+    }
+    
+    static var OAUTH : String {
+        get {
+            return "\(http)://\(serverName):\(port)/user/oauth"
+        }
+    }
+    
+    static var BIND_WEIXIN : String {
+        get {
+            return "\(http)://\(serverName):\(port)/user/bindweixin"
+        }
+    }
+    
+    static var GET_MESSAGES : String {
+        get {
+            return "\(http)://\(serverName):\(port)/app/getmessages"
         }
     }
 }

@@ -120,11 +120,5 @@ class MainPageNavigationBar: NSObject {
     }
 
     
-    @objc func keFuPressed() {
-        var sender = [String:String]()
-        sender["title"] = "客服"
-        sender["url"] = ServiceLinkManager.FunctionCustomerServiceUrl
-        controller.performSegue(withIdentifier: "loadWebPageSegue", sender: sender)
-    }
 
 }
