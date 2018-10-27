@@ -735,6 +735,7 @@
 		E2A9AF9E1C498E2900FE943A /* AudioPlayer iOS */ = {
 			isa = PBXGroup;
 			children = (
+				EF1B4C8C21842B97001F78BA /* mainpage */,
 				EF4B4845214F33E500909356 /* experiment */,
 				EF1E54E32144A5A30005901E /* question */,
 				EFBFF6A51E2F4AAC00CDFB6F /* AudioPlayer.entitlements */,
@@ -744,7 +745,6 @@
 				E2A9AFAB1C498E2900FE943A /* Info.plist */,
 				1C33A56F1D059A5D00E87803 /* StartupViewController.swift */,
 				1C33F02E1D066C5F00D3EE4C /* UpgradeViewController.swift */,
-				1CA3B20F1CD86B7800D0ABD8 /* MainPageViewController.swift */,
 				1C8A2AD31CE4BEA60086C1B8 /* MallViewController.swift */,
 				1CD349631CF8167C00037F78 /* WebPageViewController.swift */,
 				1CD349731CFA8DD700037F78 /* SearchCourseViewController.swift */,
@@ -781,6 +781,14 @@
 				E2C6FAE01C4B01D80055A1BF /* sound2.caf */,
 			);
 			path = Sounds;
+			sourceTree = "<group>";
+		};
+		EF1B4C8C21842B97001F78BA /* mainpage */ = {
+			isa = PBXGroup;
+			children = (
+				1CA3B20F1CD86B7800D0ABD8 /* MainPageViewController.swift */,
+			);
+			name = mainpage;
 			sourceTree = "<group>";
 		};
 		EF1E54E32144A5A30005901E /* question */ = {

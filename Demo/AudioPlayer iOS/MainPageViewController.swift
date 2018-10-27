@@ -40,6 +40,8 @@ class CourseMainPageViewController: BaseUIViewController, LTTableViewProtocal, U
     var toutiaos = [FinanceToutiao]()
     var pos: Pos?
     
+    var cellModels = [MainPageCellModel]()
+    
     var buyPayCourseDelegate: ConfirmDelegate2!
     var isDisapeared = false
     var navigationManager : NavigationBarManager!
@@ -54,7 +56,7 @@ class CourseMainPageViewController: BaseUIViewController, LTTableViewProtocal, U
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         let items = self.tabBarController?.tabBar.items
         items![0].title = "探索"
         items![1].title = "签到"
@@ -154,9 +156,6 @@ class CourseMainPageViewController: BaseUIViewController, LTTableViewProtocal, U
             hidePopupAd()
         }
         
-        if cells == nil || cells.count == 0 {
-            makeCells()
-        }
         //self.hidesBottomBarWhenPushed = false
     }
     
@@ -287,18 +286,13 @@ class CourseMainPageViewController: BaseUIViewController, LTTableViewProtocal, U
         performSegue(withIdentifier: "loadWebPageSegue", sender: sender)
     }
     
-
-    
-    private var cells = [UITableViewCell]()
-    private var heights = [CGFloat]()
-    private var didSelectActions = [(tableView: UITableView, indexPath: IndexPath) -> Void]()
 }
 
 
 extension CourseMainPageViewController : UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.cells.count
+        return self.cellModels.count
     }
     
     func dummyDidSelectAction(tableView: UITableView, indexPath: IndexPath) -> Void {
@@ -306,186 +300,187 @@ extension CourseMainPageViewController : UITableViewDataSource, UITableViewDeleg
 
     
     private func makeCells() {
+        cellModels = [MainPageCellModel]()
+    
+        let headerAdvModel = MainPageHeaderAdvModel()
+        headerAdvModel.ads = ads
+        let headerCellModel = MainPageCellModel.headerAdv(headerAdvModel)
+        cellModels.append(headerCellModel)
         
-        cells = [UITableViewCell]()
-        heights = [CGFloat]()
-        didSelectActions = [(tableView: UITableView, indexPath: IndexPath) -> Void]()
-        
-        let cell = tableView.dequeueReusableCell(withIdentifier: "mainpageHeaderAdvCell") as! HeaderAdvCell
-        cell.controller = self
-        cell.initialize()
-        cell.toutiao = self.toutiao
-        cell.ads = ads
-        cell.update()
-        
-        
-        cells.append(cell)
-        heights.append(getHeaderAdvHeight())
-        didSelectActions.append(dummyDidSelectAction)
-        
-        for index in 0..<extendFunctionMananger.getRowCount() {
-            cells.append(extendFunctionMananger.getFunctionCell(tableView: tableView, row: index))
-            heights.append(extendFunctionMananger.cellHeight)
-            didSelectActions.append(dummyDidSelectAction)
-        }
+        //for _ in 0..<extendFunctionMananger.getRowCount() {
+            cellModels.append(MainPageCellModel.extendFunction)
+        //}
         
         if pos != nil {
-            cells.append(tableView.dequeueReusableCell(withIdentifier: "seperatorCell")!)
-            heights.append(8)
-            didSelectActions.append(dummyDidSelectAction)
-            
-            let posCell = tableView.dequeueReusableCell(withIdentifier: "posCell") as! PosCell
-            posCell.pos = pos
-            posCell.viewController = self
-            posCell.update()
-            cells.append(posCell)
-            heights.append(UIScreen.main.bounds.width / 375 * 28.0 )
-            didSelectActions.append(dummyDidSelectAction)
+            cellModels.append(MainPageCellModel.seperator)
+            cellModels.append(MainPageCellModel.pos(pos!))
         }
         
         if courses.count > 0 {
-            cells.append(tableView.dequeueReusableCell(withIdentifier: "seperatorCell")!)
-            heights.append(8)
-            didSelectActions.append(dummyDidSelectAction)
-            
-            cells.append(tableView.dequeueReusableCell(withIdentifier: "tuijianCourseHeaderCell")!)
-            heights.append(52)
-            didSelectActions.append(dummyDidSelectAction)
+            cellModels.append(MainPageCellModel.seperator)
+            cellModels.append(MainPageCellModel.courseHeader)
             
             for index in 0..<courses.count {
-                let courseCell = tableView.dequeueReusableCell(withIdentifier: "tuijianCourseCell") as! MainPageCourseCell
-                courseCell.course = courses[index]
-                courseCell.update()
-                cells.append(courseCell)
-                heights.append(UIScreen.main.bounds.width / 375 * 180.0 )
-                didSelectActions.append( { (tableView: UITableView, indexPath: IndexPath) -> Void in
-                    let album = self.courses[index]
-                    tableView.deselectRow(at: indexPath as IndexPath, animated: false)
-                    self.jumpToCourse(album: album)
-                } )
+                cellModels.append(MainPageCellModel.course(courses[index]))
             }
         }
         
         if toutiaos.count > 0 {
-            cells.append(tableView.dequeueReusableCell(withIdentifier: "seperatorCell")!)
-            heights.append(8)
-            didSelectActions.append(dummyDidSelectAction)
-            
-            cells.append(tableView.dequeueReusableCell(withIdentifier: "toutiaoHeaderCell")!)
-            heights.append(52)
-            didSelectActions.append(dummyDidSelectAction)
+            cellModels.append(MainPageCellModel.seperator)
+            cellModels.append(MainPageCellModel.toutiaoHeader)
             
             for index in 0..<toutiaos.count {
-                let toutiaoCell = tableView.dequeueReusableCell(withIdentifier: "toutiaoCell") as! ToutiaoCell
-                toutiaoCell.toutiao = toutiaos[index]
-                if index == toutiaos.count - 1 {
-                    toutiaoCell.isLast = true
-                } else {
-                    toutiaoCell.isLast = false
-                }
-                toutiaoCell.update()
-                cells.append(toutiaoCell)
-                heights.append(30)
-                didSelectActions.append({ (tableView: UITableView, indexPath: IndexPath) -> Void in
-                    var sender = [String:String]()
-                    sender["title"] = self.toutiaos[index].title
-                    sender["url"] = self.toutiaos[index].link
-                    self.performSegue(withIdentifier: "loadWebPageSegue", sender: sender)
-                })
+                cellModels.append(MainPageCellModel.toutiao(toutiaos[index]))
             }
         }
         
         if jpks.count > 0 {
-            
-            cells.append(tableView.dequeueReusableCell(withIdentifier: "seperatorCell")!)
-            heights.append(8)
-            didSelectActions.append(dummyDidSelectAction)
-            
-            cells.append(tableView.dequeueReusableCell(withIdentifier: "jpkHeaderCell")!)
-            heights.append(52)
-            didSelectActions.append(dummyDidSelectAction)
+            cellModels.append(MainPageCellModel.seperator)
+            cellModels.append(MainPageCellModel.jpkHeader)
             
             for index in 0..<jpks.count {
-                let jpkCell = tableView.dequeueReusableCell(withIdentifier: "zhuanLanCell") as! ZhuanLanCell
-                jpkCell.zhuanLan = jpks[index]
-                jpkCell.update()
-                cells.append(jpkCell)
-                heights.append(110)
-                didSelectActions.append({ (tableView: UITableView, indexPath: IndexPath) -> Void in
-                    QL1("ZhuanLan Action called")
-                    var sender = [String:String]()
-                    sender["title"] = self.jpks[index].name
-                    sender["url"] = self.jpks[index].url
-                    self.performSegue(withIdentifier: "loadWebPageSegue", sender: sender)
-                })
+                cellModels.append(MainPageCellModel.jpk(jpks[index]))
             }
         }
         
         
         if zhuanLans.count > 0 {
-            
-            cells.append(tableView.dequeueReusableCell(withIdentifier: "seperatorCell")!)
-            heights.append(8)
-            didSelectActions.append(dummyDidSelectAction)
-            
-            cells.append(tableView.dequeueReusableCell(withIdentifier: "zhuanLanHeaderCell")!)
-            heights.append(52)
-            didSelectActions.append(dummyDidSelectAction)
+            cellModels.append(MainPageCellModel.seperator)
+            cellModels.append(MainPageCellModel.zhuanLanHeader)
             
             for index in 0..<zhuanLans.count {
-                let zhuanLanCell = tableView.dequeueReusableCell(withIdentifier: "zhuanLanCell") as! ZhuanLanCell
-                zhuanLanCell.zhuanLan = zhuanLans[index]
-                zhuanLanCell.update()
-                cells.append(zhuanLanCell)
-                heights.append(110)
-                didSelectActions.append({ (tableView: UITableView, indexPath: IndexPath) -> Void in
-                    QL1("ZhuanLan Action called")
-                    var sender = [String:String]()
-                    sender["title"] = self.zhuanLans[index].name
-                    sender["url"] = self.zhuanLans[index].url
-                    self.performSegue(withIdentifier: "loadWebPageSegue", sender: sender)
-                })
+                cellModels.append(MainPageCellModel.zhuanLan(zhuanLans[index]))
             }
         }
         
-        
-        
-        
         if questions.count > 0 {
-            cells.append(tableView.dequeueReusableCell(withIdentifier: "seperatorCell")!)
-            heights.append(8)
-            didSelectActions.append(dummyDidSelectAction)
-            
-            let questionHeaderCell : QuestionHeaderCell = cellWithTableView(tableView)
-            questionHeaderCell.viewController = self
-            cells.append(questionHeaderCell)
-            heights.append(52)
-            didSelectActions.append(dummyDidSelectAction)
+            cellModels.append(MainPageCellModel.seperator)
+            cellModels.append(MainPageCellModel.questionHeader)
             
             for index in 0..<questions.count {
-                let questionItemCell : QuestionItemCell = cellWithTableView(tableView)
-                questionItemCell.question = questions[index]
-                if index == questions.count - 1 {
-                    questionItemCell.isLast = true
-                }
-                questionItemCell.viewController = self
-                questionItemCell.update()
-                cells.append(questionItemCell)
-                heights.append(questionItemCell.getHeight())
-                didSelectActions.append(dummyDidSelectAction)
+                cellModels.append(MainPageCellModel.question(questions[index]))
             }
-        
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let row = indexPath.row
-        return cells[row]
+        //return cells[row]
+        let cellModel = cellModels[row]
+        //var cell : UITableViewCell?
+        switch cellModel {
+        case .headerAdv(let model):
+            let cell = tableView.dequeueReusableCell(withIdentifier: "mainpageHeaderAdvCell") as! HeaderAdvCell
+            cell.controller = self
+            cell.initialize()
+            cell.ads = model.ads
+            cell.update()
+            return cell
+        case .extendFunction:
+            let cell =  extendFunctionMananger.getFunctionCell(tableView: tableView, row: 0)
+            return cell
+        case .pos(let pos):
+            let cell = tableView.dequeueReusableCell(withIdentifier: "posCell") as! PosCell
+            cell.pos = pos
+            cell.viewController = self
+            cell.update()
+            return cell
+        case .toutiaoHeader:
+            return tableView.dequeueReusableCell(withIdentifier: "toutiaoHeaderCell")!
+        case .toutiao(let toutiao):
+            let toutiaoCell = tableView.dequeueReusableCell(withIdentifier: "toutiaoCell") as! ToutiaoCell
+            toutiaoCell.toutiao = toutiao
+            toutiaoCell.update()
+            return toutiaoCell
+        case .courseHeader:
+            return tableView.dequeueReusableCell(withIdentifier: "tuijianCourseHeaderCell")!
+        case .course(let course):
+            let courseCell = tableView.dequeueReusableCell(withIdentifier: "tuijianCourseCell") as! MainPageCourseCell
+            courseCell.course = course
+            courseCell.update()
+            return courseCell
+        case .jpkHeader:
+            return tableView.dequeueReusableCell(withIdentifier: "jpkHeaderCell")!
+        case .jpk(let jpk):
+            let jpkCell = tableView.dequeueReusableCell(withIdentifier: "zhuanLanCell") as! ZhuanLanCell
+            jpkCell.zhuanLan = jpk
+            jpkCell.update()
+            return jpkCell
+        case .zhuanLanHeader:
+            return tableView.dequeueReusableCell(withIdentifier: "zhuanLanHeaderCell")!
+        case .zhuanLan(let zhuanLan):
+            let zhuanLanCell = tableView.dequeueReusableCell(withIdentifier: "zhuanLanCell") as! ZhuanLanCell
+            zhuanLanCell.zhuanLan = zhuanLan
+            zhuanLanCell.update()
+            return zhuanLanCell
+        case .questionHeader:
+            let questionHeaderCell : QuestionHeaderCell = cellWithTableView(tableView)
+            return questionHeaderCell
+        case .question(let question):
+            let questionItemCell : QuestionItemCell = cellWithTableView(tableView)
+            questionItemCell.question = question
+            questionItemCell.viewController = self
+            questionItemCell.update()
+            return questionItemCell
+        case .seperator:
+            return tableView.dequeueReusableCell(withIdentifier: "seperatorCell")!
+        }
      }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let row = indexPath.row
-        return self.heights[row]
+        let cellModel = cellModels[row]
+        switch cellModel {
+        case .headerAdv(_):
+            return getHeaderAdvHeight()
+        case .extendFunction:
+            return extendFunctionMananger.cellHeight
+        case .pos(_):
+            return UIScreen.main.bounds.width / 375 * 28.0
+        case .toutiaoHeader, .courseHeader, .jpkHeader, .zhuanLanHeader, .questionHeader:
+            return 52
+        case .toutiao(_):
+            return 30
+        case .course(_):
+            return UIScreen.main.bounds.width / 375 * 180.0
+        case .jpk(_), .zhuanLan(_):
+            return 110
+        case .question(let question):
+            let questionItemCell : QuestionItemCell = cellWithTableView(tableView)
+            questionItemCell.question = question
+            questionItemCell.viewController = self
+            questionItemCell.update()
+            return questionItemCell.getHeight()
+        case .seperator:
+            return 8
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath as IndexPath, animated: false)
+        let row = indexPath.row
+        let cellModel = cellModels[row]
+        switch cellModel {
+        case .toutiao(let toutiao):
+            var sender = [String:String]()
+            sender["title"] = toutiao.title
+            sender["url"] = toutiao.link
+            self.performSegue(withIdentifier: "loadWebPageSegue", sender: sender)
+            return
+        case .course(let album):
+            tableView.deselectRow(at: indexPath as IndexPath, animated: false)
+            self.jumpToCourse(album: album)
+            return
+        case .jpk(let zhuanLan), .zhuanLan(let zhuanLan):
+            var sender = [String:String]()
+            sender["title"] = zhuanLan.name
+            sender["url"] = zhuanLan.url
+            self.performSegue(withIdentifier: "loadWebPageSegue", sender: sender)
+            return
+        default:
+            break
+        }
+        
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -507,13 +502,7 @@ extension CourseMainPageViewController : UITableViewDataSource, UITableViewDeleg
         self.hidesBottomBarWhenPushed = false
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath as IndexPath, animated: false)
-        let row = indexPath.row
-        
-        self.didSelectActions[row](tableView, indexPath)
-        
-    }
+
     
     private func getHeaderAdvHeight() -> CGFloat {
         let screenWidth = UIScreen.main.bounds.width
@@ -616,7 +605,6 @@ extension CourseMainPageViewController  {
             //更新消息
             //var imageUrls = [String]()
             for function in resp.functions {
-                
                 let extendFunc = extendFuncMgr.makeFunction(imageName: function.imageUrl, name: function.name, code: function.code, url: function.clickUrl, messageCount: function.messageCount, selectorName: function.action)
                 
                 QL1("\(function.name) \(function.action)")

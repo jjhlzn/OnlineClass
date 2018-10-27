@@ -349,3 +349,31 @@ class Message : BaseModelObject {
     
     var height: CGFloat! = 0
 }
+
+
+class MainPageHeaderAdvModel {
+    var ads = [Advertise]()
+}
+
+class MainPageExtendFunctionModel {
+}
+
+class MainPageNilModel {
+}
+
+enum MainPageCellModel {
+    case headerAdv(MainPageHeaderAdvModel)
+    case extendFunction
+    case pos(Pos)
+    case toutiaoHeader
+    case toutiao(FinanceToutiao)
+    case courseHeader
+    case course(Album)
+    case jpkHeader
+    case jpk(ZhuanLan)
+    case zhuanLanHeader
+    case zhuanLan(ZhuanLan)
+    case questionHeader
+    case question(Question)
+    case seperator
+}

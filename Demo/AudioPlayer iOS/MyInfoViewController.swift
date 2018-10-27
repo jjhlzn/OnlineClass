@@ -210,8 +210,6 @@ extension MyInfoVieController {
             cell.controller = self
             cell.update()
             return cell
-            
-
         default:
             let cell = tableView.dequeueReusableCell(withIdentifier: "myInfoCommonCell") as! MyInfoCommonCell
             QL1("section: \(section), row: \(row)" )

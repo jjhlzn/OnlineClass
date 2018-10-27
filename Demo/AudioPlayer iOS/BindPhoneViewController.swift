@@ -128,7 +128,7 @@ class BindPhoneViewController : BaseUIViewController, UIAlertViewDelegate {
         let request = BindPhoneRequest()
         request.newPhone = phoneNumber
         request.code = checkCode
-        BasicService().sendRequest(url: ServiceConfiguration.SIGNUP, request: request) { (response: SignupResponse) -> Void in
+        BasicService().sendRequest(url: ServiceConfiguration.BIND_PHONE, request: request) { (response: BindPhoneResponse) -> Void in
             self.loadingOverlay.hideOverlayView()
             if response.status != 0 {
                 self.displayMessage(message: response.errorMessage!)

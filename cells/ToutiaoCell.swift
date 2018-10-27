@@ -13,7 +13,6 @@ class ToutiaoCell: UITableViewCell {
     @IBOutlet weak var tagImage: UIImageView!
     @IBOutlet weak var contentLabel: UILabel!
     var toutiao : FinanceToutiao?
-    var isLast = false
     
     override func awakeFromNib() {
         super.awakeFromNib()
