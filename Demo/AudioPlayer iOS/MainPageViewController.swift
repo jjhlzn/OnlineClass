@@ -436,7 +436,7 @@ extension CourseMainPageViewController : UITableViewDataSource, UITableViewDeleg
         case .extendFunction:
             return extendFunctionMananger.cellHeight
         case .pos(_):
-            return UIScreen.main.bounds.width / 375 * 28.0
+            return UIScreen.main.bounds.width / 375 * 90.0
         case .toutiaoHeader, .courseHeader, .jpkHeader, .zhuanLanHeader, .questionHeader:
             return 52
         case .toutiao(_):

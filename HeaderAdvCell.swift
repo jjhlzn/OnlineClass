@@ -14,10 +14,7 @@ import QorumLogs
 class HeaderAdvCell: UITableViewCell, FSPagerViewDataSource, FSPagerViewDelegate {
     var controller : UIViewController?
     @IBOutlet weak var view: UIView!
-    
 
-    
-    
     public var ads : [Advertise] = [Advertise]()
     public var toutiao = Toutiao()
     
@@ -36,7 +33,6 @@ class HeaderAdvCell: UITableViewCell, FSPagerViewDataSource, FSPagerViewDelegate
     }
     
     func pagerView(_ pagerView: FSPagerView, didSelectItemAt index: Int) {
-        QL1("FSPagerView index = " + String(index) + " selected")
         var sender = [String:String]()
         let ad =  self.ads[index]
         pagerView.deselectItem(at: index, animated: true)
@@ -53,70 +49,57 @@ class HeaderAdvCell: UITableViewCell, FSPagerViewDataSource, FSPagerViewDelegate
     }
     
     func pagerView(_ pagerView: FSPagerView, willDisplay cell: FSPagerViewCell, forItemAt index: Int) {
-        self.pagerControl.currentPage = index
+        self.pagerControl?.currentPage = index
     }
     
-    var pagerView: FSPagerView!
-    var pagerControl: FSPageControl!
+    var pagerView: FSPagerView?
+    var pagerControl: FSPageControl?
     
-    public func initialize() {
+    func makeViews() {
         let screenWidth = UIScreen.main.bounds.width
         let frame1 = CGRect(x: 0, y: 0, width: screenWidth, height: screenWidth / 375 * 224 )
         pagerView = FSPagerView(frame: frame1)
-        pagerView.dataSource = self
-        pagerView.delegate = self
-        pagerView.register(FSPagerViewCell.self, forCellWithReuseIdentifier: "mainpage_pagerview_cell")
-        self.view.addSubview(pagerView)
+        pagerView?.dataSource = self
+        pagerView?.delegate = self
+        pagerView?.register(FSPagerViewCell.self, forCellWithReuseIdentifier: "mainpage_pagerview_cell")
+        self.view.addSubview(pagerView!)
         // Create a page control
-        
         
         let frame2 = CGRect(x: (screenWidth - 150) / 2, y: screenWidth / 375 * 224 - 20, width: 150, height: 20)
         pagerControl = FSPageControl(frame: frame2)
-        self.view.addSubview(pagerControl)
+        self.view.addSubview(pagerControl!)
         
-        pagerView.automaticSlidingInterval = 5.0
-        pagerView.backgroundColor = UIColor.white
-        pagerView.isInfinite = true
-        pagerView.dataSource = self
-        pagerView.delegate = self
+        pagerView?.automaticSlidingInterval = 5.0
+        pagerView?.backgroundColor = UIColor.white
+        pagerView?.isInfinite = true
+        pagerView?.dataSource = self
+        pagerView?.delegate = self
         //pagerControl.frame.origin.x = (UIScreen().bounds.width) / 2.0
-  
-        pagerControl.setPath(UIBezierPath(rect: CGRect(x: 0, y: 0, width: 8, height: 2)), for: .normal)
-        pagerControl.setPath(UIBezierPath(rect: CGRect(x: 0, y: 0, width: 8, height: 2)), for: .selected)
-        pagerControl.contentInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 5)
+        
+        
+        
+        pagerControl?.setFillColor(Utils.hexStringToUIColor(hex: "#cccccc").withAlphaComponent(0.5), for: .normal)
+        pagerControl?.setFillColor(.white, for: .selected)
+        pagerControl?.itemSpacing = 10
+        pagerControl?.setPath(UIBezierPath(rect: CGRect(x: 0, y: 0, width: 10, height: 2)), for: .normal)
+        pagerControl?.setPath(UIBezierPath(rect: CGRect(x: 0, y: 0, width: 10, height: 2)), for: .selected)
+        pagerControl?.contentInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 5)
     }
     
+    public func initialize() {
+        if pagerView == nil {
+            makeViews()
+        }
     
-    @objc func yaoQingPressed() {
-        controller?.performSegue(withIdentifier: "codeImageSegue", sender: nil)
     }
     
     public func update() {
-        pagerView.reloadData()
-        self.pagerControl.numberOfPages = self.ads.count
-        //toutiaoLabel.text = toutiao.content
+        pagerView?.reloadData()
+        self.pagerControl?.numberOfPages = self.ads.count
+        pagerView?.layoutIfNeeded()
+        if self.ads.count > 0 {
+            pagerView?.scrollToItem(at: 0, animated: false)
+        }
     }
     
-
-    /*
-     @IBOutlet weak var pagerView: FSPagerView! {
-     didSet {
-     self.pagerView.register(FSPagerViewCell.self, forCellWithReuseIdentifier: "mainpage_cell")
-     }
-     
-     }
-     
-     @IBOutlet weak var pagerControl: FSPageControl!  {
-     didSet {
-     self.pagerControl.numberOfPages = self.ads.count
-     self.pagerControl.contentHorizontalAlignment = .right
-     self.pagerControl.contentInsets = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
-     self.pagerControl.hidesForSinglePage = true
-     
-     pagerControl.backgroundColor = nil
-     self.pagerControl.setFillColor(UIColor.lightGray, for: .normal)
-     
-     self.pagerControl.setFillColor(UIColor.white, for: .selected)
-     }
-     } */
 }

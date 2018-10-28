@@ -142,7 +142,7 @@ class ExtendFunctionMananger : NSObject {
             if UIDevice().isIphone4Like() {
                 return screenWidth / CGFloat(buttonCountEachRow) * 0.7
             } else {
-                return screenWidth / CGFloat(buttonCountEachRow) * 0.92
+                return screenWidth / CGFloat(buttonCountEachRow) * 1.2
             }
             
         }
