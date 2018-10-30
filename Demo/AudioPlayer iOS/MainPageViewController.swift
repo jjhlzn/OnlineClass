@@ -98,7 +98,7 @@ class CourseMainPageViewController: BaseUIViewController, LTTableViewProtocal, U
         loadFunctionInfos()
         loadHeadAds()
         loadZhuanLanAndTuijianCourses()
-        loadQuestions()
+        //loadQuestions()
         loadFinanceToutiaos()
         
         navigationManager = NavigationBarManager(self)
@@ -261,7 +261,7 @@ class CourseMainPageViewController: BaseUIViewController, LTTableViewProtocal, U
         //loadToutiao()
         loadFunctionInfos()
         loadZhuanLanAndTuijianCourses()
-        loadQuestions()
+        //loadQuestions()
         loadFinanceToutiaos()
     }
     
@@ -353,6 +353,7 @@ extension CourseMainPageViewController : UITableViewDataSource, UITableViewDeleg
             }
         }
         
+        /*
         if questions.count > 0 {
             cellModels.append(MainPageCellModel.seperator)
             cellModels.append(MainPageCellModel.questionHeader)
@@ -360,7 +361,7 @@ extension CourseMainPageViewController : UITableViewDataSource, UITableViewDeleg
             for index in 0..<questions.count {
                 cellModels.append(MainPageCellModel.question(questions[index]))
             }
-        }
+        } */
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -415,6 +416,7 @@ extension CourseMainPageViewController : UITableViewDataSource, UITableViewDeleg
             return zhuanLanCell
         case .questionHeader:
             let questionHeaderCell : QuestionHeaderCell = cellWithTableView(tableView)
+            questionHeaderCell.viewController = self
             return questionHeaderCell
         case .question(let question):
             let questionItemCell : QuestionItemCell = cellWithTableView(tableView)
@@ -639,7 +641,7 @@ extension CourseMainPageViewController  {
         }
     }
 
-    
+    /*
     func loadQuestions() {
         BasicService().sendRequest(url: ServiceConfiguration.GET_QUESTIONS, request: GetQuestionsRequest()) {
             (resp: GetQuestionsResponse) -> Void in
@@ -653,7 +655,7 @@ extension CourseMainPageViewController  {
             self.makeCells()
             self.tableView.reloadData()
         }
-    }
+    } */
     
     func loadFinanceToutiaos() {
         BasicService().sendRequest(url: ServiceConfiguration.GET_FINANCE_TOUTIAOS, request: GetFinanceToutiaoRequest()) {

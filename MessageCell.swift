@@ -59,7 +59,7 @@ class MessageCell: UITableViewCell {
         timeLabel.text =  ""
         nouseLabel.text = "查看详情"
         
-        descLabel.frame.size.width = UIScreen.main.bounds.width
+        descLabel.frame.size.width = UIScreen.main.bounds.width - Utils.pixelsToPoints(30.0)
     }
     
     func update() {

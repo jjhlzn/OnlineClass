@@ -34,6 +34,10 @@ class ImageCacheKeys {
 class Utils {
     static let Model_Name = "jufangzhushou"
     
+    static func pixelsToPoints(_ pixel : CGFloat) -> CGFloat {
+        return pixel / UIScreen.main.scale
+    }
+    
     static func getTabHeight(controller: UIViewController) -> CGFloat {
         if controller.tabBarController == nil {
             return 49
