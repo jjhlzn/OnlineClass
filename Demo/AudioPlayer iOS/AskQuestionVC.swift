@@ -67,6 +67,8 @@ extension AskQuestionVC : UIAlertViewDelegate{
     }
     
     func alertView(_ alertView: UIAlertView, clickedButtonAt buttonIndex: Int) {
-        self.navigationController?.popViewController(animated: true)
+        DispatchQueue.main.async { () -> Void in
+            self.navigationController?.popViewController(animated: true)
+        }
     }
 }

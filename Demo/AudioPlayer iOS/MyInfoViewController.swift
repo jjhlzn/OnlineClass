@@ -78,7 +78,9 @@ class MyInfoVieController: BaseUIViewController, UITableViewDataSource, UITableV
     @objc func pressMessageBtn() {
         keyValueStore.save(key: KeyValueStore.key_hasnewmessage, value: "0")
         setMessageButton()
-        self.performSegue(withIdentifier: "messageSegue", sender: nil)
+        DispatchQueue.main.async { () -> Void in
+            self.performSegue(withIdentifier: "messageSegue", sender: nil)
+        }
     }
     
     func setMessageButton() {
@@ -86,12 +88,12 @@ class MyInfoVieController: BaseUIViewController, UITableViewDataSource, UITableV
         //b.backgroundColor = UIColor.red
         let bottomImage = UIImage(named: "message")!
         b.setImage( overlayImage(bottomImage), for: .normal)
-        b.frame = CGRect(x: -6, y: 0, width: 40, height: 40)
+        b.frame = CGRect(x: -6, y: 0, width: 36, height: 36)
         //b.backgroundColor = UIColor.blue
         
         b.addTarget(self, action: #selector(pressMessageBtn), for: .touchUpInside)
         
-        let view = UIView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: 36, height: 36))
         view.addSubview(b)
         let button = UIBarButtonItem(customView: view)
         
@@ -107,7 +109,7 @@ class MyInfoVieController: BaseUIViewController, UITableViewDataSource, UITableV
         
         let topImage = UIImage(named: "reddot")!
         
-        let imageWidth : CGFloat = 32
+        let imageWidth : CGFloat = 30
         let newSize = CGSize(width: imageWidth, height: imageWidth) // set this to what you need
         let ratio : CGFloat = 0.3
         let messageSize = CGSize(width: imageWidth * ratio, height: imageWidth * ratio)
@@ -193,7 +195,9 @@ extension MyInfoVieController {
     }
     
     @objc func userImageTapped(img: AnyObject) {
-        performSegue(withIdentifier: "setProfilePhotoSegue", sender: nil)
+        DispatchQueue.main.async { () -> Void in
+            self.performSegue(withIdentifier: "setProfilePhotoSegue", sender: nil)
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -230,9 +234,13 @@ extension MyInfoVieController {
                 var sender = [String:String]()
                 sender["title"] = lineInfo[1]
                 sender["url"] = lineInfo[3]
-                performSegue(withIdentifier: lineInfo[2], sender: sender)
+                DispatchQueue.main.async { () -> Void in
+                    self.performSegue(withIdentifier: lineInfo[2], sender: sender)
+                }
             } else {
-                performSegue(withIdentifier: lineInfo[2], sender: nil)
+                DispatchQueue.main.async { () -> Void in
+                    self.performSegue(withIdentifier: lineInfo[2], sender: nil)
+                }
             }
             
         }

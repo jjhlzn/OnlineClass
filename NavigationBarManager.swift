@@ -109,9 +109,11 @@ class NavigationBarManager: NSObject {
             
             vc.hasBottomBar = false
             
-            viewController.hidesBottomBarWhenPushed = true
-            viewController.navigationController?.pushViewController(vc, animated: true)
-            viewController.hidesBottomBarWhenPushed = false
+            DispatchQueue.main.async { () -> Void in
+                self.viewController.hidesBottomBarWhenPushed = true
+                self.viewController.navigationController?.pushViewController(vc, animated: true)
+                self.viewController.hidesBottomBarWhenPushed = false
+            }
         }
     }
     

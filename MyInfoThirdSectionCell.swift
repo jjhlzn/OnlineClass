@@ -51,13 +51,17 @@ class MyInfoThirdSectionCell: UITableViewCell {
         var sender = [String:String]()
         sender["title"] = "VIP会员"
         sender["url"] = ServiceLinkManager.ShenqingUrl
-        controller?.performSegue(withIdentifier: "webViewSegue", sender: sender)
+        DispatchQueue.main.async { () -> Void in
+            self.controller?.performSegue(withIdentifier: "webViewSegue", sender: sender)
+        }
     }
     
     @objc func agentLevelPressed() {
         var sender = [String:String]()
         sender["title"] = "升级"
         sender["url"] = ServiceLinkManager.ShenqingUrl
-        controller?.performSegue(withIdentifier: "webViewSegue", sender: sender)
+        DispatchQueue.main.async { () -> Void in
+            self.controller?.performSegue(withIdentifier: "webViewSegue", sender: sender)
+        }
     }
 }

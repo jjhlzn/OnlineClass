@@ -206,13 +206,17 @@ class LivePlayerPageViewController : CommonPlayerPageViewController, LiveComment
         let index = scrollView.auk.currentPageIndex
         if index != nil {
             let params : [String: String] = ["url": advImages![index!].clickUrl, "title": advImages![index!].title]
-            self.viewController.performSegue(withIdentifier: "advWebView", sender: params)
+            DispatchQueue.main.async { () -> Void in
+                self.viewController.performSegue(withIdentifier: "advWebView", sender: params)
+            }
         }
     }
     
     @objc func tapApplyButtonHandler(sender: UITapGestureRecognizer? = nil) {
         let params : [String: String] = ["url": ServiceLinkManager.MyAgentUrl2, "title": "报名"]
-        self.viewController.performSegue(withIdentifier: "advWebView", sender: params)
+        DispatchQueue.main.async { () -> Void in
+            self.viewController.performSegue(withIdentifier: "advWebView", sender: params)
+        }
     }
     
     //let adImageRatio : CGFloat = 0.45625

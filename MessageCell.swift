@@ -25,27 +25,31 @@ class MessageCell: UITableViewCell {
     override
     func awakeFromNib() {
         super.awakeFromNib()
-        makeViews()
+        self.frame.size.width =  UIScreen.main.bounds.width
+        if titleLabel == nil {
+            makeViews()
+        }
         
     }
     
     private func makeViews() {
+        
         titleLabel = UILabel()
         descLabel = UILabel()
         timeLabel = UILabel()
         nouseLabel = UILabel()
         separateLine = UIView()
         separateLine.backgroundColor = Utils.hexStringToUIColor(hex: "#D3D3D3")
-        container.addSubview(titleLabel)
-        container.addSubview(descLabel)
-        container.addSubview(timeLabel)
-        container.addSubview(nouseLabel)
-        container.addSubview(separateLine)
+        addSubview(titleLabel)
+        addSubview(descLabel)
+        addSubview(timeLabel)
+        addSubview(nouseLabel)
+        addSubview(separateLine)
         
-        titleLabel.textColor = Utils.hexStringToUIColor(hex: "#fd750f")
-        titleLabel.font = titleLabel.font.withSize(18)
+        titleLabel.textColor = Utils.hexStringToUIColor(hex: "#FC7C19")
+        titleLabel.font = titleLabel.font.withSize(17)
         
-        descLabel.textColor = Utils.hexStringToUIColor(hex: "#555753")
+        descLabel.textColor = UIColor.darkGray //Utils.hexStringToUIColor(hex: "#555753")
         descLabel.font = descLabel.font.withSize(14)
         
         timeLabel.textColor = Utils.hexStringToUIColor(hex: "#9b9b9b")
@@ -59,7 +63,8 @@ class MessageCell: UITableViewCell {
         timeLabel.text =  ""
         nouseLabel.text = "查看详情"
         
-        descLabel.frame.size.width = UIScreen.main.bounds.width - Utils.pixelsToPoints(30.0)
+        
+        descLabel.frame.size.width = UIScreen.main.bounds.width - 30
     }
     
     func update() {
@@ -67,7 +72,7 @@ class MessageCell: UITableViewCell {
         descLabel.text = message.desc
         timeLabel.text = message.time
         nouseLabel.text = "查看详情"
-        updateConstraints()
+        //updateConstraints()
     }
     
     func getHeight() -> CGFloat {
@@ -83,15 +88,23 @@ class MessageCell: UITableViewCell {
         }
         
         descLabel.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(titleLabel.snp.bottom).offset(5)
+            make.top.equalTo(titleLabel.snp.bottom).offset(8)
             make.left.equalTo(titleLabel)
             make.right.equalTo(titleLabel)
             
             
             descLabel.setLineSpacing(lineSpacing: 1, lineHeightMultiple: 1.1)
             descLabel.numberOfLines = 0
-            descLabel.sizeToFit()
-            //make.height.equalTo(descLabel.frame.height)
+            //descLabel.sizeToFit()
+            
+            
+            var frame = CGSize(width: UIScreen.main.bounds.width - 30, height: 10.0)
+            QL1(UIScreen.main.scale)
+             QL1(Utils.pixelsToPoints(40.0))
+            var newFrame = descLabel.sizeThatFits(frame )
+            descLabel.frame.size = newFrame
+            
+            //QL1("here")
         }
         
         timeLabel.snp.makeConstraints { (make) -> Void in
@@ -112,7 +125,8 @@ class MessageCell: UITableViewCell {
         }
         
         QL1("descLabel.height = \(descLabel.frame.height)")
-        height = 74 + descLabel.frame.height
+        height = 77 + descLabel.frame.height
+        
         super.updateConstraints()
     }
    

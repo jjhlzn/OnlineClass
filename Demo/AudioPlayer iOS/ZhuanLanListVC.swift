@@ -131,7 +131,9 @@ extension ZhuanLanListVC {
         var sender = [String:String]()
         sender["title"] = zhuanlan.name
         sender["url"] = zhuanlan.url
-        performSegue(withIdentifier: "loadWebPageSegue", sender: sender)
+        DispatchQueue.main.async { () -> Void in
+            self.performSegue(withIdentifier: "loadWebPageSegue", sender: sender)
+        }
     }
 }
 

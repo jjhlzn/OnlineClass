@@ -18,6 +18,8 @@ class QuestionHeaderCell: UITableViewCell {
     }
 
     @IBAction func viewAllPressed(_ sender: Any) {
-        viewController!.performSegue(withIdentifier: "allQuestionsSegue", sender: nil)
+        DispatchQueue.main.async { () -> Void in
+            self.viewController!.performSegue(withIdentifier: "allQuestionsSegue", sender: nil)
+        }
     }
 }

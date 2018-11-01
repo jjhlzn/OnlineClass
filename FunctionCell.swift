@@ -121,8 +121,6 @@ class ExtendFunctionMananger : NSObject {
             }
             
             let function = functions[index]
-        
-            
             if !isNeedMore && function.isMore {
                 break
             }
@@ -147,6 +145,8 @@ class ExtendFunctionMananger : NSObject {
             
         }
     }
+    
+    
     
     private func addCellView(row : Int, column : Int, index: Int, function: ExtendFunction, cell: UITableViewCell) -> UIView {
         let interval : CGFloat = UIScreen.main.bounds.width / CGFloat(buttonCountEachRow)
@@ -177,13 +177,17 @@ class ExtendFunctionMananger : NSObject {
         clearFunctionMessage(index: index!, view:(sender?.view)!)
         let function = functions[index!]
         let params : [String: String] = ["url": function.url, "title": function.name]
-        controller.performSegue(withIdentifier: "loadWebPageSegue", sender: params)
+        DispatchQueue.main.async { () -> Void in
+            self.controller.performSegue(withIdentifier: "loadWebPageSegue", sender: params)
+        }
     }
     
     @objc func dingyueHandler(sender: UITapGestureRecognizer? = nil) {
         let index = sender?.view?.tag
         clearFunctionMessage(index: index!, view:(sender?.view)!)
-        controller.performSegue(withIdentifier: "zhuanLanListSegue", sender: nil)
+        DispatchQueue.main.async { () -> Void in
+            self.controller.performSegue(withIdentifier: "zhuanLanListSegue", sender: nil)
+        }
     }
     
     @objc func jpkHandler(sender: UITapGestureRecognizer? = nil) {
@@ -191,13 +195,17 @@ class ExtendFunctionMananger : NSObject {
         clearFunctionMessage(index: index!, view:(sender?.view)!)
         var sender = [String:String]()
         sender["type"] = ZhuanLanListVC.TYPE_JPK
-        controller.performSegue(withIdentifier: "zhuanLanListSegue", sender: sender)
+        DispatchQueue.main.async { () -> Void in
+            self.controller.performSegue(withIdentifier: "zhuanLanListSegue", sender: sender)
+        }
     }
     
     @objc func questionHandler(sender: UITapGestureRecognizer? = nil) {
         let index = sender?.view?.tag
         clearFunctionMessage(index: index!, view:(sender?.view)!)
-        controller.performSegue(withIdentifier: "allQuestionsSegue", sender: nil)
+        DispatchQueue.main.async { () -> Void in
+            self.controller.performSegue(withIdentifier: "allQuestionsSegue", sender: nil)
+        }
     }
     
     func unSupportHandler(sender: UITapGestureRecognizer? = nil) {
@@ -209,7 +217,9 @@ class ExtendFunctionMananger : NSObject {
     @objc func moreHanlder(sender: UITapGestureRecognizer? = nil) {
         let index = sender?.view?.tag
         clearFunctionMessage(index: index!,view:(sender?.view)!)
-        controller.performSegue(withIdentifier: "moreFunctionSegue", sender: nil)
+        DispatchQueue.main.async { () -> Void in
+            self.controller.performSegue(withIdentifier: "moreFunctionSegue", sender: nil)
+        }
     }
     
     @objc func openApp(sender: UITapGestureRecognizer? = nil) {
@@ -224,21 +234,26 @@ class ExtendFunctionMananger : NSObject {
             
         } else {
             let params : [String: String] = ["url": "http://jf.yhkamani.com/dlios.html", "title": "巨方支付下载"]
-            controller.performSegue(withIdentifier: "loadWebPageSegue", sender: params)
+            DispatchQueue.main.async { () -> Void in
+                self.controller.performSegue(withIdentifier: "loadWebPageSegue", sender: params)
+            }
         }
     }
     
     @objc func shareHanlder(sender: UITapGestureRecognizer? = nil) {
         let index = sender?.view?.tag
         clearFunctionMessage(index: index!, view:(sender?.view)!)
-        
-        controller.performSegue(withIdentifier: "codeImageSegue", sender: nil)
+        DispatchQueue.main.async { () -> Void in
+            self.controller.performSegue(withIdentifier: "codeImageSegue", sender: nil)
+        }
     }
     
     @objc func liveClassHandler(sender: UITapGestureRecognizer? = nil) {
         let index = sender?.view?.tag
         clearFunctionMessage(index: index!, view:(sender?.view)!)
-        controller.performSegue(withIdentifier: "beforeCourseSegue", sender: CourseType.LiveCourse)
+        DispatchQueue.main.async { () -> Void in
+            self.controller.performSegue(withIdentifier: "beforeCourseSegue", sender: CourseType.LiveCourse)
+        }
     }
     
     private func clearFunctionMessage(index: Int, view: UIView) {

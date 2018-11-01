@@ -33,7 +33,9 @@ class AnswerQuestionVC: BaseUIViewController, UITextViewDelegate {
     }
     
     @IBAction func closePressed(_ sender: Any) {
-        navigationController?.popViewController(animated: true)
+        DispatchQueue.main.async { () -> Void in
+            self.navigationController?.popViewController(animated: true)
+        }
     }
     
     @IBAction func sendPressed(_ sender: Any) {

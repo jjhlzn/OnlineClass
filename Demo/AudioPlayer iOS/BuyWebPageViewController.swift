@@ -171,11 +171,14 @@ class WebPageViewController: IapSupportWebPageViewController, WKNavigationDelega
         let loginUser = loginUserStore.getLoginUser()
         if  loginUser != nil {
             QL1("found login user")
-            //QL1("userid = \(loginUser?.userName), password = \(loginUser?.password), token = \(loginUser?.token)")
-            self.performSegue(withIdentifier: "hasLoginSegue", sender: self)
+            DispatchQueue.main.async { () -> Void in
+                self.performSegue(withIdentifier: "hasLoginSegue", sender: self)
+            }
         } else {
             QL1("no login user")
-            self.performSegue(withIdentifier: "notLoginSegue", sender: self)
+            DispatchQueue.main.async { () -> Void in
+                self.performSegue(withIdentifier: "notLoginSegue", sender: self)
+            }
         }
         
     }
@@ -186,7 +189,9 @@ class WebPageViewController: IapSupportWebPageViewController, WKNavigationDelega
         if isBackToMainController {
             checkLoginUser()
         } else {
-            navigationController?.popViewController(animated: true)
+            DispatchQueue.main.async { () -> Void in
+                self.navigationController?.popViewController(animated: true)
+            }
         }
         
     }

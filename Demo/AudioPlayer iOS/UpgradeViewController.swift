@@ -58,9 +58,13 @@ class UpgradeViewController: BaseUIViewController, UIWebViewDelegate {
         //检查一下是否已经登录，如果登录，则直接进入后面的页面
         let loginUser = loginUserStore.getLoginUser()
         if  loginUser != nil {
-            self.performSegue(withIdentifier: "hasLoginSegue", sender: self)
+            DispatchQueue.main.async { () -> Void in
+                self.performSegue(withIdentifier: "hasLoginSegue", sender: self)
+            }
         } else {
-            self.performSegue(withIdentifier: "notLoginSegue", sender: self)
+            DispatchQueue.main.async { () -> Void in
+                self.performSegue(withIdentifier: "notLoginSegue", sender: self)
+            }
         }
         
     }

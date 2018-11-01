@@ -181,7 +181,9 @@ class LoginViewController: BaseUIViewController {
                         loginUser.level = response.level
                         loginUser.boss = response.boss
                         if self.loginUserStore.saveLoginUser(loginUser: loginUser) {
-                            self.performSegue(withIdentifier: "loginSuccessSegue", sender: self)
+                            DispatchQueue.main.async { () -> Void in
+                                self.performSegue(withIdentifier: "loginSuccessSegue", sender: self)
+                            }
                         } else {
                             self.displayMessage(message: "登录失败")
                         }

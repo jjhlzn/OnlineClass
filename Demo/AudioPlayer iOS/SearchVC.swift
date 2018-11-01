@@ -56,7 +56,9 @@ class SearchVC: BaseUIViewController, UITableViewDataSource, UITableViewDelegate
     }
    
     @IBAction func cancelPressed(_ sender: Any) {
-        self.navigationController?.popViewController(animated: true)
+        DispatchQueue.main.async { () -> Void in
+            self.navigationController?.popViewController(animated: true)
+        }
         
     }
     
@@ -202,8 +204,9 @@ extension SearchVC {
         var sender = [String:String]()
         sender["title"] = searchResult.title
         sender["url"] = searchResult.clickUrl
-        performSegue(withIdentifier: "loadWebPageSegue", sender: sender)
-        
+        DispatchQueue.main.async { () -> Void in
+            self.performSegue(withIdentifier: "loadWebPageSegue", sender: sender)
+        }
     }
 
 }

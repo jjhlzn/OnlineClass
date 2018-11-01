@@ -52,6 +52,7 @@ class MessagesController: BaseUIViewController, UITableViewDataSource, UITableVi
             }
             self.messages = resp.messages
             self.tableView.reloadData()
+            //self.tableView.reloadData()
         }
     }
 }
@@ -63,9 +64,14 @@ extension MessagesController {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let row = indexPath.row
-    
-        QL1("heightForRowAt: \(row)")
-        return messages[row].height
+        var cell = tableView.cellForRow(at: indexPath) as? MessageCell
+        if cell == nil {
+            cell = tableView.dequeueReusableCell(withIdentifier: "messageCell") as? MessageCell
+        }
+        cell?.message = messages[row]
+        cell?.update()
+        cell?.updateConstraints()
+        return cell?.getHeight() ?? 77
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -73,7 +79,7 @@ extension MessagesController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "messageCell") as! MessageCell
         cell.message = messages[row]
         cell.update()
-        QL1("cellForRowAt: \(row)")
+        cell.updateConstraints()
         messages[row].height = cell.getHeight()
         return cell
     }
@@ -84,7 +90,9 @@ extension MessagesController {
         var sender = [String:String]()
         sender["title"] = messages[row].clickTitle
         sender["url"] = messages[row].clickUrl
-        performSegue(withIdentifier: "webSegue", sender: sender)
+        DispatchQueue.main.async { () -> Void in
+            self.performSegue(withIdentifier: "webSegue", sender: sender)
+        }
         
     }
     

@@ -67,7 +67,9 @@ class MyInfoFirstSectionCell: UITableViewCell {
     }
     
     @objc func userImageTapped(img: AnyObject) {
-        controller?.performSegue(withIdentifier: "setProfilePhotoSegue", sender: nil)
+        DispatchQueue.main.async { () -> Void in
+            self.controller?.performSegue(withIdentifier: "setProfilePhotoSegue", sender: nil)
+        }
     }
 
 }

@@ -227,11 +227,15 @@ extension AlbumDetailController : UITableViewDataSource, UITableViewDelegate {
         
         if audioPlayer.currentItem != nil {
             if song.id == (audioPlayer.currentItem! as! MyAudioItem).song.id {
-                performSegue(withIdentifier: "songSegue", sender: false)
+                DispatchQueue.main.async { () -> Void in
+                    self.performSegue(withIdentifier: "songSegue", sender: false)
+                }
                 return
             }
         }
-        performSegue(withIdentifier: "songSegue", sender: true)
+        DispatchQueue.main.async { () -> Void in
+            self.performSegue(withIdentifier: "songSegue", sender: true)
+        }
         tableView.deselectRow(at: indexPath as IndexPath, animated: false)
     }
     

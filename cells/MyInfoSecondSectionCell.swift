@@ -85,27 +85,35 @@ class MyInfoSecondSectionCell: UITableViewCell {
         var sender = [String:String]()
         sender["title"] = "提现"
         sender["url"] = ServiceLinkManager.MyExchangeUrl
-        controller?.performSegue(withIdentifier: "webViewSegue", sender: sender)
+        DispatchQueue.main.async { () -> Void in
+            self.controller?.performSegue(withIdentifier: "webViewSegue", sender: sender)
+        }
     }
     
     @objc func caifuPressed() {
         var sender = [String:String]()
         sender["title"] = "我的财富"
         sender["url"] = ServiceLinkManager.MyChaifuUrl
-        controller?.performSegue(withIdentifier: "webViewSegue", sender: sender)
+        DispatchQueue.main.async { () -> Void in
+            self.controller?.performSegue(withIdentifier: "webViewSegue", sender: sender)
+        }
     }
 
     @objc func jifenPressed() {
         var sender = [String:String]()
         sender["title"] = "我的积分"
         sender["url"] = ServiceLinkManager.MyJifenUrl
-        controller?.performSegue(withIdentifier: "webViewSegue", sender: sender)
+        DispatchQueue.main.async { () -> Void in
+            self.controller?.performSegue(withIdentifier: "webViewSegue", sender: sender)
+        }
     }
 
     @objc func tuanduiPressed() {
         var sender = [String:String]()
         sender["title"] = "我的团队"
         sender["url"] = ServiceLinkManager.MyTeamUrl
-        controller?.performSegue(withIdentifier: "webViewSegue", sender: sender)
+        DispatchQueue.main.async { () -> Void in
+            self.controller?.performSegue(withIdentifier: "webViewSegue", sender: sender)
+        }
     }
 }

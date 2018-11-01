@@ -26,7 +26,9 @@ class PosCell: UITableViewCell {
         
         params["title"] = pos!.title
         params["url"] = pos!.clickUrl
-        viewController?.performSegue(withIdentifier: "loadWebPageSegue", sender: params)
+        DispatchQueue.main.async { () -> Void in
+            self.viewController?.performSegue(withIdentifier: "loadWebPageSegue", sender: params)
+        }
        
     }
 

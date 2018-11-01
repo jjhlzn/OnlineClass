@@ -79,21 +79,23 @@ class PersonalInfoViewController: BaseUIViewController, UITableViewDataSource, U
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let row = indexPath.row
-        switch row {
-        case 0:
-            performSegue(withIdentifier: "setNameSegue", sender: nil)
-            break
-        case 1:
-            performSegue(withIdentifier: "setNickNameSegue", sender: nil)
-            break
-        case 2:
-            performSegue(withIdentifier: "setSexSegue", sender: nil)
-            break
-        case 3:
-            performSegue(withIdentifier: "moreSegue", sender: nil)
-            break
-        default:
-            break
+        DispatchQueue.main.async { () -> Void in
+            switch row {
+            case 0:
+                self.performSegue(withIdentifier: "setNameSegue", sender: nil)
+                break
+            case 1:
+                self.performSegue(withIdentifier: "setNickNameSegue", sender: nil)
+                break
+            case 2:
+                self.performSegue(withIdentifier: "setSexSegue", sender: nil)
+                break
+            case 3:
+                self.performSegue(withIdentifier: "moreSegue", sender: nil)
+                break
+            default:
+                break
+            }
         }
         tableView.deselectRow(at: indexPath as IndexPath, animated: false)
     }

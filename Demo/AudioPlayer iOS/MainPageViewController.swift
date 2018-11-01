@@ -142,7 +142,9 @@ class CourseMainPageViewController: BaseUIViewController, LTTableViewProtocal, U
     }
     
     @objc func tapSearchLabel(sender:UITapGestureRecognizer) {
-        performSegue(withIdentifier: "newSearchSegue", sender: nil)
+        DispatchQueue.main.async { () -> Void in
+            self.performSegue(withIdentifier: "newSearchSegue", sender: nil)
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -246,7 +248,9 @@ class CourseMainPageViewController: BaseUIViewController, LTTableViewProtocal, U
     }
     
     @IBAction func searchPressed(sender: AnyObject) {
-        performSegue(withIdentifier: "searchSegue", sender: nil)
+        DispatchQueue.main.async { () -> Void in
+            self.performSegue(withIdentifier: "searchSegue", sender: nil)
+        }
     }
     
     @objc func refresh() {
@@ -268,22 +272,27 @@ class CourseMainPageViewController: BaseUIViewController, LTTableViewProtocal, U
     @IBAction func viewZhuanLanListPressed(_ sender: Any) {
         var sender = [String:String]()
         sender["type"] = ZhuanLanListVC.TYPE_ZHUANLAN
-        performSegue(withIdentifier: "zhuanLanListSegue", sender: sender)
+        DispatchQueue.main.async { () -> Void in
+            self.performSegue(withIdentifier: "zhuanLanListSegue", sender: sender)
+        }
     }
     
     @IBAction func viewJpkPressed(_ sender: Any) {
         var sender = [String:String]()
         sender["type"] = ZhuanLanListVC.TYPE_JPK
-        performSegue(withIdentifier: "zhuanLanListSegue", sender: sender)
+        DispatchQueue.main.async { () -> Void in
+            self.performSegue(withIdentifier: "zhuanLanListSegue", sender: sender)
+        }
     }
     
     
     @IBAction func viewAllToutiaoPressed(_ sender: Any) {
-        //performSegue(withIdentifier: "zhuanLanListSegue", sender: nil)
         var sender = [String:String]()
         sender["title"] = "金融宝典"
         sender["url"] = ServiceLinkManager.JunhuokuUrl
-        performSegue(withIdentifier: "loadWebPageSegue", sender: sender)
+        DispatchQueue.main.async { () -> Void in
+            self.performSegue(withIdentifier: "loadWebPageSegue", sender: sender)
+        }
     }
     
 }
@@ -467,17 +476,24 @@ extension CourseMainPageViewController : UITableViewDataSource, UITableViewDeleg
             var sender = [String:String]()
             sender["title"] = toutiao.title
             sender["url"] = toutiao.link
-            self.performSegue(withIdentifier: "loadWebPageSegue", sender: sender)
+            
+            DispatchQueue.main.async { () -> Void in
+                self.performSegue(withIdentifier: "loadWebPageSegue", sender: sender)
+            }
             return
         case .course(let album):
             tableView.deselectRow(at: indexPath as IndexPath, animated: false)
-            self.jumpToCourse(album: album)
+            DispatchQueue.main.async { () -> Void in
+                self.jumpToCourse(album: album)
+            }
             return
         case .jpk(let zhuanLan), .zhuanLan(let zhuanLan):
             var sender = [String:String]()
             sender["title"] = zhuanLan.name
             sender["url"] = zhuanLan.url
-            self.performSegue(withIdentifier: "loadWebPageSegue", sender: sender)
+            DispatchQueue.main.async { () -> Void in
+                self.performSegue(withIdentifier: "loadWebPageSegue", sender: sender)
+            }
             return
         default:
             break
@@ -550,7 +566,9 @@ extension CourseMainPageViewController  {
         if popupAd.type == Advertise.WEB {
             params["title"] = popupAd.title
             params["url"] = popupAd.clickUrl
-            performSegue(withIdentifier: "loadWebPageSegue", sender: params)
+            DispatchQueue.main.async { () -> Void in
+                self.performSegue(withIdentifier: "loadWebPageSegue", sender: params)
+            }
         } else if popupAd.type == Advertise.COURSE {
             let album = Album()
             album.id = popupAd.id

@@ -41,7 +41,9 @@ class QuestionItemCell: UITableViewCell {
         params["toUserId"] = "" as AnyObject
         params["toUserName"] = ""  as AnyObject
         params["question"] = question!  as AnyObject
-        viewController?.performSegue(withIdentifier: "answerQuestionSegue", sender: params)
+        DispatchQueue.main.async { () -> Void in
+            self.viewController?.performSegue(withIdentifier: "answerQuestionSegue", sender: params)
+        }
         
     }
     @objc func tapThumbImage() {
@@ -125,7 +127,9 @@ class QuestionItemCell: UITableViewCell {
         params["toUserId"] = answer.fromUserId as AnyObject
         params["toUserName"] = answer.fromUserName  as AnyObject
         params["question"] = question!  as AnyObject
-        viewController?.performSegue(withIdentifier: "answerQuestionSegue", sender: params)
+        DispatchQueue.main.async { () -> Void in
+            self.viewController?.performSegue(withIdentifier: "answerQuestionSegue", sender: params)
+        }
         
     }
     

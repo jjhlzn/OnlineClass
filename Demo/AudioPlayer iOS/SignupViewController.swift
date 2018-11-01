@@ -131,11 +131,15 @@ class SignupViewController : BaseUIViewController, UIAlertViewDelegate {
     }
     
     func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
-        self.performSegue(withIdentifier: "signupSuccessSegue", sender: nil)
+        DispatchQueue.main.async { () -> Void in
+            self.performSegue(withIdentifier: "signupSuccessSegue", sender: nil)
+        }
     }
     
     @IBAction func showAgreementButtonPressed(_ sender: AnyObject) {
-        performSegue(withIdentifier: "webViewSegue", sender: nil)
+        DispatchQueue.main.async { () -> Void in
+            self.performSegue(withIdentifier: "webViewSegue", sender: nil)
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

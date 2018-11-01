@@ -183,7 +183,9 @@ class CommonPlayerPageViewController : NSObject, UITableViewDataSource, UITableV
             if rowCount > 0 {
                 if row == rowCount + 1 {
                     tableView.cellForRow(at: indexPath as IndexPath)?.isSelected = false
-                    viewController.performSegue(withIdentifier: "commentListSegue", sender: nil)
+                    DispatchQueue.main.async { () -> Void in
+                        self.viewController.performSegue(withIdentifier: "commentListSegue", sender: nil)
+                    }
                 }
             }
             break

@@ -260,7 +260,9 @@ class ConfirmDelegate : NSObject, UIAlertViewDelegate {
         case 0:
             print("button 0 pressed")
             if controller.view.window != nil {
-                controller.performSegue(withIdentifier: "buyVipSegue", sender: nil)
+                DispatchQueue.main.async { () -> Void in
+                    self.controller.performSegue(withIdentifier: "buyVipSegue", sender: nil)
+                }
             } else {
                 //QL1(parentController)
                 //if parentController as? CourseMainPageViewController != nil {
@@ -270,7 +272,9 @@ class ConfirmDelegate : NSObject, UIAlertViewDelegate {
             break
         case 1:
             print("button 1 pressed")
-            controller.navigationController?.popViewController(animated: true)
+            DispatchQueue.main.async { () -> Void in
+                self.controller.navigationController?.popViewController(animated: true)
+            }
             break
         default:
             break

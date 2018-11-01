@@ -350,12 +350,16 @@ extension AlbumListController {
                     }
                     
                     if songs.count == 1 {
-                        self.performSegue(withIdentifier: "songSegue1", sender: songs)
+                        DispatchQueue.main.async { () -> Void in
+                            self.performSegue(withIdentifier: "songSegue1", sender: songs)
+                        }
                         tableView.deselectRow(at: indexPath as IndexPath, animated: false)
                         return
                     }
                     
-                    self.performSegue(withIdentifier: "albumDetailSegue", sender: songs)
+                    DispatchQueue.main.async { () -> Void in
+                        self.performSegue(withIdentifier: "albumDetailSegue", sender: songs)
+                    }
                     tableView.deselectRow(at: indexPath as IndexPath as IndexPath, animated: false)
                 }
             }
@@ -448,7 +452,9 @@ class ConfirmDelegate2 : NSObject, UIAlertViewDelegate {
         case 0:
             var sender = [String:String]()
             sender["courseId"] = courseId
-            controller.performSegue(withIdentifier: "buyVipSegue", sender: sender)
+            DispatchQueue.main.async { () -> Void in
+                self.controller.performSegue(withIdentifier: "buyVipSegue", sender: sender)
+            }
             break
         case 1:
             break

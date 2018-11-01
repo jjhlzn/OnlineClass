@@ -39,12 +39,16 @@ class HeaderAdvCell: UITableViewCell, FSPagerViewDataSource, FSPagerViewDelegate
         if self.ads[index].type == Advertise.WEB {
             sender["url"] = ad.clickUrl
             sender["title"] = ad.title
-            self.controller?.performSegue(withIdentifier: "loadWebPageSegue", sender: sender)
+            DispatchQueue.main.async { () -> Void in
+                self.controller?.performSegue(withIdentifier: "loadWebPageSegue", sender: sender)
+            }
         } else if self.ads[index].type == Advertise.COURSE {
             let album = Album()
             album.id = ad.id
             album.isReady = true
-            (controller as! CourseMainPageViewController).jumpToCourse(album: album)
+            DispatchQueue.main.async { () -> Void in
+                (self.controller as! CourseMainPageViewController).jumpToCourse(album: album)
+            }
         }
     }
     

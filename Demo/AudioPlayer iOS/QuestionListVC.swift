@@ -66,7 +66,9 @@ class QuestionListVC: BaseUIViewController, LTTableViewProtocal,
     }
     
     @IBAction func askQuestionPressed(_ sender: Any) {
-        performSegue(withIdentifier: "askQuestionSegue", sender: nil)
+        DispatchQueue.main.async { () -> Void in
+            self.performSegue(withIdentifier: "askQuestionSegue", sender: nil)
+        }
     }
     
     

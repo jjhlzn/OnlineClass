@@ -69,10 +69,14 @@ class StartupViewController: BaseUIViewController {
         let loginUser = loginUserStore.getLoginUser()
         if  loginUser != nil {
             QL1("found login user")
-            self.performSegue(withIdentifier: "hasLoginSegue", sender: self)
+            DispatchQueue.main.async { () -> Void in
+                self.performSegue(withIdentifier: "hasLoginSegue", sender: self)
+            }
         } else {
             QL1("no login user")
-            self.performSegue(withIdentifier: "notLoginSegue", sender: self)
+            DispatchQueue.main.async { () -> Void in
+                self.performSegue(withIdentifier: "notLoginSegue", sender: self)
+            }
         }
     }
     
@@ -89,7 +93,9 @@ class StartupViewController: BaseUIViewController {
         if "" != advUrl {
             goToNextControllerTimer?.invalidate()
             skipAdvTimer?.invalidate()
-            performSegue(withIdentifier: "webViewSegue", sender: ["url": advUrl, "title": advTitle])
+            DispatchQueue.main.async { () -> Void in
+                self.performSegue(withIdentifier: "webViewSegue", sender: ["url": self.advUrl, "title": self.advTitle])
+            }
         }
     }
     

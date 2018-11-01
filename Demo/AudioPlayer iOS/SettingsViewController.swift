@@ -112,14 +112,18 @@ class SettingsViewController: BaseUIViewController, UITableViewDataSource, UITab
         let section = indexPath.section
         let row = indexPath.row
         if section == 0 && row == 0 {
-            performSegue(withIdentifier: "bindPhoneSegue", sender: nil)
+            DispatchQueue.main.async { () -> Void in
+                self.performSegue(withIdentifier: "bindPhoneSegue", sender: nil)
+            }
         }
          else if section == 1 && row == 0 {
             tableView.deselectRow(at: indexPath as IndexPath, animated: false)
             weixinLoginManager.bindWeixin()
          } else if section == 2 && row == 0 {
             tableView.deselectRow(at: indexPath as IndexPath, animated: false)
-            performSegue(withIdentifier: "resetPasswordSegue", sender: nil)
+            DispatchQueue.main.async { () -> Void in
+                self.performSegue(withIdentifier: "resetPasswordSegue", sender: nil)
+            }
         } else if section == 3 {
             let cell = tableView.cellForRow(at: indexPath as IndexPath)
             cell!.selectionStyle = .none
@@ -139,7 +143,9 @@ class SettingsViewController: BaseUIViewController, UITableViewDataSource, UITab
             BasicService().sendRequest(url: ServiceConfiguration.LOGOUT,request: LogoutRequest())  {
                 (response : LogoutResponse) -> Void in
                 self.loginUserStore.removeLoginUser()
-                self.performSegue(withIdentifier: "logoutSegue", sender: nil)
+                DispatchQueue.main.async { () -> Void in
+                    self.performSegue(withIdentifier: "logoutSegue", sender: nil)
+                }
             }
             
             break;

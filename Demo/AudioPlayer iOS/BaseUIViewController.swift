@@ -76,7 +76,9 @@ class BaseUIViewController: UIViewController, AudioPlayerDelegate, UIGestureReco
     }
     
     @objc func _backPressed() {
-        self.navigationController?.popViewController(animated: true)
+        DispatchQueue.main.async { () -> Void in
+            self.navigationController?.popViewController(animated: true)
+        }
     }
     
     func setLeftBackButton() {
@@ -93,7 +95,8 @@ class BaseUIViewController: UIViewController, AudioPlayerDelegate, UIGestureReco
     }
 
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldBeRequiredToFailBy otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-        return true
+        //关闭左滑关闭
+        return false
     } 
     
     func getAudioPlayer() -> AudioPlayer {
@@ -107,7 +110,9 @@ class BaseUIViewController: UIViewController, AudioPlayerDelegate, UIGestureReco
     
     @objc func playingButtonPressed(sender: UIButton) {
         if hasCurrentItem() {
-            performSegue(withIdentifier: "songSegue", sender: false)
+            DispatchQueue.main.async { () -> Void in
+                self.performSegue(withIdentifier: "songSegue", sender: false)
+            }
         }
     }
     

@@ -145,7 +145,9 @@ class NewPlayerController: BaseUIViewController, UIScrollViewDelegate {
     
     
     @objc func backPressed() {
-        self.navigationController?.popViewController(animated: true)
+        DispatchQueue.main.async { () -> Void in
+            self.navigationController?.popViewController(animated: true)
+        }
     }
     @objc func sharePressed(_ isTranslucent : Bool) {
         shareView.show()
@@ -373,9 +375,7 @@ extension NewPlayerController: LTAdvancedScrollViewDelegate {
                     sender["url"] = (self.song?.advUrl)!
                     sender["title"] = "我要报名"
                     
-                    //self.performSegue(withIdentifier: "loadWebSegue", sender: sender)
                     self.jumpToWebPage(sender: sender)
-
                 }
                 
             }

@@ -74,7 +74,9 @@ class ConfigurationController: BaseUIViewController, UITableViewDataSource, UITa
     
     
     @IBAction func backPressed(sender: UIBarButtonItem) {
-        performSegue(withIdentifier: "loginSegue", sender: nil)
+        DispatchQueue.main.async { () -> Void in
+            self.performSegue(withIdentifier: "loginSegue", sender: nil)
+        }
     }
     
     @IBAction func savePressed(sender: UIBarButtonItem) {
@@ -114,7 +116,9 @@ class ConfigurationController: BaseUIViewController, UITableViewDataSource, UITa
     }
     
     func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
-        performSegue(withIdentifier: "loginSegue", sender: nil)
+        DispatchQueue.main.async { () -> Void in
+            self.performSegue(withIdentifier: "loginSegue", sender: nil)
+        }
     }
     
     

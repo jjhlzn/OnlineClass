@@ -90,7 +90,9 @@ class LiveAlbumDetailController: AlbumDetailController {
                     return
                 } */
             }
-            performSegue(withIdentifier: "songSegue", sender: true)
+            DispatchQueue.main.async { () -> Void in
+                self.performSegue(withIdentifier: "songSegue", sender: true)
+            }
             tableView.deselectRow(at: indexPath as IndexPath, animated: false)
         } else {
             tableView.deselectRow(at: indexPath as IndexPath, animated: false)

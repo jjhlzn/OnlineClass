@@ -89,7 +89,9 @@ class WebPageViewController2: BaseUIViewController, UIWebViewDelegate {
     }
     
     @objc func returnLastController() {
-        navigationController?.popViewController(animated: true)
+        DispatchQueue.main.async { () -> Void in
+            self.navigationController?.popViewController(animated: true)
+        }
     }
     
       var shareViewOverlay : UIView!

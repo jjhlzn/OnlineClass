@@ -60,7 +60,9 @@ class WXApiManager: NSObject, WXApiDelegate {
         let visibleVC = UIApplication.shared.visibleViewController
         let loginVC = visibleVC as! LoginViewController
         if loginVC.loginUserStore.saveLoginUser(loginUser: loginUser) {
-            loginVC.performSegue(withIdentifier: "loginSuccessSegue", sender: self)
+            DispatchQueue.main.async { () -> Void in
+                loginVC.performSegue(withIdentifier: "loginSuccessSegue", sender: self)
+            }
             
         } else {
             loginVC.displayMessage(message: "登录失败")

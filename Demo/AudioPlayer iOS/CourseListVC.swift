@@ -366,7 +366,9 @@ extension CourseListVC {
             }
             
             let song = songs[0]
-            self.performSegue(withIdentifier: "newPlayerSegue", sender: song)
+            DispatchQueue.main.async { () -> Void in
+                self.performSegue(withIdentifier: "newPlayerSegue", sender: song)
+            }
         }
     }
     
@@ -382,7 +384,9 @@ extension CourseListVC {
             }
             
             let song = songs[0]
-            self.performSegue(withIdentifier: "newPlayerSegue", sender: song)
+            DispatchQueue.main.async { () -> Void in
+                self.performSegue(withIdentifier: "newPlayerSegue", sender: song)
+            }
         }
     }
 }

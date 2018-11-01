@@ -106,7 +106,9 @@ class ForgetPasswordViewController: BaseUIViewController, UIAlertViewDelegate {
     }
     
     func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
-        performSegue(withIdentifier: "backToLoginPageSegue", sender: nil)
+        DispatchQueue.main.async { () -> Void in
+            self.performSegue(withIdentifier: "backToLoginPageSegue", sender: nil)
+        }
     }
 
 
