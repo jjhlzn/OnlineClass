@@ -167,8 +167,8 @@ class NewPlayerController: BaseUIViewController, UIScrollViewDelegate {
         b.addTarget(self, action: #selector(backPressed), for: .touchUpInside)
         self.navigationItem.leftBarButtonItem  = button
 
-        self.navigationController?.interactivePopGestureRecognizer?.delegate = self
-        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = true
+        //self.navigationController?.interactivePopGestureRecognizer?.delegate = self
+        //self.navigationController?.interactivePopGestureRecognizer?.isEnabled = true
     }
     
     func setShareButton(_ isTranslucent : Bool) {

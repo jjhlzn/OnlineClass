@@ -11,7 +11,7 @@ import KDEAudioPlayer
 import QorumLogs
 
 
-class BaseUIViewController: UIViewController, AudioPlayerDelegate, UIGestureRecognizerDelegate {
+class BaseUIViewController: UIViewController, AudioPlayerDelegate {
 
     
     override func viewDidLoad() {
@@ -94,10 +94,11 @@ class BaseUIViewController: UIViewController, AudioPlayerDelegate, UIGestureReco
         //self.navigationController?.interactivePopGestureRecognizer?.isEnabled = true
     }
 
+    /*
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldBeRequiredToFailBy otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         //关闭左滑关闭
         return false
-    } 
+    } */
     
     func getAudioPlayer() -> AudioPlayer {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
