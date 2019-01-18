@@ -216,7 +216,7 @@ extension MyInfoVieController {
             return cell
         default:
             let cell = tableView.dequeueReusableCell(withIdentifier: "myInfoCommonCell") as! MyInfoCommonCell
-            QL1("section: \(section), row: \(row)" )
+            //QL1("section: \(section), row: \(row)" )
             cell.lineInfo = lineSections[section - 2][row]
             cell.update()
             return cell

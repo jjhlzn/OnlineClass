@@ -235,13 +235,17 @@ class Utils {
         return false
     }
     
-    
-
 
     static func getCurrentSong() -> LiveSong {
         let audioPlayer = getAudioPlayer()
         let song = (audioPlayer.currentItem as! MyAudioItem).song as! LiveSong
         return song
+    }
+    
+    static func getPlayingSong() -> Song {
+        let audioPlayer = getAudioPlayer()
+        let song = (audioPlayer.currentItem as! MyAudioItem).song
+        return song!
     }
 
     static func setNavigationBarAndTableView(_ controller: UIViewController,  tableView: UITableView?) {
@@ -274,6 +278,37 @@ class Utils {
     
     static func dismissKeyboard(_ view: UIView) {
         view.endEditing(true)
+    }
+    
+    static func playLearnFinanceItem(_ learnFinanceItem : LearnFinanceItem) {
+
+        let song = Song()
+        QL1(learnFinanceItem.audioUrl)
+        QL1(learnFinanceItem.songId)
+        song.id = learnFinanceItem.songId
+        song.url = learnFinanceItem.audioUrl
+        var songs = [Song]()
+        songs.append(song)
+        song.album = Album()
+        song.album.courseType = CourseType.CommonCourse
+        song.album.songs = songs
+        
+        let audioPlayer = Utils.getAudioPlayer()
+        
+        if audioPlayer.currentItem != nil {
+            if audioPlayer.isPlayThisSong(song: song) {
+                if audioPlayer.state == .buffering || audioPlayer.state == .playing || audioPlayer.state == .waitingForConnection {
+                    audioPlayer.pause()
+                } else {
+                    audioPlayer.resume()
+                }
+            } else {
+                audioPlayer.playThisSong(song: song)
+            }
+        } else {
+            audioPlayer.playThisSong(song: song)
+        }
+        
     }
     
 }

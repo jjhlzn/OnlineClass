@@ -23,7 +23,7 @@ class CommentKeyboard: BaseCustomView {
     
     @IBOutlet weak var switchButton: UIButton!
 
-    init(frame: CGRect, shareView: ShareView, viewController : UIViewController, liveDelegate: LiveCommentDelegate) {
+    init(frame: CGRect, shareView: ShareView, viewController : UIViewController, liveDelegate: LiveCommentDelegate, hasBottomBar: Bool) {
         super.init(frame: frame)
         commentController = CommentController()
         
@@ -37,6 +37,7 @@ class CommentKeyboard: BaseCustomView {
         commentController.emojiSwitchButton = switchButton
         commentController.shareView = shareView
         commentController.viewController = viewController
+        commentController.hasBottomBar = hasBottomBar
         
         commentController.liveDelegate = liveDelegate
         let song = Utils.getCurrentSong()

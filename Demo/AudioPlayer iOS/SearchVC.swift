@@ -142,6 +142,7 @@ class SearchVC: BaseUIViewController, UITableViewDataSource, UITableViewDelegate
             (resp: NewSearchResponse) -> Void in
             self.searchResults = resp.searchResults
             self.showSearchView(false)
+            
         }
     }
     

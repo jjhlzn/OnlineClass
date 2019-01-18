@@ -55,7 +55,9 @@ class NavigationBarManager: NSObject {
         } else if UIDevice().isIphonePlusLike() {
             xOffset = 4
         }
-        if audioPlayer.state == AudioPlayerState.playing {
+        
+        let isPlayingLive = audioPlayer.state == AudioPlayerState.playing && Utils.getPlayingSong().isLive
+        if isPlayingLive {
             self.imageView = GIFImageView(frame: CGRect(x: xOffset, y: -2, width: 21, height: 21))
             if alpha < 0.01 {
                 self.imageView.isHidden = true
@@ -97,7 +99,7 @@ class NavigationBarManager: NSObject {
     
     @objc func tapMusicBtnHandler(sender: UITapGestureRecognizer? = nil) {
         let audioPlayer = Utils.getAudioPlayer()
-        if audioPlayer.currentItem != nil {
+        if audioPlayer.currentItem != nil && Utils.getPlayingSong().isLive {
             //let vc = viewController(nibName: "nameOfNib", bundle: nil)
             //let vc = NewPlayerController()
             

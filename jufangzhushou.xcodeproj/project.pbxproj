@@ -189,6 +189,9 @@
 		EFA70A0A217F48810032BDA3 /* BindPhoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFA70A09217F48810032BDA3 /* BindPhoneViewController.swift */; };
 		EFA70A0C21800DDB0032BDA3 /* demo.gif in Resources */ = {isa = PBXBuildFile; fileRef = EFA70A0B21800DDB0032BDA3 /* demo.gif */; };
 		EFB004231E236CD800B9272A /* HeaderAdvCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFB004221E236CD800B9272A /* HeaderAdvCell.swift */; };
+		EFB7410621AE250B00992BDA /* LearnFinanceListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFB7410521AE250B00992BDA /* LearnFinanceListController.swift */; };
+		EFB7410821AE4BE600992BDA /* MobileLoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFB7410721AE4BE600992BDA /* MobileLoginController.swift */; };
+		EFD9F08721AD25D200C0442B /* LearnFinanceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD9F08621AD25D200C0442B /* LearnFinanceCell.swift */; };
 		EFDD138D20AA97A400BF8C37 /* ZhuanLanCell2.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFDD138C20AA97A400BF8C37 /* ZhuanLanCell2.swift */; };
 		EFDD138F20AA998300BF8C37 /* ZhuanLanListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFDD138E20AA998300BF8C37 /* ZhuanLanListVC.swift */; };
 		EFDD139120AAB0D100BF8C37 /* NewAlbumCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFDD139020AAB0D100BF8C37 /* NewAlbumCell.swift */; };
@@ -400,7 +403,10 @@
 		EFA70A09217F48810032BDA3 /* BindPhoneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindPhoneViewController.swift; sourceTree = "<group>"; };
 		EFA70A0B21800DDB0032BDA3 /* demo.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = demo.gif; sourceTree = "<group>"; };
 		EFB004221E236CD800B9272A /* HeaderAdvCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderAdvCell.swift; sourceTree = "<group>"; };
+		EFB7410521AE250B00992BDA /* LearnFinanceListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnFinanceListController.swift; sourceTree = "<group>"; };
+		EFB7410721AE4BE600992BDA /* MobileLoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MobileLoginController.swift; sourceTree = "<group>"; };
 		EFBFF6A51E2F4AAC00CDFB6F /* AudioPlayer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AudioPlayer.entitlements; sourceTree = SOURCE_ROOT; };
+		EFD9F08621AD25D200C0442B /* LearnFinanceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnFinanceCell.swift; sourceTree = "<group>"; };
 		EFDD138C20AA97A400BF8C37 /* ZhuanLanCell2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ZhuanLanCell2.swift; path = cells/ZhuanLanCell2.swift; sourceTree = "<group>"; };
 		EFDD138E20AA998300BF8C37 /* ZhuanLanListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZhuanLanListVC.swift; sourceTree = "<group>"; };
 		EFDD139020AAB0D100BF8C37 /* NewAlbumCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NewAlbumCell.swift; path = cells/NewAlbumCell.swift; sourceTree = "<group>"; };
@@ -601,6 +607,7 @@
 				1C2684771CCB59200032C014 /* LoginViewController.swift */,
 				1C8A2AD51CE5882A0086C1B8 /* SignupViewController.swift */,
 				1CDCC8EC1CE717F2001640CC /* ForgetPasswordViewController.swift */,
+				EFB7410721AE4BE600992BDA /* MobileLoginController.swift */,
 			);
 			name = "login&signup";
 			sourceTree = "<group>";
@@ -721,6 +728,7 @@
 				17BFD1A0C0689CF965089794 /* Pods */,
 			);
 			sourceTree = "<group>";
+			wrapsLines = 0;
 		};
 		E2A9AF9D1C498E2900FE943A /* Products */ = {
 			isa = PBXGroup;
@@ -761,6 +769,7 @@
 				EF422C68209ECD5300419FCA /* LaunchViewController.swift */,
 				EF0B6E34217C23CA00E99EBF /* MessagesController.swift */,
 				EFA70A09217F48810032BDA3 /* BindPhoneViewController.swift */,
+				EFB7410521AE250B00992BDA /* LearnFinanceListController.swift */,
 			);
 			name = "AudioPlayer iOS";
 			path = "Demo/AudioPlayer iOS";
@@ -869,6 +878,7 @@
 				EF9A92282142B480008133EA /* AnswerCell.swift */,
 				EF1E54D72143CD2B0005901E /* ToutiaoCell.swift */,
 				EF1E54D9214401A00005901E /* PosCell.swift */,
+				EFD9F08621AD25D200C0442B /* LearnFinanceCell.swift */,
 			);
 			name = mainpage;
 			sourceTree = "<group>";
@@ -1205,6 +1215,7 @@
 				1C98A8921D61F71400ADF12B /* XinGeAppDelegate.swift in Sources */,
 				1C33F03E1D07A8E200D3EE4C /* CodeImageViewController.swift in Sources */,
 				1CD349681CF9703700037F78 /* KeyValueCell.swift in Sources */,
+				EFD9F08721AD25D200C0442B /* LearnFinanceCell.swift in Sources */,
 				1C3479BD1CF2F9BD003FEF05 /* FirstPageViewController.swift in Sources */,
 				EF0B6E33217C1F0800E99EBF /* MessageCell.swift in Sources */,
 				EFA70A0A217F48810032BDA3 /* BindPhoneViewController.swift in Sources */,
@@ -1231,6 +1242,7 @@
 				1CD349741CFA8DD700037F78 /* SearchCourseViewController.swift in Sources */,
 				EF0B6E2D217AD5DA00E99EBF /* ExtendFunctionView.swift in Sources */,
 				1CEFF7881CBFBA1B000DEFF7 /* ServiceConfiguration.swift in Sources */,
+				EFB7410621AE250B00992BDA /* LearnFinanceListController.swift in Sources */,
 				E2A9AFA01C498E2900FE943A /* AppDelegate.swift in Sources */,
 				EFED76191E5C61B200CB3C9A /* CourseNotifyCell.swift in Sources */,
 				1C8A2AD61CE5882A0086C1B8 /* SignupViewController.swift in Sources */,
@@ -1249,6 +1261,7 @@
 				EF67C0431E24A901004EEAF0 /* AlbumHeaderCell.swift in Sources */,
 				1CB425A61D229E1600971F95 /* ServiceLinkManager.swift in Sources */,
 				EF1E54E52144A5D40005901E /* AnswerQuestionVC.swift in Sources */,
+				EFB7410821AE4BE600992BDA /* MobileLoginController.swift in Sources */,
 				EF23457120A56204002E2F30 /* BaomingVC.swift in Sources */,
 				1CEFF7811CBFB73D000DEFF7 /* AlbumListController.swift in Sources */,
 				1C09D3BF1CD09FED004A8F9C /* ToastMessage.swift in Sources */,

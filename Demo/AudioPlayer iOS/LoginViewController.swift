@@ -1,6 +1,7 @@
 //
 //  LoginViewController.swift
 //  OnlineClass
+//  使用验证码登陆
 //
 //  Created by 刘兆娜 on 16/4/23.
 //  Copyright © 2016年 tbaranes. All rights reserved.
@@ -23,6 +24,14 @@ class LoginViewController: BaseUIViewController {
     
     @IBOutlet weak var weixinViewContainer: UIView!
     @IBOutlet weak var weixinLoginBtn: UIImageView!
+    
+    @IBOutlet weak var weixinLoginLabel: UILabel!
+    @IBOutlet weak var mobileLoginBtn: UIImageView!
+    
+    @IBOutlet weak var mobileLoginLabel: UILabel!
+    @IBOutlet weak var phoneCodeLabel: UILabel!
+    @IBOutlet weak var getPhoneCodeButton: UIButton!
+    
     var weixinLoginManager : WeixinLoginManager!
     
     override func viewDidLoad() {
@@ -54,22 +63,118 @@ class LoginViewController: BaseUIViewController {
                                                            object: nil)
         }
         
+        setupOtherLoginView()
         
-        
-        if WXApi.isWXAppInstalled() {
-            if UIDevice().isX() {
-                weixinViewContainer.frame.origin.y -= 40
-            }
-            
-            weixinLoginBtn.isUserInteractionEnabled = true
-            
-            //var tapWeixinLogin = UITapGestureRecognizer(target: self, action: #selector(tapWeixinLogin))
-            weixinLoginBtn.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tapWeixinLogin)))
-        } else {
-            weixinViewContainer.isHidden = true
+        phoneCodeLabel.isHidden = true
+       
+    }
+    
+    
+    func setupOtherLoginView() {
+        if UIDevice().isX() {
+            weixinViewContainer.frame.origin.y -= 20
         }
         
-       
+        weixinLoginBtn.isUserInteractionEnabled = true
+        
+        //var tapWeixinLogin = UITapGestureRecognizer(target: self, action: #selector(tapWeixinLogin))
+        weixinLoginBtn.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tapWeixinLogin)))
+        
+        mobileLoginBtn.isUserInteractionEnabled = true
+        
+        //var tapWeixinLogin = UITapGestureRecognizer(target: self, action: #selector(tapWeixinLogin))
+        mobileLoginBtn.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tapMobileLogin)))
+        
+        if WXApi.isWXAppInstalled() {
+            setupOtherLoginViewWithWeixin()
+        } else {
+            setupOtherLoginViewWithoutWeixin()
+        }
+    }
+    
+    func setupOtherLoginViewWithWeixin() {
+        weixinLoginBtn.snp.makeConstraints { (make) -> Void in
+            make.centerX.equalToSuperview().offset(-30)
+            make.centerY.equalToSuperview().offset(10)
+            make.width.equalTo(40)
+            make.height.equalTo(40)
+        }
+        weixinLoginLabel.snp.makeConstraints { (make) -> Void in
+            make.centerX.equalTo(weixinLoginBtn)
+            make.centerY.equalTo(weixinLoginBtn).offset(36)
+        }
+        
+        mobileLoginBtn.snp.makeConstraints { (make) -> Void in
+            make.centerX.equalToSuperview().offset(30)
+            make.centerY.equalToSuperview().offset(10)
+            make.width.equalTo(43)
+            make.height.equalTo(43)
+            
+        }
+        
+        mobileLoginLabel.snp.makeConstraints { (make) -> Void in
+            make.centerX.equalTo(mobileLoginBtn)
+            make.centerY.equalTo(mobileLoginBtn).offset(36)
+        }
+    }
+    
+    func setupOtherLoginViewWithoutWeixin() {
+        weixinLoginBtn.isHidden = true
+        weixinLoginLabel.isHidden = true
+        
+        mobileLoginBtn.snp.makeConstraints { (make) -> Void in
+            make.centerX.equalToSuperview()
+            make.centerY.equalToSuperview().offset(10)
+            make.width.equalTo(43)
+            make.height.equalTo(43)
+            
+        }
+        
+        mobileLoginLabel.snp.makeConstraints { (make) -> Void in
+            make.centerX.equalTo(mobileLoginBtn)
+            make.centerY.equalTo(mobileLoginBtn).offset(36)
+        }
+    }
+    
+    @IBAction func getPhoneCodePressed(_ sender: UIButton) {
+        //手机号码不能为空
+        let phoneNumber = userNameField.text
+        if phoneNumber == nil || phoneNumber == "" {
+            displayMessage(message: "手机号不能为空")
+            return
+        }
+        
+        //发送请求
+        let request = GetPhoneCheckCodeRequest(phoneNumber: phoneNumber!)
+        BasicService().sendRequest(url: ServiceConfiguration.GET_PHONE_CHECK_CODE, request: request) { (response: GetPhoneCheckCodeResponse) -> Void in
+            if response.status != 0 {
+                self.displayMessage(message: response.errorMessage!)
+            }
+        }
+        
+        //设置timer
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateButtonTitle), userInfo: nil, repeats: true)
+        
+        getPhoneCodeButton.isHidden = true
+        phoneCodeLabel.isHidden = false
+    }
+    
+    var timerCount = 59
+    var timer: Timer?
+    @objc func updateButtonTitle() {
+        phoneCodeLabel.text = "\(timerCount)秒后重新获取"
+        timerCount = timerCount - 1
+        if timerCount <= 0 {
+            timer?.invalidate()
+            getPhoneCodeButton.isHidden = false
+            phoneCodeLabel.isHidden = true
+            timerCount = 59
+        }
+    }
+    
+    @objc func tapMobileLogin(_ tapGes : UITapGestureRecognizer) {
+        QL1("tapMobileLogin called")
+        performSegue(withIdentifier: "mobileLoginSegue", sender: nil)
     }
     
     @objc func tapWeixinLogin(_ tapGes : UITapGestureRecognizer) {
@@ -153,49 +258,66 @@ class LoginViewController: BaseUIViewController {
     
     var loadingOverlay = LoadingOverlay()
     var loginUserStore = LoginUserStore()
-    @IBAction func loginButtonPressed(sender: UIButton) {
+    
+    func loginWithCheckCode() {
+        //验证手机号
+        let phoneNumber = userNameField.text
         
-        let userName = (userNameField.text)!
-        let password = (passwordField.text)!
+        //验证验证码的格式
+        let checkCode = passwordField.text
         
-        if userName.isEmpty || password.isEmpty {
-            displayMessage(message: "用户名和密码不能为空")
+        
+        
+        if phoneNumber == nil || phoneNumber == "" {
+            displayMessage(message: "手机号不能为空")
             return
         }
         
+        if checkCode == nil || checkCode == "" {
+            displayMessage(message: "验证码不能为空")
+            return
+        }
+        
+        //发送注册请求
         loadingOverlay.showOverlay(view: self.view)
         
-        let request = LoginRequest(userName: userName, password: password, deviceToken: (UIApplication.shared.delegate as! AppDelegate).deviceTokenString)
-        BasicService().sendRequest(url:  ServiceConfiguration.LOGIN, request: request) { (response: LoginResponse) -> Void in
+        let request = MobileLoginRequest(userName: phoneNumber!,  checkCode: checkCode!,
+                                         deviceToken: (UIApplication.shared.delegate as! AppDelegate).deviceTokenString)
+        BasicService().sendRequest(url:  ServiceConfiguration.MOBILE_LOGIN, request: request) { (response: MobileLoginResponse) -> Void in
             DispatchQueue.main.async() {
                 self.loadingOverlay.hideOverlayView()
                 if response.status == 0 {
-                        let loginUser = LoginUser()
-                        loginUser.userName = userName
-                        loginUser.password = password
-                        loginUser.name = response.name!
-                        loginUser.sex = response.sex
-                        loginUser.codeImageUrl = response.codeImageUrl
-                        loginUser.token = response.token!
-                        loginUser.nickName = response.nickName
-                        loginUser.level = response.level
-                        loginUser.boss = response.boss
-                        if self.loginUserStore.saveLoginUser(loginUser: loginUser) {
-                            DispatchQueue.main.async { () -> Void in
-                                self.performSegue(withIdentifier: "loginSuccessSegue", sender: self)
-                            }
-                        } else {
-                            self.displayMessage(message: "登录失败")
+                    let loginUser = LoginUser()
+                    loginUser.userName = phoneNumber!
+                    loginUser.password = "loginwithmobilecheckcode"
+                    loginUser.name = response.name!
+                    loginUser.sex = response.sex
+                    loginUser.codeImageUrl = response.codeImageUrl
+                    loginUser.token = response.token!
+                    loginUser.nickName = response.nickName
+                    loginUser.level = response.level
+                    loginUser.boss = response.boss
+                    if self.loginUserStore.saveLoginUser(loginUser: loginUser) {
+                        DispatchQueue.main.async { () -> Void in
+                            self.performSegue(withIdentifier: "loginSuccessSegue", sender: self)
                         }
+                    } else {
+                        self.displayMessage(message: "登录失败")
+                    }
                 } else {
                     self.displayMessage(message: response.errorMessage!)
                 }
-
+                
             }
             
         }
+    }
+    
+    
+    @IBAction func loginButtonPressed(sender: UIButton) {
         
-
+       
+        loginWithCheckCode()
     }
 
 

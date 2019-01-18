@@ -40,6 +40,7 @@ class SignupViewController : BaseUIViewController, UIAlertViewDelegate {
         
         phoneCodeLabel.isHidden = true
         
+        setLeftBackButton()
         
     }
     

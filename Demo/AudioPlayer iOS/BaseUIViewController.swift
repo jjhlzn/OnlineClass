@@ -150,9 +150,6 @@ class BaseUIViewController: UIViewController, AudioPlayerDelegate {
         }
     }
 
-    func audioPlayer(_ audioPlayer: AudioPlayer, didChangeStateFrom from: AudioPlayerState, to state: AudioPlayerState) {
-        QL1("audioPlayer:didChangeStateFrom called, from: \(from), to: \(state)")
-    }
 
     
     func becomeLineBorder(field: UITextField) {
@@ -169,8 +166,27 @@ class BaseUIViewController: UIViewController, AudioPlayerDelegate {
         field.frame = frameRect
     }
 
+    
+    func audioPlayer(_ audioPlayer: AudioPlayer, didChangeStateFrom from: AudioPlayerState, to state: AudioPlayerState) {
+        QL1("audioPlayer:didChangeStateFrom called, from: \(from), to: \(state)")
+    }
+    
+    func audioPlayer(_ audioPlayer: AudioPlayer, didLoad range: TimeRange, for item: AudioItem) {
+        //QL1(range)
+    }
+    
+    func audioPlayer(_ audioPlayer: AudioPlayer, didFindDuration duration: TimeInterval, for item: AudioItem) {
+        QL1(duration)
+    }
+    
+    func audioPlayer(_ audioPlayer: AudioPlayer, didUpdateProgressionTo time: TimeInterval, percentageRead: Float) {
+    }
    
     var tap: UITapGestureRecognizer!
+}
+
+extension BaseUIViewController {
+
 }
 
 extension BaseUIViewController {

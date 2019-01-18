@@ -33,7 +33,7 @@ class BasicService {
         request.setValue("application/json; charset=UTF-8", forHTTPHeaderField: "Content-Type")
         do {
             request.httpBody = try serverRequest.getJSON().rawData()
-            //QL1(serverRequest.getJSON())
+            QL1(serverRequest.getJSON())
         } catch let error {
             QL4("catchException, ex = \(error)")
             serverResponse.status = -1
@@ -44,7 +44,7 @@ class BasicService {
         //Alamofire.request(url, method: method, parameters: serverRequest.params, encoding: JSONEncoding.default)
             .responseJSON { response in
                 //print("---------------------------------StartRequest---------------------------------")
-                //debugPrint(response)
+                debugPrint(response)
                 
                 //print("----------------------------------EndRequest----------------------------------")
                 

@@ -30,7 +30,8 @@ var wxApiManager = WXApiManager()
         _ = super.application(application, didFinishLaunchingWithOptions: launchOptions)
         QL1("didFinishLaunchingWithOptions")
         QorumLogs.enabled = true
-        
+
+
         // Override point for customization after application launch.
         application.beginReceivingRemoteControlEvents()
         

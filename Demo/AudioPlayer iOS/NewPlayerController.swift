@@ -92,7 +92,8 @@ class NewPlayerController: BaseUIViewController, UIScrollViewDelegate {
 
         setNavigationBar(true)
         
-        if audioPlayer.currentItem == nil {
+        if audioPlayer.currentItem == nil || !(Utils.getPlayingSong() is LiveSong) {
+            audioPlayer.pause()
             loading = LoadingOverlay()
             loading.showOverlay(view: self.view)
             loadCourses()
@@ -126,8 +127,9 @@ class NewPlayerController: BaseUIViewController, UIScrollViewDelegate {
             }
         }
         
-        commentKeyboard = CommentKeyboard(frame: CGRect(x : 0, y: y, width: UIScreen.main.bounds.width, height: 40), shareView: shareView, viewController: self, liveDelegate: viewControllers[0] as! LiveCommentDelegate)
-        
+        commentKeyboard = CommentKeyboard(frame: CGRect(x : 0, y: y, width: UIScreen.main.bounds.width, height: 40), shareView: shareView, viewController: self,
+                                          liveDelegate: viewControllers[0] as! LiveCommentDelegate,
+                                          hasBottomBar: hasBottomBar)
         view.addSubview(commentKeyboard!)
         commentKeyboard?.commentController.addKeyboardNotify()
     }
@@ -183,6 +185,31 @@ class NewPlayerController: BaseUIViewController, UIScrollViewDelegate {
         b.addTarget(self, action: #selector(sharePressed), for: .touchUpInside)
         self.navigationItem.rightBarButtonItem  = button
     }
+
+    
+    private func checkPlay() {
+        let audioPlayer = getAudioPlayer()
+        if audioPlayer.currentItem != nil {
+            QL1("current song is NOT nil")
+            let currentSong = Utils.getPlayingSong()
+            
+            if !(currentSong is LiveSong) {
+                QL1("current song is NOT live song")
+                audioPlayer.pause()
+                if song != nil {
+                    audioPlayer.playThisSong(song: song!)
+                }
+            } else {
+                QL1("current song is live song")
+            }
+        } else {
+            QL1("current song is nil")
+            if self.song != nil {
+                audioPlayer.playThisSong(song: song!)
+            }
+        }
+        headerView.updateMusicButton()
+    }
     
     
     override func viewWillAppear(_ animated: Bool) {
@@ -193,6 +220,8 @@ class NewPlayerController: BaseUIViewController, UIScrollViewDelegate {
         if commentKeyboard?.commentController != nil {
            commentKeyboard?.commentController.initChat()
         }
+        
+        checkPlay()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -352,7 +381,7 @@ extension NewPlayerController: LTAdvancedScrollViewDelegate {
         let storyboardName = "Main"
         let storyboard = UIStoryboard(name: storyboardName, bundle: Bundle.main)
         let vc = storyboard.instantiateViewController(withIdentifier: viewControllerStoryboardId) as! WebPageViewController
-        let params = sender as! [String: String]
+        let params = sender
         vc.url = NSURL(string: params["url"]!)
         vc.title = params["title"]
         if !hasBottomBar {

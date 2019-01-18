@@ -63,7 +63,7 @@ class ShareManager {
     
     func loadShareInfo(url: URL) {
         //self.resetDefaultSetting()
-        QL1("load share info url: \(url)")
+        //QL1("load share info url: \(url)")
         Alamofire.request(url.absoluteString)
             .responseString { response in
                 //QL1("\(response)")
@@ -73,7 +73,7 @@ class ShareManager {
                         var title = doc.title!
                         title = title.trimmingCharacters(in: CharacterSet.whitespaces)
                         self.shareTitle = title
-                        QL1("title = \(title)")
+                        //QL1("title = \(title)")
                     }
                     
                     // Search for nodes by XPath
@@ -84,12 +84,12 @@ class ShareManager {
                         
                         if meta["name"] != nil && meta["name"]! == "shareurl" && meta["content"] != nil{
                             self.shareUrl = meta["content"]!
-                            QL1(self.shareUrl)
+                            //QL1(self.shareUrl)
                         }
                         
                         if meta["name"] != nil && meta["name"]! == "description" && meta["content"] != nil{
                             self.shareDescription = meta["content"]!
-                            QL1(self.shareDescription)
+                            //QL1(self.shareDescription)
                         }
                         
                     }

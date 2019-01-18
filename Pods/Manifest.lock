@@ -7,7 +7,7 @@ PODS:
   - FSPagerView (0.8.1)
   - Gifu (3.0.0)
   - Kanna (4.0.0)
-  - KDEAudioPlayer (1.1.0)
+  - KDEAudioPlayer (1.2.0)
   - Kingfisher (4.1.1)
   - LTScrollView (0.2.0)
   - MarqueeLabel/Swift (3.1.4)
@@ -31,7 +31,7 @@ DEPENDENCIES:
   - FSPagerView (~> 0.8.1)
   - Gifu (~> 3.0.0)
   - Kanna (~> 4.0.0)
-  - KDEAudioPlayer (~> 1.1.0)
+  - KDEAudioPlayer (from `https://github.com/delannoyk/AudioPlayer.git`)
   - Kingfisher (~> 4.1.0)
   - LTScrollView (~> 0.2.0)
   - MarqueeLabel/Swift (~> 3.1.4)
@@ -53,7 +53,6 @@ SPEC REPOS:
     - FSPagerView
     - Gifu
     - Kanna
-    - KDEAudioPlayer
     - Kingfisher
     - LTScrollView
     - MarqueeLabel
@@ -68,10 +67,15 @@ SPEC REPOS:
     - tingyunApp
 
 EXTERNAL SOURCES:
+  KDEAudioPlayer:
+    :git: https://github.com/delannoyk/AudioPlayer.git
   WeiboSDK:
     :git: https://github.com/sinaweibosdk/weibo_ios_sdk.git
 
 CHECKOUT OPTIONS:
+  KDEAudioPlayer:
+    :commit: 42102f4560432d467daab24fed8644ac81c452ae
+    :git: https://github.com/delannoyk/AudioPlayer.git
   WeiboSDK:
     :commit: 3daf7147ddd0fde3b04a61d8d94327d41d0c239c
     :git: https://github.com/sinaweibosdk/weibo_ios_sdk.git
@@ -84,7 +88,7 @@ SPEC CHECKSUMS:
   FSPagerView: 4e865526acc0b0e3077e2abb29b8d10a9f395476
   Gifu: 6543ca2056a3d697097c09fe543ef49348ccc892
   Kanna: d5ae2a26472f7e7a474e7f36a9cd8aa2c8c63ad3
-  KDEAudioPlayer: b3787f02b6718c2416589a7726f2633cde2cd60e
+  KDEAudioPlayer: f4e210cd3c5910db75c9d69abc20fe116f27ef2f
   Kingfisher: 6793a473357b5dbee42b0068ef203fe8325f259e
   LTScrollView: 1a18ae14884eb99c27f0222203aedaccd21b72fc
   MarqueeLabel: bf768455fe88d427f71476ebb23f9092b660f40b
@@ -99,6 +103,6 @@ SPEC CHECKSUMS:
   tingyunApp: bf9074313164f2b3595b5c2b422c8159cee03a58
   WeiboSDK: bceab625ec59b7039ba721cc4ba9f5868804f63e
 
-PODFILE CHECKSUM: 8d98d324fd52a56b7cd51f3e3b3be4d509e47a37
+PODFILE CHECKSUM: d5bb4eccc6103b4ffdb4ce195895fcd942dfdcc5
 
 COCOAPODS: 1.6.0.beta.1

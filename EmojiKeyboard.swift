@@ -16,7 +16,7 @@ import Emoji
 // 45
 // (320 - (25 * 7 + 15 * 2)) / 6
 class EmojiKeyboard: NSObject {
-    
+     var hasBottomBar: Bool = false
     var editText : UITextView
     
     let emojiKeys = [":smile:", ":laughing:", ":kissing_smiling_eyes:", ":heart_eyes:", ":heart:", ":heartpulse:", ":sparkling_heart:",
@@ -25,20 +25,33 @@ class EmojiKeyboard: NSObject {
                      ":tangerine:", ":watermelon:", ":lemon:", ":strawberry:", ":pear:", ":tomato:", ":apple:",
                      ":cherries:", ":peach:", ":pineapple:", ":sunny:", ":sunflower:", ":rose:", ":hibiscus:",]
     
-    init(editText: UITextView) {
-        self.editText = editText
-    }
-    
     let size : CGFloat = 30
-    let keyboardHeight: Int = 213
+    var keyboardHeight: Int = 213
+    
+    init(editText: UITextView, hasBottomBar: Bool) {
+        self.editText = editText
+        self.hasBottomBar = hasBottomBar
+        if hasBottomBar {
+            if UIDevice().isX() {
+                keyboardHeight += 80
+            } else {
+                keyboardHeight += 40
+            }
+            
+        }
+    }
     
     var view : UIView?
     
     func getView() -> UIView {
         
+        
+        
         if view != nil {
             return view!
         }
+        
+        
         
         let screenWidth = UIScreen.main.bounds.width
         let screenHight = UIScreen.main.bounds.height

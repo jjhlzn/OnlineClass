@@ -8,6 +8,7 @@
 
 import Foundation
 import KDEAudioPlayer
+import QorumLogs
 
 extension AudioPlayer {
     
@@ -53,13 +54,10 @@ extension AudioPlayer {
             if eachSong.wholeUrl == song.wholeUrl {
                 startIndex = idx
             }
-            var audioItem = MyAudioItem(song: eachSong, highQualitySoundURL: URL(string: eachSong.wholeUrl))!
-            if eachSong.album.courseType == CourseType.LiveCourse {
-                let url = URL(string: eachSong.wholeUrl)
-                audioItem = MyAudioItem(song: eachSong, highQualitySoundURL: url)!
-            }
+            let url = URL(string: eachSong.wholeUrl)
+            QL1(url)
+            let  audioItem = MyAudioItem(song: eachSong, highQualitySoundURL: url)!
             audioItem.song = eachSong
-            print(audioItem.song?.name)
             items.append(audioItem)
             
             idx = idx + 1
@@ -87,8 +85,6 @@ extension AudioPlayer {
         return currentItemIndexInQueue! != 0
         
     }
-    
-    
     
 }
 

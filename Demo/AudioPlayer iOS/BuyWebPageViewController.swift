@@ -55,6 +55,7 @@ class WebPageViewController: IapSupportWebPageViewController, WKNavigationDelega
         navigationManager.setMusicButton()
         navigationManager.setShareButton()
     
+        
        // self.navigationController?.interactivePopGestureRecognizer?.delegate = self
         //self.navigationController?.interactivePopGestureRecognizer?.isEnabled = true
     }
@@ -90,6 +91,8 @@ class WebPageViewController: IapSupportWebPageViewController, WKNavigationDelega
         let newFrame = CGRect(x: frame.minX, y: frame.minY, width: frame.width, height: frame.height - H)
         self.webView = WKWebView(frame: newFrame, configuration: config)
         
+   
+        
         self.webContainer.addSubview(self.webView!)
         self.webView?.navigationDelegate = self
         
@@ -98,9 +101,20 @@ class WebPageViewController: IapSupportWebPageViewController, WKNavigationDelega
         let myRequest = NSURLRequest(url: nsurl! as URL);
         //webView.delegate = self
         webView!.load(myRequest as URLRequest);
+        
+       
     }
     
-    
+    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Swift.Void) {
+        if navigationAction.request.url?.scheme == "tel" {
+            
+            UIApplication.shared.openURL(navigationAction.request.url!)
+            //UIApplication.shared.openURL(URL(string: "tel://13706794299")!)
+            decisionHandler(.cancel)
+        } else {
+            decisionHandler(.allow)
+        }
+    }
     
     /****  webView相关的函数  ***/
     func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) {
@@ -111,7 +125,7 @@ class WebPageViewController: IapSupportWebPageViewController, WKNavigationDelega
             QL1("url = \(webView.url!)")
            shareView.setShareUrl((webView.url?.absoluteString)!)
         }
-
+        
         if webView.canGoBack {
             navigationItem.leftBarButtonItems = [backButton, closeButton]
             backButton.action = #selector(webViewBack)

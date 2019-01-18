@@ -12,8 +12,6 @@ import QorumLogs
 import SnapKit
 
 class PlayerHeaderView: BaseCustomView {
-
-    //var audioPlayer : AudioPlayer?
     
     private func getAduioPlayer() -> AudioPlayer {
         return Utils.getAudioPlayer()
@@ -25,11 +23,6 @@ class PlayerHeaderView: BaseCustomView {
     @IBOutlet weak var listenerImage: UIImageView!
     
     @IBOutlet var container: UIView!
-    
-    
-    override func initialSetup(){
-       //makeViews()
-    }
     
     func initalize() {
         let audioPlayer = getAduioPlayer()
@@ -101,14 +94,16 @@ class PlayerHeaderView: BaseCustomView {
     func update() {
         let audioPlayer = getAduioPlayer()
         let item = audioPlayer.currentItem as! MyAudioItem
-        let song = item.song as! LiveSong
-        songImageView.kf.setImage(with: URL(string: song.imageUrl), placeholder: UIImage(named: "rect_placeholder"))
-        listenerCountLabel.text = song.listenPeople
-        listenerCountLabel.textColor = UIColor.red
-        listenerCountLabel.sizeToFit()
-        
-        updateMusicButton()
-       // updateConstraints()
+        if item != nil {
+            if let song = Utils.getPlayingSong() as? LiveSong {
+                songImageView.kf.setImage(with: URL(string: song.imageUrl), placeholder: UIImage(named: "rect_placeholder"))
+                listenerCountLabel.text = song.listenPeople
+                listenerCountLabel.textColor = UIColor.red
+                listenerCountLabel.sizeToFit()
+                
+                updateMusicButton()
+            }
+        }
     }
     
     var lastStateBeforePause : AudioPlayerState?
@@ -116,8 +111,8 @@ class PlayerHeaderView: BaseCustomView {
          let audioPlayer = getAduioPlayer()
         let state = audioPlayer.state
         
-        QL1("currentState = \(state)")
-        QL1("lastStateBeforePause = \(lastStateBeforePause)")
+        //QL1("currentState = \(state)")
+        //QL1("lastStateBeforePause = \(lastStateBeforePause)")
         
         switch state {
         case AudioPlayerState.buffering,  AudioPlayerState.waitingForConnection:
@@ -149,24 +144,15 @@ class PlayerHeaderView: BaseCustomView {
         }
         updateMusicButton()
         
-        /*
-        if state == AudioPlayerState.buffering || state == AudioPlayerState.waitingForConnection {
-            audioPlayer?.pause()
-        } else if state == AudioPlayerState.playing {
-            audioPlayer?.pause()
-        } else {
-            audioPlayer?.seekToSeekableRangeEnd(padding: 1, completionHandler: nil)
-            audioPlayer?.resume()
-        } */
         
     }
     
     func updateMusicButton() {
         let audioPlayer = getAduioPlayer()
         let state : AudioPlayerState = audioPlayer.state
-        QL1("state = \(state)" )
-        QL1(audioPlayer)
-        QL1(audioPlayer.delegate)
+        //QL1("state = \(state)" )
+        //QL1(audioPlayer)
+        //QL1(audioPlayer.delegate)
         switch state {
         case AudioPlayerState.buffering, AudioPlayerState.waitingForConnection:
             playerBtn.image = UIImage(named: "playerButton2")
@@ -191,22 +177,6 @@ class PlayerHeaderView: BaseCustomView {
             playerStatusLabel.text = "开始播放"
             audioPlayer.setError(false)
         }
-        
-        /*
-        if state == AudioPlayerState.buffering || state == AudioPlayerState.waitingForConnection {
-            playerBtn.image = UIImage(named: "playerButton2")
-            playerStatusLabel.text = "缓冲中"
-        } else if state == AudioPlayerState.playing {
-            playerBtn.image = UIImage(named: "playerButton2")
-            playerStatusLabel.text = "播放中"
-         
-         
-        } else if state != AudioPlayerState.failed(AudioPlayerError) {
-            QL1("error happen")
-        } else {
-            playerBtn.image = UIImage(named: "playerButton")
-            playerStatusLabel.text = "开始播放"
-        } */
     }
     
     func updateListenerCountLabel(_ count: Int) {

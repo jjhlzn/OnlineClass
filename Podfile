@@ -4,7 +4,7 @@ use_frameworks!
 
 target 'AudioPlayer iOS' do
     pod 'Alamofire', '~> 4.7'  #ok
-    pod 'KDEAudioPlayer', '~> 1.1.0' #ok
+    pod 'KDEAudioPlayer', :git => 'https://github.com/delannoyk/AudioPlayer.git'  #'~> 1.1.0' #ok 
     pod 'Emoji-swift', '~> 0.2.2'  #ok
     pod 'SwiftyJSON', '~> 4.0'  #ok
     pod 'Auk', '~> 8.0' #ok

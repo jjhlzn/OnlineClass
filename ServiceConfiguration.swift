@@ -15,7 +15,7 @@ class ServiceConfiguration {
     
 
     //114.80.101.27:6012/
-    static let serverName3 = "jf.yhkamani.com" //"localhost"
+    static let serverName3 = "jf.yhkamani.com"  //192.168.31.130" //"localhost"
     static let port3 =  80  //4000
     
     
@@ -393,6 +393,12 @@ class ServiceConfiguration {
         }
     }
     
+    static var MOBILE_LOGIN : String {
+        get {
+            return "\(http)://\(serverName):\(port)/wxapp/login"
+        }
+    }
+    
     static var BIND_WEIXIN : String {
         get {
             return "\(http)://\(serverName):\(port)/user/bindweixin"
@@ -402,6 +408,12 @@ class ServiceConfiguration {
     static var GET_MESSAGES : String {
         get {
             return "\(http)://\(serverName):\(port)/app/getmessages"
+        }
+    }
+    
+    static var GET_LEARN_FINANCES : String {
+        get {
+            return "\(http)://\(serverName):\(port)/app/getlearnfinances"
         }
     }
 }

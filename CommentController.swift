@@ -23,6 +23,9 @@ protocol LiveCommentDelegate {
 
 class CommentController : NSObject, UITextViewDelegate {
     let TAG = "CommentController"
+    
+    var hasBottomBar: Bool = false
+    
     var overlay = UIView()
     var viewController: UIViewController!
     var delegate: CommentDelegate?
@@ -78,6 +81,9 @@ class CommentController : NSObject, UITextViewDelegate {
         self.song = song
         commentErrorMessage = "评论失败"
         
+        //bottomView2.removeFromSuperview()
+        //viewController.view.window?.addSubview(bottomView)
+        
         bottomView2.isHidden = true
         commentFiled2.isEditable = true
         
@@ -91,7 +97,6 @@ class CommentController : NSObject, UITextViewDelegate {
         let screenSize: CGRect = UIScreen.main.bounds
         let screenHeight = screenSize.height
         frame.origin.y = screenHeight - bottomView2.frame.height
-        print("x = \(frame.origin.x), y = \(frame.origin.y)")
         bottomView2.frame = frame
         
         if cancelButton != nil {
@@ -104,7 +109,7 @@ class CommentController : NSObject, UITextViewDelegate {
         
         commentInputButton.addTarget(self, action: #selector(handleTap), for: .touchUpInside)
         
-        emojiKeyboard = EmojiKeyboard(editText: commentFiled2)
+        emojiKeyboard = EmojiKeyboard(editText: commentFiled2, hasBottomBar: hasBottomBar)
         
         if emojiSwitchButton != nil {
             emojiSwitchButton?.addTarget(self, action: #selector(emojiSwitchButtonPressed), for: .touchUpInside)
@@ -197,13 +202,17 @@ class CommentController : NSObject, UITextViewDelegate {
     
     
     private func openEmojiKeyboard() {
+        
         emojiKeyboardView = emojiKeyboard.getView()
         commentFiled2.resignFirstResponder()
         viewController.view.addSubview(emojiKeyboardView!)
         showOrAdjustCommentWindow(keyboardSize: (emojiKeyboardView?.frame)!)
         emojiSwitchButton?.setImage(UIImage(named: "emojiSwitchButton2"), for: [])
         isEmojiKeyboardOpen = true
+        
         //调整评论框的y坐标
+        //moveCommentWindowY(-40)
+        
     }
     
     private func closeEmojiKeyboard() {
@@ -213,6 +222,9 @@ class CommentController : NSObject, UITextViewDelegate {
         emojiSwitchButton?.setImage(UIImage(named: "emojiSwitchButton1"), for: [])
         
         isEmojiKeyboardOpen = false
+        
+        //调整评论框的y坐标
+        //moveCommentWindowY(40)
     }
     
     @objc func handleTap(gestureRecognizer: UIGestureRecognizer) {

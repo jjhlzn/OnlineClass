@@ -103,7 +103,7 @@ class ApplyBrowserController : IapSupportWebPageViewController, WKNavigationDele
         config.userContentController = contentController
         
         let tabbarHegith = self.tabBarController?.tabBar.frame.height;
-        QL1("tabbarHegith = \(tabbarHegith!)")
+        //QL1("tabbarHegith = \(tabbarHegith!)")
         let fullScreen = UIScreen.main.bounds
         
         var height : CGFloat = 0
@@ -136,18 +136,29 @@ class ApplyBrowserController : IapSupportWebPageViewController, WKNavigationDele
     }
     
     
+    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Swift.Void) {
+        if navigationAction.request.url?.scheme == "tel" {
+            
+            UIApplication.shared.openURL(navigationAction.request.url!)
+            //UIApplication.shared.openURL(URL(string: "tel://13706794299")!)
+            decisionHandler(.cancel)
+        } else {
+            decisionHandler(.allow)
+        }
+    }
     
     /****  webView相关的函数  ***/
     func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) {
         if showLoading {
             loading.show(view: view)
         }
-        QL1("webView.canGoBack = \(webView.canGoBack)")
+        //QL1("webView.canGoBack = \(webView.canGoBack)")
         
         if webView.url != nil {
-            QL1("url = \(webView.url!)")
+            //QL1("url = \(webView.url!)")
             shareView.setShareUrl((webView.url?.absoluteString)!)
         }
+        
         
         if webView.canGoBack {
             navigationItem.leftBarButtonItems = [backButton]
@@ -158,11 +169,11 @@ class ApplyBrowserController : IapSupportWebPageViewController, WKNavigationDele
     
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         loading.hide()
-        QL1("webView.canGoBack = \(webView.canGoBack)")
+        //QL1("webView.canGoBack = \(webView.canGoBack)")
         
         
         if webView.url != nil {
-            QL1("url = \(webView.url!)")
+            //QL1("url = \(webView.url!)")
             shareView.shareManager.loadShareInfo(url: webView.url!)
         }
         

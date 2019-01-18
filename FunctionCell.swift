@@ -137,7 +137,9 @@ class ExtendFunctionMananger : NSObject {
     var cellHeight:CGFloat {
         get {
             let screenWidth = UIScreen.main.bounds.width
-            if UIDevice().isIphone4Like() {
+            if  UIDevice().isIphone5Like() {
+                return screenWidth / CGFloat(buttonCountEachRow) * 1.2
+            } else if UIDevice().isIphone4Like() {
                 return screenWidth / CGFloat(buttonCountEachRow) * 0.7
             } else {
                 return screenWidth / CGFloat(buttonCountEachRow) * 1.2

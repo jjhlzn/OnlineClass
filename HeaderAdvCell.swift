@@ -22,6 +22,14 @@ class HeaderAdvCell: UITableViewCell, FSPagerViewDataSource, FSPagerViewDelegate
         return ads.count
     }
     
+    public func startPageViewer() {
+        pagerView?.automaticSlidingInterval = 5
+    }
+    
+    public func stopPageViewer() {
+        pagerView?.automaticSlidingInterval = 0
+    }
+    
     public func pagerView(_ pagerView: FSPagerView, cellForItemAt index: Int) -> FSPagerViewCell {
         let cell = pagerView.dequeueReusableCell(withReuseIdentifier: "mainpage_pagerview_cell", at: index)
         cell.textLabel?.backgroundColor = nil
@@ -73,7 +81,7 @@ class HeaderAdvCell: UITableViewCell, FSPagerViewDataSource, FSPagerViewDelegate
         pagerControl = FSPageControl(frame: frame2)
         self.view.addSubview(pagerControl!)
         
-        pagerView?.automaticSlidingInterval = 5.0
+        startPageViewer()
         pagerView?.backgroundColor = UIColor.white
         pagerView?.isInfinite = true
         pagerView?.dataSource = self

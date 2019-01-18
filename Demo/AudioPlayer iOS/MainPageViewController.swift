@@ -38,6 +38,7 @@ class CourseMainPageViewController: BaseUIViewController, LTTableViewProtocal, U
     var courses = [Album]()
     var questions = [Question]()
     var toutiaos = [FinanceToutiao]()
+    var learnFinanceItems = [LearnFinanceItem]()
     var pos: Pos?
     
     var cellModels = [MainPageCellModel]()
@@ -53,6 +54,26 @@ class CourseMainPageViewController: BaseUIViewController, LTTableViewProtocal, U
     
     let refreshHeader = MJRefreshNormalHeader()
     let mainPageNavBar = MainPageNavigationBar()
+    
+    override func audioPlayer(_ audioPlayer: AudioPlayer, didChangeStateFrom from: AudioPlayerState, to state: AudioPlayerState) {
+        tableView.reloadData()
+        let audioItem = getAudioPlayer().currentItem
+        if audioItem == nil {
+            return
+        }
+        QL1(state)
+    }
+    
+    override
+    func audioPlayer(_ audioPlayer: AudioPlayer, didLoad range: TimeRange, for item: AudioItem) {
+        QL1(range)
+    }
+    
+    override
+    func audioPlayer(_ audioPlayer: AudioPlayer, didFindDuration duration: TimeInterval, for item: AudioItem) {
+        QL1(duration)
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -147,6 +168,20 @@ class CourseMainPageViewController: BaseUIViewController, LTTableViewProtocal, U
         }
     }
     
+    private func startPageViewer() {
+        if let headerCell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? HeaderAdvCell {
+            headerCell.startPageViewer()
+             QL3("start pageviewer")
+        }
+    }
+    
+    private func stopPageViewer() {
+        if let headerCell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? HeaderAdvCell {
+            headerCell.stopPageViewer()
+            QL3("stop pageviewer")
+        }
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         //updatePlayingButton(button: playingButton)
@@ -158,14 +193,19 @@ class CourseMainPageViewController: BaseUIViewController, LTTableViewProtocal, U
             hidePopupAd()
         }
         
+        //每次显示的时候都刷新列表
+        tableView.reloadData()
         //self.hidesBottomBarWhenPushed = false
+        startPageViewer()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
          navigationManager.setMusicBtnState()
-
+        
     }
+    
+    
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
@@ -176,6 +216,8 @@ class CourseMainPageViewController: BaseUIViewController, LTTableViewProtocal, U
         let nav = self.navigationController?.navigationBar
         nav?.barStyle = UIBarStyle.default
         nav?.tintColor = UIColor.black
+        
+        stopPageViewer()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -239,13 +281,7 @@ class CourseMainPageViewController: BaseUIViewController, LTTableViewProtocal, U
         }
     }
     
-    override func audioPlayer(_ audioPlayer: AudioPlayer, didChangeStateFrom from: AudioPlayerState, to state: AudioPlayerState) {
-        let audioItem = getAudioPlayer().currentItem
-        if audioItem == nil {
-            return
-        }
-        //updatePlayingButton(button: playingButton)
-    }
+
     
     @IBAction func searchPressed(sender: AnyObject) {
         DispatchQueue.main.async { () -> Void in
@@ -292,6 +328,13 @@ class CourseMainPageViewController: BaseUIViewController, LTTableViewProtocal, U
         sender["url"] = ServiceLinkManager.JunhuokuUrl
         DispatchQueue.main.async { () -> Void in
             self.performSegue(withIdentifier: "loadWebPageSegue", sender: sender)
+        }
+    }
+    
+    @IBAction func viewAllLearnFinancePressed(_ sender: Any) {
+        
+        DispatchQueue.main.async { () -> Void in
+            self.performSegue(withIdentifier: "learnFinancesSegue", sender: nil)
         }
     }
     
@@ -343,6 +386,15 @@ extension CourseMainPageViewController : UITableViewDataSource, UITableViewDeleg
             }
         }
         
+        if learnFinanceItems.count > 0 {
+            cellModels.append(MainPageCellModel.seperator)
+            cellModels.append(MainPageCellModel.learnFinanceHeader)
+            
+            for index in 0..<learnFinanceItems.count {
+                cellModels.append(MainPageCellModel.learnFinance(learnFinanceItems[index]))
+            }
+        }
+        
         if jpks.count > 0 {
             cellModels.append(MainPageCellModel.seperator)
             cellModels.append(MainPageCellModel.jpkHeader)
@@ -362,15 +414,6 @@ extension CourseMainPageViewController : UITableViewDataSource, UITableViewDeleg
             }
         }
         
-        /*
-        if questions.count > 0 {
-            cellModels.append(MainPageCellModel.seperator)
-            cellModels.append(MainPageCellModel.questionHeader)
-            
-            for index in 0..<questions.count {
-                cellModels.append(MainPageCellModel.question(questions[index]))
-            }
-        } */
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -402,6 +445,13 @@ extension CourseMainPageViewController : UITableViewDataSource, UITableViewDeleg
             toutiaoCell.toutiao = toutiao
             toutiaoCell.update()
             return toutiaoCell
+        case .learnFinanceHeader:
+            return tableView.dequeueReusableCell(withIdentifier: "learnFinanceHeaderCell")!
+        case .learnFinance(let learnFinanceItem):
+            let learnFinanceCell = tableView.dequeueReusableCell(withIdentifier: "learnFinanceCell") as! LearnFinanceCell
+            learnFinanceCell.learnFinanceItem = learnFinanceItem
+            learnFinanceCell.update()
+            return learnFinanceCell
         case .courseHeader:
             return tableView.dequeueReusableCell(withIdentifier: "tuijianCourseHeaderCell")!
         case .course(let course):
@@ -448,9 +498,9 @@ extension CourseMainPageViewController : UITableViewDataSource, UITableViewDeleg
             return extendFunctionMananger.cellHeight
         case .pos(_):
             return UIScreen.main.bounds.width / 375 * 90.0
-        case .toutiaoHeader, .courseHeader, .jpkHeader, .zhuanLanHeader, .questionHeader:
+        case .toutiaoHeader, .courseHeader, .jpkHeader, .zhuanLanHeader, .questionHeader, .learnFinanceHeader:
             return 52
-        case .toutiao(_):
+        case .toutiao(_), .learnFinance(_):
             return 30
         case .course(_):
             return UIScreen.main.bounds.width / 375 * 180.0
@@ -481,6 +531,9 @@ extension CourseMainPageViewController : UITableViewDataSource, UITableViewDeleg
                 self.performSegue(withIdentifier: "loadWebPageSegue", sender: sender)
             }
             return
+        case .learnFinance(let learnFinanceItem):
+            clickLearnFinanceItem(learnFinanceItem)
+            return
         case .course(let album):
             tableView.deselectRow(at: indexPath as IndexPath, animated: false)
             DispatchQueue.main.async { () -> Void in
@@ -499,6 +552,12 @@ extension CourseMainPageViewController : UITableViewDataSource, UITableViewDeleg
             break
         }
         
+    }
+    
+    func clickLearnFinanceItem(_ learnFinanceItem : LearnFinanceItem) {
+        Utils.playLearnFinanceItem(learnFinanceItem)
+        
+        tableView.reloadData()
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -611,7 +670,7 @@ extension CourseMainPageViewController  {
         }
     }
     
-    @discardableResult
+
     func loadFunctionInfos() {
         BasicService().sendRequest(url: ServiceConfiguration.GET_FUNCTION_INFO, request: GetFunctionInfosRequest()) {
             (resp: GetFunctionInfosResponse) -> Void in
@@ -627,7 +686,7 @@ extension CourseMainPageViewController  {
             for function in resp.functions {
                 let extendFunc = extendFuncMgr.makeFunction(imageName: function.imageUrl, name: function.name, code: function.code, url: function.clickUrl, messageCount: function.messageCount, selectorName: function.action)
                 
-                QL1("\(function.name) \(function.action)")
+                //QL1("\(function.name) \(function.action)")
                 
                 functions.append(extendFunc)
                 
@@ -651,6 +710,7 @@ extension CourseMainPageViewController  {
             
             self.zhuanLans = resp.zhuanLans
             self.courses = resp.albums
+            self.learnFinanceItems = resp.learnFinanceItems
             self.jpks = resp.jpks
             self.pos = resp.pos
             
@@ -658,22 +718,6 @@ extension CourseMainPageViewController  {
             self.tableView.reloadData()
         }
     }
-
-    /*
-    func loadQuestions() {
-        BasicService().sendRequest(url: ServiceConfiguration.GET_QUESTIONS, request: GetQuestionsRequest()) {
-            (resp: GetQuestionsResponse) -> Void in
-            if self.refreshing {
-                self.refreshHeader.endRefreshing()
-            }
-            self.refreshing = false
-            
-            self.questions = resp.questions
-            
-            self.makeCells()
-            self.tableView.reloadData()
-        }
-    } */
     
     func loadFinanceToutiaos() {
         BasicService().sendRequest(url: ServiceConfiguration.GET_FINANCE_TOUTIAOS, request: GetFinanceToutiaoRequest()) {

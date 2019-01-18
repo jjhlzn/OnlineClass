@@ -21,7 +21,7 @@ class PosCell: UITableViewCell {
     }
 
     @objc func tapImage() {
-        QL1("tap image")
+        //QL1("tap image")
         var params = [String:String]()
         
         params["title"] = pos!.title
@@ -33,7 +33,7 @@ class PosCell: UITableViewCell {
     }
 
     func update() {
-        QL1(pos!.imageUrl)
+        //QL1(pos!.imageUrl)
         posImage.kf.setImage(with: URL(string: (pos?.imageUrl)!))
         
         posImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tapImage)))

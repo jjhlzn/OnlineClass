@@ -456,6 +456,30 @@ class LoginResponse : ServerResponse {
 
 }
 
+class MobileLoginRequest : ServerRequest {
+    var userName : String
+    var checkCode : String
+    var deviceToken : String
+    
+    init(userName : String, checkCode : String, deviceToken: String) {
+        self.userName = userName
+        self.checkCode = checkCode
+        self.deviceToken = deviceToken
+    }
+    
+    override var params: [String : AnyObject] {
+        get {
+            var parameters = super.params
+            parameters["mobile"] = userName as AnyObject
+            parameters["checkCode"] = checkCode as AnyObject
+            parameters["deviceToken"] = deviceToken as AnyObject
+            return parameters
+        }
+    }
+}
+
+class MobileLoginResponse : LoginResponse {}
+
 class UpdateTokenRequest : ServerRequest {
     var userName : String
     var password : String
@@ -1251,6 +1275,29 @@ class GetMainPageAdsResponse : ServerResponse {
     }
 }
 
+class GetLearnFinancesRequest : ServerRequest {}
+class GetlearnFinancesResponse : ServerResponse {
+    var learnFinanceItems = [LearnFinanceItem]()
+    
+    private func parse(_ learnFinancesJson : [JSON]) -> [LearnFinanceItem] {
+        var learnFinanceItems = [LearnFinanceItem]()
+        for eachJson in learnFinancesJson {
+            let item = LearnFinanceItem()
+            item.id = eachJson["id"].string!
+            item.songId = eachJson["songId"].string!
+            item.audioUrl = eachJson["audioUrl"].string!
+            item.title = eachJson["title"].string!
+            learnFinanceItems.append(item)
+        }
+        return learnFinanceItems
+    }
+    
+    override func parseJSON(request: ServerRequest, json: NSDictionary) {
+        super.parseJSON(request: request, json: json)
+        let j = JSON(json)
+        learnFinanceItems = parse(j["learnFinanceItems"].arrayValue)
+    }
+}
 
 class GetZhuanLanAndTuijianCoursesRequest : ServerRequest {
 }
@@ -1258,6 +1305,7 @@ class GetZhuanLanAndTuijianCoursesResponse : ServerResponse {
     var zhuanLans = [ZhuanLan]()
     var albums = [Album]()
     var jpks = [ZhuanLan]()
+    var learnFinanceItems = [LearnFinanceItem]()
     var pos : Pos?
     
     required init() {
@@ -1283,12 +1331,25 @@ class GetZhuanLanAndTuijianCoursesResponse : ServerResponse {
         return results
     }
     
+    private func parse(_ learnFinancesJson : [JSON]) -> [LearnFinanceItem] {
+        var learnFinanceItems = [LearnFinanceItem]()
+        for eachJson in learnFinancesJson {
+            let item = LearnFinanceItem()
+            item.id = eachJson["id"].string!
+            item.songId = eachJson["songId"].string!
+            item.audioUrl = eachJson["audioUrl"].string!
+            item.title = eachJson["title"].string!
+            learnFinanceItems.append(item)
+        }
+        return learnFinanceItems
+    }
+    
     override func parseJSON(request: ServerRequest, json: NSDictionary) {
         super.parseJSON(request: request, json: json)
         let j = JSON(json)
         zhuanLans = parse(j["zhuanLans"].arrayValue)
         jpks = parse(j["jpks"].arrayValue)
-        
+        learnFinanceItems = parse(j["learnFinanceItems"].arrayValue)
         let coursesJson = j["albums"].arrayValue
         
         let posJson = j["pos"]

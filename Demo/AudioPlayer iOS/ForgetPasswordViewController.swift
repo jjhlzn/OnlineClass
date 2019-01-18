@@ -36,6 +36,8 @@ class ForgetPasswordViewController: BaseUIViewController, UIAlertViewDelegate {
         becomeLineBorder(field: phoneCheckCode)
         
         phoneCodeLabel.isHidden = true
+        
+        setLeftBackButton()
     }
 
     @IBAction func getPhoneCodePressed(_ sender: UIButton) {

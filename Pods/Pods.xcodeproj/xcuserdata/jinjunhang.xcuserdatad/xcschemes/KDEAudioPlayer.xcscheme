@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "8D3B6A44A4DADA942AB7B3E8A967100D"
+               BlueprintIdentifier = "9273EA1F24C52E5F9448E31252F11858"
                BlueprintName = "KDEAudioPlayer"
                ReferencedContainer = "container:Pods.xcodeproj"
                BuildableName = "KDEAudioPlayer.framework">

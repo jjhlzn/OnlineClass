@@ -17,6 +17,7 @@ class CourseType: BaseModelObject {
     //case Common, Vip, Live
     static let LiveCourse = CourseType(name: "直播课程", code: "Live")
     static let PayCourse = CourseType(name: "会员专享课程", code: "Vip")
+    static let CommonCourse = CourseType(name: "普通课程", code: "Common")
     var name : String
     var code : String
     init(name: String, code: String) {
@@ -25,6 +26,9 @@ class CourseType: BaseModelObject {
     }
     
     var isLive : Bool {
+        if code == CourseType.CommonCourse.code {
+            return false
+        }
         return true
     }
     
@@ -327,6 +331,13 @@ class Answer : BaseModelObject {
     var isFromManager : Bool!
 }
 
+class LearnFinanceItem : BaseModelObject {
+    var id : String!
+    var songId : String!
+    var audioUrl : String!
+    var title : String!
+}
+
 class FinanceToutiao : BaseModelObject {
     var title : String!
     var content : String!
@@ -375,5 +386,7 @@ enum MainPageCellModel {
     case zhuanLan(ZhuanLan)
     case questionHeader
     case question(Question)
+    case learnFinanceHeader
+    case learnFinance(LearnFinanceItem)
     case seperator
 }
