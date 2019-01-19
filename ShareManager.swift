@@ -22,6 +22,7 @@ class ShareManager {
     private var _shareTitle = ""
     private var _shareUrl = ""
     private var _shareDescription = ""
+    private var _shareImage = "" //base64 encode string
     var isUseQrImage = true
     
     var tencentOAuth:TencentOAuth!
@@ -57,6 +58,17 @@ class ShareManager {
         set {
             if newValue != "" {
                 _shareDescription = newValue
+            }
+        }
+    }
+    
+    var shareImage : String {
+        get {
+            return _shareImage
+        }
+        set {
+            if newValue != ""  {
+                _shareImage = newValue
             }
         }
     }
@@ -180,11 +192,23 @@ class WeixinShareService {
         message.title = shareManager.shareTitle
         message.description = shareManager.shareDescription
         
-        if shareManager.isUseQrImage {
-            message.setThumbImage(UIImage(named: "smallAppIcon"))
+        if shareManager.shareImage != "" {
+            let encodedImageData = shareManager.shareImage
+            let imageData = Data(base64Encoded: encodedImageData)!
+            
+            let image = UIImage(data: imageData )
+            message.setThumbImage(image)
+            
         } else {
-            message.setThumbImage(UIImage(named: "smallAppIcon"))
+            if shareManager.isUseQrImage {
+                message.setThumbImage(UIImage(named: "smallAppIcon"))
+            } else {
+                message.setThumbImage(UIImage(named: "smallAppIcon"))
+            }
         }
+        
+        //message.setThumbImage(image: UIImage()
+        //UIImage(
         
         let webPageObject = WXWebpageObject()
         webPageObject.webpageUrl = shareManager.shareUrl
@@ -225,15 +249,26 @@ class WeiboShareService {
         webpage.title = shareManager.shareTitle
         webpage.description =  shareManager.shareDescription
         
+        
+        
         //webpage.thumbnailData = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"image_2" ofType:@"jpg"]];
-        if shareManager.isUseQrImage {
-            webpage.thumbnailData = UIImagePNGRepresentation(UIImage(named: "smallAppIcon")!)
+        if shareManager.shareImage != "" {
+            let encodedImageData = shareManager.shareImage
+            let imageData = Data(base64Encoded: encodedImageData)!
+            
+            let image = UIImage(data: imageData )
+            webpage.thumbnailData = UIImagePNGRepresentation(image!)
         } else {
-            webpage.thumbnailData = UIImagePNGRepresentation(UIImage(named: "smallAppIcon")!)
+            if shareManager.isUseQrImage {
+                webpage.thumbnailData = UIImagePNGRepresentation(UIImage(named: "smallAppIcon")!)
+            } else {
+                webpage.thumbnailData = UIImagePNGRepresentation(UIImage(named: "smallAppIcon")!)
+            }
         }
         
         webpage.webpageUrl = shareManager.shareUrl
         message.mediaObject = webpage
+        //message.text = shareManager.shareDescription
         
         return message
     }
@@ -271,14 +306,19 @@ class QQShareService {
         let title = shareManager.shareTitle
         let description = shareManager.shareDescription
         
-        var imageName = "smallAppIcon"
-        if !shareManager.isUseQrImage {
-            imageName = "smallAppIcon"
-        }
         
-       
-        //QQApiNewsObject(url: <#T##URL!#>, title: <#T##String!#>, description: <#T##String!#>, previewImageData: <#T##Data!#>, targetContentType: <#T##QQApiURLTargetType#>)
-        let newsObj = QQApiNewsObject(url: newsUrl!, title: title, description: description, previewImageData: UIImagePNGRepresentation(UIImage(named: imageName)!), targetContentType: QQApiURLTargetTypeNews)
+        let imageName = "smallAppIcon"
+        var image = UIImage(named: imageName)!
+        if shareManager.shareImage != "" {
+            let encodedImageData = shareManager.shareImage
+            let imageData = Data(base64Encoded: encodedImageData)!
+            
+            image = UIImage(data: imageData )!
+        }
+        let newsObj = QQApiNewsObject(url: newsUrl!, title: title,
+                                      description: description,
+                                      previewImageData: UIImagePNGRepresentation(image),
+                                      targetContentType: QQApiURLTargetTypeNews)
         
         let req = SendMessageToQQReq(content: newsObj)
         

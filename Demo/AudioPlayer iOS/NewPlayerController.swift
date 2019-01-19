@@ -100,7 +100,7 @@ class NewPlayerController: BaseUIViewController, UIScrollViewDelegate {
         } else {
             self.song = Utils.getCurrentSong()
             loadViewAfterGetSong()
-            
+            self.setShareInfo(song!)
         }
     }
     
@@ -352,7 +352,8 @@ class NewPlayerController: BaseUIViewController, UIScrollViewDelegate {
                     }
                     
                     let song = songs[0]
-                   
+                    
+                    self.setShareInfo(song)
                     
                     let audioPlayer = self.getAudioPlayer()
                     //如果当前歌曲已经在播放，就什么都不需要做
@@ -372,6 +373,13 @@ class NewPlayerController: BaseUIViewController, UIScrollViewDelegate {
             }
             
         }
+    }
+    
+    func setShareInfo(_ song: Song) {
+        self.shareView.setShareTitle(song.shareTitle)
+        self.shareView.setShareUrl(song.shareUrl)
+        self.shareView.setShareDesc(song.shareDesc)
+        self.shareView.setShareImage(song.shareImage)
     }
 }
 

@@ -22,6 +22,9 @@ class SetProfilePhotoController: BaseUIViewController {
         //imageView.image = UserProfilePhotoStore().get()
         let loginUser = (LoginUserStore().getLoginUser())!
         let url = ServiceConfiguration.GET_PROFILE_IMAGE + "?userid=" + loginUser.userName!
+        
+        QL1(url)
+        
         imageView.kf.setImage(with: ImageResource(downloadURL: URL(string: url)!, cacheKey: ImageCacheKeys.User_Profile_Image))
         
         setLeftBackButton()
@@ -110,25 +113,18 @@ class SetProfilePhotoController: BaseUIViewController {
             encodingCompletion: { encodingResult in
                 switch encodingResult {
                 case .success(let upload, _, _):
-                    /*
-                    upload.progress { (bytesWritten, totalBytesWritten, totalBytesExpectedToWrite) in
-                        //print("Uploading Avatar \(totalBytesWritten) / \(totalBytesExpectedToWrite)")
-                        dispatch_async(dispatch_get_main_queue(),{
-                            /**
-                             *  Update UI Thread about the progress
-                             */
-                        })
-                    }*/
                     upload.responseJSON { (JSON) in
-                        //DispatchQueue.async(DispatchQueue.main, {
-                            //Show Alert in UI
-                            QL1("success")
-                            //UserProfilePhotoStore().saveOrUpdate(image: UIImage(data: imageData)!)
+
+                        QL1("success")
+                        //UserProfilePhotoStore().saveOrUpdate(image: UIImage(data: imageData)!)
+                    
+                        ImageCache.default.store(Image(data: imageData)!, forKey: ImageCacheKeys.User_Profile_Image)
+                        let userId = LoginUserStore().getLoginUser()!.userName!
+                        ImageCache.default.store(Image(data: imageData)!, forKey: "headimage_"+userId)
+                    
+                        self.loading.hideOverlayView()
+                        ToastMessage.showMessage(view: self.view, message: "头像上传成功")
                         
-                            ImageCache.default.store(Image(data: imageData)!, forKey: ImageCacheKeys.User_Profile_Image)
-                            self.loading.hideOverlayView()
-                            ToastMessage.showMessage(view: self.view, message: "头像上传成功")
-                        //})
                     }
                     
                 case .failure(let encodingError):

@@ -59,7 +59,19 @@ class ShareView: BaseCustomView {
         super.init(coder: aDecoder)
     }
     
+    func setShareTitle(_ title: String) {
+        shareManager.shareTitle = title
+    }
+    
     func setShareUrl(_ url: String) {
         shareManager.shareUrl = url
+    }
+    
+    func setShareDesc(_ desc: String) {
+        shareManager.shareDescription = desc
+    }
+    
+    func setShareImage(_ image: String) {
+        shareManager.shareImage = image
     }
 }

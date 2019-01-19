@@ -239,9 +239,11 @@ class GetAlbumSongsResponse : ServerResponse {
             song.url = json["url"] as! String
             song.id = json["id"] as! String
             song.imageUrl = json["image"] as! String
+            
             song.shareTitle = json["shareTitle"] as! String
             song.shareUrl = json["shareUrl"] as! String
-            
+            song.shareImage = json["shareImage"] as! String
+            song.shareDesc = json["shareDesc"] as! String
             
             let settings = SongSetting()
             song.settings = settings

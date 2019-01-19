@@ -139,8 +139,12 @@ class Song : BaseModelObject {
     var date: String = ""
     var url: String = ""
     var imageUrl: String = ""
+    
     var shareTitle: String = ""
     var shareUrl : String = ""
+    var shareDesc : String = ""
+    var shareImage: String = ""  //base64 encode string
+    
     var settings = SongSetting()
     var album: Album!
     var wholeUrl : String {
