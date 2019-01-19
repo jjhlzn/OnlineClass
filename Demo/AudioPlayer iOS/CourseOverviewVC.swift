@@ -9,6 +9,7 @@
 import UIKit
 import LTScrollView
 import KDEAudioPlayer
+import QorumLogs
 
 class CourseOverviewVC: UIViewController, LTTableViewProtocal, LiveCommentDelegate {
 
@@ -75,6 +76,7 @@ class CourseOverviewVC: UIViewController, LTTableViewProtocal, LiveCommentDelega
                 self.comments = resp.comments
 
                 self.tableView.reloadData()
+                QL3("table height = \(self.tableView.frame.height)")
         }
     }
     
@@ -84,10 +86,16 @@ class CourseOverviewVC: UIViewController, LTTableViewProtocal, LiveCommentDelega
             self.lastId = comments[0].id!
         }
         self.comments.insert(comments[0], at: 0)
-        if self.comments.count > 10 {
-            self.comments = Array(self.comments[0...9])
+        if self.comments.count > 9 {
+            self.comments = Array(self.comments[0...8])
         }
-        tableView.reloadData()
+        
+        var indexs = [IndexPath]()
+        for i in 0...comments.count {
+            indexs.append(IndexPath(row: 3 + i, section: 0))
+        }
+        self.tableView.reloadRows(at: indexs, with: .none)
+        QL3("table height = \(tableView.frame.height)")
     }
     
     
@@ -106,11 +114,15 @@ extension CourseOverviewVC: UITableViewDelegate, UITableViewDataSource {
         if song == nil {
             return 0
         }
-        return 2 + 1 + comments.count
+        
+        let count = 2 + 1 + comments.count
+        QL3("comments.count = \(comments.count)")
+        return count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let row = indexPath.row
+        QL1("row = \(row)")
         if row == 0 {
             let cell : CourseOverviewHeaderCell = cellWithTableView(tableView)
             cell.song = song
