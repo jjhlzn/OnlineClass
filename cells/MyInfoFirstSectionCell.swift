@@ -35,13 +35,14 @@ class MyInfoFirstSectionCell: UITableViewCell {
     func update() {
         let loginUserStore = LoginUserStore()
         let loginUser : LoginUserEntity = loginUserStore.getLoginUser()!
-        let profilePhotoUrl = ServiceConfiguration.GET_PROFILE_IMAGE + "?userid=" + loginUserStore.getLoginUser()!.userName!
+        //let profilePhotoUrl = ServiceConfiguration.GET_PROFILE_IMAGE + "?userid=" + loginUserStore.getLoginUser()!.userName!
         //QL1("userimageurl = \(profilePhotoUrl)")
         
-        headerImageView.kf.setImage(with: ImageResource(downloadURL: URL(string: profilePhotoUrl)!, cacheKey: ImageCacheKeys.User_Profile_Image), placeholder: UIImage(named: "func_placeholder"))
+        //headerImageView.kf.setImage(with: ImageResource(downloadURL: URL(string: profilePhotoUrl)!, cacheKey: ImageCacheKeys.User_Profile_Image), placeholder: UIImage(named: "func_placeholder"))
         
+        Utils.setUserHeadImageView(headerImageView, userId: loginUser.userName!)
         
-        headerImageView.becomeCircle()
+        //headerImageView.becomeCircle()
         
         
         let tapGestureRecognizer = UITapGestureRecognizer(target:self, action: #selector(userImageTapped))
