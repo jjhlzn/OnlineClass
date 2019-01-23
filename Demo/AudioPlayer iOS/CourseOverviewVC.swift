@@ -22,6 +22,9 @@ class CourseOverviewVC: UIViewController, LTTableViewProtocal, LiveCommentDelega
         var H: CGFloat = view.bounds.height  - 38
         if hasBottomBar {
             H = view.bounds.height - Utils.getTabHeight(controller: self) - 38
+            if UIDevice().isX() {
+                H = H - 24
+            }
         } else {
             if UIDevice().isX() {
                 H = H - 24
