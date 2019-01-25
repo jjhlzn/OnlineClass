@@ -82,6 +82,10 @@ class MyInfoSecondSectionCell: UITableViewCell {
     }
     
     @objc func tixianBtnPressed() {
+        if checkLogin() {
+            return
+        }
+        
         var sender = [String:String]()
         sender["title"] = "提现"
         sender["url"] = ServiceLinkManager.MyExchangeUrl
@@ -91,6 +95,10 @@ class MyInfoSecondSectionCell: UITableViewCell {
     }
     
     @objc func caifuPressed() {
+        if checkLogin() {
+            return
+        }
+        
         var sender = [String:String]()
         sender["title"] = "我的财富"
         sender["url"] = ServiceLinkManager.MyChaifuUrl
@@ -100,6 +108,10 @@ class MyInfoSecondSectionCell: UITableViewCell {
     }
 
     @objc func jifenPressed() {
+        if checkLogin() {
+            return
+        }
+        
         var sender = [String:String]()
         sender["title"] = "我的积分"
         sender["url"] = ServiceLinkManager.MyJifenUrl
@@ -109,11 +121,24 @@ class MyInfoSecondSectionCell: UITableViewCell {
     }
 
     @objc func tuanduiPressed() {
+        if checkLogin() {
+            return
+        }
+        
         var sender = [String:String]()
         sender["title"] = "我的团队"
         sender["url"] = ServiceLinkManager.MyTeamUrl
         DispatchQueue.main.async { () -> Void in
             self.controller?.performSegue(withIdentifier: "webViewSegue", sender: sender)
         }
+    }
+    
+    func checkLogin() -> Bool {
+        let loginUser = LoginUserStore().getLoginUser()!
+        if LoginManager().isAnymousUser(loginUser) {
+            LoginManager().checkLogin(controller!)
+            return true
+        }
+        return false
     }
 }

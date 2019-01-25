@@ -76,6 +76,7 @@ class WebPageViewController: IapSupportWebPageViewController, WKNavigationDelega
         var url1 = url.absoluteString
         url1 = Utils.addUserParams(url: url1!)
         url1 = Utils.addDevcieParam(url: url1!)
+        url1 = Utils.addBuyInfo(url: url1!)
         QL1(url1)
         
         let config = WKWebViewConfiguration()

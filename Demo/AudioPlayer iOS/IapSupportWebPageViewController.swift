@@ -59,7 +59,22 @@ class IapSupportWebPageViewController: BaseUIViewController, SKProductsRequestDe
             self,
             name: "wechatPay"
         )
-        
+        contentController.add(
+            self,
+            name: "checkLogin"
+        )
+        contentController.add(
+            self,
+            name: "showLoginPage"
+        )
+        contentController.add(
+            self,
+            name: "fetchLocalZhidian"
+        )
+        contentController.add(
+            self,
+            name: "buyProduct"
+        )
     }
 
     
@@ -78,7 +93,6 @@ class IapSupportWebPageViewController: BaseUIViewController, SKProductsRequestDe
             let request: SKProductsRequest = SKProductsRequest(productIdentifiers: productIDs as! Set<String>)
             request.delegate = self
             request.start()
-            
         } else if message.name == "wechatPay" {
             QL1("JavaScript is sending a message \(message.body)")
             //let json = JSON.parse(message.body as! String)
@@ -87,6 +101,19 @@ class IapSupportWebPageViewController: BaseUIViewController, SKProductsRequestDe
             if UIApplication.shared.canOpenURL(NSURL(string: message.body as! String)! as URL) {
                 UIApplication.shared.openURL(NSURL(string: message.body as! String)! as URL)
             }
+        } else if message.name == "checkLogin" {
+            let loginUser = LoginUserStore().getLoginUser()!
+            webView?.evaluateJavaScript("checkLoginCallBack('\(loginUser.userName!)')", completionHandler: nil)
+        } else if message.name == "showLoginPage" {
+            LoginManager().goToLoginPage(self)
+        } else if message.name == "fetchLocalZhidian" {
+            let blance = WalletManager().getBalance()
+            webView?.evaluateJavaScript("fetchLocalZhidianCallback(\(blance))", completionHandler: nil)
+        } else if message.name == "buyProduct" {
+            QL1("JavaScript is sending a message \(message.body)")
+            let json = message.body as! NSDictionary
+            let buyRecordManager = BuyRecordManager()
+            buyRecordManager.buyProduct(productId: json["productId"] as! String, price: json["price"] as! Double, ticket: json["ticket"] as! String)
         }
     }
 
@@ -126,6 +153,15 @@ class IapSupportWebPageViewController: BaseUIViewController, SKProductsRequestDe
         print("transactions restored")
     }
     
+    private func getZhidianValue(_ productId: String) -> Double {
+        if productId.starts(with: "com.jufang.zhide.") {
+            let value = productId.replacingOccurrences(of: "com.jufang.zhide.", with: "")
+            QL1("zhidian: \(value)")
+            return Double(value)!
+        }
+        return 0
+    }
+    
     
     func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
         QL1("paymentQueue(updatedTransactions)")
@@ -137,7 +173,7 @@ class IapSupportWebPageViewController: BaseUIViewController, SKProductsRequestDe
             switch trans.transactionState {
                 
             case .purchased:
-                QL1("Purchased")
+                QL2("Purchased")
                 QL1(trans.payment.productIdentifier)
                 let prodID = trans.payment.productIdentifier as String
                 QL1("trans.payment.applicationUsername = \(String(describing: trans.payment.applicationUsername))")
@@ -147,6 +183,13 @@ class IapSupportWebPageViewController: BaseUIViewController, SKProductsRequestDe
                     let receipt = NSData(contentsOf: receiptUrl)
                     let receiptStr = receipt?.base64EncodedString(options: NSData.Base64EncodingOptions(rawValue: 0))
                     //print("receiptStr:\(String(describing: receiptStr))")
+                    
+                    //如果是非登陆用户，将知点保存到本地的钱包中
+                    if LoginManager().isAnymousUser(LoginUserStore().getLoginUser()!) {
+                        if prodID.starts(with: "com.jufang.zhide.") {
+                            WalletManager().deposite(getZhidianValue(prodID))
+                        }
+                    }
                     
                     let dateFormat = DateFormatter()
                     dateFormat.dateFormat = "yyyy-MM-dd HH:mm:ss"
@@ -166,7 +209,6 @@ class IapSupportWebPageViewController: BaseUIViewController, SKProductsRequestDe
                     } else {
                         QL1("save purchase record success")
                     }
-                    //purchaseRecordStore.getAllNotifyRecord(purchaseRecord.userid)
                     
                     //将购买记录推送到巨方的服务器
                     let request = NotifyIAPSuccessRequest()

@@ -20,7 +20,7 @@ class AppDelegate : XinGeAppDelegate {
     var loginUserStore = LoginUserStore()
     var audioPlayer = AudioPlayer()
     var liveProgressTimer : Timer?
-var wxApiManager = WXApiManager()
+    var wxApiManager = WXApiManager()
     
     static let wbAppKey = "901768017"
     static let qqAppId = "1105796307"

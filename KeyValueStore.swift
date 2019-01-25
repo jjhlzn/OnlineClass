@@ -25,6 +25,10 @@ class KeyValueStore {
     static let key_hasnewmessage = "key_hasnewmessage"
     static let key_hasbindphone = "key_hasbindphone"
     
+    static let key_local_wallet = "key_local_wallet"  //存取未登陆用户充值的知点
+    static let BuyRecordSeparator = "___"
+    static let key_buy_records = "key_buy_records"  //存放购买记录（tickets)，这些tickets使用###连接起来，发送给服务器进行验证
+    
     var coreDataStack = CoreDataStack(modelName: "jufangzhushou")
     
     @discardableResult

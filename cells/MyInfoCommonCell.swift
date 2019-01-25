@@ -46,7 +46,12 @@ class MyInfoCommonCell: UITableViewCell {
         
         let store = KeyValueStore()
         if lineInfo[5] != "" {
-            descLabel.text = store.get(key: lineInfo[5], defaultValue: "")
+            if lineInfo[5] == KeyValueStore.key_zhidian && LoginManager().isAnymousUser(LoginUserStore().getLoginUser()!) {
+                descLabel.text = "\(WalletManager().getBalance())知点"
+            } else {
+                descLabel.text = store.get(key: lineInfo[5], defaultValue: "")
+            }
+            
         }
     }
 

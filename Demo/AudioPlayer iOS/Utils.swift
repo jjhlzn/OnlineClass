@@ -79,6 +79,7 @@ class Utils {
         //headImageView.layer.borderWidth = 0.3
         headImageView.layer.borderColor = UIColor.lightGray.cgColor
         let url =  ServiceConfiguration.GET_PROFILE_IMAGE + "?userid=" + userId
+        QL1(url)
         if let downloadURL = URL(string: url) {
             let resource = ImageResource(downloadURL: downloadURL, cacheKey: "headimage_"+userId)
             headImageView.kf.setImage(with: resource, placeholder: UIImage(named: "func_placeholder"))
@@ -169,6 +170,21 @@ class Utils {
         deviceParamsString = deviceParamsString.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
         newurl = newurl + deviceParamsString
         
+        return newurl
+    }
+    
+    //对未登陆用户，加上知点数和已购产品的tickets
+    static func addBuyInfo(url : String) -> String {
+        var newurl = url
+        if url.indexOfCharacter(char: "?") != nil {
+            newurl = url + "&"
+        } else {
+            newurl = url + "?"
+        }
+        if LoginManager().isUnlogin() {
+            let buyinfo = "ttt=\(BuyRecordManager().getAllTickets())"
+            newurl = newurl + buyinfo
+        }
         return newurl
     }
     

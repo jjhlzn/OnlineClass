@@ -32,6 +32,8 @@ class MobileLoginController: BaseUIViewController, UIAlertViewDelegate {
         addIconToField(field: phoneField, imageName: "userIcon")
         addIconToField(field: phoneCheckCode, imageName: "password")
         
+        setLeftBackButton()
+        
     }
     
     
@@ -80,7 +82,8 @@ class MobileLoginController: BaseUIViewController, UIAlertViewDelegate {
                     loginUser.boss = response.boss
                     if self.loginUserStore.saveLoginUser(loginUser: loginUser) {
                         DispatchQueue.main.async { () -> Void in
-                            self.performSegue(withIdentifier: "loginSuccessSegue", sender: self)
+                            //self.performSegue(withIdentifier: "loginSuccessSegue", sender: self)
+                            LoginManager().handleAfterLogin(self)
                         }
                     } else {
                         self.displayMessage(message: "登录失败")
@@ -103,7 +106,8 @@ class MobileLoginController: BaseUIViewController, UIAlertViewDelegate {
     
     func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
         DispatchQueue.main.async { () -> Void in
-            self.performSegue(withIdentifier: "signupSuccessSegue", sender: nil)
+            //self.performSegue(withIdentifier: "signupSuccessSegue", sender: nil)
+            LoginManager().handleAfterLogin(self)
         }
     }
     

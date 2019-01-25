@@ -35,42 +35,52 @@ class MyInfoFirstSectionCell: UITableViewCell {
     func update() {
         let loginUserStore = LoginUserStore()
         let loginUser : LoginUserEntity = loginUserStore.getLoginUser()!
-        //let profilePhotoUrl = ServiceConfiguration.GET_PROFILE_IMAGE + "?userid=" + loginUserStore.getLoginUser()!.userName!
-        //QL1("userimageurl = \(profilePhotoUrl)")
         
-        //headerImageView.kf.setImage(with: ImageResource(downloadURL: URL(string: profilePhotoUrl)!, cacheKey: ImageCacheKeys.User_Profile_Image), placeholder: UIImage(named: "func_placeholder"))
+        if LoginManager().isAnymousUser(loginUser) {
+            nameLabel.text = "点击登陆"
+            nameLabel.sizeToFit()
+            agentLevelLabel.isHidden = true
+            
+            let tapGestureRecognizer = UITapGestureRecognizer(target:self, action: #selector(goToLoginPage))
+            headerImageView.isUserInteractionEnabled = true
+            headerImageView.addGestureRecognizer(tapGestureRecognizer)
+            
+            let tapGestureRecognizer2 = UITapGestureRecognizer(target:self, action: #selector(goToLoginPage))
+            nameLabel.isUserInteractionEnabled = true
+            nameLabel.addGestureRecognizer(tapGestureRecognizer2)
+            
+        } else {
+            agentLevelLabel.isHidden = false
+            Utils.setUserHeadImageView(headerImageView, userId: loginUser.userName!)
+            
+            let tapGestureRecognizer = UITapGestureRecognizer(target:self, action: #selector(userImageTapped))
+            headerImageView.isUserInteractionEnabled = true
+            headerImageView.addGestureRecognizer(tapGestureRecognizer)
         
-        Utils.setUserHeadImageView(headerImageView, userId: loginUser.userName!)
-        
-        //headerImageView.becomeCircle()
-        
-        
-        let tapGestureRecognizer = UITapGestureRecognizer(target:self, action: #selector(userImageTapped))
-        headerImageView.isUserInteractionEnabled = true
-        headerImageView.addGestureRecognizer(tapGestureRecognizer)
-
-        
-        nameLabel.text = loginUser.name
-        nameLabel.sizeToFit()
-        
-        agentLevelLabel.text = " \(loginUser.level!) "
-        agentLevelLabel.sizeToFit()
-        let frame = agentLevelLabel.frame
-        let newFrame = CGRect(x: nameLabel.frame.maxX + 3, y: frame.minY, width: frame.width + 5, height: frame.height + 5)
-        agentLevelLabel.frame = newFrame
-        agentLevelLabel.layer.borderColor = agentLevelLabel.textColor.cgColor
-        agentLevelLabel.layer.borderWidth = 0.5
-        agentLevelLabel.layer.cornerRadius = 2
-        agentLevelLabel.layer.masksToBounds = true
-        
-        //myBossLabel.text = loginUser.boss!
-
+            nameLabel.isUserInteractionEnabled = false
+            nameLabel.text = loginUser.name
+            nameLabel.sizeToFit()
+            
+            agentLevelLabel.text = " \(loginUser.level!) "
+            agentLevelLabel.sizeToFit()
+            let frame = agentLevelLabel.frame
+            let newFrame = CGRect(x: nameLabel.frame.maxX + 3, y: frame.minY, width: frame.width + 5, height: frame.height + 5)
+            agentLevelLabel.frame = newFrame
+            agentLevelLabel.layer.borderColor = agentLevelLabel.textColor.cgColor
+            agentLevelLabel.layer.borderWidth = 0.5
+            agentLevelLabel.layer.cornerRadius = 2
+            agentLevelLabel.layer.masksToBounds = true
+        }
     }
     
     @objc func userImageTapped(img: AnyObject) {
         DispatchQueue.main.async { () -> Void in
             self.controller?.performSegue(withIdentifier: "setProfilePhotoSegue", sender: nil)
         }
+    }
+    
+    @objc func goToLoginPage() {
+        LoginManager().goToLoginPage(controller!)
     }
 
 }

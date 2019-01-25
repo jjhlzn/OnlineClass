@@ -215,7 +215,7 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0人" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="DOA-oC-oJS">
-                                                    <rect key="frame" x="293" y="15" width="54" height="21"/>
+                                                    <rect key="frame" x="227" y="15" width="120" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <color key="textColor" red="0.57045853140000002" green="0.57047235969999999" blue="0.57046490910000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -262,7 +262,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6HR-Q7-heN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1342" y="1985"/>
+            <point key="canvasLocation" x="1341.5999999999999" y="1984.8575712143929"/>
         </scene>
         <!--消息中心-->
         <scene sceneID="fdK-dE-wFZ">
@@ -537,7 +537,7 @@
                     </connections>
                 </button>
             </objects>
-            <point key="canvasLocation" x="1383" y="-2071"/>
+            <point key="canvasLocation" x="1796" y="-2041"/>
         </scene>
         <!--性别-->
         <scene sceneID="gtX-7i-YBV">
@@ -827,6 +827,11 @@
                                 <rect key="frame" x="172" y="121" width="32" height="320"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="g5Z-JS-RAJ">
+                                <rect key="frame" x="0.0" y="-14" width="380" height="526"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" red="0.7019608021" green="0.7019608021" blue="0.7019608021" alpha="0.67912176719999995" colorSpace="custom" customColorSpace="sRGB"/>
+                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="广告" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="bza-Bt-9yP">
                                 <rect key="frame" x="354" y="490" width="21" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
@@ -843,11 +848,6 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="g5Z-JS-RAJ">
-                                <rect key="frame" x="0.0" y="-14" width="380" height="526"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" red="0.7019608021" green="0.7019608021" blue="0.7019608021" alpha="0.67912176719999995" colorSpace="custom" customColorSpace="sRGB"/>
-                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
@@ -869,7 +869,7 @@
         <!--登录-->
         <scene sceneID="in9-II-L7U">
             <objects>
-                <viewController title="登录" id="59B-S3-xkA" customClass="LoginViewController" customModule="AudioPlayer" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" title="登录" hidesBottomBarWhenPushed="YES" id="59B-S3-xkA" customClass="LoginViewController" customModule="AudioPlayer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" opaque="NO" contentMode="scaleToFill" id="y8O-bz-Hvd">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -913,7 +913,7 @@
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon" id="Q8O-4H-Bee">
-                                <rect key="frame" x="143" y="54" width="90" height="90"/>
+                                <rect key="frame" x="152" y="94" width="70" height="70"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES"/>
                             </imageView>
                             <view contentMode="scaleToFill" id="GRY-Nm-B88">
@@ -994,16 +994,17 @@
                         <outlet property="weixinViewContainer" destination="GRY-Nm-B88" id="RIP-s6-hIn"/>
                         <segue destination="IeE-13-KTg" kind="modal" identifier="loginSuccessSegue" modalTransitionStyle="flipHorizontal" id="xbm-kK-Zqp"/>
                         <segue destination="t0o-wI-NSd" kind="modal" identifier="mobileLoginSegue" id="ze0-du-Nxn"/>
+                        <segue destination="xvW-30-ecM" kind="push" identifier="passwordLoginSegue" id="t2z-Gi-zlW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="H2f-BP-R0Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1530" y="-1164"/>
+            <point key="canvasLocation" x="1302" y="-1032"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="DBt-Ms-qHP">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="IeE-13-KTg" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="tabBarController" automaticallyAdjustsScrollViewInsets="NO" id="IeE-13-KTg" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="Aub-YE-SQ7"/>
                     <tabBar key="tabBar" contentMode="center" translucent="NO" id="F4Z-cz-0nE">
@@ -1155,7 +1156,7 @@
         <!--探索-->
         <scene sceneID="HK8-uw-quO">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="klh-jW-OoR" customClass="CourseMainPageViewController" customModule="AudioPlayer" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CourseMainPageViewController" automaticallyAdjustsScrollViewInsets="NO" id="klh-jW-OoR" customClass="CourseMainPageViewController" customModule="AudioPlayer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ikl-QX-Ylo">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1688,11 +1689,11 @@
             <objects>
                 <viewController storyboardIdentifier="WebPageViewController" title="web页面" automaticallyAdjustsScrollViewInsets="NO" hidesBottomBarWhenPushed="YES" id="qTJ-UI-98H" customClass="WebPageViewController" customModule="AudioPlayer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="nB4-cg-rGZ">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" id="NZi-Zv-8tP">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
@@ -2612,7 +2613,7 @@
         <!--验证码登陆-->
         <scene sceneID="JiI-OM-dt4">
             <objects>
-                <viewController title="验证码登陆" id="xvW-30-ecM" customClass="MobileLoginController" customModule="AudioPlayer" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="验证码登陆" hidesBottomBarWhenPushed="YES" id="xvW-30-ecM" customClass="MobileLoginController" customModule="AudioPlayer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" opaque="NO" contentMode="scaleToFill" id="Vx9-2j-Wvl">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2652,7 +2653,7 @@
                                     <action selector="forgetPassowrdPressed:" destination="xvW-30-ecM" eventType="touchUpInside" id="Ctv-Z1-uSN"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="YTL-8M-XIg">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="YTL-8M-XIg">
                                 <rect key="frame" x="20" y="279" width="58" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="注册"/>
@@ -2663,13 +2664,7 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
-                    <navigationItem key="navigationItem" title="密码登陆" id="74B-Wz-U8x">
-                        <barButtonItem key="leftBarButtonItem" image="backicon" id="vml-Wx-ckA">
-                            <connections>
-                                <segue destination="59B-S3-xkA" kind="modal" id="9uc-X2-RqX"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="密码登陆" id="74B-Wz-U8x"/>
                     <connections>
                         <outlet property="phoneCheckCode" destination="gqv-7J-1se" id="aNy-6s-1eJ"/>
                         <outlet property="phoneField" destination="epd-9z-ojN" id="qTx-JU-Hmy"/>
@@ -2680,7 +2675,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="atv-oD-KiP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2617" y="-1892"/>
+            <point key="canvasLocation" x="2897" y="-1625"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="EeS-xI-xyx">
@@ -2734,15 +2729,17 @@
         <image name="zhuanLan-filled" width="41" height="41"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="3mu-mS-NWM"/>
+        <segue reference="t2z-Gi-zlW"/>
         <segue reference="geI-4Z-Ncp"/>
         <segue reference="4Rk-Mf-vVd"/>
         <segue reference="vGA-sG-nwD"/>
         <segue reference="vP8-KP-sjf"/>
-        <segue reference="ZDX-wF-ovX"/>
+        <segue reference="GqU-nw-svf"/>
         <segue reference="gsK-rG-j3C"/>
         <segue reference="VyC-tp-he9"/>
-        <segue reference="pCp-Ba-NtI"/>
-        <segue reference="Kp8-Nw-Lqb"/>
+        <segue reference="xbm-kK-Zqp"/>
+        <segue reference="Z9c-Cf-iz6"/>
         <segue reference="ciV-s1-kgf"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

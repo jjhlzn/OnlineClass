@@ -66,8 +66,12 @@ class QuestionListVC: BaseUIViewController, LTTableViewProtocal,
     }
     
     @IBAction func askQuestionPressed(_ sender: Any) {
-        DispatchQueue.main.async { () -> Void in
-            self.performSegue(withIdentifier: "askQuestionSegue", sender: nil)
+        if LoginManager().isUnlogin() {
+            LoginManager().goToLoginPage(self)
+        } else {
+            DispatchQueue.main.async { () -> Void in
+                self.performSegue(withIdentifier: "askQuestionSegue", sender: nil)
+            }
         }
     }
     

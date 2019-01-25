@@ -144,7 +144,8 @@ class SettingsViewController: BaseUIViewController, UITableViewDataSource, UITab
                 (response : LogoutResponse) -> Void in
                 self.loginUserStore.removeLoginUser()
                 DispatchQueue.main.async { () -> Void in
-                    self.performSegue(withIdentifier: "logoutSegue", sender: nil)
+                    //self.performSegue(withIdentifier: "logoutSegue", sender: nil)
+                    LoginManager().handleAfterLogout(self)
                 }
             }
             

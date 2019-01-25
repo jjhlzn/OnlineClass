@@ -173,6 +173,9 @@
 		EF45B4CD216F44F30006F114 /* demo_white.gif in Resources */ = {isa = PBXBuildFile; fileRef = EF45B4CB216F44F20006F114 /* demo_white.gif */; };
 		EF49FB682157C87400E0E673 /* MainPageNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF49FB672157C87400E0E673 /* MainPageNavigationBar.swift */; };
 		EF4B4847214F356C00909356 /* MyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF4B4846214F356C00909356 /* MyViewController.swift */; };
+		EF4B671D21F87AA10090F87A /* LoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF4B671C21F87AA10090F87A /* LoginManager.swift */; };
+		EF4B671F21F978210090F87A /* WalletManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF4B671E21F978210090F87A /* WalletManager.swift */; };
+		EF4B672121F979950090F87A /* BuyRecordManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF4B672021F979950090F87A /* BuyRecordManager.swift */; };
 		EF67C0431E24A901004EEAF0 /* AlbumHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF67C0421E24A901004EEAF0 /* AlbumHeaderCell.swift */; };
 		EF6C0F3820A2DA3400BE1829 /* MyGIfImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF6C0F3720A2DA3400BE1829 /* MyGIfImageView.swift */; };
 		EF76956A20AA6662000E3064 /* ZhuanLanCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF76956920AA6662000E3064 /* ZhuanLanCell.swift */; };
@@ -386,6 +389,9 @@
 		EF45B4CB216F44F20006F114 /* demo_white.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = demo_white.gif; sourceTree = "<group>"; };
 		EF49FB672157C87400E0E673 /* MainPageNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageNavigationBar.swift; sourceTree = "<group>"; };
 		EF4B4846214F356C00909356 /* MyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyViewController.swift; sourceTree = "<group>"; };
+		EF4B671C21F87AA10090F87A /* LoginManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginManager.swift; sourceTree = "<group>"; };
+		EF4B671E21F978210090F87A /* WalletManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletManager.swift; sourceTree = "<group>"; };
+		EF4B672021F979950090F87A /* BuyRecordManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyRecordManager.swift; sourceTree = "<group>"; };
 		EF67C0421E24A901004EEAF0 /* AlbumHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumHeaderCell.swift; sourceTree = "<group>"; };
 		EF6C0F3720A2DA3400BE1829 /* MyGIfImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGIfImageView.swift; sourceTree = "<group>"; };
 		EF76956920AA6662000E3064 /* ZhuanLanCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ZhuanLanCell.swift; path = cells/ZhuanLanCell.swift; sourceTree = "<group>"; };
@@ -562,6 +568,9 @@
 				EF10AAC720A95D3800C6B2E4 /* UINavigationControllerExtension.swift */,
 				EF9A921C214275AA008133EA /* TableViewUtils.swift */,
 				EF0B6E2E217AF36E00E99EBF /* WeixinLoginManager.swift */,
+				EF4B671C21F87AA10090F87A /* LoginManager.swift */,
+				EF4B671E21F978210090F87A /* WalletManager.swift */,
+				EF4B672021F979950090F87A /* BuyRecordManager.swift */,
 			);
 			name = lib;
 			sourceTree = "<group>";
@@ -1204,6 +1213,7 @@
 				1C3C5EDB1D1E11B0000F0A39 /* KeyValueEntity.swift in Sources */,
 				EF9A922521427A0E008133EA /* QuestionAnswersView.swift in Sources */,
 				EF1E54E92144EB8D0005901E /* AskQuestionVC.swift in Sources */,
+				EF4B671F21F978210090F87A /* WalletManager.swift in Sources */,
 				1CD349661CF83A4700037F78 /* SettingsViewController.swift in Sources */,
 				1C2451D91CE8A28B00F350DA /* LoginUserEntity+CoreDataProperties.swift in Sources */,
 				1C3C5EDD1D1E11DB000F0A39 /* KeyValueStore.swift in Sources */,
@@ -1212,6 +1222,7 @@
 				1C154A501CDACCA6003B900C /* MyUISlider.swift in Sources */,
 				EF2345A620A6C710002E2F30 /* CommentKeyboard.swift in Sources */,
 				1C8E7DC21D87950F0022B0D2 /* PurchaseRecordEntity.swift in Sources */,
+				EF4B672121F979950090F87A /* BuyRecordManager.swift in Sources */,
 				1C98A8921D61F71400ADF12B /* XinGeAppDelegate.swift in Sources */,
 				1C33F03E1D07A8E200D3EE4C /* CodeImageViewController.swift in Sources */,
 				1CD349681CF9703700037F78 /* KeyValueCell.swift in Sources */,
@@ -1224,6 +1235,7 @@
 				1CEE8AF31CD4998A00865FB6 /* PagableController.swift in Sources */,
 				EF2345AC20A85C99002E2F30 /* PlayerHeaderView.swift in Sources */,
 				1C66ADFF1D38C312001A6525 /* ImageStore.swift in Sources */,
+				EF4B671D21F87AA10090F87A /* LoginManager.swift in Sources */,
 				EF23457C20A57585002E2F30 /* CourseOverviewCell.swift in Sources */,
 				1C2FC9271CFEE5BA0057EB93 /* EmojiKeyboard.swift in Sources */,
 				1C33F0361D0719BE00D3EE4C /* SetNameViewController.swift in Sources */,

@@ -74,8 +74,11 @@ class StartupViewController: BaseUIViewController {
             }
         } else {
             QL1("no login user")
-            DispatchQueue.main.async { () -> Void in
-                self.performSegue(withIdentifier: "notLoginSegue", sender: self)
+            let anymousUser = LoginManager().makeNoLoginUser()
+            if self.loginUserStore.saveLoginUser(loginUser: anymousUser) {
+                DispatchQueue.main.async { () -> Void in
+                    self.performSegue(withIdentifier: "hasLoginSegue", sender: self)
+                }
             }
         }
     }

@@ -66,6 +66,7 @@ class LoginViewController: BaseUIViewController {
         setupOtherLoginView()
         
         phoneCodeLabel.isHidden = true
+        setLeftBackButton()
        
     }
     
@@ -174,7 +175,7 @@ class LoginViewController: BaseUIViewController {
     
     @objc func tapMobileLogin(_ tapGes : UITapGestureRecognizer) {
         QL1("tapMobileLogin called")
-        performSegue(withIdentifier: "mobileLoginSegue", sender: nil)
+        performSegue(withIdentifier: "passwordLoginSegue", sender: nil)
     }
     
     @objc func tapWeixinLogin(_ tapGes : UITapGestureRecognizer) {
@@ -299,7 +300,7 @@ class LoginViewController: BaseUIViewController {
                     loginUser.boss = response.boss
                     if self.loginUserStore.saveLoginUser(loginUser: loginUser) {
                         DispatchQueue.main.async { () -> Void in
-                            self.performSegue(withIdentifier: "loginSuccessSegue", sender: self)
+                            LoginManager().handleAfterLogin(self)
                         }
                     } else {
                         self.displayMessage(message: "登录失败")
@@ -315,10 +316,10 @@ class LoginViewController: BaseUIViewController {
     
     
     @IBAction func loginButtonPressed(sender: UIButton) {
-        
-       
         loginWithCheckCode()
     }
+    
+    
 
 
     

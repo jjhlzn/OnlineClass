@@ -25,20 +25,20 @@ class MyInfoVieController: BaseUIViewController, UITableViewDataSource, UITableV
     let refreshHeader = MJRefreshNormalHeader()
     
     var fourthSections = [
-        ["me_wallet", "我的钱包", "webViewSegue", ServiceLinkManager.MyWalletUrl, "1", KeyValueStore.key_zhidian] ,
-        ["me_service", "我的服务", "webViewSegue", ServiceLinkManager.MyServiceUrl, "0", ""] ]
+        ["me_wallet", "我的钱包", "webViewSegue", ServiceLinkManager.MyWalletUrl, "1", KeyValueStore.key_zhidian, "0"] ,
+        ["me_service", "我的服务", "webViewSegue", ServiceLinkManager.MyServiceUrl, "0", "", "1"] ]
     
-    var fifthSections = [ ["me_agent", "邀请好友", "codeImageSegue", "",  "1", ""],
-                          ["me_tuijian", "我的推荐", "webViewSegue", ServiceLinkManager.MyTuiJianUrl,  "1", KeyValueStore.key_tuijian],
-                          ["me_order", "我的订单", "webViewSegue", ServiceLinkManager.MyOrderUrl,  "1", KeyValueStore.key_ordercount],
+    var fifthSections = [ ["me_agent", "邀请好友", "codeImageSegue", "",  "1", "", "0"],
+                          ["me_tuijian", "我的推荐", "webViewSegue", ServiceLinkManager.MyTuiJianUrl,  "1", KeyValueStore.key_tuijian, "1"],
+                          ["me_order", "我的订单", "webViewSegue", ServiceLinkManager.MyOrderUrl,  "1", KeyValueStore.key_ordercount, "1"],
                             ]
     
 
-    var sixthSections = [ ["me_ziliao", "我的资料", "personalInfoSegue", "",  "1", ""],
-                           ["me_hezuo", "申请合作", "webViewSegue", ServiceLinkManager.HezuoUrl, "0", ""],
+    var sixthSections = [ ["me_ziliao", "我的资料", "personalInfoSegue", "",  "1", "", "1"],
+                           ["me_hezuo", "申请合作", "webViewSegue", ServiceLinkManager.HezuoUrl, "0", "", "0"],
                         ]
     
-    var seventhSections = [ ["me_settings", "设置","settingsSegue", "",  "0", ""],
+    var seventhSections = [ ["me_settings", "设置","settingsSegue", "",  "0", "", "1"],
                            ]
     var lineSections : [[[String]]]!
     
@@ -229,7 +229,16 @@ extension MyInfoVieController {
         let section = indexPath.section
         let row = indexPath.row
         if section > 1 {
+        
             let lineInfo = lineSections[section - 2][row]
+            let loginUser = LoginUserStore().getLoginUser()!
+            if lineInfo[6] == "1" {
+                if LoginManager().isAnymousUser(loginUser) {
+                    LoginManager().goToLoginPage(self)
+                    return
+                }
+            }
+            
             if lineInfo[2] == "webViewSegue" {
                 var sender = [String:String]()
                 sender["title"] = lineInfo[1]

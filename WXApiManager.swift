@@ -58,10 +58,11 @@ class WXApiManager: NSObject, WXApiDelegate {
         loginUser.boss = response.boss
         
         let visibleVC = UIApplication.shared.visibleViewController
-        let loginVC = visibleVC as! LoginViewController
-        if loginVC.loginUserStore.saveLoginUser(loginUser: loginUser) {
+        let loginVC = (visibleVC as! UINavigationController).topViewController as! BaseUIViewController
+        if LoginUserStore().saveLoginUser(loginUser: loginUser) {
             DispatchQueue.main.async { () -> Void in
-                loginVC.performSegue(withIdentifier: "loginSuccessSegue", sender: self)
+                //loginVC.performSegue(withIdentifier: "loginSuccessSegue", sender: self)
+                LoginManager().handleAfterLogin(loginVC)
             }
             
         } else {
@@ -134,11 +135,12 @@ class WXApiManager: NSObject, WXApiDelegate {
             let respStr = resp.responseString
             QL1(respStr)
             
-            let loginUserStroe = LoginUserStore()
-            if loginUserStroe.getLoginUser() != nil {
-                self.sendBindWeixinRequest(respStr)
-            } else {
+            //let loginUserStroe = LoginUserStore()
+            if LoginManager().isUnlogin() {
+                
                 self.sendOAuthRequest(respStr)
+            } else {
+               self.sendBindWeixinRequest(respStr)
             }
         }
         

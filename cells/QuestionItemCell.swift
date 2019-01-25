@@ -41,13 +41,22 @@ class QuestionItemCell: UITableViewCell {
         params["toUserId"] = "" as AnyObject
         params["toUserName"] = ""  as AnyObject
         params["question"] = question!  as AnyObject
-        DispatchQueue.main.async { () -> Void in
-            self.viewController?.performSegue(withIdentifier: "answerQuestionSegue", sender: params)
+        
+        if LoginManager().isUnlogin() {
+            LoginManager().goToLoginPage(viewController!)
+        } else {
+            DispatchQueue.main.async { () -> Void in
+                self.viewController?.performSegue(withIdentifier: "answerQuestionSegue", sender: params)
+            }
         }
         
     }
     @objc func tapThumbImage() {
-        sendLikeQuestion()
+        if LoginManager().isUnlogin() {
+            LoginManager().goToLoginPage(viewController!)
+        } else  {
+            sendLikeQuestion()
+        }
     }
     
     private func initView() {

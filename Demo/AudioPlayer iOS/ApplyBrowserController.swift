@@ -44,6 +44,7 @@ class ApplyBrowserController : IapSupportWebPageViewController, WKNavigationDele
         url = NSURL(string: ServiceLinkManager.ZixunUrl)!
         if self.title == "签到" {
             url = NSURL(string: ServiceLinkManager.qiandaoUrl)!
+             isNeedRefresh = true
         } else if self.title == "已购" {
             showLoading = false
             url = NSURL(string: ServiceLinkManager.yigouUrl)!
@@ -83,21 +84,50 @@ class ApplyBrowserController : IapSupportWebPageViewController, WKNavigationDele
     }
     
     
+    func reloadQiandaoPageIfNeeded() {
+         if self.title == "签到" && LoginManager.Refresh_Qiandao_After_Login {
+            LoginManager.Refresh_Qiandao_After_Login = false
+            let url1 = makeUrl()
+            let nsurl = NSURL(string: url1)
+            let myRequest = NSURLRequest(url: nsurl! as URL);
+            //webView.delegate = self
+            webView!.load(myRequest as URLRequest);
+        }
+    }
+    
+    func reloadYigouPageIfNeeded() {
+        if self.title == "已购" && LoginManager.Refresh_Yigou_After_Login {
+            LoginManager.Refresh_Yigou_After_Login = false
+            let url1 = makeUrl()
+            let nsurl = NSURL(string: url1)
+            let myRequest = NSURLRequest(url: nsurl! as URL);
+            //webView.delegate = self
+            webView!.load(myRequest as URLRequest);
+        }
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        reloadYigouPageIfNeeded()
+        reloadQiandaoPageIfNeeded()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
     }
     
+    private func makeUrl() -> String {
+        var url1 = url.absoluteString
+        url1 = Utils.addUserParams(url: url1!)
+        url1 = Utils.addDevcieParam(url: url1!)
+        url1 = Utils.addBuyInfo(url: url1!)
+        return url1!
+    }
     
     override func initWebView() {
         super.initWebView()
         
-        var url1 = url.absoluteString
-        url1 = Utils.addUserParams(url: url1!)
-        url1 = Utils.addDevcieParam(url: url1!)
+        var url1 = makeUrl()
         
         let config = WKWebViewConfiguration()
         config.userContentController = contentController
@@ -129,7 +159,7 @@ class ApplyBrowserController : IapSupportWebPageViewController, WKNavigationDele
         self.webContainer.addSubview(self.webView!)
         self.webView?.navigationDelegate = self
         
-        let nsurl = NSURL(string: url1!)
+        let nsurl = NSURL(string: url1)
         let myRequest = NSURLRequest(url: nsurl! as URL);
         //webView.delegate = self
         webView!.load(myRequest as URLRequest);
