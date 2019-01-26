@@ -20,7 +20,7 @@ class FirstPageViewController: BaseUIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        addPlayingButton(playingButton)
+        addPlayingButton(button: playingButton)
         getMoneyLabel.frame.origin.y = getMoneyImage.frame.origin.y + getMoneyImage.frame.size.height + 7
         couseLabel.frame.origin.y = couseImage.frame.origin.y + couseImage.frame.size.height + 7
         
@@ -28,27 +28,27 @@ class FirstPageViewController: BaseUIViewController {
         //收款添加Tap Gesture
         let getMoneyTap = UITapGestureRecognizer(target: self, action: #selector(tapGetMoneyImage))
         getMoneyImage.addGestureRecognizer(getMoneyTap)
-        getMoneyImage.userInteractionEnabled = true
+        getMoneyImage.isUserInteractionEnabled = true
     }
     
-    func tapGetMoneyImage() {
-        UIApplication.sharedApplication().openURL(NSURL(string: "itms://itunes.apple.com/")!)
+    @objc func tapGetMoneyImage() {
+        UIApplication.shared.openURL(NSURL(string: "itms://itunes.apple.com/")! as URL)
         
     }
     
-    override func audioPlayer(audioPlayer: AudioPlayer, didChangeStateFrom from: AudioPlayerState, toState to: AudioPlayerState) {
+    override func audioPlayer(_ audioPlayer: AudioPlayer, didChangeStateFrom from: AudioPlayerState, to state: AudioPlayerState)  {
         let audioItem = getAudioPlayer().currentItem
         if audioItem == nil {
             print("audioItem is nil")
             return
         }
-        updatePlayingButton(playingButton)
+        updatePlayingButton(button: playingButton)
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        updatePlayingButton(playingButton)
+        updatePlayingButton(button: playingButton)
     }
     
 

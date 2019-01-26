@@ -11,7 +11,7 @@ AudioPlayer is a wrapper around AVPlayer. It also offers cool features such as:
 * Retry if player fails
 * Connection handling
 * Audio item enqueuing
-* Player mode (Repeat, Repeat all, Suffle)
+* Player mode (Repeat, Repeat all, Shuffle)
 * MPNowPlayingInfoCenter
 * A high level of customization
 
@@ -80,6 +80,14 @@ override func remoteControlReceivedWithEvent(event: UIEvent?) {
 3. Commit your changes: `git commit -am 'Add some feature'`
 4. Push to the branch: `git push origin my-new-feature`
 5. Submit a pull request :D
+
+## Todo list
+
+* Add a fully working example project
+* Integrate with SPM
+* Add more unit tests
+* Add Objective-C support if possible ([#67](https://github.com/delannoyk/AudioPlayer/issues/67))
+* Refactor current state handling
 
 ## License
 

@@ -16,31 +16,32 @@ class AllFunctionViewController: BaseUIViewController, UITableViewDataSource, UI
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        extendFunctionMananger = ExtendFunctionMananger(controller: self, isNeedMore: false)
         tableView.dataSource = self
         tableView.delegate = self
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
+        extendFunctionMananger = ExtendFunctionMananger.instance
+        extendFunctionMananger.setConfig(controller: self, isNeedMore: false)
         tableView.reloadData()
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return extendFunctionMananger.getRowCount()
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        return extendFunctionMananger.getFunctionCell(tableView, row: indexPath.row)
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        return extendFunctionMananger.getFunctionCell(tableView: tableView, row: indexPath.row, isNeedMore: false)
     }
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: IndexPath) -> CGFloat {
         return  extendFunctionMananger.cellHeight
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        super.prepareForSegue(segue, sender: sender)
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
         if segue.identifier == "loadWebPageSegue" {
-            let dest = segue.destinationViewController as! WebPageViewController
+            let dest = segue.destination as! WebPageViewController
             
             
             let params = sender as! [String: String]

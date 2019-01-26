@@ -16,6 +16,8 @@ class ExtendFunctionImageStore : NSObject {
     }
     
     private func md5(string string: String) -> String {
+        //TODO:
+        /*
         var digest = [UInt8](count: Int(CC_MD5_DIGEST_LENGTH), repeatedValue: 0)
         if let data = string.dataUsingEncoding(NSUTF8StringEncoding) {
             CC_MD5(data.bytes, CC_LONG(data.length), &digest)
@@ -26,29 +28,36 @@ class ExtendFunctionImageStore : NSObject {
             digestHex += String(format: "%02x", digest[index])
         }
         
-        return digestHex
+        return digestHex*/
+        return ""
     }
     
     func saveOrUpdate(imageUrl: String, image : UIImage) {
         if let data = UIImagePNGRepresentation(image) {
-            print("imageName = \(makeImageName(imageUrl))")
-            let filename = fileInDocumentsDirectory(makeImageName(imageUrl))
+            print("imageName = \(makeImageName(imageUrl: imageUrl))")
+            let filename = fileInDocumentsDirectory(filename: makeImageName(imageUrl: imageUrl))
             
-            let killFile = NSFileManager.defaultManager()
-            if (killFile.isDeletableFileAtPath(filename)){
+            let killFile = FileManager.default
+            if (killFile.isDeletableFile(atPath: filename)){
                 do {
-                    try killFile.removeItemAtPath(filename)
+                    try killFile.removeItem(atPath: filename)
                 }
                 catch let error as NSError {
                     error.description
                 }
             }
-            data.writeToFile(filename, atomically: true)
+            //data.writeToFile(filename, atomically: true)
+            do {
+                try data.write(to: URL(fileURLWithPath: filename))
+            } catch let error {
+                //TODO: print
+                print(error)
+            }
         }
     }
     
     func getImage(imageUrl: String) -> UIImage? {
-        let image = loadImageFromPath(fileInDocumentsDirectory(makeImageName(imageUrl)))
+        let image = loadImageFromPath(path: fileInDocumentsDirectory(filename: makeImageName(imageUrl: imageUrl)))
         if image == nil {
             return nil
         }
@@ -59,23 +68,28 @@ class ExtendFunctionImageStore : NSObject {
     private func loadImageFromPath(path: String) -> UIImage? {
         let image = UIImage(contentsOfFile: path)
         if image == nil {
-            print("missing image at: \(path)")
+            //print("missing image at: \(path)")
         }
-        print("Loading image from path: \(path)") // this is just for you to see the path in case you want to go to the directory, using Finder.
+        //print("Loading image from path: \(path)") // this is just for you to see the path in case you want to go to the directory, using Finder.
         return image
         
     }
     
-    private func getDocumentsURL() -> NSURL {
-        let documentsURL = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)[0]
+    private func getDocumentsURL() -> URL {
+        let documentsURL =  FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
         return documentsURL
     }
     
     private func fileInDocumentsDirectory(filename: String) -> String {
-        print("fileInDocumentsDirectory()")
         
-        let fileURL = getDocumentsURL().URLByAppendingPathComponent(filename)
-        return fileURL.path!
+       // print("fileInDocumentsDirectory()")
+ 
+        //TODO:
+        /*
+        var fileURL =  getDocumentsURL().appendPathComponent(pathComponent: filename)
+        //let fileURL = getDocumentsURL().URLByAppendingPathComponent(filename)
+        return fileURL */
+        return ""
         
     }
     

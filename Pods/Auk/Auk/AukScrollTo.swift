@@ -6,18 +6,18 @@ Scrolling code.
 
 */
 struct AukScrollTo {
-  static func scrollTo(scrollView: UIScrollView, pageIndex: Int, animated: Bool,
+  static func scrollToPage(_ scrollView: UIScrollView, atIndex index: Int, animated: Bool,
     numberOfPages: Int) {
       
     let pageWidth = scrollView.bounds.size.width
-    scrollTo(scrollView, pageIndex: pageIndex, pageWidth: pageWidth, animated: animated,
+    scrollToPage(scrollView, atIndex: index, pageWidth: pageWidth, animated: animated,
       numberOfPages: numberOfPages)
   }
   
-  static func scrollTo(scrollView: UIScrollView, pageIndex: Int, pageWidth: CGFloat,
+  static func scrollToPage(_ scrollView: UIScrollView, atIndex index: Int, pageWidth: CGFloat,
     animated: Bool, numberOfPages: Int) {
       
-    let offsetX = contentOffsetForPage(pageIndex, pageWidth: pageWidth,
+    let offsetX = contentOffsetForPage(atIndex: index, pageWidth: pageWidth,
       numberOfPages: numberOfPages, scrollView: scrollView)
     
     let offset = CGPoint(x: offsetX, y: 0)
@@ -25,7 +25,7 @@ struct AukScrollTo {
     scrollView.setContentOffset(offset, animated: animated)
   }
   
-  static func scrollToNextPage(scrollView: UIScrollView, cycle: Bool, animated: Bool,
+  static func scrollToNextPage(_ scrollView: UIScrollView, cycle: Bool, animated: Bool,
     currentPageIndex: Int, numberOfPages: Int) {
       
     var pageIndex = currentPageIndex + 1
@@ -38,10 +38,10 @@ struct AukScrollTo {
       }
     }
     
-    scrollTo(scrollView, pageIndex: pageIndex, animated: animated, numberOfPages: numberOfPages)
+    scrollToPage(scrollView, atIndex: pageIndex, animated: animated, numberOfPages: numberOfPages)
   }
   
-  static func scrollToPreviousPage(scrollView: UIScrollView, cycle: Bool, animated: Bool,
+  static func scrollToPreviousPage(_ scrollView: UIScrollView, cycle: Bool, animated: Bool,
     currentPageIndex: Int, numberOfPages: Int) {
     
     var pageIndex = currentPageIndex - 1
@@ -54,7 +54,7 @@ struct AukScrollTo {
       }
     }
     
-    scrollTo(scrollView, pageIndex: pageIndex, animated: animated, numberOfPages: numberOfPages)
+    scrollToPage(scrollView, atIndex: pageIndex, animated: animated, numberOfPages: numberOfPages)
   }
   
   /**
@@ -63,13 +63,13 @@ struct AukScrollTo {
   Ensures that offset is within the content size.
 
   */
-  static func contentOffsetForPage(pageIndex: Int, pageWidth: CGFloat,
+  static func contentOffsetForPage(atIndex index: Int, pageWidth: CGFloat,
     numberOfPages: Int, scrollView: UIView) -> CGFloat {
       
     // The index of the page that appears from left to right of the screen.
     // It is the same as pageIndex for left-to-right languages.
     let pageIndexFromTheLeft = RightToLeft.isRightToLeft(scrollView) ?
-      numberOfPages - pageIndex - 1 : pageIndex
+      numberOfPages - index - 1 : index
       
     var offsetX = CGFloat(pageIndexFromTheLeft) * pageWidth
       

@@ -8,7 +8,7 @@ Appearance and behavior of the scroll view.
 public struct AukSettings {
   
   /// Determines the stretching and scaling of the image when its proportion are not the same as its  container.
-  public var contentMode = UIViewContentMode.ScaleAspectFit
+  public var contentMode = UIViewContentMode.scaleAspectFit
   
   /// Image to be displayed when remote image download fails.
   public var errorImage: UIImage?
@@ -31,6 +31,12 @@ public struct AukSettings {
   
   /// The duration of the animation that is used to show the remote images.
   public var remoteImageAnimationIntervalSeconds: Double = 0.5
+  
+  // Duration of the fade out animation when the page is removed.
+  public var removePageFadeOutAnimationDurationSeconds: Double = 0.2
+  
+  // Duration of the layout animation when the page is removed.
+  public var removePageLayoutAnimationDurationSeconds: Double = 0.3
   
   /// Show horizontal scroll indicator.
   public var showsHorizontalScrollIndicator = false

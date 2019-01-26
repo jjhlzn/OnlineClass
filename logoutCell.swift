@@ -13,6 +13,8 @@ class logoutCell: UITableViewCell {
     var viewController: UIViewController?
 
     @IBAction func logout(sender: UIButton) {
-        viewController?.performSegueWithIdentifier("logoutSegue", sender: nil)
+        DispatchQueue.main.async { () -> Void in
+            self.viewController?.performSegue(withIdentifier: "logoutSegue", sender: nil)
+        }
     }
 }

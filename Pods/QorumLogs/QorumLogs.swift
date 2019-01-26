@@ -37,12 +37,28 @@ public struct QorumLogs {
 
     /// Change the array element with another UIColor. 0 is info gray, 5 is purple, rest are log levels
     public static var colorsForLogLevels: [QLColor] = [
-        QLColor(r: 120, g: 120, b: 120), //0
+        QLColor(r: 120, g: 120, b: 120),//0
         QLColor(r: 0, g: 180, b: 180),  //1
-        QLColor(r: 0, g: 150, b: 0),  //2
-        QLColor(r: 255, g: 190, b: 0), //3
-        QLColor(r: 255, g: 0, b: 0),   //4
+        QLColor(r: 0, g: 150, b: 0),    //2
+        QLColor(r: 255, g: 190, b: 0),  //3
+        QLColor(r: 255, g: 0, b: 0),    //4
         QLColor(r: 160, g: 32, b: 240)] //5
+
+    /// Change the array element with another Emoji or String. 0 replaces gray color, 5 replaces purple, rest replace log levels
+    public static var emojisForLogLevels: [String] = [
+        "", //0
+        "💙", //1
+        "💚", //2
+        "💛", //3
+        "❤️", //4
+        "💜"] //5
+    
+    /// Uses emojis instead of colors when this is false
+    public static var useColors = false
+    
+    //TODO: Show example in documentation
+    /// Set your function that will get called whenever something new is logged
+    public static var trackLogFunction: ((String)->())? = nil
 
     private static var showFiles = [String]()
 
@@ -51,22 +67,18 @@ public struct QorumLogs {
     //==========================================================================================================
 
     /// Ignores all logs from other files
-    public static func onlyShowTheseFiles(fileNames: Any...) {
+    public static func onlyShowTheseFiles(_ fileNames: Any...) {
         minimumLogLevelShown = 1
 
-        let showFiles = fileNames.map {fileName in
+        let showFiles = fileNames.map { fileName in
             return fileName as? String ?? {
                 let classString: String = {
-                    if let obj: AnyObject = fileName as? AnyObject {
-                        let classString = String(obj.dynamicType)
-                        return classString.ns.pathExtension
-                    } else {
-                        return String(fileName)
-                    }
+                    let classString = String(describing: type(of: fileName))
+                    return classString.ns.pathExtension
                 }()
 
                 return classString
-                }()
+            }()
         }
 
         self.showFiles = showFiles
@@ -74,7 +86,7 @@ public struct QorumLogs {
     }
 
     /// Ignores all logs from other files
-    public static func onlyShowThisFile(fileName: Any) {
+    public static func onlyShowThisFile(_ fileName: Any) {
         onlyShowTheseFiles(fileName)
     }
 
@@ -93,7 +105,7 @@ public struct QorumLogs {
     // MARK: - Private Methods
     //==========================================================================================================
 
-    private static func shouldPrintLine(level level: Int, fileName: String) -> Bool {
+    fileprivate static func shouldPrintLine(level: Int, fileName: String) -> Bool {
         if !QorumLogs.enabled {
             return false
         } else if QorumLogs.minimumLogLevelShown <= level {
@@ -103,7 +115,7 @@ public struct QorumLogs {
         }
     }
 
-    private static func shouldShowFile(fileName: String) -> Bool {
+    fileprivate static func shouldShowFile(_ fileName: String) -> Bool {
         return QorumLogs.showFiles.isEmpty || QorumLogs.showFiles.contains(fileName)
     }
 }
@@ -153,7 +165,7 @@ public struct QorumOnlineLogs {
     }
 
     /// Setup Google Form links
-    public static func setupOnlineLogs(formLink formLink: String, versionField: String, userInfoField: String, methodInfoField: String, textField: String) {
+    public static func setupOnlineLogs(formLink: String, versionField: String, userInfoField: String, methodInfoField: String, textField: String) {
         googleFormLink = formLink
         googleFormAppVersionField = versionField
         googleFormUserInfoField = userInfoField
@@ -165,41 +177,42 @@ public struct QorumOnlineLogs {
     // MARK: - Private Methods
     //==========================================================================================================
 
-    private static func sendError<T>(classInformation classInformation: String, textObject: T, level: String) {
+    fileprivate static func sendError<T>(classInformation: String, textObject: T, level: String) {
         var text = ""
         if let stringObject = textObject as? String {
+            text = stringObject
+        } else {
+            let stringObject = String(describing: textObject)
             text = stringObject
         }
         let versionLevel = (appVersion + " - " + level)
 
-        let url = NSURL(string: googleFormLink)
+        let url = URL(string: googleFormLink)
         var postData = googleFormAppVersionField + "=" + versionLevel
         postData += "&" + googleFormUserInfoField + "=" + extraInformation.description
         postData += "&" + googleFormMethodInfoField + "=" + classInformation
         postData += "&" + googleFormErrorTextField + "=" + text
 
-        let request = NSMutableURLRequest(URL: url!)
-        request.HTTPMethod = "POST"
+        var request = URLRequest(url: url!)
+        request.httpMethod = "POST"
         request.setValue("application/x-www-form-urlencoded; charset=utf-8", forHTTPHeaderField: "Content-Type")
-        request.HTTPBody = postData.dataUsingEncoding(NSUTF8StringEncoding)
+        request.httpBody = postData.data(using: String.Encoding.utf8)
 
         #if os(OSX)
             if kCFCoreFoundationVersionNumber > kCFCoreFoundationVersionNumber10_10 {
-                let session = NSURLSession.sharedSession()
-                let task = session.dataTaskWithRequest(request)
-                task.resume()
+                Foundation.URLSession.shared.dataTask(with: request).resume()
             } else {
                 NSURLConnection(request: request, delegate: nil)?.start()
             }
         #elseif os(iOS)
-            NSURLSession.sharedSession().dataTaskWithRequest(request).resume();
+            URLSession.shared.dataTask(with: request).resume()
         #endif
 
         let printText = "OnlineLogs: \(extraInformation.description) - \(versionLevel) - \(classInformation) - \(text)"
         print(" \(ColorLog.colorizeString(printText, colorId: 5))\n", terminator: "")
     }
 
-    private static func shouldSendLine(level level: Int, fileName: String) -> Bool {
+    fileprivate static func shouldSendLine(level: Int, fileName: String) -> Bool {
         if !QorumOnlineLogs.enabled {
             return false
         } else if QorumOnlineLogs.minimumLogLevelShown <= level {
@@ -212,45 +225,45 @@ public struct QorumOnlineLogs {
 
 
 ///Detailed logs only used while debugging
-public func QL1<T>(debug: T, _ file: String = #file, _ function: String = #function, _ line: Int = #line) {
-    QLManager(debug,file: file,function: function,line: line,level:1)
+public func QL1<T>(_ debug: T, _ file: String = #file, _ function: String = #function, _ line: Int = #line) {
+    QLManager(debug, file: file, function: function, line: line, level:1)
 }
 
 ///General information about app state
-public func QL2<T>(info: T, _ file: String = #file, _ function: String = #function, _ line: Int = #line) {
+public func QL2<T>(_ info: T, _ file: String = #file, _ function: String = #function, _ line: Int = #line) {
     QLManager(info,file: file,function: function,line: line,level:2)
 }
 
 ///Indicates possible error
-public func QL3<T>(warning: T, _ file: String = #file, _ function: String = #function, _ line: Int = #line) {
+public func QL3<T>(_ warning: T, _ file: String = #file, _ function: String = #function, _ line: Int = #line) {
     QLManager(warning,file: file,function: function,line: line,level:3)
 }
 
-///En unexpected error occured
-public func QL4<T>(error: T, _ file: String = #file, _ function: String = #function, _ line: Int = #line) {
+///An unexpected error occured
+public func QL4<T>(_ error: T, _ file: String = #file, _ function: String = #function, _ line: Int = #line) {
     QLManager(error,file: file,function: function,line: line,level:4)
 }
 
 
-private func printLog<T>(informationPart: String, text: T, level: Int) {
+private func printLog<T>(_ informationPart: String, text: T, level: Int) {
     print(" \(ColorLog.colorizeString(informationPart, colorId: 0))", terminator: "")
     print(" \(ColorLog.colorizeString(text, colorId: level))\n", terminator: "")
 }
 
 ///=====
-public func QLShortLine(file: String = #file, _ function: String = #function, _ line: Int = #line) {
+public func QLShortLine(_ file: String = #file, _ function: String = #function, _ line: Int = #line) {
     let lineString = "======================================"
     QLineManager(lineString, file: file, function: function, line: line)
 }
 
 ///+++++
-public func QLPlusLine(file: String = #file, _ function: String = #function, _ line: Int = #line) {
+public func QLPlusLine(_ file: String = #file, _ function: String = #function, _ line: Int = #line) {
     let lineString = "+++++++++++++++++++++++++++++++++++++"
     QLineManager(lineString, file: file, function: function, line: line)
 }
 
 ///Print data with level
-private func QLManager<T>(debug: T, file: String, function: String, line: Int, level : Int){
+private func QLManager<T>(_ debug: T, file: String, function: String, line: Int, level : Int) {
 
     let levelText : String;
 
@@ -263,7 +276,16 @@ private func QLManager<T>(debug: T, file: String, function: String, line: Int, l
     }
 
     let fileExtension = file.ns.lastPathComponent.ns.pathExtension
-    let filename = file.ns.lastPathComponent.ns.stringByDeletingPathExtension
+    let filename = file.ns.lastPathComponent.ns.deletingPathExtension
+    
+    var text = ""
+    if let stringObject = debug as? String {
+        text = stringObject
+    } else {
+        let stringObject = String(describing: debug)
+        text = stringObject
+    }
+    QorumLogs.trackLogFunction?(text)
 
     if QorumLogs.shouldPrintLine(level: level, fileName: filename) {
         let informationPart: String
@@ -276,9 +298,9 @@ private func QLManager<T>(debug: T, file: String, function: String, line: Int, l
 }
 
 ///Print line
-private func QLineManager(lineString : String, file: String, function: String, line: Int){
+private func QLineManager(_ lineString : String, file: String, function: String, line: Int) {
     let fileExtension = file.ns.lastPathComponent.ns.pathExtension
-    let filename = file.ns.lastPathComponent.ns.stringByDeletingPathExtension
+    let filename = file.ns.lastPathComponent.ns.deletingPathExtension
     if QorumLogs.shouldPrintLine(level: 2, fileName: filename) {
         let informationPart: String
         informationPart = "\(filename).\(fileExtension):\(line) \(function):"
@@ -292,15 +314,19 @@ private struct ColorLog {
     private static let RESET_BG = ESCAPE + "bg;" // Clear any background color
     private static let RESET = ESCAPE + ";"      // Clear any foreground or background color
 
-    static func colorizeString<T>(object: T, colorId: Int) -> String {
-        return "\(ESCAPE)fg\(QorumLogs.colorsForLogLevels[colorId].redColor),\(QorumLogs.colorsForLogLevels[colorId].greenColor),\(QorumLogs.colorsForLogLevels[colorId].blueColor);\(object)\(RESET)"
+    static func colorizeString<T>(_ object: T, colorId: Int) -> String {
+        if QorumLogs.useColors {
+            return "\(ESCAPE)fg\(QorumLogs.colorsForLogLevels[colorId].redColor),\(QorumLogs.colorsForLogLevels[colorId].greenColor),\(QorumLogs.colorsForLogLevels[colorId].blueColor);\(object)\(RESET)"
+        } else {
+            return "\(QorumLogs.emojisForLogLevels[colorId])\(object)\(QorumLogs.emojisForLogLevels[colorId])"
+        }
     }
 }
 
 private func versionAndBuild() -> String {
 
-    let version = NSBundle.mainBundle().infoDictionary? ["CFBundleShortVersionString"] as! String
-    let build = NSBundle.mainBundle().infoDictionary? [kCFBundleVersionKey as String] as! String
+    let version = Bundle.main.infoDictionary? ["CFBundleShortVersionString"] as! String
+    let build = Bundle.main.infoDictionary? [kCFBundleVersionKey as String] as! String
 
     return version == build ? "v\(version)" : "v\(version)(\(build))"
 }
@@ -311,7 +337,7 @@ private extension String {
 }
 
 ///Used in color settings for QorumLogs
-public class QLColor {
+open class QLColor {
     #if os(OSX)
     var color: NSColor
     #elseif os(iOS) || os(tvOS)
@@ -346,10 +372,4 @@ public class QLColor {
         color.getRed(nil, green: nil, blue: &b, alpha: nil)
         return Int(b * 255)
     }
-    
 }
-
-
-
-
-

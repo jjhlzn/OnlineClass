@@ -26,12 +26,12 @@ class WebPageViewController2: BaseUIViewController, UIWebViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         var url1 = url.absoluteString
-        url1 = Utils.addUserParams(url1)
-        url1 = Utils.addDevcieParam(url1)
+        url1 = Utils.addUserParams(url: url1!)
+        url1 = Utils.addDevcieParam(url: url1!)
         print(url1)
-        let myRequest = NSURLRequest(URL: NSURL(string: url1)!);
+        let myRequest = NSURLRequest(url: NSURL(string: url1!)! as URL);
         webView.delegate = self
-        webView.loadRequest(myRequest);
+        webView.loadRequest(myRequest as URLRequest);
         
         closeButton.target = self
         closeButton.action = #selector(returnLastController)
@@ -42,8 +42,8 @@ class WebPageViewController2: BaseUIViewController, UIWebViewDelegate {
 
         navigationItem.leftBarButtonItems = [backButton]
         
-        addLineBorder(cancelButton)
-        shareView.hidden = true
+        addLineBorder(field: cancelButton)
+        shareView.isHidden = true
         if title == "提额秘诀" {
             
         } else {
@@ -52,15 +52,15 @@ class WebPageViewController2: BaseUIViewController, UIWebViewDelegate {
         
     }
     
-    func webViewDidStartLoad(webView: UIWebView) {
-        loading.show(view)
+    func webViewDidStartLoad(_ webView: UIWebView) {
+        loading.show(view: view)
         if webView.canGoBack {
             navigationItem.leftBarButtonItems = [backButton, closeButton]
             backButton.action = #selector(webViewBack)
         }
     }
     
-    func webViewDidFinishLoad(webView: UIWebView) {
+    func webViewDidFinishLoad(_ webView: UIWebView) {
         loading.hide()
         if !webView.canGoBack {
             navigationItem.leftBarButtonItems = [backButton]
@@ -69,36 +69,38 @@ class WebPageViewController2: BaseUIViewController, UIWebViewDelegate {
 
     }
     
-    func webView(webView: UIWebView, didFailLoadWithError error: NSError?) {
+    func webView(_ webView: UIWebView, didFailLoadWithError error: Error) {
         loading.hide()
     }
     
     
     
     
-    func webViewBack() {
+    @objc func webViewBack() {
         if webView.canGoBack {
 
             webView.goBack()
             
         } else {
-            navigationController?.popViewControllerAnimated(true)
+            navigationController?.popViewController(animated: true)
         }
         
         
     }
     
-    func returnLastController() {
-        navigationController?.popViewControllerAnimated(true)
+    @objc func returnLastController() {
+        DispatchQueue.main.async { () -> Void in
+            self.navigationController?.popViewController(animated: true)
+        }
     }
     
       var shareViewOverlay : UIView!
     @IBAction func shareButtonPressed(sender: AnyObject) {
-        if !shareView.hidden {
+        if !shareView.isHidden {
             return
         }
         print("showShareView")
-        shareViewOverlay = UIView(frame: UIScreen.mainScreen().bounds)
+        shareViewOverlay = UIView(frame: UIScreen.main.bounds)
         shareViewOverlay.backgroundColor = UIColor(white: 0, alpha: 0.65)
         
         shareView.removeFromSuperview()
@@ -106,9 +108,9 @@ class WebPageViewController2: BaseUIViewController, UIWebViewDelegate {
         
         view.addSubview(shareViewOverlay)
         
-        shareView.hidden = false
+        shareView.isHidden = false
         
-        if WXApi.isWXAppInstalled() && WXApi.isWXAppSupportApi() {
+        if WXApi.isWXAppInstalled() && WXApi.isWXAppSupport() {
             print("winxin share is OK")
         } else {
             print("winxin share is  NOT OK")
@@ -117,16 +119,16 @@ class WebPageViewController2: BaseUIViewController, UIWebViewDelegate {
 
     @IBAction func shareFriendsPressed(sender: AnyObject) {
         print("share to friends")
-        share(false)
+        share(isPengyouquan: false)
     }
     
     @IBAction func sharePengyouquanPressed(sender: AnyObject) {
         print("share to pengyouquan")
-        share(true)
+        share(isPengyouquan: true)
     }
     
     @IBAction func cancelPressed(sender: AnyObject) {
-        shareView.hidden = true
+        shareView.isHidden = true
         shareView.removeFromSuperview()
         view.addSubview(shareView)
         shareViewOverlay.removeFromSuperview()
@@ -134,8 +136,8 @@ class WebPageViewController2: BaseUIViewController, UIWebViewDelegate {
     
     func addLineBorder(field: UIButton) {
         let bottomBorder = CALayer()
-        bottomBorder.frame = CGRectMake(0.0, 0, field.frame.size.width, 1.0);
-        bottomBorder.backgroundColor = UIColor.lightGrayColor().CGColor
+        bottomBorder.frame = CGRect(x: 0.0, y: 0, width: field.frame.size.width, height: 1.0);
+        bottomBorder.backgroundColor = UIColor.lightGray.cgColor
         field.layer.addSublayer(bottomBorder)
     }
     
@@ -157,7 +159,7 @@ class WebPageViewController2: BaseUIViewController, UIWebViewDelegate {
         req.message = message
         req.scene = (isPengyouquan ? 1 : 0)
         
-        WXApi.sendReq(req)
+        WXApi.send(req)
         
         
     }

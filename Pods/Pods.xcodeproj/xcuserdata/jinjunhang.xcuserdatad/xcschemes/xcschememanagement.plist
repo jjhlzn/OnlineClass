@@ -24,6 +24,16 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>FSPagerView.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Gifu.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>KDEAudioPlayer.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -35,6 +45,16 @@
 			<false/>
 		</dict>
 		<key>Kingfisher.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>LTScrollView.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>MJRefresh.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -54,7 +74,22 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>SnapKit.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Socket.IO-Client-Swift.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Starscream.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>SwiftyBeaver.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -64,79 +99,23 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>WeiboSDK.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>moa.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>tingyunApp.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
-	<dict>
-		<key>1D684AC6B47205706EA61F308B910FE7</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>320AD47B0C6BA014D301395D3BFC8FB6</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>434F24248F0863A28D37FC58D3076D9E</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>55BBE29C955B8B70A0AC913F60D97C86</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>88E9EC28B8B46C3631E6B242B50F4442</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>8B4A6F95E736D0578E54B8B9166E44C1</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>8EEB1DD6817D81959D6E18FE1D642CE3</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>996E5AD239A4D306D6E52C7E7CB0F07B</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>A110C19F74AAA2B8904BE7913A0BC4D9</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>D7FAEFEAF68AE19EB2D22369766AF24E</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>DE5E61E39452271440CFA449C216913A</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>F1EE6B33474CAAD17B6180BBFB8EBFC9</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>FC73B9D86F63C97C40376D3F4D4AB597</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-	</dict>
+	<dict/>
 </dict>
 </plist>

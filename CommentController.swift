@@ -8,7 +8,7 @@
 
 import UIKit
 import QorumLogs
-import SocketIOClientSwift
+import SocketIO
 import SwiftyJSON
 
 protocol CommentDelegate {
@@ -23,15 +23,18 @@ protocol LiveCommentDelegate {
 
 class CommentController : NSObject, UITextViewDelegate {
     let TAG = "CommentController"
+    
+    var hasBottomBar: Bool = false
+    
     var overlay = UIView()
-    var viewController: BaseUIViewController!
+    var viewController: UIViewController!
     var delegate: CommentDelegate?
     var liveDelegate: LiveCommentDelegate?
     var bottomView: UIView!
     
     var bottomView2: UIView!
     var commentFiled2: UITextView!
-    var shareView: UIView!
+    var shareView: ShareView!
     
      var commentInputButton: UIButton!
     var emojiSwitchButton : UIButton?
@@ -51,11 +54,10 @@ class CommentController : NSObject, UITextViewDelegate {
     var emojiKeyboard : EmojiKeyboard!
     var commentErrorMessage: String?
     
-    var socket: SocketIOClient?
+    var socket: SocketIOClient!
     let loginUserStore = LoginUserStore()
     
-    func textViewDidChange(textView: UITextView) { //Handle the text changes here
-        //print(textView.text); //the textView parameter is the textView where text was changed
+    func textViewDidChange(_ textView: UITextView) { //Handle the text changes here
         if textView.text.length > 0 {
             enableSendButton()
         } else {
@@ -64,13 +66,13 @@ class CommentController : NSObject, UITextViewDelegate {
     }
     
     private func enableSendButton() {
-        sendButton.enabled = true
-        sendButton.setTitleColor(cancelButton.tintColor, forState: .Normal)
+        sendButton.isEnabled = true
+        sendButton.setTitleColor(cancelButton.tintColor, for: [])
     }
     
     private func disableSendButton() {
-        sendButton.enabled = false
-        sendButton.setTitleColor(UIColor.grayColor(), forState: .Normal)
+        sendButton.isEnabled = false
+        sendButton.setTitleColor(UIColor.gray, for: [])
     }
     
     
@@ -79,8 +81,11 @@ class CommentController : NSObject, UITextViewDelegate {
         self.song = song
         commentErrorMessage = "评论失败"
         
-        bottomView2.hidden = true
-        commentFiled2.editable = true
+        //bottomView2.removeFromSuperview()
+        //viewController.view.window?.addSubview(bottomView)
+        
+        bottomView2.isHidden = true
+        commentFiled2.isEditable = true
         
         disableSendButton()
         
@@ -89,26 +94,25 @@ class CommentController : NSObject, UITextViewDelegate {
         //设置评论窗口的origin
         var frame = bottomView2.frame
         frame.origin.x = 0
-        let screenSize: CGRect = UIScreen.mainScreen().bounds
+        let screenSize: CGRect = UIScreen.main.bounds
         let screenHeight = screenSize.height
         frame.origin.y = screenHeight - bottomView2.frame.height
-        print("x = \(frame.origin.x), y = \(frame.origin.y)")
         bottomView2.frame = frame
         
         if cancelButton != nil {
-            cancelButton.addTarget(self, action: #selector(closeComment), forControlEvents: .TouchUpInside)
+            cancelButton.addTarget(self, action: #selector(closeComment), for: .touchUpInside)
         }
         
         if sendButton != nil {
-            sendButton.addTarget(self, action: #selector(sendComment), forControlEvents: .TouchUpInside)
+            sendButton.addTarget(self, action: #selector(sendComment), for: .touchUpInside)
         }
         
-        commentInputButton.addTarget(self, action: #selector(handleTap), forControlEvents: .TouchUpInside)
+        commentInputButton.addTarget(self, action: #selector(handleTap), for: .touchUpInside)
         
-        emojiKeyboard = EmojiKeyboard(editText: commentFiled2)
+        emojiKeyboard = EmojiKeyboard(editText: commentFiled2, hasBottomBar: hasBottomBar)
         
         if emojiSwitchButton != nil {
-            emojiSwitchButton?.addTarget(self, action: #selector(emojiSwitchButtonPressed), forControlEvents: .TouchUpInside)
+            emojiSwitchButton?.addTarget(self, action: #selector(emojiSwitchButtonPressed), for: .touchUpInside)
         }
         
         initChat()
@@ -116,21 +120,47 @@ class CommentController : NSObject, UITextViewDelegate {
     
     let chat_message_cmd = "chat message"
     let join_room_cmd = "join room"
+    var manager: SocketManager!
     
     func initChat() {
         if socket != nil {
+            //socket.disconnect()
+            QL3("socket is not nil")
+            QL1("init socket")
+            //self.dispose()
+            setup()
+            socket.connect()
             return
         }
-        socket = SocketIOClient(socketURL: NSURL(string: ServiceLinkManager.ChatUrl)!, options: [.Log(true), .ForcePolling(true)])
-        
-        socket!.on("connect") {data, ack in
+
+         QL1("init socket")
+        self.manager =  SocketManager(socketURL: URL(string:  ServiceLinkManager.ChatUrl)!, config: [.log(false), .compress])
+        //manager.connect()
+        QL1(ServiceLinkManager.ChatUrl)
+        self.socket = self.manager.defaultSocket
+        self.socket.on(clientEvent: .connect) {data, ack in
             QL1("socket connected")
+            
             let request = JoinRoomRequest()
             request.song = self.song
-            self.socket?.emit(self.join_room_cmd, request.getJSON().rawString()!)
+            //QL1(request.getJSON().rawString()!)
+            
+            //延迟3秒发送加入房间的请求，为了确保服务器已经在socket上加入了join room事件。
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3.0, execute: {
+                self.socket!.emit(self.join_room_cmd, request.getJSON().rawString()!)
+            })
+            
+            
         }
+        setup()
+        socket.connect()
+        //}
         
-        socket!.on(chat_message_cmd) {data, ack in
+    }
+    
+    private func setup() {
+        self.socket.off(self.chat_message_cmd)
+        self.socket.on(self.chat_message_cmd) {data, ack in
             //get new message
             QL1("got a new message")
             QL1(data)
@@ -142,25 +172,25 @@ class CommentController : NSObject, UITextViewDelegate {
             comment.id = commentJson["id"].stringValue
             comment.time = commentJson["time"].stringValue
             comment.isManager = commentJson["isManager"].boolValue
-            self.liveDelegate?.afterSendLiveComment([comment])
+            self.liveDelegate?.afterSendLiveComment(comments: [comment])
             
         }
-        
-        socket!.connect()
     }
     
     func dispose() {
         if socket != nil {
+            QL1("disponse socket")
             socket!.off(chat_message_cmd)
-            socket!.off(join_room_cmd)
+            //socket!.off(join_room_cmd)
             socket!.disconnect()
+            //socket = nil
         }
     }
     
     
     var isEmojiKeyboardOpen = false
     var emojiKeyboardView : UIView?
-    func emojiSwitchButtonPressed(sender: UIButton) {
+    @objc func emojiSwitchButtonPressed(sender: UIButton) {
         //如果是键盘模式，则关闭键盘，打开emoji键盘
         if !isEmojiKeyboardOpen {
             openEmojiKeyboard()
@@ -172,45 +202,54 @@ class CommentController : NSObject, UITextViewDelegate {
     
     
     private func openEmojiKeyboard() {
+        
         emojiKeyboardView = emojiKeyboard.getView()
         commentFiled2.resignFirstResponder()
         viewController.view.addSubview(emojiKeyboardView!)
-        showOrAdjustCommentWindow((emojiKeyboardView?.frame)!)
-        emojiSwitchButton?.setImage(UIImage(named: "emojiSwitchButton2"), forState: .Normal)
+        showOrAdjustCommentWindow(keyboardSize: (emojiKeyboardView?.frame)!)
+        emojiSwitchButton?.setImage(UIImage(named: "emojiSwitchButton2"), for: [])
         isEmojiKeyboardOpen = true
+        
         //调整评论框的y坐标
+        //moveCommentWindowY(-40)
+        
     }
     
     private func closeEmojiKeyboard() {
         //如果是emoji键盘，则关闭emoji键盘，打开键盘
         emojiKeyboardView?.removeFromSuperview()
         
-        emojiSwitchButton?.setImage(UIImage(named: "emojiSwitchButton1"), forState: .Normal)
+        emojiSwitchButton?.setImage(UIImage(named: "emojiSwitchButton1"), for: [])
         
         isEmojiKeyboardOpen = false
+        
+        //调整评论框的y坐标
+        //moveCommentWindowY(40)
     }
     
-    func handleTap(gestureRecognizer: UIGestureRecognizer) {
+    @objc func handleTap(gestureRecognizer: UIGestureRecognizer) {
         //viewController.hideKeyboardWhenTappedAround()
         commentFiled2.becomeFirstResponder()
         
     }
     
-    func closeComment() {
+    @objc func closeComment() {
         closeCommentWindow()
         if emojiKeyboardView != nil {
             closeEmojiKeyboard()
         }
-        viewController.dismissKeyboard()
+        Utils.dismissKeyboard(self.viewController.view)
         commentFiled2.resignFirstResponder()
     }
     
     
     private func getCommentContent() -> String {
         let commentContent = commentFiled2.text.emojiEscapedString
-        return commentContent.stringByTrimmingCharactersInSet(
-            NSCharacterSet.whitespaceAndNewlineCharacterSet()
-        )
+        //TODO: 去掉前后空格
+        return commentContent
+        //return commentContent.stringByTrimmingCharactersInSet(
+          //  NSCharacterSet.whitespaceAndNewlineCharacterSet()
+       // )
     }
     
     
@@ -219,16 +258,16 @@ class CommentController : NSObject, UITextViewDelegate {
         
         let commentContent = getCommentContent()
         if commentContent.length == 0 {
-            viewController.displayMessage("评论不能为空")
+            Utils.displayMessage(message: "评论不能为空")
             return false
         }
         
         //检查上次评论的时间
         if lastCommentTime != nil {
-            let elapsedTime = NSDate().timeIntervalSinceDate(lastCommentTime!)
+            let elapsedTime = NSDate().timeIntervalSince(lastCommentTime! as Date)
             let duration = Int(elapsedTime)
             if duration < 2 {
-                viewController.displayMessage("您发的太频繁了")
+                Utils.displayMessage(message: "您发的太频繁了")
                 return false
             }
         }
@@ -236,11 +275,11 @@ class CommentController : NSObject, UITextViewDelegate {
         return true
     }
     
-    func sendComment() {
+    @objc func sendComment() {
         NSLog("%s: sendComment", TAG)
         isSendPressed = true
         
-        let song = (viewController.getAudioPlayer().currentItem as! MyAudioItem).song
+        let song = (Utils.getAudioPlayer().currentItem as! MyAudioItem).song
         if (song == nil) {
             NSLog("%s: song is null", TAG)
             return
@@ -253,55 +292,11 @@ class CommentController : NSObject, UITextViewDelegate {
         //关闭评论窗口
         closeCommentWindow()
         
-        if song.isLive {
-            sendLiveComment()
-        } else {
-            sendCommonComment()
-        }
+        sendLiveComment()
         
     }
     
-    private func sendCommonComment() {
-        let sendCommentRequest = SendCommentRequest()
-        sendCommentRequest.song = song
-        sendCommentRequest.comment = getCommentContent().emojiEscapedString
-        
-        BasicService().sendRequest(ServiceConfiguration.SEND_COMMENT, request: sendCommentRequest) {
-            (resp: SendCommentResponse) -> Void in
-            dispatch_async(dispatch_get_main_queue()) {
-                NSLog("%s: process send comment response", self.TAG)
-                self.viewController.dismissKeyboard()
-                self.lastCommentTime = NSDate()
-                if ( resp.status == ServerResponseStatus.Success.rawValue) {
-                    NSLog("%s: sucess", self.TAG)
-                    self.commentFiled2.text = ""
-                    self.disableSendButton()
-                    
-                    let loginUser = self.loginUserStore.getLoginUser()
-                    
-                    self.isCommentSuccess = true
-                    let comment = Comment()
-                    comment.song = self.song
-                    comment.time = "现在"
-                    comment.userId = loginUser!.userName
-                    comment.nickName = loginUser!.nickName!
-                    comment.content = sendCommentRequest.comment
-                    self.delegate?.afterSendComment(comment)
-                    
-                    if !self.isKeyboardShow {
-                        self.showComentResultTip()
-                    }
-                    
-                } else {
-                    NSLog("%s: fail", self.TAG)
-                    self.isCommentSuccess = false
-                    self.commentErrorMessage = resp.errorMessage
-                }
-            }
-            
-        }
-
-    }
+   
     
     
     private func sendLiveComment() {
@@ -316,17 +311,18 @@ class CommentController : NSObject, UITextViewDelegate {
         socket?.connect()
         //socket?.reconnect()
         QL1("sendCommentRequest = \(sendCommentRequest.getJSON().rawString())")
-        socket?.emitWithAck(chat_message_cmd, sendCommentRequest.getJSON().rawString()!) (timeoutAfter: 0) { data in
+
+        socket?.emitWithAck(chat_message_cmd, sendCommentRequest.getJSON().rawString()!).timingOut(after: 0) { data in
             QL1("emitWithAck callback")
             QL1(data)
 
             let result = data[0] as! NSDictionary
             if result["status"] as! Int != 0 {
-                self.viewController.displayMessage(result["errorMessage"] as! String )
+            Utils.displayMessage(message: result["errorMessage"] as! String )
                 return
             }
             
-            self.viewController.dismissKeyboard()
+            Utils.dismissKeyboard(self.viewController.view)
             self.lastCommentTime = NSDate()
             self.commentFiled2.text = ""
             self.disableSendButton()
@@ -335,7 +331,7 @@ class CommentController : NSObject, UITextViewDelegate {
                 self.showComentResultTip()
             }
             
-            let dateFormatter = NSDateFormatter()
+            let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "HH:mm:ss"
             
             
@@ -344,11 +340,11 @@ class CommentController : NSObject, UITextViewDelegate {
             let comment = Comment()
             comment.id = "1"
             comment.song = self.song
-            comment.time = dateFormatter.stringFromDate(NSDate())
+            comment.time = dateFormatter.string(from: NSDate() as Date)
             comment.userId = loginUser!.userName
             comment.nickName = loginUser!.nickName!
             comment.content = sendCommentRequest.comment
-            self.liveDelegate?.afterSendLiveComment([comment])
+            self.liveDelegate?.afterSendLiveComment(comments: [comment])
         }
     }
 
@@ -357,30 +353,30 @@ class CommentController : NSObject, UITextViewDelegate {
     //注册键盘改变通知
     func addKeyboardNotify() {
         print("addKeyboardNotify")
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(keyboardDidHide(_:)),  name: UIKeyboardDidHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardDidHide),  name: NSNotification.Name.UIKeyboardDidHide, object: nil)
     }
     
     //取消键盘改变的通知
     func removeKeyboardNotify() {
         print("removeKeyboardNotify")
         
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillHideNotification, object: nil)
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardDidHideNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardDidHide, object: nil)
     }
 
     
     var isKeyboardShow = false
     
-    func keyboardWillShow(notification: NSNotification) {
+    @objc func keyboardWillShow(notification: NSNotification) {
  
         print("start keyboardWillShow")
         //notification.userInfo?[UIKeyboardFrameEndUserInfoKey]
-        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.CGRectValue() {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
             closeEmojiKeyboard()
-            showOrAdjustCommentWindow(keyboardSize)
+            showOrAdjustCommentWindow(keyboardSize: keyboardSize)
         }
     }
     
@@ -388,11 +384,11 @@ class CommentController : NSObject, UITextViewDelegate {
     //显示评论窗口，如果键盘大小发生变化，也需要调整窗口的位置
     private func showOrAdjustCommentWindow(keyboardSize: CGRect) {
         //如果分享页面打开，则不要弹出键盘
-        if !shareView.hidden {
+        if shareView.isShow {
             return
         }
         
-        let screenHeight = UIScreen.mainScreen().bounds.height
+        let screenHeight = UIScreen.main.bounds.height
         print("keyboardHeight = \(keyboardSize.height)")
         let commentWinY = screenHeight - keyboardSize.height - bottomView2.frame.height
         bottomView2.frame.origin.y = commentWinY
@@ -400,8 +396,8 @@ class CommentController : NSObject, UITextViewDelegate {
         if !isKeyboardShow {
             isKeyboardShow = true
             showOverlay()
-            bottomView2.hidden = false
-            emojiSwitchButton?.setImage(UIImage(named: "emojiSwitchButton1"), forState: .Normal)
+            bottomView2.isHidden = false
+            emojiSwitchButton?.setImage(UIImage(named: "emojiSwitchButton1"), for: [])
             //这个要放在显示bottomView2之后才掉用
             commentFiled2.becomeFirstResponder()
         }
@@ -409,9 +405,9 @@ class CommentController : NSObject, UITextViewDelegate {
     }
     
     
-    func keyboardWillHide(notification: NSNotification) {
+    @objc func keyboardWillHide(notification: NSNotification) {
         
-        emojiSwitchButton?.setImage(UIImage(named: "emojiSwitchButton2"), forState: .Normal)
+        emojiSwitchButton?.setImage(UIImage(named: "emojiSwitchButton2"), for: [])
     }
     
     
@@ -419,9 +415,9 @@ class CommentController : NSObject, UITextViewDelegate {
         
         if isKeyboardShow {
             commentFiled2.resignFirstResponder()
-            bottomView2.hidden = true
+            bottomView2.isHidden = true
             
-            let screenHeight = UIScreen.mainScreen().bounds.height
+            let screenHeight = UIScreen.main.bounds.height
             let commentWinY = screenHeight - bottomView2.frame.height
             bottomView2.frame.origin.y = commentWinY
 
@@ -434,7 +430,7 @@ class CommentController : NSObject, UITextViewDelegate {
     }
     
     
-    func keyboardDidHide(notification: NSNotification) {
+    @objc func keyboardDidHide(notification: NSNotification) {
         if isSendPressed {
             showComentResultTip()
         }
@@ -446,12 +442,12 @@ class CommentController : NSObject, UITextViewDelegate {
         if isCommentSuccess {
             message = "评论成功！"
         }
-        ToastMessage.showMessage(self.viewController.view, message: message)
+        ToastMessage.showMessage(view: self.viewController.view, message: message)
     }
     
     func showOverlay() {
         print("showOverlay")
-        overlay = UIView(frame: UIScreen.mainScreen().bounds)
+        overlay = UIView(frame: UIScreen.main.bounds)
         overlay.backgroundColor = UIColor(white: 0, alpha: 0.65)
         
         
@@ -465,7 +461,7 @@ class CommentController : NSObject, UITextViewDelegate {
         print("hideOverlay")
         bottomView2.removeFromSuperview()
         viewController.view.addSubview(bottomView2)
-        bottomView2.hidden = true
+        bottomView2.isHidden = true
         overlay.removeFromSuperview()
         //viewController.cancleHideKeybaordWhenTappedAround()
     }

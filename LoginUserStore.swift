@@ -31,8 +31,8 @@ class LoginUserStore {
         //存储登录的信息
         let context = coreDataStack.mainQueueContext
         var user: LoginUserEntity!
-        context.performBlockAndWait() {
-            user = NSEntityDescription.insertNewObjectForEntityForName("LoginUserEntity", inManagedObjectContext: context) as! LoginUserEntity
+        context.performAndWait() {
+            user = NSEntityDescription.insertNewObject(forEntityName: "LoginUserEntity", into: context) as! LoginUserEntity
             user.userName = loginUser.userName
             user.password = loginUser.password
             user.name = loginUser.name
@@ -69,16 +69,16 @@ class LoginUserStore {
     }
     
     func getLoginUser() -> LoginUserEntity? {
-        let fetchRequest = NSFetchRequest(entityName: "LoginUserEntity")
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "LoginUserEntity")
         fetchRequest.sortDescriptors = nil
         fetchRequest.predicate = nil
         
         let mainQueueContext = self.coreDataStack.mainQueueContext
         var mainQueueUsers: [LoginUserEntity]?
-        var fetchRequestError: ErrorType?
-        mainQueueContext.performBlockAndWait() {
+        var fetchRequestError: Error?
+        mainQueueContext.performAndWait() {
             do {
-                mainQueueUsers = try mainQueueContext.executeFetchRequest(fetchRequest) as? [LoginUserEntity]
+                mainQueueUsers = try mainQueueContext.fetch(fetchRequest) as? [LoginUserEntity]
             }
             catch let error {
                 fetchRequestError = error
@@ -101,9 +101,9 @@ class LoginUserStore {
         let loginUser = getLoginUser()
         if loginUser != nil {
             let context = coreDataStack.mainQueueContext
-            context.performBlockAndWait() {
+            context.performAndWait() {
                 do {
-                    context.deleteObject(loginUser!)
+                    context.delete(loginUser!)
                     try self.coreDataStack.saveChanges()
                 }
                 catch  {

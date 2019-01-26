@@ -33,6 +33,25 @@ class CommentListController: BaseUIViewController, UITableViewDataSource, UITabl
     //分页控制器
     var pagableController = PagableController<Comment>()
     
+    func searchHandler(respHandler: @escaping ((_ resp: ServerResponse) -> Void)) {
+        
+        let request = GetSongCommentsRequest(song: song)
+        request.pageNo = pagableController.page
+        request.pageSize = ServiceConfiguration.PageSize
+
+        //TODO: 执行实际的查询
+        /*
+        BasicService().sendRequest(url: ServiceConfiguration.GET_SONG_COMMENTS,
+                                   request: request,
+                                   completion: respHandler as ((_ resp: GetSongCommentsResponse) -> Void))
+        */
+    }
+
+    func afterSendComment(comment: Comment) {
+        pagableController.data.insert(comment, at: 0)
+        tableView.reloadData()
+    }
+    
     override func viewDidLoad(){
         super.viewDidLoad()
         print("viewDidLoad")
@@ -52,22 +71,22 @@ class CommentListController: BaseUIViewController, UITableViewDataSource, UITabl
         commentController.emojiSwitchButton = emojiSwithButton
         commentController.viewController = self
         commentController.delegate = self
-        commentController.initView(song)
+        commentController.initView(song: song)
       
         tableView.dataSource = self
         tableView.delegate = self
         tableView.estimatedRowHeight = 260
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         commentController.addKeyboardNotify()
         pagableController.loadMore()
     }
     
-    override func viewWillDisappear(animated: Bool) {
-        if self.navigationController!.viewControllers.indexOf(self) == nil {
-            if !bottomView2.hidden {
+    override func viewWillDisappear(_ animated: Bool) {
+        if self.navigationController!.viewControllers.index(of: self) == nil {
+            if !bottomView2.isHidden {
                 dismissKeyboard()
             }
         }
@@ -77,10 +96,7 @@ class CommentListController: BaseUIViewController, UITableViewDataSource, UITabl
         commentController.removeKeyboardNotify()
     }
     
-    func afterSendComment(comment: Comment) {
-        pagableController.data.insert(comment, atIndex: 0)
-        tableView.reloadData()
-    }
+
 
 }
 
@@ -89,32 +105,22 @@ extension CommentListController {
     //开始上拉到特定位置后改变列表底部的提示
     func scrollViewDidScroll(scrollView: UIScrollView){
         print("scrollViewDidScroll")
-        pagableController.scrollViewDidScroll(scrollView)
+        pagableController.scrollViewDidScroll(scrollView: scrollView)
     }
     
     
-    func searchHandler(respHandler: ((resp: ServerResponse) -> Void)) {
-       
-        let request = GetSongCommentsRequest(song: song)
-        request.pageNo = pagableController.page
-        request.pageSize = ServiceConfiguration.PageSize
-        
-        BasicService().sendRequest(ServiceConfiguration.GET_SONG_COMMENTS,
-                                   request: request,
-                                   completion: respHandler as ((resp: GetSongCommentsResponse) -> Void))
-        
-    }
+    
     
 }
 
 extension CommentListController {
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: IndexPath) -> CGFloat {
         let rowCount = pagableController.data.count
         if rowCount == 0 { //没有点评的情况
             return 70
         }  else {   //评论行
             
-            let cell = tableView.dequeueReusableCellWithIdentifier("commentCell") as! CommentCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "commentCell") as! CommentCell
             let row = indexPath.row
             let comment = pagableController.data[row]
             if heightCache[comment.content] == nil {
@@ -143,16 +149,16 @@ extension CommentListController {
     }
     
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
         return pagableController.data.count
         
     }
     
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let row = indexPath.row
-        let cell = tableView.dequeueReusableCellWithIdentifier("commentCell") as! CommentCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "commentCell") as! CommentCell
         
         let comment = pagableController.data[row]
         cell.userIdLabel.text = comment.nickName
@@ -168,8 +174,8 @@ extension CommentListController {
         
         cell.userImage.becomeCircle()
         let profileImageUrl = ServiceConfiguration.GET_PROFILE_IMAGE + "?userid=" + comment.userId
-        if let url = NSURL(string: profileImageUrl) {
-            cell.userImage.kf_setImageWithURL(url)
+        if let url = URL(string: profileImageUrl) {
+            cell.userImage.kf.setImage(with: url)
         }
 
         //print("computeHeight")
@@ -178,7 +184,7 @@ extension CommentListController {
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.deselectRowAtIndexPath(indexPath, animated: false)
+        tableView.deselectRow(at: indexPath as IndexPath, animated: false)
     }
 
 }

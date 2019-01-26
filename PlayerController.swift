@@ -27,8 +27,8 @@ class PlayerViewController : NSObject, AudioPlayerDelegate {
     }
     
     func playOrPause() {
-        if audioPlayer.state == AudioPlayerState.Playing || audioPlayer.state == AudioPlayerState.Buffering ||
-           audioPlayer.state == AudioPlayerState.WaitingForConnection {
+        if audioPlayer.state == AudioPlayerState.playing || audioPlayer.state == AudioPlayerState.buffering ||
+            audioPlayer.state == AudioPlayerState.waitingForConnection {
             audioPlayer.pause()
         } else {
             audioPlayer.resume()
@@ -41,31 +41,31 @@ class PlayerViewController : NSObject, AudioPlayerDelegate {
         cell.durationLabel.text = "00:00"
         cell.bufferProgress.progress = 0
         cell.progressBar.value = 0
-        cell.progressBar.enabled = false
-        cell.playButton.setImage(UIImage(named: "play"), forState: .Normal)
+        cell.progressBar.isEnabled = false
+        cell.playButton.setImage(UIImage(named: "play"), for: [])
     }
     
     
     func updatePrevAndNextButtonStatus() {
-        if audioPlayer.hasNext() {
-            cell.nextButton.enabled = true
+        if audioPlayer.hasNext {
+            cell.nextButton.isEnabled = true
         } else {
-            cell.nextButton.enabled = false
+            cell.nextButton.isEnabled = false
         }
         
         if audioPlayer.hasPrevious() {
-            cell.preButton.enabled = true
+            cell.preButton.isEnabled = true
             
         } else {
-            cell.preButton.enabled = false
+            cell.preButton.isEnabled = false
         }
     }
     
     func updatePlayAndPauseButton() {
-        if audioPlayer.state == AudioPlayerState.Playing || audioPlayer.state == AudioPlayerState.WaitingForConnection || audioPlayer.state == AudioPlayerState.Buffering  {
-            cell.playButton.setImage(UIImage(named: "pause"), forState: .Normal)
+        if audioPlayer.state == AudioPlayerState.playing || audioPlayer.state == AudioPlayerState.waitingForConnection || audioPlayer.state == AudioPlayerState.buffering  {
+            cell.playButton.setImage(UIImage(named: "pause"), for: [])
         } else {
-            cell.playButton.setImage(UIImage(named: "play"), forState: .Normal)
+            cell.playButton.setImage(UIImage(named: "play"), for: [])
         }
         
     }
@@ -79,21 +79,21 @@ class PlayerViewController : NSObject, AudioPlayerDelegate {
                     if progress > cell.oldProgress! {
                         //print("current = \(audioPlayer.currentItemDuration!), oldProgress = \(oldProgress!)")
                         cell.progressBar.value = progress
-                        cell.playingLabel.text = Utils.stringFromTimeInterval(audioPlayer.currentItemProgression!)
+                        cell.playingLabel.text = Utils.stringFromTimeInterval(interval: audioPlayer.currentItemProgression!)
                         cell.oldProgress = nil
                     }
                 } else {
                     if progress < cell.oldProgress! {
                         //print("current = \(audioPlayer.currentItemDuration!), oldProgress = \(oldProgress!)")
                         cell.progressBar.value = progress
-                        cell.playingLabel.text = Utils.stringFromTimeInterval(audioPlayer.currentItemProgression!)
+                        cell.playingLabel.text = Utils.stringFromTimeInterval(interval: audioPlayer.currentItemProgression!)
                         cell.oldProgress = nil
                     }
                 }
                 
             } else {
                 cell.progressBar.value = progress
-                cell.playingLabel.text = Utils.stringFromTimeInterval(audioPlayer.currentItemProgression!)
+                cell.playingLabel.text = Utils.stringFromTimeInterval(interval: audioPlayer.currentItemProgression!)
             }
         }
         
@@ -103,7 +103,7 @@ class PlayerViewController : NSObject, AudioPlayerDelegate {
     func updateBufferProgress() {
         if audioPlayer.currentItemDuration != nil && audioPlayer.currentItemLoadedRange != nil {
             cell.bufferProgress.progress = Float( audioPlayer.currentItemLoadedRange!.latest / audioPlayer.currentItemDuration!)
-            cell.progressBar.enabled = true
+            cell.progressBar.isEnabled = true
             
         } else {
             cell.bufferProgress.progress = 0
@@ -113,28 +113,28 @@ class PlayerViewController : NSObject, AudioPlayerDelegate {
     let kRotationAnimationKey = "com.myapplication.rotationanimationkey" // Any key
     
     func rotateView(view: UIView, duration: Double = 1) {
-        if view.layer.animationForKey(kRotationAnimationKey) == nil {
+        if view.layer.animation(forKey: kRotationAnimationKey) == nil {
             let rotationAnimation = CABasicAnimation(keyPath: "transform.rotation")
             
             rotationAnimation.fromValue = 0.0
-            rotationAnimation.toValue = Float(M_PI * 2.0)
+            rotationAnimation.toValue = Float(Double.pi * 2.0)
             rotationAnimation.duration = duration
             rotationAnimation.repeatCount = Float.infinity
             
-            view.layer.addAnimation(rotationAnimation, forKey: kRotationAnimationKey)
+            view.layer.add(rotationAnimation, forKey: kRotationAnimationKey)
         }
     }
     
     func updateBufferCircle() {
         let state = audioPlayer.state
         QL1("updateBufferCircle: state = \(state)" )
-        if state == AudioPlayerState.Buffering || state == AudioPlayerState.WaitingForConnection {
+        if state == AudioPlayerState.buffering || state == AudioPlayerState.waitingForConnection {
 
-            cell.bufferCircle.hidden = false
-            rotateView(cell.bufferCircle, duration: 1.3)
+            cell.bufferCircle.isHidden = false
+            rotateView(view: cell.bufferCircle, duration: 1.3)
 
         } else {
-            cell.bufferCircle.hidden = true
+            cell.bufferCircle.isHidden = true
             
         }
     }
@@ -147,12 +147,12 @@ class PlayerViewController : NSObject, AudioPlayerDelegate {
         updatePlayAndPauseButton()
         
         
-        if to == AudioPlayerState.Stopped || to == AudioPlayerState.WaitingForConnection {
-            cell.progressBar.enabled = false
+        if to == AudioPlayerState.stopped || to == AudioPlayerState.waitingForConnection {
+            cell.progressBar.isEnabled = false
         }
         
-        if to == AudioPlayerState.Buffering || to == AudioPlayerState.Playing {
-            cell.progressBar.enabled = true
+        if to == AudioPlayerState.buffering || to == AudioPlayerState.playing {
+            cell.progressBar.isEnabled = true
         }
         
         updateBufferCircle()
@@ -182,23 +182,23 @@ class PlayerViewController : NSObject, AudioPlayerDelegate {
     }
     
     
-    func audioPlayer(audioPlayer: AudioPlayer, didUpdateProgressionToTime time: NSTimeInterval, percentageRead: Float) {
+    func audioPlayer(audioPlayer: AudioPlayer, didUpdateProgressionToTime time: TimeInterval, percentageRead: Float) {
         //print("audioPlayer:didUpdateProgressionToTime called, progressPercentage = \(percentageRead)");
         //print("audioPlayer:didUpdateProgressionToTime called")
         updatePlayingProgress()
         
     }
     
-    func audioPlayer(audioPlayer: AudioPlayer, didFindDuration duration: NSTimeInterval, forItem item: AudioItem) {
+    func audioPlayer(audioPlayer: AudioPlayer, didFindDuration duration: TimeInterval, forItem item: AudioItem) {
         print("duration = \(duration)")
-        cell.durationLabel.text = Utils.stringFromTimeInterval(duration)
+        cell.durationLabel.text = Utils.stringFromTimeInterval(interval: duration)
     }
     
-    
+    /*
     func audioPlayer(audioPlayer: AudioPlayer, didLoadRange range: AudioPlayer.TimeRange, forItem item: AudioItem){
         print("audioPlayer:didLoadRange, loadRange = \(range)")
         updateBufferProgress()
-    }
+    }*/
     
     func audioPlayer(audioPlayer: AudioPlayer, didUpdateEmptyMetadataOnItem item: AudioItem, withData data: Metadata) {
         print("audioPlayer:didUpdateEmptyMetadataOnItem called")

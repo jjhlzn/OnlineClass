@@ -29,63 +29,73 @@ class SetSexViewController: BaseUIViewController, UITableViewDataSource, UITable
         } else {
             selectSex = loginUserStore.getLoginUser()!.sex!
         }
+        
+        Utils.setNavigationBarAndTableView(self, tableView: tableView)
+        setLeftBackButton()
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 3
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
-        let cell = tableView.dequeueReusableCellWithIdentifier("sexCell")!
+        let cell = tableView.dequeueReusableCell(withIdentifier: "sexCell")!
         let row = indexPath.row
         cell.textLabel?.text = sexes[row]
         
         if selectSex == sexes[row] {
-            cell.accessoryType = .Checkmark
+            cell.accessoryType = .checkmark
         }
         
         return cell
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        selectSex = (tableView.cellForRowAtIndexPath(indexPath)?.textLabel?.text)!
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        selectSex = (tableView.cellForRow(at: indexPath as IndexPath)?.textLabel?.text)!
         
         for i in 0...sexes.count {
-            let cell = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: i, inSection: 0))
-            cell?.accessoryType = .None
+            let cell = tableView.cellForRow(at: NSIndexPath(row: i, section: 0) as IndexPath)
+            cell?.accessoryType = .none
         }
         
         
-        tableView.cellForRowAtIndexPath(indexPath)?.accessoryType = .Checkmark
+        tableView.cellForRow(at: indexPath as IndexPath)?.accessoryType = .checkmark
         tableView.reloadData()
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 1
     }
     
     
     private func getSelectSex() -> String {
         for i in 0...sexes.count {
-            let cell = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: i, inSection: 0))
-            if cell?.accessoryType == .Checkmark {
+            let cell = tableView.cellForRow(at: NSIndexPath(row: i, section: 0) as IndexPath)
+            if cell?.accessoryType == .checkmark {
                 return sexes[i]
             }
         }
         return "保密"
     }
     
-    
-    @IBAction func savePressed(sender: AnyObject) {
-        loading.showOverlay(view)
+    @IBAction func saveBtnPressed(_ sender: Any) {
+        loading.showOverlay(view: view)
         let request = SetSexRequest()
         request.newSex = getSelectSex()
-        BasicService().sendRequest(ServiceConfiguration.SET_SEX, request: request) {
+        BasicService().sendRequest(url: ServiceConfiguration.SET_SEX, request: request) {
             (resp: SetSexResponse) -> Void in
             self.loading.hideOverlayView()
             if resp.status != 0 {
-                self.displayMessage(resp.errorMessage!)
+                self.displayMessage(message: resp.errorMessage!)
                 return
             }
             
@@ -94,12 +104,13 @@ class SetSexViewController: BaseUIViewController, UITableViewDataSource, UITable
             if self.loginUserStore.updateLoginUser() {
                 let viewControllers = (self.navigationController?.viewControllers)!
                 (viewControllers[1] as! PersonalInfoViewController).tableView.reloadData()
-                self.navigationController?.popViewControllerAnimated(true)
+                self.navigationController?.popViewController(animated: true)
                 
             } else {
-                self.displayMessage("保存失败")
+                self.displayMessage(message: "保存失败")
             }
         }
     }
+    
 
 }

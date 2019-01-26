@@ -11,454 +11,727 @@ import KDEAudioPlayer
 import QorumLogs
 import Auk
 import MarqueeLabel
+import Gifu
+import LTScrollView
+import MJRefresh
+import SnapKit
 
-class CourseMainPageViewController: BaseUIViewController {
+class CourseMainPageViewController: BaseUIViewController, LTTableViewProtocal, UIScrollViewDelegate {
 
     @IBOutlet weak var tableView: UITableView!
     
-    @IBOutlet weak var playingButton: UIButton!
-    var extendFunctionMananger : ExtendFunctionMananger!
+    //@IBOutlet weak var playingButton: UIButton!
+    var extendFunctionMananger = ExtendFunctionMananger.instance
     var extendFunctionStore = ExtendFunctionStore.instance
     var extendFunctionImageStore = ExtendFunctionImageStore()
-    var ads = [Advertise]()
+
     var keyValueStore = KeyValueStore()
-    var freshHeaderAdvTimer: NSTimer!
-    var footerAdvs = [FooterAdv]()
-    var headerAdv: HeaderAdv?
-    var courseNotifies = [String]()
-    
+
     var loading = LoadingOverlay()
-    
-    var refreshControl:UIRefreshControl!
+    //var refreshControl:UIRefreshControl!
     var refreshing = false
     
+    var toutiao = Toutiao()
+    var ads = [Advertise]()
+    var zhuanLans = [ZhuanLan]()
+    var jpks = [ZhuanLan]()
+    var courses = [Album]()
+    var questions = [Question]()
+    var toutiaos = [FinanceToutiao]()
+    var learnFinanceItems = [LearnFinanceItem]()
+    var pos: Pos?
+    
+    var cellModels = [MainPageCellModel]()
+    
     var buyPayCourseDelegate: ConfirmDelegate2!
+    var isDisapeared = false
+    var navigationManager : NavigationBarManager!
+    
+    
+    var adOverlay: UIView?
+    var isShowAd = false
+    var popupAd = Advertise()
+    
+    let refreshHeader = MJRefreshNormalHeader()
+    let mainPageNavBar = MainPageNavigationBar()
+    
+    override func audioPlayer(_ audioPlayer: AudioPlayer, didChangeStateFrom from: AudioPlayerState, to state: AudioPlayerState) {
+        tableView.reloadData()
+        let audioItem = getAudioPlayer().currentItem
+        if audioItem == nil {
+            return
+        }
+        QL1(state)
+    }
+    
+    override
+    func audioPlayer(_ audioPlayer: AudioPlayer, didLoad range: TimeRange, for item: AudioItem) {
+        QL1(range)
+    }
+    
+    override
+    func audioPlayer(_ audioPlayer: AudioPlayer, didFindDuration duration: TimeInterval, for item: AudioItem) {
+        QL1(duration)
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let items = self.tabBarController?.tabBar.items
+        items![0].title = "探索"
+        items![1].title = "签到"
+        items![2].title = "直播"
+        items![3].title = "已购"
+        items![4].title = "我的"
+    
+        
+        tableView.separatorStyle = .none
         tableView.dataSource = self
         tableView.delegate = self
+        
+
+        self.tableView.register(UINib(nibName:"QuestionHeaderCell", bundle:nil),forCellReuseIdentifier:"QuestionHeaderCell")
+        self.tableView.register(UINib(nibName:"QuestionItemCell", bundle:nil),forCellReuseIdentifier:"QuestionItemCell")
 
         
         buyPayCourseDelegate = ConfirmDelegate2(controller: self)
         
-        let screenHeight = UIScreen.mainScreen().bounds.height
+        setExtendFuncMgrConfig()
+       
+        //下拉刷新设置
+        refreshing = false
+        
+        refreshHeader.setRefreshingTarget(self, refreshingAction: #selector(refresh))
+        tableView.mj_header = refreshHeader
+        
+        //如果是iphoneX则，需要加长下拉的程度
+        if UIDevice().isX() {
+            refreshHeader.frame.size.height += 40
+            let frame = refreshHeader.frame
+            refreshHeader.bounds = CGRect(x: frame.origin.x, y: frame.origin.y  - 20, width: frame.width, height: frame.height)
+        }
+        refreshHeader.lastUpdatedTimeLabel.isHidden = true
+        refreshHeader.stateLabel.isHidden = true
+        
+        makeCells()
+        
+        loadFunctionInfos()
+        loadHeadAds()
+        loadZhuanLanAndTuijianCourses()
+        //loadQuestions()
+        loadFinanceToutiaos()
+        
+        navigationManager = NavigationBarManager(self)
+        mainPageNavBar.navigationManager = navigationManager
+        mainPageNavBar.controller = self
+        setNavigationBarAndTableView(self, tableView: tableView)
+        //self.automaticallyAdjustsScrollViewInsets = false
+    }
+    
+    func setNavigationBarAndTableView(_ controller: UIViewController,  tableView: UITableView?) {
+        if #available(iOS 11.0, *) {
+            tableView?.contentInsetAdjustmentBehavior = .never
+            if UIDevice().isX() {
+                tableView?.contentInset = UIEdgeInsetsMake(0, 0, 0, 0)
+            }
+        } else {
+            controller.automaticallyAdjustsScrollViewInsets = false
+        }
+    }
+    
+    func setExtendFuncMgrConfig() {
+        let screenHeight = UIScreen.main.bounds.height
         var maxRows = 3
         if screenHeight < 568 {  //568
             maxRows = 2
         }
-        extendFunctionMananger = ExtendFunctionMananger(controller: self, isNeedMore:  true, showMaxRows: maxRows)
-        addPlayingButton(playingButton)
-        loadFunctionInfos()
-        
-        //下拉刷新设置
-        refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: #selector(refresh), forControlEvents: UIControlEvents.ValueChanged)
-        tableView.addSubview(refreshControl)
-        refreshing = false
+        extendFunctionMananger.setConfig(controller: self, isNeedMore: true, showMaxRows: maxRows)
     }
     
-    override func viewWillAppear(animated: Bool) {
+    
+    var lastOffSet : CGFloat = 0
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let offsetY = scrollView.contentOffset.y
+        lastOffSet = offsetY
+        mainPageNavBar.updateNavigationForOffsetAdust(offsetY)
+    }
+    
+    func setNavigationBar(_ offset : CGFloat = 0, updateAlways : Bool = false) {
+        //updateNavigationForOffsetAdust(offset, updateAlways: updateAlways)
+        mainPageNavBar.updateNavigationForOffsetAdust(offset, updateAlways: updateAlways)
+    }
+    
+    @objc func tapSearchLabel(sender:UITapGestureRecognizer) {
+        DispatchQueue.main.async { () -> Void in
+            self.performSegue(withIdentifier: "newSearchSegue", sender: nil)
+        }
+    }
+    
+    private func startPageViewer() {
+        if let headerCell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? HeaderAdvCell {
+            headerCell.startPageViewer()
+             QL3("start pageviewer")
+        }
+    }
+    
+    private func stopPageViewer() {
+        if let headerCell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? HeaderAdvCell {
+            headerCell.stopPageViewer()
+            QL3("stop pageviewer")
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        updatePlayingButton(playingButton)
-        loadHeaderAdv()
-        loadFooterAdvs()
-        loadCourseNotify()
+        //updatePlayingButton(button: playingButton)
+        extendFunctionMananger.controller = self
+        self.setNavigationBar(lastOffSet, updateAlways: true)
+        isDisapeared = false
         
-        createTimer()
+        if isShowAd {
+            hidePopupAd()
+        }
+        
+        //每次显示的时候都刷新列表
+        tableView.reloadData()
+        //self.hidesBottomBarWhenPushed = false
+        startPageViewer()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+         navigationManager.setMusicBtnState()
         
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    
+    
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
-        freshHeaderAdvTimer.invalidate()
+        self.navigationItem.rightBarButtonItem  = nil
+        
+        isDisapeared = false
+        let nav = self.navigationController?.navigationBar
+        nav?.barStyle = UIBarStyle.default
+        nav?.tintColor = UIColor.black
+        
+        stopPageViewer()
     }
     
-    private func createTimer() {
-        freshHeaderAdvTimer = NSTimer.scheduledTimerWithTimeInterval(60, target: self,
-                                                                selector: #selector(loadHeaderAdv), userInfo: nil, repeats: true)
-    }
-    
-
-    func loadHeaderAdv() {
-        BasicService().sendRequest(ServiceConfiguration.GET_HEADER_ADV, request: GetHeaderAdvRequest()) {
-            (resp: GetHeaderAdvResponse) -> Void in
-            if self.refreshing {
-                self.refreshControl.endRefreshing()
-            }
-            self.refreshing = false
-            
-            if resp.status != ServerResponseStatus.Success.rawValue {
-                QL4("server return error: \(resp.errorMessage!)")
-                return
-            }
-            
-            if resp.headerAdv != nil {
-                let headerCell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0)) as! HeaderAdvCell
-
-                self.headerAdv = resp.headerAdv
-                if let imageUrl = NSURL(string: (resp.headerAdv?.imageUrl)!) {
-                    headerCell.advImage.kf_setImageWithURL(imageUrl)
-                }
-            }
-        }
-    }
-    
-    func loadFooterAdvs() {
-        BasicService().sendRequest(ServiceConfiguration.GET_FOOTER_ADV, request: GetFooterAdvsRequest() ) {
-            (resp: GetFooterAdvsResponse) -> Void in
-            if resp.status != ServerResponseStatus.Success.rawValue {
-                QL4("server return error: \(resp.errorMessage!)")
-                return
-            }
-            if resp.advList.count == 4 {
-                self.footerAdvs = resp.advList
-                self.tableView.reloadData()
-            }
-        }
-    }
-    
-    func loadCourseNotify() {
-        BasicService().sendRequest(ServiceConfiguration.GET_COURSE_NOTIFY, request: GetCourseNotifyRequest() ) { (resp: GetCourseNotifyResponse) -> Void in
-            if resp.isFail {
-                QL4("server return error: \(resp.errorMessage!)")
-                return
-            }
-            self.courseNotifies = resp.notifies;
-            self.tableView.reloadData()
-        }
-    }
-    
-    
-    func loadFunctionInfos() {
-        BasicService().sendRequest(ServiceConfiguration.GET_FUNCTION_INFO, request: GetFunctionInfosRequest()) {
-            (resp: GetFunctionInfosResponse) -> Void in
-            if resp.status != ServerResponseStatus.Success.rawValue {
-                QL4("server return error: \(resp.errorMessage!)")
-                return
-            }
-            //更新消息
-            var imageUrls = [String]()
-            for function in resp.functions {
-                self.extendFunctionStore.updateMessageCount(function.code, value: function.messageCount)
-                self.extendFunctionStore.updateShow(function.code, value: function.isShow)
-                self.extendFunctionStore.updateFunctionName(function.code, value: function.name)
-                self.extendFunctionStore.updateImageUrl(function.code, value: function.imageUrl)
-                if function.imageUrl != "" {
-                   imageUrls.append(function.imageUrl)
-                }
-            }
-            self.tableView.reloadData()
-            self.downloadFunctionImages(imageUrls)
-        }
-
-    }
-    
-    func downloadFunctionImages(imageUrls: [String]) {
-        for imageUrl in imageUrls {
-            
-            let image = extendFunctionImageStore.getImage(imageUrl)
-            if image == nil {
-                let imageView = UIImageView()
-                imageView.kf_setImageWithURL(NSURL(string: imageUrl)!,
-                                                 placeholderImage: nil,
-                                                 optionsInfo: [.ForceRefresh],
-                                                 completionHandler: { (image, error, cacheType, imageURL) -> () in
-                                                    if image != nil {
-                                                        self.extendFunctionImageStore.saveOrUpdate(imageUrl, image: image!)
-                                                        self.tableView.reloadData()
-                                                    }
-                })
-
-            }
-        }
-    }
-    
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        super.prepareForSegue(segue, sender: sender)
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
         if segue.identifier == "beforeCourseSegue" {
-            let dest = segue.destinationViewController as! AlbumListController
+            let dest = segue.destination as! AlbumListController
             
             dest.courseType = sender as! CourseType
         } 
         else if segue.identifier == "loadWebPageSegue" {
-            let dest = segue.destinationViewController as! WebPageViewController
+            let dest = segue.destination as! WebPageViewController
             
             let params = sender as! [String: String]
             dest.url = NSURL(string: params["url"]!)
             
             dest.title = params["title"]
         } else if segue.identifier == "buyVipSegue" {
-            let dest = segue.destinationViewController as! WebPageViewController
-            dest.url = NSURL(string: ServiceLinkManager.MyAgentUrl)
-            dest.title = "Vip购买"
+            let args = sender as! [String:String]
+            let dest = segue.destination as! WebPageViewController
+            let url = "\(ServiceLinkManager.BuyProductUrl)?type=course&id=\(args["courseId"]!)"
+            QL1(url)
+            dest.url = NSURL(string: url)
+            dest.title = "确认支付"
+        } else if segue.identifier == "zhuanLanListSegue" {
+            if sender == nil {
+                let dest = segue.destination as! ZhuanLanListVC
+                dest.type = ZhuanLanListVC.TYPE_ZHUANLAN
+            } else {
+                let args = sender as! [String:String]
+                
+                let dest = segue.destination as! ZhuanLanListVC
+                dest.type = args["type"]!
+            }
+            
+        }  else if segue.identifier == "answerQuestionSegue" {
+            let args = sender as! [String:AnyObject]
+            let dest = segue.destination as! AnswerQuestionVC
+            dest.toUserId = args["toUserId"] as? String
+            dest.toUserName = args["toUserName"] as? String
+            dest.question = args["question"] as? Question
+        } else if segue.identifier == "newPlayerSegue" {
+            let song = sender as! Song
+            let audioPlayer = getAudioPlayer()
+            //如果当前歌曲已经在播放，就什么都不需要做
+            if audioPlayer.currentItem != nil {
+                if song.id == (audioPlayer.currentItem! as! MyAudioItem).song.id {
+                    return
+                }
+            }
+            
+            var audioItems = [AudioItem]()
+
+            let   url = URL(string: song.url)
+            let audioItem = MyAudioItem(song: song, highQualitySoundURL: url)
+            audioItems.append(audioItem!)
+
+            audioPlayer.delegate = nil
+            audioPlayer.play(items: audioItems, startAtIndex: 0)
+
+            (segue.destination as! NewPlayerController).hidesBottomBarWhenPushed = true
         }
     }
     
-    override func audioPlayer(audioPlayer: AudioPlayer, didChangeStateFrom from: AudioPlayerState, toState to: AudioPlayerState) {
-        let audioItem = getAudioPlayer().currentItem
-        if audioItem == nil {
-            return
-        }
-        updatePlayingButton(playingButton)
-    }
+
     
     @IBAction func searchPressed(sender: AnyObject) {
-        performSegueWithIdentifier("searchSegue", sender: nil)
+        DispatchQueue.main.async { () -> Void in
+            self.performSegue(withIdentifier: "searchSegue", sender: nil)
+        }
     }
     
-    func refresh() {
+    @objc func refresh() {
         if (refreshing) {
-            refreshControl.endRefreshing()
+            //refreshControl.endRefreshing()
+            refreshHeader.endRefreshing()
             return
         }
         
         refreshing = true
-        loadHeaderAdv()
+        loadHeadAds()
+        //loadToutiao()
         loadFunctionInfos()
+        loadZhuanLanAndTuijianCourses()
+        //loadQuestions()
+        loadFinanceToutiaos()
     }
     
-    var footerImageInterWidth = 2
+    @IBAction func viewZhuanLanListPressed(_ sender: Any) {
+        var sender = [String:String]()
+        sender["type"] = ZhuanLanListVC.TYPE_ZHUANLAN
+        DispatchQueue.main.async { () -> Void in
+            self.performSegue(withIdentifier: "zhuanLanListSegue", sender: sender)
+        }
+    }
+    
+    @IBAction func viewJpkPressed(_ sender: Any) {
+        var sender = [String:String]()
+        sender["type"] = ZhuanLanListVC.TYPE_JPK
+        DispatchQueue.main.async { () -> Void in
+            self.performSegue(withIdentifier: "zhuanLanListSegue", sender: sender)
+        }
+    }
+    
+    
+    @IBAction func viewAllToutiaoPressed(_ sender: Any) {
+        var sender = [String:String]()
+        sender["title"] = "金融宝典"
+        sender["url"] = ServiceLinkManager.JunhuokuUrl
+        DispatchQueue.main.async { () -> Void in
+            self.performSegue(withIdentifier: "loadWebPageSegue", sender: sender)
+        }
+    }
+    
+    @IBAction func viewAllLearnFinancePressed(_ sender: Any) {
+        
+        DispatchQueue.main.async { () -> Void in
+            self.performSegue(withIdentifier: "learnFinancesSegue", sender: nil)
+        }
+    }
+    
 }
 
 
 extension CourseMainPageViewController : UITableViewDataSource, UITableViewDelegate {
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.cellModels.count
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return getRowCount()
+    func dummyDidSelectAction(tableView: UITableView, indexPath: IndexPath) -> Void {
     }
-    
-    private func getRowCount() -> Int {
-        return 2 + extendFunctionMananger.getRowCount() + 1
-    }
-    
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        
-        let row = indexPath.row
-        
-        if row == 0 {
-            let cell = tableView.dequeueReusableCellWithIdentifier("mainpageHeaderAdvCell") as! HeaderAdvCell
-            return cell
 
-        } else if row == 1 {
-            let cell = tableView.dequeueReusableCellWithIdentifier("courseNotifyCell") as! CourseNotifyCell
-            //courseNotifies = [String]()
-            if courseNotifies.count == 0 {
-                cell.courseNotifyLabel.hidden = true
-                cell.separatorInset = UIEdgeInsetsMake(0, UIScreen.mainScreen().bounds.width, 0, 0);
-            } else {
-                cell.courseNotifyLabel.hidden = false
-                var notifyString = ""
-                for notify in self.courseNotifies {
-                    notifyString = notifyString + notify + " "
-                }
-                cell.courseNotifyLabel.text = notifyString
-                cell.courseNotifyLabel.scrollDuration = 16
-                cell.courseNotifyLabel.restartLabel()
-            }
+    
+    private func makeCells() {
+        cellModels = [MainPageCellModel]()
+    
+        let headerAdvModel = MainPageHeaderAdvModel()
+        headerAdvModel.ads = ads
+        let headerCellModel = MainPageCellModel.headerAdv(headerAdvModel)
+        cellModels.append(headerCellModel)
+        
+        //for _ in 0..<extendFunctionMananger.getRowCount() {
+            cellModels.append(MainPageCellModel.extendFunction)
+        //}
+        
+        if pos != nil {
+            cellModels.append(MainPageCellModel.seperator)
+            cellModels.append(MainPageCellModel.pos(pos!))
+        }
+        
+        if courses.count > 0 {
+            cellModels.append(MainPageCellModel.seperator)
+            cellModels.append(MainPageCellModel.courseHeader)
             
-            return cell
-        } else if row == getRowCount() - 1 {
-             return makeAdvCell()
-        } else {
-            let cell = extendFunctionMananger.getFunctionCell(tableView, row: row - 2)
-            return cell
-
+            for index in 0..<courses.count {
+                cellModels.append(MainPageCellModel.course(courses[index]))
+            }
         }
+        
+        if toutiaos.count > 0 {
+            cellModels.append(MainPageCellModel.seperator)
+            cellModels.append(MainPageCellModel.toutiaoHeader)
+            
+            for index in 0..<toutiaos.count {
+                cellModels.append(MainPageCellModel.toutiao(toutiaos[index]))
+            }
+        }
+        
+        if learnFinanceItems.count > 0 {
+            cellModels.append(MainPageCellModel.seperator)
+            cellModels.append(MainPageCellModel.learnFinanceHeader)
+            
+            for index in 0..<learnFinanceItems.count {
+                cellModels.append(MainPageCellModel.learnFinance(learnFinanceItems[index]))
+            }
+        }
+        
+        if jpks.count > 0 {
+            cellModels.append(MainPageCellModel.seperator)
+            cellModels.append(MainPageCellModel.jpkHeader)
+            
+            for index in 0..<jpks.count {
+                cellModels.append(MainPageCellModel.jpk(jpks[index]))
+            }
+        }
+        
+        
+        if zhuanLans.count > 0 {
+            cellModels.append(MainPageCellModel.seperator)
+            cellModels.append(MainPageCellModel.zhuanLanHeader)
+            
+            for index in 0..<zhuanLans.count {
+                cellModels.append(MainPageCellModel.zhuanLan(zhuanLans[index]))
+            }
+        }
+        
     }
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let row = indexPath.row
-        if row == 0 {
+        //return cells[row]
+        let cellModel = cellModels[row]
+        //var cell : UITableViewCell?
+        switch cellModel {
+        case .headerAdv(let model):
+            let cell = tableView.dequeueReusableCell(withIdentifier: "mainpageHeaderAdvCell") as! HeaderAdvCell
+            cell.controller = self
+            cell.initialize()
+            cell.ads = model.ads
+            cell.update()
+            return cell
+        case .extendFunction:
+            let cell =  extendFunctionMananger.getFunctionCell(tableView: tableView, row: 0)
+            return cell
+        case .pos(let pos):
+            let cell = tableView.dequeueReusableCell(withIdentifier: "posCell") as! PosCell
+            cell.pos = pos
+            cell.viewController = self
+            cell.update()
+            return cell
+        case .toutiaoHeader:
+            return tableView.dequeueReusableCell(withIdentifier: "toutiaoHeaderCell")!
+        case .toutiao(let toutiao):
+            let toutiaoCell = tableView.dequeueReusableCell(withIdentifier: "toutiaoCell") as! ToutiaoCell
+            toutiaoCell.toutiao = toutiao
+            toutiaoCell.update()
+            return toutiaoCell
+        case .learnFinanceHeader:
+            return tableView.dequeueReusableCell(withIdentifier: "learnFinanceHeaderCell")!
+        case .learnFinance(let learnFinanceItem):
+            let learnFinanceCell = tableView.dequeueReusableCell(withIdentifier: "learnFinanceCell") as! LearnFinanceCell
+            learnFinanceCell.learnFinanceItem = learnFinanceItem
+            learnFinanceCell.update()
+            return learnFinanceCell
+        case .courseHeader:
+            return tableView.dequeueReusableCell(withIdentifier: "tuijianCourseHeaderCell")!
+        case .course(let course):
+            let courseCell = tableView.dequeueReusableCell(withIdentifier: "tuijianCourseCell") as! MainPageCourseCell
+            courseCell.course = course
+            courseCell.update()
+            return courseCell
+        case .jpkHeader:
+            return tableView.dequeueReusableCell(withIdentifier: "jpkHeaderCell")!
+        case .jpk(let jpk):
+            let jpkCell = tableView.dequeueReusableCell(withIdentifier: "zhuanLanCell") as! ZhuanLanCell
+            jpkCell.zhuanLan = jpk
+            jpkCell.update()
+            return jpkCell
+        case .zhuanLanHeader:
+            return tableView.dequeueReusableCell(withIdentifier: "zhuanLanHeaderCell")!
+        case .zhuanLan(let zhuanLan):
+            let zhuanLanCell = tableView.dequeueReusableCell(withIdentifier: "zhuanLanCell") as! ZhuanLanCell
+            zhuanLanCell.zhuanLan = zhuanLan
+            zhuanLanCell.update()
+            return zhuanLanCell
+        case .questionHeader:
+            let questionHeaderCell : QuestionHeaderCell = cellWithTableView(tableView)
+            questionHeaderCell.viewController = self
+            return questionHeaderCell
+        case .question(let question):
+            let questionItemCell : QuestionItemCell = cellWithTableView(tableView)
+            questionItemCell.question = question
+            questionItemCell.viewController = self
+            questionItemCell.update()
+            return questionItemCell
+        case .seperator:
+            return tableView.dequeueReusableCell(withIdentifier: "seperatorCell")!
+        }
+     }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        let row = indexPath.row
+        let cellModel = cellModels[row]
+        switch cellModel {
+        case .headerAdv(_):
             return getHeaderAdvHeight()
-        } else if row == 1 {
-            return 18
-        }else if row == getRowCount() - 1 {
-            return computeAdCellHeight()
-        } else {
+        case .extendFunction:
             return extendFunctionMananger.cellHeight
+        case .pos(_):
+            return UIScreen.main.bounds.width / 375 * 90.0
+        case .toutiaoHeader, .courseHeader, .jpkHeader, .zhuanLanHeader, .questionHeader, .learnFinanceHeader:
+            return 52
+        case .toutiao(_), .learnFinance(_):
+            return 30
+        case .course(_):
+            return UIScreen.main.bounds.width / 375 * 180.0
+        case .jpk(_), .zhuanLan(_):
+            return 110
+        case .question(let question):
+            let questionItemCell : QuestionItemCell = cellWithTableView(tableView)
+            questionItemCell.question = question
+            questionItemCell.viewController = self
+            questionItemCell.update()
+            return questionItemCell.getHeight()
+        case .seperator:
+            return 8
         }
     }
     
-    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 1
-    }
-    
-    func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 1
-    }
-    
-    
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.deselectRowAtIndexPath(indexPath, animated: false)
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath as IndexPath, animated: false)
         let row = indexPath.row
-        if row == 0 {
-            if headerAdv != nil {
-                if (headerAdv?.type)! == HeaderAdv.Type_Song {
-                    loading.showOverlay(view)
-                    let request = GetSongInfoRequest()
-                    let album = Album()
-                    album.courseType = CourseType.LiveCourse
-                    let reqSong = Song()
-                    reqSong.album = album
-                    reqSong.id = (headerAdv?.songId)!
-                    request.song = reqSong
-                    BasicService().sendRequest(ServiceConfiguration.GET_SONG_INFO, request: request) {
-                        (resp : GetSongInfoResponse) -> Void in
-                        self.loading.hideOverlayView()
-                        if resp.status == ServerResponseStatus.NoEnoughAuthority.rawValue {
-                            self.displayVipBuyMessage(resp.errorMessage!, delegate: self.buyPayCourseDelegate!)
-                            return
-                        }
-                        
-                        if resp.isFail {
-                            self.displayMessage(resp.errorMessage!)
-                            return
-                        }
-                        
-                        let song = resp.song
-                        if song == nil {
-                            return
-                        }
-                        
-                        let audioPlayer = self.getAudioPlayer()
-                        //如果当前歌曲已经在播放，就什么都不需要做
-                        if audioPlayer.currentItem != nil {
-                            if song.id == (audioPlayer.currentItem! as! MyAudioItem).song.id {
-                                self.performSegueWithIdentifier("songSegue", sender: false)
-                                return
-                            }
-                        }
-                        
-                        var audioItems = [AudioItem]()
-                        let songs = [song]
-                        for songItem in songs {
-                            var url = NSURL(string: songItem.url)
-                            let audioItem = MyAudioItem(song: songItem, highQualitySoundURL: url)
-                            audioItems.append(audioItem!)
-                        }
-                        
-                        audioPlayer.delegate = nil
-                        audioPlayer.playItems(audioItems, startAtIndex: 0)
-                        self.performSegueWithIdentifier("songSegue", sender: false)
-                        
-                    }
-                } else {
-                    performSegueWithIdentifier("beforeCourseSegue", sender: CourseType.LiveCourse)
-                    
-                }
+        let cellModel = cellModels[row]
+        switch cellModel {
+        case .toutiao(let toutiao):
+            var sender = [String:String]()
+            sender["title"] = toutiao.title
+            sender["url"] = toutiao.link
+            
+            DispatchQueue.main.async { () -> Void in
+                self.performSegue(withIdentifier: "loadWebPageSegue", sender: sender)
             }
-        }
-    }
-    
-    func tapAdImageHandler(sender: UITapGestureRecognizer? = nil) {
-        let scrollView = sender?.view as! UIScrollView
-        let index = scrollView.auk.currentPageIndex
-        if index != nil {
-            let params : [String: String] = ["url": ads[index!].clickUrl, "title": ads[index!].title]
-            performSegueWithIdentifier("loadWebPageSegue", sender: params)
-        }
-    }
-    
-    var footerImageWidth:CGFloat {
-        get {
-            let screenWidth = UIScreen.mainScreen().bounds.width;
-            let width = (screenWidth - CGFloat(footerImageInterWidth * 3)) / 4
-            return width
-        }
-    }
-    
-    var footerImageHeight:CGFloat {
-        get {
-            return footerImageWidth * 1418 / 1380
-        }
-    }
-    
-    func footerAdvImageHandler(sender: UITapGestureRecognizer? = nil) {
-        let index = sender?.view?.tag
-        if self.footerAdvs.count != 4 {
             return
-        }
-        let footerAdv = self.footerAdvs[index!]
-        let params : [String: String] = ["url": footerAdv.url, "title": footerAdv.title]
-        if footerAdv.url == "" {
-            QL3("footer adv is empty, no jump to other page")
+        case .learnFinance(let learnFinanceItem):
+            clickLearnFinanceItem(learnFinanceItem)
             return
-        }
-        
-        //如果是快速下款，通过使用外部浏览器打开
-        if footerAdv.title == "快速下卡" {
-            UIApplication.sharedApplication().openURL(NSURL(string: footerAdv.url)!)
-        } else {
-            performSegueWithIdentifier("loadWebPageSegue", sender: params)
-        }
-    }
-    
-    private func makeImage(index: Int, adv: FooterAdv) -> UIImageView {
-        let x = CGFloat(index) * footerImageWidth + CGFloat(index * footerImageInterWidth);
-        var y =  computeAdCellHeight() - footerImageHeight
-        
-        if y < 0 {
-            y = 0
-        }
-
-        let imageView = UIImageView(frame: CGRectMake(x, y, footerImageWidth, footerImageHeight))
-        imageView.tag = index
-        if adv.imageUrl != "" {
-            if let imageUrl = NSURL(string: adv.imageUrl) {
-                //QL1("imageUrl: \(adv.imageUrl)")
-                imageView.kf_setImageWithURL(imageUrl)
-                imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(footerAdvImageHandler) ))
-                imageView.userInteractionEnabled = true
-
+        case .course(let album):
+            tableView.deselectRow(at: indexPath as IndexPath, animated: false)
+            DispatchQueue.main.async { () -> Void in
+                self.jumpToCourse(album: album)
             }
-        } else {
-            imageView.image = UIImage(named: "footer_ditu")
+            return
+        case .jpk(let zhuanLan), .zhuanLan(let zhuanLan):
+            var sender = [String:String]()
+            sender["title"] = zhuanLan.name
+            sender["url"] = zhuanLan.url
+            DispatchQueue.main.async { () -> Void in
+                self.performSegue(withIdentifier: "loadWebPageSegue", sender: sender)
+            }
+            return
+        default:
+            break
         }
         
-        return imageView
     }
     
-    private func makeAdvCell() -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("footerAdvCell") as! FooterAdvCell
-        if footerAdvs.count != 4 {
-            footerAdvs = [FooterAdv]()
-            footerAdvs.append(FooterAdv())
-            footerAdvs.append(FooterAdv())
-            footerAdvs.append(FooterAdv())
-            footerAdvs.append(FooterAdv())
-        }
-        var i = 0
-        footerAdvs.forEach() {
-            (adv: FooterAdv) -> Void in
-            cell.addSubview(makeImage(i, adv: adv))
-            i = i + 1
-        }
-        return cell
-    }
-
-
-    private func computeAdCellHeight() -> CGFloat {
-        let section1Height = getHeaderAdvHeight()
-        let section2Height = CGFloat(extendFunctionMananger.getRowCount()) * extendFunctionMananger.cellHeight
-        let total = section1Height + section2Height + 18 + 3 + 65 + 49 - 5
-        var height = UIScreen.mainScreen().bounds.height - CGFloat(total)
+    func clickLearnFinanceItem(_ learnFinanceItem : LearnFinanceItem) {
+        Utils.playLearnFinanceItem(learnFinanceItem)
         
-        if height < footerImageHeight  {
-            height = footerImageHeight
-        }
-        return height
+        tableView.reloadData()
     }
     
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 1
+    }
+    
+    func jumpToCourse(album: Album) {
+        let viewControllerStoryboardId = "NewPlayerController"
+        let storyboardName = "Main"
+        let storyboard = UIStoryboard(name: storyboardName, bundle: Bundle.main)
+        let vc = storyboard.instantiateViewController(withIdentifier: viewControllerStoryboardId) as! NewPlayerController
+        vc.hasBottomBar = false
+        self.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(vc, animated: true)
+        self.hidesBottomBarWhenPushed = false
+    }
+    
+
     
     private func getHeaderAdvHeight() -> CGFloat {
-        let screenWidth = UIScreen.mainScreen().bounds.width
-        return screenWidth * 122 / 320
+        let screenWidth = UIScreen.main.bounds.width
+        return screenWidth / 375 * 224
     }
 
+}
+
+extension CourseMainPageViewController  {
+    
+    func showPopupAd(_ ad : Advertise) {
+        self.isShowAd = true
+        adOverlay = UIView(frame: UIScreen.main.bounds)
+        adOverlay!.backgroundColor = UIColor(white: 0, alpha: 0.65)
+        
+        let ration : CGFloat = 0.6
+        let imageWidth = UIScreen.main.bounds.width * ration
+        let imageHeight = UIScreen.main.bounds.width * ration * 1.5
+        let imageView = UIImageView(frame: CGRect(x: UIScreen.main.bounds.width * (1 - ration) / 2, y: UIScreen.main.bounds.height * 0.15 , width: imageWidth, height: imageHeight))
+        //imageView.image = UIImage(named: "icon")
+        imageView.kf.setImage(with: URL(string: ad.imageUrl)!)
+        adOverlay!.addSubview(imageView)
+        
+        imageView.isUserInteractionEnabled = true
+        let tapImageGesture = UITapGestureRecognizer(target: self, action: #selector(tapImageAd))
+        imageView.addGestureRecognizer(tapImageGesture)
+        
+        let closeAdWidth : CGFloat = 40
+        let closeAdBtn = UIImageView(frame: CGRect(x: (UIScreen.main.bounds.width - closeAdWidth) / 2, y: UIScreen.main.bounds.height * ( 1 - 0.15) , width: closeAdWidth, height: closeAdWidth))
+        closeAdBtn.image = UIImage(named: "closeAdButton")
+        adOverlay!.addSubview(closeAdBtn)
+        
+        closeAdBtn.isUserInteractionEnabled = true
+        let closeAdGesture = UITapGestureRecognizer(target: self,  action: #selector(hidePopupAd))
+        closeAdBtn.addGestureRecognizer(closeAdGesture)
+        
+        UIApplication.shared.keyWindow?.addSubview(adOverlay!)
+    }
+    
+    @objc func tapImageAd() {
+        var params = [String:String]()
+        
+        if popupAd.type == Advertise.WEB {
+            params["title"] = popupAd.title
+            params["url"] = popupAd.clickUrl
+            DispatchQueue.main.async { () -> Void in
+                self.performSegue(withIdentifier: "loadWebPageSegue", sender: params)
+            }
+        } else if popupAd.type == Advertise.COURSE {
+            let album = Album()
+            album.id = popupAd.id
+            album.isReady = true
+            jumpToCourse(album: album)
+        }
+        hidePopupAd()
+    }
+    
+    @objc func hidePopupAd() {
+        QL1("hidePopupAd")
+        if adOverlay != nil {
+            adOverlay?.removeFromSuperview()
+        }
+    }
+
+    
+    @objc func loadHeadAds() {
+        BasicService().sendRequest(url: ServiceConfiguration.GET_MAIN_PAGE_ADS, request: GetMainPageAdsRequest()) {
+            (resp: GetMainPageAdsResponse) -> Void in
+            if self.refreshing {
+                self.refreshHeader.endRefreshing()
+            }
+            self.refreshing = false
+            
+            self.ads = resp.ads
+            
+            self.makeCells()
+            self.tableView.reloadData()
+            
+            if resp.popupAd.imageUrl != "" && resp.popupAd.imageUrl != nil {
+                let cacheImageUrl = self.keyValueStore.get(key: KeyValueStore.key_popupAdImageUrl, defaultValue: "")
+                
+                if cacheImageUrl != resp.popupAd.imageUrl {
+                    self.keyValueStore.save(key: KeyValueStore.key_popupAdImageUrl, value: resp.popupAd.imageUrl)
+                    self.popupAd = resp.popupAd
+                    self.showPopupAd(resp.popupAd)
+                }
+            }
+        }
+    }
+    
+
+    func loadFunctionInfos() {
+        BasicService().sendRequest(url: ServiceConfiguration.GET_FUNCTION_INFO, request: GetFunctionInfosRequest()) {
+            (resp: GetFunctionInfosResponse) -> Void in
+            if resp.status != ServerResponseStatus.Success.rawValue {
+                QL4("server return error: \(resp.errorMessage!)")
+                return
+            }
+            
+            var functions = [ExtendFunction]()
+            let extendFuncMgr = ExtendFunctionMananger.instance
+            //更新消息
+            //var imageUrls = [String]()
+            for function in resp.functions {
+                let extendFunc = extendFuncMgr.makeFunction(imageName: function.imageUrl, name: function.name, code: function.code, url: function.clickUrl, messageCount: function.messageCount, selectorName: function.action)
+                
+                //QL1("\(function.name) \(function.action)")
+                
+                functions.append(extendFunc)
+                
+            }
+            extendFuncMgr.functions = functions
+            
+            self.makeCells()
+            self.tableView.reloadData()
+            //self.downloadFunctionImages(imageUrls: imageUrls)
+        }
+        
+    }
+    
+    func loadZhuanLanAndTuijianCourses() {
+        BasicService().sendRequest(url: ServiceConfiguration.GET_ZHUANLAN_AND_TUIJIAN_COURSES, request: GetZhuanLanAndTuijianCoursesRequest()) {
+            (resp: GetZhuanLanAndTuijianCoursesResponse) -> Void in
+            if self.refreshing {
+                self.refreshHeader.endRefreshing()
+            }
+            self.refreshing = false
+            
+            self.zhuanLans = resp.zhuanLans
+            self.courses = resp.albums
+            self.learnFinanceItems = resp.learnFinanceItems
+            self.jpks = resp.jpks
+            self.pos = resp.pos
+            
+            self.makeCells()
+            self.tableView.reloadData()
+        }
+    }
+    
+    func loadFinanceToutiaos() {
+        BasicService().sendRequest(url: ServiceConfiguration.GET_FINANCE_TOUTIAOS, request: GetFinanceToutiaoRequest()) {
+            (resp: GetFinanceToutiaoResponse) -> Void in
+            if self.refreshing {
+                self.refreshHeader.endRefreshing()
+            }
+            self.refreshing = false
+            
+            self.toutiaos = resp.toutiaos
+            
+            self.makeCells()
+            self.tableView.reloadData()
+        }
+    }
+    
 }

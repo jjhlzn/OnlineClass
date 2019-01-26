@@ -31,6 +31,13 @@ class ServiceLinkManager {
         
     }
     
+    static var BuyProductUrl : String {
+        get {
+            return "http://\(ServiceConfiguration.serverName):\(ServiceConfiguration.port)/app/buy"
+        }
+        
+    }
+    
     static var MyAgentUrl2 : String {
         get {
             return "http://\(ServiceConfiguration.serverName):\(ServiceConfiguration.port)/Center/MyLevel2.aspx"
@@ -159,6 +166,7 @@ class ServiceLinkManager {
     static var ChatUrl : String {
         get {
             return "http://chat.yhkamani.com"
+            //return "http://localhost:3000"
         }
     }
     
@@ -174,4 +182,56 @@ class ServiceLinkManager {
         }
     }
     
+    static var MyServiceUrl : String {
+        get {
+            return "http://\(ServiceConfiguration.serverName):\(ServiceConfiguration.port)/app/myservice"
+        }
+    }
+    
+    static var MyWalletUrl : String {
+        get {
+            return "http://\(ServiceConfiguration.serverName):\(ServiceConfiguration.port)/app/mywallet"
+        }
+    }
+    
+    static var HezuoUrl : String {
+        get {
+            return "http://\(ServiceConfiguration.serverName):\(ServiceConfiguration.port)/app/hezuo"
+        }
+    }
+    
+    static var CardPayUrl : String {
+        get {
+            return "http://\(ServiceConfiguration.serverName):\(ServiceConfiguration.port)/app/pay"
+        }
+    }
+    
+    static var JunhuokuUrl : String {
+        get {
+            return "http://\(ServiceConfiguration.serverName):\(ServiceConfiguration.port)/app/documents"
+        }
+    }
+    
+    static var HealthUrl : String {
+        get {
+            return "http://\(ServiceConfiguration.serverName):\(ServiceConfiguration.port)/app/health"
+        }
+    }
+    
+    static var ZixunUrl : String {
+        get {
+            return "http://\(ServiceConfiguration.serverName):\(ServiceConfiguration.port)/app/study"
+        }
+    }
+    
+    static var qiandaoUrl : String {
+        get {
+            return "http://\(ServiceConfiguration.serverName):\(ServiceConfiguration.port)/app/signin"
+        }
+    }
+    static var yigouUrl : String {
+        get {
+            return "http://\(ServiceConfiguration.serverName):\(ServiceConfiguration.port)/app/purchased"
+        }
+    }
 }

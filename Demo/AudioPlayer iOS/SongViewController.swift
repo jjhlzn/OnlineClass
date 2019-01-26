@@ -9,8 +9,11 @@
 import UIKit
 import KDEAudioPlayer
 import QorumLogs
+import SwiftyBeaver
 
-class SongViewController: BaseUIViewController, UIGestureRecognizerDelegate {
+class SongViewController: BaseUIViewController {
+    
+    let log = SwiftyBeaver.self
     
     //播放页控制
     var playerPageViewController: CommonPlayerPageViewController!
@@ -50,9 +53,9 @@ class SongViewController: BaseUIViewController, UIGestureRecognizerDelegate {
         song = (audioPlayer.currentItem as! MyAudioItem).song
         
         //设置分享相关
-        shareView.hidden = true
+        shareView.isHidden = true
         shareManager = ShareManager(controller: self)
-        closeShareViewButton.addBorder(viewBorder.Top, color: UIColor(white: 0.65, alpha: 0.5), width: 1)
+        closeShareViewButton.addBorder(vBorder: viewBorder.Top, color: UIColor(white: 0.65, alpha: 0.5), width: 1)
         shareManager.shareTitle = song.shareTitle
         shareManager.shareUrl = song.shareUrl
         shareManager.isUseQrImage = false
@@ -65,10 +68,10 @@ class SongViewController: BaseUIViewController, UIGestureRecognizerDelegate {
         commentController.cancelButton = cancelButton
         commentController.sendButton = sendButton
         commentController.emojiSwitchButton = emojiSwithButton
-        commentController.shareView = shareView
+        //commentController.shareView = shareView
         commentController.viewController = self
         
-        commentController.initView(song)
+        commentController.initView(song: song)
         
         //用来阻止向右滑的手势
        //self.navigationController?.interactivePopGestureRecognizer!.delegate = self
@@ -78,6 +81,7 @@ class SongViewController: BaseUIViewController, UIGestureRecognizerDelegate {
             navigationItem.title = item.song!.name
             
             //设置播放页控制器
+            log.debug(["song.isLive", item.song!.isLive])
             if item.song!.isLive {
                 playerPageViewController = LivePlayerPageViewController()
             } else {
@@ -101,17 +105,25 @@ class SongViewController: BaseUIViewController, UIGestureRecognizerDelegate {
         tableView.dataSource = playerPageViewController
         tableView.delegate = playerPageViewController
         
-        songListView.hidden = true
+        songListView.isHidden = true
         songListDataSource = SongListDataSource(controller: self)
         songListTableView.dataSource = songListDataSource
         songListTableView.delegate = songListDataSource
 
-    
+        if #available(iOS 11.0, *) {
+            tableView.contentInsetAdjustmentBehavior = .never
+            //tableView.contentInset = UIEdgeInsetsMake(0, 0, 49, 0)//导航栏如果使用系统原生半透明的，top设置为64
+            //tableView.scrollIndicatorInsets = tableView.contentInset
+            tableView.contentInset = UIEdgeInsetsMake(22, 0, 49, 0)
+            tableView.estimatedRowHeight = 0
+            UITableView.appearance().estimatedRowHeight = 0
+        }
+        
         playerPageViewController.reload()
     }
     
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         commentController.addKeyboardNotify()
         
@@ -121,14 +133,14 @@ class SongViewController: BaseUIViewController, UIGestureRecognizerDelegate {
         playerPageViewController.initController()
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillAppear(animated)
         commentController.removeKeyboardNotify()
         commentController.dispose()
         //dispose palyerPageViewController
         playerPageViewController.dispose()
         
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
         if appDelegate.liveProgressTimer != nil {
             appDelegate.liveProgressTimer?.invalidate()
             appDelegate.liveProgressTimer = nil
@@ -148,10 +160,10 @@ class SongViewController: BaseUIViewController, UIGestureRecognizerDelegate {
 
     @IBAction func shareButtonPressed(sender: AnyObject) {
         //如果正在评论，关闭评论的窗口
-        if !bottomView2.hidden {
+        if !bottomView2.isHidden {
             commentController.closeComment()
         }
-        if shareView.hidden {
+        if shareView.isHidden {
             shareView.becomeFirstResponder()
             showShareView()
         } else {
@@ -161,11 +173,11 @@ class SongViewController: BaseUIViewController, UIGestureRecognizerDelegate {
     
     func showShareView() {
         print("showOverlay")
-        overlay = UIView(frame: UIScreen.mainScreen().bounds)
+        overlay = UIView(frame: UIScreen.main.bounds)
         overlay.backgroundColor = UIColor(white: 0, alpha: 0.65)
         
         shareView.removeFromSuperview()
-        shareView.hidden = false
+        shareView.isHidden = false
         overlay.addSubview(shareView)
         self.view.addSubview(overlay)
     }
@@ -174,7 +186,7 @@ class SongViewController: BaseUIViewController, UIGestureRecognizerDelegate {
         print("hideOverlay")
         shareView.removeFromSuperview()
         self.view.addSubview(shareView)
-        shareView.hidden = true
+        shareView.isHidden = true
         overlay.removeFromSuperview()
     }
     
@@ -209,15 +221,15 @@ class SongViewController: BaseUIViewController, UIGestureRecognizerDelegate {
     }
 
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "commentListSegue" {
-            let dest = segue.destinationViewController as! CommentListController
+            let dest = segue.destination as! CommentListController
             dest.song = song
             let backItem = UIBarButtonItem()
             backItem.title = ""
             navigationItem.backBarButtonItem = backItem
         } else if segue.identifier == "advWebView" {
-            let dest = segue.destinationViewController as! WebPageViewController
+            let dest = segue.destination as! WebPageViewController
             let params = sender as! [String: String]
             dest.title = params["title"]
             dest.url = NSURL(string: params["url"]!)
@@ -229,7 +241,7 @@ class SongViewController: BaseUIViewController, UIGestureRecognizerDelegate {
     func showSongList() {
         print("showSongList")
         
-        songListOverlay = UIView(frame: UIScreen.mainScreen().bounds)
+        songListOverlay = UIView(frame: UIScreen.main.bounds)
         songListOverlay.backgroundColor = UIColor(white: 0, alpha: 0.65)
         
         songListView.removeFromSuperview()
@@ -237,13 +249,13 @@ class SongViewController: BaseUIViewController, UIGestureRecognizerDelegate {
         
         view.addSubview(songListOverlay)
         
-        songListView.hidden = false
+        songListView.isHidden = false
         songListTableView.reloadData()
     }
     
     func hideSongList() {
         print("hideSongList")
-        songListView.hidden = true
+        songListView.isHidden = true
         songListView.removeFromSuperview()
         view.addSubview(songListView)
         songListOverlay.removeFromSuperview()
@@ -270,17 +282,17 @@ class SongListDataSource : NSObject, UITableViewDataSource, UITableViewDelegate 
         }
     }
     
-     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return songs.count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let song = songs[indexPath.row]
         var cell : SongListCell!
-        if controller.audioPlayer.isPlayThisSong(song) {
-            cell = tableView.dequeueReusableCellWithIdentifier("songListCell2") as! SongListCell
+        if controller.audioPlayer.isPlayThisSong(song: song) {
+            cell = tableView.dequeueReusableCell(withIdentifier: "songListCell2") as! SongListCell
         } else {
-            cell = tableView.dequeueReusableCellWithIdentifier("songListCell") as! SongListCell
+            cell = tableView.dequeueReusableCell(withIdentifier: "songListCell") as! SongListCell
         }
         cell.nameLabel.text = songs[indexPath.row].name
         return cell
@@ -288,10 +300,12 @@ class SongListDataSource : NSObject, UITableViewDataSource, UITableViewDelegate 
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let audioPlayer = Utils.getAudioPlayer()
-        audioPlayer.playItems(audioPlayer.items!, startAtIndex: indexPath.row)
+        
+        //TODO
+        //audioPlayer.playItems(audioPlayer.items!, startAtIndex: indexPath.row)
         
         controller.playerPageViewController.reload()
-        tableView.deselectRowAtIndexPath(indexPath, animated: false)
+        tableView.deselectRow(at: indexPath as IndexPath, animated: false)
         tableView.reloadData()
 
     }

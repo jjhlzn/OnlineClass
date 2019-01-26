@@ -6,7 +6,7 @@
 //  Copyright © 2016年 tbaranes. All rights reserved.
 //
 import UIKit
-
+import SwiftyBeaver
 
 let IPHONE_8:Int32 = 80000
 
@@ -19,7 +19,23 @@ let kXinGeAppKey:String! = "I5RT4RI429SR"
 
 class XinGeAppDelegate: UIResponder, UIApplicationDelegate {
     
-    
+    func setLogger() {
+        let log = SwiftyBeaver.self
+        let console = ConsoleDestination()  // log to Xcode Console
+        //let file = FileDestination()  // log to default swiftybeaver.log file
+        //let cloud = SBPlatformDestination(appID: "foo", appSecret: "bar", encryptionKey: "123") // to cloud
+        
+        // use custom format and set console output to short time, log level & message
+        console.format = "$DHH:mm:ss$d $L $M"
+        // or use this for JSON output: console.format = "$J"
+        
+        // add the destinations to SwiftyBeaver
+        log.addDestination(console)
+        //log.addDestination(file)
+        //log.addDestination(cloud)
+        print("setLogger")
+        
+    }
     
     func registerPushForIOS8()
     {
@@ -32,27 +48,27 @@ class XinGeAppDelegate: UIResponder, UIApplicationDelegate {
         acceptAction.identifier = "ACCEPT_IDENTIFIER"
         acceptAction.title      = "Accept"
         
-        acceptAction.activationMode = UIUserNotificationActivationMode.Foreground
+        acceptAction.activationMode = UIUserNotificationActivationMode.foreground
         
-        acceptAction.destructive = false
-        acceptAction.authenticationRequired = false
+        acceptAction.isDestructive = false
+        acceptAction.isAuthenticationRequired = false
         
         
         //Categories
         let inviteCategory = UIMutableUserNotificationCategory()
         inviteCategory.identifier = "INVITE_CATEGORY";
         
-        inviteCategory.setActions([acceptAction], forContext: UIUserNotificationActionContext.Default)
-        inviteCategory.setActions([acceptAction], forContext: UIUserNotificationActionContext.Minimal)
+        inviteCategory.setActions([acceptAction], for: UIUserNotificationActionContext.default)
+        inviteCategory.setActions([acceptAction], for: UIUserNotificationActionContext.minimal)
         
         //var categories = NSSet(objects: inviteCategory)
         
         //var mySettings:UIUserNotificationSettings = UIUserNotificationSettings(forTypes: types, categories: categories as Set<NSObject>)
         let mySettings = UIUserNotificationSettings(
-            forTypes: [.Badge, .Sound, .Alert], categories: nil)
+            types: [.badge, .sound, .alert], categories: nil)
 
         
-        UIApplication.sharedApplication().registerUserNotificationSettings(mySettings)
+        UIApplication.shared.registerUserNotificationSettings(mySettings)
         
     }
     
@@ -61,9 +77,10 @@ class XinGeAppDelegate: UIResponder, UIApplicationDelegate {
        
     }
     
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+    func application(_ application: UIApplication,
+                     didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
         // Override point for customization after application launch.
-        
+        setLogger()
         // 注册
         XGPush.startApp(kXinGeAppId, appKey: kXinGeAppKey)
         
@@ -74,15 +91,16 @@ class XinGeAppDelegate: UIResponder, UIApplicationDelegate {
                 
                 if __IPHONE_OS_VERSION_MAX_ALLOWED >= IPHONE_8
                 {
-                    
-                    if (UIDevice.currentDevice().systemVersion.compare("8", options:.NumericSearch) != NSComparisonResult.OrderedAscending)
+                    self.registerPush()
+                    /*
+                    if (UIDevice.current.systemVersion.compare("8", options:.NumericSearch) != ComparisonResult.OrderedAscending)
                     {
                         self.registerPushForIOS8()
                     }
                     else
                     {
                         self.registerPush()
-                    }
+                    } */
                     
                 }
                 else
@@ -106,19 +124,19 @@ class XinGeAppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     
-    func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
-        XGPush.localNotificationAtFrontEnd(notification, userInfoKey: "clockID", userInfoValue: "myid")
+    func application(_ application: UIApplication, didReceive notification: UILocalNotification) {
+        XGPush.localNotification(atFrontEnd: notification, userInfoKey: "clockID", userInfoValue: "myid")
         
         XGPush.delLocalNotification(notification)
     }
     
     
  
-    func application(application: UIApplication, didRegisterUserNotificationSettings notificationSettings: UIUserNotificationSettings) {
-        UIApplication.sharedApplication().registerForRemoteNotifications()
+    func application(_ application: UIApplication, didRegister notificationSettings: UIUserNotificationSettings) {
+        UIApplication.shared.registerForRemoteNotifications()
     }
 
-    func application(application: UIApplication, handleActionWithIdentifier identifier: String?, forRemoteNotification userInfo: [NSObject : AnyObject], completionHandler: () -> Void) {
+    func application(application: UIApplication, handleActionWithIdentifier identifier: String?, forRemoteNotification userInfo: [NSObject : AnyObject], completionHandler: @escaping () -> Void) {
         
         if let ident = identifier
         {
@@ -133,12 +151,12 @@ class XinGeAppDelegate: UIResponder, UIApplicationDelegate {
     
     
     
-    func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         //注册设备
         //        XGSetting.getInstance().Channel = ""//= "appstore"
         //        XGSetting.getInstance().GameServer = "家万户"
         //XGPush.setAccount("13706794299")
-        let deviceTokenStr = XGPush.registerDevice(deviceToken, successCallback: { () -> Void in
+        let deviceTokenStr = XGPush.registerDevice(deviceToken as Data!, successCallback: { () -> Void in
             print("[XGPush]register successBlock\n\n")
         }) { () -> Void in
             print("[XGPush]register errorBlock\n\n")
@@ -150,34 +168,37 @@ class XinGeAppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     
-    func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
         print("didFailToRegisterForRemoteNotifications error:\(error.localizedDescription)\n\n")
     }
     
     // iOS 3 以上
-    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
+    private func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
         
         //        UIAlertView(title: "3-", message: "didReceive", delegate: self, cancelButtonTitle: "OK").show()
-        var apsDictionary = userInfo["aps"] as? NSDictionary
+        let info = userInfo as! [String : AnyObject]
+        let apsDictionary = info["aps"] as? NSDictionary
+       
         if let apsDict = apsDictionary
         {
-            var alertView = UIAlertView(title: "您有新的消息", message: apsDict["alert"] as? String, delegate: self, cancelButtonTitle: "确定")
+            let alertView = UIAlertView(title: "您有新的消息", message: apsDict["alert"] as? String, delegate: self, cancelButtonTitle: "确定")
             alertView.show()
         }
         
         // 清空通知栏通知
         XGPush.clearLocalNotifications()
-        UIApplication.sharedApplication().cancelAllLocalNotifications()
-        UIApplication.sharedApplication().applicationIconBadgeNumber = 0
+        UIApplication.shared.cancelAllLocalNotifications()
+        UIApplication.shared.applicationIconBadgeNumber = 0
         
         XGPush.handleReceiveNotification(userInfo)
     }
     
     // iOS 7 以上
-    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject], fetchCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void)
+    private func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void)
     {
         //        UIAlertView(title: "7-", message: "didReceive", delegate: self, cancelButtonTitle: "OK").show()
-        var apsDictionary = userInfo["aps"] as? NSDictionary
+        let info = userInfo as! [String : AnyObject]
+        var apsDictionary = info["aps"] as? NSDictionary
         if let apsDict = apsDictionary
         {
             var alertView = UIAlertView(title: "您有新的消息", message: apsDict["alert"] as? String, delegate: self, cancelButtonTitle: "确定")
@@ -185,8 +206,8 @@ class XinGeAppDelegate: UIResponder, UIApplicationDelegate {
         }
         // 清空通知栏通知
         XGPush.clearLocalNotifications()
-        UIApplication.sharedApplication().cancelAllLocalNotifications()
-        UIApplication.sharedApplication().applicationIconBadgeNumber = 0
+        UIApplication.shared.cancelAllLocalNotifications()
+        UIApplication.shared.applicationIconBadgeNumber = 0
         
         XGPush.handleReceiveNotification(userInfo)
     }

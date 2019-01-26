@@ -1,25 +1,23 @@
-# Moa, an image downloader written in Swift for iOS, tvOS and OS X
+# Moa, an image downloader written in Swift for iOS, tvOS and macOS
 
-[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)][carthage]
-[![CocoaPods Version](https://img.shields.io/cocoapods/v/moa.svg?style=flat)][cocoadocs]
-[![License](https://img.shields.io/cocoapods/l/moa.svg?style=flat)][cocoadocs]
-[![Platform](https://img.shields.io/cocoapods/p/moa.svg?style=flat)][cocoadocs]
-[cocoadocs]: http://cocoadocs.org/docsets/moa
-[carthage]: https://github.com/Carthage/Carthage
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
+[![CocoaPods Version](https://img.shields.io/cocoapods/v/moa.svg?style=flat)](http://cocoadocs.org/docsets/moa)
+[![License](https://img.shields.io/cocoapods/l/moa.svg?style=flat)](http://cocoadocs.org/docsets/moa)
+[![Platform](https://img.shields.io/cocoapods/p/moa.svg?style=flat)](http://cocoadocs.org/docsets/moa)
 
-Moa is an image download library written in Swift for iOS, tvOS and OS X.
-It allows to download and show an image in an image view by setting its `moa.url` property.
+Moa is an image download library written in Swift. It allows to download and show an image in an image view by setting its `moa.url` property.
 
 ```Swift
-    imageView.moa.url = "https://site.com/image.jpg"
+imageView.moa.url = "https://bit.ly/moa_image"
 ```
 
 * Images are downloaded asynchronously.
-* Uses NSURLSession for networking and caching.
+* Uses URLSession for networking and caching.
 * Allows to configure cache size and policy.
 * Can be used without an image view.
 * Provides closure properties for image manipulation and error handling.
 * Includes unit testing mode for faking network responses.
+* Contains logging capabilities for debugging network problems.
 
 <img src='https://raw.githubusercontent.com/evgenyneu/moa/master/Graphics/Hunting_Moa.jpg' alt='Moa hunting' width='400'>
 
@@ -27,30 +25,35 @@ It allows to download and show an image in an image view by setting its `moa.url
 
 *'Hunting Moa' drawing by Joseph Smit (1836-1929). File source: [Wikimedia Commons](http://commons.wikimedia.org/wiki/File:Hunting_Moa.jpg).*
 
+
+
 ## Setup
 
 There are three ways you can add Moa to your Xcode project.
 
-**Add source (iOS 7+)**
+#### Add source (iOS 7+)
 
 Simply add [MoaDistrib.swift](https://github.com/evgenyneu/moa/blob/master/Distrib/MoaDistrib.swift) file into your Xcode project.
 
-**Setup with Carthage (iOS 8+)**
+#### Setup with Carthage (iOS 8+)
 
-Alternatively, add `github "evgenyneu/moa" ~> 3.0` to your Cartfile and run `carthage update`.
+Alternatively, add `github "evgenyneu/moa" ~> 9.0` to your Cartfile and run `carthage update`.
 
-**Setup with CocoaPods (iOS 8+)**
+#### Setup with CocoaPods (iOS 8+)
 
 If you are using CocoaPods add this text to your Podfile and run `pod install`.
 
-    use_frameworks!
-    target 'Your target name'
-    pod 'moa', '~> 3.0'
+```
+use_frameworks!
+target 'Your target name'
+pod 'moa', '~> 9.0'
+```
 
 
-#### Setup in Xcode 6
+### Legacy Swift versions
 
-Moa is written in Swift 2 for Xcode 7. See [Swift 1.2 setup instuctions](https://github.com/evgenyneu/moa/wiki/Setup-with-Xcode-6-and-Swift-1.2) for Xcode 6 projects.
+Setup a [previous version](https://github.com/evgenyneu/moa/wiki/Legacy-Swift-versions) of the library if you use an older version of Swift.
+
 
 ## Usage
 
@@ -61,7 +64,7 @@ Moa is written in Swift 2 for Xcode 7. See [Swift 1.2 setup instuctions](https:/
 1. Set `moa.url` property of the image view to start asynchronous image download. The image will be automatically displayed when download is finished.
 
 ```Swift
-imageView.moa.url = "https://site.com/image.jpg"
+imageView.moa.url = "https://bit.ly/moa_image"
 ```
 
 ## Loading images from insecure HTTP hosts
@@ -78,13 +81,13 @@ Ongoing image download for the image view is automatically canceled when:
 Call `imageView.moa.cancel()` to manually cancel the download.
 
 
-## Supply error image
+## Supply an error image
 
 You can supply an error image that will be used if an error occurs during image download.
 
 ```Swift
 imageView.moa.errorImage = UIImage(named: "ImageNotFound.jpg")
-imageView.moa.url = "http://site.com/image.jpg"
+imageView.moa.url = "https://bit.ly/moa_image"
 ```
 
 Alternatively, one can supply a global error image that will be used for all failed image downloads.
@@ -93,7 +96,14 @@ Alternatively, one can supply a global error image that will be used for all fai
 Moa.errorImage = UIImage(named: "ImageNotFound.jpg")
 ```
 
+## Show a placeholder image
 
+Here is how to show a placeholder image in the image view. The placeholder will be replaced by the image from the network when it arrives.
+
+```Swift
+imageView.image = placeholderImage
+imageView.moa.url = "https://bit.ly/moa_image"
+```
 
 ## Advanced features
 
@@ -107,7 +117,7 @@ imageView.moa.onSuccess = { image in
   return image
 }
 
-imageView.moa.url = "http://site.com/image.jpg"
+imageView.moa.url = "https://bit.ly/moa_image"
 ```
 
 * The closure will be called after download finishes and before the image is assigned to the image view.
@@ -124,12 +134,11 @@ imageView.moa.onError = { error, response in
   // Handle error
 }
 
-imageView.moa.url = "http://site.com/image.jpg"
+imageView.moa.url = "https://bit.ly/moa_image"
 ```
 
 * The closure is called in the *main queue* if image download fails. Use `onErrorAsync` property instead if you need to do time consuming operations.
-* Use `error.localizedDescription` to get a human-readable error description.
-
+* See the "logging" section if you need to find out the type of the error.
 
 ### Download an image without an image view
 
@@ -141,18 +150,18 @@ moa.onSuccess = { image in
   // image is loaded
   return image
 }
-moa.url = "http://site.com/image.jpg"
+moa.url = "https://bit.ly/moa_image"
 ```
 
 ### Clearing HTTP session
 
-The following method calls `finishTasksAndInvalidate` on the current NSURLSession object. A new session object will be created for future image downloads.
+The following method calls `finishTasksAndInvalidate` on the current URLSession object. A new session object will be created for future image downloads.
 
 ```Swift
 MoaHttpSession.clearSession()
 ```
 
-You may never need to call this method in your app. I needed to call it periodically to workaround a strange [NSURLSession bug](http://stackoverflow.com/questions/32493339/sending-400-http-requests-result-in-the-request-timed-out-errors-with-nsurlse) which you may not encounter.
+You may never need to call this method in your app. I needed to call it periodically to workaround a strange [URLSession bug](http://stackoverflow.com/questions/32493339/sending-400-http-requests-result-in-the-request-timed-out-errors-with-nsurlse) which you may not encounter.
 
 ## Image caching
 
@@ -160,10 +169,13 @@ Use the `Moa.settings.cache` to change caching settings. For more information pl
 
 ```Swift
 // By default images are cached according to their response HTTP headers.
-Moa.settings.cache.requestCachePolicy = .UseProtocolCachePolicy
+Moa.settings.cache.requestCachePolicy = .useProtocolCachePolicy
 
 // Always cache images locally regardless of their response HTTP headers
-Moa.settings.cache.requestCachePolicy = .ReturnCacheDataElseLoad
+Moa.settings.cache.requestCachePolicy = .returnCacheDataElseLoad
+
+// Change the name of the cache directory. Useful for sharing cache with the rest of the app.
+Moa.settings.cache.diskPath = "MyAppSharedCache"
 ```
 
 ## Settings
@@ -181,12 +193,22 @@ Moa.settings.requestTimeoutSeconds = 20
 
 ## Logging
 
-Assign a closure to `Moa.logger` and it will be called during image requests, responses, errors and when requests are cancelled. You can also use a pre-made `MoaConsoleLogger` function to see the log messages in the Xcode console. See [logging manual](https://github.com/evgenyneu/moa/wiki/Logging-with-Moa) for more information.
-
+You can use the moa logger to see how/when the images are loaded or debug a network problem. One can use a pre-made `MoaConsoleLogger` function to see the log messages in the Xcode console or write a custom logger. See the [logging manual](https://github.com/evgenyneu/moa/wiki/Logging-with-Moa) for more information.
 
 ```Swift
+// Log to console
 Moa.logger = MoaConsoleLogger
+
+// Load an image
+imageView.moa.url = "https://bit.ly/moa_image"
+
+// Attempt to load a missing image
+imageView.moa.url = "https://bit.ly/moa_image_missing.jpg"
 ```
+
+<img src='https://raw.githubusercontent.com/evgenyneu/moa/master/Graphics/screenshots/logging_to_console_moa_swift_2.png' alt='Logging to console with moa' width='541'>
+
+
 
 
 ## Unit testing
@@ -223,7 +245,7 @@ Here is the list of other image download libraries for Swift.
 
 * Demo app includes other drawings by Joseph Smit. Source: [Wikimedia Commons](http://commons.wikimedia.org/w/index.php?title=Category:Joseph_Smit&fileuntil=FuligulaNationiSmit.jpg#mw-category-media).
 
-* OS X support is added by [phimage](https://github.com/phimage).
+* macOS support is added by [phimage](https://github.com/phimage).
 
 
 ## License

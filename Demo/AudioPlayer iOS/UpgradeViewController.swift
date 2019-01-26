@@ -24,19 +24,19 @@ class UpgradeViewController: BaseUIViewController, UIWebViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         if isForceUpgrade {
-            cancelButton.enabled = false
+            cancelButton.isEnabled = false
             cancelButton.title = ""
         }
         
-        let myRequest = NSURLRequest(URL: url);
+        let myRequest = NSURLRequest(url: url as URL);
         webView.delegate = self
-        webView.loadRequest(myRequest);
+        webView.loadRequest(myRequest as URLRequest);
         
         
     }
     
     func webViewDidStartLoad(webView: UIWebView) {
-        loading.show(view)
+        loading.show(view: view)
             }
     
     func webViewDidFinishLoad(webView: UIWebView) {
@@ -58,9 +58,13 @@ class UpgradeViewController: BaseUIViewController, UIWebViewDelegate {
         //检查一下是否已经登录，如果登录，则直接进入后面的页面
         let loginUser = loginUserStore.getLoginUser()
         if  loginUser != nil {
-            self.performSegueWithIdentifier("hasLoginSegue", sender: self)
+            DispatchQueue.main.async { () -> Void in
+                self.performSegue(withIdentifier: "hasLoginSegue", sender: self)
+            }
         } else {
-            self.performSegueWithIdentifier("notLoginSegue", sender: self)
+            DispatchQueue.main.async { () -> Void in
+                self.performSegue(withIdentifier: "notLoginSegue", sender: self)
+            }
         }
         
     }

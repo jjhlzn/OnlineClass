@@ -25,25 +25,27 @@ class ForgetPasswordViewController: BaseUIViewController, UIAlertViewDelegate {
         super.viewDidLoad()
         hideKeyboardWhenTappedAround()
         
-        setTextFieldHeight(phoneField, height: 45)
-        setTextFieldHeight(passwordField, height: 45)
-        setTextFieldHeight(phoneCheckCode, height: 45)
+        setTextFieldHeight(field: phoneField, height: 45)
+        setTextFieldHeight(field: passwordField, height: 45)
+        setTextFieldHeight(field: phoneCheckCode, height: 45)
         
         
         
-        becomeLineBorder(phoneField)
-        becomeLineBorder(passwordField)
-        becomeLineBorder(phoneCheckCode)
+        becomeLineBorder(field: phoneField)
+        becomeLineBorder(field: passwordField)
+        becomeLineBorder(field: phoneCheckCode)
         
-        phoneCodeLabel.hidden = true
+        phoneCodeLabel.isHidden = true
+        
+        setLeftBackButton()
     }
 
-    @IBAction func getPhoneCodePressed(sender: UIButton) {
+    @IBAction func getPhoneCodePressed(_ sender: UIButton) {
         //TODO: 验证手机号码
         //手机号码不能为空
         let phoneNumber = phoneField.text
         if phoneNumber == nil || phoneNumber == "" {
-            displayMessage("手机号不能为空")
+            displayMessage(message: "手机号不能为空")
             return
         }
         
@@ -51,34 +53,34 @@ class ForgetPasswordViewController: BaseUIViewController, UIAlertViewDelegate {
         
         //发送请求
         let request = GetPhoneCheckCodeRequest(phoneNumber: phoneNumber!)
-        BasicService().sendRequest(ServiceConfiguration.GET_PHONE_CHECK_CODE, request: request) { (response: GetPhoneCheckCodeResponse) -> Void in
+        BasicService().sendRequest(url: ServiceConfiguration.GET_PHONE_CHECK_CODE, request: request) { (response: GetPhoneCheckCodeResponse) -> Void in
             if response.status != 0 {
-                self.displayMessage(response.errorMessage!)
+                self.displayMessage(message: response.errorMessage!)
             }
         }
         
         //设置timer
-        timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "updateButtonTitle", userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateButtonTitle), userInfo: nil, repeats: true)
         
-        getPhoneCodeButton.hidden = true
-        phoneCodeLabel.hidden = false
+        getPhoneCodeButton.isHidden = true
+        phoneCodeLabel.isHidden = false
     }
     
     var timerCount = 59
-    var timer: NSTimer?
-    func updateButtonTitle() {
+    var timer: Timer?
+    @objc func updateButtonTitle() {
         phoneCodeLabel.text = "\(timerCount)秒后重新获取"
         timerCount = timerCount - 1
         if timerCount <= 0 {
             timer?.invalidate()
-            getPhoneCodeButton.hidden = false
-            phoneCodeLabel.hidden = true
+            getPhoneCodeButton.isHidden = false
+            phoneCodeLabel.isHidden = true
             timerCount = 59
         }
     }
     
     
-    @IBAction func confirmPressed(sender: UIButton) {
+    @IBAction func confirmPressed(_ sender: UIButton) {
         
         //验证手机号码
         let phoneNumber = phoneField.text
@@ -89,16 +91,16 @@ class ForgetPasswordViewController: BaseUIViewController, UIAlertViewDelegate {
         //验证密码
         let password = passwordField.text
         
-        loadingOverlay.showOverlay(view)
+        loadingOverlay.showOverlay(view: view)
         let request = GetPasswordRequest(phoneNumber: phoneNumber!, checkCode: phoneCode!, password: password!)
-        BasicService().sendRequest(ServiceConfiguration.GET_PASSWORD, request: request) { (response : GetPasswordResponse) -> Void in
+        BasicService().sendRequest(url: ServiceConfiguration.GET_PASSWORD, request: request) { (response : GetPasswordResponse) -> Void in
             self.loadingOverlay.hideOverlayView()
             if response.status != 0 {
-                self.displayMessage(response.errorMessage!)
+                self.displayMessage(message: response.errorMessage!)
                 return
             }
             
-            self.displayMessage("密码修改成功", delegate: self)
+            self.displayMessage(message: "密码修改成功", delegate: self)
         }
         
         
@@ -106,7 +108,9 @@ class ForgetPasswordViewController: BaseUIViewController, UIAlertViewDelegate {
     }
     
     func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
-        performSegueWithIdentifier("backToLoginPageSegue", sender: nil)
+        DispatchQueue.main.async { () -> Void in
+            self.performSegue(withIdentifier: "backToLoginPageSegue", sender: nil)
+        }
     }
 
 

@@ -2,7 +2,7 @@
 // Creates a timer that executes code after delay. The timer lives in an instance of `AutoCancellingTimer` class and is automatically canceled when this instance is deallocated.
 // This is an auto-canceling alternative to timer created with `dispatch_after` function.
 //
-// Source: https://gist.github.com/evgenyneu/516f7dcdb5f2f73d
+// Source: https://gist.github.com/evgenyneu/516f7dcdb5f2f73d7923
 //
 // Usage
 // -----
@@ -31,7 +31,7 @@ import UIKit
 final class AutoCancellingTimer {
   private var timer: AutoCancellingTimerInstance?
   
-  init(interval: NSTimeInterval, repeats: Bool = false, callback: ()->()) {
+  init(interval: TimeInterval, repeats: Bool = false, callback: @escaping ()->()) {
     timer = AutoCancellingTimerInstance(interval: interval, repeats: repeats, callback: callback)
   }
   
@@ -46,16 +46,16 @@ final class AutoCancellingTimer {
 
 final class AutoCancellingTimerInstance: NSObject {
   private let repeats: Bool
-  private var timer: NSTimer?
+  private var timer: Timer?
   private var callback: ()->()
   
-  init(interval: NSTimeInterval, repeats: Bool = false, callback: ()->()) {
+  init(interval: TimeInterval, repeats: Bool = false, callback: @escaping ()->()) {
     self.repeats = repeats
     self.callback = callback
     
     super.init()
     
-    timer = NSTimer.scheduledTimerWithTimeInterval(interval, target: self,
+    timer = Timer.scheduledTimer(timeInterval: interval, target: self,
       selector: #selector(AutoCancellingTimerInstance.timerFired(_:)), userInfo: nil, repeats: repeats)
   }
   
@@ -63,7 +63,7 @@ final class AutoCancellingTimerInstance: NSObject {
     timer?.invalidate()
   }
   
-  func timerFired(timer: NSTimer) {
+  @objc func timerFired(_ timer: Timer) {
     self.callback()
     if !repeats { cancel() }
   }

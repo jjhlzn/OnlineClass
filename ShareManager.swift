@@ -13,7 +13,7 @@ import Kanna
 
 class ShareManager {
     
-    var controller : BaseUIViewController!
+    var controller : UIViewController!
     
     var weixin : WeixinShareService!;
     var weibo : WeiboShareService!;
@@ -22,6 +22,7 @@ class ShareManager {
     private var _shareTitle = ""
     private var _shareUrl = ""
     private var _shareDescription = ""
+    private var _shareImage = "" //base64 encode string
     var isUseQrImage = true
     
     var tencentOAuth:TencentOAuth!
@@ -61,28 +62,30 @@ class ShareManager {
         }
     }
     
-    func loadShareInfo(url: NSURL) {
-        
-        self.resetDefaultSetting()
-        QL1("load share info url: \(url)")
-        
-        let request = NSMutableURLRequest(URL: url)
-        request.HTTPMethod = "GET"
-        request.setValue("text/html", forHTTPHeaderField: "Content-Type")
-        
-        Alamofire.request(request)
+    var shareImage : String {
+        get {
+            return _shareImage
+        }
+        set {
+            if newValue != ""  {
+                _shareImage = newValue
+            }
+        }
+    }
+    
+    func loadShareInfo(url: URL) {
+        //self.resetDefaultSetting()
+        //QL1("load share info url: \(url)")
+        Alamofire.request(url.absoluteString)
             .responseString { response in
                 //QL1("\(response)")
-                if let doc = HTML(html: response.result.value!, encoding: NSUTF8StringEncoding) {
+                if let doc = try? HTML(html: response.result.value!, encoding: String.Encoding.utf8) {
                     if  doc.title != nil {
                         
                         var title = doc.title!
-                        title = title.stringByTrimmingCharactersInSet(
-                            NSCharacterSet.whitespaceAndNewlineCharacterSet()
-                        )
-
+                        title = title.trimmingCharacters(in: CharacterSet.whitespaces)
                         self.shareTitle = title
-                        QL1("title = \(title)")
+                        //QL1("title = \(title)")
                     }
                     
                     // Search for nodes by XPath
@@ -93,12 +96,12 @@ class ShareManager {
                         
                         if meta["name"] != nil && meta["name"]! == "shareurl" && meta["content"] != nil{
                             self.shareUrl = meta["content"]!
-                            QL1(self.shareUrl)
+                            //QL1(self.shareUrl)
                         }
                         
                         if meta["name"] != nil && meta["name"]! == "description" && meta["content"] != nil{
                             self.shareDescription = meta["content"]!
-                            QL1(self.shareDescription)
+                            //QL1(self.shareDescription)
                         }
                         
                     }
@@ -106,77 +109,81 @@ class ShareManager {
         }
     }
 
-    
+    var defaultShareTitle = "扫一扫下载安装【知得】，在线学习信用卡、贷款、股票、基金、投资、理财、保险、财务等金融知识！"
     func resetDefaultSetting()  {
-        _shareTitle = "扫一扫下载安装【巨方助手】，即可免费在线学习、提额、办卡、贷款！"
+        _shareTitle = defaultShareTitle
         let loginUser = LoginUserStore().getLoginUser()!
         _shareUrl = ServiceLinkManager.ShareQrImageUrl + "?userid=\(loginUser.userName!)"
-        _shareDescription = "巨方助手"
+        _shareDescription = "知得"
         
     }
     
-    init(controller : BaseUIViewController) {
+    init(controller : UIViewController) {
         self.controller = controller
-        _shareTitle = "扫一扫下载安装【巨方助手】，即可免费在线学习、提额、办卡、贷款！"
+        _shareTitle = defaultShareTitle
         _shareDescription = ""
-        let loginUser = LoginUserStore().getLoginUser()!
-        _shareUrl = ServiceLinkManager.ShareQrImageUrl + "?userid=\(loginUser.userName!)"
-        weixin = WeixinShareService(controller: controller, shareManager: self)
-        weibo = WeiboShareService(controller: controller, shareManager: self)
-        qq = QQShareService(controller: controller, shareManager: self)
-        tencentOAuth = TencentOAuth.init(appId: AppDelegate.qqAppId, andDelegate: nil)
+        
+        if LoginUserStore().getLoginUser() != nil {
+            let loginUser = LoginUserStore().getLoginUser()!
+            _shareUrl = ServiceLinkManager.ShareQrImageUrl + "?userid=\(loginUser.userName!)"
+            weixin = WeixinShareService(controller: controller, shareManager: self)
+            weibo = WeiboShareService(controller: controller, shareManager: self)
+            qq = QQShareService(controller: controller, shareManager: self)
+            tencentOAuth = TencentOAuth.init(appId: AppDelegate.qqAppId, andDelegate: nil)
+        }
     }
     
-    func shareToWeixinFriend() {
+    @objc func shareToWeixinFriend() {
         weixin.shareToFriend()
     }
     
-    func shareToWeixinPengyouquan() {
+    @objc func shareToWeixinPengyouquan() {
         weixin.shareToPengyouquan()
     }
     
-    func shareToWeibo() {
+    @objc func shareToWeibo() {
         weibo.share()
     }
     
-    func shareToQQFriend() {
+    @objc func shareToQQFriend() {
         qq.shareToFriends()
     }
     
-    func shareToQzone() {
+    @objc func shareToQzone() {
         qq.shareToQzone()
     }
     
-    func copyLink() {
-        UIPasteboard.generalPasteboard().string =  shareUrl
-        ToastMessage.showMessage(controller.view, message: "复制成功")
+    @objc func copyLink() {
+        QL1("copyLink clicked")
+        UIPasteboard.general.string =  shareUrl
+        ToastMessage.showMessage(view: controller.view, message: "复制成功")
     }
 }
 
 
 class WeixinShareService {
-    var controller : BaseUIViewController
+    var controller : UIViewController
     var shareManager : ShareManager
     
-    init(controller : BaseUIViewController, shareManager : ShareManager) {
+    init(controller : UIViewController, shareManager : ShareManager) {
         self.controller = controller
         self.shareManager = shareManager
     }
     
     func shareToFriend(){
         if !Utils.hasInstalledWeixin() {
-            controller.displayMessage("请先安装微信客户端")
+            Utils.displayMessage(message: "请先安装微信客户端")
         } else {
-            share(false)
+            share(isPengyouquan: false)
         }
     }
     
     func shareToPengyouquan() {
         if !Utils.hasInstalledWeixin() {
-            controller.displayMessage("请先安装微信客户端")
+            Utils.displayMessage(message: "请先安装微信客户端")
         } else {
             print("share to pengyouquan")
-            share(true)
+            share(isPengyouquan: true)
         }
     }
     
@@ -185,11 +192,23 @@ class WeixinShareService {
         message.title = shareManager.shareTitle
         message.description = shareManager.shareDescription
         
-        if shareManager.isUseQrImage {
-            message.setThumbImage(UIImage(named: "me_qrcode"))
+        if shareManager.shareImage != "" {
+            let encodedImageData = shareManager.shareImage
+            let imageData = Data(base64Encoded: encodedImageData)!
+            
+            let image = UIImage(data: imageData )
+            message.setThumbImage(image)
+            
         } else {
-            message.setThumbImage(UIImage(named: "smallAppIcon"))
+            if shareManager.isUseQrImage {
+                message.setThumbImage(UIImage(named: "smallAppIcon"))
+            } else {
+                message.setThumbImage(UIImage(named: "smallAppIcon"))
+            }
         }
+        
+        //message.setThumbImage(image: UIImage()
+        //UIImage(
         
         let webPageObject = WXWebpageObject()
         webPageObject.webpageUrl = shareManager.shareUrl
@@ -200,17 +219,17 @@ class WeixinShareService {
         req.message = message
         req.scene = (isPengyouquan ? 1 : 0)
         
-        WXApi.sendReq(req)
+        WXApi.send(req)
     }
 
 }
 
 class WeiboShareService {
     
-    var controller : BaseUIViewController
+    var controller : UIViewController
     var shareManager : ShareManager
     
-    init(controller : BaseUIViewController, shareManager : ShareManager) {
+    init(controller : UIViewController, shareManager : ShareManager) {
         self.controller = controller
         self.shareManager = shareManager
     }
@@ -218,7 +237,7 @@ class WeiboShareService {
     func share() {
         let req = WBSendMessageToWeiboRequest()
         req.message = getWebpageObject()
-        WeiboSDK.sendRequest(req)
+        WeiboSDK.send(req)
     }
     
     private func getWebpageObject()-> WBMessageObject
@@ -230,15 +249,26 @@ class WeiboShareService {
         webpage.title = shareManager.shareTitle
         webpage.description =  shareManager.shareDescription
         
+        
+        
         //webpage.thumbnailData = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"image_2" ofType:@"jpg"]];
-        if shareManager.isUseQrImage {
-            webpage.thumbnailData = UIImagePNGRepresentation(UIImage(named: "me_qrcode")!)
+        if shareManager.shareImage != "" {
+            let encodedImageData = shareManager.shareImage
+            let imageData = Data(base64Encoded: encodedImageData)!
+            
+            let image = UIImage(data: imageData )
+            webpage.thumbnailData = UIImagePNGRepresentation(image!)
         } else {
-            webpage.thumbnailData = UIImagePNGRepresentation(UIImage(named: "smallAppIcon")!)
+            if shareManager.isUseQrImage {
+                webpage.thumbnailData = UIImagePNGRepresentation(UIImage(named: "smallAppIcon")!)
+            } else {
+                webpage.thumbnailData = UIImagePNGRepresentation(UIImage(named: "smallAppIcon")!)
+            }
         }
         
         webpage.webpageUrl = shareManager.shareUrl
         message.mediaObject = webpage
+        //message.text = shareManager.shareDescription
         
         return message
     }
@@ -246,10 +276,10 @@ class WeiboShareService {
 
 class QQShareService {
     
-    var controller : BaseUIViewController
+    var controller : UIViewController
     var shareManager : ShareManager
     
-    init(controller : BaseUIViewController, shareManager : ShareManager) {
+    init(controller : UIViewController, shareManager : ShareManager) {
         self.controller = controller
         self.shareManager = shareManager
     }
@@ -257,38 +287,45 @@ class QQShareService {
     
     func shareToFriends() {
         if !Utils.hasInstalledQQ() {
-            controller.displayMessage("请先安装QQ客户端")
+            Utils.displayMessage(message: "请先安装QQ客户端")
         } else {
-            shareToQQ(false)
+            shareToQQ(isToQZone: false)
         }
     }
     
     @IBAction func shareToQzone() {
         if !Utils.hasInstalledQQ() {
-            controller.displayMessage("请先安装QQ客户端")
+            Utils.displayMessage(message: "请先安装QQ客户端")
         } else {
-            shareToQQ(true)
+            shareToQQ(isToQZone: true)
         }
     }
 
     private func shareToQQ(isToQZone: Bool) {
-        let newsUrl = NSURL(string: shareManager.shareUrl)
+        let newsUrl = URL(string: shareManager.shareUrl)
         let title = shareManager.shareTitle
         let description = shareManager.shareDescription
         
-        var imageName = "me_qrcode"
-        if !shareManager.isUseQrImage {
-            imageName = "smallAppIcon"
-        }
         
-        let newsObj = QQApiNewsObject(URL: newsUrl!, title: title, description: description, previewImageData: UIImagePNGRepresentation(UIImage(named: imageName)!), targetContentType: QQApiURLTargetTypeNews)
+        let imageName = "smallAppIcon"
+        var image = UIImage(named: imageName)!
+        if shareManager.shareImage != "" {
+            let encodedImageData = shareManager.shareImage
+            let imageData = Data(base64Encoded: encodedImageData)!
+            
+            image = UIImage(data: imageData )!
+        }
+        let newsObj = QQApiNewsObject(url: newsUrl!, title: title,
+                                      description: description,
+                                      previewImageData: UIImagePNGRepresentation(image),
+                                      targetContentType: QQApiURLTargetTypeNews)
         
         let req = SendMessageToQQReq(content: newsObj)
         
         if isToQZone {
-            QQApiInterface.SendReqToQZone(req)
+            QQApiInterface.sendReq(toQZone: req)
         } else {
-            QQApiInterface.sendReq(req)
+            QQApiInterface.send(req)
         }
         
         

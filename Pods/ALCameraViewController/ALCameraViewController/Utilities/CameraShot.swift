@@ -11,20 +11,44 @@ import AVFoundation
 
 public typealias CameraShotCompletion = (UIImage?) -> Void
 
-public func takePhoto(stillImageOutput: AVCaptureStillImageOutput, videoOrientation: AVCaptureVideoOrientation, cropSize: CGSize, completion: CameraShotCompletion) {
+public func takePhoto(_ stillImageOutput: AVCaptureStillImageOutput, videoOrientation: AVCaptureVideoOrientation, cameraPosition: AVCaptureDevice.Position, cropSize: CGSize, completion: @escaping CameraShotCompletion) {
     
-    guard let videoConnection: AVCaptureConnection = stillImageOutput.connectionWithMediaType(AVMediaTypeVideo) else {
+    guard let videoConnection: AVCaptureConnection = stillImageOutput.connection(with: AVMediaType.video) else {
         completion(nil)
         return
     }
     
     videoConnection.videoOrientation = videoOrientation
     
-    stillImageOutput.captureStillImageAsynchronouslyFromConnection(videoConnection, completionHandler: { buffer, error in
+    stillImageOutput.captureStillImageAsynchronously(from: videoConnection, completionHandler: { buffer, error in
         
-        guard let buffer = buffer, imageData = AVCaptureStillImageOutput.jpegStillImageNSDataRepresentation(buffer), image = UIImage(data: imageData) else {
+        guard let buffer = buffer,
+            let imageData = AVCaptureStillImageOutput.jpegStillImageNSDataRepresentation(buffer),
+            var image = UIImage(data: imageData) else {
             completion(nil)
             return
+        }
+
+        // flip the image to match the orientation of the preview
+        if cameraPosition == .front, let cgImage = image.cgImage {
+            switch image.imageOrientation {
+            case .leftMirrored:
+                image = UIImage(cgImage: cgImage, scale: image.scale, orientation: .right)
+            case .left:
+                image = UIImage(cgImage: cgImage, scale: image.scale, orientation: .rightMirrored)
+            case .rightMirrored:
+                image = UIImage(cgImage: cgImage, scale: image.scale, orientation: .left)
+            case .right:
+                image = UIImage(cgImage: cgImage, scale: image.scale, orientation: .leftMirrored)
+            case .up:
+                image = UIImage(cgImage: cgImage, scale: image.scale, orientation: .upMirrored)
+            case .upMirrored:
+                image = UIImage(cgImage: cgImage, scale: image.scale, orientation: .up)
+            case .down:
+                image = UIImage(cgImage: cgImage, scale: image.scale, orientation: .downMirrored)
+            case .downMirrored:
+                image = UIImage(cgImage: cgImage, scale: image.scale, orientation: .down)
+            }
         }
         
         completion(image)

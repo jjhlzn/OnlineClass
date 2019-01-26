@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0700"
+   LastUpgradeVersion = "0930"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -13,11 +13,11 @@
             buildForProfiling = "YES"
             buildForArchiving = "YES">
             <BuildableReference
-               BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '55BBE29C955B8B70A0AC913F60D97C86'
-               BlueprintName = 'moa'
-               ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'moa.framework'>
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "DCFFF58CD173094FAEF281978AEFD9B7"
+               BlueprintName = "moa"
+               ReferencedContainer = "container:Pods.xcodeproj"
+               BuildableName = "moa.framework">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

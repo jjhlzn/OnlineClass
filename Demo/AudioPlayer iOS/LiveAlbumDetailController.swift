@@ -15,7 +15,7 @@ class LiveAlbumDetailController: AlbumDetailController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        extendFunctionManager = ExtendFunctionMananger(controller: self)
+        extendFunctionManager = ExtendFunctionMananger.instance
     }
     
 
@@ -24,7 +24,7 @@ class LiveAlbumDetailController: AlbumDetailController {
     }
 
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if songs == nil {
             return 0
         }
@@ -39,7 +39,7 @@ class LiveAlbumDetailController: AlbumDetailController {
     }
     
     
-   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     
         let row = indexPath.row
         let section = indexPath.section
@@ -47,29 +47,30 @@ class LiveAlbumDetailController: AlbumDetailController {
         switch section {
         case 0:
             let song = songs[indexPath.row]
-            let cell = tableView.dequeueReusableCellWithIdentifier("songCell") as! SongCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "songCell") as! SongCell
             cell.nameLabel.text = song.name
             cell.descLabel.text = song.desc
             cell.dateLabel.text = song.date
             //cell.playBigImage.imageView!.image = albumImageData
             let playBigImage = cell.playBigImage
-            playBigImage.kf_setImageWithURL(NSURL(string: (album?.image)!)!, forState: .Normal)
+            //TODO:
+            //playBigImage.kf_setImageWithURL(NSURL(string: (album?.image)!)!, forState: .Normal)
             
-            playBigImage.layer.borderWidth = 0
-            playBigImage.layer.masksToBounds = false
-            playBigImage.layer.borderColor = UIColor.whiteColor().CGColor
-            playBigImage.layer.cornerRadius = playBigImage.frame.height/2
-            playBigImage.clipsToBounds = true
+            playBigImage?.layer.borderWidth = 0
+            playBigImage?.layer.masksToBounds = false
+            playBigImage?.layer.borderColor = UIColor.white as! CGColor
+            playBigImage?.layer.cornerRadius = (playBigImage?.frame.height)!/2
+            playBigImage?.clipsToBounds = true
             
             return cell
         default:
-            return extendFunctionManager.getFunctionCell(tableView, row: row)
+            return extendFunctionManager.getFunctionCell(tableView: tableView, row: row)
         }
     
     
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         let section = indexPath.section
         
@@ -82,15 +83,19 @@ class LiveAlbumDetailController: AlbumDetailController {
             let song = songs[row]
             
             if audioPlayer.currentItem != nil {
+                //TODO:
+                /*
                 if song.wholeUrl == audioPlayer.currentItem!.highestQualityURL.URL.absoluteString {
-                    performSegueWithIdentifier("songSegue", sender: false)
+                    performSegue(withIdentifier: "songSegue", sender: false)
                     return
-                }
+                } */
             }
-            performSegueWithIdentifier("songSegue", sender: true)
-            tableView.deselectRowAtIndexPath(indexPath, animated: false)
+            DispatchQueue.main.async { () -> Void in
+                self.performSegue(withIdentifier: "songSegue", sender: true)
+            }
+            tableView.deselectRow(at: indexPath as IndexPath, animated: false)
         } else {
-            tableView.deselectRowAtIndexPath(indexPath, animated: false)
+            tableView.deselectRow(at: indexPath as IndexPath, animated: false)
         }
     }
     
@@ -103,10 +108,10 @@ class LiveAlbumDetailController: AlbumDetailController {
         }
     }
 
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        super.prepareForSegue(segue, sender: sender)
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
         if segue.identifier == "loadWebPageSegue" {
-            let dest = segue.destinationViewController as! WebPageViewController
+            let dest = segue.destination as! WebPageViewController
             let params = sender as! [String: String]
             dest.url = NSURL(string: params["url"]!)
             

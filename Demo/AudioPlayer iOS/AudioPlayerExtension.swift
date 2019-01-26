@@ -8,31 +8,61 @@
 
 import Foundation
 import KDEAudioPlayer
+import QorumLogs
 
 extension AudioPlayer {
     
+    func retryIfHasError() {
+        switch state {
+        case AudioPlayerState.failed(_):
+            retryAnyway()
+            break
+        default:
+            break
+        }
+    }
+    
+    func retryAnyway() {
+        
+       
+        if items != nil {
+            let newItems = items!
+            self.stop()
+            
+            self.play(items: newItems, startAtIndex: 0)
+        }
+    }
+    
+    func setError(_ hasError: Bool) {
+        if currentItem == nil {
+            return
+        }
+        
+        if (currentItem as! MyAudioItem).song == nil {
+            return
+        }
+        
+        (currentItem as! MyAudioItem).hasError = hasError
+    }
     
     func playThisSong(song: Song) {
         let album = song.album
         var items = [AudioItem]()
         var idx = 0
         var startIndex = 0
-        for eachSong in album.songs {
+        for eachSong in (album?.songs)! {
             if eachSong.wholeUrl == song.wholeUrl {
                 startIndex = idx
             }
-            var audioItem = MyAudioItem(song: eachSong, highQualitySoundURL: NSURL(string: eachSong.wholeUrl))!
-            if eachSong.album.courseType == CourseType.LiveCourse {
-                let url = NSURL(string: eachSong.wholeUrl)
-                audioItem = MyAudioItem(song: eachSong, highQualitySoundURL: url)!
-            }
+            let url = URL(string: eachSong.wholeUrl)
+            QL1(url)
+            let  audioItem = MyAudioItem(song: eachSong, highQualitySoundURL: url)!
             audioItem.song = eachSong
-            print(audioItem.song?.name)
             items.append(audioItem)
             
             idx = idx + 1
         }
-        playItems(items, startAtIndex: startIndex)
+        play(items: items, startAtIndex: startIndex)
     }
     
     func isPlayThisSong(song: Song) -> Bool {
@@ -56,31 +86,30 @@ extension AudioPlayer {
         
     }
     
-    
-    
 }
 
 class MyAudioItem : AudioItem {
     
     var song: Song!
+    var hasError : Bool = false
     
-    convenience init?(song: Song, highQualitySoundURL: NSURL? = nil, mediumQualitySoundURL: NSURL? = nil, lowQualitySoundURL: NSURL? = nil) {
-        var URLs = [AudioQuality: NSURL]()
+    convenience init?(song: Song, highQualitySoundURL: URL? = nil, mediumQualitySoundURL: URL? = nil, lowQualitySoundURL: URL? = nil) {
+        var URLs = [AudioQuality: URL]()
         if let highURL = highQualitySoundURL {
-            URLs[.High] = highURL
+            URLs[.high] = highURL
         }
         if let mediumURL = mediumQualitySoundURL {
-            URLs[.Medium] = mediumURL
+            URLs[.medium] = mediumURL
         }
         if let lowURL = lowQualitySoundURL {
-            URLs[.Low] = lowURL
+            URLs[.low] = lowURL
         }
         self.init(song: song, soundURLs: URLs)
     }
     
     
-    init?(song: Song, soundURLs: [AudioQuality: NSURL]) {
-        super.init(soundURLs: soundURLs)
+    init?(song: Song, soundURLs: [AudioQuality: URL]) {
+        super.init(soundURLs: soundURLs as [AudioQuality : URL])
         self.song = song
     }
 

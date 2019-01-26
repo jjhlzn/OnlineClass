@@ -11,7 +11,7 @@ import WebKit
 import StoreKit
 import QorumLogs
 import Alamofire
-import Kanna
+//mport Kanna
 
 class WebPageViewController: IapSupportWebPageViewController, WKNavigationDelegate {
     
@@ -29,17 +29,14 @@ class WebPageViewController: IapSupportWebPageViewController, WKNavigationDelega
     @IBOutlet weak var webContainer: UIView!
     var loading = LoadingCircle()
     
-    
-
-    var overlay = UIView()
-    var shareManager : ShareManager!
-    @IBOutlet weak var shareView: UIView!
-    @IBOutlet weak var closeShareViewButton: UIButton!
-    
+    var navigationManager : NavigationBarManager!
+    var shareView: ShareView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        navigationManager = NavigationBarManager(self)
+        shareView = ShareView(frame: CGRect(x : 0, y: UIScreen.main.bounds.height - 233, width: UIScreen.main.bounds.width, height: 233), controller: self)
+        navigationManager.shareView = shareView
         
         initIAP()
         initWebView()
@@ -53,31 +50,23 @@ class WebPageViewController: IapSupportWebPageViewController, WKNavigationDelega
         
         
         navigationItem.leftBarButtonItems = [backButton]
-
-        if title == "提额秘诀" {
-            
-        } else {
-            //navigationItem.rightBarButtonItems = []
-        }
+        navigationItem.rightBarButtonItems = []
         
+        navigationManager.setMusicButton()
+        navigationManager.setShareButton()
+    
         
-        //设置分享相关
-        shareView.hidden = true
-        shareManager = ShareManager(controller: self)
-        closeShareViewButton.addBorder(viewBorder.Top, color: UIColor(white: 0.65, alpha: 0.5), width: 1)
-        shareManager.isUseQrImage = false
-        
-        
-        shareManager.loadShareInfo(url)
+       // self.navigationController?.interactivePopGestureRecognizer?.delegate = self
+        //self.navigationController?.interactivePopGestureRecognizer?.isEnabled = true
     }
     
     
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
     }
     
@@ -85,82 +74,109 @@ class WebPageViewController: IapSupportWebPageViewController, WKNavigationDelega
     override func initWebView() {
         super.initWebView()
         var url1 = url.absoluteString
-        url1 = Utils.addUserParams(url1)
-        url1 = Utils.addDevcieParam(url1)
-        print(url1)
+        url1 = Utils.addUserParams(url: url1!)
+        url1 = Utils.addDevcieParam(url: url1!)
+        url1 = Utils.addBuyInfo(url: url1!)
+        QL1(url1)
         
         let config = WKWebViewConfiguration()
         config.userContentController = contentController
         
-        self.webView = WKWebView(frame: self.view.frame, configuration: config)
+        let frame = self.view.bounds
+        var H : CGFloat = 64
+        if UIDevice().isX() {
+            H -= 24
+        }
+        
+        QL1("minY = \(frame.minY)")
+        let newFrame = CGRect(x: frame.minX, y: frame.minY, width: frame.width, height: frame.height - H)
+        self.webView = WKWebView(frame: newFrame, configuration: config)
+        
+   
         
         self.webContainer.addSubview(self.webView!)
         self.webView?.navigationDelegate = self
         
-        let nsurl = NSURL(string: url1)
-        QL1("NSUrl = \(nsurl)")
-        let myRequest = NSURLRequest(URL: nsurl!);
+        let nsurl = NSURL(string: url1!)
+        QL1("NSUrl = \(String(describing: nsurl))")
+        let myRequest = NSURLRequest(url: nsurl! as URL);
         //webView.delegate = self
-        webView!.loadRequest(myRequest);
+        webView!.load(myRequest as URLRequest);
+        
+       
     }
     
-    
+    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Swift.Void) {
+        if navigationAction.request.url?.scheme == "tel" {
+            
+            UIApplication.shared.openURL(navigationAction.request.url!)
+            //UIApplication.shared.openURL(URL(string: "tel://13706794299")!)
+            decisionHandler(.cancel)
+        } else {
+            decisionHandler(.allow)
+        }
+    }
     
     /****  webView相关的函数  ***/
-    func webView(webView: WKWebView, didCommitNavigation navigation: WKNavigation!) {
-        loading.show(view)
+    func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) {
+        loading.show(view: view)
         QL1("didCommitNavigation called")
         QL1("webView.canGoBack = \(webView.canGoBack)")
-        if webView.URL != nil {
-            QL1("url = \(webView.URL!)")
-            shareManager.loadShareInfo(webView.URL!)
+        if webView.url != nil {
+            QL1("url = \(webView.url!)")
+           shareView.setShareUrl((webView.url?.absoluteString)!)
         }
-
+        
         if webView.canGoBack {
             navigationItem.leftBarButtonItems = [backButton, closeButton]
             backButton.action = #selector(webViewBack)
+
+           // self.navigationController?.interactivePopGestureRecognizer?.delegate = self
+           // self.navigationController?.interactivePopGestureRecognizer?.isEnabled = true
         }
     }
     
-    func webView(webView: WKWebView, didFinishNavigation navigation: WKNavigation!) {
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         loading.hide()
         QL1("webView.canGoBack = \(webView.canGoBack)")
         
         QL1("didFinishNavigation called")
         
-        /*
-        if webView.URL != nil {
-            QL1("url = \(webView.URL!)")
-            shareManager.loadShareInfo(webView.URL!)
-        }*/
-
+        
+        if webView.url != nil {
+            QL1("url = \(webView.url!)")
+            shareView.setShareUrl((webView.url?.absoluteString)!)
+            shareView.shareManager.loadShareInfo(url: webView.url!)
+        }
+        
         
         if !webView.canGoBack {
             navigationItem.leftBarButtonItems = [backButton]
             backButton.action = #selector(returnLastController)
+
+           // self.navigationController?.interactivePopGestureRecognizer?.delegate = self
+           // self.navigationController?.interactivePopGestureRecognizer?.isEnabled = true
         }
     }
     
-    func webView(webView: WKWebView, didFailNavigation navigation: WKNavigation!, withError error: NSError) {
+    func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
         loading.hide()
     }
     
-    func webView(webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: NSError) {
+    func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
         loading.hide()
     }
     
-  
 
-    func webViewBack() {
+    @objc func webViewBack() {
         if webView!.canGoBack {
             webView!.goBack()
-            if webView!.URL != nil {
-                QL1("url = \(webView!.URL!)")
-                shareManager.loadShareInfo(webView!.URL!)
+            if webView?.url != nil {
+                //QL1("url = \(webView?.url!)")
+                shareView.setShareUrl((webView?.url?.absoluteString)!)
             }
-            
         } else {
-            navigationController?.popViewControllerAnimated(true)
+            navigationController?.popViewController(animated: true)
         }
     }
     
@@ -170,90 +186,31 @@ class WebPageViewController: IapSupportWebPageViewController, WKNavigationDelega
         let loginUser = loginUserStore.getLoginUser()
         if  loginUser != nil {
             QL1("found login user")
-            QL1("userid = \(loginUser?.userName), password = \(loginUser?.password), token = \(loginUser?.token)")
-            self.performSegueWithIdentifier("hasLoginSegue", sender: self)
+            DispatchQueue.main.async { () -> Void in
+                self.performSegue(withIdentifier: "hasLoginSegue", sender: self)
+            }
         } else {
             QL1("no login user")
-            self.performSegueWithIdentifier("notLoginSegue", sender: self)
+            DispatchQueue.main.async { () -> Void in
+                self.performSegue(withIdentifier: "notLoginSegue", sender: self)
+            }
         }
         
     }
     
     
-    func returnLastController() {
+    @objc func returnLastController() {
 
         if isBackToMainController {
             checkLoginUser()
         } else {
-            navigationController?.popViewControllerAnimated(true)
+            DispatchQueue.main.async { () -> Void in
+                self.navigationController?.popViewController(animated: true)
+            }
         }
         
     }
-    
-    
-    
-    /******************* 分享 *************************************************/
 
-    @IBAction func shareButtonPressed(sender: AnyObject) {
-        //如果正在评论，关闭评论的窗口
-        QL1("shareButton Pressed")
-        
-        if shareView.hidden {
-            shareView.becomeFirstResponder()
-            showShareView()
-        } else {
-            hideShareView()
-        }
-    }
-    
-    func showShareView() {
-        print("showOverlay")
-        overlay = UIView(frame: UIScreen.mainScreen().bounds)
-        overlay.backgroundColor = UIColor(white: 0, alpha: 0.65)
-        
-        shareView.removeFromSuperview()
-        shareView.hidden = false
-        overlay.addSubview(shareView)
-        self.view.addSubview(overlay)
-    }
-    
-    func hideShareView() {
-        print("hideOverlay")
-        shareView.removeFromSuperview()
-        self.view.addSubview(shareView)
-        shareView.hidden = true
-        overlay.removeFromSuperview()
-    }
-    
-    
-    @IBAction func closeShareViewButtonPressed(sender: AnyObject) {
-        hideShareView()
-    }
-    
-    @IBAction func shareToFriends(sender: AnyObject) {
-        shareManager.shareToWeixinFriend()
-    }
-    
-    @IBAction func shareToPengyouquan(sender: AnyObject) {
-        shareManager.shareToWeixinPengyouquan()
-    }
-    
-    @IBAction func shareToWeibo(sender: AnyObject) {
-        shareManager.shareToWeibo()
-    }
-    
-    @IBAction func shareToQQFriends(sender: AnyObject) {
-        shareManager.shareToQQFriend()
-    }
-    
-    
-    @IBAction func shareToQzone(sender: AnyObject) {
-        shareManager.shareToQzone()
-    }
-    
-    @IBAction func copyLink(sender: AnyObject) {
-        shareManager.copyLink()
-    }
 
     
     

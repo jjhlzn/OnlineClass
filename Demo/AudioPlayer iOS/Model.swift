@@ -17,6 +17,7 @@ class CourseType: BaseModelObject {
     //case Common, Vip, Live
     static let LiveCourse = CourseType(name: "直播课程", code: "Live")
     static let PayCourse = CourseType(name: "会员专享课程", code: "Vip")
+    static let CommonCourse = CourseType(name: "普通课程", code: "Common")
     var name : String
     var code : String
     init(name: String, code: String) {
@@ -25,6 +26,9 @@ class CourseType: BaseModelObject {
     }
     
     var isLive : Bool {
+        if code == CourseType.CommonCourse.code {
+            return false
+        }
         return true
     }
     
@@ -52,6 +56,13 @@ class Album : BaseModelObject {
     var isReady : Bool = false
     var isAgent: Bool = false
     var playTimeDesc: String = ""
+    
+    var date: String = ""
+    var status: String = ""
+    var stars: Double = 5
+    var liveTime: String = ""
+    var listenerCount: Int = 0
+    
     var songs = [Song]()
     
     var hasImage: Bool {
@@ -83,9 +94,42 @@ class SongSetting : BaseModelObject {
 }
 
 class Advertise : BaseModelObject {
+    static let WEB = "web"
+    static let COURSE = "course"
+    
+    var type = WEB
+    var id = ""
     var imageUrl = ""
     var clickUrl = ""
     var title = ""
+}
+
+class Toutiao : BaseModelObject {
+    var content = ""
+    var clickUrl = ""
+    var title = ""
+}
+
+class SearchResult : BaseModelObject{
+    var title = ""
+    var content = ""
+    var clickUrl = ""
+    var image = ""
+    var date = ""
+    var author = ""
+    var desc = ""
+}
+
+
+ class Course : BaseModelObject {
+    
+    var id = "";
+    var sequence : Int = 0;
+    var title = "";
+    var time = "";
+    var introduction = "";
+    var url = "";
+    var beforeCourses = [Course]()
 }
 
 class Song : BaseModelObject {
@@ -95,12 +139,16 @@ class Song : BaseModelObject {
     var date: String = ""
     var url: String = ""
     var imageUrl: String = ""
+    
     var shareTitle: String = ""
     var shareUrl : String = ""
+    var shareDesc : String = ""
+    var shareImage: String = ""  //base64 encode string
+    
     var settings = SongSetting()
     var album: Album!
     var wholeUrl : String {
-        return ServiceConfiguration.GetSongUrl(url)
+        return ServiceConfiguration.GetSongUrl(urlSuffix: url)
     }
     var isLive : Bool {
         return album.isLive
@@ -115,8 +163,8 @@ class Song : BaseModelObject {
 }
 
 class LiveSong : Song {
-    let dateFormatter = NSDateFormatter()
-    let dateFormatter2 = NSDateFormatter()
+    let dateFormatter = DateFormatter()
+    let dateFormatter2 = DateFormatter()
     override init() {
         super.init()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
@@ -125,6 +173,7 @@ class LiveSong : Song {
     
     var startDateTime: String?
     var listenPeople: String = ""
+    var introduction: String = ""
     
     
     var startTime: String? {
@@ -132,7 +181,7 @@ class LiveSong : Song {
             if startDateTime == nil {
                 return ""
             }
-            return (startDateTime! as NSString).substringFromIndex(10)
+            return (startDateTime! as NSString).substring(from: 10)
         }
     }
     var endDateTime: String?
@@ -141,30 +190,35 @@ class LiveSong : Song {
             if startDateTime == nil {
                 return ""
             }
-            return (endDateTime! as NSString).substringFromIndex(10)
+            return (endDateTime! as NSString).substring(from: 10)
         }
     }
     
-    var totalTime: NSTimeInterval {
+    var totalTime: TimeInterval {
+        //TODO:
+        return TimeInterval(0)
+        
+        /*
         if startDateTime == nil || endDateTime == nil {
-            return NSTimeInterval(0)
+            return TimeInterval(0)
         }
         return dateFormatter.dateFromString(endDateTime!)!.timeIntervalSinceDate(dateFormatter.dateFromString(startDateTime!)!)
-    }
+        */
+ }
     
-    var leftTime : NSTimeInterval {
+    var leftTime : TimeInterval {
         get {
             if startDateTime == nil || endDateTime == nil {
-                return NSTimeInterval(0)
+                return TimeInterval(0)
             }
-            return dateFormatter.dateFromString(endDateTime!)!.timeIntervalSinceNow
+            return dateFormatter.date(from: endDateTime!)!.timeIntervalSinceNow
         }
     }
     
-    var playedTime : NSTimeInterval {
+    var playedTime : TimeInterval {
         get {
             if startDateTime == nil || endDateTime == nil {
-                return NSTimeInterval(0)
+                return TimeInterval(0)
             }
             return totalTime - leftTime
 
@@ -215,6 +269,20 @@ class ChatSetting : BaseModelObject {
     
 }
 
+class ZhuanLan : BaseModelObject {
+    
+    var name: String = ""
+    var latest: String = ""
+    var updateTime : String = ""
+    var priceInfo : String = ""
+    var desc: String = ""
+    var imageUrl : String = ""
+    var url : String = ""
+    var author : String = ""
+    var authorTitle : String = ""
+    var dingyue : Int = 0
+}
+
 class ServiceLocator {
     var http: String!
     var serverName: String!
@@ -243,4 +311,86 @@ class PurchaseRecord {
     var productId: String!
     var isNotify: Bool = false
     var payTime: String!
+}
+
+class Question : BaseModelObject {
+    var id : String!
+    var userId : String!
+    var userName : String!
+    var content : String!
+    var time : String!
+    var isLiked : Bool!
+    var answerCount: Int!
+    var thumbCount : Int!
+    var answers = [Answer]()
+}
+
+class Answer : BaseModelObject {
+    var question : Question?
+    var fromUserId : String!
+    var fromUserName : String!
+    var toUserId : String?
+    var toUserName : String?
+    var content : String!
+    var isFromManager : Bool!
+}
+
+class LearnFinanceItem : BaseModelObject {
+    var id : String!
+    var songId : String!
+    var audioUrl : String!
+    var title : String!
+}
+
+class FinanceToutiao : BaseModelObject {
+    var title : String!
+    var content : String!
+    var link : String!
+    var index : Int!
+}
+
+class Pos : BaseModelObject {
+    var imageUrl : String!
+    var clickUrl : String!
+    var title : String!
+}
+
+class Message : BaseModelObject {
+    var title: String!
+    var desc : String!
+    var time : String!
+    var clickTitle : String!
+    var clickUrl : String!
+    
+    var height: CGFloat! = 0
+}
+
+
+class MainPageHeaderAdvModel {
+    var ads = [Advertise]()
+}
+
+class MainPageExtendFunctionModel {
+}
+
+class MainPageNilModel {
+}
+
+enum MainPageCellModel {
+    case headerAdv(MainPageHeaderAdvModel)
+    case extendFunction
+    case pos(Pos)
+    case toutiaoHeader
+    case toutiao(FinanceToutiao)
+    case courseHeader
+    case course(Album)
+    case jpkHeader
+    case jpk(ZhuanLan)
+    case zhuanLanHeader
+    case zhuanLan(ZhuanLan)
+    case questionHeader
+    case question(Question)
+    case learnFinanceHeader
+    case learnFinance(LearnFinanceItem)
+    case seperator
 }

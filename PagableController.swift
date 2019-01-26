@@ -9,9 +9,10 @@
 import Foundation
 import UIKit
 import QorumLogs
+import MJRefresh
 
 public protocol PagableControllerDelegate : NSObjectProtocol {
-    func searchHandler(respHandler: ((resp: ServerResponse) -> Void))
+    func searchHandler(respHandler: @escaping ((_ resp: ServerResponse) -> Void))
 }
 
 class PagableController<T> : NSObject {
@@ -29,14 +30,20 @@ class PagableController<T> : NSObject {
     var isShowLoadCompleteText = true
     var confirmDelegate : ConfirmDelegate?
     
-    var refreshControl: UIRefreshControl!
+    //var refreshControl: UIRefreshControl!
+    let refreshHeader = MJRefreshNormalHeader()
     
     func initController() {
         confirmDelegate = ConfirmDelegate(controller: viewController)
         if isNeedRefresh {
+            /*
             refreshControl = UIRefreshControl()
-            refreshControl.addTarget(self, action: #selector(refresh), forControlEvents: UIControlEvents.ValueChanged)
-            tableView.addSubview(refreshControl)
+            refreshControl.addTarget(self, action: #selector(refresh), for: UIControlEvents.valueChanged)
+            tableView.addSubview(refreshControl) */
+            refreshHeader.setRefreshingTarget(self, refreshingAction: #selector(refresh))
+            tableView.mj_header = refreshHeader
+            refreshHeader.lastUpdatedTimeLabel.isHidden = true
+            refreshHeader.stateLabel.isHidden = true
         }
     }
     
@@ -66,15 +73,15 @@ class PagableController<T> : NSObject {
         
         delegate.searchHandler() {
             (resp: ServerResponse) -> Void in
-            dispatch_async(dispatch_get_main_queue()) {
-                self.afterHandleResponse(resp as! PageServerResponse<T>)
+            DispatchQueue.main.async() {
+                self.afterHandleResponse(resp: resp as! PageServerResponse<T>)
             }
         }
     }
     
-    func refresh() {
+    @objc func refresh() {
         if (quering) {
-            refreshControl.endRefreshing()
+            refreshHeader.endRefreshing()
             return
         }
         
@@ -83,8 +90,8 @@ class PagableController<T> : NSObject {
         
         delegate.searchHandler() {
             (resp: ServerResponse) -> Void in
-            dispatch_async(dispatch_get_main_queue()) {
-                self.afterHandleRefreshRespones(resp as! PageServerResponse<T>)
+            DispatchQueue.main.async() {
+                self.afterHandleRefreshRespones(resp: resp as! PageServerResponse<T>)
             }
         }
         
@@ -92,11 +99,11 @@ class PagableController<T> : NSObject {
     
     func afterHandleRefreshRespones(resp: PageServerResponse<T>) {
         self.quering = false
-        refreshControl.endRefreshing()
+        refreshHeader.endRefreshing()
         
         if resp.status != 0 {
             print("Server Return Error")
-            viewController.displayMessage(resp.errorMessage!)
+            viewController.displayMessage(message: resp.errorMessage!)
             return
         }
         
@@ -127,7 +134,7 @@ class PagableController<T> : NSObject {
             self.hasMore = false
             QL1(viewController)
             if viewController.view.window != nil {
-                viewController.displayVipBuyMessage(resp.errorMessage!, delegate: confirmDelegate!)
+                viewController.displayVipBuyMessage(message: resp.errorMessage!, delegate: confirmDelegate!)
             } else {
                 QL4("can't show alert message on ther view controller")
             }
@@ -136,7 +143,7 @@ class PagableController<T> : NSObject {
         
         if resp.status != 0 {
             print("Server Return Error")
-            viewController.displayMessage(resp.errorMessage!)
+            viewController.displayMessage(message: resp.errorMessage!)
             return
         }
         
@@ -167,33 +174,35 @@ class PagableController<T> : NSObject {
         
         self.tableView.tableFooterView = nil
         tableFooterView = UIView()
-        tableFooterView.frame = CGRectMake(0, 0, tableView.bounds.size.width, 40)
-        loadMoreText.frame =  CGRectMake(0, 0, tableView.bounds.size.width, 40)
+        tableFooterView.frame = CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: 40)
+        loadMoreText.frame =  CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: 40)
         
         
-        loadMoreText.textAlignment = NSTextAlignment.Center
+        loadMoreText.textAlignment = NSTextAlignment.center
         tableFooterView.addSubview(loadMoreText)
-        loadMoreText.center = CGPointMake( (tableView.bounds.size.width - loadMoreText.intrinsicContentSize().width / 16) / 2 , 20)
+        loadMoreText.center = CGPoint( x: (tableView.bounds.size.width - loadMoreText.intrinsicContentSize.width / 16) / 2 , y: 20)
         self.setFootText()
         
         tableView.tableFooterView = tableFooterView
     }
     
     func setLoadingFooter() {
-        
+        if self.tableView == nil {
+            return
+        }
         self.tableView.tableFooterView = nil
         tableFooterView = UIView()
-        tableFooterView.frame = CGRectMake(0, 0, tableView.bounds.size.width, 40)
-        loadMoreText.frame =  CGRectMake(0, 0, tableView.bounds.size.width, 40)
+        tableFooterView.frame = CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: 40)
+        loadMoreText.frame =  CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: 40)
         
         
-        loadMoreText.textAlignment = NSTextAlignment.Center
+        loadMoreText.textAlignment = NSTextAlignment.center
         
         
-        loadMoreText.center = CGPointMake( (tableView.bounds.size.width - loadMoreText.intrinsicContentSize().width / 16) / 2 , 20)
-        let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
+        loadMoreText.center = CGPoint(x: (tableView.bounds.size.width - loadMoreText.intrinsicContentSize.width / 16) / 2 , y: 20)
+        let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.gray)
         activityIndicator.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
-        activityIndicator.center = CGPointMake( (tableView.bounds.size.width - 80 - loadMoreText.intrinsicContentSize().width / 16) / 2 , 20)
+        activityIndicator.center = CGPoint(x: (tableView.bounds.size.width - 80 - loadMoreText.intrinsicContentSize.width / 16) / 2 , y: 20)
         activityIndicator.startAnimating()
         
         tableFooterView.addSubview(activityIndicator)
@@ -206,7 +215,7 @@ class PagableController<T> : NSObject {
         
         
         loadMoreText.font = UIFont(name: "Helvetica Neue", size: 10)
-        loadMoreText.textColor = UIColor.grayColor()
+        loadMoreText.textColor = UIColor.gray
         if quering {
             self.loadMoreText.text = "加载中"
             
@@ -242,7 +251,7 @@ class ConfirmDelegate : NSObject, UIAlertViewDelegate {
         self.controller = controller
         QL1(controller.navigationController?.viewControllers)
         let controllers = controller.navigationController?.viewControllers
-        if controllers?.count > 1 {
+        if (controllers?.count)! > 1 {
             self.parentController = controller.navigationController?.viewControllers[0]
         }
     }
@@ -251,7 +260,9 @@ class ConfirmDelegate : NSObject, UIAlertViewDelegate {
         case 0:
             print("button 0 pressed")
             if controller.view.window != nil {
-                controller.performSegueWithIdentifier("buyVipSegue", sender: nil)
+                DispatchQueue.main.async { () -> Void in
+                    self.controller.performSegue(withIdentifier: "buyVipSegue", sender: nil)
+                }
             } else {
                 //QL1(parentController)
                 //if parentController as? CourseMainPageViewController != nil {
@@ -261,7 +272,9 @@ class ConfirmDelegate : NSObject, UIAlertViewDelegate {
             break
         case 1:
             print("button 1 pressed")
-            controller.navigationController?.popViewControllerAnimated(true)
+            DispatchQueue.main.async { () -> Void in
+                self.controller.navigationController?.popViewController(animated: true)
+            }
             break
         default:
             break

@@ -22,11 +22,11 @@ class LivePlayerViewController : PlayerViewController {
         super.initPlayerController()
         
         //暂时认为一个直播album只有一个直播节目
-        cell.preButton.enabled = false
-        cell.nextButton.enabled = false
+        cell.preButton.isEnabled = false
+        cell.nextButton.isEnabled = false
         cell.bufferProgress.progress = 0
         //直播不显示进度条
-        cell.bufferProgress.hidden = true
+        cell.bufferProgress.isHidden = true
         
         let song = (audioPlayer.currentItem as! MyAudioItem).song as! LiveSong
         //获取直播的时间
@@ -36,28 +36,30 @@ class LivePlayerViewController : PlayerViewController {
         
         //- 获取直播的图片
         //cell.artImageView.downloadedFrom(link: song.imageUrl!, contentMode: .ScaleAspectFit)
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
         if appDelegate.liveProgressTimer == nil {
-            appDelegate.liveProgressTimer  = NSTimer.scheduledTimerWithTimeInterval(0.4, target: self, selector: #selector(updatePlayingProgress), userInfo: nil, repeats: true)
+            appDelegate.liveProgressTimer  = Timer.scheduledTimer(timeInterval: 0.4, target: self, selector: #selector(updatePlayingProgress), userInfo: nil, repeats: true)
         }
         
         cell.progressBar.value =  Float(song.playedTime / song.totalTime)
         
-        cell.progressBar.enabled = true
+        cell.progressBar.isEnabled = true
     }
     
     override func playOrPause() {
          QL1("playOrPause: player state is \(audioPlayer.state)")
-        if audioPlayer.state == AudioPlayerState.Playing || audioPlayer.state == AudioPlayerState.Buffering {
+        if audioPlayer.state == AudioPlayerState.playing || audioPlayer.state == AudioPlayerState.buffering {
             audioPlayer.pause()
             
-        } else if audioPlayer.state == AudioPlayerState.Paused {
+        } else if audioPlayer.state == AudioPlayerState.paused {
             audioPlayer.resume()
-            audioPlayer.seekToSeekableRangeEnd(0)
+            audioPlayer.seekToSeekableRangeEnd(padding: 0)
         } else {
             if audioPlayer.currentItem != nil {
                 QL1("player state is \(audioPlayer.state), try to play the item")
-                audioPlayer.playItem(audioPlayer.currentItem!)
+                
+                //TODO:
+                //audioPlayer.playItem(audioPlayer.currentItem!)
             }
         }
     }
@@ -72,7 +74,7 @@ class LivePlayerViewController : PlayerViewController {
         updatePlayAndPauseButton()
         
         updateBufferCircle()
-        cell.progressBar.enabled = true
+        cell.progressBar.isEnabled = true
     }
     
     //加载直播信息，不能删除
@@ -82,15 +84,16 @@ class LivePlayerViewController : PlayerViewController {
     }
     
     //更新播放进度条，不能删除
-    override func audioPlayer(audioPlayer: AudioPlayer, didUpdateProgressionToTime time: NSTimeInterval, percentageRead: Float){
+    override func audioPlayer(audioPlayer: AudioPlayer, didUpdateProgressionToTime time: TimeInterval, percentageRead: Float){
 
     }
     
     //更新缓冲进度条，不能删除
+    /*
     override func audioPlayer(audioPlayer: AudioPlayer, didLoadRange range: AudioPlayer.TimeRange, forItem item: AudioItem){
         print("LivePlayerViewController:didLoadRange, loadRange = \(range)")
         updateBufferProgress()
-    }
+    }*/
     
     //更新基础信息，不能删除
     override func audioPlayer(audioPlayer: AudioPlayer, didUpdateEmptyMetadataOnItem item: AudioItem, withData data: Metadata) {
@@ -105,20 +108,20 @@ class LivePlayerViewController : PlayerViewController {
     
     override func updateBufferProgress() {
         //print("LivePlayerViewController:updateBufferProgress")
-        let beforeTime = NSTimeInterval( getCurrentSong().totalTime - getCurrentSong().leftTime )
+        let beforeTime = TimeInterval( getCurrentSong().totalTime - getCurrentSong().leftTime )
         if audioPlayer.currentItemLoadedRange != nil {
-            cell.bufferProgress.progress = Float( (beforeTime + audioPlayer.currentItemLoadedRange!.latest) / NSTimeInterval( getCurrentSong().totalTime) )
+            cell.bufferProgress.progress = Float( (beforeTime + audioPlayer.currentItemLoadedRange!.latest) / TimeInterval( getCurrentSong().totalTime) )
         }
 
     }
     
     var isPlaying : Bool {
         get {
-            return self.audioPlayer.state == AudioPlayerState.Playing
+            return self.audioPlayer.state == AudioPlayerState.playing
         }
     }
     
-    override func updatePlayingProgress() {
+    @objc override func updatePlayingProgress() {
         if isPlaying {
             //print("LivePlayerViewController:updatePlayingProgress")
             

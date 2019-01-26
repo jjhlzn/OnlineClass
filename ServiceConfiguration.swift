@@ -10,18 +10,17 @@ import Foundation
 
 class ServiceConfiguration {
     static let PageSize = 20
-    static let isUseConfig = true
+    static let isUseConfig = false
     static let serviceLocatorStore = ServiceLocatorStore()
     
 
     //114.80.101.27:6012/
-    static let serverName3 = "localhost"
-    static let port3 = 5000
+    static let serverName3 =  "jf.yhkamani.com"  // "192.168.64.215"   //// "192.168.31.130"  // //"localhost" //"jf.yhkamani.com"
+    static let port3 =  80  //4000
     
     
     static let serverName4 = "jf.yhkamani.com"
     static let port4 = 80
-    
     
     
     static var serverName: String {
@@ -115,6 +114,12 @@ class ServiceConfiguration {
     static var SIGNUP : String {
         get {
             return "\(http)://\(serverName):\(port)/user/signup"
+        }
+    }
+    
+    static var BIND_PHONE : String {
+        get {
+            return "\(http)://\(serverName):\(port)/user/bindphone"
         }
     }
     
@@ -304,6 +309,111 @@ class ServiceConfiguration {
     }
 
 
+    static var GET_SHARE_IMAGES : String {
+        get {
+            return "\(http)://\(serverName):\(port)/app/getShareImages"
+        }
+    }
+    
+    static var GET_MAIN_PAGE_ADS : String {
+        get {
+            return "\(http)://\(serverName):\(port)/app/getMainPageAds"
+        }
+    }
 
+    static var GET_ZHUANLAN_AND_TUIJIAN_COURSES : String {
+        get {
+            return "\(http)://\(serverName):\(port)/app/getZhuanLanAndTuijianCourses"
+        }
+    }
+    
+    static var Get_ZHUANLAN_LIST : String {
+        get {
+            return "\(http)://\(serverName):\(port)/app/getZhuanLans"
+        }
+    }
+    
+    static var GET_TOUTIAO : String {
+        get {
+            return "\(http)://\(serverName):\(port)/app/getToutiao"
+        }
+    }
 
+    static var GET_COURSEINFO : String {
+        get {
+            return "\(http)://\(serverName):\(port)/getCourseInfo"
+        }
+    }
+    
+    static var GET_QUESTIONS : String {
+        get {
+            return "\(http)://\(serverName):\(port)/app/getQuestions"
+        }
+    }
+    
+    static var GET_FINANCE_TOUTIAOS : String {
+        get {
+            return "\(http)://\(serverName):\(port)/app/getJinRongToutiaos"
+        }
+    }
+    
+    static var SEND_ANSWER : String {
+        get {
+            return "\(http)://\(serverName):\(port)/app/sendQuestionAnswer"
+        }
+    }
+    
+    static var LIKE_QUESTION : String {
+        get {
+            return "\(http)://\(serverName):\(port)/app/likeQuestion"
+        }
+    }
+    
+    static var GET_PAGED_QUESTIONS : String {
+        get {
+            return "\(http)://\(serverName):\(port)/app/getPagedQuestions"
+        }
+    }
+    
+    static var ASK_QUESTION : String {
+        get {
+            return "\(http)://\(serverName):\(port)/app/askQuestion"
+        }
+    }
+    
+    static var GET_WEIXIN_TOKEN : String {
+        get {
+            return "\(http)://\(serverName):\(port)/user/getweixintoken"
+        }
+    }
+    
+    static var OAUTH : String {
+        get {
+            return "\(http)://\(serverName):\(port)/user/oauth"
+        }
+    }
+    
+    static var MOBILE_LOGIN : String {
+        get {
+            return "\(http)://\(serverName):\(port)/wxapp/login"
+        }
+    }
+    
+    static var BIND_WEIXIN : String {
+        get {
+            return "\(http)://\(serverName):\(port)/user/bindweixin"
+        }
+    }
+    
+    static var GET_MESSAGES : String {
+        get {
+            return "\(http)://\(serverName):\(port)/app/getmessages"
+        }
+    }
+    
+    static var GET_LEARN_FINANCES : String {
+        get {
+            return "\(http)://\(serverName):\(port)/app/getlearnfinances"
+        }
+    }
 }

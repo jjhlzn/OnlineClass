@@ -11,9 +11,9 @@ import UIKit
 class MyUISlider: UISlider {
     
     
-    override func trackRectForBounds(bounds: CGRect) -> CGRect {
+    override func trackRect(forBounds bounds: CGRect) -> CGRect {
         
-        return CGRectMake(0, 12, UIScreen.mainScreen().bounds.width, 4.5)
+        return CGRect(x: 0, y: 12, width: UIScreen.main.bounds.width, height: 4.5)
     }
 
 }
