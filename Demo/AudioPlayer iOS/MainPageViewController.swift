@@ -638,7 +638,7 @@ extension CourseMainPageViewController  {
     }
     
     @objc func hidePopupAd() {
-        QL1("hidePopupAd")
+        //QL1("hidePopupAd")
         if adOverlay != nil {
             adOverlay?.removeFromSuperview()
         }

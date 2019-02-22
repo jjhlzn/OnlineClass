@@ -14,6 +14,11 @@ import Alamofire
 import MJRefresh
 //import Kanna
 
+extension Date {
+    var ticks: UInt64 {
+        return UInt64((self.timeIntervalSince1970 + 62_135_596_800) * 10_000_000)
+    }
+}
 
 class ApplyBrowserController : IapSupportWebPageViewController, WKNavigationDelegate {
     
@@ -79,7 +84,18 @@ class ApplyBrowserController : IapSupportWebPageViewController, WKNavigationDele
     }
     
     @objc func refresh() {
-        webView?.reload()
+        if self.title == "已购" {
+            let url1 = makeUrl()
+            let nsurl = NSURL(string: url1)
+            let myRequest = NSURLRequest(url: nsurl! as URL);
+            //webView.delegate = self
+            webView!.load(myRequest as URLRequest)
+            
+        } else {
+            
+            webView?.reload()
+        
+        }
         self.refreshHeader.endRefreshing()
     }
     
@@ -121,8 +137,10 @@ class ApplyBrowserController : IapSupportWebPageViewController, WKNavigationDele
         url1 = Utils.addUserParams(url: url1!)
         url1 = Utils.addDevcieParam(url: url1!)
         url1 = Utils.addBuyInfo(url: url1!)
+        url1 = url1! + "&abc=\(Date().ticks)"
         return url1!
     }
+    
     
     override func initWebView() {
         super.initWebView()

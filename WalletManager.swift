@@ -26,6 +26,9 @@ class WalletManager {
     
     func getBalance() -> Double {
         let value = keyValueDao.get(key: KeyValueStore.key_local_wallet, defaultValue: "0")!
-        return Double(value)!
+        let v = Double(value)!
+        return Double(round(1000*v)/1000)
     }
+    
+
 }

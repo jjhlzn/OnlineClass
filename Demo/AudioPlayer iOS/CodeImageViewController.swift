@@ -28,7 +28,7 @@ class CodeImageViewController: BaseUIViewController, FSPagerViewDataSource, FSPa
     @IBOutlet weak var codeImageView: UIImageView!
     var qrCodeImageStore: QrCodeImageStore!
     
-    var shareManager : ShareManager!
+    //var shareManager : ShareManager!
     var pagerView: FSPagerView!
     
     override func viewDidLoad() {
@@ -66,7 +66,8 @@ class CodeImageViewController: BaseUIViewController, FSPagerViewDataSource, FSPa
         }
         
         shareView = ShareView(frame: CGRect(x : 0, y: UIScreen.main.bounds.height - 233, width: UIScreen.main.bounds.width, height: 233), controller: self)
-        
+        shareView.shareManager.shareTitle = "识别图中二维码加入知得金融知识服务平台"
+        shareView.shareManager.shareDescription = "在线学习信用卡、贷款、股票、基金、投资、理财、保险、财务等金融知识"
         setLeftBackButton()
 
         loadData()
